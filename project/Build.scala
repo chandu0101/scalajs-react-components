@@ -79,6 +79,7 @@ object ScalajsReactComponents extends Build {
     _.settings(
       jsDependencies ++= Seq("org.webjars" % "react" % "0.12.1" % scope / "react-with-addons.js" commonJSName "React",
       "org.webjars" % "react-bootstrap" % "0.13.0" / "react-bootstrap.js" commonJSName "ReactBootstrap" dependsOn "react-with-addons.js"),
+      jsDependencies += ProvidedJS / "highlight.pack.js",
       skip in packageJSDependencies := false)
 
     val jsDir = "demo/js"

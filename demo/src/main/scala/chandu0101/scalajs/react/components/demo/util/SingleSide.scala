@@ -16,11 +16,11 @@ object SingleSide {
     .render(P => {
     val (scalaCode, component) = P
     div(`class` := "row")(
-      div(`class` := "col-md-6")(
-        pre(code(scalaCode))
-      ),
-      div(`class` := "col-md-6")(
+      div(`class` := "col-md-7")(
         component
+      ),
+      div(`class` := "col-md-5")(
+        pre(code(scalaCode))
       )
     )
   })

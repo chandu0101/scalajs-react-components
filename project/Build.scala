@@ -22,7 +22,6 @@ object ScalajsReactComponents extends Build {
         homepage           := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses           += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion       := Scala211,
-        // crossScalaVersions := Seq("2.10.4", Scala211), https://github.com/japgolly/scalajs-react/issues/39
         scalacOptions     ++= Seq("-deprecation", "-unchecked", "-feature",
                                 "-language:postfixOps", "-language:implicitConversions",
                                 "-language:higherKinds", "-language:existentials"),
@@ -80,6 +79,7 @@ object ScalajsReactComponents extends Build {
       jsDependencies ++= Seq("org.webjars" % "react" % "0.12.1" % scope / "react-with-addons.js" commonJSName "React",
       "org.webjars" % "react-bootstrap" % "0.13.0" / "react-bootstrap.js" commonJSName "ReactBootstrap" dependsOn "react-with-addons.js"),
       jsDependencies += ProvidedJS / "highlight.pack.js",
+      jsDependencies += ProvidedJS / "materialui.js",
       skip in packageJSDependencies := false)
 
     val jsDir = "demo/js"

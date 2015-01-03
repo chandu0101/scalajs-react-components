@@ -7,10 +7,8 @@ import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
 
 
-import japgolly.scalajs.react.vdom.ReactVDom.ReactVExt_Attr
-import japgolly.scalajs.react.vdom.ReactVDom.all._
-import japgolly.scalajs.react.{BackendScope, ReactComponentB}
-
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.all._
 
 /**
  * Created by chandrasekharkode on 11/30/14.
@@ -26,7 +24,7 @@ object ReactApp extends JSApp {
   val navMenu = ReactComponentB[(List[String], Backend)]("appMenu")
     .render(P => {
     val (data, b) = P
-    def element(name: String, index: Int) = li(`class` := "navbar-brand", onclick --> b.onMenuClick(index))(name)
+    def element(name: String, index: Int) = li(`class` := "navbar-brand", onClick --> b.onMenuClick(index))(name)
     div(`class` := "navbar navbar-default")(
       ul(`class` := "navbar-header")(data.zipWithIndex.map { case (name, index) => element(name, index)})
     )

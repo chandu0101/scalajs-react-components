@@ -115,7 +115,7 @@ object ScalajsReactComponents extends Build {
     .settings(
       name := "core",
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core" % "0.6.0"))
+        "com.github.japgolly.scalajs-react" %%% "core" % "0.7.0"))
 
 
   // ==============================================================================================

@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.reactbootstrap.materialui
 
 import japgolly.scalajs.react.ReactComponentU_
-import japgolly.scalajs.react.vdom.ReactVDom.all._
+import japgolly.scalajs.react.vdom._
 
 
 import scala.scalajs.js
@@ -34,7 +34,7 @@ import scala.scalajs.js.Dynamic.{global => g}
         p
       }
 
-      def apply(children: Modifier*): ReactComponentU_ = {
+      def apply(children: TagMod*): ReactComponentU_ = {
         val f = g.PaperButton
         f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
       }

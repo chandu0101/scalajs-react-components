@@ -28,7 +28,7 @@ object ContributePage {
         p("Go a head play with toys ,report issues and send PR(Pull Request)'s if possible :) ")
        ),
        div(Style.rules)(
-        h4("Developers :"),
+        h4("Contributors :"),
         ul(
          li("There are no global rules for this project ,follow what ever works for you."),
          li("If you're working on new component please create an issue in " ,a(href := "https://github.com/chandu0101/scalajs-react-components/issues" ,textDecoration := "none" ,target := "_blank")("Github") ," so that we can minimize duplicate works, and you may find other awesome contributors ." )

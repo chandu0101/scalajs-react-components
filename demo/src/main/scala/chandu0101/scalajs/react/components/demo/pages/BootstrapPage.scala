@@ -3,20 +3,26 @@ package chandu0101.scalajs.react.components.demo.pages
 import chandu0101.scalajs.react.components.demo.codesamples.BootstrapSamples
 import chandu0101.scalajs.react.components.demo.util.SingleSide
 import chandu0101.scalajs.react.components.reactbootstrap.bootStrap
-import japgolly.scalajs.react.vdom.ReactVDom.all._
-import japgolly.scalajs.react.{BackendScope, ReactComponentB, ReactEventI}
+import chandu0101.scalajs.react.components.util.DomUtil
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.all._
+import org.scalajs.dom
+import org.scalajs.dom.{Event, html}
+
+import scala.scalajs.js
 
 /**
- * Created by chandrasekharkode on 12/1/14.
+ * Created by chandrasekharkode .
  */
 object BootstrapPage {
+  val fun: js.Function0[Unit] = () => println("dude")
 
   val buttonOptions = ReactComponentB[Unit]("buttonOptions")
     .render(P => {
     div(
       h3("Options"),
       bootStrap.ButtonToolbar()(
-        bootStrap.Button()("Default"),
+        bootStrap.Button(onClick = fun)("Default"),
         bootStrap.Button(bsStyle = "primary")("Primary"),
         bootStrap.Button(bsStyle = "success")("Success"),
         bootStrap.Button(bsStyle = "info")("Info"),
@@ -98,19 +104,22 @@ object BootstrapPage {
   case class State(isLoading: Boolean)
 
   class Backend(t: BackendScope[_, State]) {
-    def handleClick(e: ReactEventI) = {
-      e.preventDefault()
-      t.modState(s => State(!s.isLoading))
-    }
+    def handleClick(e: ReactEventI): js.Function =
+      (e: ReactEventI) => {
+        println("dude")
+        e.preventDefault()
+        t.modState(s => State(!s.isLoading))
+      }
   }
 
   val loadingButton = ReactComponentB[Unit]("loadingButton")
-    .initialState(State(false))
+    .initialState(State(isLoading = false))
     .backend(new Backend(_))
     .render((P, S, B) => {
     div(
-      //        bootStrap.Button(bsStyle = "primary",disabled = S.isLoading
-      //        ,onClick = B.handleClick(null))("Button")
+      h3("Loading Button")
+      //      bootStrap.Button(bsStyle = "primary",disabled = S.isLoading
+      //              ,onClick = B.handleClick(null))("ButtonL")
     )
   }).buildU
 
@@ -220,6 +229,7 @@ object BootstrapPage {
       SingleSide.component(BootstrapSamples.buttonBlocks, buttonBlocks()),
       SingleSide.component(BootstrapSamples.buttonStates, buttonState()),
       SingleSide.component(BootstrapSamples.buttontags, buttonTags()),
+      SingleSide.component(BootstrapSamples.buttontags, loadingButton()),
       h3("Button groups"), span("ButtonGroup,ButtonToolbar"),
       hr(),
       SingleSide.component(BootstrapSamples.bGroupBasic, bGroupBasic()),
@@ -296,36 +306,36 @@ object BootstrapPage {
   }).buildU
 
   val progressBarAlternatives = ReactComponentB[Unit]("changeme")
-      .render(P => {
-      div(
-        h3("Contextual alternatives"),
-        bootStrap.ProgressBar(now = 60.0 ,bsStyle = "success" )(),
-        bootStrap.ProgressBar(now = 20.0 ,bsStyle = "info" )(),
-        bootStrap.ProgressBar(now = 70.0 ,bsStyle = "warning" )(),
-        bootStrap.ProgressBar(now = 40.0 ,bsStyle = "danger" )()
-      )
-    }).buildU
+    .render(P => {
+    div(
+      h3("Contextual alternatives"),
+      bootStrap.ProgressBar(now = 60.0, bsStyle = "success")(),
+      bootStrap.ProgressBar(now = 20.0, bsStyle = "info")(),
+      bootStrap.ProgressBar(now = 70.0, bsStyle = "warning")(),
+      bootStrap.ProgressBar(now = 40.0, bsStyle = "danger")()
+    )
+  }).buildU
 
   val progressBarAnimated = ReactComponentB[Unit]("changeme")
-      .render(P => {
-      div(
-       h3("Animated"),
-       bootStrap.ProgressBar(now = 35.0 ,active = true)()
-      )
-    }).buildU
+    .render(P => {
+    div(
+      h3("Animated"),
+      bootStrap.ProgressBar(now = 35.0, active = true)()
+    )
+  }).buildU
 
 
   val progressBarStacked = ReactComponentB[Unit]("changeme")
-      .render(P => {
-      div(
-       h3("Stacked"),
-        bootStrap.ProgressBar()(
-          bootStrap.ProgressBar(bsStyle = "success" , now = 35.0 ,key = 1)(),
-          bootStrap.ProgressBar(bsStyle = "info" , now = 20.0 ,key = 2)(),
-          bootStrap.ProgressBar(bsStyle = "danger" , now = 10.0 ,key = 2)()
-        )
+    .render(P => {
+    div(
+      h3("Stacked"),
+      bootStrap.ProgressBar()(
+        bootStrap.ProgressBar(bsStyle = "success", now = 35.0, key = 1)(),
+        bootStrap.ProgressBar(bsStyle = "info", now = 20.0, key = 2)(),
+        bootStrap.ProgressBar(bsStyle = "danger", now = 10.0, key = 2)()
       )
-    }).buildU
+    )
+  }).buildU
 
   val progressBars = ReactComponentB[Unit]("changeme")
     .render(P => {
@@ -342,16 +352,129 @@ object BootstrapPage {
   }).buildU
 
 
+  val popovers = ReactComponentB[Unit]("changeme")
+    .render(P => {
+    div(
+      h3("Popovers"),
+      hr(),
+      h3("Example popovers"),
+      div(height := 120)(bootStrap.Popover(placement = "right",
+        positionLeft = 200.0, positionTop = 140.0, title = "Popover Right")(
+          "And here's some amazing content"
+        ))
+      //      div(
+      //       bootStrap.ButtonToolbar()(
+      //        bootStrap.OverlayTrigger( trigger = "click" ,placement = "left" ,
+      //          overlay = bootStrap.Popover(title = "Popover Left")("checkthis out")  )()
+      //       )
+      //      )
+    )
+  }).buildU
 
 
   val BootstrapDemos = ReactComponentB[Unit]("bootstrapdemo")
     .render(P => {
     div(
+      Keyboard.component(),
       buttons(),
       panels(),
-      progressBars()
+      progressBars(),
+      SingleSide.component(BootstrapSamples.progressBarStacked, popovers())
+
     )
   }).buildU
+
+  object Keyboard {
+
+    case class State(checked: Boolean)
+
+    class Backend2(t: BackendScope[_, State]) {
+      def onClick(e: ReactEventI) = {
+        e.preventDefault()
+        t.modState(s => State(checked = true))
+      }
+
+    }
+
+    val component = ReactComponentB[Unit]("radioButton ")
+      .initialState(State(checked = false))
+      .backend(new Backend2(_))
+      .render((P, S, B) => {
+      div(
+        button(onClick ==> B.onClick),
+        if (S.checked) h1("man")
+        else keyBoardListenDemo2()
+
+      )
+    })
+      .buildU
+
+
+    trait OnClickAwaybale {
+      def onClickAway()
+    }
+
+    class Backend(t: BackendScope[_, String]) extends OnClickAwaybale {
+
+      lazy val man: (dom.Event) => Unit = (e: dom.Event) => {
+        keyboardListen(e)
+
+        println("sdfdsf")
+      }
+
+      override def onClickAway = {
+        println(" in click awaymdude")
+        t.modState(s => "dude")
+        //        println(" unmounted  " + React.unmountComponentAtNode(t.getDOMNode()))
+      }
+
+      def keyboardListen(e: dom.Event) = if (t.getDOMNode() == e.target) println("yay") else println("cool")
+
+    }
+
+
+    val keyBoardListenDemo2 = ReactComponentB[Unit]("keyboardemo")
+      .initialState("")
+      .backend(new Backend(_))
+      .render(P => {
+      div(" Ican Disappear ",
+        span("hahaha"),
+        p("asdsad"),
+        div("child div"))
+      //       div("dude")
+    })
+      .configure(installCLickAway)
+      .componentDidMount(scope => println("dude"))
+      .buildU
+
+    def installCLickAway[P, S, B] =
+
+      (c: ReactComponentB[P, S, B]) => {
+        def clickAway(t: ComponentScopeM[_, _, _], state: String): js.Function1[Event, Unit] = {
+          val b = t.backend.asInstanceOf[OnClickAwaybale]
+          lazy val dude: js.Function1[Event, Unit] =
+            (e: dom.Event) => {
+              println("inside listener " + state)
+              if (state == "mount") {
+                val el = t.getDOMNode()
+                if (el != e.target && !DomUtil.isDecedant(el, e.target.asInstanceOf[html.Element])) {
+                  b.onClickAway
+                  println("yay")
+                } else println("cool")
+              }
+            }
+
+
+          dude
+        }
+        c.componentDidMount(scope => dom.document.addEventListener(`type` = "click", listener = clickAway(scope, "mount")))
+          //          .componentDidUpdate((scope,_,_) => dom.document.removeEventListener(`type` = "click" , listener = clickAway(scope)))
+          //          .componentWillUnmount(scope => {  println("unmounting"); dom.document.removeEventListener(`type` = "click" , listener = clickAway(scope,"unmount")) })
+          .componentWillUnmount(scope => {
+          println("unmounting")
+        })
+      }
+  }
 
 
   def content = BootstrapDemos()

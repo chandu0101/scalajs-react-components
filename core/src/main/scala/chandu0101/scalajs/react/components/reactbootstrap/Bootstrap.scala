@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.reactbootstrap
 
-import japgolly.scalajs.react.{ReactElement, ReactComponentU_}
-import japgolly.scalajs.react.vdom.ReactVDom.all._
+import japgolly.scalajs.react.ReactComponentU_
+import japgolly.scalajs.react.vdom.all._
 
 import scala.scalajs.js
 
@@ -15,89 +15,89 @@ import scala.scalajs.js
 
 object ReactBootstrap extends js.Object {
 
-  def Button: js.Dynamic = ???
+  def Button: js.Dynamic = js.native
 
-  def Accordion: js.Dynamic = ???
+  def Accordion: js.Dynamic = js.native
 
-  def Affix: js.Dynamic = ???
+  def Affix: js.Dynamic = js.native
 
-  def Alert: js.Dynamic = ???
+  def Alert: js.Dynamic = js.native
 
-  def Badge: js.Dynamic = ???
+  def Badge: js.Dynamic = js.native
 
-  def ButtonGroup: js.Dynamic = ???
+  def ButtonGroup: js.Dynamic = js.native
 
-  def ButtonToolbar: js.Dynamic = ???
+  def ButtonToolbar: js.Dynamic = js.native
 
-  def Carousel: js.Dynamic = ???
+  def Carousel: js.Dynamic = js.native
 
-  def Col: js.Dynamic = ???
+  def Col: js.Dynamic = js.native
 
-  def DropdownButton: js.Dynamic = ???
+  def DropdownButton: js.Dynamic = js.native
 
-  def DropdownMenu: js.Dynamic = ???
+  def DropdownMenu: js.Dynamic = js.native
 
-  def Glyphicon: js.Dynamic = ???
+  def Glyphicon: js.Dynamic = js.native
 
-  def Grid: js.Dynamic = ???
+  def Grid: js.Dynamic = js.native
 
-  def Input: js.Dynamic = ???
+  def Input: js.Dynamic = js.native
 
-  def Interpolate : js.Dynamic = ???
+  def Interpolate : js.Dynamic = js.native
 
-  def Jumbotron : js.Dynamic = ???
+  def Jumbotron : js.Dynamic = js.native
 
-  def Label : js.Dynamic = ???
+  def Label : js.Dynamic = js.native
 
-  def ListGroup : js.Dynamic = ???
+  def ListGroup : js.Dynamic = js.native
 
-  def ListGroupItem : js.Dynamic = ???
+  def ListGroupItem : js.Dynamic = js.native
 
-  def MenuItem : js.Dynamic = ???
+  def MenuItem : js.Dynamic = js.native
 
-  def Modal : js.Dynamic = ???
+  def Modal : js.Dynamic = js.native
 
-  def ModalTrigger : js.Dynamic = ???
+  def ModalTrigger : js.Dynamic = js.native
 
-  def Nav : js.Dynamic = ???
+  def Nav : js.Dynamic = js.native
 
-  def NavItem : js.Dynamic = ???
+  def NavItem : js.Dynamic = js.native
 
-  def Navbar : js.Dynamic = ???
+  def Navbar : js.Dynamic = js.native
 
-  def OverlayTrigger : js.Dynamic = ???
+  def OverlayTrigger : js.Dynamic = js.native
 
-  def PageHeader : js.Dynamic = ???
+  def PageHeader : js.Dynamic = js.native
 
-  def PageItem : js.Dynamic = ???
+  def PageItem : js.Dynamic = js.native
 
-  def Pager : js.Dynamic = ???
+  def Pager : js.Dynamic = js.native
 
-  def Panel : js.Dynamic = ???
+  def Panel : js.Dynamic = js.native
 
-  def PanelGroup : js.Dynamic = ???
+  def PanelGroup : js.Dynamic = js.native
 
-  def Popover : js.Dynamic = ???
+  def Popover : js.Dynamic = js.native
 
-  def ProgressBar : js.Dynamic = ???
+  def ProgressBar : js.Dynamic = js.native
 
-  def Row : js.Dynamic = ???
+  def Row : js.Dynamic = js.native
 
-  def SplitButton : js.Dynamic = ???
+  def SplitButton : js.Dynamic = js.native
 
-  def propTypes : js.Dynamic = ???
+  def propTypes : js.Dynamic = js.native
 
-  def SubNav : js.Dynamic = ???
+  def SubNav : js.Dynamic = js.native
 
-  def TabPane : js.Dynamic = ???
+  def TabPane : js.Dynamic = js.native
 
-  def TabbedArea : js.Dynamic = ???
+  def TabbedArea : js.Dynamic = js.native
 
-  def Table : js.Dynamic = ???
+  def Table : js.Dynamic = js.native
 
-  def Tooltip : js.Dynamic = ???
+  def Tooltip : js.Dynamic = js.native
 
-  def Well : js.Dynamic = ???
+  def Well : js.Dynamic = js.native
 
 
 }
@@ -105,7 +105,7 @@ object ReactBootstrap extends js.Object {
 
 object bootStrap {
 
-  case class Button(bsSize: js.UndefOr[String] = js.undefined, onClick : js.UndefOr[js.Function] = js.undefined,
+  case class Button(bsSize: js.UndefOr[String] = js.undefined, onClick : js.UndefOr[js.Function0[Unit]] = js.undefined,
                     navDropdown: js.UndefOr[Boolean] = js.undefined, block: js.UndefOr[Boolean] = js.undefined, disabled: js.UndefOr[Boolean] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, componentClass: js.UndefOr[String] = js.undefined, navItem: js.UndefOr[Boolean] = js.undefined, bsClass: js.UndefOr[String] = js.undefined, active: js.UndefOr[Boolean] = js.undefined ,hrefB : js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
@@ -123,7 +123,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Button
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -150,7 +150,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Affix
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -167,7 +167,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Alert
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -180,7 +180,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Badge
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -197,7 +197,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.ButtonGroup
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -213,7 +213,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.ButtonToolbar
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -241,7 +241,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Carousel
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -271,7 +271,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Col
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -295,7 +295,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.DropdownButton
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -310,7 +310,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.DropdownMenu
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -323,7 +323,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Glyphicon
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -339,7 +339,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Grid
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -365,7 +365,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Input
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -378,7 +378,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Interpolate
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -390,7 +390,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Jumbotron
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -405,7 +405,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Label
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -419,7 +419,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.ListGroup
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -441,14 +441,14 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.ListGroupItem
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
 
   case class MenuItem(divider : js.UndefOr[Boolean] = js.undefined,
-                      header : js.UndefOr[Boolean] = js.undefined,onSelect : js.UndefOr[js.Any] = js.undefined,title : js.UndefOr[String] = js.undefined,href : js.UndefOr[String] = js.undefined,eventKey : js.UndefOr[js.String]=js.undefined) {
+                      header : js.UndefOr[Boolean] = js.undefined,onSelect : js.UndefOr[js.Any] = js.undefined,title : js.UndefOr[String] = js.undefined,href : js.UndefOr[String] = js.undefined,eventKey : js.UndefOr[String]=js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       onSelect.foreach(v => p.updateDynamic("onSelect")(v))
@@ -460,7 +460,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.MenuItem
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -481,7 +481,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Modal
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -495,7 +495,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.ModalTrigger
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -517,7 +517,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Nav
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -538,7 +538,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.NavItem
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -565,14 +565,14 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Navbar
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
 
 
-  case class OverlayTrigger(delay : js.UndefOr[Double] = js.undefined,overlay : js.UndefOr[String],delayShow : js.UndefOr[Double] = js.undefined,delayHide : js.UndefOr[Double] = js.undefined,placement : js.UndefOr[String] = js.undefined,defaultOverlayShown : js.UndefOr[Boolean] = js.undefined,trigger : js.UndefOr[String] = js.undefined) {
+  case class OverlayTrigger(delay : js.UndefOr[Double] = js.undefined,overlay : js.UndefOr[ReactComponentU_],delayShow : js.UndefOr[Double] = js.undefined,delayHide : js.UndefOr[Double] = js.undefined,placement : js.UndefOr[String] = js.undefined,defaultOverlayShown : js.UndefOr[Boolean] = js.undefined,trigger : js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       delayShow.foreach(v => p.updateDynamic("delayShow")(v))
@@ -585,7 +585,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.OverlayTrigger
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -598,7 +598,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.PageHeader
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -615,7 +615,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.PageItem
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -628,7 +628,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Pager
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -653,7 +653,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Panel
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -673,7 +673,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.PanelGroup
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -694,7 +694,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Popover
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -718,7 +718,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.ProgressBar
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -732,7 +732,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Row
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -754,7 +754,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.SplitButton
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -776,7 +776,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.propTypes
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -797,7 +797,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.SubNav
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -810,7 +810,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.TabPane
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -828,7 +828,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.TabbedArea
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -845,7 +845,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Table
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -865,7 +865,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Tooltip
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
@@ -880,7 +880,7 @@ object bootStrap {
       p
     }
 
-    def apply(children: Modifier*): ReactComponentU_ = {
+    def apply(children: TagMod*): ReactComponentU_ = {
       val f = ReactBootstrap.Well
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }

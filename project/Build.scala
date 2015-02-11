@@ -1,24 +1,23 @@
-import sbt._
-import Keys._
-
 import com.typesafe.sbt.pgp.PgpKeys._
-
-import scala.scalajs.sbtplugin.env.nodejs.NodeJSEnv
-import scala.scalajs.sbtplugin.env.phantomjs.PhantomJSEnv
-import scala.scalajs.sbtplugin.ScalaJSPlugin._
-import scala.scalajs.sbtplugin.ScalaJSPlugin.ScalaJSKeys._
+import org.scalajs.sbtplugin.ScalaJSPlugin
+import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
+import sbt.Keys._
+import sbt._
 
 object ScalajsReactComponents extends Build {
 
-  val Scala211 = "2.11.4"
+  val Scala211 = "2.11.5"
+
+
+  val scalajsReactVersion = "0.8.0"
 
   type PE = Project => Project
 
   def commonSettings: PE =
-    _.settings(scalaJSSettings: _*)
+    _.enablePlugins(ScalaJSPlugin)
       .settings(
         organization       := "com.chandu0101.scalajs-react-components",
-        version            := "0.1",
+        version            := "0.0.1-SNAPSHOT",
         homepage           := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses           += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion       := Scala211,
@@ -67,19 +66,19 @@ object ScalajsReactComponents extends Build {
     )
 
   def utestSettings: PE =
-    _.settings(utest.jsrunner.Plugin.utestJsSettings: _*)
-      .configure(useReact("test"))
+      _.configure(useReact("test"))
       .settings(
-        libraryDependencies += "com.lihaoyi" %%% "utest" % "0.2.3" % "test",
-        requiresDOM := true,
-        jsEnv in Test := new PhantomJSEnv)
+      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.3.0",
+      testFrameworks       += new TestFramework("utest.runner.Framework"),
+      scalaJSStage in Test := FastOptStage,
+      requiresDOM          := true,
+      jsEnv in Test        := PhantomJSEnv().value)
 
   def useReact(scope: String = "compile"): PE =
     _.settings(
-      jsDependencies ++= Seq("org.webjars" % "react" % "0.12.1" % scope / "react-with-addons.js" commonJSName "React",
-      "org.webjars" % "react-bootstrap" % "0.13.0" / "react-bootstrap.js" commonJSName "ReactBootstrap" dependsOn "react-with-addons.js"),
+      libraryDependencies += "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion,
+      jsDependencies ++= Seq("org.webjars" % "react" % "0.12.1" % scope / "react-with-addons.js" commonJSName "React"),
       jsDependencies += ProvidedJS / "highlight.pack.js",
-      jsDependencies += ProvidedJS / "materialui.js",
       skip in packageJSDependencies := false)
 
     val jsDir = "demo/js"
@@ -90,7 +89,7 @@ object ScalajsReactComponents extends Build {
       crossTarget in (Compile, fullOptJS) := file(jsDir),
       crossTarget in (Compile, fastOptJS) := file(jsDir),
       crossTarget in (Compile, packageJSDependencies) := file(jsDir),
-      crossTarget in (Compile, packageLauncher) := file(jsDir),
+//      crossTarget in (Compile, packageLauncher) := file(jsDir),
       artifactPath in (Compile, fastOptJS) := ((crossTarget in (Compile, fastOptJS)).value /
         ((moduleName in fastOptJS).value + "-opt.js"))
     )
@@ -104,8 +103,8 @@ object ScalajsReactComponents extends Build {
   lazy val root = Project("root", file("."))
     .aggregate(core, demo)
     .configure(commonSettings, preventPublication, addCommandAliases(
-      "t"  -> "; test:compile ; test/fastOptStage::test",
-      "tt" -> ";+test:compile ;+test/fastOptStage::test",
+      "t"  -> "; test:compile ; test/test",
+      "tt" -> ";+test:compile ;+test/test",
       "T"  -> "; clean ;t",
       "TT" -> ";+clean ;tt"))
 
@@ -115,7 +114,9 @@ object ScalajsReactComponents extends Build {
     .settings(
       name := "core",
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core" % "0.6.0"))
+        "com.github.japgolly.scalajs-react" %%% "core" % scalajsReactVersion),
+      target in Compile in doc := baseDirectory.value / "docs"
+    )
 
 
   // ==============================================================================================

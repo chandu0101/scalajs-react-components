@@ -34,7 +34,7 @@ object MuiDatePicker {
     )
     val defaultInputValue = if (P.defaultDate != null) P.formatDate(P.defaultDate) else ""
     div(classSetM(classes))(
-      MuiTextField(ref = theInputRef, defaultValue = defaultInputValue, onFocus = B.handleInputFocus, name = P.name, onTouchTap = B.handleInputTouchTap, placeholder = P.placeholder),
+      MuiTextField(ref = theInputRef, defaultValue = defaultInputValue, onFocus = B.handleInputFocus, name = P.name, onTouchTap = B.handleInputTouchTap, hintText = P.placeholder),
       MuiDatePickerDialog(ref = theDialogWindowRef, initialDate = S.dialogDate, onAccept = B.handleDialogAccept)
     )
   })

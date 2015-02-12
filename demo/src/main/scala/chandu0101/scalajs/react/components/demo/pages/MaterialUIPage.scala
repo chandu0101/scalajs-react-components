@@ -20,6 +20,7 @@ object MaterialUIPage {
     DemoLeftNav.Menu(route = mdropdown.path.value, text = "Dropdown Menu"),
     DemoLeftNav.Menu(route = miconbuttons.path.value, text = "Icon Buttons"),
     DemoLeftNav.Menu(route = minputs.path.value, text = "Inputs"),
+    DemoLeftNav.Menu(route = mtextFields.path.value, text = "Text Field"),
     DemoLeftNav.Menu(route = mleftnav.path.value, text = "Left-Nav"),
     DemoLeftNav.Menu(route = mmenus.path.value, text = "Menus"),
     DemoLeftNav.Menu(route = mpaper.path.value, text = "Paper"),

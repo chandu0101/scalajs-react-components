@@ -5,6 +5,8 @@ import japgolly.scalajs.react.vdom.all._
 import org.scalajs.dom
 import org.scalajs.dom.ext.PimpedNodeList
 
+import scala.scalajs.js
+
 /**
  * Created by chandrasekharkode .
  */
@@ -51,6 +53,6 @@ object CodeExample {
   }
   case class Props(code: String)
 
-  def apply(code: String )(children : ReactNode *) = component(Props(code),children)
+  def apply(code: String ,ref: js.UndefOr[String] = "", key: js.Any = {})(children : ReactNode *) = component.set(key,ref)(Props(code),children)
 
 }

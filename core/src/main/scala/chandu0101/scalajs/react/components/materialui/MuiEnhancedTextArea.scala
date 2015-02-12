@@ -21,16 +21,29 @@ object MuiEnhancedTextArea {
 
     def getInputNode =  theInputRef(t).get.getDOMNode()
 
-    def handleChnage(e: ReactEventI) = {
+    def _syncHeightWithShadow(newValue : String, e : ReactEventI) = {
+      
       val shadow = theShadowRef(t).get.getDOMNode()
       val currentHeight = t.state.heightS
-      shadow.value = e.target.value
+      if(newValue != null) shadow.value = newValue
       val newHeight = shadow.scrollHeight
       if(currentHeight != newHeight) {
         t.modState(_.copy(heightS = newHeight))
         if(t.props.onHeightChange != null) t.props.onHeightChange(e,newHeight)
-        if(t.props.onChange != null) t.props.onChange(e)
       }
+    }
+    
+    def handleChange(e: ReactEventI) = {
+      _syncHeightWithShadow(e.target.value,e)
+      if(t.props.onChange != null) t.props.onChange(e)
+    }
+    
+    def handleInputFocus(e: ReactEventI) = {
+      if(t.props.onFocus != null) t.props.onFocus(e)
+    }
+    
+    def handleInputBlur(e: ReactEventI) = {
+      if(t.props.onBlur != null) t.props.onBlur(e)
     }
   }
 
@@ -48,15 +61,14 @@ object MuiEnhancedTextArea {
       val textareaClassName = s"mui-enhanced-textarea-input ${P.textareaClassName}"
       div(classes)(
        textarea(ref := theShadowRef , cls := "mui-enhanced-textarea-shadow",rows := P.rows ,tabIndex := "-1" ),
-       textarea(ref := theInputRef ,cls := textareaClassName , rows := P.rows, style,onChange ==> B.handleChnage)
+       textarea(ref := theInputRef ,cls := textareaClassName , rows := P.rows, style,onChange ==> B.handleChange ,onFocus ==> B.handleInputFocus,onBlur ==> B.handleInputBlur,id := P.id)
       )
     })
     .build
 
-  case class Props(onChange: REventIAny, onHeightChange: REventIIntUnit, clsNames: CssClassType, ref: js.UndefOr[String], key: js.Any, textareaClassName: String, rows: Int,otherProps : TagMod*)
+  case class Props(onChange: REventIAny, onHeightChange: REventIIntUnit, clsNames: CssClassType, ref: js.UndefOr[String], key: js.Any, textareaClassName: String, rows: Int,onFocus : REventIAny,onBlur : REventIAny,id : String)
 
-  def withDynamicProps(onChange: REventIAny = null, onHeightChange: REventIIntUnit = null, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, textareaClassName: String = "", rows: Int = 1)(otherProps : TagMod*) = component.set(key, ref)(Props(onChange, onHeightChange, clsNames, ref, key, textareaClassName, rows))
 
-  def apply(onChange: REventIAny = null, onHeightChange: REventIIntUnit = null, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, textareaClassName: String = "", rows: Int = 1) =
-    component.set(key, ref)(Props(onChange, onHeightChange, clsNames, ref, key, textareaClassName, rows))
+  def apply(onChange: REventIAny = null, onHeightChange: REventIIntUnit = null, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, textareaClassName: String = "", rows: Int = 1,onFocus : REventIAny = null ,onBlur : REventIAny = null ,id : String = "") =
+    component.set(key, ref)(Props(onChange, onHeightChange, clsNames, ref, key, textareaClassName, rows,onFocus,onBlur,id))
 }

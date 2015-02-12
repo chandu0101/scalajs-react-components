@@ -30,6 +30,7 @@ object AppRouter {
     val mdropdown: Loc = register(location("#materialui/dropdown", MaterialUIPage(MuiDropdownMenuDemo())))
     val miconbuttons: Loc = register(location("#materialui/iconbuttons", MaterialUIPage(MuiIconButtonsDemo())))
     val minputs: Loc = register(location("#materialui/inputs", MaterialUIPage(MInputs())))
+    val mtextFields: Loc = register(location("#materialui/textfields", MaterialUIPage(MuiTextFieldDemo())))
     val mleftnav: Loc = register(location("#materialui/leftnav", MaterialUIPage(MuiLeftNavDemo())))
     val mmenus: Loc = register(location("#materialui/menus", MaterialUIPage(MuiMenuDemo())))
     val mpaper: Loc = register(location("#materialui/paper", MaterialUIPage(MuiPaperDemo())))

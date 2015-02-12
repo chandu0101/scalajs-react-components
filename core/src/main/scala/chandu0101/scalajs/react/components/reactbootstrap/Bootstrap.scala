@@ -9,7 +9,9 @@ import scala.scalajs.js
 /**
  * Created by chandrasekharkode on 11/29/14.
  *
- * //TODO all nodes represented as String
+ *  Its wrapper for reactbootstrap , you need js source file from
+ *   Warning : its not currently supported
+ *
  */
 
 

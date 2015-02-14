@@ -12,9 +12,9 @@ object ContributePage {
 
  object Style {
 
-   val content : TagMod = Seq(padding := "80px")
+   val content : TagMod = Seq(padding := "80px" ,minHeight := "820px")
 
-   val rules = Seq(padding := "0 20px")
+   val rules = Seq(padding := "20px auto")
 
 
  }
@@ -23,9 +23,10 @@ object ContributePage {
     .render(P => {
       div(Style.content)(
        h3("Welcome Mama(friend,mate,amigo,dosth,...)"),
+       hr(),
        div(Style.rules)(
         h4("Users : "),
-        p("Go a head play with toys ,report issues and send PR(Pull Request)'s if possible :) ")
+        p("Go a head play with the toys ,report issues and send PR(Pull Request)'s if possible :) ")
        ),
        div(Style.rules)(
         h4("Contributors :"),

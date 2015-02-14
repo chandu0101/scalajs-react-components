@@ -45,7 +45,10 @@ object MuiTextField {
     def clearValue = setValue("")
 
     def setValue(newValue: Any) = {
-      if (t.isMounted()) getInputNode.value = newValue.toString
+      if (t.isMounted()) {
+        getInputNode.value = newValue.toString
+        t.modState(_.copy(hasValue = true))
+      }
     }
 
     def focus = if (t.isMounted()) getInputNode.focus()
@@ -81,7 +84,7 @@ object MuiTextField {
   val theMultiInputRef = Ref.to(MuiEnhancedTextArea.component, "theMultiINputRef")
   val theInputRef = Ref[html.Input]("theInputRef")
   val component = ReactComponentB[Props]("MuiTextField")
-    .initialStateP(p => State(p.errorText, p.value.nonEmpty || p.defaultValue.nonEmpty))
+    .initialStateP(p => State(p.errorText, p.value != null || p.defaultValue != null))
     .backend(new Backend(_))
     .render((P, S, B) => {
     val classes = CommonUtils.cssMap1M("mui-text-field", P.clsNames,
@@ -109,11 +112,11 @@ object MuiTextField {
       onBlur ==> B.handleInputBlur,
       onFocus ==> B.handleInputFocus,
       ref := theInputRef,
-      name := P.name,
+      P.name!= null ?= (name := P.name),
       tpe := P.tpe,
       onChange ==> B.handleInputChange,
-      defaultValue := P.defaultValue,
-      P.defaultValue.isEmpty ?= (value := P.value),
+      P.defaultValue!= null ?= (defaultValue := P.defaultValue),
+      P.value != null ?= (value := P.value),
       P.onTouchTap != null ?= onClick ==> P.onTouchTap,
       cls := "mui-text-field-input")
     div(classSetM(classes))(
@@ -126,15 +129,15 @@ object MuiTextField {
     )
   })
     .componentWillReceiveProps((scope, nextProps) => {
-    if (nextProps.value.nonEmpty) scope.modState(_.copy(errorText = nextProps.errorText, hasValue = true))
-    else if (nextProps.hintText != scope.props.hintText) scope.modState(_.copy(errorText = nextProps.errorText, hasValue = true))
+    if (nextProps.value != null) scope.modState(_.copy(errorText = nextProps.errorText, hasValue = true))
+    else if (nextProps.defaultValue != null) scope.modState(_.copy(errorText = nextProps.errorText, hasValue = true))
   })
     .build
 
 
   case class Props( onBlur : REventIAny ,tpe : String ,name : String ,multiLine : Boolean ,onChange : REventIAny ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,hintText : String ,key : js.Any ,id : String ,errorText : String ,onTouchTap : REventIUnit ,onFocus : REventIAny ,disabled : Boolean ,floatingLabelText : String ,defaultValue : String ,value : String  )
 
-  def apply( onBlur : REventIAny = null ,tpe : String = "text" ,name : String = "" ,multiLine : Boolean = false,onChange : REventIAny = null ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",hintText : String = "" ,key : js.Any = {},id : String = "" ,errorText : String = "" ,onTouchTap : REventIUnit = null ,onFocus : REventIAny = null ,disabled : Boolean = false,floatingLabelText : String = "" ,defaultValue : String = "" ,value : String = ""  ) =
+  def apply( onBlur : REventIAny = null ,tpe : String = "text" ,name : String = null ,multiLine : Boolean = false,onChange : REventIAny = null ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",hintText : String = "" ,key : js.Any = {},id : String = "" ,errorText : String = "" ,onTouchTap : REventIUnit = null ,onFocus : REventIAny = null ,disabled : Boolean = false,floatingLabelText : String = "" ,defaultValue : String = null ,value : String = null  ) =
     component.set(key,ref)(Props(onBlur,tpe,name,multiLine,onChange,clsNames,ref,hintText,key,id,errorText,onTouchTap,onFocus,disabled,floatingLabelText,defaultValue,value))
 
 

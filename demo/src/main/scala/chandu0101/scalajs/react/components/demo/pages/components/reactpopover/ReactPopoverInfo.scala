@@ -11,7 +11,7 @@ object ReactPopoverInfo {
 
   val component = ReactComponentB[Unit]("ReactPopoverInfo")
     .render(P => {
-       InfoTemplate(componentFilePath = "popovers/ReactPopover.scala")(
+       InfoTemplate(componentFilePath = "popovers/ReactPopOver.scala")(
          h3("React Popover :"),
          p(" Simple popover component with following options : "),
          ul( paddingLeft := "15px")(

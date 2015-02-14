@@ -49,15 +49,17 @@ object MuiRadioButton {
       iconClassName = "mui-radio-button-icon",
       label = P.label,
       name = P.name,
+      value = P.value,
+      id = P.id,
       defaultSwitched = P.defaultChecked,
       disabled = P.disabled,
       labelPosition = P.labelPosition)
   })
     .build
 
-  case class Props(disabled: Boolean, labelPosition: String, classNames: Map[String, Boolean], label: String, name: String, onCheck: REventIStringUnit, value: String, defaultChecked: Boolean)
+  case class Props(id : String = "",disabled: Boolean, labelPosition: String, classNames: Map[String, Boolean], label: String, name: String, onCheck: REventIStringUnit, value: String, defaultChecked: Boolean)
 
-  def apply(disabled: Boolean = false, labelPosition: String = "right", classNames: Map[String, Boolean] = Map(), label: String = "", name: String = "", onCheck: REventIStringUnit = null, value: String = "", defaultChecked: Boolean = false, ref: js.UndefOr[String] = "", key: js.Any = {}) = {
-    component.set(key = key, ref = ref)(Props(disabled, labelPosition, classNames, label, name, onCheck, value, defaultChecked))
+  def apply(id : String = "",disabled: Boolean = false, labelPosition: String = "right", classNames: Map[String, Boolean] = Map(), label: String = "", name: String = "", onCheck: REventIStringUnit = null, value: String = null, defaultChecked: Boolean = false, ref: js.UndefOr[String] = "", key: js.Any = {}) = {
+    component.set(key = key, ref = ref)(Props(id,disabled, labelPosition, classNames, label, name, onCheck, value, defaultChecked))
   }
 }

@@ -18,15 +18,17 @@ projectPath=$ghPagesPath/sjrc
 
 cp demo/index.html $projectPath
 
-cp -r demo/js $projectPath/js
+cp  demo/js/demo-opt.js $projectPath/js/
 
-cp -r demo/styles $projectPath/styles
+cp  demo/js/demo-jsdeps.js $projectPath/js/
 
-cp -r demo/font $projectPath/font
+cp -r demo/styles/ $projectPath/styles/
 
-cp -r demo/images $projectPath/images
+cp -r demo/font/ $projectPath/font/
 
-cp -r core/docs $projectPath/docs
+cp -r demo/images/ $projectPath/images/
+
+cp -r core/docs/ $projectPath/docs/
 
 cd $ghPagesPath
 

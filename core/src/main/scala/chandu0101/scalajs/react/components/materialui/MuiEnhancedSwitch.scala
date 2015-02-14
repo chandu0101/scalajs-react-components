@@ -108,10 +108,11 @@ object MuiEnhancedSwitch {
     val inputId = if (P.id.nonEmpty) P.id else "domid$$$$" // TODO replace hard coded strin with domid util
     val labelElement = P.label.nonEmpty ?= label(cls := "mui-switch-label", htmlFor := inputId)(P.label)
     val inputElement = input(tpe := P.inputType,
-      name := P.name,
-      value := P.value,
+      P.name != null ?= (name := P.name),
+      P.value != null ?= (value := P.value),
       defaultChecked := P.defaultSwitched,
       onBlur ==> B.handleBlur,
+      id := inputId,
       onFocus ==> B.handleFocus,
       onMouseUp ==> B.handleMouseUp,
       ref := theCheckBoxRef,
@@ -151,6 +152,6 @@ object MuiEnhancedSwitch {
 
   case class Props(checkedLink: Boolean, toggled: Boolean, checked: Boolean, valueLink: Boolean, iconClassName: String, name: String, switchElement: ReactElement, onSwitch: REventIBooleanUnit, disableTouchRipple: Boolean, labelPosition: String, clsNames: CssClassType, label: String, ref: js.UndefOr[String], defaultSwitched: Boolean, key: js.Any, disableFocusRipple: Boolean, id: String, disabled: Boolean, required: Boolean, inputType: String, value: String)
 
-  def apply(checkedLink: Boolean = false, toggled: Boolean = false, checked: Boolean = false, valueLink: Boolean = false, iconClassName: String, name: String = "", switchElement: ReactElement, onSwitch: REventIBooleanUnit = null, disableTouchRipple: Boolean = false, labelPosition: String = "", clsNames: CssClassType = Map(), label: String = "", ref: js.UndefOr[String] = "", defaultSwitched: Boolean = false, key: js.Any = {}, disableFocusRipple: Boolean = false, id: String = "", disabled: Boolean = false, required: Boolean = false, inputType: String, value: String = "") =
+  def apply(checkedLink: Boolean = false, toggled: Boolean = false, checked: Boolean = false, valueLink: Boolean = false, iconClassName: String, name: String = null, switchElement: ReactElement, onSwitch: REventIBooleanUnit = null, disableTouchRipple: Boolean = false, labelPosition: String = "", clsNames: CssClassType = Map(), label: String = "", ref: js.UndefOr[String] = "", defaultSwitched: Boolean = false, key: js.Any = {}, disableFocusRipple: Boolean = false, id: String = "", disabled: Boolean = false, required: Boolean = false, inputType: String, value: String = null) =
     component.set(key, ref)(Props(checkedLink, toggled, checked, valueLink, iconClassName, name, switchElement, onSwitch, disableTouchRipple, labelPosition, clsNames, label, ref, defaultSwitched, key, disableFocusRipple, id, disabled, required, inputType, value))
 }

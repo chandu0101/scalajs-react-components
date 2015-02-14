@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.MuiTextField
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.mixins.WindowListeners
-import chandu0101.scalajs.react.components.util.{CommonUtils, Events}
+import chandu0101.scalajs.react.components.util.{DateTime, CommonUtils, Events}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
 import org.scalajs.dom.Event
@@ -24,7 +24,7 @@ object MuiDatePicker {
   val INLINE: String = "inline"
   val theInputRef = Ref.to(MuiTextField.component, "theDatePickerTextField")
   val theDialogWindowRef = Ref.to(MuiDatePickerDialog.component, "theDialogWindowRef")
-  val component = ReactComponentB[Props]("muidatepicker")
+  val component = ReactComponentB[Props]("MuiDatePicker")
     .initialStateP(p => State(p.defaultDate, new Date()))
     .backend(new Backend(_))
     .render((P, S, B) => {
@@ -32,16 +32,14 @@ object MuiDatePicker {
       mui_is_landscape -> (P.mode == LANDSCAPE),
       mui_is_inline -> (P.mode == INLINE)
     )
-    val defaultInputValue = if (P.defaultDate != null) P.formatDate(P.defaultDate) else ""
+    val defaultInputValue = if (P.defaultDate != null) P.formatDate(P.defaultDate) else null
     div(classSetM(classes))(
-      MuiTextField(ref = theInputRef, defaultValue = defaultInputValue, onFocus = B.handleInputFocus, name = P.name, onTouchTap = B.handleInputTouchTap, hintText = P.placeholder),
+      MuiTextField(ref = theInputRef, defaultValue = defaultInputValue, onFocus = B.handleInputFocus, name = P.name, onTouchTap = B.handleInputTouchTap, hintText = P.placeholder ,id = s"${P.placeholder}YEAH"),
       MuiDatePickerDialog(ref = theDialogWindowRef, initialDate = S.dialogDate, onAccept = B.handleDialogAccept)
     )
   })
     .build
 
-  def apply(defaultDate: Date = null, onChange: DateUnit = null, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, onTouchTap: REventIAny = null, formatDate: DateString = null, onFocus: REventIAny = null, mode: String = "", placeholder: String = "", name: String = "") =
-    component.set(key, ref)(Props(defaultDate, onChange, clsNames, ref, key, onTouchTap, formatDate, onFocus, mode, placeholder, name))
 
   case class State(date: Date, dialogDate: Date = new Date())
 
@@ -79,5 +77,8 @@ object MuiDatePicker {
   }
 
   case class Props(defaultDate: Date, onChange: DateUnit, clsNames: CssClassType, ref: js.UndefOr[String], key: js.Any, onTouchTap: REventIAny, formatDate: DateString, onFocus: REventIAny, mode: String, placeholder: String, name: String)
+
+  def apply(defaultDate: Date = null, onChange: DateUnit = null, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, onTouchTap: REventIAny = null, formatDate: DateString = DateTime.format, onFocus: REventIAny = null, mode: String = "", placeholder: String = "", name: String = "") =
+    component.set(key, ref)(Props(defaultDate, onChange, clsNames, ref, key, onTouchTap, formatDate, onFocus, mode, placeholder, name))
 
 }

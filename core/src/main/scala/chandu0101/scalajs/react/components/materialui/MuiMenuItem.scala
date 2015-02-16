@@ -18,11 +18,11 @@ object MuiMenuItem {
 
   class Backend(t: BackendScope[Props, _]) {
 
-    def onClick(e: ReactEventI) = {
+    def onClick(e: ReactEventI) : Unit = {
       if (t.props.onClick != null) t.props.onClick(e, t.props.index, t.props.route)
     }
 
-    def onToggleClick(e : ReactEventI,toggled:Boolean) = {
+    def onToggleClick(e : ReactEventI,toggled:Boolean) : Unit = {
       if(t.props.onClick != null) t.props.onToggle(e,t.props.index,toggled)
     }
 
@@ -33,23 +33,29 @@ object MuiMenuItem {
     .stateless
     .backend(new Backend(_))
     .render((P, C, S, B) => {
-      div(classSetM(CommonUtils.cssMapM(P.classNames, mui_menu_item -> true, mui_is_selected -> P.selected)), key := P.index, onMouseDown ==> B.onClick)(
-        P.icon.nonEmpty ?= MuiIcon(classNames = Map(mui_menu_item_icon -> true), icon = P.icon) ,
+      val classes = CommonUtils.cssMap1M( mui_menu_item,
+        P.clsNames,
+        mui_is_selected -> P.selected)
+      div(classSetM(classes), 
+        key := P.index, 
+        onClick ==> B.onClick,
+        P.iconClassName.nonEmpty ?= MuiFontIcon(className = s"mui-menu-item-icon ${P.iconClassName}") ,
         C,
-         P.data.nonEmpty ?= span(cls := mui_menu_item_data)(P.data) ,
+        P.data.nonEmpty ?= span(cls := mui_menu_item_data)(P.data) ,
         P.attribute.nonEmpty ?= span(cls := mui_menu_item_attribute)(P.attribute) ,
         P.number.nonEmpty ?= span(cls := mui_menu_item_number)(P.number) ,
         P.toggle ?= MuiToggle(onToggle = B.onToggleClick),
-          P.iconRight.nonEmpty ?= MuiIcon(classNames = Map(mui_menu_item_icon_right -> true), icon = P.iconRight)
-
+        P.iconRightClassName.nonEmpty ?= MuiFontIcon(className = s"mui-menu-item-icon-right ${P.iconRightClassName}")
     )
     })
     .build
 
-  case class Props(onToggle: REventIIntBooleanUnit, number: String, iconRight: String, onClick: REventIIntStringUnit, toggle: Boolean, icon: String, data: String, selected: Boolean, attribute: String, classNames: CssClassType, index: Int, route: String)
 
-  def apply(onToggle: REventIIntBooleanUnit = null, number: String = "", iconRight: String = "", onClick: REventIIntStringUnit = null, toggle: Boolean = false, icon: String = "", data: String = "", selected: Boolean = false, attribute: String = "", classNames: CssClassType = Map(), index: Int, route: String = "",ref: js.UndefOr[String] = "", key: js.Any = {})(children: ReactNode*) = {
-    component.set(key,ref)(Props(onToggle, number, iconRight, onClick, toggle, icon, data, selected, attribute, classNames, index, route), children)
-  }
+
+  case class Props( onToggle : REventIIntBooleanUnit ,iconClassName : String ,number : String ,onClick : REventIIntStringUnit ,toggle : Boolean ,data : String ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,selected : Boolean ,key : js.Any ,iconRightClassName : String ,onTouchTap : REventIUnit ,route : String ,attribute : String ,index : Int  )
+
+  def apply( onToggle : REventIIntBooleanUnit = null ,iconClassName : String = "" ,number : String = "" ,onClick : REventIIntStringUnit = null ,toggle : Boolean = false,data : String = "" ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",selected : Boolean = false,key : js.Any = {},iconRightClassName : String = "" ,onTouchTap : REventIUnit = null ,route : String = "" ,attribute : String = "" ,index : Int  )(children : ReactNode*) =
+    component.set(key,ref)(Props(onToggle,iconClassName,number,onClick,toggle,data,clsNames,ref,selected,key,iconRightClassName,onTouchTap,route,attribute,index),children)
+
 
 }

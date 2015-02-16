@@ -29,37 +29,6 @@ import scala.scalajs.js
 object MuiIconButton {
 
 
-  val theToolTipRef = Ref.to(MuiTooltip.component, "theToolTipRef")
-  val component = ReactComponentB[Props]("MuiIconButton")
-    .initialState(State(tooltipShown = false))
-    .backend(new Backend(_))
-    .render((P, C, S, B) => {
-    MuiEnhancedButton(clsNames = P.clsNames + (mui_icon_button -> true),
-      onTouchTap = B.onTouchTap,
-      disabled = P.disabled,
-      onBlur = B.handleBlur,
-      onFocus = B.handleFocus,
-      linkButton = P.linkButton,
-      url = P.url,
-      centerRipple = true,
-      onMouseOut = B.handleMouseOut,
-      onMouseOver = B.handleMouseOver)(
-        if (P.tooltip.nonEmpty) {
-          MuiTooltip(ref = theToolTipRef, clsNames = Map(mui_icon_button_tooltip -> true), label = P.tooltip, show = S.tooltipShown, touch = P.touch, key = "icontooltip")
-        } else "",
-        MuiFontIcon(className = P.iconClassName),
-        C
-      )
-  }
-    )
-    .componentDidMount(scope => if (scope.props.tooltip.nonEmpty) scope.backend.positionTooltip)
-    .build
-
-  def withChildren(iconClassName: String = "", onBlur: REventIAny = null, touch: Boolean = false, url: String = "", clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, onMouseOver: REventIAny = null, linkButton: Boolean = false, onTouchTap: REventIAny = null, className: String = "", onMouseOut: REventIAny = null, onFocus: REventIAny = null, disabled: Boolean = false, tooltip: String = "")(children: ReactNode*) =
-    component.set(key, ref)(Props(iconClassName, onBlur, touch, url, clsNames, ref, key, onMouseOver, linkButton, onTouchTap, className, onMouseOut, onFocus, disabled, tooltip), children)
-
-  def apply(iconClassName: String = "", onBlur: REventIAny = null, touch: Boolean = false, url: String = "", clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, onMouseOver: REventIAny = null, linkButton: Boolean = false, onTouchTap: REventIAny = null, className: String = "", onMouseOut: REventIAny = null, onFocus: REventIAny = null, disabled: Boolean = false, tooltip: String = "") =
-    component.set(key, ref)(Props(iconClassName, onBlur, touch, url, clsNames, ref, key, onMouseOver, linkButton, onTouchTap, className, onMouseOut, onFocus, disabled, tooltip))
 
   class Backend(t: BackendScope[Props, State]) {
     def onTouchTap(e: ReactEventI) = {
@@ -101,6 +70,39 @@ object MuiIconButton {
 
   case class State(tooltipShown: Boolean)
 
-  case class Props(iconClassName: String, onBlur: REventIAny, touch: Boolean, url: String, clsNames: CssClassType, ref: js.UndefOr[String], key: js.Any, onMouseOver: REventIAny, linkButton: Boolean, onTouchTap: REventIAny, className: String, onMouseOut: REventIAny, onFocus: REventIAny, disabled: Boolean, tooltip: String)
+  val theToolTipRef = Ref.to(MuiTooltip.component, "theToolTipRef")
+  val component = ReactComponentB[Props]("MuiIconButton")
+    .initialState(State(tooltipShown = false))
+    .backend(new Backend(_))
+    .render((P, C, S, B) => {
+    MuiEnhancedButton(clsNames = P.clsNames + (mui_icon_button -> true),
+      onTouchTap = B.onTouchTap,
+      disabled = P.disabled,
+      onBlur = B.handleBlur,
+      onFocus = B.handleFocus,
+      linkButton = P.linkButton,
+      url = P.url,
+      centerRipple = true,
+      onMouseOut = B.handleMouseOut,
+      onMouseOver = B.handleMouseOver)(
+        if (P.tooltip.nonEmpty) {
+          MuiTooltip(ref = theToolTipRef, clsNames = Map(mui_icon_button_tooltip -> true), label = P.tooltip, show = S.tooltipShown, touch = P.touch, key = "icontooltip")
+        } else "",
+        MuiFontIcon(className = P.iconClassName),
+        C
+      )
+  }
+    )
+    .componentDidMount(scope => if (scope.props.tooltip.nonEmpty) scope.backend.positionTooltip)
+    .build
+
+
+  def withChildren(iconClassName: String = "", onBlur: REventIUnit = null, touch: Boolean = false, url: String = "", clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, onMouseOver: REventIUnit = null, linkButton: Boolean = false, onTouchTap: REventIUnit = null, className: String = "", onMouseOut: REventIUnit = null, onFocus: REventIUnit = null, disabled: Boolean = false, tooltip: String = "")(children: ReactNode*) =
+    component.set(key, ref)(Props(iconClassName, onBlur, touch, url, clsNames, ref, key, onMouseOver, linkButton, onTouchTap, className, onMouseOut, onFocus, disabled, tooltip), children)
+
+  def apply(iconClassName: String = "", onBlur: REventIUnit = null, touch: Boolean = false, url: String = "", clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, onMouseOver: REventIUnit = null, linkButton: Boolean = false, onTouchTap: REventIUnit = null, className: String = "", onMouseOut: REventIUnit = null, onFocus: REventIUnit = null, disabled: Boolean = false, tooltip: String = "") =
+    component.set(key, ref)(Props(iconClassName, onBlur, touch, url, clsNames, ref, key, onMouseOver, linkButton, onTouchTap, className, onMouseOut, onFocus, disabled, tooltip))
+
+  case class Props(iconClassName: String, onBlur: REventIUnit, touch: Boolean, url: String, clsNames: CssClassType, ref: js.UndefOr[String], key: js.Any, onMouseOver: REventIUnit, linkButton: Boolean, onTouchTap: REventIUnit, className: String, onMouseOut: REventIUnit, onFocus: REventIUnit, disabled: Boolean, tooltip: String)
 
 }

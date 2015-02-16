@@ -12,6 +12,19 @@ import scala.scalajs.js
 /**
  * Created by chandrasekharkode .
  *  // TODO work on valueLink
+ *
+clsNames: React.PropTypes.css,
+key: React.PropTypes.key,
+ref: React.PropTypes.ref,
+    onChange: React.PropTypes.func,
+    onHeightChange: React.PropTypes.func,
+    textareaClassName: React.PropTypes.string,
+    rows: React.PropTypes.number,
+onBlur:React.PropTypes.func,
+onFocus:React.PropTypes.func,
+id:React.PropTypes.string
+
+ *
  */
 object MuiEnhancedTextArea {
 
@@ -33,16 +46,16 @@ object MuiEnhancedTextArea {
       }
     }
     
-    def handleChange(e: ReactEventI) = {
+    def handleChange(e: ReactEventI) : Unit = {
       _syncHeightWithShadow(e.target.value,e)
       if(t.props.onChange != null) t.props.onChange(e)
     }
     
-    def handleInputFocus(e: ReactEventI) = {
+    def handleInputFocus(e: ReactEventI) : Unit = {
       if(t.props.onFocus != null) t.props.onFocus(e)
     }
     
-    def handleInputBlur(e: ReactEventI) = {
+    def handleInputBlur(e: ReactEventI) : Unit = {
       if(t.props.onBlur != null) t.props.onBlur(e)
     }
   }
@@ -66,9 +79,10 @@ object MuiEnhancedTextArea {
     })
     .build
 
-  case class Props(onChange: REventIAny, onHeightChange: REventIIntUnit, clsNames: CssClassType, ref: js.UndefOr[String], key: js.Any, textareaClassName: String, rows: Int,onFocus : REventIAny,onBlur : REventIAny,id : String)
 
+  case class Props( onBlur : REventIUnit ,onChange : REventIUnit ,onHeightChange : REventIIntUnit ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,key : js.Any ,id : String ,onFocus : REventIUnit ,textareaClassName : String ,rows : Int  )
 
-  def apply(onChange: REventIAny = null, onHeightChange: REventIIntUnit = null, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, textareaClassName: String = "", rows: Int = 1,onFocus : REventIAny = null ,onBlur : REventIAny = null ,id : String = "") =
-    component.set(key, ref)(Props(onChange, onHeightChange, clsNames, ref, key, textareaClassName, rows,onFocus,onBlur,id))
+  def apply( onBlur : REventIUnit = null ,onChange : REventIUnit = null ,onHeightChange : REventIIntUnit = null ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",key : js.Any = {},id : String = "" ,onFocus : REventIUnit = null ,textareaClassName : String = "" ,rows : Int = 1 ) =
+    component.set(key,ref)(Props(onBlur,onChange,onHeightChange,clsNames,ref,key,id,onFocus,textareaClassName,rows))
+
 }

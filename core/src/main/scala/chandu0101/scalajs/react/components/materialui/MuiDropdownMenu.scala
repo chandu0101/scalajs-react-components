@@ -15,6 +15,10 @@ import scala.scalajs.js
 
 /**
  * Created by chandrasekharkode .
+ * 
+ *    autoWidth: React.PropTypes.bool,
+    onChange: React.PropTypes.func,
+    menuItems: React.PropTypes.array.isRequired* *
  */
 object MuiDropdownMenu {
 
@@ -50,7 +54,8 @@ object MuiDropdownMenu {
     .initialStateP(p => State( selectedIndex = p.selectedIndex))
     .backend(new Backend(_))
     .render((P, S, B) => {
-      div(classSetM(CommonUtils.cssMapM(P.classNames, mui_drop_down_menu -> true, mui_open -> S.open)))(
+      val classes = CommonUtils.cssMap1M(mui_drop_down_menu, P.clsNames , mui_open -> S.open)
+      div(classSetM(classes))(
         div(cls := mui_menu_control, onClick ==> B.onControlClick)(
           MuiPaper(clsNames = Map(mui_menu_control_bg -> true), zDepth = 0)(),
           div(cls := mui_menu_label)(
@@ -59,21 +64,27 @@ object MuiDropdownMenu {
         MuiDropDownArrow(cls := "mui-menu-drop-down-icon" ,key := "dropdownicon"),
           div(cls := mui_menu_control_underline)
         ),
-        MuiMenu(ref = theMenuRef, autoWidth = P.autoWidth, selectedIndex = S.selectedIndex, menuItems = P.menuItems, hideable = true, visible = S.open, onItemClick = B.onMenuItemClick )
+        MuiMenu(ref = theMenuRef, 
+          autoWidth = P.autoWidth, 
+          selectedIndex = S.selectedIndex, 
+          menuItems = P.menuItems,
+          hideable = true,
+          visible = S.open, 
+          onItemClick = B.onMenuItemClick )
       )
     })
     .configure(ClickAwayable.mixin)
     .componentDidMount(scope => {
       if (scope.props.autoWidth) scope.backend.setWidth
     })
-    .componentWillReceiveProps((scope, p) => {
-     scope.modState(_.copy(selectedIndex = p.selectedIndex))
+    .componentWillReceiveProps((scope, nextProps) => {
+     scope.modState(_.copy(selectedIndex = nextProps.selectedIndex))
     })
     .build
 
-  case class Props(classNames: CssClassType, autoWidth: Boolean, onChange: REventIIntStringUnit, menuItems: List[MuiMenu.Item], selectedIndex: Int)
+  case class Props(clsNames: CssClassType, autoWidth: Boolean, onChange: REventIIntStringUnit, menuItems: List[MuiMenu.Item], selectedIndex: Int)
 
-  def apply(classNames: CssClassType = Map(), autoWidth: Boolean = true, onChange: REventIIntStringUnit = null, menuItems: List[MuiMenu.Item], selectedIndex: Int = 0,key : js.Any = {},ref :  js.UndefOr[String] = "") = {
-    component.set(key,ref)(Props(classNames, autoWidth, onChange, menuItems, selectedIndex))
+  def apply(clsNames: CssClassType = Map(), autoWidth: Boolean = true, onChange: REventIIntStringUnit = null, menuItems: List[MuiMenu.Item], selectedIndex: Int = 0,key : js.Any = {},ref :  js.UndefOr[String] = "") = {
+    component.set(key,ref)(Props(clsNames, autoWidth, onChange, menuItems, selectedIndex))
   }
 }

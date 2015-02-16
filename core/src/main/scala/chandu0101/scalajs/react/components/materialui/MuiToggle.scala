@@ -11,8 +11,21 @@ import scala.scalajs.js
 
 /**
  * Created by chandrasekharkode on 12/3/14.
- * onToggle: React.PropTypes.func,
-    toggled: React.PropTypes.bool
+
+clsNames: React.PropTypes.css,
+key: React.PropTypes.key,
+ref: React.PropTypes.ref,
+  onToggle: React.PropTypes.func,
+    toggled: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
+    defaultToggled: React.PropTypes.bool,
+value:React.PropTypes.string,
+label:React.PropTypes.string,
+labelPosition:React.PropTypes.string,
+onToggle:React.PropTypes.funcbu,
+name:React.PropTypes.string,
+
+
  */
 object MuiToggle {
 
@@ -30,9 +43,6 @@ object MuiToggle {
       if(t.props.onToggle != null) t.props.onToggle(e,isInputChecked)
     }
 
-
-
-
   }
 
   val theEnhancedSwitchRef = Ref.to(MuiEnhancedSwitch.component,"theEnhancedSwitchRefToggle")
@@ -41,7 +51,8 @@ object MuiToggle {
     .initialState(State(toggle = false))
     .backend(new Backend(_))
     .render((P, S, B) => {
-    val toggleElement = div(div(cls := "mui-toggle-track"),MuiPaper(clsNames = Map("mui-toggle-thumb" -> true),zDepth = 1)())
+    val toggleElement = div(div(cls := "mui-toggle-track"),
+      MuiPaper(clsNames = Map("mui-toggle-thumb" -> true),zDepth = 1)())
 
      MuiEnhancedSwitch(ref = theEnhancedSwitchRef ,
        value = P.value,
@@ -49,6 +60,7 @@ object MuiToggle {
        disabled = P.disabled,
        checked = P.toggled,
        inputType = "checkbox",
+       name = P.name,
        switchElement = toggleElement,
       clsNames = Map("mui-toggle" -> true),
        iconClassName = "mui-toggle-icon",
@@ -58,10 +70,12 @@ object MuiToggle {
     })
     .build
 
-  case class Props(disabled : Boolean,name : String ,value : String , label : String,labelPosition : String,defaultToggled : Boolean,toggled : Boolean ,classNames: CssClassType, onToggle: REventIBooleanUnit)
 
-  def apply(disabled : Boolean = false ,name : String = "",value : String = "", label : String = "", labelPosition : String = "left" ,defaultToggled : Boolean = false,toggled : Boolean = false,classNames: CssClassType = Map(), onToggle: REventIBooleanUnit = null,ref: js.UndefOr[String] = "", key: js.Any = {}) = {
-    component.set(key,ref)(Props(disabled,name,value,label,labelPosition,defaultToggled,toggled,classNames,onToggle))
-  }
+
+  case class Props( onToggle : REventIBooleanUnit ,name : String ,defaultToggled : Boolean ,labelPosition : String ,clsNames : CssClassType ,label : String ,ref :  js.UndefOr[String] ,key : js.Any ,disabled : Boolean ,value : String ,toggled : Boolean  )
+
+  def apply( onToggle : REventIBooleanUnit = null ,name : String = "" ,defaultToggled : Boolean = false,labelPosition : String = "left" ,clsNames : CssClassType = Map(),label : String = "" ,ref :  js.UndefOr[String] = "",key : js.Any = {},disabled : Boolean = false,value : String = "" ,toggled : Boolean = false ) =
+    component.set(key,ref)(Props(onToggle,name,defaultToggled,labelPosition,clsNames,label,ref,key,disabled,value,toggled))
+
 
 }

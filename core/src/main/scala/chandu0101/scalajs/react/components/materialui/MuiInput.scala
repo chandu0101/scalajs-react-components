@@ -32,7 +32,7 @@ import scala.scalajs.js
 object MuiInput {
 
 
-  case class Props(defaultValue: String, name: String, multiline: Boolean, step: Long, description: String, onChange: REventIStringAny, min: Long, inputStyle: String, placeholder: String, valueLink: Boolean, max: Long, error: String, tpe: String, required: Boolean, classNames: CssClassType,inlinePlaceHolder : Boolean,disabled : Boolean,onFocus : REventIAny,onTouchTap : REventIAny ,rows : Int)
+  case class Props(defaultValue: String, name: String, multiline: Boolean, step: Long, description: String, onChange: REventIStringAny, min: Long, inputStyle: String, placeholder: String, valueLink: Boolean, max: Long, error: String, tpe: String, required: Boolean, classNames: CssClassType,inlinePlaceHolder : Boolean,disabled : Boolean,onFocus : REventIUnit,onTouchTap : REventIUnit ,rows : Int)
 
   case class State(value: String, rows: Long, error: String)
 
@@ -116,7 +116,7 @@ object MuiInput {
     })
     .build
 
-  def apply(defaultValue: String = "", name: String, multiline: Boolean = false, step: Long = 0, description: String = "", onChange: REventIStringAny = null, min: Long = 0, inputStyle: String = "", placeholder: String = "", valueLink: Boolean = false, max: Long = 0, error: String = "", tpe: String = "text", required: Boolean = false, classNames: CssClassType = Map(),inlinePlaceholder :Boolean = false, disabled : Boolean = false,ref: js.UndefOr[String] = "", key: js.Any = {} ,onFocus : REventIAny = null ,onTouchTap : REventIAny = null ,rows : Int = 1) = {
+  def apply(defaultValue: String = "", name: String, multiline: Boolean = false, step: Long = 0, description: String = "", onChange: REventIStringAny = null, min: Long = 0, inputStyle: String = "", placeholder: String = "", valueLink: Boolean = false, max: Long = 0, error: String = "", tpe: String = "text", required: Boolean = false, classNames: CssClassType = Map(),inlinePlaceholder :Boolean = false, disabled : Boolean = false,ref: js.UndefOr[String] = "", key: js.Any = {} ,onFocus : REventIUnit = null ,onTouchTap : REventIUnit = null ,rows : Int = 1) = {
     component.set(key,ref)(Props(defaultValue, name, multiline, step, description, onChange, min, inputStyle, placeholder, valueLink, max, error, tpe, required, classNames,inlinePlaceholder,disabled,onFocus,onTouchTap,rows))
   }
 

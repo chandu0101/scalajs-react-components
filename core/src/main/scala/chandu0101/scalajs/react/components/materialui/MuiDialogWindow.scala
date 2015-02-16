@@ -104,9 +104,9 @@ object MuiDialogWindow {
     .build
 
 
-  case class Props(contentClassName: String, onDismiss: EmptyFunc, onShow: EmptyFunc, openImmediately: Boolean, onClickAway: REventIAny, clsNames: CssClassType, ref: js.UndefOr[String], key: js.Any, actions: List[ReactNode], repositionOnUpdate: Boolean)
+  case class Props(contentClassName: String, onDismiss: EmptyFunc, onShow: EmptyFunc, openImmediately: Boolean, onClickAway: REventIUnit, clsNames: CssClassType, ref: js.UndefOr[String], key: js.Any, actions: List[ReactNode], repositionOnUpdate: Boolean)
 
-  def apply(contentClassName: String = "", onDismiss: EmptyFunc = null, onShow: EmptyFunc = null, openImmediately: Boolean = false, onClickAway: REventIAny = null, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, actions: List[ReactNode] = List(), repositionOnUpdate: Boolean = false)(children: ReactNode*) =
+  def apply(contentClassName: String = "", onDismiss: EmptyFunc = null, onShow: EmptyFunc = null, openImmediately: Boolean = false, onClickAway: REventIUnit = null, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, actions: List[ReactNode] = List(), repositionOnUpdate: Boolean = false)(children: ReactNode*) =
     component.set(key, ref)(Props(contentClassName, onDismiss, onShow, openImmediately, onClickAway, clsNames, ref, key, actions, repositionOnUpdate), children)
 
 }

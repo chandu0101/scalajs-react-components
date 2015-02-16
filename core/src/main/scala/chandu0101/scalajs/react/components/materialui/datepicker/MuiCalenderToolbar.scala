@@ -45,15 +45,15 @@ object MuiCalenderToolbar {
   })
     .build
 
-  def apply(clsNames: CssClassType = Map(), onLeftTouchTap: REventIAny = null, displayDate: Date, ref: js.UndefOr[String] = "", key: js.Any = {}, onRightTouchTap: REventIAny = null) =
-    component.set(key, ref)(Props(clsNames, onLeftTouchTap, displayDate, onRightTouchTap))
-
   case class State(transitionDirection: String = "up")
 
   class Backend(t: BackendScope[Props, State]) {
 
   }
 
-  case class Props(clsNames: CssClassType, onLeftTouchTap: REventIAny, displayDate: Date, onRightTouchTap: REventIAny)
+  case class Props(clsNames: CssClassType, onLeftTouchTap: REventIUnit, displayDate: Date, onRightTouchTap: REventIUnit)
+
+  def apply(clsNames: CssClassType = Map(), onLeftTouchTap: REventIUnit = null, displayDate: Date, ref: js.UndefOr[String] = "", key: js.Any = {}, onRightTouchTap: REventIUnit = null) =
+    component.set(key, ref)(Props(clsNames, onLeftTouchTap, displayDate, onRightTouchTap))
 
 }

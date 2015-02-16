@@ -17,18 +17,15 @@ import scala.scalajs.js
  */
 object MuiDropDownIcon {
 
-  case class Props(icon: String, classNames: CssClassType, onChange: REventIIntStringUnit, menuItems: List[MuiMenu.Item])
 
   case class State(open: Boolean)
 
   class Backend(t: BackendScope[Props, State]) extends ClickAwayable {
     def onControlClick(e: ReactEventI) = {
-      e.preventDefault()
       t.modState(toggleState)
     }
 
     def onMenuItemClick(e: ReactEventI, index: Int ,route :String) = {
-      e.preventDefault()
       if (t.props.onChange != null) t.props.onChange(e, index,route)
       t.modState(toggleState)
     }
@@ -39,13 +36,16 @@ object MuiDropDownIcon {
 
   }
 
-  val component = ReactComponentB[Props]("radioButton")
+  val component = ReactComponentB[Props]("MuiDropDownIcon")
     .initialState(State(open = false))
     .backend(new Backend(_))
-    .render((P, S, B) => {
-      div(classSetM(CommonUtils.cssMapM(P.classNames, mui_drop_down_icon -> true, mui_open -> S.open)))(
-        div(cls := mui_menu_control, onClick ==> B.onControlClick)(
-          MuiIcon(icon = P.icon)
+    .render((P, C,S, B) => {
+      val classes= CommonUtils.cssMap1M(mui_drop_down_icon,P.clsNames,mui_open -> S.open)
+      div(classSetM(classes))(
+        div(cls := mui_menu_control, 
+          onClick ==> B.onControlClick,
+          P.iconClassName.nonEmpty ?= MuiFontIcon(className = P.iconClassName,
+          C)
         ),
         MuiMenu(menuItems = P.menuItems, hideable = true, visible = S.open, onItemClick = B.onMenuItemClick)
       )
@@ -53,8 +53,15 @@ object MuiDropDownIcon {
     .configure(ClickAwayable.mixin)
     .build
 
-  def apply(icon: String = "", clsNames: CssClassType = Map(), onChange: REventIIntStringUnit = null, menuItems: List[MuiMenu.Item],key : js.Any = {},ref :  js.UndefOr[String] = "") = {
-    component.set(key,ref)(Props(icon, clsNames, onChange, menuItems))
+  case class Props(iconClassName: String, clsNames: CssClassType, onChange: REventIIntStringUnit, menuItems: List[MuiMenu.Item])
+
+  // useful  when you want use svg icon instead of font-icon
+  def withChildren(iconClassName: String = "", clsNames: CssClassType = Map(), onChange: REventIIntStringUnit = null, menuItems: List[MuiMenu.Item],key : js.Any = {},ref :  js.UndefOr[String] = "")(children : ReactNode*) = {
+    component.set(key,ref)(Props(iconClassName, clsNames, onChange, menuItems),children)
+  }
+  
+  def apply(iconClassName: String = "", clsNames: CssClassType = Map(), onChange: REventIIntStringUnit = null, menuItems: List[MuiMenu.Item],key : js.Any = {},ref :  js.UndefOr[String] = "") = {
+    component.set(key,ref)(Props(iconClassName, clsNames, onChange, menuItems))
   }
 
 }

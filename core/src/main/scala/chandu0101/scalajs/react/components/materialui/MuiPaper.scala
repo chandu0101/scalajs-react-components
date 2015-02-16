@@ -13,6 +13,10 @@ import scala.scalajs.js
 
 /**
  * Created by chandrasekharkode .
+ *    circle: React.PropTypes.bool,
+    innerClassName: React.PropTypes.string,
+    rounded: React.PropTypes.bool,
+    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5])*
  */
 object MuiPaper {
 
@@ -28,8 +32,8 @@ object MuiPaper {
     .stateless
     .backend(new Backend(_))
     .render((P, C, S, B) => {
-       val classes = CommonUtils.cssMapM(P.clsNames,
-        mui_paper -> true,
+       val classes = CommonUtils.cssMap1M(mui_paper,
+         P.clsNames,
         mui_z_depth.concat(P.zDepth.toString) -> true,
         mui_rounded -> P.rounded,
         mui_circle -> P.circle)
@@ -44,7 +48,6 @@ object MuiPaper {
       })
     .build
 
-  val thePaperRef = Ref.to(component,"thePaperRef")
 
   case class Props(style : TagMod, circle : Boolean ,clsNames : CssClassType ,rounded : Boolean ,ref :  js.UndefOr[String] ,zDepth : Int ,key : js.Any ,innerClassNames : CssClassType  )
 

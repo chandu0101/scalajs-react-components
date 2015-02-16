@@ -55,11 +55,19 @@ object MuiNestedMenuItem {
     .initialState(State(open = false))
     .backend(new Backend(_))
     .render((P, S, B) => {
-      div(classSetM(CommonUtils.cssMapM(P.classNames, mui_nested_menu_item -> true, mui_open -> S.open)))(
-        MuiMenuItem(index = P.index, iconRight = mui_icon_arrow_drop_right, onClick = B.onParentItemClick)(
+      val classes = CommonUtils.cssMap1M(mui_nested_menu_item,
+        P.classNames, 
+        mui_open -> S.open)
+      div(classSetM(classes))(
+        MuiMenuItem(index = P.index, iconRightClassName = "muidocs-icon-custom-arrow-drop-right", onClick = B.onParentItemClick)(
           P.text
         ),
-        MuiMenu(ref = MuiMenu.theMenuRef, menuItems = P.menuItems, onItemClick = B.onMenuItemClick, hideable = true, visible = S.open, zDepth = P.zDepth + 1)
+        MuiMenu(ref = MuiMenu.theMenuRef,
+          menuItems = P.menuItems, 
+          onItemClick = B.onMenuItemClick, 
+          hideable = true, 
+          visible = S.open,
+          zDepth = P.zDepth + 1)
       )
     })
     .configure(ClickAwayable.mixin)

@@ -24,7 +24,7 @@ cp  demo/js/demo-jsdeps.js $projectPath/js/
 
 cp -r demo/styles/ $projectPath/styles/
 
-cp -r demo/font/ $projectPath/font/
+#cp -r demo/font/ $projectPath/font/
 
 cp -r demo/images/ $projectPath/images/
 

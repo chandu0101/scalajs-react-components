@@ -13,8 +13,6 @@ trait MTypes {
 
   type REventIBooleanUnit = (ReactEventI, Boolean) => Unit
 
-  type REventIAny = (ReactEventI) => Any
-
   type REventIUnit = (ReactEventI) => Unit
 
   type REventIIntUnit = (ReactEventI,Int) => Unit

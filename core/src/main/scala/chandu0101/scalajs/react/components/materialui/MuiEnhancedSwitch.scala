@@ -16,6 +16,29 @@ import scala.scalajs.js
 
 /**
  * Created by chandrasekharkode .
+ *  //TODO valuelink
+ *
+clsNames: React.PropTypes.css,
+key: React.PropTypes.key,
+ref: React.PropTypes.ref,
+    id: React.PropTypes.string,
+      inputType: React.PropTypes.string.isRequired,
+      switchElement: React.PropTypes.element.isRequired,
+      iconClassName: React.PropTypes.string.isRequired,
+      name: React.PropTypes.string,
+	    value: React.PropTypes.string,
+	    label: React.PropTypes.string,
+	    onSwitch: React.PropTypes.funcbu,
+	    required: React.PropTypes.bool,
+	    disabled: React.PropTypes.bool,
+toggled:React.PropTypes.bool,
+checked:React.PropTypes.bool,
+	    defaultSwitched: React.PropTypes.bool,
+      labelPosition: React.PropTypes.string,
+      disableFocusRipple: React.PropTypes.bool,
+      disableTouchRipple: React.PropTypes.bool
+
+ * *
  */
 object MuiEnhancedSwitch {
 
@@ -41,7 +64,7 @@ object MuiEnhancedSwitch {
 
     def isKeyboardFocused = t.state.isKeyBoardFocusedS
 
-    def handleChange(e: ReactEventI) = {
+    def handleChange(e: ReactEventI) : Unit = {
       tabPressed = false;
       t.modState(_.copy(isKeyBoardFocusedS = false))
       val isINputChecked = theCheckBoxRef(t).get.getDOMNode().checked
@@ -68,21 +91,21 @@ object MuiEnhancedSwitch {
       if (keyEvent.keyCode == 32 && t.state.isKeyBoardFocusedS) handleChange(e.asInstanceOf[ReactEventI])
     }
 
-    def handleMouseDown(e: ReactEventI) = if (DomUtil.isLeftClick(e.nativeEvent)) theTouchRippleRef(t).get.backend.start(e)
+    def handleMouseDown(e: ReactEventI) : Unit = if (DomUtil.isLeftClick(e.nativeEvent)) theTouchRippleRef(t).get.backend.start(e)
 
-    def handleMouseUp(e: ReactEventI) = theTouchRippleRef(t).get.backend.end
+    def handleMouseUp(e: ReactEventI) : Unit = theTouchRippleRef(t).get.backend.end
 
-    def handleMouseOut(e: ReactEventI) = theTouchRippleRef(t).get.backend.end
+    def handleMouseOut(e: ReactEventI) : Unit = theTouchRippleRef(t).get.backend.end
 
-    def handleTouchStart(e: ReactEventI) = theTouchRippleRef(t).get.backend.start(e)
+    def handleTouchStart(e: ReactEventI) : Unit = theTouchRippleRef(t).get.backend.start(e)
 
-    def handleTouchEnd(e: ReactEventI) = theTouchRippleRef(t).get.backend.end
+    def handleTouchEnd(e: ReactEventI) : Unit = theTouchRippleRef(t).get.backend.end
 
-    def handleBlur(e: ReactEventI) = {
+    def handleBlur(e: ReactEventI) : Unit = {
       t.modState(_.copy(isKeyBoardFocusedS = false))
     }
 
-    def handleFocus(e: ReactEventI) = {
+    def handleFocus(e: ReactEventI) : Unit  = {
       //setTimeout is needed becuase the focus event fires first
       //Wait so that we can capture if this was a keyboard focus
       //or touch focus
@@ -101,10 +124,13 @@ object MuiEnhancedSwitch {
   val theTouchRippleRef = Ref.to(TouchRipple.component, "theTouchRippleRef")
 
   val component = ReactComponentB[Props]("MuiEnhancedSwitch")
-    .initialStateP(p => State(p.defaultSwitched || p.valueLink))
+    .initialStateP(p => State(p.defaultSwitched))
     .backend(new Backend(_))
     .render((P, S, B) => {
-    val classes = CommonUtils.cssMap1M("mui-enhanced-switch", P.clsNames, "mui-is-switched" -> S.switched, "mui-is-disabled" -> P.disabled, "mui-is-required" -> P.required)
+    val classes = CommonUtils.cssMap1M("mui-enhanced-switch",
+      P.clsNames, "mui-is-switched" -> S.switched,
+      "mui-is-disabled" -> P.disabled,
+      "mui-is-required" -> P.required)
     val inputId = if (P.id.nonEmpty) P.id else "domid$$$$" // TODO replace hard coded strin with domid util
     val labelElement = P.label.nonEmpty ?= label(cls := "mui-switch-label", htmlFor := inputId)(P.label)
     val inputElement = input(tpe := P.inputType,
@@ -121,7 +147,7 @@ object MuiEnhancedSwitch {
       onTouchStart ==> B.handleTouchStart,
       onTouchEnd ==> B.handleTouchEnd,
       disabled := P.disabled,
-      (!P.checkedLink) ?= onChange ==> B.handleChange,
+      onChange ==> B.handleChange,
       cls := "mui-enhanced-switch-input")
     val touchRipple: ReactNode = if (!P.disabled && !P.disableTouchRipple) TouchRipple(ref = theTouchRippleRef, key = "thetouchripple", centerRipple = true) else ""
     val focusRipple: ReactNode = if (!P.disabled && !P.disableFocusRipple) FocusRipple(key = "focusripple", show = S.isKeyBoardFocusedS) else ""
@@ -143,15 +169,18 @@ object MuiEnhancedSwitch {
   })
     .componentWillReceiveProps((scope, nextProps) => {
 
-    if (nextProps.valueLink) scope.modState(s => State(switched = true))
-    else if (nextProps.toggled) scope.modState(s => State(switched = true))
+//    if (nextProps.valueLink) scope.modState(s => State(switched = true))
+     if (nextProps.toggled) scope.modState(s => State(switched = true))
     else if (nextProps.checked) scope.modState(s => State(switched = true))
   })
     .configure(WindowListeners.mixin)
     .build
 
-  case class Props(checkedLink: Boolean, toggled: Boolean, checked: Boolean, valueLink: Boolean, iconClassName: String, name: String, switchElement: ReactElement, onSwitch: REventIBooleanUnit, disableTouchRipple: Boolean, labelPosition: String, clsNames: CssClassType, label: String, ref: js.UndefOr[String], defaultSwitched: Boolean, key: js.Any, disableFocusRipple: Boolean, id: String, disabled: Boolean, required: Boolean, inputType: String, value: String)
 
-  def apply(checkedLink: Boolean = false, toggled: Boolean = false, checked: Boolean = false, valueLink: Boolean = false, iconClassName: String, name: String = null, switchElement: ReactElement, onSwitch: REventIBooleanUnit = null, disableTouchRipple: Boolean = false, labelPosition: String = "", clsNames: CssClassType = Map(), label: String = "", ref: js.UndefOr[String] = "", defaultSwitched: Boolean = false, key: js.Any = {}, disableFocusRipple: Boolean = false, id: String = "", disabled: Boolean = false, required: Boolean = false, inputType: String, value: String = null) =
-    component.set(key, ref)(Props(checkedLink, toggled, checked, valueLink, iconClassName, name, switchElement, onSwitch, disableTouchRipple, labelPosition, clsNames, label, ref, defaultSwitched, key, disableFocusRipple, id, disabled, required, inputType, value))
+
+  case class Props( iconClassName : String ,name : String ,switchElement : ReactElement,onSwitch : REventIBooleanUnit ,disableTouchRipple : Boolean ,checked : Boolean ,labelPosition : String ,clsNames : CssClassType ,label : String ,ref :  js.UndefOr[String] ,defaultSwitched : Boolean ,key : js.Any ,disableFocusRipple : Boolean ,id : String ,disabled : Boolean ,required : Boolean ,inputType : String ,value : String ,toggled : Boolean  )
+
+  def apply( iconClassName : String ,name : String = "" ,switchElement : ReactElement,onSwitch : REventIBooleanUnit = null ,disableTouchRipple : Boolean = false,checked : Boolean = false,labelPosition : String = "" ,clsNames : CssClassType = Map(),label : String = "" ,ref :  js.UndefOr[String] = "",defaultSwitched : Boolean = false,key : js.Any = {},disableFocusRipple : Boolean = false,id : String = "" ,disabled : Boolean = false,required : Boolean = false,inputType : String ,value : String = "" ,toggled : Boolean = false ) =
+    component.set(key,ref)(Props(iconClassName,name,switchElement,onSwitch,disableTouchRipple,checked,labelPosition,clsNames,label,ref,defaultSwitched,key,disableFocusRipple,id,disabled,required,inputType,value,toggled))
+
 }

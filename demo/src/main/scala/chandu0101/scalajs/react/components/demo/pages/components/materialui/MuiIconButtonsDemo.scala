@@ -13,8 +13,8 @@ object MuiIconButtonsDemo {
 
   val code =
     """
-      |MuiIconButton(icon = "action-grade"),
-      |MuiIconButton(icon = "action-grade" , disabled = true)
+      | MuiIconButton.withChildren(tooltip = "Yay")(MuiActionGrade()),
+      | MuiIconButton.withChildren(disabled = true)(MuiActionGrade())
       |
     """.stripMargin
 

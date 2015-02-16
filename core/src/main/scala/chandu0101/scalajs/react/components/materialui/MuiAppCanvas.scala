@@ -13,12 +13,16 @@ import scala.scalajs.js
 
 /**
  * Created by chandrasekharkode .
+ *  predefinedLayout: React.PropTypes.number
  */
 object MuiAppCanvas {
 
   val component = ReactComponentB[Props]("MuiAppCanvas")
     .render((P,C) => {
-      div(classSetM(CommonUtils.cssMapM(P.clsNames,mui_app_canvas -> true, mui_predefined_layout_1 -> (P.predefinedLayout == 1) )))(C)
+      val classes = CommonUtils.cssMap1M(mui_app_canvas,P.clsNames,mui_predefined_layout_1 -> (P.predefinedLayout == 1))
+      div(classSetM(classes))(
+        C
+      )
     })
     .build
 

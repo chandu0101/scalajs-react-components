@@ -17,13 +17,13 @@ import scala.scalajs.js
 object MuiDialog {
 
 
-  case class Action(text: String, onClick: REventIAny = null)
+  case class Action(text: String, onClick: REventIUnit = null)
 
   case class State(open: Boolean)
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def dismiss(e:ReactEventI) = {
+    def dismiss(e:ReactEventI) : Unit = {
       theDialogWindowRef(t).get.backend.dismiss
     }
 
@@ -32,7 +32,7 @@ object MuiDialog {
     }
 
     def getDialogActions  : List[ReactNode] = t.props.actions.zipWithIndex.map {
-      case (action,index) => val onCLickHandler = if(action.onClick != null) action.onClick else dismiss _
+      case (action,index) => val onCLickHandler : REventIUnit = if(action.onClick != null) action.onClick else dismiss _
         MuiFlatButton(clsNames = Map(mui_dialog_window_action -> true),key = index,onTouchTap = onCLickHandler,label = action.text ,secondary = true)
     }
   }
@@ -46,7 +46,7 @@ object MuiDialog {
     .backend(new Backend(_))
     .render((P, C, S, B) => {
       MuiDialogWindow( ref = theDialogWindowRef , clsNames = Map(mui_dialog -> true) ,actions = B.getDialogActions)(
-       h3( cls := mui_dialog_title ,key := "title")(P.title),
+       h3( cls := mui_dialog_title ,key := "title" ,P.title),
        div( ref := theDialogContentRef, key := "content" ,cls := mui_dialog_content)(
          C
        )
@@ -56,9 +56,9 @@ object MuiDialog {
 
   val theDialogRef = Ref.to(component,"theDialogRef")
 
-  case class Props(onDismiss: REventIAny, onShow: REventIAny, openImmediately: Boolean, actions: List[Action], title: String, classNames: CssClassType)
+  case class Props(onDismiss: REventIUnit, onShow: REventIUnit, openImmediately: Boolean, actions: List[Action], title: String, classNames: CssClassType)
 
-  def apply(onDismiss: REventIAny = null, onShow: REventIAny = null, openImmediately: Boolean = false, actions: List[Action] = List(), title: String = "", classNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {})(children: ReactNode*) = {
+  def apply(onDismiss: REventIUnit = null, onShow: REventIUnit = null, openImmediately: Boolean = false, actions: List[Action] = List(), title: String = "", classNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {})(children: ReactNode*) = {
     component.set(key,ref)(Props(onDismiss, onShow, openImmediately, actions, title, classNames), children)
   }
 

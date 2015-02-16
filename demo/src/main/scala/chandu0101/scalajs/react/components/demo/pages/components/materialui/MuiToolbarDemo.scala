@@ -26,18 +26,18 @@ object MuiToolbarDemo {
       |    MuiMenu.Item(text = "More Info")
       |  )
       |
-      | MuiToolbar()(
-      | MuiToolbarGroup(key = 0, float = "left")(
-      |     MuiDropdownMenu(menuItems = filteredOptions)
-      |    ),
-      |  MuiToolbarGroup(key = 1, float = "right")(
-      |     MuiIcon(icon = "mui-icon-pie"),
-      |     MuiIcon(icon = "mui-icon-sort"),
-      |     MuiDropdownMenu(menuItems = iconMenuItems),
-      |     span(cls := "mui-toolbar-separator")("&nbsp;"),
-      |     MuiRaisedButton(label = "Create Broadcast", primary = true)
-      |   )
-      |  )
+      |  MuiToolbar()(
+      |            MuiToolbarGroup(key = 0, float = "left")(
+      |              MuiDropdownMenu(menuItems = filteredOptions)
+      |            ),
+      |            MuiToolbarGroup(key = 1, float = "right")(
+      |              MuiFontIcon(className = "mui-icon-pie"),
+      |              MuiFontIcon(className = "mui-icon-sort"),
+      |              MuiDropDownIcon(iconClassName ="navigation-expand-more" ,menuItems = iconMenuItems),
+      |              span(cls := "mui-toolbar-separator")(" "),
+      |              MuiRaisedButton(label = "Create Broadcast", primary = true)
+      |            )
+      |          )
     """.stripMargin
 
   val filteredOptions = List(
@@ -64,9 +64,9 @@ object MuiToolbarDemo {
               MuiDropdownMenu(menuItems = filteredOptions)
             ),
             MuiToolbarGroup(key = 1, float = "right")(
-              MuiIcon(icon = "mui-icon-pie"),
-              MuiIcon(icon = "mui-icon-sort"),
-              MuiDropDownIcon(icon ="navigation-expand-more" ,menuItems = iconMenuItems),
+              MuiFontIcon(className = "mui-icon-pie"),
+              MuiFontIcon(className = "mui-icon-sort"),
+              MuiDropDownIcon(iconClassName ="navigation-expand-more" ,menuItems = iconMenuItems),
               span(cls := "mui-toolbar-separator")(" "),
               MuiRaisedButton(label = "Create Broadcast", primary = true)
             )

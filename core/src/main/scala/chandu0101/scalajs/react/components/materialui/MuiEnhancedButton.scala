@@ -37,43 +37,11 @@ ref: React.PropTypes.ref,
     onMouseOut: React.PropTypes.func,
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
-
  */
 
 object MuiEnhancedButton {
 
 
-  val theTouchRippleRef = Ref.to(TouchRipple.component, "theTouchRippleRefEnhancedButton")
-  val component = ReactComponentB[Props]("MuiEnhancedButton")
-    .initialState(State(isKeyboardFocused = false))
-    .backend(new Backend(_))
-    .render((P, C, S, B) => {
-    val styles = CommonUtils.cssMapM(P.clsNames, mui_enhanced_button -> true,
-      mui_is_disabled -> P.disabled, mui_is_link_button -> P.linkButton, mui_is_keyboard_focused -> S.isKeyboardFocused)
-    val touchRipple: ReactNode = if (P.disabled || P.disableTouchRipple) "" else TouchRipple(ref = theTouchRippleRef, centerRipple = P.centerRipple, key = "toucr")
-    val focusRipple: ReactNode = if (P.disabled || P.disableFocusRipple) "" else FocusRipple(show = S.isKeyboardFocused, key = "focusr")
-    if (P.linkButton) {
-      if (P.disabled) span(classSetM(styles), disabled := P.disabled)(
-        C
-      )
-      else {
-        a(classSetM(styles), disabled := P.disabled, onBlur ==> B.handleBlur, onFocus ==> B.handleFocus, onClick ==> B.handleTouchTap, href := P.url)(
-          C,
-          touchRipple,
-          focusRipple
-        )
-      }
-    } else {
-      button(classSetM(styles), onClick ==> B.handleTouchTap, onBlur ==> B.handleBlur, onFocus ==> B.handleFocus, onMouseOver ==> B.handleMouseOver, onMouseOut ==> B.handleMouseOut)(
-        C,
-        touchRipple,
-        focusRipple
-      )
-    }
-
-  })
-    .configure(WindowListeners.mixin)
-    .build
 
   case class State(isKeyboardFocused: Boolean)
 
@@ -96,34 +64,79 @@ object MuiEnhancedButton {
     )
     var tabPressed = false
 
-    def handleTouchTap(e: ReactEventI) = {
+    def handleTouchTap(e: ReactEventI) : Unit = {
       tabPressed = false
       t.modState(_.copy(isKeyboardFocused = false))
       if (t.props.onTouchTap != null) t.props.onTouchTap(e)
     }
 
-    def handleBlur(e: ReactEventI) = {
+    def handleBlur(e: ReactEventI) : Unit = {
       t.modState(_.copy(isKeyboardFocused = false))
       if (t.props.onBlur != null) t.props.onBlur(e)
     }
 
-    def handleFocus(e: ReactEventI) = {
+    def handleFocus(e: ReactEventI) : Unit = {
       dom.setTimeout(() => {
         if (tabPressed) t.modState(_.copy(isKeyboardFocused = true))
       }, 150)
       if (t.props.onFocus != null) t.props.onFocus(e)
     }
 
-    def handleMouseOut(e: ReactEventI) = if (t.props.onMouseOut != null) t.props.onMouseOut(e)
-
-    def handleMouseOver(e: ReactEventI) = if (t.props.onMouseOver != null) t.props.onMouseOver(e)
   }
 
 
 
-  case class Props( onBlur : REventIAny ,onTouchStart : REventIAny ,disableTouchRipple : Boolean ,url : String ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,onMouseUp : REventIAny ,onTouchEnd : REventIAny ,key : js.Any ,disableFocusRipple : Boolean ,onMouseOver : REventIAny ,linkButton : Boolean ,onTouchTap : REventIAny ,className : String ,onMouseOut : REventIAny ,onFocus : REventIAny ,disabled : Boolean ,centerRipple : Boolean ,onMouseDown : REventIAny  )
+  val theTouchRippleRef = Ref.to(TouchRipple.component, "theTouchRippleRefEnhancedButton")
+  val component = ReactComponentB[Props]("MuiEnhancedButton")
+    .initialState(State(isKeyboardFocused = false))
+    .backend(new Backend(_))
+    .render((P, C, S, B) => {
+    val classes = CommonUtils.cssMap1M(mui_enhanced_button,
+      P.clsNames,
+      mui_is_disabled -> P.disabled, 
+      mui_is_link_button -> P.linkButton, 
+      mui_is_keyboard_focused -> S.isKeyboardFocused)
+    val touchRipple: ReactNode = if (P.disabled || P.disableTouchRipple) C else TouchRipple.withChildren(ref = theTouchRippleRef, centerRipple = P.centerRipple, key = "toucr")(C)
+    val focusRipple: ReactNode = if (P.disabled || P.disableFocusRipple) "" else FocusRipple(show = S.isKeyboardFocused, key = "focusRipple")
+    val buttonChildren : ReactNode  = List(touchRipple,focusRipple)
+    if (P.linkButton) {
+      if (P.disabled) span(classSetM(classes), disabled := P.disabled)(
+        C
+      )
+      else {
+        a(classSetM(classes), disabled := P.disabled, 
+          onBlur ==> B.handleBlur, 
+          onFocus ==> B.handleFocus, 
+          onClick ==> B.handleTouchTap,
+          (!P.disabled && P.onMouseDown != null) ?= onMouseDown ==> P.onMouseDown,
+          (!P.disabled && P.onMouseUp != null) ?= onMouseUp ==> P.onMouseUp,
+          (!P.disabled && P.onMouseOut != null) ?= onMouseOut ==> P.onMouseOut,
+          (!P.disabled && P.onMouseOver != null) ?= onMouseOver ==> P.onMouseOver,
+          href := P.url,
+          buttonChildren
+        )
+      }
+    } else {
+      button(classSetM(classes),
+        onClick ==> B.handleTouchTap, 
+        onBlur ==> B.handleBlur,
+        (!P.disabled && P.onMouseDown != null) ?= onMouseDown ==> P.onMouseDown,
+        (!P.disabled && P.onMouseUp != null) ?= onMouseUp ==> P.onMouseUp,
+        (!P.disabled && P.onMouseOut != null) ?= onMouseOut ==> P.onMouseOut,
+        (!P.disabled && P.onMouseOver != null) ?= onMouseOver ==> P.onMouseOver,
+        onFocus ==> B.handleFocus,
+        buttonChildren
+      )
+    }
 
-  def apply( onBlur : REventIAny = null ,onTouchStart : REventIAny = null ,disableTouchRipple : Boolean = false,url : String = "" ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",onMouseUp : REventIAny = null ,onTouchEnd : REventIAny = null ,key : js.Any = {},disableFocusRipple : Boolean = false,onMouseOver : REventIAny = null ,linkButton : Boolean = false,onTouchTap : REventIAny = null ,className : String = "" ,onMouseOut : REventIAny = null ,onFocus : REventIAny = null ,disabled : Boolean = false,centerRipple : Boolean = false,onMouseDown : REventIAny = null)(children : ReactNode*) =
+  })
+    .configure(WindowListeners.mixin)
+    .build
+
+
+  case class Props( onBlur : REventIUnit ,onTouchStart : REventIUnit ,disableTouchRipple : Boolean ,url : String ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,onMouseUp : REventIUnit ,onTouchEnd : REventIUnit ,key : js.Any ,disableFocusRipple : Boolean ,onMouseOver : REventIUnit ,linkButton : Boolean ,onTouchTap : REventIUnit ,className : String ,onMouseOut : REventIUnit ,onFocus : REventIUnit ,disabled : Boolean ,centerRipple : Boolean ,onMouseDown : REventIUnit  )
+
+  def apply( onBlur : REventIUnit = null ,onTouchStart : REventIUnit = null ,disableTouchRipple : Boolean = false,url : String = "" ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",onMouseUp : REventIUnit = null ,onTouchEnd : REventIUnit = null ,key : js.Any = {},disableFocusRipple : Boolean = false,onMouseOver : REventIUnit = null ,linkButton : Boolean = false,onTouchTap : REventIUnit = null ,className : String = "" ,onMouseOut : REventIUnit = null ,onFocus : REventIUnit = null ,disabled : Boolean = false,centerRipple : Boolean = false,onMouseDown : REventIUnit = null)(children : ReactNode*) =
     component.set(key,ref)(Props(onBlur,onTouchStart,disableTouchRipple,url,clsNames,ref,onMouseUp,onTouchEnd,key,disableFocusRipple,onMouseOver,linkButton,onTouchTap,className,onMouseOut,onFocus,disabled,centerRipple,onMouseDown),children)
 
 

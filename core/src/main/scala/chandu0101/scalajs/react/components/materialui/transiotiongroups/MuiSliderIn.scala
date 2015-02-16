@@ -9,22 +9,13 @@ import scala.scalajs.js
 
 /**
  * Created by chandrasekharkode .
+ *  direction: React.PropTypes.string
  */
 object MuiSliderIn {
 
 
-  case class State(checked: Boolean)
-
-  class Backend(t: BackendScope[_, State]) {
-
-
-  }
-
-
   val component2 = ReactComponentB[Props]("MuiSliderIn")
-    .initialState(State(checked = false))
-    .backend(new Backend(_))
-    .render((P, C, S, B) => {
+    .render((P, C) => {
     val classes = s"${P.className} mui-transition-slide-in mui-is-${P.direction}"
     ReactCssTransitionGroup(name = "mui-transition-slide-in", className = classes, component = "div")(
       C

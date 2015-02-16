@@ -13,7 +13,7 @@ object MuiSvgIcon {
 
   val component = ReactComponentB[Props]("SvgIcon")
     .render((P, C) => {
-       svgtag(P.props,cls := "mui-svg-icon")(C)
+       svgtag(P.props,cls := "mui-svg-icon",key := "svgicon")(C)
      })
     .build
 

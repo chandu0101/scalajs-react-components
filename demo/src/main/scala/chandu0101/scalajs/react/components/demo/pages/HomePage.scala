@@ -6,6 +6,7 @@ import chandu0101.scalajs.react.components.demo.pages.components.demo.LocalDemoB
 import chandu0101.scalajs.react.components.demo.pages.util.ComponentGridItem
 import chandu0101.scalajs.react.components.demo.routes.AppRouter.AppPage
 import chandu0101.scalajs.react.components.demo.util.{ComponentInfo, Components}
+import chandu0101.scalajs.react.components.materialui.ripples.FocusRipple
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._

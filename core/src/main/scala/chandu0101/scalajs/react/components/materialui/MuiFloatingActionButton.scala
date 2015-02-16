@@ -29,6 +29,8 @@ ref: React.PropTypes.ref,
     linkButton: React.PropTypes.bool,
     url: React.PropTypes.string,
 onTouchTap:React.PropTypes.func,
+disableFocusRipple :React.PropTypes.bool,
+disableTouchRipple :React.PropTypes.bool,
  */
 object MuiFloatingActionButton {
 
@@ -38,31 +40,29 @@ object MuiFloatingActionButton {
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def animateButtonClick(e: ReactEventI) = {
-      // animate zDepth change
-      t.modState(s => State(s.initialZDepth, s.initialZDepth + 1))
-      dom.window.setTimeout(() => {
-        t.modState(s => State(s.initialZDepth, s.initialZDepth))
-      }, 450)
-
-    }
-
-    def handleMouseDown( e: ReactEventI) = {
-      if(DomUtil.isLeftClick(e.nativeEvent)) t.modState(s => State(s.initialZDepth + 1  ,s.initialZDepth))
-      if(t.props.onMouseDown != null) t.props.onMouseDown(e)
-    }
-
-    def handleMouseUp( e: ReactEventI) = {
-      t.modState(s => State(s.initialZDepth  ,s.initialZDepth))
-      if(t.props.onMouseOut != null) t.props.onMouseOut(e)
-    }
-
     def onTouchTap(e: ReactEventI) = {
-      if (!t.props.disabled) animateButtonClick(e)
       if (t.props.onTouchTap != null) t.props.onTouchTap(e)
     }
 
+    def handleMouseDown(e : ReactEventI) : Unit = {
+      if(DomUtil.isLeftClick(e.nativeEvent))  t.modState(s => s.copy(zDepth = s.initialZDepth + 1))
+      if(t.props.onMouseDown != null) t.props.onMouseDown(e)
+    }
 
+    def handleMouseUp(e : ReactEventI) : Unit = {
+      t.modState(s => s.copy(zDepth = s.initialZDepth))
+      if(t.props.onMouseUp != null) t.props.onMouseUp(e)
+    }
+
+    def handleTouchStart( e: ReactEventI) : Unit =  {
+      t.modState(s => s.copy(zDepth = s.initialZDepth + 1))
+      if(t.props.onTouchStart != null) t.props.onTouchStart(e)
+    }
+
+    def handleTouchEnd(e : ReactEventI) : Unit = {
+      t.modState(s => s.copy(zDepth = s.initialZDepth))
+      if(t.props.onTouchEnd != null) t.props.onTouchEnd(e)
+    }
 
   }
 
@@ -73,7 +73,10 @@ object MuiFloatingActionButton {
     })
     .backend(new Backend(_))
     .render((P, C, S, B) => {
-      val classes = CommonUtils.cssMapM(P.clsNames,mui_floating_action_button -> true,mui_open -> true, mui_is_mini -> P.mini,mui_is_secondary -> P.secondary)
+      val classes = CommonUtils.cssMap1M(mui_floating_action_button,
+        P.clsNames,
+        mui_is_mini -> P.mini,
+        mui_is_secondary -> P.secondary)
       MuiPaper(clsNames = classes, zDepth = S.zDepth, circle = true)(
         MuiEnhancedButton(clsNames = Map(mui_floating_action_button_container -> true),
           onTouchTap = B.onTouchTap,
@@ -81,6 +84,8 @@ object MuiFloatingActionButton {
           onMouseDown = B.handleMouseDown,
           onMouseUp = B.handleMouseUp,
           key = "floatinge" ,
+          disableFocusRipple = P.disableFocusRipple,
+          disableTouchRipple = P.disableTouchRipple,
           linkButton = P.linkButton,
           url = P.url )(
           if(P.iconClassName.nonEmpty) MuiFontIcon(className = s"mui-floating-action-button-icon ${P.iconClassName}") else "",
@@ -92,14 +97,12 @@ object MuiFloatingActionButton {
 
 
 
+  case class Props( iconClassName : String ,onTouchStart : REventIUnit ,mini : Boolean ,disableTouchRipple : Boolean ,url : String ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,secondary : Boolean ,onMouseUp : REventIUnit ,onTouchEnd : REventIUnit ,key : js.Any ,disableFocusRipple : Boolean ,linkButton : Boolean ,onTouchTap : REventIUnit ,className : String ,onMouseOut : REventIUnit ,disabled : Boolean ,onMouseDown : REventIUnit  )
 
-  case class Props( iconClassName : String ,onTouchStart : REventIAny ,mini : Boolean ,url : String ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,secondary : Boolean ,onMouseUp : REventIAny ,onTouchEnd : REventIAny ,key : js.Any ,linkButton : Boolean ,onTouchTap : REventIAny ,className : String ,onMouseOut : REventIAny ,disabled : Boolean ,onMouseDown : REventIAny  )
+  def withChildren( iconClassName : String = "" ,onTouchStart : REventIUnit = null ,mini : Boolean = false,disableTouchRipple : Boolean = false,url : String = "" ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",secondary : Boolean = false,onMouseUp : REventIUnit = null ,onTouchEnd : REventIUnit = null ,key : js.Any = {},disableFocusRipple : Boolean = true,linkButton : Boolean = false,onTouchTap : REventIUnit = null ,className : String = "" ,onMouseOut : REventIUnit = null ,disabled : Boolean = false,onMouseDown : REventIUnit = null )(children : ReactNode*) =
+    component.set(key,ref)(Props(iconClassName,onTouchStart,mini,disableTouchRipple,url,clsNames,ref,secondary,onMouseUp,onTouchEnd,key,disableFocusRipple,linkButton,onTouchTap,className,onMouseOut,disabled,onMouseDown),children)
 
-
-  def withChildren(iconClassName : String = "" ,onTouchStart : REventIAny = null ,mini : Boolean = false,url : String = "" ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",secondary : Boolean = false,onMouseUp : REventIAny = null ,onTouchEnd : REventIAny = null ,key : js.Any = {},linkButton : Boolean = false,onTouchTap : REventIAny = null ,className : String = "" ,onMouseOut : REventIAny = null ,disabled : Boolean = false,onMouseDown : REventIAny = null )(children : ReactNode) =
-    component.set(key,ref)(Props(iconClassName,onTouchStart,mini,url,clsNames,ref,secondary,onMouseUp,onTouchEnd,key,linkButton,onTouchTap,className,onMouseOut,disabled,onMouseDown),children)
-
-  def apply( iconClassName : String = "" ,onTouchStart : REventIAny = null ,mini : Boolean = false,url : String = "" ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",secondary : Boolean = false,onMouseUp : REventIAny = null ,onTouchEnd : REventIAny = null ,key : js.Any = {},linkButton : Boolean = false,onTouchTap : REventIAny = null ,className : String = "" ,onMouseOut : REventIAny = null ,disabled : Boolean = false,onMouseDown : REventIAny = null  ) =
-    component.set(key,ref)(Props(iconClassName,onTouchStart,mini,url,clsNames,ref,secondary,onMouseUp,onTouchEnd,key,linkButton,onTouchTap,className,onMouseOut,disabled,onMouseDown))
+  def apply( iconClassName : String = "" ,onTouchStart : REventIUnit = null ,mini : Boolean = false,disableTouchRipple : Boolean = false,url : String = "" ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",secondary : Boolean = false,onMouseUp : REventIUnit = null ,onTouchEnd : REventIUnit = null ,key : js.Any = {},disableFocusRipple : Boolean = true,linkButton : Boolean = false,onTouchTap : REventIUnit = null ,className : String = "" ,onMouseOut : REventIUnit = null ,disabled : Boolean = false,onMouseDown : REventIUnit = null  ) =
+    component.set(key,ref)(Props(iconClassName,onTouchStart,mini,disableTouchRipple,url,clsNames,ref,secondary,onMouseUp,onTouchEnd,key,disableFocusRipple,linkButton,onTouchTap,className,onMouseOut,disabled,onMouseDown))
 
 }

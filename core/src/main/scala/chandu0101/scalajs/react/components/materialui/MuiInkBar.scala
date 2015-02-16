@@ -22,7 +22,7 @@ object MuiInkBar {
 
   case class Props(clsNames: CssClassType, height: Int, ref: js.UndefOr[String], key: js.Any, position: String, width: Int)
 
-  def apply(clsNames: CssClassType = Map(), height: Int = 0, ref: js.UndefOr[String] = "", key: js.Any = {}, position: String = "", width: Int = 0)(children: ReactNode*) = component.set(key, ref)(Props(clsNames, height, ref, key, position, width), children)
+  def apply(clsNames: CssClassType = Map(), height: Int = 0, ref: js.UndefOr[String] = "", key: js.Any = {}, position: String = "", width: Int = 0) = component.set(key, ref)(Props(clsNames, height, ref, key, position, width))
 
 
 }

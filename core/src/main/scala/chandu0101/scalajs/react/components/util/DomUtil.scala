@@ -30,14 +30,14 @@ object DomUtil {
 
   def offset(element : TopNode) = {
     val rect = element.getBoundingClientRect()
-    var scrollTop = 0
-    var scrollLeft = 0
+    var scrollTop = 0.0
+    var scrollLeft = 0.0
     if(dom.document.body.scrollTop > 0) {
       scrollTop = dom.document.body.scrollTop.toInt
       scrollLeft = dom.document.body.scrollLeft.toInt
     } else if(dom.document.documentElement.scrollTop >0) { // for firefox
-      scrollTop = dom.document.documentElement.scrollTop.toInt
-      scrollLeft = dom.document.documentElement.scrollLeft.toInt
+      scrollTop = dom.document.documentElement.scrollTop
+      scrollLeft = dom.document.documentElement.scrollLeft
     }
     ClientRect(rect.top + scrollTop, rect.left + scrollLeft )
   }

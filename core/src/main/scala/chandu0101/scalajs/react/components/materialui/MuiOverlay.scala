@@ -13,22 +13,15 @@ import scala.scalajs.js
  */
 object MuiOverlay {
 
-  case class State(checked: Boolean)
-  class Backend(t: BackendScope[Props, State]) {
-
-  }
-
   val component = ReactComponentB[Props]("Muioverlay")
-    .initialState(State(checked = false))
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-      div(classSet1(mui_overlay, (mui_is_shown, P.show)) , onClick --> P.onTouchTap())
+    .render((P) => {
+      div(classSet1(mui_overlay, mui_is_shown -> P.show) , onClick --> P.onTouchTap())
     })
     .build
 
-  case class Props(clsNames: CssClassType, key: js.Any, ref: js.UndefOr[String], show: Boolean ,onTouchTap : () => Unit)
+  case class Props(clsNames: CssClassType, key: js.Any, ref: js.UndefOr[String], show: Boolean ,onTouchTap : EmptyFunc)
 
-  def apply(clsNames: CssClassType = Map(), key: js.Any = {}, ref: js.UndefOr[String] = "", show: Boolean = false, onTouchTap : () => Unit  = null) =
+  def apply(clsNames: CssClassType = Map(), key: js.Any = {}, ref: js.UndefOr[String] = "", show: Boolean = false, onTouchTap : EmptyFunc  = null) =
     component.set(key, ref)(Props(clsNames, key, ref, show,onTouchTap))
 
 }

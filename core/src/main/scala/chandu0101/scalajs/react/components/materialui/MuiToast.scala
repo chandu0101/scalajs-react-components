@@ -37,11 +37,11 @@ object MuiToast {
   })
     .build
 
-  def apply(onClick: REventIAny = null, icon: String = "", open: Boolean = false, message: String = "", classNames: CssClassType = Map(), action: String = "", ref: js.UndefOr[String] = "", key: js.Any = {}) = {
+  def apply(onClick: REventIUnit = null, icon: String = "", open: Boolean = false, message: String = "", classNames: CssClassType = Map(), action: String = "", ref: js.UndefOr[String] = "", key: js.Any = {}) = {
     component.set(key, ref)(Props(onClick, icon, open, message, classNames, action))
   }
 
-  case class Props(onClick: REventIAny, icon: String, open: Boolean, message: String, classNames: CssClassType, action: String)
+  case class Props(onClick: REventIUnit, icon: String, open: Boolean, message: String, classNames: CssClassType, action: String)
 
   case class State(open: Boolean)
 

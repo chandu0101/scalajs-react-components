@@ -89,7 +89,7 @@ object MuiMenu {
       case Types.SUBHEADER => div(cls := mui_subheader ,key := item.index)(item.text)
       case Types.NESTED => MuiNestedMenuItem(index = item.index, text = item.text, menuItems = item.items, zDepth = zDepth, onItemClick = b.onNestedItemClick ,key = item.index)
       case _ => MuiMenuItem(selected = selectedIndex == index,
-        icon = item.icon,
+        iconClassName = item.icon,
         data = item.data,
         attribute = item.attribute,
         number = item.number,
@@ -126,9 +126,9 @@ object MuiMenu {
 
   val theMenuRef = Ref.to(component, "theMenuRef")
 
-  case class Props(menuItems: List[MuiMenu.Item], visible: Boolean, zDepth: Int, autoWidth: Boolean, hideable: Boolean, onToggleClick: REventIAny, selectedIndex: Int, onItemClick: REventIIntStringUnit, classNames: CssClassType,onItemToggle : REventIIntBooleanUnit)
+  case class Props(menuItems: List[MuiMenu.Item], visible: Boolean, zDepth: Int, autoWidth: Boolean, hideable: Boolean, onToggleClick: REventIUnit, selectedIndex: Int, onItemClick: REventIIntStringUnit, classNames: CssClassType,onItemToggle : REventIIntBooleanUnit)
 
-  def apply(menuItems: List[MuiMenu.Item], visible: Boolean = true, zDepth: Int = 1, autoWidth: Boolean = true, hideable: Boolean = false, onToggleClick: REventIAny = null, selectedIndex: Int = 100, onItemClick: REventIIntStringUnit = null, classNames: CssClassType = Map(),onItemToggle :REventIIntBooleanUnit = null , key : js.Any = {},ref :  js.UndefOr[String] = "") = {
+  def apply(menuItems: List[MuiMenu.Item], visible: Boolean = true, zDepth: Int = 1, autoWidth: Boolean = true, hideable: Boolean = false, onToggleClick: REventIUnit = null, selectedIndex: Int = 100, onItemClick: REventIIntStringUnit = null, classNames: CssClassType = Map(),onItemToggle :REventIIntBooleanUnit = null , key : js.Any = {},ref :  js.UndefOr[String] = "") = {
     component.set(key,ref)(Props(menuItems, visible, zDepth, autoWidth, hideable, onToggleClick, selectedIndex, onItemClick, classNames,onItemToggle))
   }
 

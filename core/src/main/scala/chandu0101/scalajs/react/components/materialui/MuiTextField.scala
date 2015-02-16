@@ -30,7 +30,7 @@ import scala.scalajs.js
     defaultValue:React.PropTypes.string,
     disabled:React.PropTypes.bool,
     onTouchTap:React.PropTypes.func,
-    name:React.PropTypes.string,* *
+    name:React.PropTypes.string
  */
 object MuiTextField {
 
@@ -59,17 +59,17 @@ object MuiTextField {
 
     def setErrorText(newErrorText: String) = if (t.isMounted()) t.modState(_.copy(errorText = newErrorText))
 
-    def handleInputBlur(e: ReactEventI) = {
+    def handleInputBlur(e: ReactEventI) : Unit = {
       t.modState(_.copy(isFocused = false))
       if (t.props.onBlur != null) t.props.onBlur(e)
     }
 
-    def handleInputFocus(e: ReactEventI) = {
+    def handleInputFocus(e: ReactEventI) : Unit = {
       t.modState(_.copy(isFocused = true))
       if (t.props.onFocus != null) t.props.onFocus(e)
     }
 
-    def handleInputChange(e : ReactEventI) = {
+    def handleInputChange(e : ReactEventI) : Unit = {
       t.modState(_.copy(hasValue = e.target.value.nonEmpty))
       if(t.props.onChange != null) t.props.onChange(e)
     }
@@ -135,9 +135,9 @@ object MuiTextField {
     .build
 
 
-  case class Props( onBlur : REventIAny ,tpe : String ,name : String ,multiLine : Boolean ,onChange : REventIAny ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,hintText : String ,key : js.Any ,id : String ,errorText : String ,onTouchTap : REventIUnit ,onFocus : REventIAny ,disabled : Boolean ,floatingLabelText : String ,defaultValue : String ,value : String  )
+  case class Props( onBlur : REventIUnit ,tpe : String ,name : String ,multiLine : Boolean ,onChange : REventIUnit ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,hintText : String ,key : js.Any ,id : String ,errorText : String ,onTouchTap : REventIUnit ,onFocus : REventIUnit ,disabled : Boolean ,floatingLabelText : String ,defaultValue : String ,value : String  )
 
-  def apply( onBlur : REventIAny = null ,tpe : String = "text" ,name : String = null ,multiLine : Boolean = false,onChange : REventIAny = null ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",hintText : String = "" ,key : js.Any = {},id : String = "" ,errorText : String = "" ,onTouchTap : REventIUnit = null ,onFocus : REventIAny = null ,disabled : Boolean = false,floatingLabelText : String = "" ,defaultValue : String = null ,value : String = null  ) =
+  def apply( onBlur : REventIUnit = null ,tpe : String = "text" ,name : String = null ,multiLine : Boolean = false,onChange : REventIUnit = null ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",hintText : String = "" ,key : js.Any = {},id : String = "" ,errorText : String = "" ,onTouchTap : REventIUnit = null ,onFocus : REventIUnit = null ,disabled : Boolean = false,floatingLabelText : String = "" ,defaultValue : String = null ,value : String = null  ) =
     component.set(key,ref)(Props(onBlur,tpe,name,multiLine,onChange,clsNames,ref,hintText,key,id,errorText,onTouchTap,onFocus,disabled,floatingLabelText,defaultValue,value))
 
 

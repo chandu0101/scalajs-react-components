@@ -76,9 +76,9 @@ object MuiDatePicker {
     override def listeners: List[(String, Function1[Event, _])] = List(Events.KEYUP -> handleWindowKeyUp)
   }
 
-  case class Props(defaultDate: Date, onChange: DateUnit, clsNames: CssClassType, ref: js.UndefOr[String], key: js.Any, onTouchTap: REventIAny, formatDate: DateString, onFocus: REventIAny, mode: String, placeholder: String, name: String)
+  case class Props(defaultDate: Date, onChange: DateUnit, clsNames: CssClassType, ref: js.UndefOr[String], key: js.Any, onTouchTap: REventIUnit, formatDate: DateString, onFocus: REventIUnit, mode: String, placeholder: String, name: String)
 
-  def apply(defaultDate: Date = null, onChange: DateUnit = null, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, onTouchTap: REventIAny = null, formatDate: DateString = DateTime.format, onFocus: REventIAny = null, mode: String = "", placeholder: String = "", name: String = "") =
+  def apply(defaultDate: Date = null, onChange: DateUnit = null, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", key: js.Any = {}, onTouchTap: REventIUnit = null, formatDate: DateString = DateTime.format, onFocus: REventIUnit = null, mode: String = "", placeholder: String = "", name: String = "") =
     component.set(key, ref)(Props(defaultDate, onChange, clsNames, ref, key, onTouchTap, formatDate, onFocus, mode, placeholder, name))
 
 }

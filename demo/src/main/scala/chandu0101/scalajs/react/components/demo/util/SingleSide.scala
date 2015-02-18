@@ -2,12 +2,12 @@ package chandu0101.scalajs.react.components.demo.util
 
 
 import japgolly.scalajs.react.ReactComponentB
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.all._
 import org.scalajs.dom
-import org.scalajs.dom.extensions.PimpedNodeList
+import org.scalajs.dom.ext.PimpedNodeList
 
 /**
- * Created by chandrasekharkode on 12/1/14.
+ * Created by chandrasekharkode .
  */
 object SingleSide {
 
@@ -15,12 +15,12 @@ object SingleSide {
   val singleSideComponent = ReactComponentB[(String, TagMod)]("singleSideComponent")
     .render(P => {
     val (scalaCode, component) = P
-    <.div(^.`class` := "row")(
-      <.div(^.`class` := "col-md-7")(
+    div(`class` := "row")(
+      div(`class` := "col-md-7")(
         component
       ),
-      <.div(^.`class` := "col-md-5")(
-        <.pre(<.code(scalaCode))
+      div(`class` := "col-md-5")(
+        pre(code(scalaCode))
       )
     )
   })

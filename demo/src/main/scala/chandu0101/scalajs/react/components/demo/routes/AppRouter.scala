@@ -129,9 +129,8 @@ object AppRouter {
   }
 
 
-  val baseUrl = BaseUrl.fromWindowOrigin / "scalajs-react-components/demo/"
-//  val baseUrl = BaseUrl.fromWindowOrigin / "sjrc/"
-//  val baseUrl = BaseUrl("http://chandu0101.github.io/sjrc/")
+//  val baseUrl = BaseUrl.fromWindowOrigin / "scalajs-react-components/demo/"
+  val baseUrl = BaseUrl.fromWindowOrigin / "sjrc/"
   val C = AppPage.router(baseUrl)
 
 }

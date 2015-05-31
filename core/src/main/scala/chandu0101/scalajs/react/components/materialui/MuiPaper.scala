@@ -45,7 +45,7 @@ object MuiPaper {
            C
           )
          )
-      })
+      }).domType[html.Element]
     .build
 
 

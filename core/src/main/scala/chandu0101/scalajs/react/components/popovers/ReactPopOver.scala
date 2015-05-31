@@ -6,16 +6,14 @@ import chandu0101.scalajs.react.components.util.DomUtil
 import chandu0101.scalajs.react.components.util.DomUtil.ClientRect
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
+import org.scalajs.dom.html
 
 import scala.scalajs.js
-
-
 
 /**
  * Created by chandrasekharkode .
  */
-object ReactPopover {
-
+object ReactPopOver {
 
   trait Style {
 
@@ -119,33 +117,30 @@ object ReactPopover {
     borderLeftColor := "#ffffff",
      bottom := "-10px"
     )
-
-
   }
-
 
   case class State(open: Boolean ,top : Double = 0,left : Double = 0)
 
   class Backend(t: BackendScope[Props, State]) {
 
-    private  def show(position : ClientRect) = t.modState(_.copy(open = true, top = position.top , left = position.left))
+    private def show(position: ClientRect) = t.modState(_.copy(open = true, top = position.top, left = position.left))
 
-    private  def hide() = t.modState(_.copy(open = false))
+    private def hide() = t.modState(_.copy(open = false))
 
-    def toggle(node : TopNode) = {
-      if(t.state.open) hide
+    def toggle(node: html.Element) = {
+      if(t.state.open) hide()
       else {
         val position = getPosition(node)
         show(position)
       }
     }
 
-    def getPosition( node : TopNode) : ClientRect = {
+    def getPosition(node: html.Element): ClientRect = {
       val offset = DomUtil.offset(node)
       val height = node.offsetHeight
       val width = node.offsetWidth
-      val popoverHeight = t.getDOMNode().offsetHeight
-      val popoverWidth = t.getDOMNode().offsetWidth
+      val popoverHeight = t.getDOMNode().asInstanceOf[html.Element].offsetHeight
+      val popoverWidth = t.getDOMNode().asInstanceOf[html.Element].offsetWidth
       t.props.placement match {
         case "right" => {
            val top = offset.top + height/2 - popoverHeight/2
@@ -198,7 +193,7 @@ object ReactPopover {
         (P.placement == "bottom") ?= P.style.popoverBottom,
       top := S.top ,S.open ?= (left := S.left))(
         div(P.style.popoverArrow,
-          (P.placement == "top") ?= (P.style.popoverTopArrow),
+          (P.placement == "top") ?= P.style.popoverTopArrow,
           (P.placement == "left") ?= P.style.popoverLeftArrow,
           (P.placement == "right") ?= P.style.popoverRightArrow,
           (P.placement == "bottom") ?= P.style.popoverBottomArrow,B.arrowAfter),

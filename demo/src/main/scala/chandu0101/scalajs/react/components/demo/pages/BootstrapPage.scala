@@ -447,10 +447,10 @@ object BootstrapPage {
       .componentDidMount(scope => println("dude"))
       .buildU
 
-    def installCLickAway[P, S, B] =
+    def installCLickAway[P, S, B, N <: TopNode] =
 
-      (c: ReactComponentB[P, S, B]) => {
-        def clickAway(t: ComponentScopeM[_, _, _], state: String): js.Function1[Event, Unit] = {
+      (c: ReactComponentB[P, S, B, N]) => {
+        def clickAway(t: ComponentScopeM[_, _, _, N], state: String): js.Function1[Event, Unit] = {
           val b = t.backend.asInstanceOf[OnClickAwaybale]
           lazy val dude: js.Function1[Event, Unit] =
             (e: dom.Event) => {

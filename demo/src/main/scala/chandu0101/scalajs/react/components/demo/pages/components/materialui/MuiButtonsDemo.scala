@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.svgicons.MuiActionGrade
 import chandu0101.scalajs.react.components.materialui.{MuiFlatButton, MuiFloatingActionButton, MuiRaisedButton}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 
 /**
@@ -17,10 +17,10 @@ object MuiButtonsDemo {
 
     val buttonExamples = Seq(  MsFlexWrap := "wrap" ,
       WebkitFlexWrap := "wrap" ,
-      display := "-ms-flexbox" ,
-      display := "-webkit-box" ,
-      display := "-webkit-flex" ,
-      display := "flex" ,
+      ^.display := "-ms-flexbox" ,
+      ^.display := "-webkit-box" ,
+      ^.display := "-webkit-flex" ,
+      ^.display := "flex" ,
 
       flexDirection := "space-between",
       flexWrap := "wrap" )
@@ -30,20 +30,20 @@ object MuiButtonsDemo {
       WebkitBoxDirection := "normal" ,
       WebkitBoxOrient := "vertical" ,
       WebkitBoxPack := "justify" ,
-      marginBottom := "30px",
+      ^.marginBottom := "30px",
       WebkitFlexDirection := "column" ,
-      display := "-ms-flexbox" ,
-      display := "-webkit-box" ,
-      display := "-webkit-flex" ,
-      display := "flex" ,
+      ^.display := "-ms-flexbox" ,
+      ^.display := "-webkit-box" ,
+      ^.display := "-webkit-flex" ,
+      ^.display := "flex" ,
       MsFlex := "1" ,
       WebkitBoxFlex := "1" ,
       WebkitFlex := "1" ,
-      flex := "1",
-        flexDirection := "column" ,
-      maxHeight := "400px" )
+      ^.flex := "1",
+        ^.flexDirection := "column" ,
+      ^.maxHeight := "400px" )
 
-    val buttonContainer = Seq(margin := "10px" ,textAlign := "center")
+    val buttonContainer = Seq(^.margin := "10px" ,^.textAlign := "center")
 
   }
 
@@ -94,21 +94,21 @@ object MuiButtonsDemo {
   val component = ReactComponentB[Unit]("MuiButtonsDemo")
 
     .render( P => {
-       div(
-        h3("Butons"),
+       <.div(
+        <.h3("Buttons"),
         CodeExample(code)(
-           div(Style.buttonExamples)(
-            div(Style.buttonGroup)(
-              flatButtons.map(item => div(Style.buttonContainer)(item))
+           <.div(Style.buttonExamples)(
+            <.div(Style.buttonGroup)(
+              flatButtons.map(item => <.div(Style.buttonContainer)(item))
             ),
-             div(Style.buttonGroup)(
-               raisedButtons.map(item => div(Style.buttonContainer)(item))
+             <.div(Style.buttonGroup)(
+               raisedButtons.map(item => <.div(Style.buttonContainer)(item))
             ),
-             div(Style.buttonGroup)(
-              floatingActionButtons1.map(item => div(Style.buttonContainer)(item))
+             <.div(Style.buttonGroup)(
+              floatingActionButtons1.map(item => <.div(Style.buttonContainer)(item))
             ),
-             div(Style.buttonGroup)(
-               floatingActionButtons2.map(item => div(Style.buttonContainer)(item))
+             <.div(Style.buttonGroup)(
+               floatingActionButtons2.map(item => <.div(Style.buttonContainer)(item))
              )
            )
         )

@@ -1,6 +1,6 @@
 package chandu0101.scalajs.react.components.mixins
 
-import japgolly.scalajs.react.ReactComponentB
+import japgolly.scalajs.react._
 import org.scalajs.dom
 import org.scalajs.dom.ext.PimpedNodeList
 
@@ -18,7 +18,7 @@ trait AsyncLoad {
 }
 
 object AsyncLoad {
-  def mixin[P, S, B] = (c: ReactComponentB[P, S, B]) => {
+  def mixin[P, S, B, N <: TopNode] = (c: ReactComponentB[P, S, B, N]) => {
     c.componentWillMount(scope => {
       val async = scope.backend.asInstanceOf[AsyncLoad]
       async.cssResources.foreach(s => {

@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.mixins
 
 import chandu0101.scalajs.react.components.util.Events
-import japgolly.scalajs.react.ReactComponentB
+import japgolly.scalajs.react._
 import org.scalajs.dom
 import org.scalajs.dom.Event
 
@@ -17,7 +17,7 @@ trait WindowListeners {
 }
 
 object WindowListeners {
-  def mixin[P,S,B] = (c:ReactComponentB[P,S,B]) => {
+  def mixin[P,S,B, N <: TopNode] = (c:ReactComponentB[P,S,B,N]) => {
     c.componentDidMount(scope => {
       val listeners = scope.backend.asInstanceOf[WindowListeners].listeners
       listeners.foreach{ case (name,function) => Events.on(dom.window,name,function) }

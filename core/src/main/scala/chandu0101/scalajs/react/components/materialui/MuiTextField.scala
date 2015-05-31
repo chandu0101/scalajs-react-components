@@ -39,10 +39,9 @@ object MuiTextField {
 
   class Backend(t: BackendScope[Props, State]) {
 
+    def blur() = if (t.isMounted()) getInputNode.blur()
 
-    def blur = if (t.isMounted()) getInputNode.blur()
-
-    def clearValue = setValue("")
+    def clearValue() = setValue("")
 
     def setValue(newValue: Any) = {
       if (t.isMounted()) {
@@ -51,7 +50,7 @@ object MuiTextField {
       }
     }
 
-    def focus = if (t.isMounted()) getInputNode.focus()
+    def focus() = if (t.isMounted()) getInputNode.focus()
 
     def getInputNode = if (t.props.multiLine) theMultiInputRef(t).get.backend.getInputNode else theInputRef(t).get.getDOMNode()
 
@@ -76,9 +75,8 @@ object MuiTextField {
     def handleTextAreaHeightChange(e: ReactEventI, height: Int) = {
       var newHeight = height + 24
       if (t.props.floatingLabelText.nonEmpty) newHeight += 24
-      t.getDOMNode().style.height = s"${newHeight}px"
+      t.getDOMNode().asInstanceOf[html.Element].style.height = s"${newHeight}px"
     }
-
   }
 
   val theMultiInputRef = Ref.to(MuiEnhancedTextArea.component, "theMultiINputRef")
@@ -134,11 +132,8 @@ object MuiTextField {
   })
     .build
 
-
   case class Props( onBlur : REventIUnit ,tpe : String ,name : String ,multiLine : Boolean ,onChange : REventIUnit ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,hintText : String ,key : js.Any ,id : String ,errorText : String ,onTouchTap : REventIUnit ,onFocus : REventIUnit ,disabled : Boolean ,floatingLabelText : String ,defaultValue : String ,value : String  )
 
   def apply( onBlur : REventIUnit = null ,tpe : String = "text" ,name : String = null ,multiLine : Boolean = false,onChange : REventIUnit = null ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",hintText : String = "" ,key : js.Any = {},id : String = "" ,errorText : String = "" ,onTouchTap : REventIUnit = null ,onFocus : REventIUnit = null ,disabled : Boolean = false,floatingLabelText : String = "" ,defaultValue : String = null ,value : String = null  ) =
     component.set(key,ref)(Props(onBlur,tpe,name,multiLine,onChange,clsNames,ref,hintText,key,id,errorText,onTouchTap,onFocus,disabled,floatingLabelText,defaultValue,value))
-
-
 }

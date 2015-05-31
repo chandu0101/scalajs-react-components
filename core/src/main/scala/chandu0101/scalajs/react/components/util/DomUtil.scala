@@ -12,13 +12,13 @@ import scala.scalajs.js
  */
 object DomUtil {
 
-  def addClass(element : TopNode , className : String) = {
+  def addClass(element : html.Element , className : String) = {
     if(element.classList.length > 0)
        element.classList.add(className)
     else
       element.className += s" $className"
   }
-  def removeClass(element : TopNode , className : String) = {
+  def removeClass(element : html.Element , className : String) = {
     if(element.classList.length > 0)
       element.classList.remove(className)
     else
@@ -42,7 +42,7 @@ object DomUtil {
     ClientRect(rect.top + scrollTop, rect.left + scrollLeft )
   }
 
- def forceRedraw(el : TopNode) = {
+ def forceRedraw(el : html.Element) = {
    val originalDisplay = el.style.display
    el.style.display = "none"
    el.offsetHeight
@@ -93,7 +93,7 @@ object DomUtil {
      else { val position = e.asInstanceOf[MouseEvent] ; RPoint(position.clientX,position.clientY) }
   }
 
-  def withoutTransition(el : TopNode , callback : () => Unit) = {
+  def withoutTransition(el : html.Element , callback : () => Unit) = {
     el.style.transition = "none"
     callback()
     forceRedraw(el)

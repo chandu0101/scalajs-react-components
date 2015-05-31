@@ -6,10 +6,9 @@ import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
-import org.scalajs.dom
+import org.scalajs.dom.html
 
 import scala.scalajs.js
-
 
 /**
  * Created by chandrasekharkode .
@@ -19,8 +18,7 @@ object FocusRipple {
 
   class Backend(t: BackendScope[Props, _]) {
     
-    def setRippleSize() = {
-      val el = t.getDOMNode()
+    def setRippleSize(el: html.Element) = {
       val height = el.offsetHeight
       val width = el.offsetWidth
       val size = Math.max(height, width)
@@ -39,13 +37,12 @@ object FocusRipple {
        div(classSetM(classes))(
          div( cls := mui_focus_ripple_inner)
        )
-    })
-    .componentDidMount(scope => scope.backend.setRippleSize)
+    }).domType[html.Element]
+    .componentDidMount(scope => scope.backend.setRippleSize(scope.getDOMNode()))
     .build
 
   case class Props(clsNames: CssClassType, key: js.Any, ref: js.UndefOr[String], show: Boolean)
 
-  def apply(clsNames: CssClassType = Map(), key: js.Any = {}, ref: js.UndefOr[String] = "", show: Boolean = false) = component.set(key, ref)(Props(clsNames, key, ref, show))
-
-
+  def apply(clsNames: CssClassType = Map(), key: js.Any = {}, ref: js.UndefOr[String] = "", show: Boolean = false) =
+    component.set(key, ref)(Props(clsNames, key, ref, show))
 }

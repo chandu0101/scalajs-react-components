@@ -2,18 +2,9 @@ package chandu0101.scalajs.react.components.demo.pages.components.reactpopover
 
 import chandu0101.scalajs.react.components.demo.pages.components.demo.LocalDemoButton
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
-import chandu0101.scalajs.react.components.popovers.ReactPopover
+import chandu0101.scalajs.react.components.popovers.ReactPopOver
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
-
-import chandu0101.scalajs.react.components.util.MTypes
-import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
-import scala.scalajs.js
-import chandu0101.scalajs.react.components.all._
-import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
-
-
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 /**
  * Created by chandrasekharkode .
@@ -39,7 +30,7 @@ object ReactPopoverDemo {
 
   object Style {
 
-    val popoverExample = Seq( display := "flex" ,flexDirection := "column" , alignItems := "center")
+    val popoverExample = Seq(^.display := "flex", ^.flexDirection := "column" , ^.alignItems := "center")
   }
 
   class Backend(t: BackendScope[_, _]) {
@@ -61,41 +52,41 @@ object ReactPopoverDemo {
     }
   }
 
-  val theRightRef = Ref.to(ReactPopover.component, "theRightRef")
-  val theLeftRef = Ref.to(ReactPopover.component, "theLeftRef")
-  val theTopRef = Ref.to(ReactPopover.component, "theTopRef")
-  val theBottomtRef = Ref.to(ReactPopover.component, "theBottomRef")
+  val theRightRef = Ref.to(ReactPopOver.component, "theRightRef")
+  val theLeftRef = Ref.to(ReactPopOver.component, "theLeftRef")
+  val theTopRef = Ref.to(ReactPopOver.component, "theTopRef")
+  val theBottomtRef = Ref.to(ReactPopOver.component, "theBottomRef")
 
 
   val component = ReactComponentB[Unit]("ReactPopoverDemo")
     .stateless
     .backend(new Backend(_))
     .render((P, S, B) => {
-    div(
-      h3("Demo"),
+    <.div(
+      <.h3("Demo"),
       CodeExample(code)(
-       div(Style.popoverExample)(
-        div(padding := "20px")(
-          ReactPopover(placement = "top", ref = theTopRef)(
+       <.div(Style.popoverExample)(
+        <.div(^.padding := "20px")(
+          ReactPopOver(placement = "top", ref = theTopRef)(
             "I am Top Pop Over"
           ),
           LocalDemoButton(name = "Top Button" ,onButtonClick = B.onTopButtonClick)
         ),
-        div(padding := "20px")(
-          ReactPopover(placement = "left", ref = theLeftRef, title = "Left Title")(
+        <.div(^.padding := "20px")(
+          ReactPopOver(placement = "left", ref = theLeftRef, title = "Left Title")(
             "I am Left Popover"
           ),
           LocalDemoButton(name = "Left Button" ,onButtonClick = B.onLeftButtonClick)
         ),
-        div(padding := "20px")(
-          ReactPopover(ref = theRightRef, title = "Right Title")(
+        <.div(^.padding := "20px")(
+          ReactPopOver(ref = theRightRef, title = "Right Title")(
             "I am right Popover"
           ),
           LocalDemoButton(name = "Right Button" ,onButtonClick = B.onRightButtonClick)
         ),
 
-        div(padding := "20px")(
-          ReactPopover(placement = "bottom", ref = theBottomtRef)(
+        <.div(^.padding := "20px")(
+          ReactPopOver(placement = "bottom", ref = theBottomtRef)(
             "I am bottom Popover"
           ),
           LocalDemoButton(name = "Bottom Button" ,onButtonClick = B.onBottomButtonClick)

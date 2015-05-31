@@ -1,10 +1,9 @@
 package chandu0101.scalajs.react.components.demo.pages.components.reacttreeview
 
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.treeviews.{ReactTreeView, TreeItem}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 
 
@@ -29,9 +28,9 @@ object ReactTreeViewDemo {
     """.stripMargin
 
   object Style {
-    def treeViewDemo = Seq(display := "flex")
+    def treeViewDemo = Seq(^.display := "flex")
 
-    def selectedContent = Seq(alignSelf := "center", margin := "0 40px")
+    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px")
   }
 
   case class State(content: String = "")
@@ -52,18 +51,18 @@ object ReactTreeViewDemo {
     .initialState(State())
     .backend(new Backend(_))
     .render((P, S, B) => {
-    div(
-      h3("Demo"),
+    <.div(
+      <.h3("Demo"),
       CodeExample(code)(
-        div(Style.treeViewDemo)(
+        <.div(Style.treeViewDemo)(
           ReactTreeView(root = data, openByDefault = true, onItemSelect = B.onItemSelect, showSearchBox = true),
-          strong(id := "treeviewcontent", Style.selectedContent)
+          <.strong(^.id := "treeviewcontent", Style.selectedContent)
         )
       )
     )
   }).buildU
 
-  val data = TreeItem("root",
+  lazy val data = TreeItem("root",
     TreeItem("dude1",
         TreeItem("dude1c")),
     TreeItem("dude2"),

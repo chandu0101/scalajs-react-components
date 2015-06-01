@@ -6,7 +6,7 @@ import chandu0101.scalajs.react.components.materialui.ripples.{FocusRipple, Touc
 import chandu0101.scalajs.react.components.mixins.WindowListeners
 import chandu0101.scalajs.react.components.util._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.ext.KeyCode
 import org.scalajs.dom.{Event, KeyboardEvent, html}
@@ -65,7 +65,7 @@ object MuiEnhancedSwitch {
     def isKeyboardFocused = t.state.isKeyBoardFocusedS
 
     def handleChange(e: ReactEventI) : Unit = {
-      tabPressed = false;
+      tabPressed = false
       t.modState(_.copy(isKeyBoardFocusedS = false))
       val isINputChecked = theCheckBoxRef(t).get.getDOMNode().checked
       if (!t.props.checked) t.modState(_.copy(switched = isINputChecked))
@@ -132,33 +132,33 @@ object MuiEnhancedSwitch {
       "mui-is-disabled" -> P.disabled,
       "mui-is-required" -> P.required)
     val inputId = if (P.id.nonEmpty) P.id else "domid$$$$" // TODO replace hard coded strin with domid util
-    val labelElement = P.label.nonEmpty ?= label(cls := "mui-switch-label", htmlFor := inputId)(P.label)
-    val inputElement = input(tpe := P.inputType,
-      P.name != null ?= (name := P.name),
-      P.value != null ?= (value := P.value),
+    val labelElement = P.label.nonEmpty ?= <.label(^.cls := "mui-switch-label", ^.htmlFor := inputId)(P.label)
+    val inputElement = <.input(^.tpe := P.inputType,
+      P.name != null ?= (^.name := P.name),
+      P.value != null ?= (^.value := P.value),
       defaultChecked := P.defaultSwitched,
-      onBlur ==> B.handleBlur,
-      id := inputId,
-      onFocus ==> B.handleFocus,
-      onMouseUp ==> B.handleMouseUp,
-      ref := theCheckBoxRef,
-      onMouseDown ==> B.handleMouseDown,
-      onMouseOut ==> B.handleMouseOut,
-      onTouchStart ==> B.handleTouchStart,
-      onTouchEnd ==> B.handleTouchEnd,
-      disabled := P.disabled,
-      onChange ==> B.handleChange,
-      cls := "mui-enhanced-switch-input")
+      ^.onBlur ==> B.handleBlur,
+      ^.id := inputId,
+      ^.onFocus ==> B.handleFocus,
+      ^.onMouseUp ==> B.handleMouseUp,
+      ^.ref := theCheckBoxRef,
+      ^.onMouseDown ==> B.handleMouseDown,
+      ^.onMouseOut ==> B.handleMouseOut,
+      ^.onTouchStart ==> B.handleTouchStart,
+      ^.onTouchEnd ==> B.handleTouchEnd,
+      ^.disabled := P.disabled,
+      ^.onChange ==> B.handleChange,
+      ^.cls := "mui-enhanced-switch-input")
     val touchRipple: ReactNode = if (!P.disabled && !P.disableTouchRipple) TouchRipple(ref = theTouchRippleRef, key = "thetouchripple", centerRipple = true) else ""
     val focusRipple: ReactNode = if (!P.disabled && !P.disableFocusRipple) FocusRipple(key = "focusripple", show = S.isKeyBoardFocusedS) else ""
 
     val iconClassName = s"${P.iconClassName} mui-enhanced-switch-wrap"
 
-    val switchElement : TagMod = if (iconClassName.indexOf("toggle") == -1) div(cls := iconClassName)(P.switchElement, touchRipple, focusRipple)
-    else div(cls := iconClassName)(div(cls := "mui-toggle-track"), MuiPaper(clsNames = Map("mui-toggle-thumb" -> true), zDepth = 1)(touchRipple, focusRipple))
+    val switchElement : TagMod = if (iconClassName.indexOf("toggle") == -1) <.div(^.cls := iconClassName)(P.switchElement, touchRipple, focusRipple)
+    else <.div(^.cls := iconClassName)(<.div(^.cls := "mui-toggle-track"), MuiPaper(clsNames = Map("mui-toggle-thumb" -> true), zDepth = 1)(touchRipple, focusRipple))
 
-    val elementsOrder = if (P.labelPosition.toLowerCase == "right") div(switchElement, labelElement) else div(labelElement, switchElement)
-    div(classSetM(classes))(
+    val elementsOrder = if (P.labelPosition.toLowerCase == "right") <.div(switchElement, labelElement) else <.div(labelElement, switchElement)
+    <.div(^.classSetM(classes))(
       inputElement,
       elementsOrder
     )

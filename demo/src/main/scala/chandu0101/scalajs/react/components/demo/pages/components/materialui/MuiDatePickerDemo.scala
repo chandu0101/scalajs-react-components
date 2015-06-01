@@ -4,7 +4,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.datepicker.MuiDatePicker
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 
 /**
@@ -13,17 +13,17 @@ import japgolly.scalajs.react.vdom.all._
 object MuiDatePickerDemo {
   object Style {
 
-    val example  = Seq(  MsFlexDirection := "column" ,
+    val example  = Seq(
+      MsFlexDirection := "column" ,
       WebkitBoxDirection := "normal" ,
       WebkitBoxOrient := "vertical" ,
       WebkitFlexDirection := "column" ,
-      display := "-ms-flexbox" ,
-      display := "-webkit-box" ,
-      display := "-webkit-flex" ,
-      display := "flex" ,
-      flexDirection := "column" )
-
-
+      ^.display := "-ms-flexbox" ,
+      ^.display := "-webkit-box" ,
+      ^.display := "-webkit-flex" ,
+      ^.display := "flex" ,
+      ^.flexDirection := "column"
+    )
   }
 
   val code =
@@ -37,12 +37,12 @@ object MuiDatePickerDemo {
 
   val component = ReactComponentB[Unit]("MuiDatePickerDemo")
     .render(P => {
-    div(
-      h3("Date Picker"),
+    <.div(
+      <.h3("Date Picker"),
       CodeExample(code)(
-        div(Style.example)(
-          div(margin := "10px")(MuiDatePicker( key = "dp", name = "PortraitDialogDate" , placeholder = "Protrait Dialog"  )),
-          div(margin := "10px")(MuiDatePicker( key = "dp2", name = "LandscapeDialogDate" , placeholder = "Landscape Dialog" , mode = MuiDatePicker.LANDSCAPE ))
+        <.div(Style.example)(
+          <.div(^.margin := "10px")(MuiDatePicker( key = "dp", name = "PortraitDialogDate" , placeholder = "Protrait Dialog"  )),
+          <.div(^.margin := "10px")(MuiDatePicker( key = "dp2", name = "LandscapeDialogDate" , placeholder = "Landscape Dialog" , mode = MuiDatePicker.LANDSCAPE ))
         )
 
       )

@@ -3,7 +3,8 @@ package chandu0101.scalajs.react.components.demo.pages.components.materialui
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.{MuiDialog, MuiRaisedButton}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -50,8 +51,8 @@ object MuiDialogDemo {
       val dialogActions = List(
       MuiDialog.Action( text = "CANCEL"),
       MuiDialog.Action( text = "SUBMIT" , onClick = B.onDialogSubmit))
-      div(
-        h3("MuiDialog"),
+     <.div(
+       <.h3("MuiDialog"),
         CodeExample(code)(
          MuiRaisedButton(label = "Demo", onTouchTap = B.onButtonTouchTap)
         ),

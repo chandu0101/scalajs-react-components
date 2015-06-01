@@ -4,7 +4,8 @@ import chandu0101.scalajs.react.components.demo.routes.AppRouter.AppPage
 import chandu0101.scalajs.react.components.demo.util.Navigate
 import chandu0101.scalajs.react.components.materialui.MuiMenu
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 
 /**
@@ -29,11 +30,11 @@ object PagesWithNav {
     .initialState(State(checked = false))
     .backend(new Backend(_))
     .render((P, S, B) => {
-      div(cls := "mui-app-content-canvas page-with-nav")(
-        div(cls := "page-with-nav-content")(
+     <.div(^.cls := "mui-app-content-canvas page-with-nav")(
+       <.div(^.cls := "page-with-nav-content")(
           P.content
         ),
-        div(cls := "page-with-nav-secondary-nav")(
+       <.div(^.cls := "page-with-nav-secondary-nav")(
           MuiMenu(zDepth = 0, menuItems = P.menuItems, selectedIndex = B.getSelectedIndex, onItemClick = B.onMenuItemClick)
         )
       )

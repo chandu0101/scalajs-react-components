@@ -4,7 +4,8 @@ import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.models._
 import chandu0101.scalajs.react.components.social._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 
 /**
@@ -19,10 +20,10 @@ object SocialShareIconsDemo {
     """.stripMargin
   val component = ReactComponentB[Unit]("SocialShareIconsDemo")
     .render(P => {
-    div(
-      h2(cls := "mui-font-style-headline")("Demo"),
+   <.div(
+     <.h2(^.cls := "mui-font-style-headline")("Demo"),
       CodeExample(code)(
-       div(cls := "social-share-icons-demo")(
+      <.div(^.cls := "social-share-icons-demo")(
          SocialShareBasic(tweet = tweet,fbPost = fbPost,gplusPost = gplusPost,tumblrLink = tumblrLink ,linkedIn = linkedInPost , pintrest = pintrest),
          SocialShareBasic(css = "style2", tweet = tweet,fbPost = fbPost,gplusPost = gplusPost,tumblrLink = tumblrLink ,linkedIn = linkedInPost , pintrest = pintrest),
          SocialShareBasic(css = "style3", tweet = tweet,fbPost = fbPost,gplusPost = gplusPost,tumblrLink = tumblrLink ,linkedIn = linkedInPost , pintrest = pintrest),

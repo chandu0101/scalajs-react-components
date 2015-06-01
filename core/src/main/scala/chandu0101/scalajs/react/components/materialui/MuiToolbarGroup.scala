@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -21,7 +21,7 @@ object MuiToolbarGroup {
     val classes = CommonUtils.cssMapM(P.classNames, mui_toolbar_group -> true,
       mui_left -> (P.float == "left"),
       mui_right -> (P.float == "right"))
-    div(classSetM(classes))(
+   <.div(^.classSetM(classes))(
       C
     )
   })

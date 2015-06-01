@@ -4,7 +4,7 @@ package chandu0101.scalajs.react.components.listviews
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -20,20 +20,20 @@ object ReactListView {
     .backend(new Backend(_))
     .render((P, S, B) => {
     val fItems = P.items.filter(item => item.toString.toLowerCase.contains(S.filterText.toLowerCase))
-    div(P.style.reactListView)(
+   <.div(P.style.reactListView)(
       P.showSearchBox ?= ReactSearchBox(onTextChange = B.onTextChange),
-      ul(P.style.listGroup)(
+      <.ul(P.style.listGroup)(
         fItems.zipWithIndex.map { case (item, index) => {
           val selected = item.toString == S.selectedItem
           val first = index == 0
           val last = index == fItems.length - 1
           val hover = S.hoverIndex == index
-          li(P.style.listGroupItem, selected ?= P.style.selectedListGroupItem,
+          <.li(P.style.listGroupItem, selected ?= P.style.selectedListGroupItem,
             first ?= P.style.firstListGroupItem,
             last ?= P.style.lastListGroupItem,
-            hover ?= P.style.listGroupItemHover)(onClick --> B.onItemSelect(item.toString),
+            hover ?= P.style.listGroupItemHover)(^.onClick --> B.onItemSelect(item.toString),
               onMouseEnter --> B.onMouseEnter(index),
-              onMouseOut --> B.onMouseLeave(index))(item)
+              ^.onMouseOut --> B.onMouseLeave(index))(item)
         }
         }
       )
@@ -46,30 +46,32 @@ object ReactListView {
 
     def reactListView: TagMod = Seq[TagMod]()
 
-    def listGroup: TagMod = Seq(marginBottom := "20px",
-      paddingLeft := 0)
+    def listGroup: TagMod = Seq(^.marginBottom := "20px",
+      ^.paddingLeft := 0)
 
-    def listGroupItem: TagMod = Seq(position := "relative",
-      display := "block",
-      padding := "10px 15px",
-      marginBottom := "-1px",
-      backgroundColor := "white",
-      border := "1px solid #ecf0f1",
-      cursor := "pointer")
+    def listGroupItem: TagMod = Seq(
+      ^.position := "relative",
+      ^.display := "block",
+      ^.padding := "10px 15px",
+      ^.marginBottom := "-1px",
+      ^.backgroundColor := "white",
+      ^.border := "1px solid #ecf0f1",
+      ^.cursor := "pointer")
 
     def selectedListGroupItem: TagMod = Seq(
-      color := "white",
-      fontWeight := 500,
-      backgroundColor := "#146699"
+      ^.color := "white",
+      ^.fontWeight := 500,
+      ^.backgroundColor := "#146699"
     )
 
-    def lastListGroupItem: TagMod = firstListGroupItem.+(marginBottom := 0)
+    def lastListGroupItem: TagMod = firstListGroupItem.+(^.marginBottom := 0)
 
-    def firstListGroupItem: TagMod = Seq(borderBottomLeftRadius := "4px",
-      borderBottomRightRadius := "4px")
+    def firstListGroupItem: TagMod = Seq(
+      ^.borderBottomLeftRadius := "4px",
+      ^.borderBottomRightRadius := "4px")
 
-    def listGroupItemHover: TagMod = Seq(color := "#555555",
-      backgroundColor := "#ecf0f1")
+    def listGroupItemHover: TagMod = Seq(^.color := "#555555",
+      ^.backgroundColor := "#ecf0f1")
 
   }
 

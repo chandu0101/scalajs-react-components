@@ -1,18 +1,16 @@
 package chandu0101.scalajs.react.components.materialui
 
-
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.mixins.WindowListeners
 import chandu0101.scalajs.react.components.util.{CommonUtils, Events}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.ext.KeyCode
 import org.scalajs.dom.{Event, KeyboardEvent, html}
 
 import scala.scalajs.js
-
 
 /**
  * Created by chandrasekharkode on 12/21/14.
@@ -33,9 +31,8 @@ object MuiDialogWindow {
 
   class Backend(t: BackendScope[Props, State]) extends WindowListeners {
 
-    def positionDialog() = {
+    def positionDialog(container: html.Element) = {
       if (t.state.open) {
-        val container = t.getDOMNode()
         val dialogWindow = theDialogWindowRef(t).get.getDOMNode()
         val containerHeight = container.offsetHeight
         //Reset the height in case the window was resized.
@@ -72,10 +69,10 @@ object MuiDialogWindow {
       t.modState(_.copy(open = true))
     }
 
-    def handleOverlatTouchTap() = dismiss
+    def handleOverlatTouchTap() = dismiss()
 
     lazy val handleWindowKeyUp: js.Function1[Event, _] = (e: Event) => {
-      if (e.asInstanceOf[KeyboardEvent].keyCode == KeyCode.escape) dismiss
+      if (e.asInstanceOf[KeyboardEvent].keyCode == KeyCode.escape) dismiss()
     }
     override val listeners: List[(String, js.Function1[Event, _])] = List((Events.KEYUP, handleWindowKeyUp))
   }
@@ -88,18 +85,18 @@ object MuiDialogWindow {
     .render((P, C, S, B) => {
     val classes = CommonUtils.cssMap(mui_dialog_window, (mui_is_shown, S.open)).++(P.clsNames)
     val contentClasses = CommonUtils.cssMap(P.contentClassName.concat(s" $mui_dialog_window_contents"))
-    div(classSetM(classes))(
+    <.div(^.classSetM(classes))(
       MuiPaper(ref = theDialogWindowRef, clsNames = contentClasses, zDepth = 4, rounded = true)(
         C,
-        div(cls := mui_dialog_window_actions, key := "actionsdiv")(
+        <.div(^.cls := mui_dialog_window_actions, ^.key := "actionsdiv")(
           P.actions
         )
       ),
       MuiOverlay(show = S.open, onTouchTap = B.dismiss _)
     )
-  })
-    .componentDidMount(scope => scope.backend.positionDialog)
-    .componentDidUpdate((scope, _, _) => scope.backend.positionDialog)
+  }).domType[html.Element]
+    .componentDidMount($ => $.backend.positionDialog($.getDOMNode()))
+    .componentDidUpdate(($, _, _) => $.backend.positionDialog($.getDOMNode()))
     .configure(WindowListeners.mixin)
     .build
 

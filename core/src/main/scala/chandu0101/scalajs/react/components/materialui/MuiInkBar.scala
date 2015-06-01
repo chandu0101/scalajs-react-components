@@ -3,7 +3,7 @@ package chandu0101.scalajs.react.components.materialui
 
 import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -16,7 +16,7 @@ object MuiInkBar {
 
   val component = ReactComponentB[Props]("MuiInkBar")
     .render((P) => {
-    div(cls := "mui-ink-bar", width := P.width, height := P.height)("&nbsp")
+   <.div(^.cls := "mui-ink-bar", ^.width := P.width, ^.height := P.height)("&nbsp")
   })
     .build
 

@@ -2,7 +2,7 @@ package chandu0101.scalajs.react.components.treeviews
 
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import japgolly.scalajs.react.{ReactComponentB, _}
 
 import scala.collection.mutable
@@ -23,28 +23,28 @@ object ReactTreeView {
 
     def reactTreeView = Seq[TagMod]()
 
-    def treeGroup = Seq(margin := 0, padding := "0 0 0 14px")
+    def treeGroup = Seq(^.margin := 0, ^.padding := "0 0 0 14px")
 
-    def treeItem = Seq(listStyleType := "none")
+    def treeItem = Seq(^.listStyleType := "none")
 
     def treeItemContent = Seq(cursorPointer)
 
-    def selectedTreeItemContent = Seq(backgroundColor := "#1B8EB0" ,
-      color := "white" , fontWeight := 400 ,
-      padding := "0 7px")
+    def selectedTreeItemContent = Seq(^.backgroundColor := "#1B8EB0" ,
+      ^.color := "white" , ^.fontWeight := 400 ,
+      ^.padding := "0 7px")
 
     def treeItemBefore = Seq(
      displayInlineBlock,
-     fontSize := "11px",
-     color := "grey",
-     margin := "3px 7px 0 0",
+     ^.fontSize := "11px",
+     ^.color := "grey",
+     ^.margin := "3px 7px 0 0",
      textAlignCenter,
-     width := "11px"
+     ^.width := "11px"
     )
 
-    def treeItemHasChildrenClosed = Seq(contentStyle := "▶")
+    def treeItemHasChildrenClosed = Seq(^.contentStyle := "▶")
 
-    def treeItemHasChildrenOpened = Seq(contentStyle := "▼")
+    def treeItemHasChildrenOpened = Seq(^.contentStyle := "▼")
 
 
   }
@@ -112,11 +112,11 @@ object ReactTreeView {
        val children =  S.children
        val depth = P.depth + 1
        val parent =  if(P.parent.isEmpty) P.root.item.toString  else s"${P.parent}<-${P.root.item.toString}"
-       val treeMenuToggle  : TagMod = if(children.nonEmpty) span(onClick ==> B.onTreeMenuToggle,key := "arrow",P.style.treeItemBefore)("▼")
-                          else if(P.root.children.nonEmpty && children.isEmpty) span(onClick ==> B.onTreeMenuToggle,key := "arrow",P.style.treeItemBefore)("▶")
+       val treeMenuToggle  : TagMod = if(children.nonEmpty) <.span(^.onClick ==> B.onTreeMenuToggle, ^.key := "arrow",P.style.treeItemBefore)("▼")
+                          else if(P.root.children.nonEmpty && children.isEmpty) <.span(^.onClick ==> B.onTreeMenuToggle, ^.key := "arrow",P.style.treeItemBefore)("▶")
                           else ""
-       li(P.style.treeItem,treeMenuToggle,key := "toggle", P.style.treeItemContent)(span(S.selected ?= P.style.selectedTreeItemContent,onClick ==> B.onItemSelect,P.root.item.toString))(
-        ul(P.style.treeGroup)(
+       <.li(P.style.treeItem,treeMenuToggle, ^.key := "toggle", P.style.treeItemContent)(<.span(S.selected ?= P.style.selectedTreeItemContent, ^.onClick ==> B.onItemSelect,P.root.item.toString))(
+        <.ul(P.style.treeGroup)(
          children.map(child => {
            val key : js.Any = s"$parent$depth${child.item}"
            val open = if(!P.filterText.trim.isEmpty) true else false
@@ -137,7 +137,7 @@ object ReactTreeView {
     .initialState(State())
     .backend(new Backend(_))
     .render((P, S, B) => {
-      div(P.style.reactTreeView)(
+     <.div(P.style.reactTreeView)(
         P.showSearchBox ?= ReactSearchBox(onTextChange = B.onTextChange),
         TreeNode.withKey("root")(NodeProps(root= P.root,open = if(S.filterText.nonEmpty) true else P.open,onNodeSelect = B.onNodeSelect,filterText = S.filterText ,style = P.style,filterMode = S.filterMode))
       )

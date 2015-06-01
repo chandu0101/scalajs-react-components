@@ -5,8 +5,8 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.{CssEvents, DomUtil, KeyLine}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
-import org.scalajs.dom.Event
+import japgolly.scalajs.react.vdom.prefix_<^._
+import org.scalajs.dom.{Event, html}
 
 import scala.scalajs.js
 
@@ -45,7 +45,7 @@ object MuiMenu {
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def setKeyWidth(el: TopNode) = {
+    def setKeyWidth(el: html.Element) = {
       val menuWidth = if (t.props.autoWidth) KeyLine.getIncrementalDim(el.offsetWidth).toString.concat("px")
       else "100%"
       //Update the menu width
@@ -54,8 +54,7 @@ object MuiMenu {
       DomUtil.withoutTransition(el,() => el.style.width = menuWidth)
     }
 
-    def renderVisibility() = {
-      val el = t.getDOMNode()
+    def renderVisibility(el: html.Element) = {
       val innerContainer = thePaperMenuRef(t).get.backend.getInnerContainer.getDOMNode()
       if (t.props.visible) {
         el.style.height = initialMenuHeight.toString.concat("px")
@@ -85,8 +84,8 @@ object MuiMenu {
     .render(P => {
     val (item, selectedIndex, zDepth,index, b) = P
     item.mtype match {
-      case Types.LINK => a(cls := mui_menu_item, href := item.route ,key := item.index)(item.text)
-      case Types.SUBHEADER => div(cls := mui_subheader ,key := item.index)(item.text)
+      case Types.LINK => <.a(^.cls := mui_menu_item, ^.href := item.route , ^.key := item.index)(item.text)
+      case Types.SUBHEADER => <.div(^.cls := mui_subheader , ^.key := item.index)(item.text)
       case Types.NESTED => MuiNestedMenuItem(index = item.index, text = item.text, menuItems = item.items, zDepth = zDepth, onItemClick = b.onNestedItemClick ,key = item.index)
       case _ => MuiMenuItem(selected = selectedIndex == index,
         iconClassName = item.icon,
@@ -112,15 +111,15 @@ object MuiMenu {
     .render((P, S, B) => {
       MuiPaper(ref = thePaperMenuRef, clsNames = P.classNames.++(Map(mui_menu -> true, mui_menu_hideable -> P.hideable, mui_visible -> P.visible)), zDepth = P.zDepth)(
         P.menuItems.zipWithIndex.map { case (item,index) => menuItem.withKey(index)((item, P.selectedIndex, P.zDepth,index, B)) }: _* )
-    })
+    }).domType[html.Element]
     .componentDidMount(scope => {
       val el = scope.getDOMNode()
       scope.backend.setKeyWidth(el)
       scope.backend.initialMenuHeight = el.offsetHeight + KeyLine.Desktop.GUTTER_LESS
-    scope.backend.renderVisibility
+      scope.backend.renderVisibility(el)
     })
-    .componentDidUpdate((scope, p, _) => {
-      if (scope.props.visible != p.visible) scope.backend.renderVisibility
+    .componentDidUpdate(($, newProps, _) => {
+      if ($.props.visible != newProps.visible) $.backend.renderVisibility($.getDOMNode())
     })
     .build
 

@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -20,7 +20,7 @@ object MuiAppCanvas {
   val component = ReactComponentB[Props]("MuiAppCanvas")
     .render((P,C) => {
       val classes = CommonUtils.cssMap1M(mui_app_canvas,P.clsNames,mui_predefined_layout_1 -> (P.predefinedLayout == 1))
-      div(classSetM(classes))(
+     <.div(^.classSetM(classes))(
         C
       )
     })

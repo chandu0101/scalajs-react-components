@@ -3,7 +3,7 @@ package chandu0101.scalajs.react.components.demo.pages.util
 
 import chandu0101.scalajs.react.components.models.Github
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.ext.Ajax
 
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.runNow
@@ -26,13 +26,13 @@ object ComponentCredits {
     .initialState(State(Set()))
     .backend(new Backend(_))
     .render((P,S,B) => {
-      if(S.users.isEmpty) div("Loading Credits ...")
+      if(S.users.isEmpty)<.div("Loading Credits ...")
       else
-       div(
-        h4("Author : "),
+      <.div(
+        <.h4("Author : "),
         GithubUser(S.users.last),
-        h4("Contributors : "),
-        div(marginRight := "10px")(S.users.init.map(u => GithubUser(user = u , key = u.login)))
+        <.h4("Contributors : "),
+       <.div(^.marginRight := "10px")(S.users.init.map(u => GithubUser(user = u , key = u.login)))
        )
     })
     .componentDidMount(scope => {

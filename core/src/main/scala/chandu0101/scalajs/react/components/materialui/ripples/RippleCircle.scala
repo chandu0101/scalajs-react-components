@@ -4,7 +4,7 @@ package chandu0101.scalajs.react.components.materialui.ripples
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -21,11 +21,11 @@ object RippleCircle {
 
   val component = ReactComponentB[Props]("RippleCircle")
     .render(P => {
-      val classes = classSet1(mui_ripple_circle,
+      val classes = ^.classSet1(mui_ripple_circle,
         mui_is_started -> P.started,
         mui_is_ending -> P.started)
-      div(P.otherProps,classes)(
-       div(cls := mui_ripple_circle_inner)
+     <.div(P.otherProps,classes)(
+      <.div(^.cls := mui_ripple_circle_inner)
       )
     }).build
 

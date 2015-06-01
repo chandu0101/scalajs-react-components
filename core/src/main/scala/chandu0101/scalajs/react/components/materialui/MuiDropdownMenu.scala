@@ -7,7 +7,8 @@ import chandu0101.scalajs.react.components.materialui.svgicons.MuiDropDownArrow
 import chandu0101.scalajs.react.components.mixins.ClickAwayable
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+import org.scalajs.dom.html
 
 import scala.scalajs.js
 
@@ -28,8 +29,7 @@ object MuiDropdownMenu {
 
   class Backend(t: BackendScope[Props, State]) extends ClickAwayable{
 
-    def setWidth() = {
-      val el = t.getDOMNode()
+    def setWidth(el: html.Element) = {
       val menuItemDom = theMenuRef(t).get.getDOMNode()
       el.style.width = menuItemDom.offsetWidth.toString.concat("px")
     }
@@ -44,7 +44,7 @@ object MuiDropdownMenu {
       t.modState(s => State(open = false, index))
     }
 
-    override def onClickAway: Unit = t.modState(_.copy(open = false))
+    override def onClickAway(): Unit = t.modState(_.copy(open = false))
 
   }
 
@@ -55,14 +55,14 @@ object MuiDropdownMenu {
     .backend(new Backend(_))
     .render((P, S, B) => {
       val classes = CommonUtils.cssMap1M(mui_drop_down_menu, P.clsNames , mui_open -> S.open)
-      div(classSetM(classes))(
-        div(cls := mui_menu_control, onClick ==> B.onControlClick)(
+      <.div(^.classSetM(classes))(
+        <.div(^.cls := mui_menu_control, ^.onClick ==> B.onControlClick)(
           MuiPaper(clsNames = Map(mui_menu_control_bg -> true), zDepth = 0)(),
-          div(cls := mui_menu_label)(
+          <.div(^.cls := mui_menu_label)(
             P.menuItems(S.selectedIndex).text
           ),
-        MuiDropDownArrow(cls := "mui-menu-drop-down-icon" ,key := "dropdownicon"),
-          div(cls := mui_menu_control_underline)
+        MuiDropDownArrow(^.cls := "mui-menu-drop-down-icon" ,^.key := "dropdownicon"),
+          <.div(^.cls := mui_menu_control_underline)
         ),
         MuiMenu(ref = theMenuRef, 
           autoWidth = P.autoWidth, 
@@ -72,10 +72,10 @@ object MuiDropdownMenu {
           visible = S.open, 
           onItemClick = B.onMenuItemClick )
       )
-    })
+    }).domType[html.Element]
     .configure(ClickAwayable.mixin)
-    .componentDidMount(scope => {
-      if (scope.props.autoWidth) scope.backend.setWidth
+    .componentDidMount($ => {
+      if ($.props.autoWidth) $.backend.setWidth($.getDOMNode())
     })
     .componentWillReceiveProps((scope, nextProps) => {
      scope.modState(_.copy(selectedIndex = nextProps.selectedIndex))

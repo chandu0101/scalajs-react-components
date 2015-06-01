@@ -3,7 +3,8 @@ package chandu0101.scalajs.react.components.demo.pages.components.materialui
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.MuiInput
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -25,8 +26,8 @@ object MInputs {
     .stateless
     .backend(new Backend(_))
     .render((P,S,B) => {
-      div(
-       h2(cls := "mui-font-style-headline")("Inputs"),
+     <.div(
+      <.h2(^.cls := "mui-font-style-headline")("Inputs"),
        CodeExample(code)(
         MuiInput( placeholder = "First name" ,description = "your first name as DOB" ,name = "firstname" ,onChange = B.onTextChange),
         MuiInput( placeholder = "Disabled MuiInput"  ,name = "disabled", disabled = true ),

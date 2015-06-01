@@ -6,12 +6,12 @@ import chandu0101.scalajs.react.components.models.{RElementPosition, RGrid, RPoi
 import chandu0101.scalajs.react.components.util.DomUtil._
 import chandu0101.scalajs.react.components.util.Events
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.Event
 
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{global => g}
+import scala.scalajs.js.Dynamic.{global ⇒ g}
 
 
 /**
@@ -117,7 +117,7 @@ object ReactDraggable {
 
     def positionToCSSTransform(left : Int, top : Int) = {
       val trans = s"translate(${left}px , ${top}px)"
-      Seq( transform := trans,mozTransform := trans , webkitTransform := trans , msTransform := trans)
+      Seq( ^.transform := trans,mozTransform := trans , webkitTransform := trans , msTransform := trans)
     }
   }
 
@@ -127,11 +127,11 @@ object ReactDraggable {
     .render((P,C,S, B) => {
       val topValue = if(B.canDragY) S.clientY else S.startY
       val leftValue = if(B.canDragX) S.clientX else S.startX
-      var stl : TagMod = Seq( top := topValue ,left := leftValue)
+      var stl : TagMod = Seq( ^.top := topValue ,^.left := leftValue)
       if(P.useCSSTransforms) stl = B.positionToCSSTransform(leftValue,topValue)
-      div(classSet1("react-draggable","react-draggable-dragging" -> S.dragging) ,stl)(
-       onMouseDown ==> B.handleDragStart,
-       onMouseUp ==> B.handleDragEnd
+     <.div(^.classSet1("react-draggable","react-draggable-dragging" -> S.dragging) ,stl)(
+       ^.onMouseDown ==> B.handleDragStart,
+       ^.onMouseUp ==> B.handleDragEnd
       )(
         C
       )

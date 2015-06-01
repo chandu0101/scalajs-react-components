@@ -3,11 +3,11 @@ package chandu0101.scalajs.react.components.maps
 import chandu0101.scalajs.react.components.fascades._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.{Event, document, html}
 
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{global => g, literal => json, newInstance => jsnew}
+import scala.scalajs.js.Dynamic.{global ⇒ g, literal ⇒ json, newInstance ⇒ jsnew}
 
 
 /**
@@ -56,7 +56,7 @@ object GoogleMap {
     .initialState(State(loaded = false))
     .backend(new Backend(_))
     .render((P, S, B) => {
-      div(height := s"${P.height}px", width := s"${P.width}px")
+     <.div(^.height := s"${P.height}px", ^.width := s"${P.width}px")
     })
     .componentDidMount(scope => {
       scope.backend.loadScript

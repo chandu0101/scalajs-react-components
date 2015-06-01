@@ -6,7 +6,8 @@ import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.mixins.ClickAwayable
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+import org.scalajs.dom.html
 
 import scala.scalajs.js
 
@@ -29,8 +30,7 @@ object MuiNestedMenuItem {
 
   class Backend(t: BackendScope[Props, State]) extends ClickAwayable {
 
-    def positionNestedMenu() = {
-      val el = t.getDOMNode()
+    def positionNestedMenu(el: html.Element) = {
       val nestedMenu = MuiMenu.theMenuRef(t).get.getDOMNode()
       nestedMenu.style.left = el.offsetWidth.toString.concat("px")
     }
@@ -47,7 +47,7 @@ object MuiNestedMenuItem {
 
     }
 
-    override def onClickAway: Unit = t.modState(_.copy(open = false))
+    override def onClickAway(): Unit = t.modState(_.copy(open = false))
 
   }
 
@@ -58,7 +58,7 @@ object MuiNestedMenuItem {
       val classes = CommonUtils.cssMap1M(mui_nested_menu_item,
         P.classNames, 
         mui_open -> S.open)
-      div(classSetM(classes))(
+     <.div(^.classSetM(classes))(
         MuiMenuItem(index = P.index, iconRightClassName = "muidocs-icon-custom-arrow-drop-right", onClick = B.onParentItemClick)(
           P.text
         ),
@@ -69,10 +69,10 @@ object MuiNestedMenuItem {
           visible = S.open,
           zDepth = P.zDepth + 1)
       )
-    })
+    }).domType[html.Element]
     .configure(ClickAwayable.mixin)
-    .componentDidMount(scope => scope.backend.positionNestedMenu)
-    .componentDidUpdate((scope,_,_) => scope.backend.positionNestedMenu)
+    .componentDidMount($ => $.backend.positionNestedMenu($.getDOMNode()))
+    .componentDidUpdate(($,_,_) => $.backend.positionNestedMenu($.getDOMNode()))
     .build
 
   def apply(menuItems: List[MuiMenu.Item], text: String = "", zDepth: Int = 0, onItemClick: REventIIntStringUnit = null, classNames: CssClassType = Map(), index: Int,ref: js.UndefOr[String] = "", key: js.Any = {}) : ReactElement = {

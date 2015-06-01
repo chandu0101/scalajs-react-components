@@ -3,7 +3,7 @@ package chandu0101.scalajs.react.components.materialui
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import japgolly.scalajs.react.{BackendScope, ReactEventI, _}
 
 import scala.scalajs.js
@@ -36,7 +36,7 @@ object MuiFlatButton {
         disableTouchRipple = P.disableTouchRipple,
         linkButton = P.linkButton,
         url = P.url)(
-       if(P.label.nonEmpty) span( key := "label" ,cls := mui_flat_button_label , P.label)
+       if(P.label.nonEmpty) <.span( ^.key := "label" , ^.cls := mui_flat_button_label , P.label)
        else C
       )
     }).build

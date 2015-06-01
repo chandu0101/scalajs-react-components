@@ -3,7 +3,8 @@ package chandu0101.scalajs.react.components.demo.pages.components.materialui
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.{MuiCheckbox, MuiRadioButton, MuiToggle}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -43,22 +44,22 @@ object MuiSwitchesDemo {
     .stateless
     .backend(new Backend(_))
     .render((P, S, B) => {
-    div(
-      h3("Checkbox"),
+   <.div(
+     <.h3("Checkbox"),
       CodeExample(checkBoxCode)(
           MuiCheckbox(name = "checkBoxName1", value = "checkboxValue1", onCheck = B.onCheckBoxClick ,label = "get out of box" ,key = "check1"),
           MuiCheckbox(name = "checkBoxName2", value = "checkboxValue2", onCheck = B.onCheckBoxClick , label = "see nature conciously" , defaultChecked = true ,key = "check2"),
             MuiCheckbox(name = "checkBoxName3", value = "checkboxValue3", disabled = true ,label = "live every moment" ,key = "check3")
       ),
-      h3("Radiobutton"),
+     <.h3("Radiobutton"),
       CodeExample(radioButtonCode)(
           MuiRadioButton( name = "shipped" ,value = "light" ,label = "prepare for light speed" ,onCheck = B.onRadioButtonClick ,key = "radio1"),
-          br(),
+          <.br(),
           MuiRadioButton( name = "shipped" ,value = "not_light" ,label = "light speed too slow",onCheck = B.onRadioButtonClick ,defaultChecked = true ,key = "radio2"),
-          br(),
+          <.br(),
           MuiRadioButton( name = "shipped" ,value = "ludicrous" ,label = "go to ludicous speed",onCheck = B.onRadioButtonClick ,disabled = true ,key = "radio3")
       ),
-      h3("Toggle"),
+     <.h3("Toggle"),
       CodeExample(toggleCode)(
          MuiToggle(onToggle = B.onToggle,name = "togllename1" ,value = "togllename1" ,label = "active thursters" ,defaultToggled = true ,key = "toggle1")
       )

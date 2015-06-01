@@ -13,7 +13,7 @@ import chandu0101.scalajs.react.components.demo.pages.components.socialshareicon
 import chandu0101.scalajs.react.components.demo.pages.util.AppHeader
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.{BaseUrl, Redirect, RoutingRules}
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 
 /**
@@ -101,12 +101,12 @@ object AppRouter {
 
 
     override protected def interceptRender(i: InterceptionR): ReactElement = {
-      div(
+     <.div(
         AppHeader(),
         i.element,
-        div(textAlign := "center", key := "footer")(
-          hr(),
-          p("Built using scalajs-react")
+       <.div(^.textAlign := "center", ^.key := "footer")(
+          <.hr(),
+          <.p("Built using scalajs-react")
         )
       )
     }
@@ -128,9 +128,7 @@ object AppRouter {
 
   }
 
-
-//  val baseUrl = BaseUrl.fromWindowOrigin / "scalajs-react-components/demo/"
-  val baseUrl = BaseUrl.fromWindowOrigin / "sjrc/"
+  val baseUrl = BaseUrl(dom.window.location.href.takeWhile(_ != '#'))
   val C = AppPage.router(baseUrl)
 
 }

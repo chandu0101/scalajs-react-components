@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
 
 
@@ -35,13 +35,13 @@ object MuiSlider {
     .render((P, S, B) => {
        val classes = cssMapM(P.clsNames,(mui_input,true),(mui_error,!P.error.isEmpty))
        val sliderClasses = cssMapM(P.clsNames,(mui_slider,true),(mui_slider_zero,S.percent == 0),(mui_disabled,P.disabled))
-       div(classSetM(classes))(
-         span(cls := mui_input_highlight),
-         span(cls := mui_input_bar),
-         span(cls := mui_input_description)(P.description),
-         span(cls := mui_input_error)(P.error),
-         div(classSetM(sliderClasses) , onClick ==> B.onClick)(
-          div( ref := theTrackRef , cls := mui_slider_track) (
+      <.div(^.classSetM(classes))(
+         <.span(^.cls := mui_input_highlight),
+         <.span(^.cls := mui_input_bar),
+         <.span(^.cls := mui_input_description)(P.description),
+         <.span(^.cls := mui_input_error)(P.error),
+        <.div(^.classSetM(sliderClasses) , ^.onClick ==> B.onClick)(
+         <.div( ^.ref := theTrackRef , ^.cls := mui_slider_track) (
 
 
           )

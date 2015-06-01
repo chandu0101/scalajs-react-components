@@ -4,7 +4,8 @@ import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.fascades.{LatLng, Marker}
 import chandu0101.scalajs.react.components.maps.GoogleMap
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -28,8 +29,8 @@ object MarkerInfoWindow {
     """.stripMargin
   val component = ReactComponentB[Unit]("infowindow")
     .render(P => {
-    div(
-      h2(cls := "mui-font-style-headline")("Marker InfoWindow"),
+   <.div(
+     <.h2(^.cls := "mui-font-style-headline")("Marker InfoWindow"),
       CodeExample(code)(
         GoogleMap(center = latlng ,markers = markers ,zoom = 10)
       )

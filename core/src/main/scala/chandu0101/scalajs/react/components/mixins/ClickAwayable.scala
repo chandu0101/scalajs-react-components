@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.mixins
 
 import chandu0101.scalajs.react.components.util.DomUtil
-import japgolly.scalajs.react.{ComponentScopeM, ReactComponentB}
+import japgolly.scalajs.react._
 import org.scalajs.dom
 import org.scalajs.dom.{Event, html}
 
@@ -18,14 +18,14 @@ trait ClickAwayable {
 
 object ClickAwayable {
 
-  def mixin[P, S, B] = (c: ReactComponentB[P, S, B]) => {
-    def initiateListener(t: ComponentScopeM[_, _, _]) = {
+  def mixin[P, S, B, N <: TopNode] = (c: ReactComponentB[P, S, B, N]) => {
+    def initiateListener(t: ComponentScopeM[P, S, B, N]) = {
       val b = t.backend.asInstanceOf[ClickAwayable]
       b.listener =
         (e: dom.Event) => {
           val el = t.getDOMNode()
           if (t.isMounted() && el != e.target && !DomUtil.isDecedant(el, e.target.asInstanceOf[html.Element])) {
-            b.onClickAway
+            b.onClickAway()
           }
         }
     }

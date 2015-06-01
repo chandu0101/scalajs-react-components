@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -36,14 +36,14 @@ object MuiMenuItem {
       val classes = CommonUtils.cssMap1M( mui_menu_item,
         P.clsNames,
         mui_is_selected -> P.selected)
-      div(classSetM(classes), 
-        key := P.index, 
-        onClick ==> B.onClick,
+     <.div(^.classSetM(classes),
+        ^.key := P.index,
+        ^.onClick ==> B.onClick,
         P.iconClassName.nonEmpty ?= MuiFontIcon(className = s"mui-menu-item-icon ${P.iconClassName}") ,
         C,
-        P.data.nonEmpty ?= span(cls := mui_menu_item_data)(P.data) ,
-        P.attribute.nonEmpty ?= span(cls := mui_menu_item_attribute)(P.attribute) ,
-        P.number.nonEmpty ?= span(cls := mui_menu_item_number)(P.number) ,
+        P.data.nonEmpty ?= <.span(^.cls := mui_menu_item_data)(P.data) ,
+        P.attribute.nonEmpty ?= <.span(^.cls := mui_menu_item_attribute)(P.attribute) ,
+        P.number.nonEmpty ?= <.span(^.cls := mui_menu_item_number)(P.number) ,
         P.toggle ?= MuiToggle(onToggle = B.onToggleClick),
         P.iconRightClassName.nonEmpty ?= MuiFontIcon(className = s"mui-menu-item-icon-right ${P.iconRightClassName}")
     )

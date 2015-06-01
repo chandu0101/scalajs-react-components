@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.reactbootstrap
 
 import japgolly.scalajs.react.ReactComponentU_
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -348,7 +348,7 @@ object bootStrap {
   }
 
 
-  case class Input(groupClassName: js.UndefOr[String] = js.undefined, wrapperClassName: js.UndefOr[String] = js.undefined, labelB: js.UndefOr[String] = js.undefined, labelClassName: js.UndefOr[String] = js.undefined, addonBefore: js.UndefOr[String] = js.undefined, buttonAfter: js.UndefOr[String] = js.undefined, help: js.UndefOr[String] = js.undefined, buttonBefore: js.UndefOr[String] = js.undefined, hasFeedback: js.UndefOr[Boolean] = js.undefined, addonAfter: js.UndefOr[String] = js.undefined, disabledB: js.UndefOr[Boolean] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, typeB: js.UndefOr[String] = js.undefined) {
+  case class input(groupClassName: js.UndefOr[String] = js.undefined, wrapperClassName: js.UndefOr[String] = js.undefined, labelB: js.UndefOr[String] = js.undefined, labelClassName: js.UndefOr[String] = js.undefined, addonBefore: js.UndefOr[String] = js.undefined, buttonAfter: js.UndefOr[String] = js.undefined, help: js.UndefOr[String] = js.undefined, buttonBefore: js.UndefOr[String] = js.undefined, hasFeedback: js.UndefOr[Boolean] = js.undefined, addonAfter: js.UndefOr[String] = js.undefined, disabledB: js.UndefOr[Boolean] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, typeB: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       labelB.foreach(v => p.updateDynamic("label")(v))
@@ -398,7 +398,7 @@ object bootStrap {
     }
   }
 
-  case class Label(bsClass : js.UndefOr[String] = js.undefined,bsStyle : js.UndefOr[String] = js.undefined,bsSize : js.UndefOr[String] = js.undefined) {
+  case class label(bsClass : js.UndefOr[String] = js.undefined,bsStyle : js.UndefOr[String] = js.undefined,bsSize : js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       bsClass.foreach(v => p.updateDynamic("bsClass")(v))
@@ -836,7 +836,7 @@ object bootStrap {
     }
   }
 
-  case class Table(bordered : js.UndefOr[Boolean] = js.undefined,hover : js.UndefOr[Boolean] = js.undefined,striped : js.UndefOr[Boolean] = js.undefined,condensed : js.UndefOr[Boolean] = js.undefined,responsive : js.UndefOr[Boolean] = js.undefined) {
+  case class table(bordered : js.UndefOr[Boolean] = js.undefined,hover : js.UndefOr[Boolean] = js.undefined,striped : js.UndefOr[Boolean] = js.undefined,condensed : js.UndefOr[Boolean] = js.undefined,responsive : js.UndefOr[Boolean] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       bordered.foreach(v => p.updateDynamic("bordered")(v))

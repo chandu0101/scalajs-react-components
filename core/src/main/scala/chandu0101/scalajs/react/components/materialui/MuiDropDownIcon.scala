@@ -6,7 +6,7 @@ import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.mixins.ClickAwayable
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -41,9 +41,9 @@ object MuiDropDownIcon {
     .backend(new Backend(_))
     .render((P, C,S, B) => {
       val classes= CommonUtils.cssMap1M(mui_drop_down_icon,P.clsNames,mui_open -> S.open)
-      div(classSetM(classes))(
-        div(cls := mui_menu_control, 
-          onClick ==> B.onControlClick,
+     <.div(^.classSetM(classes))(
+       <.div(^.cls := mui_menu_control,
+          ^.onClick ==> B.onControlClick,
           P.iconClassName.nonEmpty ?= MuiFontIcon(className = P.iconClassName,
           C)
         ),

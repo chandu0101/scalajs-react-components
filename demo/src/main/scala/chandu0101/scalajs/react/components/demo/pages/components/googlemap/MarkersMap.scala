@@ -4,7 +4,8 @@ import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.fascades.{LatLng, Marker}
 import chandu0101.scalajs.react.components.maps.GoogleMap
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -27,8 +28,8 @@ object MarkersMap {
     """.stripMargin
   val component = ReactComponentB[Unit]("mapmarkers")
     .render(P => {
-    div(
-      h2(cls := "mui-font-style-headline")("Markers"),
+   <.div(
+     <.h2(^.cls := "mui-font-style-headline")("Markers"),
       CodeExample(code)(
        GoogleMap(center = latlng ,markers = markers ,zoom = 10)
       )

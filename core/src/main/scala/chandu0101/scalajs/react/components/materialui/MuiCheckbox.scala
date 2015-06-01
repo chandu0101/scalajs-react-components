@@ -4,7 +4,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.svgicons.{MuiToggleCheckBoxChecked, MuiToggleCheckBoxOutlineBlank}
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
 
 import scala.scalajs.js
@@ -48,9 +48,9 @@ object MuiCheckbox {
     .backend(new Backend(_))
     .render((P, S, B) => {
     val classes = CommonUtils.cssMap1M("mui-checkbox", P.clsNames)
-    val checkBoxElement = div(
-      MuiToggleCheckBoxOutlineBlank(cls := "mui-checkbox-box"), 
-      MuiToggleCheckBoxChecked(cls := "mui-checkbox-check"))
+    val checkBoxElement = <.div(
+      MuiToggleCheckBoxOutlineBlank(^.cls := "mui-checkbox-box"),
+      MuiToggleCheckBoxChecked(^.cls := "mui-checkbox-check"))
     MuiEnhancedSwitch(ref = theEnhancedSwitchRef,
       inputType = "checkbox",
       switchElement = checkBoxElement,

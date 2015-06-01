@@ -2,7 +2,7 @@ package chandu0101.scalajs.react.components.materialui
 
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.svgicons.{MuiToggleRadioButtonOff, MuiToggleRadioButtonOn}
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import japgolly.scalajs.react.{BackendScope, ReactComponentB, ReactEventI, _}
 import org.scalajs.dom.html
 
@@ -40,7 +40,7 @@ object MuiRadioButton {
     .initialStateP(p => State(p.defaultChecked))
     .backend(new Backend(_))
     .render((P, S, B) => {
-    val radiotButtonElement = div(MuiToggleRadioButtonOff(cls := "mui-radio-button-target"), MuiToggleRadioButtonOn(cls := "mui-radio-button-fill"))
+    val radiotButtonElement = <.div(MuiToggleRadioButtonOff(^.cls := "mui-radio-button-target"), MuiToggleRadioButtonOn(^.cls := "mui-radio-button-fill"))
     MuiEnhancedSwitch(ref = theEnhancedSwitchRef,
       inputType = "radio",
       switchElement = radiotButtonElement,

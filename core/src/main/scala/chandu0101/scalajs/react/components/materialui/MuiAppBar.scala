@@ -4,10 +4,9 @@ package chandu0101.scalajs.react.components.materialui
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.materialui.svgicons.MuiNavigationMenuIcon
-import chandu0101.scalajs.react.components.util.CommonUtils
 import chandu0101.scalajs.react.components.util.CommonUtils._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -37,7 +36,7 @@ object MuiAppBar {
     .render((P, C, S, B) => {
       MuiPaper(rounded = false, clsNames = cssMap1M(mui_app_bar,P.clsNames), zDepth = P.zDepth)(
         if (P.showMenuIconButton) MuiIconButton.withChildren(clsNames = Map(mui_app_bar_navigation_icon_button -> true), onTouchTap = B.onMenuIconButtonTouchTap ,key = "iconButton")(MuiNavigationMenuIcon()) else "",
-        if (P.title.nonEmpty) h1(cls := mui_app_bar_title ,key := P.title,P.title) else "",
+        if (P.title.nonEmpty)<.h1(^.cls := mui_app_bar_title , ^.key := P.title,P.title) else "",
           C
       )
     })

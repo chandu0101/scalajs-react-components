@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -27,9 +27,9 @@ object MuiToast {
     .render((P, S, B) => {
     val classes = CommonUtils.cssMapM(P.classNames, mui_toast -> true,
       mui_open -> S.open)
-    span(classSetM(classes))(
-      if (!P.message.isEmpty) span(cls := mui_toast_message)(P.message) else "",
-      if (!P.action.isEmpty) span(cls := mui_toast_action, onClick ==> B.onActionClick)(P.action) else ""
+    <.span(^.classSetM(classes))(
+      if (!P.message.isEmpty) <.span(^.cls := mui_toast_message)(P.message) else "",
+      if (!P.action.isEmpty) <.span(^.cls := mui_toast_action, ^.onClick ==> B.onActionClick)(P.action) else ""
     )
   })
     .componentWillReceiveProps((scope, nextProps) => {

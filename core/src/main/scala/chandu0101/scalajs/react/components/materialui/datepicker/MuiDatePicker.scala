@@ -5,9 +5,9 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.MuiTextField
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.mixins.WindowListeners
-import chandu0101.scalajs.react.components.util.{DateTime, CommonUtils, Events}
+import chandu0101.scalajs.react.components.util.{CommonUtils, DateTime, Events}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.Event
 
 import scala.scalajs.js
@@ -33,7 +33,7 @@ object MuiDatePicker {
       mui_is_inline -> (P.mode == INLINE)
     )
     val defaultInputValue = if (P.defaultDate != null) P.formatDate(P.defaultDate) else null
-    div(classSetM(classes))(
+   <.div(^.classSetM(classes))(
       MuiTextField(ref = theInputRef, defaultValue = defaultInputValue, onFocus = B.handleInputFocus, name = P.name, onTouchTap = B.handleInputTouchTap, hintText = P.placeholder ,id = s"${P.placeholder}YEAH"),
       MuiDatePickerDialog(ref = theDialogWindowRef, initialDate = S.dialogDate, onAccept = B.handleDialogAccept)
     )

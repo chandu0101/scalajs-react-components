@@ -2,7 +2,8 @@ package chandu0101.scalajs.react.components.materialui
 
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 
 /**
@@ -13,7 +14,7 @@ object MuiFontIcon {
 
   val component = ReactComponentB[Props]("MuiFontIcon")
     .render(P => {
-    span(cls := s"mui-font-icon ${P.className}", P.dynamicProps)
+    <.span(^.cls := s"mui-font-icon ${P.className}", P.dynamicProps)
   }).build
 
   case class Props(className :String,dynamicProps: TagMod*)

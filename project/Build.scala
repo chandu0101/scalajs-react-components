@@ -6,10 +6,9 @@ import sbt._
 
 object ScalajsReactComponents extends Build {
 
-  val Scala211 = "2.11.5"
+  val Scala211 = "2.11.6"
 
-
-  val scalajsReactVersion = "0.8.0"
+  val scalajsReactVersion = "0.9.0"
 
   type PE = Project => Project
 

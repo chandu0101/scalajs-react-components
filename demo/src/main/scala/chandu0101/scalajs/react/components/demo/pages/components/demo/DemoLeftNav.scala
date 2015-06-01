@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.demo.pages.components.demo
 
 import chandu0101.scalajs.react.components.all._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 
 import scala.scalajs.js
@@ -15,23 +15,25 @@ object DemoLeftNav {
 
   trait Style {
 
-    def leftNav: TagMod = Seq[TagMod](display := "flex", flexDirection := "column")
+    def leftNav: TagMod = Seq[TagMod](^.display := "flex", ^.flexDirection := "column")
 
     def menuItem: TagMod = Seq(
       lineHeight2 := "48px",
-      padding := "0 25px",
-      color := "black",
-//      width := "190px",
-      textDecoration := "none"
+      ^.padding := "0 25px",
+      ^.color := "black",
+//    ^.width := "190px",
+      ^.textDecoration := "none"
     )
 
     def selectedMenuItem: TagMod = Seq(
-      color := "red",
-      fontWeight := 500
+      ^.color := "red",
+      ^.fontWeight := 500
     )
 
-    def menuItemHover: TagMod = Seq(color := "#555555",
-      backgroundColor := "#ecf0f1")
+    def menuItemHover: TagMod = Seq(
+      ^.color := "#555555",
+      ^.backgroundColor := "#ecf0f1"
+    )
 
   }
 
@@ -44,7 +46,7 @@ object DemoLeftNav {
       t.modState(_.copy(hoveredItem = item))
     }
 
-    def onMouseLeave = {
+    def onMouseLeave() = {
       t.modState(_.copy(hoveredItem = ""))
     }
 
@@ -54,14 +56,14 @@ object DemoLeftNav {
     .initialState(State())
     .backend(new Backend(_))
     .render((P, S, B) => {
-    div(P.style.leftNav)(
+    <.div(P.style.leftNav)(
       P.menu.map { item => {
         val selected = item.text == P.selectedItem
         val hover = S.hoveredItem == item.text
-        a(key := item.text, P.style.menuItem, selected ?= P.style.selectedMenuItem,
+        <.a(^.key := item.text, P.style.menuItem, selected ?= P.style.selectedMenuItem,
           hover ?= P.style.menuItemHover)(
             onMouseEnter --> B.onMouseEnter(item.text),
-            onMouseOut --> B.onMouseLeave)(href := item.route)(item.text)
+            ^.onMouseOut --> B.onMouseLeave)(^.href := item.route)(item.text)
       }
       }
     )

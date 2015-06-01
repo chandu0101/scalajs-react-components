@@ -1,10 +1,9 @@
 package chandu0101.scalajs.react.components.demo.pages.components.materialui
 
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.MuiPaper
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 
 /**
@@ -39,27 +38,27 @@ object MuiPaperDemo {
 
   object Style {
 
-    val paperStyle = Seq(width := "100px",height := "100px" ,marginBottom := "64px")
+    val paperStyle = Seq(^.width := "100px",^.height := "100px" ,^.marginBottom := "64px")
 
-    val paperExamples = Seq( display := "flex",flexWrap := "wrap" ,justifyContent := "space-around")
+    val paperExamples = Seq(^.display := "flex",^.flexWrap := "wrap" ,^.justifyContent := "space-around")
 
-    val paperGroup = Seq(display := "flex" , flexDirection := "column", margin := "0 50px")
+    val paperGroup = Seq(^.display := "flex" , ^.flexDirection := "column", ^.margin := "0 50px")
   }
 
 
   val component = ReactComponentB[Unit]("MuiPaperDemo")
     .render(P => {
-    div(
-      h3("Paper"),
+    <.div(
+      <.h3("Paper"),
       CodeExample(code)(
-       div(Style.paperExamples)(
-         div(Style.paperGroup)(
+       <.div(Style.paperExamples)(
+         <.div(Style.paperGroup)(
              (1 to 5).toList.map(i => MuiPaper(zDepth = i, style = Style.paperStyle)())
          ),
-         div(Style.paperGroup)(
+         <.div(Style.paperGroup)(
            (1 to 5).toList.map(i => MuiPaper(zDepth = i, style = Style.paperStyle ,rounded = false)())
          ),
-         div(Style.paperGroup)(
+         <.div(Style.paperGroup)(
            (1 to 5).toList.map(i => MuiPaper(zDepth = i, style = Style.paperStyle ,circle = true)())
          )
        )

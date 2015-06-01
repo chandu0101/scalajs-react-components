@@ -6,7 +6,7 @@ import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import chandu0101.scalajs.react.components.util.InputTypes._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
 
 import scala.scalajs.js
@@ -84,14 +84,14 @@ object MuiInput {
 
  def getInputElement(props:Props,backend : Backend,state : State) = {
    val placeHolderText = if(props.inlinePlaceHolder) props.placeholder else ""
-   val textClasses = classSet(mui_is_not_empty -> !state.value.isEmpty)
-   val textAreaClasses = classSet1(mui_input_textarea,mui_is_not_empty -> !state.value.isEmpty)
+   val textClasses = ^.classSet(mui_is_not_empty -> !state.value.isEmpty)
+   val textAreaClasses = ^.classSet1(mui_input_textarea,mui_is_not_empty -> !state.value.isEmpty)
    if (props.multiline) {
-     if (props.valueLink) textarea(textAreaClasses, placeholder := placeHolderText, rows := state.rows ,required := props.required,`type` := props.tpe , name := props.name ,disabled := props.disabled)
-     else textarea(textAreaClasses, placeholder := placeHolderText, rows := state.rows, value := state.value, onChange ==> backend.onTextAreaChange,required := props.required,`type` := props.tpe , name := props.name,disabled := props.disabled)
+     if (props.valueLink) <.textarea(textAreaClasses, ^.placeholder := placeHolderText, ^.rows := state.rows , ^.required := props.required, ^.`type` := props.tpe , ^.name := props.name , ^.disabled := props.disabled)
+     else <.textarea(textAreaClasses, ^.placeholder := placeHolderText, ^.rows := state.rows, ^.value := state.value, ^.onChange ==> backend.onTextAreaChange, ^.required := props.required, ^.`type` := props.tpe , ^.name := props.name, ^.disabled := props.disabled)
    } else {
-     if (props.valueLink) input(textClasses)(ref := theInputRef, placeholder := placeHolderText,required := props.required,`type` := props.tpe , name := props.name,disabled := props.disabled ,onFocus ==> backend.onInputFocus ,onClick ==> backend.onInputTouchTap)
-     else input(textClasses)(ref := theInputRef, placeholder := placeHolderText, value := state.value, onChange ==> backend.onInputChange,required := props.required,`type` := props.tpe , name := props.name,disabled := props.disabled ,onFocus ==> backend.onInputFocus ,onClick ==> backend.onInputTouchTap)
+     if (props.valueLink) <.input(textClasses)(^.ref := theInputRef, ^.placeholder := placeHolderText, ^.required := props.required, ^.`type` := props.tpe , ^.name := props.name, ^.disabled := props.disabled , ^.onFocus ==> backend.onInputFocus , ^.onClick ==> backend.onInputTouchTap)
+     else <.input(textClasses)(^.ref := theInputRef, ^.placeholder := placeHolderText, ^.value := state.value, ^.onChange ==> backend.onInputChange, ^.required := props.required, ^.`type` := props.tpe , ^.name := props.name, ^.disabled := props.disabled , ^.onFocus ==> backend.onInputFocus , ^.onClick ==> backend.onInputTouchTap)
    }
  }
 
@@ -105,13 +105,13 @@ object MuiInput {
       mui_text -> (P.tpe != "textarea"),
       mui_error -> (!S.error.isEmpty),
       mui_disabled -> P.disabled)
-      div(classSetM(classes))(
+     <.div(^.classSetM(classes))(
         getInputElement(P,B,S),
-       if(P.inlinePlaceHolder) "" else  span(cls := mui_input_placeholder ,onClick --> B.onPlaceholderClick)(P.placeholder),
-       span(cls := mui_input_highlight),
-       span(cls := mui_input_bar),
-       span(cls := mui_input_description)(P.description),
-       span(cls := mui_input_error)(S.error)
+       if(P.inlinePlaceHolder) "" else  <.span(^.cls := mui_input_placeholder , ^.onClick --> B.onPlaceholderClick)(P.placeholder),
+       <.span(^.cls := mui_input_highlight),
+       <.span(^.cls := mui_input_bar),
+       <.span(^.cls := mui_input_description)(P.description),
+       <.span(^.cls := mui_input_error)(S.error)
       )
     })
     .build

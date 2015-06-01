@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.materialui.ripples.{FocusRipple, Touc
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.mixins.WindowListeners
 import chandu0101.scalajs.react.components.util.{CommonUtils, Events}
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import japgolly.scalajs.react.{BackendScope, ReactComponentB, ReactEventI, _}
 import org.scalajs.dom
 import org.scalajs.dom.ext.KeyCode
@@ -100,31 +100,31 @@ object MuiEnhancedButton {
     val focusRipple: ReactNode = if (P.disabled || P.disableFocusRipple) "" else FocusRipple(show = S.isKeyboardFocused, key = "focusRipple")
     val buttonChildren : ReactNode  = List(touchRipple,focusRipple)
     if (P.linkButton) {
-      if (P.disabled) span(classSetM(classes), disabled := P.disabled)(
+      if (P.disabled) <.span(^.classSetM(classes), ^.disabled := P.disabled)(
         C
       )
       else {
-        a(classSetM(classes), disabled := P.disabled, 
-          onBlur ==> B.handleBlur, 
-          onFocus ==> B.handleFocus, 
-          onClick ==> B.handleTouchTap,
-          (!P.disabled && P.onMouseDown != null) ?= onMouseDown ==> P.onMouseDown,
-          (!P.disabled && P.onMouseUp != null) ?= onMouseUp ==> P.onMouseUp,
-          (!P.disabled && P.onMouseOut != null) ?= onMouseOut ==> P.onMouseOut,
-          (!P.disabled && P.onMouseOver != null) ?= onMouseOver ==> P.onMouseOver,
-          href := P.url,
+       <.a(^.classSetM(classes), ^.disabled := P.disabled,
+          ^.onBlur ==> B.handleBlur,
+          ^.onFocus ==> B.handleFocus,
+          ^.onClick ==> B.handleTouchTap,
+          (!P.disabled && P.onMouseDown != null) ?= ^.onMouseDown ==> P.onMouseDown,
+          (!P.disabled && P.onMouseUp != null) ?= ^.onMouseUp ==> P.onMouseUp,
+          (!P.disabled && P.onMouseOut != null) ?= ^.onMouseOut ==> P.onMouseOut,
+          (!P.disabled && P.onMouseOver != null) ?= ^.onMouseOver ==> P.onMouseOver,
+          ^.href := P.url,
           buttonChildren
         )
       }
     } else {
-      button(classSetM(classes),
-        onClick ==> B.handleTouchTap, 
-        onBlur ==> B.handleBlur,
-        (!P.disabled && P.onMouseDown != null) ?= onMouseDown ==> P.onMouseDown,
-        (!P.disabled && P.onMouseUp != null) ?= onMouseUp ==> P.onMouseUp,
-        (!P.disabled && P.onMouseOut != null) ?= onMouseOut ==> P.onMouseOut,
-        (!P.disabled && P.onMouseOver != null) ?= onMouseOver ==> P.onMouseOver,
-        onFocus ==> B.handleFocus,
+      <.button(^.classSetM(classes),
+        ^.onClick ==> B.handleTouchTap,
+        ^.onBlur ==> B.handleBlur,
+        (!P.disabled && P.onMouseDown != null) ?= ^.onMouseDown ==> P.onMouseDown,
+        (!P.disabled && P.onMouseUp != null) ?= ^.onMouseUp ==> P.onMouseUp,
+        (!P.disabled && P.onMouseOut != null) ?= ^.onMouseOut ==> P.onMouseOut,
+        (!P.disabled && P.onMouseOver != null) ?= ^.onMouseOver ==> P.onMouseOver,
+        ^.onFocus ==> B.handleFocus,
         buttonChildren
       )
     }

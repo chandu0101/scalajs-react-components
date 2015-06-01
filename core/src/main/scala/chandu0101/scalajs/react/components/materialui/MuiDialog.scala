@@ -4,7 +4,7 @@ package chandu0101.scalajs.react.components.materialui
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
 
 import scala.scalajs.js
@@ -46,8 +46,8 @@ object MuiDialog {
     .backend(new Backend(_))
     .render((P, C, S, B) => {
       MuiDialogWindow( ref = theDialogWindowRef , clsNames = Map(mui_dialog -> true) ,actions = B.getDialogActions)(
-       h3( cls := mui_dialog_title ,key := "title" ,P.title),
-       div( ref := theDialogContentRef, key := "content" ,cls := mui_dialog_content)(
+      <.h3( ^.cls := mui_dialog_title , ^.key := "title" ,P.title),
+      <.div( ^.ref := theDialogContentRef, ^.key := "content" , ^.cls := mui_dialog_content)(
          C
        )
       )

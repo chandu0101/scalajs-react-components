@@ -2,7 +2,7 @@ package chandu0101.scalajs.react.components.tables
 
 import chandu0101.scalajs.react.components.optionselectors.DefaultSelect
 import chandu0101.scalajs.react.components.pagers.Pager
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import japgolly.scalajs.react.{BackendScope, ReactComponentB, SyntheticEvent, _}
 import org.scalajs.dom.html
 
@@ -89,26 +89,26 @@ object ReactTable {
     if (group.nonEmpty) group(0)._3 else null
   }
 
-  def arrowUp: TagMod = Seq(width := 0, height := 0, borderLeft := "5px solid transparent", borderRight := "5px solid transparent", borderBottom := "5px solid black")
+  def arrowUp: TagMod = Seq(^.width := 0, ^.height := 0, ^.borderLeft := "5px solid transparent", ^.borderRight := "5px solid transparent", ^.borderBottom := "5px solid black")
 
-  def arrowDown: TagMod = Seq(width := 0, height := 0, borderLeft := "5px solid transparent", borderRight := "5px solid transparent", borderTop := "5px solid black")
+  def arrowDown: TagMod = Seq(^.width := 0, ^.height := 0, ^.borderLeft := "5px solid transparent", ^.borderRight := "5px solid transparent", ^.borderTop := "5px solid black")
 
-  def emptyClass: TagMod = Seq(padding := "1px")
+  def emptyClass: TagMod = Seq(^.padding := "1px")
 
 
   val tableHeader = ReactComponentB[(Props, Backend, State)]("reactTableHeader")
     .render(P => {
     val (props, b, state) = P
-    thead(
+    <.thead(
       if (props.config.nonEmpty) {
         props.columns.map { item => {
           val f = getSortFunction(item, props.config)
-          if (f != null) th(cls := b.sortClass(item), cursor := "pointer", onClick --> b.sort(f, item))(item.capitalize)
-          else th(item.capitalize)
+          if (f != null) <.th(^.cls := b.sortClass(item), ^.cursor := "pointer", ^.onClick --> b.sort(f, item))(item.capitalize)
+          else <.th(item.capitalize)
         }
         }
       }
-      else props.columns.map(s => th(s.capitalize))
+      else props.columns.map(s => <.th(s.capitalize))
     )
   }).build
 
@@ -117,11 +117,11 @@ object ReactTable {
   val tableRow = ReactComponentB[(Model, List[Config], List[String])]("SeedRow")
     .render(P => {
     val (row, config, columns) = P
-    tr(
+    <.tr(
       if (config.nonEmpty) {
-        columns.map { item => val f = getRenderFunction(item, config); if (f != null) td(f(row(item))) else td(row(item).toString)}
+        columns.map { item => val f = getRenderFunction(item, config); if (f != null) <.td(f(row(item))) else <.td(row(item).toString)}
       }
-      else columns.map { item => td(row(item).toString)}
+      else columns.map { item => <.td(row(item).toString)}
     )
   }).build
 
@@ -130,7 +130,7 @@ object ReactTable {
     .render(P => {
     val (state, props) = P
     val rows = state.filteredModels.slice(state.offset, state.offset + state.rowsPerPage).zipWithIndex.map { case (row, i) => tableRow.withKey(i)((row, props.config, props.columns))}
-    tbody(
+    <.tbody(
       rows
     )
   }).build
@@ -138,8 +138,8 @@ object ReactTable {
   val tableC = ReactComponentB[(Props, State, Backend)]("table")
     .render(P => {
     val (props, state, b) = P
-    div(cls := props.css.tableResponsive)(
-      table(cls := props.css.table)(
+   <.div(^.cls := props.css.tableResponsive)(
+      <.table(^.cls := props.css.table)(
         tableHeader((props, b, state)),
         tableRows((state, props))
       )
@@ -149,8 +149,8 @@ object ReactTable {
   val searchBar = ReactComponentB[(Props, (ReactEventI) => Unit)]("searchBar")
     .render(P => {
     val (props, fn) = P
-    div(cls := props.css.searchBoxForm)(
-      input(cls := props.css.searchBoxControl, tpe := "text", placeholder := "Search..", onChange ==> fn)
+   <.div(^.cls := props.css.searchBoxForm)(
+      <.input(^.cls := props.css.searchBoxControl, ^.tpe := "text", ^.placeholder := "Search..", ^.onChange ==> fn)
     )
   }).build
 
@@ -164,8 +164,8 @@ object ReactTable {
          value = s.rowsPerPage.toString
          options = immutable.Range.inclusive(p.rowsPerPage,total,10*(total/100 + 1)).:+(total).toList.map(_.toString)
       }
-      div(cls := "settings")(
-        span(float := "right")(strong("Total : " + s.filteredModels.size)),
+     <.div(^.cls := "settings")(
+        <.span(^.float := "right")(<.strong("Total : " + s.filteredModels.size)),
         DefaultSelect(label = "Page Size : ", options = options, value = value, onChange = b.onPageSizeChange)
       )
     }).build
@@ -174,7 +174,7 @@ object ReactTable {
     .initialStateP(p => State(filterText = "", offset = 0, p.rowsPerPage, p.data, Map()))
     .backend(new Backend(_))
     .render((P, S, B) => {
-      div(cls := "reacttable")(
+     <.div(^.cls := "reacttable")(
         searchBar((P, B.onTextChange)),
         settingsBar((P,B,S)),
         tableC((P, S, B)),

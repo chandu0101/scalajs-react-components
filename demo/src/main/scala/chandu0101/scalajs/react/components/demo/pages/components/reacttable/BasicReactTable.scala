@@ -5,7 +5,8 @@ import chandu0101.scalajs.react.components.demo.util.SampleData
 import chandu0101.scalajs.react.components.tables.ReactTable
 import chandu0101.scalajs.react.components.util.JsonUtil
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -20,8 +21,8 @@ object BasicReactTable {
     """.stripMargin
   val component = ReactComponentB[Unit]("plain")
     .render(P => {
-    div(
-      h2(cls := "mui-font-style-headline")("Basic Table"),
+   <.div(
+     <.h2(^.cls := "mui-font-style-headline")("Basic Table"),
       CodeExample(code)(
        ReactTable(data = data,columns = columns ,rowsPerPage = 6)
       )

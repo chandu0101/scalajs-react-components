@@ -6,7 +6,7 @@ import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.mixins.WindowListeners
 import chandu0101.scalajs.react.components.util.{CommonUtils, Events}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.ext.KeyCode
 import org.scalajs.dom.{Event, KeyboardEvent}
 
@@ -58,7 +58,7 @@ object MuiLeftNav {
        val classes = CommonUtils.cssMap1M(mui_left_nav,
          P.classNames, 
          mui_closed -> !S.open)
-       div(classSetM(classes))(
+      <.div(^.classSetM(classes))(
         if(!P.docked) MuiOverlay( show = S.open , onTouchTap = B.onOverlayTouchTap _) else "",
         MuiPaper(clsNames = Map(mui_left_nav_menu -> true) ,zDepth = 2 ,rounded = false)(
           P.header,

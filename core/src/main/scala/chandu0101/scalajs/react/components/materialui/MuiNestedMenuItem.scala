@@ -6,7 +6,7 @@ import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.mixins.ClickAwayable
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
 
 import scala.scalajs.js
@@ -58,7 +58,7 @@ object MuiNestedMenuItem {
       val classes = CommonUtils.cssMap1M(mui_nested_menu_item,
         P.classNames, 
         mui_open -> S.open)
-      div(classSetM(classes))(
+     <.div(^.classSetM(classes))(
         MuiMenuItem(index = P.index, iconRightClassName = "muidocs-icon-custom-arrow-drop-right", onClick = B.onParentItemClick)(
           P.text
         ),

@@ -3,7 +3,7 @@ package chandu0101.scalajs.react.components.optionselectors
 
 import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -24,10 +24,10 @@ object DefaultSelect {
     .backend(new Backend(_))
     .render((P, S, B) => {
     val reactselect: String = "reactselect"
-    div(cls := reactselect)(
-       label( htmlFor := reactselect)(strong(P.label)),
-       select( paddingLeft := "5px", id := reactselect , value := P.value , onChange ==> B.onChange)(
-         P.options.map(item => option( item))
+   <.div(^.cls := reactselect)(
+       <.label( ^.htmlFor := reactselect)(<.strong(P.label)),
+       <.select( ^.paddingLeft := "5px", ^.id := reactselect , ^.value := P.value , ^.onChange ==> B.onChange)(
+         P.options.map(item => <.option( item))
        )
       )
     })

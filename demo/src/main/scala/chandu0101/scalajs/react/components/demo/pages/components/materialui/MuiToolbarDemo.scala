@@ -3,7 +3,8 @@ package chandu0101.scalajs.react.components.demo.pages.components.materialui
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -56,9 +57,9 @@ object MuiToolbarDemo {
 
   val component = ReactComponentB[Unit]("MuiToolbarDemo")
     .render(P => {
-    div(
-      h3("Toolbars"),
-        div(
+   <.div(
+     <.h3("Toolbars"),
+       <.div(
           MuiToolbar()(
             MuiToolbarGroup(key = 0, float = "left")(
               MuiDropdownMenu(menuItems = filteredOptions)
@@ -67,12 +68,12 @@ object MuiToolbarDemo {
               MuiFontIcon(className = "mui-icon-pie"),
               MuiFontIcon(className = "mui-icon-sort"),
               MuiDropDownIcon(iconClassName ="navigation-expand-more" ,menuItems = iconMenuItems),
-              span(cls := "mui-toolbar-separator")(" "),
+              <.span(^.cls := "mui-toolbar-separator")(" "),
               MuiRaisedButton(label = "Create Broadcast", primary = true)
             )
           ),
-        div(marginTop := "70px")(
-          pre(cls := "code-block")(code(codeValue))
+       <.div(^.marginTop := "70px")(
+          <.pre(^.cls := "code-block")(<.code(codeValue))
         )
 
         )

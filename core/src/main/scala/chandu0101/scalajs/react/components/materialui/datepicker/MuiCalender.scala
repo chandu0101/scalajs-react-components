@@ -7,7 +7,7 @@ import chandu0101.scalajs.react.components.materialui.transiotiongroups.MuiSlide
 import chandu0101.scalajs.react.components.mixins.WindowListeners
 import chandu0101.scalajs.react.components.util.{CommonUtils, DateTime, Events}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.ext.KeyCode
 import org.scalajs.dom.{Event, KeyboardEvent}
 
@@ -33,12 +33,12 @@ object MuiCalender {
       mui_is_5week -> (weekCount == 5),
       mui_is_6week -> (weekCount == 6)
     )
-    div(classSetM(classes))(
+   <.div(^.classSetM(classes))(
       MuiDateDisplay(clsNames = Map(mui_date_picker_calendar_date_display -> true), selectedDate = S.selectedDate),
-      div(cls := mui_date_picker_calendar_container)(
+     <.div(^.cls := mui_date_picker_calendar_container)(
         MuiCalenderToolbar(displayDate = S.displayDate, onLeftTouchTap = B.handleLeftTouchTap, onRightTouchTap = B.handleRightTouchTap),
-        ul(cls := mui_date_picker_calendar_week_title)(
-          dayList.map(day => li(cls := mui_date_picker_calendar_week_title_day)(day))
+        <.ul(^.cls := mui_date_picker_calendar_week_title)(
+          dayList.map(day => <.li(^.cls := mui_date_picker_calendar_week_title_day)(day))
         ),
         MuiSliderIn(direction = S.transitionDirection)(
           MuiCalenderMonth(key = S.displayDate.toDateString(),

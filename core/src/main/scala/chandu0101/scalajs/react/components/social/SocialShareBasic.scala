@@ -3,7 +3,7 @@ package chandu0101.scalajs.react.components.social
 
 import chandu0101.scalajs.react.components.models._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 
 import scala.scalajs.js
@@ -86,14 +86,14 @@ object SocialShareBasic {
     .stateless
     .backend(new Backend(_))
     .render((P, S, B) => {
-      div(cls := "social-share")(
-       div(cls := P.css)(
-         P.fbPost!=null ?= i(cls := "icon-facebook")(onClick --> B.fbShare(P.fbPost)),
-         P.tweet!=null ?=  i(cls := "icon-twitter")(onClick --> B.tweetMe(P.tweet)),
-         P.gplusPost!=null ?= i(cls := "icon-googleplus")(onClick --> B.googlePlusShare(P.gplusPost)),
-         P.tumblrLink!=null ?= i(cls := "icon-tumblr")(onClick --> B.tumblrLink(P.tumblrLink)),
-         P.linkedIn!=null ?= i(cls := "icon-linkedin")(onClick --> B.linkedInShare(P.linkedIn)),
-         P.pintrest!=null ?= i(cls := "icon-pinterest")(onClick --> B.pinIt(P.pintrest))
+     <.div(^.cls := "social-share")(
+      <.div(^.cls := P.css)(
+         P.fbPost!=null ?= <.i(^.cls := "icon-facebook")(^.onClick --> B.fbShare(P.fbPost)),
+         P.tweet!=null ?=  <.i(^.cls := "icon-twitter")(^.onClick --> B.tweetMe(P.tweet)),
+         P.gplusPost!=null ?= <.i(^.cls := "icon-googleplus")(^.onClick --> B.googlePlusShare(P.gplusPost)),
+         P.tumblrLink!=null ?= <.i(^.cls := "icon-tumblr")(^.onClick --> B.tumblrLink(P.tumblrLink)),
+         P.linkedIn!=null ?= <.i(^.cls := "icon-linkedin")(^.onClick --> B.linkedInShare(P.linkedIn)),
+         P.pintrest!=null ?= <.i(^.cls := "icon-pinterest")(^.onClick --> B.pinIt(P.pintrest))
        )
       )
     })

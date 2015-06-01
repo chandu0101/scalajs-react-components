@@ -3,7 +3,7 @@ package chandu0101.scalajs.react.components.materialui.tabs
 
 import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -26,8 +26,8 @@ object MuiTab {
        .initialState(State(false))
        .backend(new Backend(_))
        .render((P,S,B) => {
-           val classes = classSet1("mui-tab-item" ,"mui-tab-is-active" -> P.selected )
-           div(classes,width := P.width,onClick --> B.handleTouchTap)(P.label)
+           val classes = ^.classSet1("mui-tab-item" ,"mui-tab-is-active" -> P.selected )
+          <.div(classes, ^.width := P.width, ^.onClick --> B.handleTouchTap)(P.label)
          })
       .build
 

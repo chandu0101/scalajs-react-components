@@ -2,7 +2,7 @@ package chandu0101.scalajs.react.components.demo.pages.components.demo
 
 import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -13,19 +13,19 @@ object LocalDemoButton {
 
   trait Style {
 
-    val button = Seq(backgroundColor := "#F2706D",
-      border := "1px solid transparent",
-      boxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)",
-      color := "#F5F4F4",
-      cursor := "pointer",
-      display := "inline-block",
-      fontSize := "15px",
-      textDecoration := "none",
-      padding := "5px 7px",
+    val button = Seq(^.backgroundColor := "#F2706D",
+      ^.border := "1px solid transparent",
+      ^.boxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)",
+      ^.color := "#F5F4F4",
+      ^.cursor := "pointer",
+      ^.display := "inline-block",
+      ^.fontSize := "15px",
+      ^.textDecoration := "none",
+      ^.padding := "5px 7px",
       WebkitBoxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)")
 
-    val buttonHover: TagMod = Seq(backgroundColor := "#DA423E",
-      textDecoration := "none")
+    val buttonHover: TagMod = Seq(^.backgroundColor := "#DA423E",
+      ^.textDecoration := "none")
 
 
   }
@@ -49,8 +49,8 @@ object LocalDemoButton {
     .backend(new Backend(_))
     .render((P, S, B) => {
     val buttonStyle = styleSet1(P.style.button, P.style.buttonHover -> S.buttonHover)
-    if (P.linkButton) a(buttonStyle, href := P.href, onMouseEnter --> B.onMouseEnter, onMouseLeave --> B.onMouseLeave)(P.name)
-    else a(buttonStyle, onClick ==> P.onButtonClick, onMouseEnter --> B.onMouseEnter, onMouseLeave --> B.onMouseLeave)(P.name)
+    if (P.linkButton)<.a(buttonStyle, ^.href := P.href, onMouseEnter --> B.onMouseEnter, onMouseLeave --> B.onMouseLeave)(P.name)
+    else<.a(buttonStyle, ^.onClick ==> P.onButtonClick, onMouseEnter --> B.onMouseEnter, onMouseLeave --> B.onMouseLeave)(P.name)
   })
     .build
 

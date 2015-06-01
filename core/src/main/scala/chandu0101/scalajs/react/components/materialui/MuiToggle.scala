@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.materialui
 
 import chandu0101.scalajs.react.components.all._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import japgolly.scalajs.react.{BackendScope, ReactComponentB, ReactEventI, _}
 
 import scala.scalajs.js
@@ -51,7 +51,7 @@ object MuiToggle {
     .initialState(State(toggle = false))
     .backend(new Backend(_))
     .render((P, S, B) => {
-    val toggleElement = div(div(cls := "mui-toggle-track"),
+    val toggleElement = <.div(<.div(^.cls := "mui-toggle-track"),
       MuiPaper(clsNames = Map("mui-toggle-thumb" -> true),zDepth = 1)())
 
      MuiEnhancedSwitch(ref = theEnhancedSwitchRef ,

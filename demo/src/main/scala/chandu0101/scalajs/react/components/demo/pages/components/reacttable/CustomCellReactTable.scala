@@ -5,7 +5,8 @@ import chandu0101.scalajs.react.components.demo.util.SampleData
 import chandu0101.scalajs.react.components.tables.ReactTable
 import chandu0101.scalajs.react.components.util.JsonUtil
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -30,8 +31,8 @@ object CustomCellReactTable {
     """.stripMargin
   val component = ReactComponentB[Unit]("plain")
     .render(P => {
-    div(
-      h2(cls := "mui-font-style-headline")("Custom Cell Factory"),
+   <.div(
+     <.h2(^.cls := "mui-font-style-headline")("Custom Cell Factory"),
       CodeExample(code)(
         ReactTable( data = data ,columns = columns , config = config)
       )
@@ -46,7 +47,7 @@ object CustomCellReactTable {
   // ._3 : Sorting function (use null for no sorting)
 
   // let say if i want to turn all fnames to grey that starts with J (you can return any ReactElement(buttons,well another ReactTable if you want!)
-  def customFname = (fname : Any) => { val name = fname.toString ; if(name.startsWith("J")) span(backgroundColor := "grey")(name).render else span(name).render }
+  def customFname = (fname : Any) => { val name = fname.toString ; if(name.startsWith("J")) <.span(^.backgroundColor := "grey")(name).render else <.span(name).render }
 
   val config  = List(("fname",customFname,null))
 

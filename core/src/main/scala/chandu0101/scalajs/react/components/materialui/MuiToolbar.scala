@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -20,7 +20,7 @@ object MuiToolbar {
 
   val component = ReactComponentB[Props]("toolbar")
     .render((P, C) => {
-      div(classSetM(CommonUtils.cssMapM(P.classNames, MaterialUICss.mui_toolbar -> true)))(
+     <.div(^.classSetM(CommonUtils.cssMapM(P.classNames, MaterialUICss.mui_toolbar -> true)))(
         C
       )
     })

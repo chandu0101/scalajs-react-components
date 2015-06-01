@@ -5,8 +5,8 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.{CssEvents, DomUtil, KeyLine}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
-import org.scalajs.dom.{html, Event}
+import japgolly.scalajs.react.vdom.prefix_<^._
+import org.scalajs.dom.{Event, html}
 
 import scala.scalajs.js
 
@@ -84,8 +84,8 @@ object MuiMenu {
     .render(P => {
     val (item, selectedIndex, zDepth,index, b) = P
     item.mtype match {
-      case Types.LINK => a(cls := mui_menu_item, href := item.route ,key := item.index)(item.text)
-      case Types.SUBHEADER => div(cls := mui_subheader ,key := item.index)(item.text)
+      case Types.LINK => <.a(^.cls := mui_menu_item, ^.href := item.route , ^.key := item.index)(item.text)
+      case Types.SUBHEADER => <.div(^.cls := mui_subheader , ^.key := item.index)(item.text)
       case Types.NESTED => MuiNestedMenuItem(index = item.index, text = item.text, menuItems = item.items, zDepth = zDepth, onItemClick = b.onNestedItemClick ,key = item.index)
       case _ => MuiMenuItem(selected = selectedIndex == index,
         iconClassName = item.icon,

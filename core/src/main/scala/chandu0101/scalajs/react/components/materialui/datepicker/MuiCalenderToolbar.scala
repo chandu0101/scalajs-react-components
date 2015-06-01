@@ -8,7 +8,7 @@ import chandu0101.scalajs.react.components.materialui.svgicons.{MuiNavigationChe
 import chandu0101.scalajs.react.components.materialui.transiotiongroups.MuiSliderIn
 import chandu0101.scalajs.react.components.util.DateTime
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
@@ -29,9 +29,9 @@ object MuiCalenderToolbar {
     .render((P, S, B) => {
     val month = DateTime.getFullMonth(P.displayDate)
     val year = P.displayDate.getFullYear()
-    div(cls := mui_date_picker_calendar_toolbar)(
+   <.div(^.cls := mui_date_picker_calendar_toolbar)(
       MuiSliderIn(direction = S.transitionDirection, className = mui_date_picker_calendar_toolbar_title)(
-        div(key := s"$month _ $year", cls := MuiSliderIn.childCss)(s"$month $year")
+       <.div(^.key := s"$month _ $year", ^.cls := MuiSliderIn.childCss)(s"$month $year")
       ),
       MuiIconButton.withChildren(clsNames = Map(mui_date_picker_calendar_toolbar_button_left -> true), onTouchTap = P.onLeftTouchTap)(MuiNavigationChevronLeft()),
       MuiIconButton.withChildren(clsNames = Map(mui_date_picker_calendar_toolbar_button_right -> true), onTouchTap = P.onRightTouchTap)(MuiNavigationChevronRight())

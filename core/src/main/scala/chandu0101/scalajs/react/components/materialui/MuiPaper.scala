@@ -4,7 +4,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
 
 import scala.scalajs.js
@@ -40,8 +40,8 @@ object MuiPaper {
        val innerClasses = CommonUtils.cssMapM(P.innerClassNames,
         mui_paper_container -> true,
         mui_z_depth_bottom -> true)
-         div(classSetM(classes), P.style!= null ?= P.style )(
-          div(classSetM(innerClasses) ,ref := theInnerContainerRef ) (
+        <.div(^.classSetM(classes), P.style!= null ?= P.style )(
+         <.div(^.classSetM(innerClasses) , ^.ref := theInnerContainerRef ) (
            C
           )
          )

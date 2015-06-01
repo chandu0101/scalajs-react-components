@@ -3,7 +3,8 @@ package chandu0101.scalajs.react.components.demo.pages.components.materialui
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.{MuiDropdownMenu, MuiMenu}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -34,10 +35,10 @@ object MuiDropdownMenuDemo {
 
   val component = ReactComponentB[Unit]("MuiDropdownMenuDemo")
     .render(P => {
-      div(
-       h3("DropDown"),
+     <.div(
+      <.h3("DropDown"),
        CodeExample(code)(
-         div(MuiDropdownMenu(menuItems = menuItems))
+        <.div(MuiDropdownMenu(menuItems = menuItems))
        )
       )
     }).buildU

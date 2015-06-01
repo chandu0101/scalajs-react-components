@@ -4,7 +4,7 @@ package chandu0101.scalajs.react.components.materialui
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
 
 import scala.scalajs.js
@@ -94,9 +94,9 @@ object MuiTextField {
       "mui-is-multiLine" -> P.multiLine
     )
     val inputId = if (P.id.nonEmpty) P.id else "thenewcooltextfield"
-    val errorTextElement = S.errorText.nonEmpty ?= div(cls := "mui-text-field-error")(S.errorText)
-    val hintTextElement = P.hintText.nonEmpty ?= div(cls := "mui-text-field-hint")(P.hintText)
-    val floatingTextElement = P.floatingLabelText.nonEmpty ?= label(cls := "mui-text-field-floating-label", htmlFor := inputId)(P.floatingLabelText)
+    val errorTextElement = S.errorText.nonEmpty ?= <.div(^.cls := "mui-text-field-error")(S.errorText)
+    val hintTextElement = P.hintText.nonEmpty ?= <.div(^.cls := "mui-text-field-hint")(P.hintText)
+    val floatingTextElement = P.floatingLabelText.nonEmpty ?= <.label(^.cls := "mui-text-field-floating-label", ^.htmlFor := inputId)(P.floatingLabelText)
     val inputElement: TagMod = if (P.multiLine) 
     MuiEnhancedTextArea(ref = theMultiInputRef, 
       clsNames = Map("mui-text-field-input" -> true),
@@ -106,23 +106,23 @@ object MuiTextField {
       id = inputId,
       onBlur = B.handleInputBlur,
         onFocus = B.handleInputFocus)
-    else input(id := inputId,
-      onBlur ==> B.handleInputBlur,
-      onFocus ==> B.handleInputFocus,
-      ref := theInputRef,
-      P.name!= null ?= (name := P.name),
-      tpe := P.tpe,
-      onChange ==> B.handleInputChange,
-      P.defaultValue!= null ?= (defaultValue := P.defaultValue),
-      P.value != null ?= (value := P.value),
-      P.onTouchTap != null ?= onClick ==> P.onTouchTap,
-      cls := "mui-text-field-input")
-    div(classSetM(classes))(
+    else <.input(^.id := inputId,
+      ^.onBlur ==> B.handleInputBlur,
+      ^.onFocus ==> B.handleInputFocus,
+      ^.ref := theInputRef,
+      P.name!= null ?= (^.name := P.name),
+      ^.tpe := P.tpe,
+      ^.onChange ==> B.handleInputChange,
+      P.defaultValue!= null ?= (^.defaultValue := P.defaultValue),
+      P.value != null ?= (^.value := P.value),
+      P.onTouchTap != null ?= ^.onClick ==> P.onTouchTap,
+      ^.cls := "mui-text-field-input")
+   <.div(^.classSetM(classes))(
       floatingTextElement,
       hintTextElement,
       inputElement,
-      hr(cls := "mui-text-field-underline"),
-      hr(cls := "mui-text-field-focus-underline"),
+      <.hr(^.cls := "mui-text-field-underline"),
+      <.hr(^.cls := "mui-text-field-focus-underline"),
       errorTextElement
     )
   })

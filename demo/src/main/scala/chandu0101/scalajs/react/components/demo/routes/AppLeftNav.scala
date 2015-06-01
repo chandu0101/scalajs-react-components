@@ -1,7 +1,8 @@
 package chandu0101.scalajs.react.components.demo.routes
 
 import japgolly.scalajs.react.ReactComponentB
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 
 /**
@@ -33,7 +34,7 @@ object AppLeftNav {
 //    .initialState(State(0))
 //    .backend(new Backend(_))
     .render(P => {
-    div()
+   <.div()
 //    val header = div(cls := "logo", onClick --> B.onHeaderClick)("Components")
 //    MuiLeftNav(docked = true, header = header, menuItems = menus, selectedIndex = B.getSelectedIndex, onChange = B.onLeftNavChange)
   }).build

@@ -3,7 +3,8 @@ package chandu0101.scalajs.react.components.demo.pages.components.materialui
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.MuiMenu
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -119,34 +120,34 @@ object MuiMenuDemo {
     .stateless
     .backend(new Backend(_))
     .render((P, S, B) => {
-    div(
-      h3("Label Menu"),
+   <.div(
+     <.h3("Label Menu"),
       CodeExample(labelMenuCode)(
-        div(width := "256px")(
+       <.div(^.width := "256px")(
           MuiMenu(menuItems = labelMenuItems, onItemClick = B.onMenuItemCLick)
         )
       ),
-      h3("Number Menu"),
+     <.h3("Number Menu"),
       CodeExample(numberMenuCode)(
-        div(width := "256px")(
+       <.div(^.width := "256px")(
           MuiMenu(menuItems = numberMenuItems, onItemClick = B.onMenuItemCLick)
         )
       ),
-      h3("Icon Menu"),
+     <.h3("Icon Menu"),
       CodeExample(iconMenuCode)(
-        div(width := "256px")(
+       <.div(^.width := "256px")(
           MuiMenu(menuItems = iconMenuItems, onItemClick = B.onMenuItemCLick)
         )
       ),
-      h3("Filter Menu"),
+     <.h3("Filter Menu"),
       CodeExample(filterMenuCoe)(
-        div(width := "256px")(
+       <.div(^.width := "256px")(
           MuiMenu(menuItems = filterMenuItems, onItemClick = B.onMenuItemCLick)
         )
       ),
-      h3("Nested Menu"),
+     <.h3("Nested Menu"),
       CodeExample(nestedMenuCode)(
-        div(width := "256px")(
+       <.div(^.width := "256px")(
           MuiMenu(menuItems = nestedMenuItems, onItemClick = B.onMenuItemCLick)
         )
       )

@@ -1,7 +1,6 @@
 package chandu0101.scalajs.react.components.demo.pages.util
 
 
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.demo.pages.components.demo.DemoLeftNav
 import chandu0101.scalajs.react.components.demo.routes.AppRouter.AppPage
 import japgolly.scalajs.react._

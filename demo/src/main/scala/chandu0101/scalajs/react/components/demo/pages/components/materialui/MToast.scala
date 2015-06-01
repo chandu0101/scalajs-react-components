@@ -3,7 +3,8 @@ package chandu0101.scalajs.react.components.demo.pages.components.materialui
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.{MuiRaisedButton, MuiToast}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -26,8 +27,8 @@ object MToast {
     .stateless
     .backend(new Backend(_))
     .render((P,S,B) => {
-    div(
-      h2(cls := "mui-font-style-headline")("MuiToast"),
+   <.div(
+     <.h2(^.cls := "mui-font-style-headline")("MuiToast"),
       CodeExample(code)(
         MuiRaisedButton(label = "MuiToast Demo", onTouchTap = B.onButtonTap),
        MuiToast( ref = theToastRef , message = "Hola I am MuiToast")

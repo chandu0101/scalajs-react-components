@@ -6,7 +6,7 @@ import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.materialui.transiotiongroups.MuiSliderIn
 import chandu0101.scalajs.react.components.util.DateTime
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
@@ -28,20 +28,20 @@ object MuiDateDisplay {
     val month = DateTime.getShortMonth(P.selectedDate)
     val day = P.selectedDate.getDate()
     val year = P.selectedDate.getFullYear()
-    div(classSet1M(mui_date_picker_date_display, P.clsNames))(
+   <.div(^.classSet1M(mui_date_picker_date_display, P.clsNames))(
       MuiSliderIn(className = mui_date_picker_date_display_dow, direction = S.transitionDirection)(
-        div(key := dayOfWeek, cls := MuiSliderIn.childCss)(dayOfWeek)
+       <.div(^.key := dayOfWeek, ^.cls := MuiSliderIn.childCss)(dayOfWeek)
       ),
-      div(cls := mui_date_picker_date_display_date)(
+     <.div(^.cls := mui_date_picker_date_display_date)(
 
         MuiSliderIn(className = mui_date_picker_date_display_month, direction = S.transitionDirection)(
-          div(key := month, cls := MuiSliderIn.childCss)(month)
+         <.div(^.key := month, ^.cls := MuiSliderIn.childCss)(month)
         ),
         MuiSliderIn(className = mui_date_picker_date_display_day, direction = S.transitionDirection)(
-          div(key := day, cls := MuiSliderIn.childCss)(day)
+         <.div(^.key := day, ^.cls := MuiSliderIn.childCss)(day)
         ),
         MuiSliderIn(className = mui_date_picker_date_display_year, direction = S.transitionDirection)(
-          div(key := year, cls := MuiSliderIn.childCss)(year)
+         <.div(^.key := year, ^.cls := MuiSliderIn.childCss)(year)
         )
       )
 

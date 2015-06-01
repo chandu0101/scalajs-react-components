@@ -3,7 +3,8 @@ package chandu0101.scalajs.react.components.demo.pages.components.materialui
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.{MuiLeftNav, MuiMenu, MuiRaisedButton}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -54,16 +55,16 @@ object MuiLeftNavDemo {
     .initialState(State(docked = false))
     .backend(new Backend(_))
     .render((P,S,B) => {
-      div(
-       h3("Left Nav"),
+     <.div(
+      <.h3("Left Nav"),
        CodeExample(code)(
-        div(
+       <.div(
           MuiRaisedButton( label = "Toggle Docked Left Nav" , onTouchTap = B.onDockedLeftNavClick),
-          br(),
-          br(),
+          <.br(),
+          <.br(),
           MuiRaisedButton( label = "Show Hideable Left Nav" , onTouchTap = B.onHideableLeftNavClick),
-          br(),
-          br(),
+          <.br(),
+          <.br(),
           MuiLeftNav(ref = theDockedLeftNavRef , docked = S.docked , menuItems = menuItems),
           MuiLeftNav(ref = theHideableLeftNavRef , menuItems = menuItems ,docked = false)
         )

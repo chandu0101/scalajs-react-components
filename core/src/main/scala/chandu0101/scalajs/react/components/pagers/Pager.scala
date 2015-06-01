@@ -1,6 +1,6 @@
 package chandu0101.scalajs.react.components.pagers
 
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import japgolly.scalajs.react.{BackendScope, ReactComponentB, SyntheticEvent, _}
 import org.scalajs.dom.html
 
@@ -26,9 +26,9 @@ object Pager {
       "disabled" -> (P.offset == 0))
     val nextClasses = Map("next" -> (P.offset + P.itemsPerPage < P.totalItems),
       "disabled" -> (P.offset + P.itemsPerPage >= P.totalItems))
-    ul(cls := P.css.pager)(
-      li(classSetM(prevClasses))(a(onClick ==> P.previousClick)("← Previous")),
-      li(classSetM(nextClasses))(a(onClick ==> P.nextClick)("Next →"))
+    <.ul(^.cls := P.css.pager)(
+      <.li(^.classSetM(prevClasses))(<.a(^.onClick ==> P.previousClick)("← Previous")),
+      <.li(^.classSetM(nextClasses))(<.a(^.onClick ==> P.nextClick)("Next →"))
     )
   }).build
 

@@ -4,7 +4,8 @@ import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.fascades._
 import chandu0101.scalajs.react.components.maps.GoogleMap
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 /**
  * Created by chandrasekharkode .
@@ -52,8 +53,8 @@ object CustomMarkerIcon {
     """.stripMargin
   val component = ReactComponentB[Unit]("plain")
     .render(P => {
-    div(
-      h2(cls := "mui-font-style-headline")("Custom Marker Icon"),
+   <.div(
+     <.h2(^.cls := "mui-font-style-headline")("Custom Marker Icon"),
       CodeExample(code)(
         GoogleMap(center = latlng , markers = markers , zoom = 10)
       )

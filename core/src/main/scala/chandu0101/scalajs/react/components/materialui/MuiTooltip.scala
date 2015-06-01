@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
 
 import scala.scalajs.js
@@ -45,9 +45,9 @@ object MuiTooltip {
     .backend(new Backend(_))
     .render((P, S, B) => {
       val classes = CommonUtils.cssMap1M(mui_tooltip,P.clsNames, mui_is_shown -> P.show, mui_is_touch -> P.touch)
-      div(classSetM(classes))(
-        div( ref := toolRipple , cls := mui_tooltip_ripple),
-          span(cls := mui_tooltip_label)(P.label)
+     <.div(^.classSetM(classes))(
+       <.div( ^.ref := toolRipple , ^.cls := mui_tooltip_ripple),
+          <.span(^.cls := mui_tooltip_label)(P.label)
       )
     }).domType[html.Element]
     .componentDidMount($ => $.backend.setRippleSize($.getDOMNode()))

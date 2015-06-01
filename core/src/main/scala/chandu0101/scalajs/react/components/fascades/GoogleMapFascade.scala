@@ -4,7 +4,7 @@ import japgolly.scalajs.react.TopNode
 import org.scalajs.dom.Event
 
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{global => g, literal => json, newInstance => jsnew}
+import scala.scalajs.js.Dynamic.{global ⇒ g, literal ⇒ json, newInstance ⇒ jsnew}
 import scala.scalajs.js.JSConverters.genTravConvertible2JSRichGenTrav
 import scala.scalajs.js.annotation.JSName
 

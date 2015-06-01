@@ -2,9 +2,8 @@ package chandu0101.scalajs.react.components.materialui
 
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
-import chandu0101.scalajs.react.components.util.{DomUtil, CommonUtils}
+import chandu0101.scalajs.react.components.util.{CommonUtils, DomUtil}
 import japgolly.scalajs.react._
-import org.scalajs.dom
 
 import scala.scalajs.js
 

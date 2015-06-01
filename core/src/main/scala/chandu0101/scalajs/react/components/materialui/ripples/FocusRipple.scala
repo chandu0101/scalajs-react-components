@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
 
 import scala.scalajs.js
@@ -34,8 +34,8 @@ object FocusRipple {
        val classes = CommonUtils.cssMap1M(mui_focus_ripple,
          P.clsNames,
          mui_is_shown -> P.show)
-       div(classSetM(classes))(
-         div( cls := mui_focus_ripple_inner)
+      <.div(^.classSetM(classes))(
+        <.div( ^.cls := mui_focus_ripple_inner)
        )
     }).domType[html.Element]
     .componentDidMount(scope => scope.backend.setRippleSize(scope.getDOMNode()))

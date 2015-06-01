@@ -1,7 +1,6 @@
 package chandu0101.scalajs.react.components.demo.pages.components.materialui
 
 
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.materialui.MuiTextField
 import japgolly.scalajs.react._

@@ -3,7 +3,7 @@ package chandu0101.scalajs.react.components.materialui
 
 import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
 
 import scala.scalajs.js
@@ -69,12 +69,12 @@ object MuiEnhancedTextArea {
     .initialStateP(p => State(p.rows * 24))
     .backend(new Backend(_))
     .render((P, S, B) => {
-      val classes = classSet1M("mui-enhanced-textarea",P.clsNames)
-      val style = Seq(height := s"${S.heightS}px")
+      val classes = ^.classSet1M("mui-enhanced-textarea",P.clsNames)
+      val style = Seq(^.height := s"${S.heightS}px")
       val textareaClassName = s"mui-enhanced-textarea-input ${P.textareaClassName}"
-      div(classes)(
-       textarea(ref := theShadowRef , cls := "mui-enhanced-textarea-shadow",rows := P.rows ,tabIndex := "-1" ),
-       textarea(ref := theInputRef ,cls := textareaClassName , rows := P.rows, style,onChange ==> B.handleChange ,onFocus ==> B.handleInputFocus,onBlur ==> B.handleInputBlur,id := P.id)
+     <.div(classes)(
+       <.textarea(^.ref := theShadowRef , ^.cls := "mui-enhanced-textarea-shadow", ^.rows := P.rows , ^.tabIndex := "-1" ),
+       <.textarea(^.ref := theInputRef , ^.cls := textareaClassName , ^.rows := P.rows, style, ^.onChange ==> B.handleChange , ^.onFocus ==> B.handleInputFocus, ^.onBlur ==> B.handleInputBlur, ^.id := P.id)
       )
     })
     .build

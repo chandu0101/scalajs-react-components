@@ -3,7 +3,7 @@ package chandu0101.scalajs.react.components.textfields
 
 import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.html
 
@@ -23,10 +23,10 @@ object AutoSizeInput {
     .backend(new Backend(_))
     .render((P, S, B) => {
     val nbpsValue = P.value.replaceAll(" ", "&nbsp;")
-    val inputStyle: TagMod = P.style.autoSizeInput.+(width := S.inputWidth)
-    div(P.style.autoSizeInputWrapper)(
-      input(P.inputProps, ref := theInputRef, inputStyle),
-      div(ref := theSizerRef, P.style.sizerStyle)(dangerouslySetInnerHtml(nbpsValue))
+    val inputStyle: TagMod = P.style.autoSizeInput.+(^.width := S.inputWidth)
+   <.div(P.style.autoSizeInputWrapper)(
+      <.input(P.inputProps, ^.ref := theInputRef, inputStyle),
+     <.div(^.ref := theSizerRef, P.style.sizerStyle)(^.dangerouslySetInnerHtml(nbpsValue))
     )
 
   })
@@ -44,11 +44,11 @@ object AutoSizeInput {
 
   trait Style {
 
-    def autoSizeInputWrapper: TagMod = Seq[TagMod](display := "inline-block")
+    def autoSizeInputWrapper: TagMod = Seq[TagMod](^.display := "inline-block")
 
     def autoSizeInput: TagMod = Seq[TagMod]()
 
-    def sizerStyle = Seq(position := "absolute", visibility := "hidden", height := 0, width := 0, overflow := "scroll", whiteSpace := "wrap")
+    def sizerStyle = Seq(^.position := "absolute", ^.visibility := "hidden", ^.height := 0, ^.width := 0, ^.overflow := "scroll", ^.whiteSpace := "wrap")
 
   }
 

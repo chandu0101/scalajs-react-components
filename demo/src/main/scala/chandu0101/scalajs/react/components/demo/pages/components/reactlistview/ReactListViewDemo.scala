@@ -1,6 +1,5 @@
 package chandu0101.scalajs.react.components.demo.pages.components.reactlistview
 
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.demo.pages.util.CodeExample
 import chandu0101.scalajs.react.components.listviews.ReactListView
 import japgolly.scalajs.react._

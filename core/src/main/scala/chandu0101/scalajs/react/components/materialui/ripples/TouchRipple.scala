@@ -7,7 +7,7 @@ import chandu0101.scalajs.react.components.util.DomUtil
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
-import org.scalajs.dom.{html, MouseEvent}
+import org.scalajs.dom.{MouseEvent, html}
 
 import scala.collection.mutable.ListBuffer
 import scala.scalajs.js

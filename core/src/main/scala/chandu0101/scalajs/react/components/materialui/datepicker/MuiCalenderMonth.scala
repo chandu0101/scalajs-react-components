@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.DateTime
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
@@ -25,7 +25,7 @@ object MuiCalenderMonth {
     .initialState(State(checked = false))
     .backend(new Backend(_))
     .render((P, S, B) => {
-    div(classSet1M(mui_date_picker_calendar_month, P.clsNames))(
+   <.div(^.classSet1M(mui_date_picker_calendar_month, P.clsNames))(
       B.getWeekElements
     )
   })
@@ -39,7 +39,7 @@ object MuiCalenderMonth {
 
     def getWeekElements = {
       DateTime.getWeekArray(t.props.displayDate).zipWithIndex.map {
-        case (week, i) => div(cls := mui_date_picker_calendar_month_week, key := i)(getDayElements(week))
+        case (week, i) => <.div(^.cls := mui_date_picker_calendar_month_week, ^.key := i)(getDayElements(week))
       }
     }
 

@@ -1,7 +1,8 @@
 package chandu0101.scalajs.react.components.util
 
 
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
+
 
 
 /**

@@ -3,7 +3,7 @@ package chandu0101.scalajs.react.components.searchboxes
 
 import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
@@ -15,21 +15,21 @@ import scala.scalajs.js
 object ReactSearchBox {
 
   trait Style {
-    def searchBox : TagMod =  Seq( position := "relative" ,
-      marginBottom := "10px")
+    def searchBox : TagMod =  Seq( ^.position := "relative" ,
+      ^.marginBottom := "10px")
 
-    def searchInput : TagMod = Seq( display := "block",
-      border := "none",
-      fontSize := "13px",
-      fontWeight := 300,
-      padding := "3px",
-      backgroundColor := "transparent",
-      boxShadow := "none",
-      borderBottom := "1px solid #B2ADAD")
+    def searchInput : TagMod = Seq( ^.display := "block",
+      ^.border := "none",
+      ^.fontSize := "13px",
+      ^.fontWeight := 300,
+      ^.padding := "3px",
+      ^.backgroundColor := "transparent",
+      ^.boxShadow := "none",
+      ^.borderBottom := "1px solid #B2ADAD")
 
-    def searchInputFocus : TagMod = Seq(outline := "none" ,
-      boxShadow := "none" ,
-      borderBottom := "1.5px solid #03a9f4")
+    def searchInputFocus : TagMod = Seq(^.outline := "none" ,
+      ^.boxShadow := "none" ,
+      ^.borderBottom := "1.5px solid #03a9f4")
 
   }
 
@@ -51,8 +51,8 @@ object ReactSearchBox {
     .initialState(State())
     .backend(new Backend(_))
     .render((P, S, B) => {
-      div(P.style.searchBox)(
-       input(P.style.searchInput,S.focused ?= P.style.searchInputFocus , placeholder := "Search ..", onKeyUp ==> B.onTextChange ,onFocus --> B.onFocus ,onBlur --> B.onBlur)
+     <.div(P.style.searchBox)(
+       <.input(P.style.searchInput,S.focused ?= P.style.searchInputFocus , ^.placeholder := "Search ..", ^.onKeyUp ==> B.onTextChange , ^.onFocus --> B.onFocus , ^.onBlur --> B.onBlur)
       )
     })
     .build

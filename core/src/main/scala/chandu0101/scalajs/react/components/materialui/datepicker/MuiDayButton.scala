@@ -6,7 +6,7 @@ import chandu0101.scalajs.react.components.materialui.MuiEnhancedButton
 import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 import chandu0101.scalajs.react.components.util.{CommonUtils, DateTime}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
@@ -30,11 +30,11 @@ object MuiDayButton {
       mui_is_selected -> P.selected)
     if (P.date != null) {
       MuiEnhancedButton(clsNames = classes, onTouchTap = B.handleTouchTap, disabled = false)(
-        div(cls := mui_date_picker_day_button_select, key := "daydiv"),
-        span(cls := mui_date_picker_day_button_label, key := "dayspan")(P.date.getDate())
+       <.div(^.cls := mui_date_picker_day_button_select, ^.key := "daydiv"),
+        <.span(^.cls := mui_date_picker_day_button_label, ^.key := "dayspan")(P.date.getDate())
       )
     } else {
-      span(classSetM(classes))
+      <.span(^.classSetM(classes))
     }
   })
     .build

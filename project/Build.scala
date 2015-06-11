@@ -8,7 +8,8 @@ object ScalajsReactComponents extends Build {
 
   val Scala211 = "2.11.6"
 
-  val scalajsReactVersion = "0.9.0"
+  val scalajsReactVersion = "0.9.1-SNAPSHOT"
+  val scalaCSSVersion = "0.2.0"
 
   type PE = Project => Project
 
@@ -113,7 +114,9 @@ object ScalajsReactComponents extends Build {
     .settings(
       name := "core",
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core" % scalajsReactVersion),
+        "com.github.japgolly.scalajs-react" %%% "core" % scalajsReactVersion,
+        "com.github.japgolly.scalacss" %%% "core" % scalaCSSVersion,
+        "com.github.japgolly.scalacss" %%% "ext-react" % scalaCSSVersion),
       target in Compile in doc := baseDirectory.value / "docs"
     )
 

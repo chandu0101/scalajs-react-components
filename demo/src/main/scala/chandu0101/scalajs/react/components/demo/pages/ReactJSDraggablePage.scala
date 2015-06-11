@@ -1,18 +1,18 @@
 package chandu0101.scalajs.react.components.demo.pages
 
 import chandu0101.scalajs.react.components.demo.components.LeftNavPage
-import chandu0101.scalajs.react.components.demo.routes.{GoogleMapRouteModule, LeftRoute}
+import chandu0101.scalajs.react.components.demo.routes.{LeftRoute, ReactJSDraggableRouteModule}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.extra.router2.RouterCtl
 
 /**
  * Created by chandrasekharkode .
  */
-object GoogleMapPage {
+object ReactJSDraggablePage {
 
-  val component = ReactComponentB[Props]("GoogleMapPage")
+  val component = ReactComponentB[Props]("ReactJSDraggablePage")
     .render((P) => {
-    LeftNavPage(GoogleMapRouteModule.menu, P.selectedPage, P.ctrl)
+    LeftNavPage(ReactJSDraggableRouteModule.menu, P.selectedPage, P.ctrl)
   })
     .build
 

@@ -1,5 +1,6 @@
 package chandu0101.scalajs.react.components.demo
 
+import chandu0101.scalajs.react.components.demo.css.AppCSS
 import chandu0101.scalajs.react.components.demo.routes.AppRouter
 import japgolly.scalajs.react.React
 import org.scalajs.dom
@@ -24,6 +25,7 @@ object ReactApp extends JSApp {
       dom.document.body.className.replace("pg-loading","")
       dom.document.body.className += " pg-loaded"
     }
-    React.render(AppRouter.C(), dom.document.getElementById("container"))
+    AppCSS.load
+    AppRouter.router().render(dom.document.getElementById("container"))
   }
 }

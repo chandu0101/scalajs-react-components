@@ -135,16 +135,6 @@ object ReactDraggable {
       )(
         C
       )
-
-//    val dClass = if(S.dragging) " react-draggable-dragging" else ""
-//       val stl2 = js.Dynamic.literal("top" -> topValue ,"left" -> leftValue)
-//        val newProps : Map[String,js.Any] = Map("style" -> stl2,
-//           "className"  ->  "react-draggable".concat(dClass),
-//           "onMouseDown" -> B.handleDragStart _,
-//           "onMouseUp" -> B.handleDragEnd _
-//          )
-//
-//        ReactCloneWithProps(React.Children.only(C),newProps)
     })
     .componentWillReceiveProps((scope,nextProps) => {
        if(nextProps.moveOnStartChange) scope.modState(_.copy(clientX = nextProps.start.x.toInt,clientY = nextProps.start.y.toInt))

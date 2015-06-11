@@ -2,12 +2,13 @@
 package chandu0101.scalajs.react.components.demo.pages
 
 import chandu0101.scalajs.react.components.all._
-import chandu0101.scalajs.react.components.demo.pages.components.demo.LocalDemoButton
-import chandu0101.scalajs.react.components.demo.pages.util.ComponentGridItem
-import chandu0101.scalajs.react.components.demo.routes.AppRouter.AppPage
-import chandu0101.scalajs.react.components.demo.util.{ComponentInfo, Components}
+import chandu0101.scalajs.react.components.demo.components.ComponentGridItem
+import chandu0101.scalajs.react.components.demo.components.demo.LocalDemoButton
+import chandu0101.scalajs.react.components.demo.routes.AppRouter
+import chandu0101.scalajs.react.components.demo.routes.AppRouter.Page
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.extra.router2.RouterCtl
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 /**
@@ -15,6 +16,7 @@ import japgolly.scalajs.react.vdom.prefix_<^._
  */
 object HomePage {
 
+  case class ComponentInfo(name: String, imagePath: String, route: Page, tags: Stream[String])
 
   object Style {
 
@@ -65,37 +67,37 @@ object HomePage {
 
   }
 
-  case class State(filterText: String = "", results: List[ComponentInfo])
+  case class State(filterText: String = "", results: Vector[ComponentInfo])
 
-  class Backend(t: BackendScope[_, State]) {
+  class Backend(t: BackendScope[RouterCtl[Page], State]) {
 
     def onTextChange(text: String) = {
-      val results = Components.all.filter(c => c.tags.exists(s => s.contains(text)))
+      val results = AppRouter.homePageMenu.filter(c => c.tags.exists(s => s.contains(text)))
       t.modState(_.copy(results = results, filterText = text))
     }
   }
 
-  val component = ReactComponentB[Unit]("homepage")
-    .initialState(State("", Components.all))
+  val component = ReactComponentB[RouterCtl[Page]]("homepage")
+    .initialState(State("", AppRouter.homePageMenu))
     .backend(new Backend(_))
     .render((P, S, B) => {
     <.div(
       <.div(Style.info, ^.key := "info")(
         <.h3(Style.infoContent)("Reusable ", <.a(^.href := "https://github.com/japgolly/scalajs-react",Style.infoLink ,^.target := "_blank")("scalajs-react"), " Components , want to Contribute ? "),
-        LocalDemoButton(name ="Welcome Mama",linkButton =  true,href  = AppPage.contribute.path.value)
+        LocalDemoButton(name ="Welcome Mama",linkButton =  true,href  = P.urlFor(AppRouter.Contribute).value)
       ),
       <.div(Style.searchSection)(
        ReactSearchBox(onTextChange = B.onTextChange),
         !S.filterText.isEmpty ?= <.strong(alignSelf := "center" ,^.paddingLeft := "30px")(s"Results : ${S.results.length}")
       ),
       <.div(Style.componentsGrid)(
-          S.results.map(c => ComponentGridItem(c.name, c.url, c.imagePath))
+          S.results.map(c => ComponentGridItem(c.name, c.route, c.imagePath,P))
       )
     )
   })
-    .buildU
+    .build
 
 
-  def apply() = component()
+  def apply(ctrl : RouterCtl[Page]) = component(ctrl)
 
 }

@@ -23,6 +23,6 @@ project/plugins/project/
 
 #project
 
-demo/build/
+demo/assets/
 
 demo/node_modules/

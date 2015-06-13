@@ -1,16 +1,21 @@
 var React = require('react/addons'),
-    hljs = require("highlight.js"),
     mui = require("material-ui"),
     injectTapEventPlugin = require('react-tap-event-plugin');
 
-
+require("./js/highlight.pak.js")
 
 injectTapEventPlugin();
 
 
 window.React = React;
-window.hljs = hljs;
 window.mui = mui;
+
+
+
+//css
+
+require("./styles/default.css")
+
 
 
 //images

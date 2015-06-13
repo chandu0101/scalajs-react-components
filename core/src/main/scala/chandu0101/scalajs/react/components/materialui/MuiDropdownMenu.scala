@@ -1,90 +1,65 @@
 package chandu0101.scalajs.react.components.materialui
 
 
-import chandu0101.scalajs.react.components.all._
-import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
-import chandu0101.scalajs.react.components.materialui.svgicons.MuiDropDownArrow
-import chandu0101.scalajs.react.components.mixins.ClickAwayable
-import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
-import org.scalajs.dom.html
+import materialui.Mui
 
 import scala.scalajs.js
-
-
+import scala.scalajs.js.Dynamic.{literal => json}
+import scala.scalajs.js.{Array => JArray}
 
 /**
- * Created by chandrasekharkode .
- * 
- *    autoWidth: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
-    menuItems: React.PropTypes.array.isRequired* *
- */
+key: PropTypes.string,
+style: PropTypes.js.Any,
+ref: PropTypes.String,
+  className: React.PropTypes.string,
+    autoWidth: React.PropTypes.bool,
+    onChange: React.PropTypes.(ReactEvent,Int,Item) => Unit,
+    menuItems: React.PropTypes.JArray[Item].isRequired,
+    menuItemStyle: React.PropTypes.js.Any,
+    selectedIndex: React.PropTypes.number
+
+  */
+
 object MuiDropdownMenu {
 
 
+  def apply(menuItems: JArray[Item],
+            style: js.UndefOr[js.Any] = js.undefined,
+            onChange: js.UndefOr[(ReactEvent, Int, Item) => Unit] = js.undefined,
+            ref: js.UndefOr[String] = js.undefined,
+            menuItemStyle: js.UndefOr[js.Any] = js.undefined,
+            key: js.UndefOr[String] = js.undefined,
+            autoWidth: js.UndefOr[Boolean] = js.undefined,
+            className: js.UndefOr[String] = js.undefined,
+            selectedIndex: js.UndefOr[Int] = js.undefined) = {
 
-  case class State(open: Boolean = false, selectedIndex: Int)
+    val p = js.Dynamic.literal()
+    p.updateDynamic("menuItems")(menuItems.map(_.toJson))
+    style.foreach(v => p.updateDynamic("style")(v))
+    onChange.foreach(v => p.updateDynamic("onChange")(v))
+    ref.foreach(v => p.updateDynamic("ref")(v))
+    menuItemStyle.foreach(v => p.updateDynamic("menuItemStyle")(v))
+    key.foreach(v => p.updateDynamic("key")(v))
+    autoWidth.foreach(v => p.updateDynamic("autoWidth")(v))
+    className.foreach(v => p.updateDynamic("className")(v))
+    selectedIndex.foreach(v => p.updateDynamic("selectedIndex")(v))
 
-  class Backend(t: BackendScope[Props, State]) extends ClickAwayable{
-
-    def setWidth(el: html.Element) = {
-      val menuItemDom = theMenuRef(t).get.getDOMNode()
-      el.style.width = menuItemDom.offsetWidth.toString.concat("px")
-    }
-
-    def onControlClick(e: ReactEventI) = {
-      t.modState(s => State(!s.open, s.selectedIndex))
-    }
-
-    def onMenuItemClick(e: ReactEventI, index: Int ,route :String) = {
-       println(s"selected index : $index")
-      if (t.props.onChange != null && t.state.selectedIndex != index) t.props.onChange(e, index,route)
-      t.modState(s => State(open = false, index))
-    }
-
-    override def onClickAway(): Unit = t.modState(_.copy(open = false))
-
+    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.DropDownMenu)
+    f(p).asInstanceOf[ReactComponentU_]
   }
 
-  val theMenuRef = Ref.to(MuiMenu.component,"themenurefDropdown")
-
-  val component = ReactComponentB[Props]("MuiDropdownMenu")
-    .initialStateP(p => State( selectedIndex = p.selectedIndex))
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-      val classes = CommonUtils.cssMap1M(mui_drop_down_menu, P.clsNames , mui_open -> S.open)
-      <.div(^.classSetM(classes))(
-        <.div(^.cls := mui_menu_control, ^.onClick ==> B.onControlClick)(
-          MuiPaper(clsNames = Map(mui_menu_control_bg -> true), zDepth = 0)(),
-          <.div(^.cls := mui_menu_label)(
-            P.menuItems(S.selectedIndex).text
-          ),
-        MuiDropDownArrow(^.cls := "mui-menu-drop-down-icon" ,^.key := "dropdownicon"),
-          <.div(^.cls := mui_menu_control_underline)
-        ),
-        MuiMenu(ref = theMenuRef, 
-          autoWidth = P.autoWidth, 
-          selectedIndex = S.selectedIndex, 
-          menuItems = P.menuItems,
-          hideable = true,
-          visible = S.open, 
-          onItemClick = B.onMenuItemClick )
-      )
-    }).domType[html.Element]
-    .configure(ClickAwayable.mixin)
-    .componentDidMount($ => {
-      if ($.props.autoWidth) $.backend.setWidth($.getDOMNode())
-    })
-    .componentWillReceiveProps((scope, nextProps) => {
-     scope.modState(_.copy(selectedIndex = nextProps.selectedIndex))
-    })
-    .build
-
-  case class Props(clsNames: CssClassType, autoWidth: Boolean, onChange: REventIIntStringUnit, menuItems: List[MuiMenu.Item], selectedIndex: Int)
-
-  def apply(clsNames: CssClassType = Map(), autoWidth: Boolean = true, onChange: REventIIntStringUnit = null, menuItems: List[MuiMenu.Item], selectedIndex: Int = 0,key : js.Any = {},ref :  js.UndefOr[String] = "") = {
-    component.set(key,ref)(Props(clsNames, autoWidth, onChange, menuItems, selectedIndex))
+  case class Item(payload: String, text: String) {
+    def toJson = {
+      val p = json()
+      p.updateDynamic("text")(text)
+      p.updateDynamic("payload")(payload)
+      p
+    }
   }
+
+  object Item {
+    def fromJson(obj: js.Dynamic) = Item(text = obj.text.toString, payload = obj.payload.toString)
+  }
+
 }

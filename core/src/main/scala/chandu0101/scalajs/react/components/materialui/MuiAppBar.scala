@@ -1,52 +1,63 @@
 package chandu0101.scalajs.react.components.materialui
 
 
-import chandu0101.scalajs.react.components.all._
-import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
-import chandu0101.scalajs.react.components.materialui.svgicons.MuiNavigationMenuIcon
-import chandu0101.scalajs.react.components.util.CommonUtils._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import materialui.Mui
 
 import scala.scalajs.js
+import scala.scalajs.js.{UndefOr, undefined}
 
 
 /**
  * Created by chandrasekharkode .
  *
- * clsNames: React.PropTypes.css,
-   key: React.PropTypes.key,
-   ref: React.PropTypes.ref,
-   onMenuIconButtonTouchTap: React.PropTypes.func,
+ * key: PropTypes.string,
+   ref: PropTypes.String,
+   onLeftIconButtonTouchTap: React.PropTypes.ReactEventH => Unit,
+    onRightIconButtonTouchTap: React.PropTypes.ReactEventH => Unit,
     showMenuIconButton: React.PropTypes.bool,
+    iconClassNameLeft: React.PropTypes.string,
+    iconClassNameRight: React.PropTypes.string,
+    iconElementLeft: React.PropTypes.element,
+    iconElementRight: React.PropTypes.element,
+    iconStyleRight: React.PropTypes.object,
     title : React.PropTypes.string,
-    zDepth: React.PropTypes.number
+    zDepth: React.PropTypes.number,
  */
-object MuiAppBar {
 
-  class Backend(t: BackendScope[Props, _]) {
-    def onMenuIconButtonTouchTap(e: ReactEventI) = {
-      if (t.props.onMenuIconButtonTouchTap != null) t.props.onMenuIconButtonTouchTap(e)
-    }
+
+case class MuiAppBar(iconStyleRight: UndefOr[js.Object] = undefined,
+                  ref: UndefOr[String] = undefined,
+                  iconClassNameRight: UndefOr[String] = undefined,
+                  iconClassNameLeft: UndefOr[String] = undefined,
+                  zDepth: UndefOr[Int] = undefined,
+                  key: UndefOr[String] = undefined,
+                  iconElementLeft: UndefOr[ReactElement] = undefined,
+                  showMenuIconButton: UndefOr[Boolean] = undefined,
+                  title: UndefOr[String] = undefined,
+                  onLeftIconButtonTouchTap: UndefOr[ReactEventH => Unit] = undefined,
+                  iconElementRight: UndefOr[ReactElement] = undefined,
+                  onRightIconButtonTouchTap: UndefOr[ReactEventH => Unit] = undefined) {
+  def toJS = {
+    val p = js.Dynamic.literal()
+    iconStyleRight.foreach(v => p.updateDynamic("iconStyleRight")(v))
+    ref.foreach(v => p.updateDynamic("ref")(v))
+    iconClassNameRight.foreach(v => p.updateDynamic("iconClassNameRight")(v))
+    iconClassNameLeft.foreach(v => p.updateDynamic("iconClassNameLeft")(v))
+    zDepth.foreach(v => p.updateDynamic("zDepth")(v))
+    key.foreach(v => p.updateDynamic("key")(v))
+    iconElementLeft.foreach(v => p.updateDynamic("iconElementLeft")(v))
+    showMenuIconButton.foreach(v => p.updateDynamic("showMenuIconButton")(v))
+    title.foreach(v => p.updateDynamic("title")(v))
+    onLeftIconButtonTouchTap.foreach(v => p.updateDynamic("onLeftIconButtonTouchTap")(v))
+    iconElementRight.foreach(v => p.updateDynamic("iconElementRight")(v))
+    onRightIconButtonTouchTap.foreach(v => p.updateDynamic("onRightIconButtonTouchTap")(v))
+    p
   }
 
-  val component = ReactComponentB[Props]("MuiAppBar")
-    .stateless
-    .backend(new Backend(_))
-    .render((P, C, S, B) => {
-      MuiPaper(rounded = false, clsNames = cssMap1M(mui_app_bar,P.clsNames), zDepth = P.zDepth)(
-        if (P.showMenuIconButton) MuiIconButton.withChildren(clsNames = Map(mui_app_bar_navigation_icon_button -> true), onTouchTap = B.onMenuIconButtonTouchTap ,key = "iconButton")(MuiNavigationMenuIcon()) else "",
-        if (P.title.nonEmpty)<.h1(^.cls := mui_app_bar_title , ^.key := P.title,P.title) else "",
-          C
-      )
-    })
-    .build
-
-
-  case class Props( clsNames : CssClassType ,onMenuIconButtonTouchTap : REventIUnit ,ref :  js.UndefOr[String] ,zDepth : Int ,key : js.Any ,showMenuIconButton : Boolean ,title : String  )
-
-  def apply( clsNames : CssClassType = Map(),onMenuIconButtonTouchTap : REventIUnit = null ,ref :  js.UndefOr[String] = "",zDepth : Int = 0,key : js.Any = {},showMenuIconButton : Boolean = true,title : String = ""  ) =
-    component.set(key,ref)(Props(clsNames,onMenuIconButtonTouchTap,ref,zDepth,key,showMenuIconButton,title))
-
-
+  def apply(children: ReactNode*) = {
+    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.AppBar)
+    f(toJS, children.toJsArray).asInstanceOf[ReactComponentU_]
+  }
 }
+

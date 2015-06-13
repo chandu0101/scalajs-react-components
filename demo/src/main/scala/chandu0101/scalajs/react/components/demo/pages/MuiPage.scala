@@ -1,17 +1,24 @@
 package chandu0101.scalajs.react.components.demo.pages
+
+import chandu0101.scalajs.react.components.demo.components.LeftNavPage
+import chandu0101.scalajs.react.components.demo.routes.{LeftRoute, MuiRouteModule}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
-import scala.scalajs.js
+import japgolly.scalajs.react.extra.router2.RouterCtl
+
 import scala.scalajs.js.Dynamic.{global => g}
-import scalacss.Defaults._
-import scalacss.ScalaCssReact._
+
 object MuiPage {
 
-  def installMuiContext[P, S, B, N <: TopNode]: ReactComponentSpec[P, S, B, N] => Unit =
-    spec => {
-      val t = spec.asInstanceOf[js.Dynamic]
-      t.updateDynamic("childContextTypes")(js.Dynamic.literal("muiTheme" -> g.React.PropTypes.`object`): js.Object)
-      t.updateDynamic("getChildContext")((() => js.Dynamic.literal("muiTheme" -> g.mui.Styles.ThemeManager().muiThemeManager.getCurrentTheme())): js.Function)
-    }
+  val component = ReactComponentB[Props]("MuiPage")
+    .render((P) => {
+    LeftNavPage(MuiRouteModule.menu, P.selectedPage, P.ctrl)
+  })
+    .hackSpec(materialui.installMuiContext)
+    .build
+
+  case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
+
+  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
+
 
 }

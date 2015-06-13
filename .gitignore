@@ -20,3 +20,9 @@ project/plugins/project/
 
 .idea
 .idea_modules
+
+#project
+
+demo/build/
+
+demo/node_modules/

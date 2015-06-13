@@ -1,5 +1,6 @@
 package chandu0101.scalajs.react.components.demo.css
 
+import chandu0101.scalajs.react.components.demo.components.materialui.{MuiButtonsDemo, MuiTabsDemo}
 import chandu0101.scalajs.react.components.demo.components.{LeftNavPage, LeftNav}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -12,7 +13,9 @@ object AppCSS {
 
   def load = {
     GlobalRegistry.register(LeftNav.Style,
-    LeftNavPage.Style)
+    LeftNavPage.Style,
+    MuiButtonsDemo.Style,
+    MuiTabsDemo.Style)
     GlobalRegistry.onRegistration(_.addToDocument())
   }
 }

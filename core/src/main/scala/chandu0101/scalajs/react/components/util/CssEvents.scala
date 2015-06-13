@@ -4,7 +4,7 @@ import japgolly.scalajs.react.TopNode
 import org.scalajs.dom.Event
 
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{global ⇒ g}
+import scala.scalajs.js.Dynamic.{global => g}
 
 /**
  * Created by chandrasekharkode .

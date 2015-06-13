@@ -76,19 +76,16 @@ object ScalajsReactComponents extends Build {
 
   def useReact(scope: String = "compile"): PE =
     _.settings(
-      libraryDependencies += "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion,
-      jsDependencies ++= Seq("org.webjars" % "react" % "0.12.1" % scope / "react-with-addons.js" commonJSName "React"),
-      jsDependencies += ProvidedJS / "highlight.pack.js",
-      skip in packageJSDependencies := false)
+      libraryDependencies += "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion
+      )
 
-    val jsDir = "demo/js"
+    val jsDir = "demo/build"
 
     def createLauncher(scope: String = "compile"): PE =
     _.settings(persistLauncher := true,
       persistLauncher in Test := false,
       crossTarget in (Compile, fullOptJS) := file(jsDir),
       crossTarget in (Compile, fastOptJS) := file(jsDir),
-      crossTarget in (Compile, packageJSDependencies) := file(jsDir),
 //      crossTarget in (Compile, packageLauncher) := file(jsDir),
       artifactPath in (Compile, fastOptJS) := ((crossTarget in (Compile, fastOptJS)).value /
         ((moduleName in fastOptJS).value + "-opt.js"))

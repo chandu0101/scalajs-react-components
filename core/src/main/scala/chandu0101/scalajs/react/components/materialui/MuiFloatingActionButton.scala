@@ -1,107 +1,95 @@
 package chandu0101.scalajs.react.components.materialui
 
-import chandu0101.scalajs.react.components.all._
-import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
-import chandu0101.scalajs.react.components.util.{CommonUtils, DomUtil}
 import japgolly.scalajs.react._
+import materialui.Mui
 
 import scala.scalajs.js
 
 
 /**
- * Created by chandrasekharkode .
- *
- *
- * clsNames: React.PropTypes.css,
-key: React.PropTypes.key,
-ref: React.PropTypes.ref,
-     className: React.PropTypes.string,
-    iconClassName: React.PropTypes.string,
-    mini: React.PropTypes.bool,
-    onMouseDown: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
-    onMouseOut: React.PropTypes.func,
-    onTouchEnd: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
-    secondary: React.PropTypes.bool,
+key: PropTypes.string,
+   style: PropTypes.js.Any,
+   ref: PropTypes.String,
+   className: React.PropTypes.string,
    disabled: React.PropTypes.bool,
-    linkButton: React.PropTypes.bool,
-    url: React.PropTypes.string,
-onTouchTap:React.PropTypes.func,
-disableFocusRipple :React.PropTypes.bool,
-disableTouchRipple :React.PropTypes.bool,
- */
-object MuiFloatingActionButton {
+   mini: React.PropTypes.bool,
+   hoverColor: React.PropTypes.string,
+   label: React.PropTypes.string,
+   labelStyle: React.PropTypes.js.Any,
+   linkButton: React.PropTypes.bool,
+   href: React.PropTypes.string,
+   iconClassName:React.PropTypes.string,
+   rippleColor: React.PropTypes.string,
+   iconStyle:PropTypes.js.Any,
+   secondary: React.PropTypes.bool,
+    onBlur: React.PropTypes.ReactEventH => Unit,
+    onFocus: React.PropTypes.ReactEventH => Unit,
+    onMouseOut: React.PropTypes.ReactEventH => Unit,
+    onMouseOver: React.PropTypes.ReactEventH => Unit,
+    onTouchTap: React.PropTypes.ReactEventH => Unit,
+  onMouseDown: React.PropTypes.ReactEventH => Unit,
+    onMouseUp: React.PropTypes.ReactEventH => Unit,
+    onTouchEnd: React.PropTypes.ReactEventH => Unit,
+    onTouchStart: React.PropTypes.ReactEventH => Unit,
+
+  */
 
 
-
-  case class State(initialZDepth: Int, zDepth: Int)
-
-  class Backend(t: BackendScope[Props, State]) {
-
-    def onTouchTap(e: ReactEventI) = {
-      if (t.props.onTouchTap != null) t.props.onTouchTap(e)
-    }
-
-    def handleMouseDown(e : ReactEventI) : Unit = {
-      if(DomUtil.isLeftClick(e.nativeEvent))  t.modState(s => s.copy(zDepth = s.initialZDepth + 1))
-      if(t.props.onMouseDown != null) t.props.onMouseDown(e)
-    }
-
-    def handleMouseUp(e : ReactEventI) : Unit = {
-      t.modState(s => s.copy(zDepth = s.initialZDepth))
-      if(t.props.onMouseUp != null) t.props.onMouseUp(e)
-    }
-
-    def handleTouchStart( e: ReactEventI) : Unit =  {
-      t.modState(s => s.copy(zDepth = s.initialZDepth + 1))
-      if(t.props.onTouchStart != null) t.props.onTouchStart(e)
-    }
-
-    def handleTouchEnd(e : ReactEventI) : Unit = {
-      t.modState(s => s.copy(zDepth = s.initialZDepth))
-      if(t.props.onTouchEnd != null) t.props.onTouchEnd(e)
-    }
-
+case class MuiFloatingActionButton(iconClassName: js.UndefOr[String] = js.undefined,
+                                   onBlur: js.UndefOr[ReactEventH => Unit] = js.undefined,
+                                   labelStyle: js.UndefOr[js.Any] = js.undefined,
+                                   onTouchStart: js.UndefOr[ReactEventH => Unit] = js.undefined,
+                                   mini: js.UndefOr[Boolean] = js.undefined,
+                                   rippleColor: js.UndefOr[String] = js.undefined,
+                                   style: js.UndefOr[js.Any] = js.undefined,
+                                   iconStyle: js.UndefOr[js.Any] = js.undefined,
+                                   label: js.UndefOr[String] = js.undefined,
+                                   ref: js.UndefOr[String] = js.undefined,
+                                   secondary: js.UndefOr[Boolean] = js.undefined,
+                                   onMouseUp: js.UndefOr[ReactEventH => Unit] = js.undefined,
+                                   onTouchEnd: js.UndefOr[ReactEventH => Unit] = js.undefined,
+                                   key: js.UndefOr[String] = js.undefined,
+                                   onMouseOver: js.UndefOr[ReactEventH => Unit] = js.undefined,
+                                   linkButton: js.UndefOr[Boolean] = js.undefined,
+                                   onTouchTap: js.UndefOr[ReactEventH => Unit] = js.undefined,
+                                   className: js.UndefOr[String] = js.undefined,
+                                   onMouseOut: js.UndefOr[ReactEventH => Unit] = js.undefined,
+                                   hoverColor: js.UndefOr[String] = js.undefined,
+                                   onFocus: js.UndefOr[ReactEventH => Unit] = js.undefined,
+                                   disabled: js.UndefOr[Boolean] = js.undefined,
+                                   href: js.UndefOr[String] = js.undefined,
+                                   onMouseDown: js.UndefOr[ReactEventH => Unit] = js.undefined) {
+  def toJS = {
+    val p = js.Dynamic.literal()
+    iconClassName.foreach(v => p.updateDynamic("iconClassName")(v))
+    onBlur.foreach(v => p.updateDynamic("onBlur")(v))
+    labelStyle.foreach(v => p.updateDynamic("labelStyle")(v))
+    onTouchStart.foreach(v => p.updateDynamic("onTouchStart")(v))
+    mini.foreach(v => p.updateDynamic("mini")(v))
+    rippleColor.foreach(v => p.updateDynamic("rippleColor")(v))
+    style.foreach(v => p.updateDynamic("style")(v))
+    iconStyle.foreach(v => p.updateDynamic("iconStyle")(v))
+    label.foreach(v => p.updateDynamic("label")(v))
+    ref.foreach(v => p.updateDynamic("ref")(v))
+    secondary.foreach(v => p.updateDynamic("secondary")(v))
+    onMouseUp.foreach(v => p.updateDynamic("onMouseUp")(v))
+    onTouchEnd.foreach(v => p.updateDynamic("onTouchEnd")(v))
+    key.foreach(v => p.updateDynamic("key")(v))
+    onMouseOver.foreach(v => p.updateDynamic("onMouseOver")(v))
+    linkButton.foreach(v => p.updateDynamic("linkButton")(v))
+    onTouchTap.foreach(v => p.updateDynamic("onTouchTap")(v))
+    className.foreach(v => p.updateDynamic("className")(v))
+    onMouseOut.foreach(v => p.updateDynamic("onMouseOut")(v))
+    hoverColor.foreach(v => p.updateDynamic("hoverColor")(v))
+    onFocus.foreach(v => p.updateDynamic("onFocus")(v))
+    disabled.foreach(v => p.updateDynamic("disabled")(v))
+    href.foreach(v => p.updateDynamic("href")(v))
+    onMouseDown.foreach(v => p.updateDynamic("onMouseDown")(v))
+    p
   }
 
-  val component = ReactComponentB[Props]("MuiFloatingActionButton")
-    .initialStateP(p => {
-     val zDepth = if (p.disabled) 0 else 2
-    State(zDepth, zDepth)
-    })
-    .backend(new Backend(_))
-    .render((P, C, S, B) => {
-      val classes = CommonUtils.cssMap1M(mui_floating_action_button,
-        P.clsNames,
-        mui_is_mini -> P.mini,
-        mui_is_secondary -> P.secondary)
-      MuiPaper(clsNames = classes, zDepth = S.zDepth, circle = true)(
-        MuiEnhancedButton(clsNames = Map(mui_floating_action_button_container -> true),
-          onTouchTap = B.onTouchTap,
-          disabled = P.disabled ,
-          onMouseDown = B.handleMouseDown,
-          onMouseUp = B.handleMouseUp,
-          key = "floatinge" ,
-          disableFocusRipple = P.disableFocusRipple,
-          disableTouchRipple = P.disableTouchRipple,
-          linkButton = P.linkButton,
-          url = P.url )(
-          if(P.iconClassName.nonEmpty) MuiFontIcon(className = s"mui-floating-action-button-icon ${P.iconClassName}") else "",
-          C
-        )
-      )
-    })
-    .build
-
-
-
-  case class Props( iconClassName : String ,onTouchStart : REventIUnit ,mini : Boolean ,disableTouchRipple : Boolean ,url : String ,clsNames : CssClassType ,ref :  js.UndefOr[String] ,secondary : Boolean ,onMouseUp : REventIUnit ,onTouchEnd : REventIUnit ,key : js.Any ,disableFocusRipple : Boolean ,linkButton : Boolean ,onTouchTap : REventIUnit ,className : String ,onMouseOut : REventIUnit ,disabled : Boolean ,onMouseDown : REventIUnit  )
-
-  def withChildren( iconClassName : String = "" ,onTouchStart : REventIUnit = null ,mini : Boolean = false,disableTouchRipple : Boolean = false,url : String = "" ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",secondary : Boolean = false,onMouseUp : REventIUnit = null ,onTouchEnd : REventIUnit = null ,key : js.Any = {},disableFocusRipple : Boolean = true,linkButton : Boolean = false,onTouchTap : REventIUnit = null ,className : String = "" ,onMouseOut : REventIUnit = null ,disabled : Boolean = false,onMouseDown : REventIUnit = null )(children : ReactNode*) =
-    component.set(key,ref)(Props(iconClassName,onTouchStart,mini,disableTouchRipple,url,clsNames,ref,secondary,onMouseUp,onTouchEnd,key,disableFocusRipple,linkButton,onTouchTap,className,onMouseOut,disabled,onMouseDown),children)
-
-  def apply( iconClassName : String = "" ,onTouchStart : REventIUnit = null ,mini : Boolean = false,disableTouchRipple : Boolean = false,url : String = "" ,clsNames : CssClassType = Map(),ref :  js.UndefOr[String] = "",secondary : Boolean = false,onMouseUp : REventIUnit = null ,onTouchEnd : REventIUnit = null ,key : js.Any = {},disableFocusRipple : Boolean = true,linkButton : Boolean = false,onTouchTap : REventIUnit = null ,className : String = "" ,onMouseOut : REventIUnit = null ,disabled : Boolean = false,onMouseDown : REventIUnit = null  ) =
-    component.set(key,ref)(Props(iconClassName,onTouchStart,mini,disableTouchRipple,url,clsNames,ref,secondary,onMouseUp,onTouchEnd,key,disableFocusRipple,linkButton,onTouchTap,className,onMouseOut,disabled,onMouseDown))
-
+  def apply(children: ReactNode*) = {
+    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.FloatingActionButton)
+    f(toJS, children.toJsArray).asInstanceOf[ReactComponentU_]
+  }
 }

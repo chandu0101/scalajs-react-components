@@ -7,10 +7,6 @@ Reusable [scalajs-react] (https://github.com/japgolly/scalajs-react) components
 
 Its work in progress...
 
-Material-UI - need some code cleanup and testing
-
-all other components - requires more testing
-.
 
 #### Demo With Code Examples 
 

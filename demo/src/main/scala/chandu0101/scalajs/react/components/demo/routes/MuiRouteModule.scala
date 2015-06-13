@@ -17,9 +17,12 @@ object MuiRouteModule {
   case object DatePicker extends LeftRoute("Date Picker", "datepicker", () => MuiDatePickerDemo())
 
   case object Dialog extends LeftRoute("Dialog", "dialog", () => MuiDialogDemo())
+
   case object DropDownMenu extends LeftRoute("DropDown Menu", "dropdownmenu", () => MuiDropDownMenuDemo())
 
-  val menu: List[LeftRoute] = List(Info, AppBar, Buttons, DatePicker, Dialog,DropDownMenu, Tabs)
+  case object Paper extends LeftRoute("Paper", "paper", () => MuiPaperDemo())
+
+  val menu: List[LeftRoute] = List(Info, AppBar, Buttons, DatePicker, Dialog, DropDownMenu, Paper, Tabs)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
 

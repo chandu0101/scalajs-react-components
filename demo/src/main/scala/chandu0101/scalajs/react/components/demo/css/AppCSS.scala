@@ -1,6 +1,6 @@
 package chandu0101.scalajs.react.components.demo.css
 
-import chandu0101.scalajs.react.components.demo.components.materialui.{MuiButtonsDemo, MuiTabsDemo}
+import chandu0101.scalajs.react.components.demo.components.materialui.{MuiPaperDemo, MuiButtonsDemo, MuiTabsDemo}
 import chandu0101.scalajs.react.components.demo.components.{LeftNavPage, LeftNav}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -15,6 +15,7 @@ object AppCSS {
     GlobalRegistry.register(LeftNav.Style,
     LeftNavPage.Style,
     MuiButtonsDemo.Style,
+    MuiPaperDemo.Style,
     MuiTabsDemo.Style)
     GlobalRegistry.onRegistration(_.addToDocument())
   }

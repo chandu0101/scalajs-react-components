@@ -24,7 +24,13 @@ object MuiRouteModule {
 
   case object TextField extends LeftRoute("Text Field", "textfield", () => MuiTextFieldDemo())
 
-  val menu: List[LeftRoute] = List(Info, AppBar, Buttons, DatePicker, Dialog, DropDownMenu, Paper, TextField, Tabs)
+  case object Progress extends LeftRoute("Progress Bars", "progress", () => MuiProgressDemo())
+
+  val menu: List[LeftRoute] = List(Info, AppBar, Buttons, DatePicker, Dialog, DropDownMenu,
+    Paper,
+    Progress,
+    TextField,
+    Tabs)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
 

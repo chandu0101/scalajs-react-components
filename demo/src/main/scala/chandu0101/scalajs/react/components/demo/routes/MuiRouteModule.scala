@@ -28,9 +28,12 @@ object MuiRouteModule {
 
   case object SnackBar extends LeftRoute("SnackBar", "snackbar", () => MuiSnackBarDemo())
 
+  case object Slider extends LeftRoute("Slider", "slider", () => MuiSliderDemo())
+
   val menu: List[LeftRoute] = List(Info, AppBar, Buttons, DatePicker, Dialog, DropDownMenu,
     Paper,
     Progress,
+    Slider,
     SnackBar,
     TextField,
     Tabs)

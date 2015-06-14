@@ -30,12 +30,15 @@ object MuiRouteModule {
 
   case object Slider extends LeftRoute("Slider", "slider", () => MuiSliderDemo())
 
+  case object TimePicker extends LeftRoute("Time Picker", "timepicker", () => MuiTimePickerDemo())
+
   val menu: List[LeftRoute] = List(Info, AppBar, Buttons, DatePicker, Dialog, DropDownMenu,
     Paper,
     Progress,
     Slider,
     SnackBar,
     TextField,
+    TimePicker,
     Tabs)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>

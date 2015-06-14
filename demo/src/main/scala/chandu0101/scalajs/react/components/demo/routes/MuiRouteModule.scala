@@ -32,9 +32,17 @@ object MuiRouteModule {
 
   case object TimePicker extends LeftRoute("Time Picker", "timepicker", () => MuiTimePickerDemo())
 
-  val menu: List[LeftRoute] = List(Info, AppBar, Buttons, DatePicker, Dialog, DropDownMenu,
+  case object Switches extends LeftRoute("Switches", "switches", () => MuiSwitchesDemo())
+
+  val menu: List[LeftRoute] = List(Info,
+    AppBar,
+    Buttons,
+    DatePicker,
+    Dialog,
+    DropDownMenu,
     Paper,
     Progress,
+    Switches,
     Slider,
     SnackBar,
     TextField,

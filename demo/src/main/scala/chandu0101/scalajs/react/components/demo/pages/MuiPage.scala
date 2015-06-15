@@ -13,7 +13,7 @@ object MuiPage {
     .render((P) => {
     LeftNavPage(MuiRouteModule.menu, P.selectedPage, P.ctrl)
   })
-    .unsafeSpec(materialui.installMuiContext)
+    .configureSpec(materialui.installMuiContext)
     .build
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])

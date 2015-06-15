@@ -15,6 +15,7 @@ ref: PropTypes.String,
     id: React.PropTypes.string,
     multiLine: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
+    fullWidth: React.PropTypes.bool,
     onBlur: React.PropTypes.ReactEventI => Unit,
     onChange: React.PropTypes.ReactEventI => Unit,
     onFocus: React.PropTypes.ReactEventI => Unit,
@@ -30,6 +31,7 @@ object MuiTextField {
 
   def apply(onBlur: js.UndefOr[ReactEventI => Unit] = js.undefined,
             multiLine: js.UndefOr[Boolean] = js.undefined,
+            fullWidth: js.UndefOr[Boolean] = js.undefined,
             onEnterKeyDown: js.UndefOr[ReactEventI => Unit] = js.undefined,
             onKeyDown: js.UndefOr[ReactEventI => Unit] = js.undefined,
             style: js.UndefOr[js.Any] = js.undefined,
@@ -48,6 +50,7 @@ object MuiTextField {
     val p = js.Dynamic.literal()
     onBlur.foreach(v => p.updateDynamic("onBlur")(v))
     multiLine.foreach(v => p.updateDynamic("multiLine")(v))
+    fullWidth.foreach(v => p.updateDynamic("fullWidth")(v))
     onEnterKeyDown.foreach(v => p.updateDynamic("onEnterKeyDown")(v))
     onKeyDown.foreach(v => p.updateDynamic("onKeyDown")(v))
     style.foreach(v => p.updateDynamic("style")(v))

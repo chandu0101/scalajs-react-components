@@ -45,6 +45,9 @@ package object materialui {
     val ToolbarSeparator: js.Dynamic = js.native
     val ToolbarTitle: js.Dynamic = js.native
     val Tooltip: js.Dynamic = js.native
+    val ListDivider: js.Dynamic = js.native
+    val ListItem: js.Dynamic = js.native
+    val List: js.Dynamic = js.native
 
     val Icons: js.Dynamic = js.native
     val Styles: MuiStyles = js.native

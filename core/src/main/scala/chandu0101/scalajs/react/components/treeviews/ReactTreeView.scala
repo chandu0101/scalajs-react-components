@@ -126,9 +126,9 @@ object ReactTreeView {
     })
    .componentWillReceiveProps((scope,nextProps) => {
     if(nextProps.filterMode) {
-      if(nextProps.open) scope.modState(_.copy(children = nextProps.root.children))
-      else scope.modState(_.copy(children = Nil))
-    }
+     if(nextProps.open) scope.modState(_.copy(children = nextProps.root.children))
+     else scope.modState(_.copy(children = Nil))
+   }
    })
    .build
 

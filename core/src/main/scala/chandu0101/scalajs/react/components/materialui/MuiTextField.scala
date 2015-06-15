@@ -85,5 +85,4 @@ trait MuiTextFieldM[T] extends js.Object {
 
   def setValue(newValue: T): Unit = js.native
 
-
 }

@@ -19,22 +19,27 @@ labelPosition:PropTypes.MuiSwitchLabelPosition,
 value:PropTypes.String,
   iconStyle: React.PropTypes.js.Any,
     onCheck: React.PropTypes.(ReactEventI,Boolean)=>Unit,
+  checkedIcon: React.PropTypes.element,
+    unCheckedIcon: React.PropTypes.element
 
  */
 
+
 object MuiCheckBox {
 
-  def apply(name: js.UndefOr[String] = js.undefined,
-            style: js.UndefOr[js.Any] = js.undefined,
-            iconStyle: js.UndefOr[js.Any] = js.undefined,
-            labelPosition: js.UndefOr[MuiSwitchLabelPosition] = js.undefined,
-            label: js.UndefOr[String] = js.undefined,
-            onCheck: js.UndefOr[(ReactEventI, Boolean) => Unit] = js.undefined,
-            ref: js.UndefOr[String] = js.undefined,
-            key: js.UndefOr[String] = js.undefined,
-            disabled: js.UndefOr[Boolean] = js.undefined,
-            defaultChecked: js.UndefOr[Boolean] = js.undefined,
-            value: js.UndefOr[String] = js.undefined) = {
+  def apply(name : js.UndefOr[String] = js.undefined,
+            style : js.UndefOr[js.Any] = js.undefined,
+            iconStyle : js.UndefOr[js.Any] = js.undefined,
+            labelPosition : js.UndefOr[MuiSwitchLabelPosition] = js.undefined,
+            label : js.UndefOr[String] = js.undefined,
+            onCheck : js.UndefOr[(ReactEventI,Boolean)=>Unit] = js.undefined,
+            ref : js.UndefOr[String] = js.undefined,
+            key : js.UndefOr[String] = js.undefined,
+            unCheckedIcon : js.UndefOr[ReactElement] = js.undefined,
+            checkedIcon : js.UndefOr[ReactElement] = js.undefined,
+            disabled : js.UndefOr[Boolean]=js.undefined,
+            defaultChecked : js.UndefOr[Boolean]=js.undefined,
+            value : js.UndefOr[String] = js.undefined) = {
 
     val p = js.Dynamic.literal()
     name.foreach(v => p.updateDynamic("name")(v))
@@ -45,6 +50,8 @@ object MuiCheckBox {
     onCheck.foreach(v => p.updateDynamic("onCheck")(v))
     ref.foreach(v => p.updateDynamic("ref")(v))
     key.foreach(v => p.updateDynamic("key")(v))
+    unCheckedIcon.foreach(v => p.updateDynamic("unCheckedIcon")(v))
+    checkedIcon.foreach(v => p.updateDynamic("checkedIcon")(v))
     disabled.foreach(v => p.updateDynamic("disabled")(v))
     defaultChecked.foreach(v => p.updateDynamic("defaultChecked")(v))
     value.foreach(v => p.updateDynamic("value")(v))
@@ -54,6 +61,7 @@ object MuiCheckBox {
   }
 
 }
+
 
 /**
  * key: PropTypes.string,

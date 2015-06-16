@@ -2,6 +2,7 @@ package chandu0101.scalajs.react.components.demo.css
 
 import chandu0101.scalajs.react.components.demo.components.materialui._
 import chandu0101.scalajs.react.components.demo.components.{LeftNavPage, LeftNav}
+import chandu0101.scalajs.react.components.listviews.ReactListView
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
@@ -19,6 +20,7 @@ object AppCSS {
     MuiSwitchesDemo.Style,
     MuiMenuDemo.Style,
     MobileTearSheet.Style,
+    ReactListView.DefaultStyle,
     MuiTabsDemo.Style)
     GlobalRegistry.onRegistration(_.addToDocument())
   }

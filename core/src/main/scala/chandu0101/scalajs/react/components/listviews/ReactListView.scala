@@ -1,79 +1,42 @@
 package chandu0101.scalajs.react.components.listviews
 
 
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
+import scalacss.Defaults._
+import scalacss.ScalaCssReact._
 
-
-/**
- * Created by chandrasekharkode .
- */
 object ReactListView {
 
+  class Style extends StyleSheet.Inline {
 
-  val component = ReactComponentB[Props]("ReactListView")
-    .initialState(State())
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    val fItems = P.items.filter(item => item.toString.toLowerCase.contains(S.filterText.toLowerCase))
-   <.div(P.style.reactListView)(
-      P.showSearchBox ?= ReactSearchBox(onTextChange = B.onTextChange),
-      <.ul(P.style.listGroup)(
-        fItems.zipWithIndex.map { case (item, index) => {
-          val selected = item.toString == S.selectedItem
-          val first = index == 0
-          val last = index == fItems.length - 1
-          val hover = S.hoverIndex == index
-          <.li(P.style.listGroupItem, selected ?= P.style.selectedListGroupItem,
-            first ?= P.style.firstListGroupItem,
-            last ?= P.style.lastListGroupItem,
-            hover ?= P.style.listGroupItemHover)(^.onClick --> B.onItemSelect(item.toString),
-              onMouseEnter --> B.onMouseEnter(index),
-              ^.onMouseOut --> B.onMouseLeave(index))(item)
-        }
-        }
-      )
-    )
-  })
-    .build
+    import dsl._
 
-
-  trait Style {
-
-    def reactListView: TagMod = Seq[TagMod]()
-
-    def listGroup: TagMod = Seq(^.marginBottom := "20px",
-      ^.paddingLeft := 0)
-
-    def listGroupItem: TagMod = Seq(
-      ^.position := "relative",
-      ^.display := "block",
-      ^.padding := "10px 15px",
-      ^.marginBottom := "-1px",
-      ^.backgroundColor := "white",
-      ^.border := "1px solid #ecf0f1",
-      ^.cursor := "pointer")
-
-    def selectedListGroupItem: TagMod = Seq(
-      ^.color := "white",
-      ^.fontWeight := 500,
-      ^.backgroundColor := "#146699"
+    val listGroup = style(marginBottom(20.px),
+      paddingLeft.`0`,
+      &.firstChild.lastChild(borderBottomLeftRadius(4 px),
+        borderBottomRightRadius(4 px))
     )
 
-    def lastListGroupItem: TagMod = firstListGroupItem.+(^.marginBottom := 0)
-
-    def firstListGroupItem: TagMod = Seq(
-      ^.borderBottomLeftRadius := "4px",
-      ^.borderBottomRightRadius := "4px")
-
-    def listGroupItemHover: TagMod = Seq(^.color := "#555555",
-      ^.backgroundColor := "#ecf0f1")
+    val listItem = boolStyle(selected => styleS(position.relative,
+      display.block,
+      padding(v = 10.px, h = 15.px),
+      border :=! "1px solid #ecf0f1",
+      cursor.pointer,
+      mixinIfElse(selected)(color.white,
+        fontWeight._500,
+        backgroundColor("#146699".color))(
+          backgroundColor.white,
+          &.hover(color("#555555".color),
+            backgroundColor("#ecf0f1".color)))
+    ))
 
   }
+
+  object DefaultStyle extends Style
 
   case class State(filterText: String = "", selectedItem: String = "", hoverIndex: Int = -1)
 
@@ -88,18 +51,27 @@ object ReactListView {
       if (t.props.onItemSelect != null) t.props.onItemSelect(value)
     }
 
-    def onMouseEnter(index: Int) = {
-      t.modState(_.copy(hoverIndex = index))
-    }
-
-    def onMouseLeave(index: Int) = {
-      t.modState(_.copy(hoverIndex = -1))
-    }
-
   }
 
-  case class Props(items: List[String], onItemSelect: StringUnit, showSearchBox: Boolean, style: Style)
+  val component = ReactComponentB[Props]("ReactListView")
+    .initialState(State())
+    .backend(new Backend(_))
+    .render((P, S, B) => {
+    val fItems = P.items.filter(item => item.toString.toLowerCase.contains(S.filterText.toLowerCase))
+    <.div(
+      P.showSearchBox ?= ReactSearchBox(onTextChange = B.onTextChange),
+      <.ul(P.style.listGroup)(
+        fItems.map(item => {
+          val selected = item.toString == S.selectedItem
+          <.li(P.style.listItem(selected), ^.onClick --> B.onItemSelect(item.toString), item)
+        })
+      )
+    )
+  })
+    .build
 
-  def apply(items: List[String], onItemSelect: StringUnit = null, showSearchBox: Boolean = false, style: Style = new Style {}, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(items, onItemSelect, showSearchBox, style))
+  case class Props(items: List[String], onItemSelect: String => Unit, showSearchBox: Boolean, style: Style)
+
+  def apply(items: List[String], onItemSelect: String => Unit = null, showSearchBox: Boolean = false, style: Style = DefaultStyle, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(items, onItemSelect, showSearchBox, style))
 
 }

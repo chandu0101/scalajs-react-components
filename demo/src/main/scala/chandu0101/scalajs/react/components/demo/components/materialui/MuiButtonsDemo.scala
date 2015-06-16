@@ -1,6 +1,7 @@
 package chandu0101.scalajs.react.components.demo.components.materialui
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
+import chandu0101.scalajs.react.components.demo.components.materialui.svgicons.ActionGrade
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -37,10 +38,10 @@ object MuiButtonsDemo {
 
   val floatingButtonsCOde =
     """
-      |MuiFloatingActionButton(iconClassName = "muidocs-icon-action-grade")(),
-      |MuiFloatingActionButton(iconClassName = "muidocs-icon-action-grade",mini = true)(),
-      |MuiFloatingActionButton(iconClassName = "muidocs-icon-action-grade",secondary = true)(),
-      |MuiFloatingActionButton(iconClassName = "muidocs-icon-action-grade",secondary = true,mini = true)()
+      |MuiFloatingActionButton()(ActionGrade()),
+      |MuiFloatingActionButton(mini = true)(ActionGrade()),
+      |MuiFloatingActionButton(secondary = true)(ActionGrade()),
+      |MuiFloatingActionButton(secondary = true,mini = true)(ActionGrade())
       |
     """.stripMargin
 
@@ -58,7 +59,7 @@ object MuiButtonsDemo {
   }
 
 
-  val component = ReactComponentB[Unit]("MuiAppBarDemo")
+  val component = ReactComponentB[Unit]("MuiButtonsDemo")
     .render(P => {
     <.div(Style.container,
       <.h3("Buttons"),
@@ -86,10 +87,10 @@ object MuiButtonsDemo {
         MuiTab(label = "Floating Action Buttons")(
           CodeExample(floatingButtonsCOde)(
             <.div(Style.content,
-              MuiFloatingActionButton(iconClassName = "muidocs-icon-action-grade")("+"),
-              MuiFloatingActionButton(iconClassName = "muidocs-icon-action-grade",mini = true)(),
-              MuiFloatingActionButton(iconClassName = "muidocs-icon-action-grade",secondary = true)(),
-              MuiFloatingActionButton(iconClassName = "muidocs-icon-action-grade",secondary = true,mini = true)()
+              MuiFloatingActionButton()(ActionGrade()),
+              MuiFloatingActionButton(mini = true)(ActionGrade()),
+              MuiFloatingActionButton(secondary = true)(ActionGrade()),
+              MuiFloatingActionButton(secondary = true,mini = true)(ActionGrade())
             )
           )
         )

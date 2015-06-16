@@ -18,6 +18,7 @@ object AppCSS {
     MuiPaperDemo.Style,
     MuiSwitchesDemo.Style,
     MuiMenuDemo.Style,
+    MobileTearSheet.Style,
     MuiTabsDemo.Style)
     GlobalRegistry.onRegistration(_.addToDocument())
   }

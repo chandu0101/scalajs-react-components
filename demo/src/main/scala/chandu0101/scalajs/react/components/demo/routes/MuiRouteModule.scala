@@ -40,6 +40,8 @@ object MuiRouteModule {
 
   case object Menu extends LeftRoute("Menus", "menus", () => MuiMenuDemo())
 
+  case object MList extends LeftRoute("List", "list", () => MuiListDemo())
+
   val menu: List[LeftRoute] = List(Info,
     AppBar,
     Buttons,
@@ -47,6 +49,7 @@ object MuiRouteModule {
     Dialog,
     DropDownMenu,
     LeftNav,
+    MList,
     Menu,
     Paper,
     Progress,

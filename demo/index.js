@@ -24,10 +24,12 @@ var googleMapImage = require("./images/googleMap.png");
    reactTreeViewImage = require("./images/reactTreeView.png"),
    materialuiImage = require("./images/mui.png"),
    reactTableImage = require("./images/reactTable.png"),
+   bottomTearImage = require("./images/bottom-tear.svg"),
    reactPopoverImage = require("./images/reactPopover.png");
 
 
 window.googleMapImage = googleMapImage;
+window.bottomTearImage = bottomTearImage;
 window.reactListViewImage = reactListViewImage;
 window.reactTableImage = reactTableImage;
 window.reactPopoverImage = reactPopoverImage;

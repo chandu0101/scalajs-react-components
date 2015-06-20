@@ -15,7 +15,6 @@ import scala.scalajs.js.annotation.JSExport
  */
 object ReactApp extends JSApp {
 
-  @JSExport
   override def main(): Unit = {
     // remove waiting page stuff
     if (!js.isUndefined(g.loadingElement)) {

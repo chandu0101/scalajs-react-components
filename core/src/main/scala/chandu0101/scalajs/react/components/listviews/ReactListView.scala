@@ -12,7 +12,6 @@ import scalacss.ScalaCssReact._
 object ReactListView {
 
   class Style extends StyleSheet.Inline {
-
     import dsl._
 
     val listGroup = style(marginBottom(20.px),
@@ -21,17 +20,17 @@ object ReactListView {
         borderBottomRightRadius(4 px))
     )
 
-    val listItem = boolStyle(selected => styleS(position.relative,
+    val listItem = styleF.bool(selected => styleS(position.relative,
       display.block,
       padding(v = 10.px, h = 15.px),
       border :=! "1px solid #ecf0f1",
       cursor.pointer,
       mixinIfElse(selected)(color.white,
         fontWeight._500,
-        backgroundColor("#146699".color))(
+        backgroundColor :=! "#146699")(
           backgroundColor.white,
-          &.hover(color("#555555".color),
-            backgroundColor("#ecf0f1".color)))
+          &.hover(color :=! "#555555",
+            backgroundColor :=! "#ecf0f1"))
     ))
 
   }

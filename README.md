@@ -21,15 +21,6 @@ Library is not published to maven central as its still work in progress
 To publish Locally  : 
 
 ```scala
-// need this hack until this PR https://github.com/japgolly/scalajs-react/pull/144 published
-
-git clone -b unsfasespec https://github.com/chandu0101/scalajs-react/
-
-cd scalajs-react
-
-sbt publishLocal
-
-// once above PR published , i'll push this to maven central till then follow 
 
  git clone https://github.com/chandu0101/scalajs-react-components
  

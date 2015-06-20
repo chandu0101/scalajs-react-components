@@ -1,43 +1,54 @@
 package chandu0101.scalajs.react.components.pagers
 
 import japgolly.scalajs.react.vdom.prefix_<^._
-import japgolly.scalajs.react.{BackendScope, ReactComponentB, SyntheticEvent, _}
-import org.scalajs.dom.html
+import japgolly.scalajs.react.{ReactComponentB, _}
 
+import scalacss.Defaults._
+import scalacss.ScalaCssReact._
 
-/**
- * Created by chandrasekharkode .
- */
 object Pager {
 
+  class Style extends StyleSheet.Inline {
 
-  class Backend(t: BackendScope[_, _]) {
+    import dsl._
 
+    val pager = style(margin :=! "15px 0",
+      unsafeChild("a")(
+        display.inlineBlock,
+        padding :=! "5px 14px",
+        backgroundColor :=! "#EF5350",
+        border :=! "1px solid transparent",
+        borderRadius :=! "2px",
+        cursor.pointer,
+        color :=! "#ffffff",
+        fontWeight.bold,
+        boxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)",
+        &.hover(
+          textDecoration := "none",
+          backgroundColor :=! "#ff1034"
+        ),
+        &.focus(
+          textDecoration := "none",
+          backgroundColor :=! "#ff1034"
+        )
+      )
+    )
   }
 
+  object DefaultStyle extends Style
+
   val component = ReactComponentB[Props]("Pager")
-    .stateless
-    .backend(new Backend(_))
-    .render((P,S,B) => {
-    //    val prevClasses = Map(
-    //                           P.css.pager -> (P.offset == 0) )
-    //    val nextClasses = Map(P.css.pager -> (P.offset + P.itemsPerPage > P.totalItems))
-    val prevClasses = Map("previous" -> (P.offset > 0),
-      "disabled" -> (P.offset == 0))
-    val nextClasses = Map("next" -> (P.offset + P.itemsPerPage < P.totalItems),
-      "disabled" -> (P.offset + P.itemsPerPage >= P.totalItems))
-    <.ul(^.cls := P.css.pager)(
-      <.li(^.classSetM(prevClasses))(<.a(^.onClick ==> P.previousClick)("← Previous")),
-      <.li(^.classSetM(nextClasses))(<.a(^.onClick ==> P.nextClick)("Next →"))
+    .render((P) => {
+    <.div(P.style.pager)(
+      P.offset > 0 ?= <.a(^.onClick --> P.previousClick(), ^.float := "left")("← Previous"),
+      P.offset + P.itemsPerPage < P.totalItems ?= <.a(^.onClick --> P.nextClick(), ^.float := "right")("Next →")
     )
   }).build
 
-  case class Props(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: SyntheticEvent[html.Anchor] => Unit, previousClick: SyntheticEvent[html.Anchor] => Unit, css: CSS)
+  case class Props(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: () => Unit, previousClick: () => Unit, style: Style)
 
-  case class CSS(pager: String = "pager")
-
-  def apply(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: SyntheticEvent[html.Anchor] => Unit, previousClick: SyntheticEvent[html.Anchor] => Unit, css: CSS = CSS()) = {
-    component(Props(itemsPerPage, totalItems, offset, nextClick, previousClick, css))
+  def apply(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: () => Unit, previousClick: () => Unit, style: Style = DefaultStyle) = {
+    component(Props(itemsPerPage, totalItems, offset, nextClick, previousClick, style))
   }
 
 

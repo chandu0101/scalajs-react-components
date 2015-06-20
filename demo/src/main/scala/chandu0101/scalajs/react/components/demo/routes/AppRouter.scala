@@ -73,8 +73,8 @@ object AppRouter {
     HomePage.ComponentInfo(name = "Material UI", imagePath = g.materialuiImage.toString, route = MuiPages(MuiRouteModule.Info), tags = Stream("materialui", "material", "framework")),
     HomePage.ComponentInfo(name = "React ListView", imagePath = g.reactListViewImage.toString, route = ReactListViewPages(ReactListViewRouteModule.Info), tags = Stream("list view", "search", "listview")),
     HomePage.ComponentInfo(name = "Google Map", imagePath = g.googleMapImage.toString, route = GoogleMapPages(GoogleMapRouteModule.Info), tags = Stream("google", "map", "googlemap")),
-//    HomePage.ComponentInfo(name = "React TreeView", imagePath = g.reactTreeViewImage.toString, route = ReactTreeViewPages(ReactTreeViewRouteModule.Info), tags = Stream("tree view", "search", "treeview")),
-//    HomePage.ComponentInfo(name = "React Table", imagePath = g.reactTableImage.toString, route = ReactTablePages(ReactTableRouteModule.Info), tags = Stream("table", "search", "pagination", "sorting", "cutom cell")),
+    HomePage.ComponentInfo(name = "React TreeView", imagePath = g.reactTreeViewImage.toString, route = ReactTreeViewPages(ReactTreeViewRouteModule.Info), tags = Stream("tree view", "search", "treeview")),
+    HomePage.ComponentInfo(name = "React Table", imagePath = g.reactTableImage.toString, route = ReactTablePages(ReactTableRouteModule.Info), tags = Stream("table", "search", "pagination", "sorting", "cutom cell")),
     HomePage.ComponentInfo(name = "React Popover", imagePath = g.reactPopoverImage.toString, route = ReactPopoverPages(ReactPopoverRouteModule.Info), tags = Stream("modal", "popover"))
   )
 

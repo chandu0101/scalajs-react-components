@@ -16,9 +16,7 @@ object ReactTableRouteModule {
   val menu : List[LeftRoute] = List(Info,Basic,Sorting,CustomCell)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
-
     import dsl._
-
     menu.map(i =>
       staticRoute(i.route, i) ~> renderR(r => ReactTablePage(i, r))
     ).reduce(_ | _)

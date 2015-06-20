@@ -55,7 +55,7 @@ object ReactTreeViewDemo {
       <.h3("Demo"),
       CodeExample(code)(
         <.div(Style.treeViewDemo)(
-          ReactTreeView(root = data, openByDefault = true, onItemSelect = B.onItemSelect, showSearchBox = true),
+          ReactTreeView(root = data, openByDefault = true, onItemSelect = B.onItemSelect, showSearchBox = false),
           <.strong(^.id := "treeviewcontent", Style.selectedContent)
         )
       )

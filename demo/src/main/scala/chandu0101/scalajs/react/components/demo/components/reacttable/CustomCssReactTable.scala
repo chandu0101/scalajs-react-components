@@ -47,7 +47,7 @@ object CustomCssReactTable {
    <.div(
      <.h2(^.cls := "mui-font-style-headline")("Custom Css"),
       CodeExample(code)(
-       ReactTable(data = data ,columns = columns , css = newCss)
+       ReactTable(data = data ,columns = columns )
       )
     )
   }).buildU

@@ -6,60 +6,62 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.prefix_<^._
+import scala.scalajs.js
+import scala.scalajs.js
+import scala.scalajs.js.undefined
+import scala.scalajs.js.UndefOr
+import scalacss.Defaults._
+import scalacss.ScalaCssReact._
 
 
-
-/**
- * Created by chandrasekharkode .
- */
 object ReactSearchBox {
 
-  trait Style {
-    def searchBox : TagMod =  Seq( ^.position := "relative" ,
-      ^.marginBottom := "10px")
 
-    def searchInput : TagMod = Seq( ^.display := "block",
-      ^.border := "none",
-      ^.fontSize := "13px",
-      ^.fontWeight := 300,
-      ^.padding := "3px",
-      ^.backgroundColor := "transparent",
-      ^.boxShadow := "none",
-      ^.borderBottom := "1px solid #B2ADAD")
+  class Style extends StyleSheet.Inline {
 
-    def searchInputFocus : TagMod = Seq(^.outline := "none" ,
-      ^.boxShadow := "none" ,
-      ^.borderBottom := "1.5px solid #03a9f4")
+    import dsl._
 
+    val searchBox = style(marginBottom(10 px))
+
+    val input = style(border.none,
+      fontSize(13 px),
+      fontWeight._300,
+      padding(3 px),
+      width(100.%%),
+      backgroundColor.transparent,
+      borderBottom :=! "1px solid #B2ADAD",
+      &.focus(outline.none,
+        borderBottom :=! "1.5px solid #03a9f4"
+      )
+    )
   }
 
-  case class State(focused : Boolean = false)
 
-  class Backend(t: BackendScope[Props, State]) {
+  class Backend(t: BackendScope[Props, _]) {
     def onTextChange(e: ReactEventI) = {
       e.preventDefault()
       t.props.onTextChange(e.target.value)
     }
 
-    def onFocus = t.modState(_.copy(focused = true))
-
-    def onBlur = t.modState(_.copy(focused = false))
-
   }
 
+  object DefaultStyle extends Style
+
   val component = ReactComponentB[Props]("ReactSearchBox")
-    .initialState(State())
+    .stateless
     .backend(new Backend(_))
     .render((P, S, B) => {
-     <.div(P.style.searchBox)(
-       <.input(P.style.searchInput,S.focused ?= P.style.searchInputFocus , ^.placeholder := "Search ..", ^.onKeyUp ==> B.onTextChange , ^.onFocus --> B.onFocus , ^.onBlur --> B.onBlur)
-      )
-    })
+    <.div(P.style.searchBox)(
+      <.input(P.style.input, ^.placeholder := "Search ..", ^.onKeyUp ==> B.onTextChange)
+    )
+  })
     .build
 
-  case class Props(onTextChange : StringUnit ,style : Style)
+  case class Props(onTextChange: String => Unit, style: Style)
 
 
-  def apply( onTextChange : StringUnit ,style: Style = new Style{}, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(onTextChange,style))
+  def apply(onTextChange: String => Unit, style: Style = DefaultStyle, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(onTextChange,style))
 
 }

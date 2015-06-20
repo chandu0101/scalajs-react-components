@@ -64,7 +64,7 @@ object ReactTable {
       justifyContent.spaceBetween
     )
 
-    val sortIcon = boolStyle(ascending => styleS(
+    val sortIcon = styleF.bool(ascending => styleS(
       &.after(
         fontSize(9 px),
         marginLeft(5 px),
@@ -73,7 +73,7 @@ object ReactTable {
       )
     ))
 
-    //    val tableCell = intStyle(1 to 1)(i => )
+    //    val tableCell = styleF.int(1 to 1)(i => )
 
   }
 

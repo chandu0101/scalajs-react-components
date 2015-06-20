@@ -22,7 +22,7 @@ object LeftNav {
       padding.`0`
     )
 
-    val menuItem = boolStyle(selected => styleS(
+    val menuItem = styleF.bool(selected => styleS(
       lineHeight(48.px),
       padding :=! "0 25px",
       cursor.pointer,
@@ -30,8 +30,8 @@ object LeftNav {
       mixinIfElse(selected)(color.red,
         fontWeight._500)
         (color.black,
-            &.hover(color("#555555".color),
-              backgroundColor("#ecf0f1".color)))
+            &.hover(color(c"#555555"),
+              backgroundColor(c"#ecf0f1")))
     ))
   }
 

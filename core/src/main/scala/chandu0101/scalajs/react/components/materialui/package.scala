@@ -76,11 +76,26 @@ package object materialui {
     val Transitions: js.Dynamic = js.native
   }
 
+  trait ThemeManager extends js.Object {
+
+    def getCurrentTheme(): js.Dynamic = js.native
+
+    def setTheme(newTheme: js.Dynamic): Unit = js.native
+
+    def setPalette(newPalette: js.Dynamic): Unit = js.native
+
+    def setComponentThemes(themes: js.Dynamic): Unit = js.native
+
+    val types :js.Dynamic = js.native
+  }
+
+  lazy val ThemeManager = js.Dynamic.newInstance(Mui.Styles.ThemeManager)().asInstanceOf[ThemeManager]
+
   def installMuiContext[P, S, B, N <: TopNode]: ReactComponentSpec[P, S, B, N] => Unit =
     spec => {
       val t = spec.asInstanceOf[js.Dynamic]
       t.updateDynamic("childContextTypes")(js.Dynamic.literal("muiTheme" -> React.asInstanceOf[js.Dynamic].PropTypes.`object`): js.Object)
-      t.updateDynamic("getChildContext")((() => js.Dynamic.literal("muiTheme" -> Mui.Styles.ThemeManager().getCurrentTheme())): js.Function)
+      t.updateDynamic("getChildContext")((() => js.Dynamic.literal("muiTheme" -> ThemeManager.getCurrentTheme())): js.Function)
     }
 
 

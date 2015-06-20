@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.demo.routes.{LeftRoute, MuiRouteModul
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router2.RouterCtl
 
-import scala.scalajs.js.Dynamic.{global => g}
+import scala.scalajs.js.Dynamic.{global => g, literal => json}
 
 object MuiPage {
 

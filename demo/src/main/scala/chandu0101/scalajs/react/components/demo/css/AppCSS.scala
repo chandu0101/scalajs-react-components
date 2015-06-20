@@ -22,6 +22,6 @@ object AppCSS {
     MobileTearSheet.Style,
     ReactListView.DefaultStyle,
     MuiTabsDemo.Style)
-    GlobalRegistry.onRegistration(_.addToDocument())
+    GlobalRegistry.addToDocumentOnRegistration()
   }
 }

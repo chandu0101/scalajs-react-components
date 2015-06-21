@@ -12,8 +12,6 @@ import scala.scalajs.js
  */
 object GithubUser {
 
-  case class State(checked: Boolean)
-
   object Styles {
     val userGroup = Seq(^.display := "inline-block" , ^.textAlign := "center" , ^.textDecoration := "none" , ^.color := "black")
 
@@ -22,15 +20,8 @@ object GithubUser {
     val userName = Seq(^.fontSize := "18px" , ^.fontWeight := 500)
   }
 
-  class Backend(t: BackendScope[Props, State]) {
-
-
-  }
-
   val component = ReactComponentB[Props]("GithubUser")
-    .initialState(State(false))
-    .backend(new Backend(_))
-    .render((P, S, B) => {
+    .render((P) => {
      <.a( Styles.userGroup , ^.href := P.user.html_url)(
         <.img(Styles.userIcon , ^.src := P.user.avatar_url),
         <.span(Styles.userName)(P.user.login)

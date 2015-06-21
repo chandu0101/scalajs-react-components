@@ -1,5 +1,6 @@
 package chandu0101.scalajs.react.components.demo.components.materialui
 
+import chandu0101.scalajs.react.components.demo.components.InfoTemplate
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
@@ -14,9 +15,14 @@ object MuiInfo {
          paddingTop(40.px))
      }
 
-     val component = ReactComponentB.static("MuiInfo",
-       <.div(Style.content, "Material ui wrappper ")
-     ).buildU
+  val component = ReactComponentB[Unit]("MuiInfo")
+    .render(P => {
+    InfoTemplate(componentFilePath = "materialui/package.scala")(
+      <.h3("Material-ui :"),
+      <.p("port wrapper")
+    )
 
-     def apply() = component()
+  }).buildU
+
+  def apply() = component()
 }

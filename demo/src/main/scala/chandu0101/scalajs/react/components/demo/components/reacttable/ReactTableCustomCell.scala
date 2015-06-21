@@ -15,17 +15,17 @@ object ReactTableCustomCell {
 
   val code =
     """
-      | val data: Vector[Map[String, Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
+      |  val data: Vector[Map[String, Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
       |  val columns: List[String] = List("fname", "lname", "email", "country")
-      |  //config is a List of touple3 (String, Function1[Any, TagMod], Function2[Map[String, Any], Map[String, Any], Boolean])
-      |  // ._1 : columnname you want to config
-      |  // ._2 : custom render function (custom cell factory)
-      |  // ._3 : Sorting function (use null for no sorting)
-      |
-      |  // let say if i want to turn all fnames that starts with J to grey (you can return any ReactElement(buttons,well another ReactTable if you want!)
-      |  def customFname = (fname : Any) => { val name = fname.toString ; if(name.startsWith("J")) span(backgroundColor := "grey")(name).render else span(name).render }
-      |
-      |  val config  = List(("fname",customFname,null))
+      |  def customFname = (fname : Any) => { val name = fname.toString ; if(name.startsWith("J")) <.span(^.backgroundColor := "grey")(name).render else <.span(name).render }
+      |  //config is a List of touple4 (String, Option[(Any) => ReactElement], Option[(Model, Model) => Boolean],Option[Double])
+      | /**
+      |   *  ._1 : String = column name
+      |   *  ._2 : Option[Any => ReactElement] = custom cell
+      |   *  ._3 : Option[(Model,Model) => Boolean] = sorting function
+      |   *  ._4 : Option[Double] = column width interms of flex property
+      |   */
+      |  val config  = List(("fname",Some(customFname),None,None))
       |  ReactTable( data = data ,columns = columns , config = config)
       |
     """.stripMargin
@@ -41,15 +41,15 @@ object ReactTableCustomCell {
 
   val data: Vector[Map[String, Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
   val columns: List[String] = List("fname", "lname", "email", "country")
-  //config is a List of touple3 (String, Function1[Any, TagMod], Function2[Map[String, Any], Map[String, Any], Boolean])
+  //config is a List of touple4 (String, Option[(Any) => ReactElement], Option[(Model, Model) => Boolean],Option[Double])
   // ._1 : columnname you want to config
   // ._2 : custom render function (custom cell factory)
-  // ._3 : Sorting function (use null for no sorting)
-
+  // ._3 : Sorting function
+  // ._4 : column width (flex := width)
   // let say if i want to turn all fnames to grey that starts with J (you can return any ReactElement(buttons,well another ReactTable if you want!)
   def customFname = (fname : Any) => { val name = fname.toString ; if(name.startsWith("J")) <.span(^.backgroundColor := "grey")(name).render else <.span(name).render }
 
-  val config  = List(("fname",customFname,null))
+  val config  = List(("fname",Some(customFname),None,None))
 
   def apply() = component()
 

@@ -18,7 +18,13 @@ object ReactTable {
 
   type Model = Map[String, Any]
 
-  type Config = (String, (Any) => ReactElement, (Model, Model) => Boolean)
+  /**
+   *  ._1 : String = column name
+   *  ._2 : Option[Any => ReactElement] = custom cell
+   *  ._3 : Option[(Model,Model) => Boolean] = sorting function
+   *  ._4 : Option[Double] = column width interms of flex property
+   */
+  type Config = (String, Option[Any => ReactElement], Option[(Model, Model) => Boolean],Option[Double])
 
   val ASC: String = "asc"
   val DSC: String = "dsc"
@@ -41,14 +47,14 @@ object ReactTable {
     val tableRow = style(display.flex,
       padding :=! "0.8rem",
       &.hover(
-        backgroundColor :=! "rgba(0, 0, 0, 0.12)"
+        backgroundColor :=! "rgba(244, 244, 244, 0.77)"
       ),
       media.maxWidth(740 px)(
         display.flex,
         flexDirection.column,
         textAlign.center,
         boxShadow := "0 1px 3px grey",
-        margin(3 px)
+        margin(5 px)
       ),
       unsafeChild("div")(
         flex := "1"
@@ -72,8 +78,6 @@ object ReactTable {
         else content := "'\\25BC'"
       )
     ))
-
-    //    val tableCell = styleF.int(1 to 1)(i => )
 
   }
 
@@ -111,14 +115,6 @@ object ReactTable {
       }
     }
 
-    def sortClass(key: String) = {
-      t.state.sortedState.getOrElse(key, "") match {
-        //        case ASC => t.props.css.ascendingIcon
-        //        case DSC => t.props.css.descendingIcon
-        case _ => ""
-      }
-    }
-
     def onPageSizeChange(value: String) = t.modState(_.copy(rowsPerPage = value.toInt))
 
   }
@@ -136,13 +132,21 @@ object ReactTable {
 
   def getRenderFunction(key: String, config: List[Config]) = {
     val group = config.groupBy(_._1).getOrElse(key, Nil)
-    if (group.nonEmpty) group(0)._2 else null
+    if (group.nonEmpty) group(0)._2 else None
   }
 
   def getSortFunction(key: String, config: List[Config]) = {
     val group = config.groupBy(_._1).getOrElse(key, Nil)
-    if (group.nonEmpty) group(0)._3 else null
+    if (group.nonEmpty) group(0)._3 else None
   }
+
+
+  def getColumnDiv(key: String, config: List[Config]) = {
+    val group = config.groupBy(_._1).getOrElse(key, Nil)
+    if (group.nonEmpty && group(0)._4.isDefined) <.div(^.flex := group(0)._4.get)
+    else <.div()
+  }
+
 
   def arrowUp: TagMod = Seq(^.width := 0, ^.height := 0, ^.borderLeft := "5px solid transparent", ^.borderRight := "5px solid transparent", ^.borderBottom := "5px solid black")
 
@@ -157,14 +161,15 @@ object ReactTable {
     <.div(props.style.tableHeader,
       if (props.config.nonEmpty) {
         props.columns.map { item => {
+          val cell = getColumnDiv(item,props.config)
           val f = getSortFunction(item, props.config)
-          if (f != null) {
-            <.div(^.cursor := "pointer",
-              ^.onClick --> b.sort(f, item), item.capitalize,
+          if (f.isDefined) {
+            cell(^.cursor := "pointer",
+              ^.onClick --> b.sort(f.get, item), item.capitalize,
               state.sortedState.isDefinedAt(item) ?= props.style.sortIcon(state.sortedState(item) == ASC)
             )
           }
-          else <.div(item.capitalize)
+          else cell(item.capitalize)
         }
         }
       }
@@ -178,7 +183,12 @@ object ReactTable {
     val (row, props) = P
     <.div(props.style.tableRow,
       if (props.config.nonEmpty) {
-        props.columns.map { item => val f = getRenderFunction(item, props.config); if (f != null) <.div(f(row(item))) else <.div(row(item).toString)}
+        props.columns.map { item =>
+          val cell = getColumnDiv(item,props.config)
+          val f = getRenderFunction(item, props.config)
+          if (f.isDefined) cell(f.get(row(item)))
+          else cell(row(item).toString)
+        }
       }
       else props.columns.map { item => <.div(row(item).toString)}
     )
@@ -220,7 +230,7 @@ object ReactTable {
     .backend(new Backend(_))
     .render((P, S, B) => {
     <.div(P.style.reactTableContainer)(
-      P.enableSearch ?= ReactSearchBox(onTextChange = B.onTextChange _),
+      P.enableSearch ?= ReactSearchBox(onTextChange = B.onTextChange _,style = P.searchBoxStyle),
       settingsBar((P, B, S)),
       tableC((P, S, B)),
       Pager(S.rowsPerPage, S.filteredModels.length, S.offset, B.onNextClick, B.onPreviousClick)
@@ -230,12 +240,10 @@ object ReactTable {
     .build
 
 
-  case class Props(data: Vector[Model], columns: List[String], config: List[Config], rowsPerPage: Int, style: Style,enableSearch : Boolean)
+  case class Props(data: Vector[Model], columns: List[String], config: List[Config], rowsPerPage: Int, style: Style,enableSearch : Boolean,searchBoxStyle :ReactSearchBox.Style)
 
-  case class CSS(table: String = "table table-hover", tableResponsive: String = "table-responsive-vertical shadow-z-1", ascendingIcon: String = "ascendingIcon", descendingIcon: String = "descendingIcon", searchBoxForm: String = "form-group", searchBoxControl: String = "form-control")
-
-  def apply(data: Vector[Model], columns: List[String], config: List[Config] = List(), rowsPerPage: Int = 5, style: Style = DefaultStyle,enableSearch : Boolean = true) = {
-    component(Props(data, columns, config, rowsPerPage, style,enableSearch))
+  def apply(data: Vector[Model], columns: List[String], config: List[Config] = List(), rowsPerPage: Int = 5, style: Style = DefaultStyle,enableSearch : Boolean = true,searchBoxStyle :ReactSearchBox.Style = ReactSearchBox.DefaultStyle) = {
+    component(Props(data, columns, config, rowsPerPage, style,enableSearch,searchBoxStyle))
   }
 
 }

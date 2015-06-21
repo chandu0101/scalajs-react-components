@@ -11,41 +11,40 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 /**
  * Created by chandrasekharkode .
  */
-object ReactTableSorting {
+object ReactTableCustomColumnSize {
 
   val code =
     """
       | val data: Vector[Map[String, Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
       |  val columns: List[String] = List("fname", "lname", "email", "country")
-      |  /**
-      |   *  ._1 : String = column name
-      |   *  ._2 : Option[Any => ReactElement] = custom cell
-      |   *  ._3 : Option[(Model,Model) => Boolean] = sorting function
-      |   *  ._4 : Option[Double] = column width interms of flex property
-      |   */
-      |  val config  = List(("fname",None,Some(ReactTable.getStringSort("fname")),None)) // getStringSort is helper function
+      |  //config is a List of touple4 (String, Option[(Any) => ReactElement], Option[(Model, Model) => Boolean],Option[Double])
+      |  // ._1 : colum name you want to config
+      |  // ._2 : custom render function (custom cell factory)
+      |  // ._3 : Sorting function
+      |  // ._4 : column width (flex := width)
+      |    val config  = List(("email",None,None,Some(2.0))) // make email column bigger
       |  ReactTable(data = data ,columns = columns , config = config)
       |
     """.stripMargin
-  val component = ReactComponentB[Unit]("ReactTableSorting")
+  val component = ReactComponentB[Unit]("ReactTableCustomColumnSize")
     .render(P => {
    <.div(
-     <.h2(^.cls := "mui-font-style-headline")("Sorting Table"),
-      CodeExample(code)(
-       ReactTable(data = data ,columns = columns , config = config)
+      CodeExample(code,"Custom Column Size")(
+       ReactTable(data = data ,columns = columns , config = config
+       )
       )
-    )
+   )
   }).buildU
 
 
   val data: Vector[Map[String, Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
   val columns: List[String] = List("fname", "lname", "email", "country")
   //config is a List of touple4 (String, Option[(Any) => ReactElement], Option[(Model, Model) => Boolean],Option[Double])
-  // ._1 : columnname you want to config
+  // ._1 : colum name you want to config
   // ._2 : custom render function (custom cell factory)
   // ._3 : Sorting function
   // ._4 : column width (flex := width)
-  val config  = List(("fname",None,Some(ReactTable.getStringSort("fname")),None)) // getStringSort is helper function
+  val config  = List(("email",None,None,Some(2.0))) // getStringSort is helper function
 
   def apply() = component()
 }

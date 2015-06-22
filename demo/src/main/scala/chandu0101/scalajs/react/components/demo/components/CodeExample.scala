@@ -21,8 +21,7 @@ object CodeExample {
 
     val contentDemo = Seq(^.padding := "30px")
 
-    val contentCode = Seq(^.borderTop := "solid 1px #e0e0e0",
-      ^.padding := "20px"
+    val contentCode = Seq(^.borderTop := "solid 1px #e0e0e0"
     )
 
     val title = Seq(
@@ -40,24 +39,13 @@ object CodeExample {
           C
         ),
         <.pre(Style.contentCode, ^.key := "code")(
-          <.code(P.code)
+          CodeHighLighter(P.code)
         )
       )
     )
   })
-    .configure(installSyntaxHighlighting)
     .build
 
-  def installSyntaxHighlighting[P, S, B, N <: TopNode] =
-    (_: ReactComponentB[P, S, B, N])
-      .componentDidMount(_ => applySyntaxHighlight())
-      .componentDidUpdate((_, _, _) => applySyntaxHighlight())
-
-  def applySyntaxHighlight() = {
-    import scala.scalajs.js.Dynamic.{global => g}
-    val nodeList = dom.document.querySelectorAll("pre code").toArray
-    nodeList.foreach(n => g.hljs.highlightBlock(n))
-  }
 
   case class Props(code: String,title : String)
 

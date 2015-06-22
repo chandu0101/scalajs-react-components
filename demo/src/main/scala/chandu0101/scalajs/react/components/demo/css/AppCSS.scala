@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.demo.css
 
 import chandu0101.scalajs.react.components.demo.components.materialui._
-import chandu0101.scalajs.react.components.demo.components.{LeftNav, LeftNavPage}
+import chandu0101.scalajs.react.components.demo.components.{InfoTemplate, LeftNav, LeftNavPage, ScalaCSSTutorial}
 import chandu0101.scalajs.react.components.listviews.ReactListView
 import chandu0101.scalajs.react.components.pagers.Pager
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
@@ -25,6 +25,8 @@ object AppCSS {
       ReactListView.DefaultStyle,
       ReactSearchBox.DefaultStyle,
       Pager.DefaultStyle,
+      ScalaCSSTutorial.Style,
+      InfoTemplate.Style,
       MuiTabsDemo.Style)
     GlobalRegistry.addToDocumentOnRegistration()
   }

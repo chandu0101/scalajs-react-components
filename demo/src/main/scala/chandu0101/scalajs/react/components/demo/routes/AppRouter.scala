@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.demo.routes
 
 
-import chandu0101.scalajs.react.components.demo.components.AppHeader
+import chandu0101.scalajs.react.components.demo.components.{ScalaCSSTutorial, AppHeader}
 import chandu0101.scalajs.react.components.demo.pages._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router2.{Resolution, RouterConfigDsl, RouterCtl, _}
@@ -19,6 +19,8 @@ object AppRouter {
   sealed trait Page
 
   case object Home extends Page
+
+  case object ScalaCSSDoc extends Page
 
   case object Contribute extends Page
 
@@ -46,6 +48,7 @@ object AppRouter {
     (trimSlashes
       | staticRoute(root, Home) ~> renderR(ctrl => HomePage(ctrl))
       | staticRoute("#contribute", Contribute) ~> render(ContributePage())
+      | staticRoute("#scalacss", ScalaCSSDoc) ~> render(ScalaCSSTutorial())
       | reactListViewRoutes
       | reactTreeViewRoutes
       | reactTableRoutes

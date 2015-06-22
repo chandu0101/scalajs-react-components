@@ -11,20 +11,18 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 object ReactTableInfo {
   val component = ReactComponentB[Unit]("ReactTableInfo")
     .render(P => {
-    InfoTemplate("/tables/ReactTable.scala")(
+    InfoTemplate(componentFilePath = "/tables/ReactTable.scala",scalacss = true)(
       <.div(^.cls := "full-width-section")(
         <.h3("React Table :"),
-        <.p("Responsive HTML table with the following features"),
+        <.p("Responsive HTML(flexbox) table with the following features"),
         <.ul(^.paddingLeft := "25px")(
           <.li("Search"),
           <.li("Pagination"),
           <.li("Sorting"),
           <.li("Custom Styles"),
-          <.li("Custom Custom COlumn Sizes"),
+          <.li("Custom Custom Column Sizes"),
           <.li("Custom Cell Factory")
-        ),
-        <.h3("CSS :"),
-        <.p("Get it ", <.a(^.href := "#css")("here"))
+        )
       )
     )
   }).buildU

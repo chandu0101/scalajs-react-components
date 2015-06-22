@@ -1,39 +1,44 @@
 #!/bin/sh
 
 
+#Handy script to deploy app to github pages(gh-pages)
+
 # get comment
 comment="$1"
+
+rm -rf demo/assets
+
+sbt clean
+
+sbt fullOptJS
+
+cd demo
+
+webpack --config webpack.config.prod.js
+
+cd ..
 
 if [ "$comment" == "" ]; then
 comment="push form CI"
 echo "no comment specified to deploy, using default : $comment"
 fi
 
-
-sbt fullOptJS
+projectName="sjrc"
 
 ghPagesPath="/Users/chandrasekharkode/Desktop/Kode/Programming/scalaprojects/chandu0101.github.io"
 
-projectPath=$ghPagesPath/sjrc
+projectPath=${ghPagesPath}/${projectName}
 
-cp demo/index.html $projectPath
+mkdir -p ${projectPath}/assets
 
-cp  demo/js/demo-opt.js $projectPath/js/
+cp demo/index.html ${projectPath}
 
-cp  demo/js/demo-jsdeps.js $projectPath/js/
+cp  demo/assets ${projectPath}/assets/
 
-cp -r demo/styles/ $projectPath/styles/
+cd ${ghPagesPath}
 
-#cp -r demo/font/ $projectPath/font/
+git add ${projectName}
 
-cp -r demo/images/ $projectPath/images/
-
-cp -r core/docs/ $projectPath/docs/
-
-cd $ghPagesPath
-
-git add sjrc
-
-git commit -a -m "$comment"
+git commit -m "$comment"
 
 git push

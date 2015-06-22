@@ -1,7 +1,6 @@
 'use strict';
 
 var webpack = require('webpack'),
-    CompressionPlugin = require('compression-webpack-plugin'),
     _ = require('lodash');
 
 module.exports = _.merge(require('./webpack.config.js'), {
@@ -18,7 +17,6 @@ module.exports = _.merge(require('./webpack.config.js'), {
                 hoist_vars: true,
                 unsafe: true
             }
-        }),
-        new CompressionPlugin()
+        })
     ]
 });

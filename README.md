@@ -9,11 +9,6 @@ Reusable [scalajs-react] (https://github.com/japgolly/scalajs-react) components
 
 Its work in progress...
 
-
-#### Demo With Code Examples 
-
-http://chandu0101.github.io/sjrc/
-
 #### Setup
 
 Library is not published to maven central as its still work in progress
@@ -21,21 +16,33 @@ Library is not published to maven central as its still work in progress
 To publish Locally  : 
 
 ```scala
-
  git clone https://github.com/chandu0101/scalajs-react-components
- 
  cd scalajs-react-components
- 
  sbt publishLocal
 
 ```
-
 Using in Projects : 
-
 ```scala
-
 // add this line to your build.sbt
 libraryDependencies += "com.chandu0101.scalajs-react-components" %%% "core" % "0.1.0"
+
+```
+
+#### Demo With Code Examples 
+
+**Online :** 
+
+http://chandu0101.github.io/sjrc/
+
+**Local :** 
+```scala
+cd demo
+sbt ~fastOptJS
+//open a new terminal tab/window
+npm install
+npm start
+//open in browser
+http://localhost:8090/webpack-dev-server/
 
 ```
 
@@ -43,8 +50,6 @@ libraryDependencies += "com.chandu0101.scalajs-react-components" %%% "core" % "0
 
 http://chandu0101.github.io/sjrc/docs
 
-
 #### Contribute 
-
 http://chandu0101.github.io/sjrc/#contribute
 

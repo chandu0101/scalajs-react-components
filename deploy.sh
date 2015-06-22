@@ -16,7 +16,6 @@ cd demo
 
 webpack --config webpack.config.prod.js
 
-cd ..
 
 if [ "$comment" == "" ]; then
 comment="push form CI"
@@ -31,9 +30,9 @@ projectPath=${ghPagesPath}/${projectName}
 
 mkdir -p ${projectPath}/assets
 
-cp demo/index.html ${projectPath}
+cp index.html ${projectPath}
 
-cp  demo/assets ${projectPath}/assets/
+cp -r assets/ ${projectPath}/assets/
 
 cd ${ghPagesPath}
 

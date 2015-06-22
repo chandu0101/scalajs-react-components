@@ -24,6 +24,10 @@ object MuiInfo {
          RedLink("material-ui","http://material-ui.com/#/")
        ),
        <.div(
+        <.h4("Supported Version :"),
+        <.span("0.9.1")
+       ),
+       <.div(
          <.h4("How To Use :"),
          <.p("Follow the installation guide from :",RedLink("here","https://github.com/callemall/material-ui#installation"),
            <.br(),

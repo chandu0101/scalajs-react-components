@@ -35,7 +35,7 @@ Using in Projects :
 ```scala
 
 // add this line to your build.sbt
-libraryDependencies += "com.chandu0101.scalajs-react-components" %%% "core" % "0.0.1-SNAPSHOT"
+libraryDependencies += "com.chandu0101.scalajs-react-components" %%% "core" % "0.1.0"
 
 ```
 

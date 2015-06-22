@@ -17,7 +17,7 @@ object ScalajsReactComponents extends Build {
     _.enablePlugins(ScalaJSPlugin)
       .settings(
         organization       := "com.chandu0101.scalajs-react-components",
-        version            := "0.0.1-SNAPSHOT",
+        version            := "0.1.0",
         homepage           := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses           += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion       := Scala211,

@@ -14,7 +14,7 @@ sbt fullOptJS
 
 cd demo
 
-webpack --config webpack.config.prod.js
+npm run build
 
 
 if [ "$comment" == "" ]; then

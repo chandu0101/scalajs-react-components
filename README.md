@@ -42,7 +42,7 @@ sbt ~fastOptJS
 npm install
 npm start
 //open in browser
-http://localhost:8090/webpack-dev-server/
+http://localhost:8090/
 
 ```
 

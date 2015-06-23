@@ -8,12 +8,14 @@
   },
   "scripts": {
     "start": "webpack --watch & webpack-dev-server --progress --colors --port 8090",
-    "build": "webpack --progress --colors"
+    "build": "webpack --config webpack.config.prod.js"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^0.2.0",
     "css-loader": "^0.14.5",
     "file-loader": "^0.8.4",
+    "image-webpack-loader": "^1.6.1",
+    "imagemin": "^3.2.0",
     "lodash": "^3.9.3",
     "node-libs-browser": "^0.5.2",
     "react-hot-loader": "^1.2.7",
@@ -25,6 +27,7 @@
   "dependencies": {
     "material-ui": "^0.9.0",
     "react": "^0.13.3",
+    "react-tagsinput": "^1.3.5",
     "react-tap-event-plugin": "^0.1.7",
     "svg-loader": "0.0.2"
   }

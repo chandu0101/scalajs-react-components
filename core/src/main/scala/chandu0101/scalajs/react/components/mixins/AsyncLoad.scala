@@ -11,14 +11,14 @@ import org.scalajs.dom.ext.PimpedNodeList
  */
 trait AsyncLoad {
 
-  var jsResources: List[String] = List()
+  def jsResources: Vector[String] = Vector.empty
 
-  var cssResources: List[String] = List()
+  def cssResources: Vector[String] = Vector.empty
 
 }
 
 object AsyncLoad {
-  def mixin[P, S, B, N <: TopNode] = (c: ReactComponentB[P, S, B, N]) => {
+  def mixin[P, S, B <: AsyncLoad, N <: TopNode] = (c: ReactComponentB[P, S, B, N]) => {
     c.componentWillMount(scope => {
       val async = scope.backend.asInstanceOf[AsyncLoad]
       val links = dom.document.getElementsByTagName("link")

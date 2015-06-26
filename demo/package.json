@@ -27,6 +27,7 @@
   "dependencies": {
     "material-ui": "^0.9.0",
     "react": "^0.13.3",
+    "react-geomicons": "^2.0.4",
     "react-select": "^0.5.1",
     "react-tagsinput": "^1.3.5",
     "react-tap-event-plugin": "^0.1.7",

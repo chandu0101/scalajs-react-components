@@ -6,13 +6,14 @@ var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 module.exports = {
 
     entry: {
-      mainpage:  './index.js',
-      reacttagpage: './js/reactTagsInputPage.js',
-      reactselectpage: './js/reactSelectPage.js'
+        mainpage: './index.js',
+        reacttagpage: './js/reactTagsInputPage.js',
+        reactselectpage: './js/reactSelectPage.js',
+        reactgeomiconspage: './js/reactGeomIconsPage.js'
     },
     output: {
         path: __dirname + '/assets',
-        publicPath: __dirname  + "/assets/",
+        publicPath: __dirname + "/assets/",
         filename: '[name]-bundle.js'
     },
     plugins: [
@@ -23,13 +24,17 @@ module.exports = {
     ],
     module: {
         loaders: [
-            { test: /\.css$/,
-              loader: 'style-loader!css-loader' },
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
+            },
 
-            { test: /\.(png|jpg|svg)$/,
-              loaders: [
-                'url-loader?limit=8192',
-                'image-webpack?optimizationLevel=7&progressive=true']} // inline base64 URLs for <=8k images, direct URLs for the rest
+            {
+                test: /\.(png|jpg|svg)$/,
+                loaders: [
+                    'url-loader?limit=8192',
+                    'image-webpack?optimizationLevel=7&progressive=true']
+            } // inline base64 URLs for <=8k images, direct URLs for the rest
         ]
     }
 

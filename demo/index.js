@@ -30,6 +30,7 @@ var googleMapImage = require("./images/googleMap.png");
    bottomTearImage = require("./images/bottom-tear.svg"),
    reactTagsInputImage = require("./images/reactTagsInput.png"),
    reactSelectImage = require("./images/reactSelect.png"),
+   reactGeomIconImage = require("./images/reactGeomIcon.png"),
    reactPopoverImage = require("./images/reactPopover.png");
 
 
@@ -39,6 +40,7 @@ window.reactTagsInputImage = reactTagsInputImage;
 window.reactListViewImage = reactListViewImage;
 window.reactTableImage = reactTableImage;
 window.reactPopoverImage = reactPopoverImage;
+window.reactGeomIconImage = reactGeomIconImage;
 window.materialuiImage = materialuiImage;
 window.reactTreeViewImage = reactTreeViewImage;
 window.reactSelectImage = reactSelectImage;

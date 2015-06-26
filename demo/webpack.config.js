@@ -7,7 +7,8 @@ module.exports = {
 
     entry: {
       mainpage:  './index.js',
-      reacttagpage: './js/reactTagsInputPage.js'
+      reacttagpage: './js/reactTagsInputPage.js',
+      reactselectpage: './js/reactSelectPage.js'
     },
     output: {
         path: __dirname + '/assets',

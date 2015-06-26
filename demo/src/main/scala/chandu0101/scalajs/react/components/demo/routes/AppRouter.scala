@@ -37,6 +37,8 @@ object AppRouter {
 
   case class ReactTagsInputPages(p: LeftRoute) extends Page
 
+  case class ReactSelectPages(p: LeftRoute) extends Page
+
   case class MuiPages(p: LeftRoute) extends Page
 
 
@@ -46,7 +48,8 @@ object AppRouter {
     val reactTreeViewRoutes: Rule = ReactTreeViewRouteModule.routes.prefixPath_/("#reacttreeview").pmap[Page](ReactTreeViewPages) { case ReactTreeViewPages(p) => p}
     val reactPopoverRoutes: Rule = ReactPopoverRouteModule.routes.prefixPath_/("#reactpopover").pmap[Page](ReactPopoverPages) { case ReactPopoverPages(p) => p}
     val reactTableRoutes: Rule = ReactTableRouteModule.routes.prefixPath_/("#reacttable").pmap[Page](ReactTablePages) { case ReactTablePages(p) => p}
-    val reactTagsInputPages: Rule = ReactTagsInputRouteModule.routes.prefixPath_/("#reacttagsinput").pmap[Page](ReactTagsInputPages) { case ReactTagsInputPages(p) => p}
+    val reactTagsInputRoutes: Rule = ReactTagsInputRouteModule.routes.prefixPath_/("#reacttagsinput").pmap[Page](ReactTagsInputPages) { case ReactTagsInputPages(p) => p}
+    val reactSelectRoutes: Rule = ReactSelectRouteModule.routes.prefixPath_/("#reactselect").pmap[Page](ReactSelectPages) { case ReactSelectPages(p) => p}
     val googleMapRoutes: Rule = GoogleMapRouteModule.routes.prefixPath_/("#googlemap").pmap[Page](GoogleMapPages) { case GoogleMapPages(p) => p}
     val muiRoutes: Rule = MuiRouteModule.routes.prefixPath_/("#materialui").pmap[Page](MuiPages) { case MuiPages(p) => p}
     (trimSlashes
@@ -55,7 +58,8 @@ object AppRouter {
       | staticRoute("#scalacss", ScalaCSSDoc) ~> render(ScalaCSSTutorial())
       | reactListViewRoutes
       | reactTreeViewRoutes
-      | reactTagsInputPages
+      | reactTagsInputRoutes
+      | reactSelectRoutes
       | reactTableRoutes
       | muiRoutes
       | reactPopoverRoutes
@@ -83,7 +87,8 @@ object AppRouter {
     HomePage.ComponentInfo(name = "Google Map", imagePath = g.googleMapImage.toString, route = GoogleMapPages(GoogleMapRouteModule.Info), tags = Stream("google", "map", "googlemap")),
 //    HomePage.ComponentInfo(name = "React TreeView", imagePath = g.reactTreeViewImage.toString, route = ReactTreeViewPages(ReactTreeViewRouteModule.Info), tags = Stream("tree view", "search", "treeview")),
     HomePage.ComponentInfo(name = "React Table", imagePath = g.reactTableImage.toString, route = ReactTablePages(ReactTableRouteModule.Info), tags = Stream("table", "search", "pagination", "sorting", "cutom cell")),
-    HomePage.ComponentInfo(name = "React Tags Input", imagePath = g.reactTagsInputImage.toString, route = ReactTagsInputPages(ReactTagsInputRouteModule.Info), tags = Stream("tags","input"))
+    HomePage.ComponentInfo(name = "React Tags Input", imagePath = g.reactTagsInputImage.toString, route = ReactTagsInputPages(ReactTagsInputRouteModule.Info), tags = Stream("tags","input")),
+    HomePage.ComponentInfo(name = "React Select", imagePath = g.reactSelectImage.toString, route = ReactSelectPages(ReactSelectRouteModule.Info), tags = Stream("select","multi","search","filter","multi select"))
 //    HomePage.ComponentInfo(name = "React Popover", imagePath = g.reactPopoverImage.toString, route = ReactPopoverPages(ReactPopoverRouteModule.Info), tags = Stream("modal", "popover"))
   )
 

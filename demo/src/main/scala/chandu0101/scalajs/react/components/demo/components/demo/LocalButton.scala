@@ -49,7 +49,7 @@ object LocalDemoButton {
     .backend(new Backend(_))
     .render((P, S, B) => {
     val buttonStyle = styleSet1(P.style.button, P.style.buttonHover -> S.buttonHover)
-    if (P.linkButton)<.a(buttonStyle, ^.href := P.href, onMouseEnter --> B.onMouseEnter, onMouseLeave --> B.onMouseLeave)(P.name)
+    if (P.linkButton)<.a(buttonStyle, ^.href := P.href,^.target := "_blank", onMouseEnter --> B.onMouseEnter, onMouseLeave --> B.onMouseLeave)(P.name)
     else<.a(buttonStyle, ^.onClick ==> P.onButtonClick, onMouseEnter --> B.onMouseEnter, onMouseLeave --> B.onMouseLeave)(P.name)
   })
     .build

@@ -84,7 +84,7 @@ object HomePage {
     <.div(
       <.div(Style.info, ^.key := "info")(
         <.h3(Style.infoContent)("Reusable ", <.a(^.href := "https://github.com/japgolly/scalajs-react",Style.infoLink ,^.target := "_blank")("scalajs-react"), " Components , want to Contribute ? "),
-        LocalDemoButton(name ="Welcome Mama",linkButton =  true,href  = P.urlFor(AppRouter.Contribute).value)
+        LocalDemoButton(name ="Welcome Mama",linkButton =  true,href  = "https://github.com/chandu0101/scalajs-react-components/tree/master/doc/CONTRIBUTE.md")
       ),
       <.div(Style.searchSection)(
        ReactSearchBox(onTextChange = B.onTextChange),

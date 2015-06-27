@@ -33,5 +33,5 @@ http://localhost:8090/
 ```
 
 # Contribute
-[Guidelines](https://github.com/chandu0101/scalajs-react-components/blob/master/doc/CONTRIBUTE.md)
+[Welcome Mama](https://github.com/chandu0101/scalajs-react-components/blob/master/doc/CONTRIBUTE.md)
 

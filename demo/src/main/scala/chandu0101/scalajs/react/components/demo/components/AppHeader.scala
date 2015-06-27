@@ -71,7 +71,6 @@ object AppHeader {
         <.nav(Style.menuNav)(
           <.a(Style.logo, ^.href := "#")("S J R C"),
           <.div(^.marginLeft := "auto")(
-            <.a(^.target :="_blank",(S.menuHover == docs) ?= Style.menuItemHover, Style.menuItem, ^.href := "docs" , onMouseEnter --> B.onMouseEnter(docs) , onMouseLeave --> B.onMouseLeave)(docs),
             <.a(^.target :="_blank" ,(S.menuHover == github) ?= Style.menuItemHover,Style.menuItem, ^.href := "https://github.com/chandu0101/scalajs-react-components", onMouseEnter --> B.onMouseEnter(github) , onMouseLeave --> B.onMouseLeave)(github)
           )
         ))

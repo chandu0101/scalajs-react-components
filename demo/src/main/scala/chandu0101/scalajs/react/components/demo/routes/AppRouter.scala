@@ -22,8 +22,6 @@ object AppRouter {
 
   case object ScalaCSSDoc extends Page
 
-  case object Contribute extends Page
-
   case class ReactListViewPages(p: LeftRoute) extends Page
 
   case class ReactTreeViewPages(p: LeftRoute) extends Page
@@ -56,7 +54,6 @@ object AppRouter {
     val muiRoutes: Rule = MuiRouteModule.routes.prefixPath_/("#materialui").pmap[Page](MuiPages) { case MuiPages(p) => p}
     (trimSlashes
       | staticRoute(root, Home) ~> renderR(ctrl => HomePage(ctrl))
-      | staticRoute("#contribute", Contribute) ~> render(ContributePage())
       | staticRoute("#scalacss", ScalaCSSDoc) ~> render(ScalaCSSTutorial())
       | reactListViewRoutes
       | reactTreeViewRoutes

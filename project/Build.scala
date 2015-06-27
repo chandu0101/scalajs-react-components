@@ -16,7 +16,7 @@ object ScalajsReactComponents extends Build {
   def commonSettings: PE =
     _.enablePlugins(ScalaJSPlugin)
       .settings(
-        organization       := "com.chandu0101.scalajs-react-components",
+        organization       := "com.github.chandu0101.scalajs-react-components",
         version            := "0.1.0",
         homepage           := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses           += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
@@ -44,7 +44,7 @@ object ScalajsReactComponents extends Build {
       },
       pomExtra :=
         <scm>
-          <connection>scm:git:github.com/japgolly/scalajs-react</connection>
+          <connection>scm:git:github.com:chandu0101/scalajs-react-components</connection>
           <developerConnection>scm:git:git@github.com:chandu0101/scalajs-react-components.git</developerConnection>
           <url>github.com:chandu0101/scalajs-react-components.git</url>
         </scm>

@@ -6,7 +6,7 @@ scalajs-react-components
 Reusable [scalajs-react] (https://github.com/japgolly/scalajs-react) components
 
 
-#### Setup
+# Setup
 
 ```scala
 // add this line to your build.sbt
@@ -14,7 +14,7 @@ libraryDependencies += "com.github.chandu0101.scalajs-react-components" %%% "cor
 
 ```
 
-#### Demo With Code Examples 
+# Demo With Code Examples
 
 **Online :** 
 
@@ -32,6 +32,6 @@ http://localhost:8090/
 
 ```
 
-#### Contribute
+# Contribute
 [Guidelines](https://github.com/chandu0101/scalajs-react-components/blob/master/doc/CONTRIBUTE.md)
 

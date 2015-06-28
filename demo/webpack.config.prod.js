@@ -6,6 +6,9 @@ var webpack = require('webpack'),
 
 module.exports = _.merge(require('./webpack.config.js'), {
 
+    output: {
+        publicPath: "/sjrc/assets/"
+    },
     plugins: [
         new CommonsChunkPlugin({
             name: "mainpage"

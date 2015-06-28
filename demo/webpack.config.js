@@ -13,7 +13,7 @@ module.exports = {
     },
     output: {
         path: __dirname + '/assets',
-        publicPath: __dirname + "/assets/",
+        publicPath: "/assets/",
         filename: '[name]-bundle.js'
     },
     plugins: [
@@ -32,7 +32,7 @@ module.exports = {
             {
                 test: /\.(png|jpg|svg)$/,
                 loaders: [
-                    'url-loader?limit=81920',
+                    'url-loader?limit=8192',
                     'image-webpack?optimizationLevel=7&progressive=true']
             } // inline base64 URLs for <=8k images, direct URLs for the rest
         ]

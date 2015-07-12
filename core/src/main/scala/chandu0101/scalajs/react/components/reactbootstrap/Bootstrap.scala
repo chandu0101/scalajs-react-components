@@ -2,6 +2,7 @@ package chandu0101.scalajs.react.components.reactbootstrap
 
 import japgolly.scalajs.react.ReactComponentU_
 import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.React
 
 import scala.scalajs.js
 
@@ -126,7 +127,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Button
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Button)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -138,7 +139,7 @@ object bootStrap {
     }
 
     def apply(): ReactComponentU_ = {
-      val f = ReactBootstrap.Accordion
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Accordion)
       f(toJs).asInstanceOf[ReactComponentU_]
     }
   }
@@ -153,7 +154,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Affix
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Affix)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -170,7 +171,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Alert
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Alert)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -183,7 +184,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Badge
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Badge)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -200,7 +201,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.ButtonGroup
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.ButtonGroup)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -216,7 +217,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.ButtonToolbar
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.ButtonToolbar)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -244,7 +245,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Carousel
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Carousel)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -274,7 +275,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Col
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Col)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -298,7 +299,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.DropdownButton
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.DropdownButton)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -313,7 +314,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.DropdownMenu
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.DropdownMenu)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -326,7 +327,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Glyphicon
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Glyphicon)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -342,7 +343,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Grid
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Grid)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -368,7 +369,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Input
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Input)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -381,7 +382,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Interpolate
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Interpolate)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -393,7 +394,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Jumbotron
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Jumbotron)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -408,7 +409,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Label
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Label)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -422,7 +423,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.ListGroup
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.ListGroup)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -444,7 +445,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.ListGroupItem
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.ListGroupItem)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -463,7 +464,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.MenuItem
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.MenuItem)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -484,7 +485,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Modal
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Modal)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -498,7 +499,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.ModalTrigger
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.ModalTrigger)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -520,7 +521,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Nav
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Nav)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -541,7 +542,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.NavItem
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.NavItem)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -568,7 +569,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Navbar
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Navbar)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -588,7 +589,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.OverlayTrigger
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.OverlayTrigger)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -601,7 +602,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.PageHeader
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.PageHeader)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -618,7 +619,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.PageItem
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.PageItem)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -631,7 +632,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Pager
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Pager)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -656,7 +657,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Panel
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Panel)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -676,7 +677,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.PanelGroup
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.PanelGroup)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -697,7 +698,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Popover
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Popover)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -721,7 +722,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.ProgressBar
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.ProgressBar)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -735,7 +736,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Row
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Row)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -757,7 +758,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.SplitButton
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.SplitButton)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -779,7 +780,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.propTypes
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.propTypes)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -800,7 +801,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.SubNav
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.SubNav)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -813,7 +814,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.TabPane
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.TabPane)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -831,7 +832,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.TabbedArea
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.TabbedArea)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -848,7 +849,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Table
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Table)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -868,7 +869,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Tooltip
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Tooltip)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
@@ -883,7 +884,7 @@ object bootStrap {
     }
 
     def apply(children: TagMod*): ReactComponentU_ = {
-      val f = ReactBootstrap.Well
+      val f = React.asInstanceOf[js.Dynamic].createFactory(ReactBootstrap.Well)
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }

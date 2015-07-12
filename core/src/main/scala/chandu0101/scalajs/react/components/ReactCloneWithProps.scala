@@ -19,7 +19,7 @@ object ReactCloneWithProps {
   }
 
   def apply(child: ReactNode, newProps: Map[String, js.Any]) = {
-    val f = React.addons.cloneWithProps
+    val f = React.asInstanceOf[js.Dynamic].createFactory(React.addons.cloneWithProps)
     f(child, mapToJS(newProps)).asInstanceOf[ReactComponentU_]
   }
 }

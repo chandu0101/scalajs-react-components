@@ -113,12 +113,12 @@ name: React.PropTypes.string.isRequired,
     valueSelected: React.PropTypes.string,
     defaultSelected: React.PropTypes.string,
     labelPosition: React.PropTypes.MuiSwitchLabelPosition,
-		onChange: React.PropTypes.(ReactEventI,Boolean) => Unit
+		onChange: React.PropTypes.(ReactEventI,String) => Unit
 
  */
 case class MuiRadioButtonGroup(name: String,
                                style: js.UndefOr[js.Any] = js.undefined,
-                               onChange: js.UndefOr[(ReactEventI, Boolean) => Unit] = js.undefined,
+                               onChange: js.UndefOr[(ReactEventI, String) => Unit] = js.undefined,
                                labelPosition: js.UndefOr[MuiSwitchLabelPosition] = js.undefined,
                                ref: js.UndefOr[String] = js.undefined,
                                key: js.UndefOr[String] = js.undefined,

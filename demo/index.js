@@ -30,12 +30,14 @@ var googleMapImage = require("./images/googleMap.png");
    bottomTearImage = require("./images/bottom-tear.svg"),
    reactTagsInputImage = require("./images/reactTagsInput.png"),
    reactSelectImage = require("./images/reactSelect.png"),
+   reactInfiniteImage = require("./images/reactInfinite.png"),
    reactGeomIconImage = require("./images/reactGeomIcon.png"),
    reactPopoverImage = require("./images/reactPopover.png");
 
 
 window.googleMapImage = googleMapImage;
 window.bottomTearImage = bottomTearImage;
+window.reactInfiniteImage = reactInfiniteImage;
 window.reactTagsInputImage = reactTagsInputImage;
 window.reactListViewImage = reactListViewImage;
 window.reactTableImage = reactTableImage;

@@ -40,6 +40,8 @@ object AppRouter {
 
   case class MuiPages(p: LeftRoute) extends Page
 
+  case class ReactInfinitePages(p: LeftRoute) extends Page
+
 
   val config = RouterConfigDsl[Page].buildConfig { dsl =>
     import dsl._
@@ -50,6 +52,7 @@ object AppRouter {
     val reactTagsInputRoutes: Rule = ReactTagsInputRouteModule.routes.prefixPath_/("#reacttagsinput").pmap[Page](ReactTagsInputPages) { case ReactTagsInputPages(p) => p}
     val reactSelectRoutes: Rule = ReactSelectRouteModule.routes.prefixPath_/("#reactselect").pmap[Page](ReactSelectPages) { case ReactSelectPages(p) => p}
     val reactGeomIconRoutes: Rule = ReactGeomIcontRouteModule.routes.prefixPath_/("#reactgeomicon").pmap[Page](ReactGeomIconPages) { case ReactGeomIconPages(p) => p}
+    val reactInfiniteRoutes: Rule = ReactInfiniteRouteModule.routes.prefixPath_/("#reactinite").pmap[Page](ReactInfinitePages) { case ReactInfinitePages(p) => p}
     val googleMapRoutes: Rule = GoogleMapRouteModule.routes.prefixPath_/("#googlemap").pmap[Page](GoogleMapPages) { case GoogleMapPages(p) => p}
     val muiRoutes: Rule = MuiRouteModule.routes.prefixPath_/("#materialui").pmap[Page](MuiPages) { case MuiPages(p) => p}
     (trimSlashes
@@ -61,6 +64,7 @@ object AppRouter {
       | reactSelectRoutes
       | reactGeomIconRoutes
       | reactTableRoutes
+      | reactInfiniteRoutes
       | muiRoutes
       | reactPopoverRoutes
       | googleMapRoutes
@@ -89,7 +93,8 @@ object AppRouter {
     HomePage.ComponentInfo(name = "React Table", imagePath = g.reactTableImage.toString, route = ReactTablePages(ReactTableRouteModule.Info), tags = Stream("table", "search", "pagination", "sorting", "cutom cell")),
     HomePage.ComponentInfo(name = "React Tags Input", imagePath = g.reactTagsInputImage.toString, route = ReactTagsInputPages(ReactTagsInputRouteModule.Info), tags = Stream("tags", "input")),
     HomePage.ComponentInfo(name = "React Select", imagePath = g.reactSelectImage.toString, route = ReactSelectPages(ReactSelectRouteModule.Info), tags = Stream("select", "multi", "search", "filter", "multi select")),
-    HomePage.ComponentInfo(name = "React GeomIcons", imagePath = g.reactGeomIconImage.toString, route = ReactGeomIconPages(ReactGeomIcontRouteModule.Info), tags = Stream("icons", "svg"))
+    HomePage.ComponentInfo(name = "React GeomIcons", imagePath = g.reactGeomIconImage.toString, route = ReactGeomIconPages(ReactGeomIcontRouteModule.Info), tags = Stream("icons", "svg")),
+    HomePage.ComponentInfo(name = "React Infinite", imagePath = g.reactInfiniteImage.toString, route = ReactInfinitePages(ReactInfiniteRouteModule.Info), tags = Stream("infinite scroll", "listview"))
     //    HomePage.ComponentInfo(name = "React Popover", imagePath = g.reactPopoverImage.toString, route = ReactPopoverPages(ReactPopoverRouteModule.Info), tags = Stream("modal", "popover"))
   )
 

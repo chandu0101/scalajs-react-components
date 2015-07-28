@@ -3,6 +3,7 @@ package chandu0101.scalajs.react.components.listviews
 import japgolly.scalajs.react._
 import org.scalajs.dom.raw.HTMLElement
 import scala.scalajs.js
+import scala.scalajs.js.JSConverters.JSRichGenTraversableOnce
 
 
 /**
@@ -53,9 +54,9 @@ case class ReactInfinite(handleScroll: js.UndefOr[HTMLElement => Unit] = js.unde
     p
   }
 
-  def apply(children: js.Array[ReactElement]) = {
-    val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactInfinite)
-    f(toJS, children).asInstanceOf[ReactComponentU_]
+  def apply(children: Seq[ReactElement]) = {
+    val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.Infinite)
+    f(toJS, children.toJSArray).asInstanceOf[ReactComponentU_]
   }
 }
 

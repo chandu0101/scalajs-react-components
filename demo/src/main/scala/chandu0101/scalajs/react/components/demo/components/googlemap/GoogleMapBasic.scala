@@ -22,7 +22,7 @@ object GoogleMapBasic {
    <.div(
      <.h2(^.cls := "mui-font-style-headline")("Basic Map"),
       CodeExample(code)(
-        GoogleMap(width = 600 ,height = 500 ,center = latlng ,zoom = 8)
+        GoogleMap(width = "600px" ,height = "500px" ,center = latlng ,zoom = 8)
       )
     )
   }).buildU

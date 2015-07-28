@@ -1,6 +1,7 @@
 package chandu0101.scalajs.react.components.demo.css
 
 import chandu0101.scalajs.react.components.demo.components.materialui._
+import chandu0101.scalajs.react.components.demo.components.reactinfinite.ReactInfiniteDemo
 import chandu0101.scalajs.react.components.demo.components.{InfoTemplate, LeftNav, LeftNavPage, ScalaCSSTutorial}
 import chandu0101.scalajs.react.components.listviews.ReactListView
 import chandu0101.scalajs.react.components.pagers.Pager
@@ -27,6 +28,7 @@ object AppCSS {
       Pager.DefaultStyle,
       ScalaCSSTutorial.Style,
       InfoTemplate.Style,
+      ReactInfiniteDemo.styles,
       MuiTabsDemo.Style)
     GlobalRegistry.addToDocumentOnRegistration()
   }

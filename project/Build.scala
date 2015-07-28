@@ -17,7 +17,7 @@ object ScalajsReactComponents extends Build {
     _.enablePlugins(ScalaJSPlugin)
       .settings(
         organization       := "com.github.chandu0101.scalajs-react-components",
-        version            := "0.1.0",
+        version            := "0.2.0-SNAPSHOT",
         homepage           := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses           += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion       := Scala211,
@@ -112,6 +112,7 @@ object ScalajsReactComponents extends Build {
       name := "core",
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalajs-react" %%% "core" % scalajsReactVersion,
+        "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion,
         "com.github.japgolly.scalacss" %%% "core" % scalaCSSVersion,
         "com.github.japgolly.scalacss" %%% "ext-react" % scalaCSSVersion),
       target in Compile in doc := baseDirectory.value / "docs"

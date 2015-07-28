@@ -22,14 +22,16 @@ ref: PropTypes.String,
     onKeyDown: React.PropTypes.ReactEventI => Unit,
     onEnterKeyDown: React.PropTypes.ReactEventI => Unit,
     type: React.PropTypes.string,
-    rows: React.PropTypes.number
+    rows: React.PropTypes.number,
+    value :React.PropTypes.string,
+    defaultValue:React.PropTypes.string
 
  */
 
 
 object MuiTextField {
 
-  def apply(onBlur: js.UndefOr[ReactEventI => Unit] = js.undefined,
+  def apply[T](onBlur: js.UndefOr[ReactEventI => Unit] = js.undefined,
             multiLine: js.UndefOr[Boolean] = js.undefined,
             fullWidth: js.UndefOr[Boolean] = js.undefined,
             onEnterKeyDown: js.UndefOr[ReactEventI => Unit] = js.undefined,
@@ -40,6 +42,8 @@ object MuiTextField {
             hintText: js.UndefOr[String] = js.undefined,
             key: js.UndefOr[String] = js.undefined,
             id: js.UndefOr[String] = js.undefined,
+            value: js.UndefOr[T] = js.undefined,
+            defaultValue: js.UndefOr[T] = js.undefined,
             errorText: js.UndefOr[String] = js.undefined,
             onFocus: js.UndefOr[ReactEventI => Unit] = js.undefined,
             disabled: js.UndefOr[Boolean] = js.undefined,
@@ -59,6 +63,8 @@ object MuiTextField {
     hintText.foreach(v => p.updateDynamic("hintText")(v))
     key.foreach(v => p.updateDynamic("key")(v))
     id.foreach(v => p.updateDynamic("id")(v))
+    value.foreach(v => p.updateDynamic("value")(v.asInstanceOf[js.Any]))
+    defaultValue.foreach(v => p.updateDynamic("defaultValue")(v.asInstanceOf[js.Any]))
     errorText.foreach(v => p.updateDynamic("errorText")(v))
     onFocus.foreach(v => p.updateDynamic("onFocus")(v))
     disabled.foreach(v => p.updateDynamic("disabled")(v))

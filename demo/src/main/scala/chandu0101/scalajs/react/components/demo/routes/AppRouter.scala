@@ -42,6 +42,8 @@ object AppRouter {
 
   case class ReactInfinitePages(p: LeftRoute) extends Page
 
+  case class SpinnerPages(p: LeftRoute) extends Page
+
 
   val config = RouterConfigDsl[Page].buildConfig { dsl =>
     import dsl._
@@ -55,6 +57,7 @@ object AppRouter {
     val reactInfiniteRoutes: Rule = ReactInfiniteRouteModule.routes.prefixPath_/("#reactinite").pmap[Page](ReactInfinitePages) { case ReactInfinitePages(p) => p}
     val googleMapRoutes: Rule = GoogleMapRouteModule.routes.prefixPath_/("#googlemap").pmap[Page](GoogleMapPages) { case GoogleMapPages(p) => p}
     val muiRoutes: Rule = MuiRouteModule.routes.prefixPath_/("#materialui").pmap[Page](MuiPages) { case MuiPages(p) => p}
+    val spinnerRoutes: Rule = SpinnerRouteModule.routes.prefixPath_/("#spinner").pmap[Page](SpinnerPages) { case SpinnerPages(p) => p}
     (trimSlashes
       | staticRoute(root, Home) ~> renderR(ctrl => HomePage(ctrl))
       | staticRoute("#scalacss", ScalaCSSDoc) ~> render(ScalaCSSTutorial())
@@ -65,6 +68,7 @@ object AppRouter {
       | reactGeomIconRoutes
       | reactTableRoutes
       | reactInfiniteRoutes
+      | spinnerRoutes
       | muiRoutes
       | reactPopoverRoutes
       | googleMapRoutes
@@ -94,7 +98,8 @@ object AppRouter {
     HomePage.ComponentInfo(name = "React Tags Input", imagePath = g.reactTagsInputImage.toString, route = ReactTagsInputPages(ReactTagsInputRouteModule.Info), tags = Stream("tags", "input")),
     HomePage.ComponentInfo(name = "React Select", imagePath = g.reactSelectImage.toString, route = ReactSelectPages(ReactSelectRouteModule.Info), tags = Stream("select", "multi", "search", "filter", "multi select")),
     HomePage.ComponentInfo(name = "React GeomIcons", imagePath = g.reactGeomIconImage.toString, route = ReactGeomIconPages(ReactGeomIcontRouteModule.Info), tags = Stream("icons", "svg")),
-    HomePage.ComponentInfo(name = "React Infinite", imagePath = g.reactInfiniteImage.toString, route = ReactInfinitePages(ReactInfiniteRouteModule.Info), tags = Stream("infinite scroll", "listview"))
+    HomePage.ComponentInfo(name = "React Infinite", imagePath = g.reactInfiniteImage.toString, route = ReactInfinitePages(ReactInfiniteRouteModule.Info), tags = Stream("infinite scroll", "listview")),
+    HomePage.ComponentInfo(name = "Spinner", imagePath = g.spinnerImage.toString, route = SpinnerPages(SpinnerRouteModule.Info), tags = Stream("spinner"))
     //    HomePage.ComponentInfo(name = "React Popover", imagePath = g.reactPopoverImage.toString, route = ReactPopoverPages(ReactPopoverRouteModule.Info), tags = Stream("modal", "popover"))
   )
 

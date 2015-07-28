@@ -32,6 +32,7 @@ var googleMapImage = require("./images/googleMap.png");
    reactSelectImage = require("./images/reactSelect.png"),
    reactInfiniteImage = require("./images/reactInfinite.png"),
    reactGeomIconImage = require("./images/reactGeomIcon.png"),
+   spinnerImage = require("./images/spinner.png"),
    reactPopoverImage = require("./images/reactPopover.png");
 
 
@@ -41,6 +42,7 @@ window.reactInfiniteImage = reactInfiniteImage;
 window.reactTagsInputImage = reactTagsInputImage;
 window.reactListViewImage = reactListViewImage;
 window.reactTableImage = reactTableImage;
+window.spinnerImage = spinnerImage;
 window.reactPopoverImage = reactPopoverImage;
 window.reactGeomIconImage = reactGeomIconImage;
 window.materialuiImage = materialuiImage;

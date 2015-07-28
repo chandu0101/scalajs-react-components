@@ -10,7 +10,8 @@ module.exports = {
         reacttagpage: './js/reactTagsInputPage.js',
         reactselectpage: './js/reactSelectPage.js',
         reactgeomiconspage: './js/reactGeomIconsPage.js',
-        reactInfinitePage: './js/reactInfinitePage.js'
+        reactInfinitePage: './js/reactInfinitePage.js',
+        spinnerPage: './js/spinnerPage.js'
     },
     output: {
         path: __dirname + '/assets',

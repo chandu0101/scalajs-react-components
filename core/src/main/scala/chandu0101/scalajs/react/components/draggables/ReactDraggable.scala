@@ -130,8 +130,8 @@ object ReactDraggable {
       var stl : TagMod = Seq( ^.top := topValue ,^.left := leftValue)
       if(P.useCSSTransforms) stl = B.positionToCSSTransform(leftValue,topValue)
      <.div(^.classSet1("react-draggable","react-draggable-dragging" -> S.dragging) ,stl)(
-       ^.onMouseDown ==> B.handleDragStart,
-       ^.onMouseUp ==> B.handleDragEnd
+       ^.onMouseDown ==> B.handleDragStart,^.onTouchStart ==> B.handleDragStart,
+       ^.onMouseUp ==> B.handleDragEnd,^.onTouchEnd ==> B.handleDragEnd
       )(
         C
       )

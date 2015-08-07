@@ -58,8 +58,8 @@ object ReactDraggable {
           // being selected all over the page.
           dom.document.body.className += " react-draggable-active"
           if(t.props.onStart != null) t.props.onStart(e,createUIEvent)
-          Events.on(dom.window,dragEventFor("move"),handleDrag_ref)
-          Events.on(dom.window,dragEventFor("end"),handleDragEnd_ref)
+          Events.on(dom.window,dragEventFor(e,"move"),handleDrag_ref)
+          Events.on(dom.window,dragEventFor(e,"end"),handleDragEnd_ref)
         }
       }
     }
@@ -106,8 +106,8 @@ object ReactDraggable {
           // Remove the body class used to disable user-select.
           g.document.body.className = g.document.body.className.replace(" react-draggable-active", "")
          if(t.props.onStop != null) t.props.onStop(e,createUIEvent)
-          Events.off(dom.window,dragEventFor("move"),handleDrag_ref)
-          Events.off(dom.window,dragEventFor("end"),handleDragEnd_ref)
+          Events.off(dom.window,dragEventFor(e,"move"),handleDrag_ref)
+          Events.off(dom.window,dragEventFor(e,"end"),handleDragEnd_ref)
        }
     }
 

@@ -142,11 +142,16 @@ case class MuiMenuItem(payload: js.UndefOr[String] = js.undefined,
                        disabled: js.UndefOr[Boolean] = js.undefined,
                        defaultToggled: js.UndefOr[Boolean] = js.undefined,
                        route: js.UndefOr[String] = js.undefined,
-                       `type`: js.UndefOr[MuiMenuItemType] = js.undefined) {
+                       `type`: js.UndefOr[MuiMenuItemType] = js.undefined,
+                       className: js.UndefOr[String] = js.undefined,
+                       selected: js.UndefOr[Boolean] = js.undefined,
+                       style : js.UndefOr[js.Any] = js.undefined) {
   def toJson = {
     val p = json()
     defaultToggled.foreach(v => p.updateDynamic("defaultToggled")(v))
     text.foreach(v => p.updateDynamic("text")(v))
+    selected.foreach(v => p.updateDynamic("selected")(v))
+    className.foreach(v => p.updateDynamic("className")(v))
     number.foreach(v => p.updateDynamic("number")(v))
     data.foreach(v => p.updateDynamic("data")(v))
     iconClassName.foreach(v => p.updateDynamic("iconClassName")(v))
@@ -156,15 +161,28 @@ case class MuiMenuItem(payload: js.UndefOr[String] = js.undefined,
     payload.foreach(v => p.updateDynamic("payload")(v))
     toggle.foreach(v => p.updateDynamic("toggle")(v))
     id.foreach(v => p.updateDynamic("id")(v))
+    style.foreach(v => p.updateDynamic("style")(v))
     p
   }
 }
 
 object MuiMenuItem {
-  def fromJson(obj: js.Dynamic) = MuiMenuItem(defaultToggled = if (js.isUndefined(obj.defaultToggled)) js.undefined else obj.defaultToggled.asInstanceOf[Boolean],
-    text = if (js.isUndefined(obj.text)) js.undefined else obj.text.asInstanceOf[String],
-    data = if (js.isUndefined(obj.data)) js.undefined else obj.text.asInstanceOf[String],
-    number = if (js.isUndefined(obj.number)) js.undefined else obj.number.asInstanceOf[String], iconClassName = if (js.isUndefined(obj.iconClassName)) js.undefined else obj.iconClassName.asInstanceOf[String], route = if (js.isUndefined(obj.route)) js.undefined else obj.route.asInstanceOf[String], disabled = if (js.isUndefined(obj.disabled)) js.undefined else obj.disabled.asInstanceOf[Boolean], payload = if (js.isUndefined(obj.payload)) js.undefined else obj.payload.asInstanceOf[String], toggle = if (js.isUndefined(obj.toggle)) js.undefined else obj.toggle.asInstanceOf[Boolean], id = if (js.isUndefined(obj.id)) js.undefined else obj.id.asInstanceOf[String])
+  def fromJson(obj: js.Dynamic) =
+    MuiMenuItem(
+      defaultToggled = if (js.isUndefined(obj.defaultToggled)) js.undefined else obj.defaultToggled.asInstanceOf[Boolean],
+      text = if (js.isUndefined(obj.text)) js.undefined else obj.text.asInstanceOf[String],
+      data = if (js.isUndefined(obj.data)) js.undefined else obj.text.asInstanceOf[String],
+      number = if (js.isUndefined(obj.number)) js.undefined else obj.number.asInstanceOf[String],
+      iconClassName = if (js.isUndefined(obj.iconClassName)) js.undefined else obj.iconClassName.asInstanceOf[String],
+      route = if (js.isUndefined(obj.route)) js.undefined else obj.route.asInstanceOf[String],
+      disabled = if (js.isUndefined(obj.disabled)) js.undefined else obj.disabled.asInstanceOf[Boolean],
+      payload = if (js.isUndefined(obj.payload)) js.undefined else obj.payload.asInstanceOf[String],
+      toggle = if (js.isUndefined(obj.toggle)) js.undefined else obj.toggle.asInstanceOf[Boolean],
+      id = if (js.isUndefined(obj.id)) js.undefined else obj.id.asInstanceOf[String],
+      className = if (js.isUndefined(obj.className)) js.undefined else obj.className.asInstanceOf[String],
+      style = if (js.isUndefined(obj.style)) js.undefined else obj.style.asInstanceOf[js.Any],
+      selected = if (js.isUndefined(obj.selected)) js.undefined else obj.selected.asInstanceOf[Boolean]
+    )
 }
 
 class MuiMenuItemType private(val name: String) extends AnyVal

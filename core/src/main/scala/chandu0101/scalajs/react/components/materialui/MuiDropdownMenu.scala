@@ -26,7 +26,7 @@ object MuiDropdownMenu {
 
   def apply(menuItems: JArray[Item],
             style: js.UndefOr[js.Any] = js.undefined,
-            onChange: js.UndefOr[(ReactEvent, Int, Item) => Unit] = js.undefined,
+            onChange: js.UndefOr[(ReactEvent, Int, js.Object) => Unit] = js.undefined,
             ref: js.UndefOr[String] = js.undefined,
             menuItemStyle: js.UndefOr[js.Any] = js.undefined,
             key: js.UndefOr[String] = js.undefined,

@@ -6,7 +6,6 @@ import materialui.Mui
 import scala.scalajs.js
 import scala.scalajs.js.{UndefOr, undefined}
 
-
 /**
  * key: PropTypes.string,
    ref: PropTypes.String,
@@ -21,7 +20,8 @@ import scala.scalajs.js.{UndefOr, undefined}
  * @param route
  */
 
-case class MuiTab(label: UndefOr[String] = undefined,
+case class MuiTab(style : UndefOr[js.Any] = undefined,
+                   label: UndefOr[String] = undefined,
                    onActive: UndefOr[ReactElement => Unit] = undefined,
                    ref: UndefOr[String] = undefined,
                    key: UndefOr[String] = undefined,
@@ -33,6 +33,7 @@ case class MuiTab(label: UndefOr[String] = undefined,
     ref.foreach(v => p.updateDynamic("ref")(v))
     key.foreach(v => p.updateDynamic("key")(v))
     route.foreach(v => p.updateDynamic("route")(v))
+    style.foreach(v => p.updateDynamic("style")(v))
     p
   }
 

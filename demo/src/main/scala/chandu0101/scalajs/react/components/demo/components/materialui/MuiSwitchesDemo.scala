@@ -76,15 +76,15 @@ object MuiSwitchesDemo {
             <.div(Style.content,
               MuiCheckBox(name="checkboxName1",
                 value="checkboxValue1",
-                label="went for a run today"),
+                label="went for a run today")(),
               MuiCheckBox(name="checkboxName2",
                 value="checkboxValue2",
-                label="feed the dog"),
+                label="feed the dog")(),
               MuiCheckBox(name="checkboxName3",
                 value="checkboxValue3",
                 label="built a house on the moon",
                 disabled = true
-              )
+              )()
             )
           )
         ),
@@ -93,9 +93,9 @@ object MuiSwitchesDemo {
             <.div(Style.content,
               MuiRadioButtonGroup(name = "shipspeed",
                 defaultSelected = "not_light")(
-                MuiRadioButton(value = "light" ,label = "prepare for light speed"),
-                MuiRadioButton(value = "no_light" ,label = "light speed too slow"),
-                MuiRadioButton(value = "ludicrous" ,label = "go to ludicrous speed",disabled = true)
+                MuiRadioButton(value = "light" ,label = "prepare for light speed")(),
+                MuiRadioButton(value = "no_light" ,label = "light speed too slow")(),
+                MuiRadioButton(value = "ludicrous" ,label = "go to ludicrous speed",disabled = true)()
               )
             )
           )
@@ -103,9 +103,9 @@ object MuiSwitchesDemo {
         MuiTab(label = "Toggle")(
           CodeExample(toggleCode)(
             <.div(Style.content,
-              MuiToggle(name = "toggleName1" , value = "togglevalue1" ,label = "active thrusters"),
-              MuiToggle(name = "toggleName2" , value = "togglevalue2" ,label = "auto-pilot",defaultToggled = true),
-              MuiToggle(name = "toggleName3" , value = "togglevalue3" ,label = "initiate self-destruct sequence",disabled = true)
+              MuiToggle(name = "toggleName1" , value = "togglevalue1" ,label = "active thrusters")(),
+              MuiToggle(name = "toggleName2" , value = "togglevalue2" ,label = "auto-pilot",defaultToggled = true)(),
+              MuiToggle(name = "toggleName3" , value = "togglevalue3" ,label = "initiate self-destruct sequence",disabled = true)()
             )
           )
         )

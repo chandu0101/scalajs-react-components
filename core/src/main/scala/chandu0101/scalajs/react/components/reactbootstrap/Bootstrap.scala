@@ -1,21 +1,19 @@
 package chandu0101.scalajs.react.components.reactbootstrap
 
-import japgolly.scalajs.react.ReactComponentU_
+import japgolly.scalajs.react.{React, ReactComponentU_}
 import japgolly.scalajs.react.vdom.prefix_<^._
-import japgolly.scalajs.react.React
 
 import scala.scalajs.js
 
 
 /**
- * Created by chandrasekharkode on 11/29/14.
  *
  *  Its wrapper for reactbootstrap , you need js source file from
  *   Warning : its not currently supported
  *
  */
 
-
+@js.native
 object ReactBootstrap extends js.Object {
 
   def Button: js.Dynamic = js.native

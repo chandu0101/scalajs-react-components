@@ -6,7 +6,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 
 /**
- * Created by chandrasekharkode
  *
  * Eventually these should be copied to scalajs-react core
  */

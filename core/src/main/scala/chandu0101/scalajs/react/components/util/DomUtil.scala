@@ -4,11 +4,10 @@ import chandu0101.scalajs.react.components.models.RPoint
 import japgolly.scalajs.react.TopNode
 import org.scalajs.dom
 import org.scalajs.dom._
+
 import scala.scalajs.js
 
-/**
- * Created by chandrasekharkode on 12/2/14.
- */
+
 object DomUtil {
 
   def addClass(element : html.Element , className : String) = {

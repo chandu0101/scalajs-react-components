@@ -2,9 +2,7 @@ package chandu0101.scalajs.react.components.util
 
 import scala.scalajs.js.Date
 
-/**
- * Created by chandrasekharkode .
- */
+
 object DateTime {
 
   def addDays( d : Date , days : Int) = {

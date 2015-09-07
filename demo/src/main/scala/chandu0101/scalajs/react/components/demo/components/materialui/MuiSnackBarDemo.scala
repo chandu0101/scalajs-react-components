@@ -41,7 +41,7 @@ object MuiSnackBarDemo {
         MuiSnackBar(message = " Event added to your calender",
           action = "undo",
           ref = "snackbar",
-          onActionTouchTap = B.handleAction _),
+          onActionTouchTap = B.handleAction _)(),
         MuiRaisedButton(label = " Snack Bar Demo",onTouchTap = B.buttonClick _)()
 
       )

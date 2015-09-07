@@ -2,11 +2,9 @@ package chandu0101.scalajs.react.components.demo.components.reactgeomicons
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
 import chandu0101.scalajs.react.components.icons.{IconName, ReactGeomIcon}
-import chandu0101.scalajs.react.components.optionselectors.{ReactSelect, SelectOption}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{literal => json}
 import scala.scalajs.js.{Array => JArray}
 
@@ -22,11 +20,9 @@ object ReactGeomIconDemo {
       |
     """.stripMargin
 
-
-  case class State(value : String = "",multiValue : String = "")
+  case class State(value: String = "", multiValue: String = "")
 
   class Backend(t: BackendScope[_, State]) {
-
 
 
   }
@@ -39,10 +35,10 @@ object ReactGeomIconDemo {
     <.div(
       CodeExample(code, "Demo")(
         <.div(
-          ReactGeomIcon(name = IconName.CAMERA ,width = "2em" , height = "2em", fill = "red"),
-          ReactGeomIcon(name = IconName.CALENDAR ,width = "2em" , height = "2em", fill = "blue"),
-          ReactGeomIcon(name = IconName.CHAT ,width = "2em" , height = "2em", fill = "black"),
-          ReactGeomIcon(name = IconName.CHEVRONDOWN ,width = "2em" , height = "2em", fill = "orange")
+          ReactGeomIcon(name = IconName.CAMERA, width = "2em", height = "2em", fill = "red")(),
+          ReactGeomIcon(name = IconName.CALENDAR, width = "2em", height = "2em", fill = "blue")(),
+          ReactGeomIcon(name = IconName.CHAT, width = "2em", height = "2em", fill = "black")(),
+          ReactGeomIcon(name = IconName.CHEVRONDOWN, width = "2em", height = "2em", fill = "orange")()
         )
       )
     )

@@ -7,9 +7,7 @@ import org.scalajs.dom.Event
 
 import scala.scalajs.js
 
-/**
- * Created by chandrasekharkode .
- */
+
 trait WindowListeners {
   def listeners: List[(String,js.Function1[Event,_])]
 

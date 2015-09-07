@@ -18,9 +18,9 @@ object MuiSliderDemo {
     .render(P => {
     <.div(
       CodeExample(code, "MuiSlider")(
-        MuiSlider(name = "slider1"),
-        MuiSlider(name = "slider2",defaultValue = 0.5 ),
-        MuiSlider(name = "slider1",value = 0.3, disabled = true)
+        MuiSlider(name = "slider1")(),
+        MuiSlider(name = "slider2",defaultValue = 0.5 )(),
+        MuiSlider(name = "slider1",value = 0.3, disabled = true)()
       )
     )
   }).buildU

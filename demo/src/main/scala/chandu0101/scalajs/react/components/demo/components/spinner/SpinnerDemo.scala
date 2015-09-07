@@ -24,7 +24,7 @@ object SpinnerDemo {
     <.div(
       CodeExample(code, "Demo")(
         <.div( ^.width := "100px", ^.height := "100px" ,^.backgroundColor := "grey",
-          Spinner()
+          Spinner()()
         )
       )
     )

@@ -5,7 +5,6 @@ import org.scalajs.dom
 import org.scalajs.dom.ext.PimpedNodeList
 
 /**
- * Created by chandrasekharkode .
  *
  * To load resources(javascript,stylesheet) on fly
  */

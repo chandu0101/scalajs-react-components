@@ -6,9 +6,7 @@ import org.scalajs.dom.Event
 
 import scala.scalajs.js.Date
 
-/**
- * Created by chandrasekharkode .
- */
+
 trait MTypes {
 
   type REventIBooleanUnit = (ReactEventI, Boolean) => Unit

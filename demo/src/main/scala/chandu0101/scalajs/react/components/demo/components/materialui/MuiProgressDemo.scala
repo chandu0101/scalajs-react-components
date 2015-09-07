@@ -19,10 +19,10 @@ object MuiProgressDemo {
     .render(P => {
     <.div(
       CodeExample(code, "Progress Bars")(
-        MuiCircularProgress(mode = MuiProgressMode.DETERMINATE ,value = 50),
-        MuiCircularProgress(mode = MuiProgressMode.INDETERMINATE),
-        MuiCircularProgress(mode = MuiProgressMode.INDETERMINATE,size = 2),
-        MuiLinearProgress(mode = MuiProgressMode.INDETERMINATE ,size = 1.5)
+        MuiCircularProgress(mode = MuiProgressMode.DETERMINATE ,value = 50)(),
+        MuiCircularProgress(mode = MuiProgressMode.INDETERMINATE)(),
+        MuiCircularProgress(mode = MuiProgressMode.INDETERMINATE,size = 2)(),
+        MuiLinearProgress(mode = MuiProgressMode.INDETERMINATE ,size = 1.5)()
       )
     )
   }).buildU

@@ -18,8 +18,8 @@ object MuiDatePickerDemo {
     .render(P => {
     <.div(
       CodeExample(code,"MuiDatePicker")(
-       MuiDatePicker(hintText = "Protrait Dialog"),
-       MuiDatePicker(hintText = "Landscape Dialog",mode = MuiDatePickerMode.LANDSCAPE)
+       MuiDatePicker(hintText = "Protrait Dialog")(),
+       MuiDatePicker(hintText = "Landscape Dialog",mode = MuiDatePickerMode.LANDSCAPE)()
       )
     )
   }).buildU

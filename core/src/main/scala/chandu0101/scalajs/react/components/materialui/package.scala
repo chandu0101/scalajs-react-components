@@ -5,7 +5,7 @@ import scala.scalajs.js.annotation.JSName
 
 package object materialui {
 
-  @JSName("mui")
+  @js.native @JSName("mui")
   object Mui extends js.Object {
 
     val AppBar: js.Dynamic = js.native
@@ -56,6 +56,7 @@ package object materialui {
 
   }
 
+  @js.native
   trait MuiUtil extends js.Object {
     val CssEvent: js.Dynamic = js.native
     val Dom: js.Dynamic = js.native
@@ -67,6 +68,7 @@ package object materialui {
     val UniqueId: js.Dynamic = js.native
   }
 
+  @js.native
   trait MuiStyles extends js.Object {
     val AutoPrefix: js.Dynamic = js.native
     val Colors: js.Dynamic = js.native
@@ -76,6 +78,7 @@ package object materialui {
     val Transitions: js.Dynamic = js.native
   }
 
+  @js.native
   trait ThemeManager extends js.Object {
 
     def getCurrentTheme(): js.Dynamic = js.native
@@ -97,6 +100,5 @@ package object materialui {
       t.updateDynamic("childContextTypes")(js.Dynamic.literal("muiTheme" -> React.asInstanceOf[js.Dynamic].PropTypes.`object`): js.Object)
       t.updateDynamic("getChildContext")((() => js.Dynamic.literal("muiTheme" -> ThemeManager.getCurrentTheme())): js.Function)
     }
-
 
 }

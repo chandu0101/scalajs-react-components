@@ -95,21 +95,21 @@ object MuiMenuDemo {
         MuiTab(label = "Label Menu")(
           CodeExample(labelMenuCode)(
             <.div(Style.content,
-              MuiMenu(menuItems = labelMenuItems,autoWidth = false)
+              MuiMenu(menuItems = labelMenuItems,autoWidth = false)()
             )
           )
         ),
         MuiTab(label = "Number Menu")(
           CodeExample(numberMenuCode)(
             <.div(Style.content,
-              MuiMenu(menuItems = numberMenuItems,autoWidth = false)
+              MuiMenu(menuItems = numberMenuItems,autoWidth = false)()
             )
           )
         ),
         MuiTab(label = "Filter Menu")(
           CodeExample(filterMenuCode)(
             <.div(Style.content,
-              MuiMenu(menuItems = filterMenuItems,autoWidth = false)
+              MuiMenu(menuItems = filterMenuItems,autoWidth = false)()
             )
           )
         )

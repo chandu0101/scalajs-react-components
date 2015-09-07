@@ -18,11 +18,11 @@ object ReactTagsInputDemo {
     """.stripMargin
 
 
-  case class State(tags: JArray[String] = JArray("scala","scalajs"))
+  case class State(tags: JArray[String] = JArray("scala", "scalajs"))
 
   class Backend(t: BackendScope[_, State]) {
 
-    def onChange(tags : JArray[String] , tag : String) = {
+    def onChange(tags: JArray[String], tag: String) = {
       t.modState(_.copy(tags = tags))
       println(s" Final Tags : ${tags} , Added/Removed Tag : ${tag}")
     }
@@ -38,11 +38,11 @@ object ReactTagsInputDemo {
       CodeExample(code, "Demo")(
         <.div(
           <.h4("Uncontrolled : "),
-          ReactTagsInput(ref = "uncontrolledtags")
+          ReactTagsInput(ref = "uncontrolledtags")()
         ),
         <.div(
           <.h4("Controlled : "),
-          ReactTagsInput(value = S.tags,onChange = B.onChange _)
+          ReactTagsInput(value = S.tags, onChange = B.onChange _)()
         )
       )
     )

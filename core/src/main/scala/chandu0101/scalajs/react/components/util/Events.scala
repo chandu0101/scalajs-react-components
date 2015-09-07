@@ -5,9 +5,7 @@ import org.scalajs.dom.{Event, EventTarget}
 
 import scala.scalajs.js
 
-/**
- * Created by chandrasekharkode .
- */
+
 object Events {
 
   def once(element : TopNode , tpe : String, callback : js.Function1[Event,Any]) = {

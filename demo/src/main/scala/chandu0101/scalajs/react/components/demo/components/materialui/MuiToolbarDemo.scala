@@ -33,8 +33,8 @@ object MuiToolbarDemo {
            MuiRaisedButton(label = "Tool Left",secondary = true)()
          ),
           MuiToolbarGroup(key = "2",float = "right")(
-            MuiToolbarTitle(text = "options"),
-            MuiToolbarSeparator(),
+            MuiToolbarTitle(text = "options")(),
+            MuiToolbarSeparator()(),
             MuiRaisedButton(label = "Create Broadcast",primary = true)()
          )
         )

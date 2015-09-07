@@ -7,9 +7,7 @@ import org.scalajs.dom.{Event, html}
 
 import scala.scalajs.js
 
-/**
- * Created by chandrasekharkode .
- */
+
 trait ClickAwayable {
   def onClickAway()
 

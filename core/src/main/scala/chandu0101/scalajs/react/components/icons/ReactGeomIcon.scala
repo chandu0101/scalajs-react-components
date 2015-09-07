@@ -1,41 +1,27 @@
 package chandu0101.scalajs.react.components.icons
 
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 
 import scala.scalajs.js
 
-/**
- * key: PropTypes.string,
-ref: PropTypes.String,
-name:PropTypes.IconName.isRequired,
-width:PropTypes.String,
-height:PropTypes.String,
-fill:PropTypes.String,
- */
-object ReactGeomIcon {
 
-  def apply(name : IconName,
-            height : js.UndefOr[String] = js.undefined,
-            ref : js.UndefOr[String] = js.undefined,
-            key : js.UndefOr[String] = js.undefined,
-            fill : js.UndefOr[String] = js.undefined,
-            width : js.UndefOr[String] = js.undefined) = {
+case class ReactGeomIcon(name: IconName,
+                         height: js.UndefOr[String] = js.undefined,
+                         ref: js.UndefOr[String] = js.undefined,
+                         key: js.UndefOr[String] = js.undefined,
+                         fill: js.UndefOr[String] = js.undefined,
+                         width: js.UndefOr[String] = js.undefined) {
 
-    val p = js.Dynamic.literal()
-    p.updateDynamic("name")(name.name)
-    height.foreach(v => p.updateDynamic("height")(v))
-    ref.foreach(v => p.updateDynamic("ref")(v))
-    key.foreach(v => p.updateDynamic("key")(v))
-    fill.foreach(v => p.updateDynamic("fill")(v))
-    width.foreach(v => p.updateDynamic("width")(v))
-
+  def apply() = {
+    val props = JSMacro[ReactGeomIcon](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactGeomIcon)
-    f(p).asInstanceOf[ReactComponentU_]
+    f(props).asInstanceOf[ReactComponentU_]
   }
 
 }
 
-class IconName private(val name: String) extends AnyVal
+class IconName private(val value: String) extends AnyVal
 
 object IconName {
   val BOOKMARK = new IconName("bookmark")

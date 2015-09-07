@@ -65,10 +65,10 @@ object MuiLeftNavDemo {
         <.div(
           MuiLeftNav(ref = "leftnav",
             menuItems = menuItems,docked = false
-          ),
+          )(),
           MuiLeftNav(ref = "leftnavdocked",
             menuItems = menuItems,docked = S.isDocked
-          ),
+          )(),
           MuiRaisedButton(label = "Toggle Docked Left Nav" ,onTouchTap = B.handleDockedLeftNav _)(),
           <.br(),
           <.br(),

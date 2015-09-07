@@ -11,9 +11,7 @@ import scala.scalajs.js.Date
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 
-/**
- * Created by chandrasekharkode .
- */
+
 object ReactTable {
 
   type Model = Map[String, Any]

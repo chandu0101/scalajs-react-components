@@ -6,10 +6,11 @@ import sbt._
 
 object ScalajsReactComponents extends Build {
 
-  val Scala211 = "2.11.6"
+  val Scala211 = "2.11.7"
 
-  val scalajsReactVersion = "0.9.1"
+  val scalajsReactVersion = "0.9.2"
   val scalaCSSVersion = "0.3.0"
+  val macrosVersion = "0.5"
 
   type PE = Project => Project
 
@@ -114,6 +115,7 @@ object ScalajsReactComponents extends Build {
         "com.github.japgolly.scalajs-react" %%% "core" % scalajsReactVersion,
         "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion,
         "com.github.japgolly.scalacss" %%% "core" % scalaCSSVersion,
+        "com.github.chandu0101" %%% "macros" % macrosVersion,
         "com.github.japgolly.scalacss" %%% "ext-react" % scalaCSSVersion),
       target in Compile in doc := baseDirectory.value / "docs"
     )

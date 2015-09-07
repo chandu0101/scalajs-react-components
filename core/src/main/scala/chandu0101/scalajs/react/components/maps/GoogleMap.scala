@@ -10,9 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g, literal => json, newInstance => jsnew}
 
 
-/**
- * Created by chandrasekharkode .
- */
+
 object GoogleMap {
 
   case class State(loaded: Boolean)

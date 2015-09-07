@@ -10,9 +10,7 @@ import org.scalajs.dom.html
 import scala.scalajs.js
 
 
-/**
- * Created by chandrasekharkode .
- */
+
 object AutoSizeInput {
 
 

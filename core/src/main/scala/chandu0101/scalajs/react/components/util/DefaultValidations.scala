@@ -2,9 +2,6 @@ package chandu0101.scalajs.react.components.util
 
 import scala.util.Try
 
-/**
- * Created by chandrasekharkode .
- */
 
 object DefaultValidations {
 

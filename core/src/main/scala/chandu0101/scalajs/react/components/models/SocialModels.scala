@@ -2,9 +2,6 @@ package chandu0101.scalajs.react.components.models
 
 import org.scalajs.dom
 
-/**
- * Created by chandrasekharkode .
- */
 
 case class Tweet(text: String = "", via: String = "", hashTags: List[String] = List(), url: String = dom.window.location.href, related: String = "", inReplyTo: String = "")
 

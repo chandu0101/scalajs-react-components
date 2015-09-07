@@ -1,17 +1,10 @@
 package chandu0101.scalajs.react.components.searchboxes
 
 
-import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
-import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
-import scala.scalajs.js
-import scala.scalajs.js
-import scala.scalajs.js.undefined
-import scala.scalajs.js.UndefOr
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 

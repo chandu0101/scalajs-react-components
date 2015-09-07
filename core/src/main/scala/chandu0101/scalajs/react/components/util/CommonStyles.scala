@@ -2,9 +2,7 @@ package chandu0101.scalajs.react.components.util
 
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-/**
- * Created by chandrasekharkode .
- */
+
 trait CommonStyles extends RCustomTags{
 
   val cursorPointer = ^.cursor := "pointer"

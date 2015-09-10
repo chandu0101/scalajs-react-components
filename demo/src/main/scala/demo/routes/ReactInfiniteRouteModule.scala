@@ -11,7 +11,7 @@ object ReactInfiniteRouteModule {
 
   case object Demo extends LeftRoute("Demo", "demo", () => ReactInfiniteDemo())
 
-  val menu : List[LeftRoute] = List(Info,Demo)
+  val menu: List[LeftRoute] = List(Info,Demo)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._

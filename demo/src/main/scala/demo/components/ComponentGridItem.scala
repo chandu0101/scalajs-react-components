@@ -59,7 +59,7 @@ object ComponentGridItem {
   })
     .build
 
-  case class Props(heading: String, route: Page, img: String,ctrl : RouterCtl[Page])
+  case class Props(heading: String, route: Page, img: String,ctrl: RouterCtl[Page])
 
-  def apply(heading: String, route: Page, img: String,ctrl : RouterCtl[Page], ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(heading, route, img,ctrl))
+  def apply(heading: String, route: Page, img: String,ctrl: RouterCtl[Page], ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(heading, route, img,ctrl))
 }

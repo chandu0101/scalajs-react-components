@@ -5,30 +5,30 @@ import scala.scalajs.js.Date
 
 object DateTime {
 
-  def addDays( d : Date , days : Int) = {
+  def addDays( d: Date, days: Int) = {
     val newDate = clone(d)
     newDate.setDate(d.getDate() + days)
     newDate
   }
 
-  def clone( d : Date) = new Date(d.getTime())
+  def clone( d: Date) = new Date(d.getTime())
 
-  def addMonths( d : Date , months : Int) = {
+  def addMonths( d: Date, months: Int) = {
     val newDate = clone(d)
     newDate.setMonth(d.getMonth() + months)
     newDate
   }
   
-  def getFirstDayOfMonth( d : Date) = new Date(d.getFullYear(),d.getMonth(),1)
+  def getFirstDayOfMonth( d: Date) = new Date(d.getFullYear(),d.getMonth(),1)
 
-  def getDaysInMonth( d : Date) = {
+  def getDaysInMonth( d: Date) = {
     val resultDate = getFirstDayOfMonth(d)
     resultDate.setMonth(resultDate.getMonth() + 1)
     resultDate.setDate(resultDate.getDate() - 1)
     resultDate.getDate()
   }
 
-  def getFullMonth(d : Date) = {
+  def getFullMonth(d: Date) = {
     d.getMonth() match  {
       case 0 =>  "January"
       case 1 =>  "February"
@@ -46,7 +46,7 @@ object DateTime {
     }
   }
 
-  def getShortMonth( d : Date) = {
+  def getShortMonth( d: Date) = {
     
      d.getMonth() match {
        case 0 =>  "Jan"
@@ -80,13 +80,13 @@ object DateTime {
 
   def getWeekArray( d: Date) = {
     val daysInMonth = getDaysInMonth(d)
-    val dayArray = (1 to daysInMonth).toList.map(i => new  Date(d.getFullYear(), d.getMonth() , i)).toList
+    val dayArray = (1 to daysInMonth).toList.map(i => new  Date(d.getFullYear(), d.getMonth(), i)).toList
     getWeeks(dayArray)
   }
 
-  def getWeeks( days : List[Date]) =  {
+  def getWeeks( days: List[Date]) =  {
     var i = 0
-    var weeks : List[List[Date]] = List()
+    var weeks: List[List[Date]] = List()
     while(i < days.length) {
       val firstDayOfWeek = days(i).getDay()
       val daysInWeek = 7 - firstDayOfWeek
@@ -97,11 +97,11 @@ object DateTime {
     weeks
   }
 
-  def format(d : Date) = {
+  def format(d: Date) = {
     s"${d.getMonth()+1} / ${d.getDate()} / ${d.getFullYear()}"
   }
 
-  def isEqualDate( d1: Date ,d2 : Date) = {
+  def isEqualDate( d1: Date ,d2: Date) = {
     if(d1 != null && d2 != null) {
       (d1.getFullYear() == d2.getFullYear()) &&
         (d1.getMonth() == d2.getMonth()) &&

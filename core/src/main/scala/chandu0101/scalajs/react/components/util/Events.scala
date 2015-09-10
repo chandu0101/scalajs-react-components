@@ -7,18 +7,18 @@ import scala.scalajs.js
 
 object Events {
 
-  def once(element : TopNode , tpe : String, callback : js.Function1[Event,Any]) = {
+  def once(element: TopNode, tpe: String, callback: js.Function1[Event,Any]) = {
     lazy val cb: js.Function1[Event, Any] = { (e: Event) =>
       e.target.removeEventListener(e.`type`, cb) // using cb here
       callback(e)
     }
     tpe.split(" ").foreach(item => element.addEventListener(item, cb))
   }
-  def on(element : EventTarget , tpe : String,callback : js.Function1[Event,_] ,capture : Boolean = false) = {
+  def on(element: EventTarget, tpe: String,callback: js.Function1[Event,_] ,capture: Boolean = false) = {
     element.addEventListener(tpe,callback,capture)
   }
 
-  def off(element : EventTarget , tpe : String,callback : js.Function1[Event,_] ,capture : Boolean = false) = {
+  def off(element: EventTarget, tpe: String,callback: js.Function1[Event,_] ,capture: Boolean = false) = {
     element.removeEventListener(tpe,callback,capture)
   }
 

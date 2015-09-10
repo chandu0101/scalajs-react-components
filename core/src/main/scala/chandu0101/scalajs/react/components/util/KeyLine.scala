@@ -10,5 +10,5 @@ object KeyLine {
      val MENU_ITEM_HEIGHT = 32
    }
 
-  def getIncrementalDim(dim : Double) = Math.ceil( dim / Desktop.INCREMENT) * Desktop.INCREMENT
+  def getIncrementalDim(dim: Double) = Math.ceil( dim / Desktop.INCREMENT) * Desktop.INCREMENT
 }

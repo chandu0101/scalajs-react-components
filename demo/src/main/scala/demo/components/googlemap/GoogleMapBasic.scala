@@ -12,7 +12,7 @@ object GoogleMapBasic {
   val code =
     """
       |  val latlng = LatLng(16.3008,80.4428)
-      |  GoogleMap(width = 600 ,height = 500 ,center = latlng , zoom = 8)
+      |  GoogleMap(width = 600 ,height = 500 ,center = latlng, zoom = 8)
       |
     """.stripMargin
   val component = ReactComponentB[Unit]("BasicMap")

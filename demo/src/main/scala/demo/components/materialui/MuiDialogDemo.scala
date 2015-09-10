@@ -11,7 +11,7 @@ object MuiDialogDemo {
 
   val code =
     """
-      | val actions : js.Array[ReactElement] = js.Array(
+      | val actions: js.Array[ReactElement] = js.Array(
       |     MuiFlatButton(label = "Cancel",secondary = true,onTouchTap = B.handleDialogCancel _)(),
       |     MuiFlatButton(label = "Submit",secondary = true,onTouchTap = B.handleDialogSubmit _)()
       |    )
@@ -23,19 +23,19 @@ object MuiDialogDemo {
       |
     """.stripMargin
 
-  class Backend(t : BackendScope[_,_]) {
+  class Backend(t: BackendScope[_,_]) {
 
-    def handleDialogCancel(e : ReactEventH) = {
+    def handleDialogCancel(e: ReactEventH) = {
       println("Cancel Clicked")
       dialogRef(t).get.dismiss()
     }
 
-    def handleDialogSubmit(e : ReactEventH) = {
+    def handleDialogSubmit(e: ReactEventH) = {
       println("Submit Clicked")
       dialogRef(t).get.dismiss()
     }
 
-    def openDialog(e : ReactEventH) = {
+    def openDialog(e: ReactEventH) = {
       dialogRef(t).get.show()
     }
 
@@ -47,7 +47,7 @@ object MuiDialogDemo {
     .stateless
     .backend(new Backend(_))
     .render((P,S,B) => {
-    val actions : js.Array[ReactElement] = js.Array(
+    val actions: js.Array[ReactElement] = js.Array(
      MuiFlatButton(label = "Cancel",secondary = true,onTouchTap = B.handleDialogCancel _)(),
      MuiFlatButton(label = "Submit",secondary = true,onTouchTap = B.handleDialogSubmit _)()
     )

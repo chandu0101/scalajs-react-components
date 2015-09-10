@@ -7,8 +7,8 @@ import scala.scalajs.js
 
 /**
  *
- *  Its wrapper for reactbootstrap , you need js source file from
- *   Warning : its not currently supported
+ *  Its wrapper for reactbootstrap, you need js source file from
+ *   Warning: its not currently supported
  *
  */
 
@@ -43,61 +43,61 @@ object ReactBootstrap extends js.Object {
 
   def Input: js.Dynamic = js.native
 
-  def Interpolate : js.Dynamic = js.native
+  def Interpolate: js.Dynamic = js.native
 
-  def Jumbotron : js.Dynamic = js.native
+  def Jumbotron: js.Dynamic = js.native
 
-  def Label : js.Dynamic = js.native
+  def Label: js.Dynamic = js.native
 
-  def ListGroup : js.Dynamic = js.native
+  def ListGroup: js.Dynamic = js.native
 
-  def ListGroupItem : js.Dynamic = js.native
+  def ListGroupItem: js.Dynamic = js.native
 
-  def MenuItem : js.Dynamic = js.native
+  def MenuItem: js.Dynamic = js.native
 
-  def Modal : js.Dynamic = js.native
+  def Modal: js.Dynamic = js.native
 
-  def ModalTrigger : js.Dynamic = js.native
+  def ModalTrigger: js.Dynamic = js.native
 
-  def Nav : js.Dynamic = js.native
+  def Nav: js.Dynamic = js.native
 
-  def NavItem : js.Dynamic = js.native
+  def NavItem: js.Dynamic = js.native
 
-  def Navbar : js.Dynamic = js.native
+  def Navbar: js.Dynamic = js.native
 
-  def OverlayTrigger : js.Dynamic = js.native
+  def OverlayTrigger: js.Dynamic = js.native
 
-  def PageHeader : js.Dynamic = js.native
+  def PageHeader: js.Dynamic = js.native
 
-  def PageItem : js.Dynamic = js.native
+  def PageItem: js.Dynamic = js.native
 
-  def Pager : js.Dynamic = js.native
+  def Pager: js.Dynamic = js.native
 
-  def Panel : js.Dynamic = js.native
+  def Panel: js.Dynamic = js.native
 
-  def PanelGroup : js.Dynamic = js.native
+  def PanelGroup: js.Dynamic = js.native
 
-  def Popover : js.Dynamic = js.native
+  def Popover: js.Dynamic = js.native
 
-  def ProgressBar : js.Dynamic = js.native
+  def ProgressBar: js.Dynamic = js.native
 
-  def Row : js.Dynamic = js.native
+  def Row: js.Dynamic = js.native
 
-  def SplitButton : js.Dynamic = js.native
+  def SplitButton: js.Dynamic = js.native
 
-  def propTypes : js.Dynamic = js.native
+  def propTypes: js.Dynamic = js.native
 
-  def SubNav : js.Dynamic = js.native
+  def SubNav: js.Dynamic = js.native
 
-  def TabPane : js.Dynamic = js.native
+  def TabPane: js.Dynamic = js.native
 
-  def TabbedArea : js.Dynamic = js.native
+  def TabbedArea: js.Dynamic = js.native
 
-  def Table : js.Dynamic = js.native
+  def Table: js.Dynamic = js.native
 
-  def Tooltip : js.Dynamic = js.native
+  def Tooltip: js.Dynamic = js.native
 
-  def Well : js.Dynamic = js.native
+  def Well: js.Dynamic = js.native
 
 }
 
@@ -479,7 +479,7 @@ object bootStrap {
     }
   }
 
-  case class ModalTrigger(modal : U[String]) {
+  case class ModalTrigger(modal: U[String]) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       modal.foreach(v => p.updateDynamic("modal")(v))
@@ -712,7 +712,7 @@ object bootStrap {
     }
   }
 
-  case class Row(componentClass : U[String]) {
+  case class Row(componentClass: U[String]) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       componentClass.foreach(v => p.updateDynamic("componentClass")(v))

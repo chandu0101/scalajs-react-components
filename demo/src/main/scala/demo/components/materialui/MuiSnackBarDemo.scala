@@ -18,13 +18,13 @@ object MuiSnackBarDemo {
       |
     """.stripMargin
 
-  class Backend(t : BackendScope[_,_]) {
+  class Backend(t: BackendScope[_,_]) {
 
-    def handleAction(e : ReactEvent) = {
+    def handleAction(e: ReactEvent) = {
       dom.window.alert("We removed Event from your cal")
     }
 
-    def buttonClick(e : ReactEventH) = {
+    def buttonClick(e: ReactEventH) = {
       snackBarRef(t).get.show()
     }
   }

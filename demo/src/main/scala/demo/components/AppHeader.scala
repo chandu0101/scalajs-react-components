@@ -52,7 +52,7 @@ object AppHeader {
 
   class Backend(t: BackendScope[_, State]) {
 
-    def onMouseEnter(menu : String) = t.modState(_.copy(menuHover = menu))
+    def onMouseEnter(menu: String) = t.modState(_.copy(menuHover = menu))
 
     def onMouseLeave() = t.modState(_.copy(menuHover = ""))
 
@@ -68,7 +68,7 @@ object AppHeader {
         <.nav(Style.menuNav)(
           <.a(Style.logo, ^.href := "#")("S J R C"),
           <.div(^.marginLeft := "auto")(
-            <.a(^.target :="_blank" ,(S.menuHover == github) ?= Style.menuItemHover,Style.menuItem, ^.href := "https://github.com/chandu0101/scalajs-react-components", onMouseEnter --> B.onMouseEnter(github) , onMouseLeave --> B.onMouseLeave)(github)
+            <.a(^.target :="_blank" ,(S.menuHover == github) ?= Style.menuItemHover,Style.menuItem, ^.href := "https://github.com/chandu0101/scalajs-react-components", onMouseEnter --> B.onMouseEnter(github), onMouseLeave --> B.onMouseLeave)(github)
           )
         ))
     })

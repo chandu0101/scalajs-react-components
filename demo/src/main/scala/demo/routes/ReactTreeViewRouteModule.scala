@@ -11,7 +11,7 @@ object ReactTreeViewRouteModule {
 
   case object Demo extends LeftRoute("Demo", "demo", () => ReactTreeViewDemo())
 
-  val menu : List[LeftRoute] = List(Info,Demo)
+  val menu: List[LeftRoute] = List(Info,Demo)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
 

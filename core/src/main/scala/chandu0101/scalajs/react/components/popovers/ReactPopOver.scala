@@ -12,7 +12,7 @@ object ReactPopOver {
 
   trait Style {
 
-    def popover : TagMod = Seq(positionAbsolute,
+    def popover: TagMod = Seq(positionAbsolute,
     ^.top := 0,
     ^.left := "-100%",
     ^.zIndex := 1060,
@@ -114,7 +114,7 @@ object ReactPopOver {
     )
   }
 
-  case class State(open: Boolean ,top : Double = 0,left : Double = 0)
+  case class State(open: Boolean ,top: Double = 0,left: Double = 0)
 
   class Backend(t: BackendScope[Props, State]) {
 
@@ -161,11 +161,11 @@ object ReactPopOver {
            ClientRect(top,left)
         }
 
-        case _ => throw new Exception(s"unsupported placement : ${t.props.placement}")
+        case _ => throw new Exception(s"unsupported placement: ${t.props.placement}")
       }
     }
 
-    def arrowAfter : TagMod = {
+    def arrowAfter: TagMod = {
       val P = t.props
       if  (P.placement == "top")  <.span(P.style.popoverArrowAfter,P.style.popoverTopArrowAfter," ")
       else if (P.placement == "left")  <.span(P.style.popoverArrowAfter,P.style.popoverLeftArrowAfter," ")
@@ -198,8 +198,8 @@ object ReactPopOver {
     })
     .build
 
-  case class Props(title : String,placement : String ,style : Style)
+  case class Props(title: String,placement: String ,style: Style)
 
-  def apply(title : String = "",placement : String = "right",ref: U[String] = "", key: js.Any = {} ,style : Style = new Style {})(children : ReactNode*) = component.set(key, ref)(Props(title,placement,style),children)
+  def apply(title: String = "",placement: String = "right",ref: U[String] = "", key: js.Any = {} ,style: Style = new Style {})(children: ReactNode*) = component.set(key, ref)(Props(title,placement,style),children)
 
 }

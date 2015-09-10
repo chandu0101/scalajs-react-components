@@ -80,12 +80,12 @@ object HomePage {
     .render((P, S, B) => {
     <.div(
       <.div(Style.info, ^.key := "info")(
-        <.h3(Style.infoContent)("Reusable ", <.a(^.href := "https://github.com/japgolly/scalajs-react",Style.infoLink ,^.target := "_blank")("scalajs-react"), " Components , want to Contribute ? "),
+        <.h3(Style.infoContent)("Reusable ", <.a(^.href := "https://github.com/japgolly/scalajs-react",Style.infoLink ,^.target := "_blank")("scalajs-react"), " Components, want to Contribute ? "),
         LocalDemoButton(name ="Welcome Mama",linkButton =  true,href  = "https://github.com/chandu0101/scalajs-react-components/tree/master/doc/CONTRIBUTE.md")
       ),
       <.div(Style.searchSection)(
        ReactSearchBox(onTextChange = B.onTextChange),
-        !S.filterText.isEmpty ?= <.strong(^.alignSelf := "center" ,^.paddingLeft := "30px")(s"Results : ${S.results.length}")
+        !S.filterText.isEmpty ?= <.strong(^.alignSelf := "center" ,^.paddingLeft := "30px")(s"Results: ${S.results.length}")
       ),
       <.div(Style.componentsGrid)(
           S.results.map(c => ComponentGridItem(c.name, c.route, c.imagePath,P))
@@ -94,6 +94,6 @@ object HomePage {
   })
     .build
 
-  def apply(ctrl : RouterCtl[Page]) = component(ctrl)
+  def apply(ctrl: RouterCtl[Page]) = component(ctrl)
 
 }

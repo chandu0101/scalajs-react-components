@@ -6,7 +6,7 @@ import scala.scalajs.js.JSON
 
 object JsonUtil {
 
-  def jsonArrayToMap(json : String) : Vector[Map[String,Any]] = {
+  def jsonArrayToMap(json: String): Vector[Map[String,Any]] = {
      if(!json.isEmpty) {
        JSON.parse(json).asInstanceOf[js.Array[js.Dynamic]].toVector
        .map(item => item.asInstanceOf[js.Dictionary[Any]].toMap)

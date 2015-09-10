@@ -46,9 +46,9 @@ object MuiSwitchesDemo {
 
   val toggleCode =
     """
-      |MuiToggle(name = "toggleName1" , value = "togglevalue1" ,label = "active thrusters"),
-      |MuiToggle(name = "toggleName2" , value = "togglevalue2" ,label = "auto-pilot",defaultToggled = true),
-      |MuiToggle(name = "toggleName3" , value = "togglevalue3" ,label = "initiate self-destruct sequence",disabled = true)
+      |MuiToggle(name = "toggleName1", value = "togglevalue1" ,label = "active thrusters"),
+      |MuiToggle(name = "toggleName2", value = "togglevalue2" ,label = "auto-pilot",defaultToggled = true),
+      |MuiToggle(name = "toggleName3", value = "togglevalue3" ,label = "initiate self-destruct sequence",disabled = true)
       |
     """.stripMargin
 
@@ -101,9 +101,9 @@ object MuiSwitchesDemo {
         MuiTab(label = "Toggle")(
           CodeExample(toggleCode)(
             <.div(Style.content,
-              MuiToggle(name = "toggleName1" , value = "togglevalue1" ,label = "active thrusters")(),
-              MuiToggle(name = "toggleName2" , value = "togglevalue2" ,label = "auto-pilot",defaultToggled = true)(),
-              MuiToggle(name = "toggleName3" , value = "togglevalue3" ,label = "initiate self-destruct sequence",disabled = true)()
+              MuiToggle(name = "toggleName1", value = "togglevalue1" ,label = "active thrusters")(),
+              MuiToggle(name = "toggleName2", value = "togglevalue2" ,label = "auto-pilot",defaultToggled = true)(),
+              MuiToggle(name = "toggleName3", value = "togglevalue3" ,label = "initiate self-destruct sequence",disabled = true)()
             )
           )
         )

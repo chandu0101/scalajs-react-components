@@ -60,7 +60,7 @@ object ScalaCSSTutorial {
     <.div(Style.content,
      <.div(
       <.h4("Basic Usage :"),
-      <.p("To use scalacss based components , u just need to register component style" ,<.br(),
+      <.p("To use scalacss based components, u just need to register component style" ,<.br(),
       "For example if you want to use ReactTable component in ur project "
       ),
       <.pre(

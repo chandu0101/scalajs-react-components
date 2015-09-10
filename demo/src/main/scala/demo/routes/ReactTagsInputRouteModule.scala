@@ -11,7 +11,7 @@ object ReactTagsInputRouteModule {
 
   case object Demo extends LeftRoute("Demo", "demo", () => ReactTagsInputDemo())
 
-  val menu : List[LeftRoute] = List(Info,Demo)
+  val menu: List[LeftRoute] = List(Info,Demo)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._

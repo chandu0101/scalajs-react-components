@@ -13,7 +13,7 @@ object ReactSelectDemo {
 
   val code =
     """
-      |  case class SampleOption(value : String,label : String) extends SelectOption {
+      |  case class SampleOption(value: String,label: String) extends SelectOption {
       |    override def toJson: js.Dynamic = json(value = value,label = label)
       |  }
       |

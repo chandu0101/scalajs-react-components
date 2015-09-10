@@ -36,9 +36,9 @@ object ReactTreeViewDemo {
 
     def onItemSelect(item: String, parent: String, depth: Int) = {
       val content =
-        s"""Selected Item : $item <br>
-                                   |Its Parent  : $parent <br>
-                                                           |Its depth :  $depth <br> """.stripMargin
+        s"""Selected Item: $item <br>
+                                   |Its Parent : $parent <br>
+                                                           |Its depth:  $depth <br> """.stripMargin
       dom.document.getElementById("treeviewcontent").innerHTML = content
     }
 

@@ -12,8 +12,8 @@ object ReactTableBasic {
 
   val code =
     """
-      |  val data : Vector[Map[String,Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
-      |  val columns : List[String] = List("fname","lname","email","country")
+      |  val data: Vector[Map[String,Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
+      |  val columns: List[String] = List("fname","lname","email","country")
       |  ReactTable(data = data,columns = columns,rowsPerPage = 6)
     """.stripMargin
   val component = ReactComponentB[Unit]("plain")
@@ -26,8 +26,8 @@ object ReactTableBasic {
     )
   }).buildU
 
-  val data : Vector[Map[String,Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
-  val columns : List[String] = List("fname","lname","email","country")
+  val data: Vector[Map[String,Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
+  val columns: List[String] = List("fname","lname","email","country")
 
   def apply() = component()
 

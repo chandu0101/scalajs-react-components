@@ -19,9 +19,9 @@ object ReactListViewDemo {
 
   object Style {
 
-    def listViewComponent = Seq(^.float := "left" , ^.marginBottom := "2em")
+    def listViewComponent = Seq(^.float := "left", ^.marginBottom := "2em")
 
-    def selectedContent = Seq(^.alignSelf := "center" , ^.margin := "0 40px")
+    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px")
 
     def listViewDemo = Seq(^.display := "flex")
   }
@@ -32,7 +32,7 @@ object ReactListViewDemo {
 
     def onItemSelect(item: String) = {
         val content =
-          s"Selected Item : $item <br>"
+          s"Selected Item: $item <br>"
         dom.document.getElementById("listviewcontent").innerHTML = content
     }
 

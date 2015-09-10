@@ -10,10 +10,10 @@ object ReactGeomIconDemo {
 
   val code =
     """
-      | ReactGeomIcon(name = IconName.CAMERA ,width = "2em" , height = "2em", fill = "red"),
-      | ReactGeomIcon(name = IconName.CALENDAR ,width = "2em" , height = "2em", fill = "blue"),
-      | ReactGeomIcon(name = IconName.CHAT ,width = "2em" , height = "2em", fill = "black"),
-      | ReactGeomIcon(name = IconName.CHEVRONDOWN ,width = "2em" , height = "2em", fill = "orange")
+      | ReactGeomIcon(name = IconName.CAMERA ,width = "2em", height = "2em", fill = "red"),
+      | ReactGeomIcon(name = IconName.CALENDAR ,width = "2em", height = "2em", fill = "blue"),
+      | ReactGeomIcon(name = IconName.CHAT ,width = "2em", height = "2em", fill = "black"),
+      | ReactGeomIcon(name = IconName.CHEVRONDOWN ,width = "2em", height = "2em", fill = "orange")
       |
     """.stripMargin
 

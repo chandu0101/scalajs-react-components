@@ -33,8 +33,8 @@ object InfoTemplate {
        )
     }).build
 
-  case class Props(browsersTested : List[String] ,componentFilePath : String,scalacss : Boolean)
+  case class Props(browsersTested: List[String] ,componentFilePath: String,scalacss: Boolean)
 
-  def apply(componentFilePath : String,scalacss : Boolean = false, browsersTested : List[String] = List() , ref: js.UndefOr[String] = "", key: js.Any = {})(children : ReactNode*) = component.set(key, ref)(Props(browsersTested,componentFilePath,scalacss),children)
+  def apply(componentFilePath: String,scalacss: Boolean = false, browsersTested: List[String] = List(), ref: js.UndefOr[String] = "", key: js.Any = {})(children: ReactNode*) = component.set(key, ref)(Props(browsersTested,componentFilePath,scalacss),children)
 
 }

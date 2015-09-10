@@ -19,7 +19,7 @@ case class MuiDialog(contentClassName: U[String] = uNone,
                      actionFocus: U[String] = uNone,
                      repositionOnUpdate: U[Boolean]=uNone) {
 
-  def apply(children : ReactNode*) = {
+  def apply(children: ReactNode*) = {
     val props = JSMacro[MuiDialog](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Dialog)
     f(props,children.toJsArray).asInstanceOf[ReactComponentU_]

@@ -11,7 +11,7 @@ object ReactPopoverRouteModule {
 
   case object Demo extends LeftRoute("Demo", "demo", () => ReactPopoverDemo())
 
-  val menu : List[LeftRoute] = List(Info,Demo)
+  val menu: List[LeftRoute] = List(Info,Demo)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
 

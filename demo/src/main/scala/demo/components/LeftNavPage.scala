@@ -34,7 +34,7 @@ object LeftNavPage {
   })
     .build
 
-  case class Props(menu : List[LeftRoute], selectedPage : LeftRoute,ctrl : RouterCtl[LeftRoute])
+  case class Props(menu: List[LeftRoute], selectedPage: LeftRoute,ctrl: RouterCtl[LeftRoute])
 
-  def apply(menu : List[LeftRoute], selectedPage : LeftRoute,ctrl : RouterCtl[LeftRoute],ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(menu,selectedPage,ctrl))
+  def apply(menu: List[LeftRoute], selectedPage: LeftRoute,ctrl: RouterCtl[LeftRoute],ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(menu,selectedPage,ctrl))
 }

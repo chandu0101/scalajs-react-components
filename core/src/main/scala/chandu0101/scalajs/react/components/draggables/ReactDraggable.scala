@@ -109,7 +109,7 @@ object ReactDraggable {
     def canDragX = t.props.axis == "both" || t.props.axis == "x"
 
     def positionToCSSTransform(left: Int, top: Int) = {
-      val trans = s"translate(${left}px , ${top}px)"
+      val trans = s"translate(${left}px, ${top}px)"
       Seq(^.transform := trans, mozTransform := trans, webkitTransform := trans, msTransform := trans)
     }
   }

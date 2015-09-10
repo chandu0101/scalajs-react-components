@@ -22,7 +22,7 @@ object ReactTagsInputDemo {
 
     def onChange(tags: JArray[String], tag: String) = {
       t.modState(_.copy(tags = tags))
-      println(s" Final Tags : ${tags} , Added/Removed Tag : ${tag}")
+      println(s" Final Tags: ${tags}, Added/Removed Tag: ${tag}")
     }
 
   }
@@ -34,11 +34,11 @@ object ReactTagsInputDemo {
     <.div(
       CodeExample(code, "Demo")(
         <.div(
-          <.h4("Uncontrolled : "),
+          <.h4("Uncontrolled: "),
           ReactTagsInput(ref = "uncontrolledtags")()
         ),
         <.div(
-          <.h4("Controlled : "),
+          <.h4("Controlled: "),
           ReactTagsInput(value = S.tags, onChange = B.onChange _)()
         )
       )

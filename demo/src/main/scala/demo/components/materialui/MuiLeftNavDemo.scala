@@ -42,7 +42,7 @@ object MuiLeftNavDemo {
 
   lazy val nondockedLeftnavRef = Ref.toJS[MuiLeftNavM]("leftnav")
 
-  case class State(isDocked : Boolean = false)
+  case class State(isDocked: Boolean = false)
 
   class Backend(t: BackendScope[_, State]) {
 

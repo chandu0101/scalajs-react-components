@@ -26,7 +26,7 @@ object ReactPopoverDemo {
 
   object Style {
 
-    val popoverExample = Seq(^.display := "flex", ^.flexDirection := "column" , ^.alignItems := "center")
+    val popoverExample = Seq(^.display := "flex", ^.flexDirection := "column", ^.alignItems := "center")
   }
 
   class Backend(t: BackendScope[_, _]) {

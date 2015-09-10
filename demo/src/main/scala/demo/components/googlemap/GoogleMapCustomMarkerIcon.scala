@@ -34,18 +34,18 @@ object GoogleMapCustomMarkerIcon {
       |     coordinate.
       |   */
       |  val shape = Shape(
-      |   coords = List(1, 1, 1, 20, 18, 20, 18 , 1),
+      |   coords = List(1, 1, 1, 20, 18, 20, 18, 1),
       |   tpe = "poly"
       |  )
       |
       |  val markers = List(
-      |    Marker( position = LatLng(-33.890542,151.274856) ,title = "Bondi Beach" , icon = image),
+      |    Marker( position = LatLng(-33.890542,151.274856) ,title = "Bondi Beach", icon = image),
       |    Marker( position = LatLng(-33.923036,151.259052) ,title = "Coogee Beach" ,icon = image),
       |    Marker( position = LatLng(-34.028249,151.157507) ,title = "Cronulla Beach",icon = image),
       |    Marker( position = LatLng(-33.80010128657071,151.28747820854187) ,title = "Manly Beach",icon = image)
       |  )
       |
-      |  GoogleMap(center = latlng , markers = markers , zoom = 10 )
+      |  GoogleMap(center = latlng, markers = markers, zoom = 10 )
       |
     """.stripMargin
   val component = ReactComponentB[Unit]("plain")
@@ -53,7 +53,7 @@ object GoogleMapCustomMarkerIcon {
    <.div(
      <.h2(^.cls := "mui-font-style-headline")("Custom Marker Icon"),
       CodeExample(code)(
-        GoogleMap(center = latlng , markers = markers , zoom = 10)
+        GoogleMap(center = latlng, markers = markers, zoom = 10)
       )
     )
   }).buildU
@@ -81,12 +81,12 @@ object GoogleMapCustomMarkerIcon {
      coordinate.
    */
   val shape = Shape(
-   coords = List(1, 1, 1, 20, 18, 20, 18 , 1),
+   coords = List(1, 1, 1, 20, 18, 20, 18, 1),
    tpe = "poly"
   )
 
   val markers = List(
-    Marker( position = LatLng(-33.890542,151.274856) ,title = "Bondi Beach" , icon = image),
+    Marker( position = LatLng(-33.890542,151.274856) ,title = "Bondi Beach", icon = image),
     Marker( position = LatLng(-33.923036,151.259052) ,title = "Coogee Beach" ,icon = image),
     Marker( position = LatLng(-34.028249,151.157507) ,title = "Cronulla Beach",icon = image),
     Marker( position = LatLng(-33.80010128657071,151.28747820854187) ,title = "Manly Beach",icon = image)

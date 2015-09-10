@@ -16,10 +16,10 @@ object ReactTable {
   type Model = Map[String, Any]
 
   /**
-   *  ._1 : String = column name
-   *  ._2 : Option[Any => ReactElement] = custom cell
-   *  ._3 : Option[(Model,Model) => Boolean] = sorting function
-   *  ._4 : Option[Double] = column width interms of flex property
+   *  ._1: String = column name
+   *  ._2: Option[Any => ReactElement] = custom cell
+   *  ._3: Option[(Model,Model) => Boolean] = sorting function
+   *  ._4: Option[Double] = column width interms of flex property
    */
   type Config = (String, Option[Any => ReactElement], Option[(Model, Model) => Boolean],Option[Double])
 
@@ -206,8 +206,8 @@ object ReactTable {
       options = immutable.Range.inclusive(p.rowsPerPage, total, 10 * (total / 100 + 1)).:+(total).toList.map(_.toString)
     }
     <.div(p.style.settingsBar)(
-      <.div(<.strong("Total : " + s.filteredModels.size)),
-      DefaultSelect(label = "Page Size : ",
+      <.div(<.strong("Total: " + s.filteredModels.size)),
+      DefaultSelect(label = "Page Size: ",
         options = options,
         value = value,
         onChange = b.onPageSizeChange)
@@ -228,9 +228,9 @@ object ReactTable {
   })
     .build
 
-  case class Props(data: Vector[Model], columns: List[String], config: List[Config], rowsPerPage: Int, style: Style,enableSearch : Boolean,searchBoxStyle :ReactSearchBox.Style)
+  case class Props(data: Vector[Model], columns: List[String], config: List[Config], rowsPerPage: Int, style: Style,enableSearch: Boolean,searchBoxStyle :ReactSearchBox.Style)
 
-  def apply(data: Vector[Model], columns: List[String], config: List[Config] = List(), rowsPerPage: Int = 5, style: Style = DefaultStyle,enableSearch : Boolean = true,searchBoxStyle :ReactSearchBox.Style = ReactSearchBox.DefaultStyle) = {
+  def apply(data: Vector[Model], columns: List[String], config: List[Config] = List(), rowsPerPage: Int = 5, style: Style = DefaultStyle,enableSearch: Boolean = true,searchBoxStyle :ReactSearchBox.Style = ReactSearchBox.DefaultStyle) = {
     component(Props(data, columns, config, rowsPerPage, style,enableSearch,searchBoxStyle))
   }
 

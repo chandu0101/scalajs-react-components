@@ -6,9 +6,6 @@ import demo.routes.{GoogleMapRouteModule, LeftRoute}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.extra.router2.RouterCtl
 
-/**
- * Created by chandrasekharkode .
- */
 object GoogleMapPage {
 
   val component = ReactComponentB[Props]("GoogleMapPage")

@@ -9,9 +9,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import scala.scalajs.js.Dynamic.{global => g}
 
-/**
- * Created by chandrasekharkode .
- */
 object AppRouter {
 
   sealed trait Page

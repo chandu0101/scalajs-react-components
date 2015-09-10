@@ -1,9 +1,6 @@
 package demo
 package util
 
-/**
- * Created by chandrasekharkode .
- */
 object SampleData {
 
   val personJson =

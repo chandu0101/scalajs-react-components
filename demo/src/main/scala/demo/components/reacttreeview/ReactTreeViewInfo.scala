@@ -5,9 +5,6 @@ package reacttreeview
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-/**
- * Created by chandrasekharkode .
- */
 object ReactTreeViewInfo {
 
   val component = ReactComponentB[Unit]("ReactTreeViewInfo")

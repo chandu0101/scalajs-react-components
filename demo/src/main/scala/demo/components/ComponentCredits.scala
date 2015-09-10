@@ -9,9 +9,6 @@ import scala.scalajs.concurrent.JSExecutionContext.Implicits.runNow
 import scala.scalajs.js
 import scala.scalajs.js.{Date, JSON}
 
-/**
- * Created by chandrasekharkode .
- */
 object ComponentCredits {
 
   case class State(users : List[Github])

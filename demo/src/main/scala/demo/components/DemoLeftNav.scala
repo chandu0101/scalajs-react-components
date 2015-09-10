@@ -5,9 +5,6 @@ import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
 
-/**
- * Created by chandrasekharkode .
- */
 object DemoLeftNav {
 
   case class Menu(text: String, route: String)

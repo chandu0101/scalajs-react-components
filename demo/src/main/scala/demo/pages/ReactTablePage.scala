@@ -6,9 +6,6 @@ import demo.routes.{LeftRoute, ReactTableRouteModule}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.extra.router2.RouterCtl
 
-/**
- * Created by chandrasekharkode .
- */
 object ReactTablePage {
 
   val component = ReactComponentB[Props]("ReactTablePage")

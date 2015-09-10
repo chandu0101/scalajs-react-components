@@ -6,9 +6,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
 import scalacss.Defaults._
 
-/**
- * Created by chandrasekharkode .
- */
 object InfoTemplate {
 
    object Style extends StyleSheet.Inline {

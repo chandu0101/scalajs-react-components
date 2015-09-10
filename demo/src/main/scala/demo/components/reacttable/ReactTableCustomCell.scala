@@ -8,9 +8,6 @@ import demo.util.SampleData
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-/**
- * Created by chandrasekharkode .
- */
 object ReactTableCustomCell {
 
   val code =

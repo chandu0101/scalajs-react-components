@@ -6,9 +6,6 @@ import demo.routes.{LeftRoute, ReactPopoverRouteModule}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.extra.router2.RouterCtl
 
-/**
- * Created by chandrasekharkode .
- */
 object ReactPopoverPage {
 
   val component = ReactComponentB[Props]("ReactPopOverPage")

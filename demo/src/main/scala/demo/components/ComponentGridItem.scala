@@ -8,9 +8,6 @@ import japgolly.scalajs.react.extra.router2.RouterCtl
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
 
-/**
- * Created by chandrasekharkode .
- */
 object ComponentGridItem {
 
   object Style {

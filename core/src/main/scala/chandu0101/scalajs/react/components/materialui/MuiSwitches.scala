@@ -4,19 +4,19 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-case class MuiCheckBox(name: js.UndefOr[String] = js.undefined,
-                       style: js.UndefOr[js.Any] = js.undefined,
-                       iconStyle: js.UndefOr[js.Any] = js.undefined,
-                       labelPosition: js.UndefOr[MuiSwitchLabelPosition] = js.undefined,
-                       label: js.UndefOr[String] = js.undefined,
-                       onCheck: js.UndefOr[(ReactEventI, Boolean) => Unit] = js.undefined,
-                       ref: js.UndefOr[String] = js.undefined,
-                       key: js.UndefOr[String] = js.undefined,
-                       unCheckedIcon: js.UndefOr[ReactElement] = js.undefined,
-                       checkedIcon: js.UndefOr[ReactElement] = js.undefined,
-                       disabled: js.UndefOr[Boolean] = js.undefined,
-                       defaultChecked: js.UndefOr[Boolean] = js.undefined,
-                       value: js.UndefOr[String] = js.undefined) {
+case class MuiCheckBox(name: U[String] = uNone,
+                       style: U[js.Any] = uNone,
+                       iconStyle: U[js.Any] = uNone,
+                       labelPosition: U[MuiSwitchLabelPosition] = uNone,
+                       label: U[String] = uNone,
+                       onCheck: U[(ReactEventI, Boolean) => Unit] = uNone,
+                       ref: U[String] = uNone,
+                       key: U[String] = uNone,
+                       unCheckedIcon: U[ReactElement] = uNone,
+                       checkedIcon: U[ReactElement] = uNone,
+                       disabled: U[Boolean] = uNone,
+                       defaultChecked: U[Boolean] = uNone,
+                       value: U[String] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiCheckBox](this)
@@ -26,15 +26,15 @@ case class MuiCheckBox(name: js.UndefOr[String] = js.undefined,
 
 }
 
-case class MuiRadioButton(style: js.UndefOr[js.Any] = js.undefined,
-                          iconStyle: js.UndefOr[js.Any] = js.undefined,
-                          labelPosition: js.UndefOr[MuiSwitchLabelPosition] = js.undefined,
-                          label: js.UndefOr[String] = js.undefined,
-                          ref: js.UndefOr[String] = js.undefined,
-                          key: js.UndefOr[String] = js.undefined,
-                          disabled: js.UndefOr[Boolean] = js.undefined,
-                          defaultChecked: js.UndefOr[Boolean] = js.undefined,
-                          value: js.UndefOr[String] = js.undefined) {
+case class MuiRadioButton(style: U[js.Any] = uNone,
+                          iconStyle: U[js.Any] = uNone,
+                          labelPosition: U[MuiSwitchLabelPosition] = uNone,
+                          label: U[String] = uNone,
+                          ref: U[String] = uNone,
+                          key: U[String] = uNone,
+                          disabled: U[Boolean] = uNone,
+                          defaultChecked: U[Boolean] = uNone,
+                          value: U[String] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiRadioButton](this)
@@ -45,13 +45,13 @@ case class MuiRadioButton(style: js.UndefOr[js.Any] = js.undefined,
 }
 
 case class MuiRadioButtonGroup(name: String,
-                               style: js.UndefOr[js.Any] = js.undefined,
-                               onChange: js.UndefOr[(ReactEventI, String) => Unit] = js.undefined,
-                               labelPosition: js.UndefOr[MuiSwitchLabelPosition] = js.undefined,
-                               ref: js.UndefOr[String] = js.undefined,
-                               key: js.UndefOr[String] = js.undefined,
-                               defaultSelected: js.UndefOr[String] = js.undefined,
-                               valueSelected: js.UndefOr[String] = js.undefined) {
+                               style: U[js.Any] = uNone,
+                               onChange: U[(ReactEventI, String) => Unit] = uNone,
+                               labelPosition: U[MuiSwitchLabelPosition] = uNone,
+                               ref: U[String] = uNone,
+                               key: U[String] = uNone,
+                               defaultSelected: U[String] = uNone,
+                               valueSelected: U[String] = uNone) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiRadioButtonGroup](this)
@@ -71,18 +71,18 @@ trait MuiRadioButtonGroupM extends js.Object {
 
 }
 
-case class MuiToggle(onToggle: js.UndefOr[(ReactEvent, Boolean) => Unit] = js.undefined,
-                     name: js.UndefOr[String] = js.undefined,
-                     elementStyle: js.UndefOr[js.Any] = js.undefined,
-                     style: js.UndefOr[js.Any] = js.undefined,
-                     defaultToggled: js.UndefOr[Boolean] = js.undefined,
-                     labelPosition: js.UndefOr[MuiSwitchLabelPosition] = js.undefined,
-                     label: js.UndefOr[String] = js.undefined,
-                     ref: js.UndefOr[String] = js.undefined,
-                     key: js.UndefOr[String] = js.undefined,
-                     disabled: js.UndefOr[Boolean] = js.undefined,
-                     value: js.UndefOr[String] = js.undefined,
-                     toggled: js.UndefOr[Boolean] = js.undefined) {
+case class MuiToggle(onToggle: U[(ReactEvent, Boolean) => Unit] = uNone,
+                     name: U[String] = uNone,
+                     elementStyle: U[js.Any] = uNone,
+                     style: U[js.Any] = uNone,
+                     defaultToggled: U[Boolean] = uNone,
+                     labelPosition: U[MuiSwitchLabelPosition] = uNone,
+                     label: U[String] = uNone,
+                     ref: U[String] = uNone,
+                     key: U[String] = uNone,
+                     disabled: U[Boolean] = uNone,
+                     value: U[String] = uNone,
+                     toggled: U[Boolean] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiToggle](this)

@@ -5,26 +5,26 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.{Array => JArray}
 
-case class ReactTagsInput(onBlur: js.UndefOr[() => Unit] = js.undefined,
-                          onKeyDown: js.UndefOr[ReactEventI => Unit] = js.undefined,
-                          onTagRemove: js.UndefOr[String => Unit] = js.undefined,
-                          onChange: js.UndefOr[(JArray[String], String) => Unit] = js.undefined,
-                          removeKeys: js.UndefOr[JArray[Int]] = js.undefined,
-                          validate: js.UndefOr[String => Boolean] = js.undefined,
-                          classNamespace: js.UndefOr[String] = js.undefined,
-                          ref: js.UndefOr[String] = js.undefined,
-                          addOnBlur: js.UndefOr[Boolean] = js.undefined,
-                          placeholder: js.UndefOr[String] = js.undefined,
-                          valueLink: js.UndefOr[js.Object] = js.undefined,
-                          onKeyUp: js.UndefOr[ReactEventI => Unit] = js.undefined,
-                          key: js.UndefOr[String] = js.undefined,
-                          addKeys: js.UndefOr[JArray[Int]] = js.undefined,
-                          onTagAdd: js.UndefOr[String => Unit] = js.undefined,
-                          validateAsync: js.UndefOr[js.Function] = js.undefined,
-                          onChangeInput: js.UndefOr[String => Unit] = js.undefined,
-                          defaultValue: js.UndefOr[JArray[String]] = js.undefined,
-                          transform: js.UndefOr[String => Unit] = js.undefined,
-                          value: js.UndefOr[JArray[String]] = js.undefined) {
+case class ReactTagsInput(onBlur: U[() => Unit] = uNone,
+                          onKeyDown: U[ReactEventI => Unit] = uNone,
+                          onTagRemove: U[String => Unit] = uNone,
+                          onChange: U[(JArray[String], String) => Unit] = uNone,
+                          removeKeys: U[JArray[Int]] = uNone,
+                          validate: U[String => Boolean] = uNone,
+                          classNamespace: U[String] = uNone,
+                          ref: U[String] = uNone,
+                          addOnBlur: U[Boolean] = uNone,
+                          placeholder: U[String] = uNone,
+                          valueLink: U[js.Object] = uNone,
+                          onKeyUp: U[ReactEventI => Unit] = uNone,
+                          key: U[String] = uNone,
+                          addKeys: U[JArray[Int]] = uNone,
+                          onTagAdd: U[String => Unit] = uNone,
+                          validateAsync: U[js.Function] = uNone,
+                          onChangeInput: U[String => Unit] = uNone,
+                          defaultValue: U[JArray[String]] = uNone,
+                          transform: U[String => Unit] = uNone,
+                          value: U[JArray[String]] = uNone) {
 
   def apply() = {
     val props = JSMacro[ReactTagsInput](this)

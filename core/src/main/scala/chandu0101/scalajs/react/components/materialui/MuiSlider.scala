@@ -4,24 +4,24 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-case class MuiSlider(onBlur : js.UndefOr[js.Function] = js.undefined ,
-            name : String ,
-            onDragStart : js.UndefOr[js.Function] = js.undefined ,
-            step : js.UndefOr[Int] = js.undefined,
-            style : js.UndefOr[js.Any] = js.undefined,
-            description : js.UndefOr[String] = js.undefined,
-            onChange : js.UndefOr[(ReactEventH,Double) => Unit] = js.undefined,
-            min : js.UndefOr[Double] = js.undefined,
-            ref : js.UndefOr[String] = js.undefined,
-            key : js.UndefOr[String] = js.undefined,
-            onDragStop : js.UndefOr[js.Function] = js.undefined ,
-            max : js.UndefOr[Double] = js.undefined,
-            error : js.UndefOr[String] = js.undefined,
-            onFocus : js.UndefOr[js.Function] = js.undefined ,
-            disabled : js.UndefOr[Boolean]=js.undefined,
-            required : js.UndefOr[Boolean]=js.undefined,
-            defaultValue : js.UndefOr[Double] = js.undefined,
-            value : js.UndefOr[Double] = js.undefined) {
+case class MuiSlider(onBlur: U[js.Function] = uNone ,
+            name: String ,
+            onDragStart: U[js.Function] = uNone ,
+            step: U[Int] = uNone,
+            style: U[js.Any] = uNone,
+            description: U[String] = uNone,
+            onChange: U[(ReactEventH,Double) => Unit] = uNone,
+            min: U[Double] = uNone,
+            ref: U[String] = uNone,
+            key: U[String] = uNone,
+            onDragStop: U[js.Function] = uNone ,
+            max: U[Double] = uNone,
+            error: U[String] = uNone,
+            onFocus: U[js.Function] = uNone ,
+            disabled: U[Boolean]=uNone,
+            required: U[Boolean]=uNone,
+            defaultValue: U[Double] = uNone,
+            value: U[Double] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiSlider](this)

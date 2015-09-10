@@ -141,7 +141,7 @@ object ReactDraggable {
   })
     .build
 
-  case class Props(cancel: String, onDrag: EventRElementPositionAny, useCSSTransforms: Boolean, clsNames: CssClassType, ref: js.UndefOr[String], moveOnStartChange: Boolean, grid: RGrid, key: js.Any, zIndex: Int, axis: String, onStop: EventRElementPositionAny, start: RPoint, onStart: EventRElementPositionAny, onMouseDown: EventUnit, handle: String, minConstraints: RGrid, maxConstraints: RGrid)
+  case class Props(cancel: String, onDrag: EventRElementPositionAny, useCSSTransforms: Boolean, clsNames: CssClassType, ref: U[String], moveOnStartChange: Boolean, grid: RGrid, key: js.Any, zIndex: Int, axis: String, onStop: EventRElementPositionAny, start: RPoint, onStart: EventRElementPositionAny, onMouseDown: EventUnit, handle: String, minConstraints: RGrid, maxConstraints: RGrid)
 
   /**
    *
@@ -170,7 +170,7 @@ object ReactDraggable {
    * @param children
    * @return
    */
-  def apply(cancel: String = "", onDrag: EventRElementPositionAny = null, useCSSTransforms: Boolean = false, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", moveOnStartChange: Boolean = false, grid: RGrid = null, key: js.Any = {}, zIndex: Int = 0, axis: String = "both", onStop: EventRElementPositionAny = null, start: RPoint = RPoint(0, 0), onStart: EventRElementPositionAny = null, onMouseDown: EventUnit = null, handle: String = "", minConstraints: RGrid = null, maxConstraints: RGrid = null)(children: ReactNode) =
+  def apply(cancel: String = "", onDrag: EventRElementPositionAny = null, useCSSTransforms: Boolean = false, clsNames: CssClassType = Map(), ref: U[String] = "", moveOnStartChange: Boolean = false, grid: RGrid = null, key: js.Any = {}, zIndex: Int = 0, axis: String = "both", onStop: EventRElementPositionAny = null, start: RPoint = RPoint(0, 0), onStart: EventRElementPositionAny = null, onMouseDown: EventUnit = null, handle: String = "", minConstraints: RGrid = null, maxConstraints: RGrid = null)(children: ReactNode) =
     component.set(key, ref)(Props(cancel, onDrag, useCSSTransforms, clsNames, ref, moveOnStartChange, grid, key, zIndex, axis, onStop, start, onStart, onMouseDown, handle, minConstraints, maxConstraints), children)
 
 }

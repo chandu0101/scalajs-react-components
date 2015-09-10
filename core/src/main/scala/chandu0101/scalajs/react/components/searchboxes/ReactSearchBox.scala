@@ -50,6 +50,6 @@ object ReactSearchBox {
 
   case class Props(onTextChange: String => Unit, style: Style)
 
-  def apply(onTextChange: String => Unit, style: Style = DefaultStyle, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(onTextChange,style))
+  def apply(onTextChange: String => Unit, style: Style = DefaultStyle, ref: U[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(onTextChange,style))
 
 }

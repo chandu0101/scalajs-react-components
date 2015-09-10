@@ -5,17 +5,17 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.{Date => JDate}
 
-case class MuiTimePicker(format: js.UndefOr[MuiTimePickerFormat] = js.undefined,
-                         onDismiss: js.UndefOr[() => Unit] = js.undefined,
-                         onShow: js.UndefOr[() => Unit] = js.undefined,
-                         style: js.UndefOr[js.Any] = js.undefined,
-                         onChange: js.UndefOr[(JDate, JDate) => Unit] = js.undefined,
-                         ref: js.UndefOr[String] = js.undefined,
-                         hintText: js.UndefOr[String] = js.undefined,
-                         key: js.UndefOr[String] = js.undefined,
-                         defaultTime: js.UndefOr[JDate] = js.undefined,
-                         onTouchTap: js.UndefOr[ReactEventI => Unit] = js.undefined,
-                         onFocus: js.UndefOr[ReactEventI => Unit] = js.undefined) {
+case class MuiTimePicker(format: U[MuiTimePickerFormat] = uNone,
+                         onDismiss: U[() => Unit] = uNone,
+                         onShow: U[() => Unit] = uNone,
+                         style: U[js.Any] = uNone,
+                         onChange: U[(JDate, JDate) => Unit] = uNone,
+                         ref: U[String] = uNone,
+                         hintText: U[String] = uNone,
+                         key: U[String] = uNone,
+                         defaultTime: U[JDate] = uNone,
+                         onTouchTap: U[ReactEventI => Unit] = uNone,
+                         onFocus: U[ReactEventI => Unit] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiTimePicker](this)

@@ -4,20 +4,20 @@ package materialui
 import japgolly.scalajs.react.{React, ReactComponentU_, ReactElement, ReactNode}
 import scala.scalajs.js
 
-case class MuiDialog(contentClassName : js.UndefOr[String] = js.undefined,
-                     modal : js.UndefOr[Boolean]=js.undefined,
-                     onDismiss : js.UndefOr[() => Unit] = js.undefined,
-                     onShow : js.UndefOr[() => Unit] = js.undefined,
-                     openImmediately : js.UndefOr[Boolean]=js.undefined,
-                     style : js.UndefOr[js.Any] = js.undefined,
-                     ref : js.UndefOr[String] = js.undefined,
-                     key : js.UndefOr[String] = js.undefined,
-                     actions : js.UndefOr[js.Array[ReactElement]] = js.undefined,
-                     contentInnerStyle : js.UndefOr[js.Any] = js.undefined,
-                     contentStyle : js.UndefOr[js.Any] = js.undefined,
-                     title :  js.UndefOr[String] = js.undefined,
-                     actionFocus : js.UndefOr[String] = js.undefined,
-                     repositionOnUpdate : js.UndefOr[Boolean]=js.undefined) {
+case class MuiDialog(contentClassName: U[String] = uNone,
+                     modal: U[Boolean]=uNone,
+                     onDismiss: U[() => Unit] = uNone,
+                     onShow: U[() => Unit] = uNone,
+                     openImmediately: U[Boolean]=uNone,
+                     style: U[js.Any] = uNone,
+                     ref: U[String] = uNone,
+                     key: U[String] = uNone,
+                     actions: U[js.Array[ReactElement]] = uNone,
+                     contentInnerStyle: U[js.Any] = uNone,
+                     contentStyle: U[js.Any] = uNone,
+                     title:  U[String] = uNone,
+                     actionFocus: U[String] = uNone,
+                     repositionOnUpdate: U[Boolean]=uNone) {
 
   def apply(children : ReactNode*) = {
     val props = JSMacro[MuiDialog](this)

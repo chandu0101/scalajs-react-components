@@ -70,6 +70,6 @@ object ReactListView {
 
   case class Props(items: List[String], onItemSelect: String => Unit, showSearchBox: Boolean, style: Style)
 
-  def apply(items: List[String], onItemSelect: String => Unit = null, showSearchBox: Boolean = false, style: Style = DefaultStyle, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(items, onItemSelect, showSearchBox, style))
+  def apply(items: List[String], onItemSelect: String => Unit = null, showSearchBox: Boolean = false, style: Style = DefaultStyle, ref: U[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(items, onItemSelect, showSearchBox, style))
 
 }

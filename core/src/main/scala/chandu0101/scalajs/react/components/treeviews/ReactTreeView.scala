@@ -137,6 +137,6 @@ object ReactTreeView {
 
   case class Props(root: TreeItem, open: Boolean, onItemSelect: StringStringIntAny, showSearchBox: Boolean, style: Style)
 
-  def apply(root: TreeItem, openByDefault: Boolean = false, onItemSelect: StringStringIntAny = null, showSearchBox: Boolean = false, ref: js.UndefOr[String] = "", key: js.Any = "dude", style: Style = new Style {}) = component.set(key, ref)(Props(root, openByDefault, onItemSelect, showSearchBox, style))
+  def apply(root: TreeItem, openByDefault: Boolean = false, onItemSelect: StringStringIntAny = null, showSearchBox: Boolean = false, ref: U[String] = "", key: js.Any = "dude", style: Style = new Style {}) = component.set(key, ref)(Props(root, openByDefault, onItemSelect, showSearchBox, style))
 
 }

@@ -32,7 +32,7 @@ object AutoSizeInput {
   })
     .build
 
-  def apply(minWidth: Int = 1, ref: js.UndefOr[String] = "", key: js.Any = {}, defaultValue: String = "", value: String = "", onFocus: EmptyFunc = null, onChange: REventIUnit = null, style: Style = new Style {})(inputProps: TagMod*) =
+  def apply(minWidth: Int = 1, ref: U[String] = "", key: js.Any = {}, defaultValue: String = "", value: String = "", onFocus: EmptyFunc = null, onChange: REventIUnit = null, style: Style = new Style {})(inputProps: TagMod*) =
     component.set(key, ref)(Props(minWidth, ref, key, defaultValue, value, onFocus, onChange, style, inputProps))
 
   trait Style {
@@ -76,5 +76,5 @@ object AutoSizeInput {
 
   }
 
-  case class Props(minWidth: Int, ref: js.UndefOr[String], key: js.Any, defaultValue: String, value: String, onFocus: EmptyFunc, onChange: REventIUnit, style: Style, inputProps: TagMod*)
+  case class Props(minWidth: Int, ref: U[String], key: js.Any, defaultValue: String, value: String, onFocus: EmptyFunc, onChange: REventIUnit, style: Style, inputProps: TagMod*)
 }

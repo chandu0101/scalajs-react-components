@@ -4,11 +4,11 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-case class MuiFontIcon(style: js.UndefOr[js.Any] = js.undefined,
-                       ref: js.UndefOr[String] = js.undefined,
-                       key: js.UndefOr[String] = js.undefined,
-                       className: js.UndefOr[String] = js.undefined,
-                       hoverColor: js.UndefOr[String] = js.undefined) {
+case class MuiFontIcon(style: U[js.Any] = uNone,
+                       ref: U[String] = uNone,
+                       key: U[String] = uNone,
+                       className: U[String] = uNone,
+                       hoverColor: U[String] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiFontIcon](this)

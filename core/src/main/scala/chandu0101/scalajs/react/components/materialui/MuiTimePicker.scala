@@ -5,7 +5,6 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.{Date => JDate}
 
-
 case class MuiTimePicker(format: js.UndefOr[MuiTimePickerFormat] = js.undefined,
                          onDismiss: js.UndefOr[() => Unit] = js.undefined,
                          onShow: js.UndefOr[() => Unit] = js.undefined,
@@ -25,7 +24,6 @@ case class MuiTimePicker(format: js.UndefOr[MuiTimePickerFormat] = js.undefined,
   }
 
 }
-
 
 case class MuiTimePickerFormat(val value: String) extends AnyVal
 

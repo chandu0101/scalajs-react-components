@@ -28,7 +28,6 @@ object MuiProgressDemo {
     )
   }).buildU
 
-
   def apply() = component()
 
 }

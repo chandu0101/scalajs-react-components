@@ -5,7 +5,6 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.{Array => JArray}
 
-
 case class MuiLeftNav(menuItems: JArray[MuiMenuItem],
                       style: js.UndefOr[js.Any] = js.undefined,
                       onChange: js.UndefOr[(ReactEvent, Int, js.Object) => Unit] = js.undefined,
@@ -35,7 +34,6 @@ trait MuiLeftNavM extends js.Object {
   def toggle(): Unit = js.native
 }
 
-
 case class MuiMenu(onToggle: js.UndefOr[(ReactEvent, Int, Boolean) => Unit] = js.undefined,
                    menuItems: JArray[MuiMenuItem],
                    visible: js.UndefOr[Boolean] = js.undefined,
@@ -61,7 +59,6 @@ case class MuiMenu(onToggle: js.UndefOr[(ReactEvent, Int, Boolean) => Unit] = js
   }
 
 }
-
 
 case class MuiMenuItem(payload: js.UndefOr[String] = js.undefined,
                        text: js.UndefOr[String] = js.undefined,

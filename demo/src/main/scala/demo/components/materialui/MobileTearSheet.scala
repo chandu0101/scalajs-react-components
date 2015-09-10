@@ -32,7 +32,6 @@ object MobileTearSheet {
       width(360 px))
   }
 
-
   val component = ReactComponentB[Unit]("MobileTearSheet")
 
     .render((P, C) => {
@@ -44,7 +43,6 @@ object MobileTearSheet {
 
     )
   }).buildU
-
 
   def apply(children: ReactNode*) = component(children)
 }

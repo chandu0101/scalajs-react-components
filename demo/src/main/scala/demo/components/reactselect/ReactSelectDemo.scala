@@ -37,11 +37,9 @@ object ReactSelectDemo {
       |
     """.stripMargin
 
-
   case class State(value: String = "", multiValue: String = "")
 
   class Backend(t: BackendScope[_, State]) {
-
 
     def onChange(value: String) = {
       t.modState(_.copy(value = value))
@@ -52,7 +50,6 @@ object ReactSelectDemo {
     }
 
   }
-
 
   val component = ReactComponentB[Unit]("ReactSelectDemo")
     .initialState(State())

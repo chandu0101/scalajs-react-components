@@ -4,7 +4,6 @@ package materialui
 import japgolly.scalajs.react.{React, ReactComponentU_, ReactElement, ReactNode}
 import scala.scalajs.js
 
-
 case class MuiDialog(contentClassName : js.UndefOr[String] = js.undefined,
                      modal : js.UndefOr[Boolean]=js.undefined,
                      onDismiss : js.UndefOr[() => Unit] = js.undefined,
@@ -26,7 +25,6 @@ case class MuiDialog(contentClassName : js.UndefOr[String] = js.undefined,
     f(props,children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }
-
 
 @js.native
 trait MuiDialogM extends js.Object {

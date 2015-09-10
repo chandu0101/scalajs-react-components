@@ -35,7 +35,6 @@ object ReactDraggable {
 
     lazy val handleDragEnd_ref: js.Function1[Event, _] = handleDragEnd _
 
-
     def handleDragStart(e: Event) = {
       // Make it possible to attach event handlers on top of this one
       if (t.props.onMouseDown != null) t.props.onMouseDown(e)
@@ -141,7 +140,6 @@ object ReactDraggable {
     Events.off(dom.window, dragEventFor("end"), scope.backend.handleDragEnd_ref)
   })
     .build
-
 
   case class Props(cancel: String, onDrag: EventRElementPositionAny, useCSSTransforms: Boolean, clsNames: CssClassType, ref: js.UndefOr[String], moveOnStartChange: Boolean, grid: RGrid, key: js.Any, zIndex: Int, axis: String, onStop: EventRElementPositionAny, start: RPoint, onStart: EventRElementPositionAny, onMouseDown: EventUnit, handle: String, minConstraints: RGrid, maxConstraints: RGrid)
 

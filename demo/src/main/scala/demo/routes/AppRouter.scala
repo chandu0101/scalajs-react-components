@@ -14,7 +14,6 @@ import scala.scalajs.js.Dynamic.{global => g}
  */
 object AppRouter {
 
-
   sealed trait Page
 
   case object Home extends Page
@@ -42,7 +41,6 @@ object AppRouter {
   case class ReactInfinitePages(p: LeftRoute) extends Page
 
   case class SpinnerPages(p: LeftRoute) extends Page
-
 
   val config = RouterConfigDsl[Page].buildConfig { dsl =>
     import dsl._
@@ -75,7 +73,6 @@ object AppRouter {
       .renderWith(layout)
   }
 
-
   def layout(c: RouterCtl[Page], r: Resolution[Page]) = {
     <.div(
       AppHeader(),
@@ -86,7 +83,6 @@ object AppRouter {
       )
     )
   }
-
 
   val homePageMenu = Vector(
     HomePage.ComponentInfo(name = "Material UI", imagePath = g.materialuiImage.toString, route = MuiPages(MuiRouteModule.Info), tags = Stream("materialui", "material", "framework")),
@@ -101,7 +97,6 @@ object AppRouter {
     HomePage.ComponentInfo(name = "Spinner", imagePath = g.spinnerImage.toString, route = SpinnerPages(SpinnerRouteModule.Info), tags = Stream("spinner"))
     //    HomePage.ComponentInfo(name = "React Popover", imagePath = g.reactPopoverImage.toString, route = ReactPopoverPages(ReactPopoverRouteModule.Info), tags = Stream("modal", "popover"))
   )
-
 
   val baseUrl =
     if (dom.window.location.hostname == "localhost")

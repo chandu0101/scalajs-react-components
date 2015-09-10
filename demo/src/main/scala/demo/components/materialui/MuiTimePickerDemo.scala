@@ -27,6 +27,5 @@ object MuiTimePickerDemo {
     )
   }).buildU
 
-
   def apply() = component()
 }

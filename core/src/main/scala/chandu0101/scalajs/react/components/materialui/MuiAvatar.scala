@@ -4,7 +4,6 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-
 case class MuiAvatar(backgroundColor: js.UndefOr[String] = js.undefined,
             style: js.UndefOr[js.Any] = js.undefined,
             icon: js.UndefOr[ReactElement] = js.undefined,

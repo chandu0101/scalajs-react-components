@@ -5,7 +5,6 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.{Date => JDate}
 
-
 case class MuiDatePicker(defaultDate: js.UndefOr[JDate] = js.undefined,
                          onDismiss: js.UndefOr[() => Unit] = js.undefined,
                          onShow: js.UndefOr[() => Unit] = js.undefined,
@@ -33,7 +32,6 @@ case class MuiDatePicker(defaultDate: js.UndefOr[JDate] = js.undefined,
 
 }
 
-
 class MuiDatePickerMode(val value: String) extends AnyVal
 
 object MuiDatePickerMode {
@@ -45,7 +43,6 @@ object MuiDatePickerMode {
   def newMode(mode: String) = new MuiDatePickerMode(mode)
 
 }
-
 
 @js.native
 trait MuiDatePickerM extends js.Object {

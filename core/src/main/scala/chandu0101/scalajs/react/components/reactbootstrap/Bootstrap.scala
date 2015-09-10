@@ -5,7 +5,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 import japgolly.scalajs.react.{React, ReactComponentU_}
 import scala.scalajs.js
 
-
 /**
  *
  *  Its wrapper for reactbootstrap , you need js source file from
@@ -100,9 +99,7 @@ object ReactBootstrap extends js.Object {
 
   def Well : js.Dynamic = js.native
 
-
 }
-
 
 object bootStrap {
 
@@ -204,7 +201,6 @@ object bootStrap {
     }
   }
 
-
   case class ButtonToolbar(bsClass: js.UndefOr[String] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, bsSize: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
@@ -219,7 +215,6 @@ object bootStrap {
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
-
 
   //TODO   onSelect: React.PropTypes.func,
   // onSlideEnd: React.PropTypes.func,
@@ -247,7 +242,6 @@ object bootStrap {
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
-
 
   case class Col(xs: js.UndefOr[Double] = js.undefined, lgPush: js.UndefOr[Double] = js.undefined, xsOffset: js.UndefOr[Double] = js.undefined, smPush: js.UndefOr[Double] = js.undefined, xsPull: js.UndefOr[Double] = js.undefined, xsPush: js.UndefOr[Double] = js.undefined, smOffset: js.UndefOr[Double] = js.undefined, lg: js.UndefOr[Double] = js.undefined, sm: js.UndefOr[Double] = js.undefined, lgPull: js.UndefOr[Double] = js.undefined, mdOffset: js.UndefOr[Double] = js.undefined, componentClass: js.UndefOr[String], mdPush: js.UndefOr[Double] = js.undefined, md: js.UndefOr[Double] = js.undefined, lgOffset: js.UndefOr[Double] = js.undefined, smPull: js.UndefOr[Double] = js.undefined, mdPull: js.UndefOr[Double] = js.undefined) {
     def toJs: js.Object = {
@@ -346,7 +340,6 @@ object bootStrap {
     }
   }
 
-
   case class input(groupClassName: js.UndefOr[String] = js.undefined, wrapperClassName: js.UndefOr[String] = js.undefined, labelB: js.UndefOr[String] = js.undefined, labelClassName: js.UndefOr[String] = js.undefined, addonBefore: js.UndefOr[String] = js.undefined, buttonAfter: js.UndefOr[String] = js.undefined, help: js.UndefOr[String] = js.undefined, buttonBefore: js.UndefOr[String] = js.undefined, hasFeedback: js.UndefOr[Boolean] = js.undefined, addonAfter: js.UndefOr[String] = js.undefined, disabledB: js.UndefOr[Boolean] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, typeB: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
@@ -426,8 +419,6 @@ object bootStrap {
     }
   }
 
-
-
   case class ListGroupItem(bsSize : js.UndefOr[String] = js.undefined,onClick : js.UndefOr[js.Any] = js.undefined,header : js.UndefOr[String] = js.undefined,disabled : js.UndefOr[js.Any] = js.undefined,bsStyle : js.UndefOr[String] = js.undefined,eventKey : js.UndefOr[js.Any] = js.undefined,bsClass : js.UndefOr[String] = js.undefined,active : js.UndefOr[js.Any] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
@@ -487,7 +478,6 @@ object bootStrap {
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
-
 
   case class ModalTrigger(modal : js.UndefOr[String]) {
     def toJs: js.Object = {
@@ -572,7 +562,6 @@ object bootStrap {
     }
   }
 
-
   case class OverlayTrigger(delay : js.UndefOr[Double] = js.undefined,overlay : js.UndefOr[ReactComponentU_],delayShow : js.UndefOr[Double] = js.undefined,delayHide : js.UndefOr[Double] = js.undefined,placement : js.UndefOr[String] = js.undefined,defaultOverlayShown : js.UndefOr[Boolean] = js.undefined,trigger : js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
@@ -635,7 +624,6 @@ object bootStrap {
     }
   }
 
-
   case class Panel(bsSize : js.UndefOr[String] = js.undefined,defaultExpanded : js.UndefOr[Boolean] = js.undefined,
                    expanded : js.UndefOr[Boolean] = js.undefined,collapsable : js.UndefOr[Boolean] = js.undefined,
                    header : js.UndefOr[String] = js.undefined,onSelect : js.UndefOr[js.Any] = js.undefined,bsStyle : js.UndefOr[String] = js.undefined,eventKey : js.UndefOr[js.Any]=js.undefined,footer : js.UndefOr[String] = js.undefined,bsClass : js.UndefOr[String] = js.undefined) {
@@ -659,7 +647,6 @@ object bootStrap {
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
-
 
   case class PanelGroup(activeKey : js.UndefOr[js.Any]=js.undefined,bsSize : js.UndefOr[String] = js.undefined,collapsable : js.UndefOr[Boolean] = js.undefined,defaultActiveKey : js.UndefOr[js.Any]=js.undefined,onSelect : js.UndefOr[js.Any] = js.undefined,bsStyle : js.UndefOr[String] = js.undefined,bsClass : js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
@@ -725,7 +712,6 @@ object bootStrap {
     }
   }
 
-
   case class Row(componentClass : js.UndefOr[String]) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
@@ -760,7 +746,6 @@ object bootStrap {
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
-
 
   case class propTypes(bsSize : js.UndefOr[String] = js.undefined,text : js.UndefOr[String] = js.undefined,disabled : js.UndefOr[Boolean] = js.undefined,onSelect : js.UndefOr[js.Any] = js.undefined,bsStyle : js.UndefOr[String] = js.undefined,title : js.UndefOr[String] = js.undefined,href : js.UndefOr[String] = js.undefined,bsClass : js.UndefOr[String] = js.undefined,active : js.UndefOr[Boolean] = js.undefined) {
     def toJs: js.Object = {
@@ -816,7 +801,6 @@ object bootStrap {
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
-
 
   case class TabbedArea(bsSize : js.UndefOr[String] = js.undefined,animation : js.UndefOr[Boolean] = js.undefined,onSelect : js.UndefOr[js.Any] = js.undefined,bsStyle : js.UndefOr[String] = js.undefined,bsClass : js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
@@ -886,7 +870,5 @@ object bootStrap {
       f(toJs, js.Array(children: _*)).asInstanceOf[ReactComponentU_]
     }
   }
-
-
 
 }

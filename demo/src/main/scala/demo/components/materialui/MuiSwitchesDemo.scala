@@ -58,13 +58,11 @@ object MuiSwitchesDemo {
 
     val container = style(maxWidth(1024 px))
 
-
     val content = style(display.flex,
       padding(30.px),
       flexDirection.column,
       alignItems.center)
   }
-
 
   val component = ReactComponentB[Unit]("MuiSwitchesDemo")
     .render(P => {
@@ -113,8 +111,6 @@ object MuiSwitchesDemo {
     )
   }).buildU
 
-
   def apply() = component()
-
 
 }

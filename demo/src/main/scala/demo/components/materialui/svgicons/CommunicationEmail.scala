@@ -8,7 +8,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 object CommunicationEmail {
 
-
    val component = ReactComponentB[Unit]("CommunicationEmail")
      .render(P => {
      MuiSvgIcon()(

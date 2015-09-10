@@ -1,17 +1,13 @@
 package chandu0101.scalajs.react.components
 package textfields
 
-
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.html
 import scala.scalajs.js
 
-
-
 object AutoSizeInput {
-
 
   val theSizerRef = Ref[html.Element]("theSizerRef")
   val theInputRef = Ref[html.Input]("theInputrRef")

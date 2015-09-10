@@ -4,7 +4,6 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-
 case class MuiSlider(onBlur : js.UndefOr[js.Function] = js.undefined ,
             name : String ,
             onDragStart : js.UndefOr[js.Function] = js.undefined ,

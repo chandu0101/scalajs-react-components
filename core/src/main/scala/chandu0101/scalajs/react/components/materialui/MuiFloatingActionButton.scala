@@ -4,7 +4,6 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-
 case class MuiFloatingActionButton(iconClassName: js.UndefOr[String] = js.undefined,
                                    onBlur: js.UndefOr[ReactEventH => Unit] = js.undefined,
                                    labelStyle: js.UndefOr[js.Any] = js.undefined,
@@ -29,7 +28,6 @@ case class MuiFloatingActionButton(iconClassName: js.UndefOr[String] = js.undefi
                                    disabled: js.UndefOr[Boolean] = js.undefined,
                                    href: js.UndefOr[String] = js.undefined,
                                    onMouseDown: js.UndefOr[ReactEventH => Unit] = js.undefined) {
-
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiFloatingActionButton](this)

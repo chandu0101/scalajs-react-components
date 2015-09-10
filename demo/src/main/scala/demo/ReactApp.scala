@@ -7,7 +7,6 @@ import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.JSApp
 
-
 /**
  * Created by chandrasekharkode .
  */

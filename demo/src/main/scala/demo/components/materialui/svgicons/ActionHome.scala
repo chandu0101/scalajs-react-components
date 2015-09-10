@@ -8,7 +8,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 object ActionHome {
 
-
    val component = ReactComponentB[Unit]("ActionHome")
      .render(P => {
      MuiSvgIcon()(

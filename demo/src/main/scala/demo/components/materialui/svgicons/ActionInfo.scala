@@ -8,7 +8,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 object ActionInfo {
 
-
    val component = ReactComponentB[Unit]("ActionGrade")
      .render(P => {
      MuiSvgIcon()(

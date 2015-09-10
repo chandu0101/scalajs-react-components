@@ -8,7 +8,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 object FileFolder {
 
-
    val component = ReactComponentB[Unit]("FileFolder")
      .render(P => {
      MuiSvgIcon()(

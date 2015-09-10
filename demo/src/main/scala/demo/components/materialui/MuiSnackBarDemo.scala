@@ -47,6 +47,5 @@ object MuiSnackBarDemo {
     )
   }).buildU
 
-
   def apply() = component()
 }

@@ -23,7 +23,6 @@ object MuiDialogDemo {
       |
     """.stripMargin
 
-
   class Backend(t : BackendScope[_,_]) {
 
     def handleDialogCancel(e : ReactEventH) = {
@@ -65,7 +64,6 @@ object MuiDialogDemo {
       )
     )
   }).buildU
-
 
   def apply() = component()
 

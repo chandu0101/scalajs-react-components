@@ -4,7 +4,6 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-
 case class MuiTextField(onBlur: js.UndefOr[ReactEventI => Unit] = js.undefined,
             multiLine: js.UndefOr[Boolean] = js.undefined,
             fullWidth: js.UndefOr[Boolean] = js.undefined,

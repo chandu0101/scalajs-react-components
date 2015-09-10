@@ -27,7 +27,6 @@ object ReactPopoverDemo {
       | 
     """.stripMargin
 
-
   object Style {
 
     val popoverExample = Seq(^.display := "flex", ^.flexDirection := "column" , ^.alignItems := "center")
@@ -56,7 +55,6 @@ object ReactPopoverDemo {
   val theLeftRef = Ref.to(ReactPopOver.component, "theLeftRef")
   val theTopRef = Ref.to(ReactPopOver.component, "theTopRef")
   val theBottomtRef = Ref.to(ReactPopOver.component, "theBottomRef")
-
 
   val component = ReactComponentB[Unit]("ReactPopoverDemo")
     .stateless

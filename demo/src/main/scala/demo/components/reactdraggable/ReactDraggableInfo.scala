@@ -5,7 +5,6 @@ package reactdraggable
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-
 /**
  * Created by chandrasekharkode .
  */
@@ -20,7 +19,6 @@ object ReactDraggableInfo {
       <.p("Get it ", <.a(^.href := "#css")("here"))
     )
   }).buildU
-
 
   def apply() = component()
 

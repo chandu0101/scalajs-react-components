@@ -52,6 +52,5 @@ object LeftNav {
     //    .configure(Reusability.shouldComponentUpdate)
     .build
 
-
   def apply(menus: List[LeftRoute], selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute], ref: UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(menus, selectedPage, ctrl))
 }

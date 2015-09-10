@@ -26,7 +26,6 @@ object LocalDemoButton {
     val buttonHover: TagMod = Seq(^.backgroundColor := "#DA423E",
       ^.textDecoration := "none")
 
-
   }
 
   case class State(buttonHover: Boolean = false)

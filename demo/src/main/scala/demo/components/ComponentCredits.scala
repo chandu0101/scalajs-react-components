@@ -14,7 +14,6 @@ import scala.scalajs.js.{Date, JSON}
  */
 object ComponentCredits {
 
-
   case class State(users : List[Github])
 
   class Backend(t: BackendScope[Props, State]) {
@@ -50,7 +49,6 @@ object ComponentCredits {
         }
     })
     .build
-
 
   case class Props(filePath : String)
 

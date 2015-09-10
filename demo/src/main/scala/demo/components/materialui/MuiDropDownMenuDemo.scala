@@ -23,7 +23,6 @@ object MuiDropDownMenuDemo {
       |
     """.stripMargin
 
-
   val component = ReactComponentB[Unit]("MuiDropDownMenuDemo")
     .render(P => {
     val menuItems = js.Array(
@@ -39,7 +38,6 @@ object MuiDropDownMenuDemo {
       )
     )
   }).buildU
-
 
   def apply() = component()
 }

@@ -30,7 +30,6 @@ object MuiLeftNavDemo {
       |
     """.stripMargin
 
-
   lazy val menuItems = js.Array(
     MuiMenuItem(route = "get-started", text = "Get-started"),
     MuiMenuItem(`type` = MuiMenuItemType.SUBHEADER, text = " Resources"),
@@ -78,7 +77,6 @@ object MuiLeftNavDemo {
       )
     )
   }).buildU
-
 
   def apply() = component()
 }

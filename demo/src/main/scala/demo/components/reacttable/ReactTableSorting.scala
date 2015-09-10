@@ -8,7 +8,6 @@ import demo.util.SampleData
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-
 /**
  * Created by chandrasekharkode .
  */
@@ -37,7 +36,6 @@ object ReactTableSorting {
       )
     )
   }).buildU
-
 
   val data: Vector[Map[String, Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
   val columns: List[String] = List("fname", "lname", "email", "country")

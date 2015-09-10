@@ -3,7 +3,6 @@ package util
 
 import scala.scalajs.js.Date
 
-
 object DateTime {
 
   def addDays( d : Date , days : Int) = {

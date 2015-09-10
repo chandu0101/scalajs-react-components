@@ -7,7 +7,6 @@ import demo.routes.{LeftRoute, ReactGeomIcontRouteModule}
 import japgolly.scalajs.react.extra.router2.RouterCtl
 import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 
-
 object ReactGeomIconPage {
 
   class Backend(t: BackendScope[_, _]) extends AsyncLoad {

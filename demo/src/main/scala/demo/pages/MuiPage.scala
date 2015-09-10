@@ -20,5 +20,4 @@ object MuiPage {
 
   def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
 
-
 }

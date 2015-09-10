@@ -7,7 +7,6 @@ import demo.routes.{LeftRoute, SpinnerRouteModule}
 import japgolly.scalajs.react.extra.router2.RouterCtl
 import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 
-
 object SpinnerPage {
 
   class Backend(t: BackendScope[_, _]) extends AsyncLoad {

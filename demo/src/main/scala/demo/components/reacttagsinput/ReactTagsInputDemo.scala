@@ -7,7 +7,6 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js.{Array => JArray}
 
-
 object ReactTagsInputDemo {
 
   val code =
@@ -16,7 +15,6 @@ object ReactTagsInputDemo {
       | ReactTagsInput(value = S.tags,onChange = B.onChange _)
       |
     """.stripMargin
-
 
   case class State(tags: JArray[String] = JArray("scala", "scalajs"))
 
@@ -28,7 +26,6 @@ object ReactTagsInputDemo {
     }
 
   }
-
 
   val component = ReactComponentB[Unit]("ReactTagsInputDemo")
     .initialState(State())

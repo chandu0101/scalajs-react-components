@@ -4,7 +4,6 @@ package mixins
 import japgolly.scalajs.react._
 import org.scalajs.dom._
 
-
 trait DropAnything {
 
   private def _onDrop(ev: Event): Unit = {

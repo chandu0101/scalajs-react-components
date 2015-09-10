@@ -26,6 +26,5 @@ object MuiSliderDemo {
     )
   }).buildU
 
-
   def apply() = component()
 }

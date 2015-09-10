@@ -8,7 +8,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 object ContentSend {
 
-
    val component = ReactComponentB[Unit]("ContentSend")
      .render(P => {
      MuiSvgIcon()(

@@ -24,8 +24,6 @@ object MuiPaperDemo {
        )
      }
 
-
-
   val code =
     """
       |  MuiPaper(zDepth = 1)(<.p("zDepth = 1")),
@@ -69,7 +67,6 @@ object MuiPaperDemo {
       )
     )
   }).buildU
-
 
   def apply() = component()
 }

@@ -7,10 +7,8 @@ import org.scalajs.dom
 import org.scalajs.dom.Event
 import scala.scalajs.js
 
-
 trait WindowListeners {
   def listeners: List[(String,js.Function1[Event,_])]
-
 
 }
 

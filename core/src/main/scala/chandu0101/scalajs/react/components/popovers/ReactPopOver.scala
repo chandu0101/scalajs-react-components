@@ -1,7 +1,6 @@
 package chandu0101.scalajs.react.components
 package popovers
 
-
 import chandu0101.scalajs.react.components.util.DomUtil
 import chandu0101.scalajs.react.components.util.DomUtil.ClientRect
 import japgolly.scalajs.react._
@@ -175,8 +174,6 @@ object ReactPopOver {
       else ""
     }
   }
-
-
 
   val component = ReactComponentB[Props]("ReactPopover")
     .initialState(State(open = false))

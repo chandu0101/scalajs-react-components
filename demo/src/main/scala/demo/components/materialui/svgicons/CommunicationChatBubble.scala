@@ -8,7 +8,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 object CommunicationChatBubble {
 
-
    val component = ReactComponentB[Unit]("CommunicationChatBubble")
      .render(P => {
      MuiSvgIcon()(

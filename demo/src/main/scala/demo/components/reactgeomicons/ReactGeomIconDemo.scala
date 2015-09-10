@@ -21,9 +21,7 @@ object ReactGeomIconDemo {
 
   class Backend(t: BackendScope[_, State]) {
 
-
   }
-
 
   val component = ReactComponentB[Unit]("ReactGeomIconDemo")
     .initialState(State())
@@ -40,7 +38,6 @@ object ReactGeomIconDemo {
       )
     )
   }).buildU
-
 
   def apply() = component()
 

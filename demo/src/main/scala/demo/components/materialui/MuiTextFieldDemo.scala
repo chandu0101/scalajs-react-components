@@ -18,7 +18,6 @@ object MuiTextFieldDemo {
       |
     """.stripMargin
 
-
   val component = ReactComponentB[Unit]("MuiTextFieldDemo")
     .render(P => {
     <.div(
@@ -33,7 +32,6 @@ object MuiTextFieldDemo {
       )
     )
   }).buildU
-
 
   def apply() = component()
 }

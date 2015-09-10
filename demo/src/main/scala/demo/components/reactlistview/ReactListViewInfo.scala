@@ -5,7 +5,6 @@ package reactlistview
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-
 /**
  * Created by chandrasekharkode .
  */
@@ -18,7 +17,6 @@ object ReactListViewInfo {
       <.p("List View Component with search feature")
     )
   }).buildU
-
 
   def apply() = component()
 

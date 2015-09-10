@@ -33,7 +33,6 @@ object ScalaCSSTutorial {
       |
     """.stripMargin
 
-
   val customCode =
     """
       |

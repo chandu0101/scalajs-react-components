@@ -42,11 +42,9 @@ object ReactInfiniteDemo {
       marginLeft(4 px))
   }
 
-
   case class State(isLoading: Boolean = true, data: Vector[String] = Vector())
 
   class Backend(t: BackendScope[_, State]) {
-
 
     def renderRow(s: String): ReactElement = {
       <.div(styles.item, s, ^.key := s,
@@ -60,7 +58,6 @@ object ReactInfiniteDemo {
     }
 
   }
-
 
   val component = ReactComponentB[Unit]("ReactSelectDemo")
     .initialState(State())
@@ -78,7 +75,6 @@ object ReactInfiniteDemo {
   })
     .componentDidMount(scope => scope.backend.loadData())
     .buildU
-
 
   def apply() = component()
 

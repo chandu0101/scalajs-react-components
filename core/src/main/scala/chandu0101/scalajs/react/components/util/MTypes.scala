@@ -6,7 +6,6 @@ import japgolly.scalajs.react.{ReactEventH, ReactEventI}
 import org.scalajs.dom.Event
 import scala.scalajs.js.Date
 
-
 trait MTypes {
 
   type REventIBooleanUnit = (ReactEventI, Boolean) => Unit

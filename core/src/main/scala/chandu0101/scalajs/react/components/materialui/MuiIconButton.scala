@@ -4,7 +4,6 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-
 case class MuiIconButton(iconClassName: js.UndefOr[String] = js.undefined,
                          onBlur: js.UndefOr[ReactEvent => Unit] = js.undefined,
                          touch: js.UndefOr[Boolean] = js.undefined,
@@ -16,7 +15,6 @@ case class MuiIconButton(iconClassName: js.UndefOr[String] = js.undefined,
                          onFocus: js.UndefOr[ReactEvent => Unit] = js.undefined,
                          disabled: js.UndefOr[Boolean] = js.undefined,
                          tooltip: js.UndefOr[String] = js.undefined) {
-
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiIconButton](this)

@@ -7,7 +7,6 @@ import org.scalajs.dom
 import org.scalajs.dom.{Event, html}
 import scala.scalajs.js
 
-
 trait ClickAwayable {
   def onClickAway()
 

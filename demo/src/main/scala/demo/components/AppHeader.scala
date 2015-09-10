@@ -60,7 +60,6 @@ object AppHeader {
 
   }
 
-
   val component = ReactComponentB[Unit]("AppHeader")
     .initialState(State())
     .backend(new Backend(_))

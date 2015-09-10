@@ -8,7 +8,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 object ContentInbox {
 
-
    val component = ReactComponentB[Unit]("ContentInbox")
      .render(P => {
      MuiSvgIcon()(

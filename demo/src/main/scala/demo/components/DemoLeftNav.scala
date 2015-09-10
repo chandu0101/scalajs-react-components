@@ -36,7 +36,6 @@ object DemoLeftNav {
 
   }
 
-
   case class State(hoveredItem: String = "")
 
   class Backend(t: BackendScope[Props, State]) {
@@ -69,11 +68,8 @@ object DemoLeftNav {
   })
     .build
 
-
   case class Props(menu: List[Menu], selectedItem: String, style: Style)
 
-
   def apply(menu: List[Menu], selectedItem: String = "", style: Style = new Style {}, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(menu, selectedItem, style))
-
 
 }

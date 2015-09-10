@@ -1,7 +1,6 @@
 package chandu0101.scalajs.react.components
 package materialui
 
-
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.{Array => JArray}

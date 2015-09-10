@@ -8,7 +8,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 object EditorInsertChart {
 
-
    val component = ReactComponentB[Unit]("EditorInsertChart")
      .render(P => {
      MuiSvgIcon()(

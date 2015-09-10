@@ -4,7 +4,6 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-
 case class MuiRaisedButton(onBlur: js.UndefOr[ReactEventH => Unit] = js.undefined,
                            labelStyle: js.UndefOr[js.Any] = js.undefined,
                            onTouchStart: js.UndefOr[ReactEventH => Unit] = js.undefined,

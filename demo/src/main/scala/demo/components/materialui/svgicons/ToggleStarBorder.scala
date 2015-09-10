@@ -8,7 +8,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 object ToggleStarBorder {
 
-
    val component = ReactComponentB[Unit]("ToggleStarBorder")
      .render(P => {
      MuiSvgIcon()(

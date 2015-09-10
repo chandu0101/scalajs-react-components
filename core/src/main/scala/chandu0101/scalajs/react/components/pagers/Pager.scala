@@ -51,5 +51,4 @@ object Pager {
     component(Props(itemsPerPage, totalItems, offset, nextClick, previousClick, style))
   }
 
-
 }

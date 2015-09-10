@@ -4,7 +4,6 @@ package util
 import scala.scalajs.js
 import scala.scalajs.js.JSON
 
-
 object JsonUtil {
 
   def jsonArrayToMap(json : String) : Vector[Map[String,Any]] = {

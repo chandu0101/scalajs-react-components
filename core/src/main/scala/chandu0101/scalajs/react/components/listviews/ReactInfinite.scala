@@ -6,8 +6,6 @@ import org.scalajs.dom.raw.HTMLElement
 import scala.scalajs.js
 import scala.scalajs.js.JSConverters.JSRichGenTraversableOnce
 
-
-
 case class ReactInfinite(handleScroll: js.UndefOr[HTMLElement => Unit] = js.undefined,
                          preloadAdditionalHeight: js.UndefOr[Int] = js.undefined,
                          isInfiniteLoading: js.UndefOr[Boolean] = js.undefined,
@@ -21,7 +19,6 @@ case class ReactInfinite(handleScroll: js.UndefOr[HTMLElement => Unit] = js.unde
                          className: js.UndefOr[String] = js.undefined,
                          infiniteLoadBeginBottomOffset: js.UndefOr[Int] = js.undefined,
                          onInfiniteLoad: js.UndefOr[() => Unit] = js.undefined) {
-
 
   def apply(children: Seq[ReactElement]) = {
     val props = JSMacro[ReactInfinite](this)

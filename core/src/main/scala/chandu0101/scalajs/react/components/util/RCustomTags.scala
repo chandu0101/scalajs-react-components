@@ -68,7 +68,6 @@ trait RCustomTags {
 
   val defaultChecked = "defaultChecked".reactAttr
 
-
   /* Tags */
 
   val svgtag = "svg".reactTag

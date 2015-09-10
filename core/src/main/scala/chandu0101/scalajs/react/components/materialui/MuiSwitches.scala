@@ -4,7 +4,6 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-
 case class MuiCheckBox(name: js.UndefOr[String] = js.undefined,
                        style: js.UndefOr[js.Any] = js.undefined,
                        iconStyle: js.UndefOr[js.Any] = js.undefined,
@@ -27,7 +26,6 @@ case class MuiCheckBox(name: js.UndefOr[String] = js.undefined,
 
 }
 
-
 case class MuiRadioButton(style: js.UndefOr[js.Any] = js.undefined,
                           iconStyle: js.UndefOr[js.Any] = js.undefined,
                           labelPosition: js.UndefOr[MuiSwitchLabelPosition] = js.undefined,
@@ -45,7 +43,6 @@ case class MuiRadioButton(style: js.UndefOr[js.Any] = js.undefined,
   }
 
 }
-
 
 case class MuiRadioButtonGroup(name: String,
                                style: js.UndefOr[js.Any] = js.undefined,
@@ -72,9 +69,7 @@ trait MuiRadioButtonGroupM extends js.Object {
 
   def clearValue(): Unit = js.native
 
-
 }
-
 
 case class MuiToggle(onToggle: js.UndefOr[(ReactEvent, Boolean) => Unit] = js.undefined,
                      name: js.UndefOr[String] = js.undefined,
@@ -96,7 +91,6 @@ case class MuiToggle(onToggle: js.UndefOr[(ReactEvent, Boolean) => Unit] = js.un
   }
 
 }
-
 
 @js.native
 trait MuiToggleM extends js.Object {

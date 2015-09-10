@@ -22,6 +22,5 @@ object MuiAppBarDemo {
     )
   }).buildU
 
-
   def apply() = component()
 }

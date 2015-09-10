@@ -120,7 +120,6 @@ object ScalajsReactComponents extends Build {
       target in Compile in doc := baseDirectory.value / "docs"
     )
 
-
   // ==============================================================================================
   lazy val demo = project
     .dependsOn(core)

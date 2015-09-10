@@ -9,14 +9,12 @@ case class MuiToolbar(key: js.UndefOr[String] = js.undefined,
                       ref: js.UndefOr[String] = js.undefined,
                       className: js.UndefOr[String] = js.undefined) {
 
-
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiToolbar](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Toolbar)
     f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }
-
 
 case class MuiToolbarSeparator(key: js.UndefOr[String] = js.undefined,
                                style: js.UndefOr[js.Any] = js.undefined,
@@ -29,7 +27,6 @@ case class MuiToolbarSeparator(key: js.UndefOr[String] = js.undefined,
   }
 
 }
-
 
 case class MuiToolbarTitle(key: js.UndefOr[String] = js.undefined,
                            style: js.UndefOr[js.Any] = js.undefined,

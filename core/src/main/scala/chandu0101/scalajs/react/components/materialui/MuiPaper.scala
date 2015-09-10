@@ -4,7 +4,6 @@ package materialui
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
-
 case class MuiPaper(circle: js.UndefOr[Boolean] = js.undefined,
                     style: js.UndefOr[js.Any] = js.undefined,
                     rounded: js.UndefOr[Boolean] = js.undefined,

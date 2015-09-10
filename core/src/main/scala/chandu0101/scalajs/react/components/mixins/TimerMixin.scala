@@ -5,7 +5,6 @@ import japgolly.scalajs.react.extra.OnUnmount
 import org.scalajs.dom
 import scala.scalajs.js
 
-
 /**
  * make sure u configure(OnUnmount.install)
  */

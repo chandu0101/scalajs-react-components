@@ -5,7 +5,6 @@ import japgolly.scalajs.react.TopNode
 import org.scalajs.dom.{Event, EventTarget}
 import scala.scalajs.js
 
-
 object Events {
 
   def once(element : TopNode , tpe : String, callback : js.Function1[Event,Any]) = {

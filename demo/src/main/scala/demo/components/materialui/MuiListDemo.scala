@@ -35,6 +35,5 @@ object MuiListDemo {
     )
   }).buildU
 
-
   def apply() = component()
 }

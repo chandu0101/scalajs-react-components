@@ -10,7 +10,6 @@ import scala.scalajs.js
  */
 object CodeExample {
 
-
   object Style {
 
     val pageBodyContent = Seq(^.borderRadius := "2px",
@@ -24,7 +23,6 @@ object CodeExample {
 
     val title = Seq(
     ^.paddingBottom := "15px")
-
 
   }
 
@@ -43,7 +41,6 @@ object CodeExample {
     )
   })
     .build
-
 
   case class Props(code: String,title : String)
 

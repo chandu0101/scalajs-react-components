@@ -1,10 +1,6 @@
 package chandu0101.scalajs.react.components
 package util
 
-
-
-
-
 object CommonUtils {
 
   def cssMapM(map: CssClassType, ps: (String, Boolean)*) = map.++(ps)

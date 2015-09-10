@@ -6,7 +6,6 @@ import org.scalajs.dom.Event
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
 
-
 object CssEvents {
 
   def testSupportedProps(props: Map[String, String]) = {

@@ -5,7 +5,6 @@ package reacttable
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-
 /**
  * Created by chandrasekharkode .
  */
@@ -27,7 +26,6 @@ object ReactTableInfo {
       )
     )
   }).buildU
-
 
   def apply() = component()
 }

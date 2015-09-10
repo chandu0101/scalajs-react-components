@@ -11,7 +11,6 @@ import scalacss.ScalaCssReact._
 
 object LeftNavPage {
 
-
   object Style extends StyleSheet.Inline {
     import dsl._
     val container = style(

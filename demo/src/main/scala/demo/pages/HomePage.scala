@@ -97,7 +97,6 @@ object HomePage {
   })
     .build
 
-
   def apply(ctrl : RouterCtl[Page]) = component(ctrl)
 
 }

@@ -24,7 +24,6 @@ object MuiToolbarDemo {
       |
     """.stripMargin
 
-
   val component = ReactComponentB[Unit]("MuiToolbarDemo")
     .render(P => {
     <.div(
@@ -42,7 +41,6 @@ object MuiToolbarDemo {
       )
     )
   }).buildU
-
 
   def apply() = component()
 }

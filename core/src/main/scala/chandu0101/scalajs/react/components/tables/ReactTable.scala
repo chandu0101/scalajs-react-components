@@ -11,7 +11,6 @@ import scala.scalajs.js.Date
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 
-
 object ReactTable {
 
   type Model = Map[String, Any]
@@ -85,7 +84,6 @@ object ReactTable {
 
   class Backend(t: BackendScope[Props, State]) {
 
-
     def onTextChange(value: String) =
       t.modState(_.copy(filteredModels = getFilterdModels(value, t.props.data), offset = 0))
 
@@ -127,7 +125,6 @@ object ReactTable {
 
   def getDateSort(key: String) = (m1: Model, m2: Model) => m1(key).asInstanceOf[Date].getTime() < m2(key).asInstanceOf[Date].getTime()
 
-
   def getRenderFunction(key: String, config: List[Config]) = {
     val group = config.groupBy(_._1).getOrElse(key, Nil)
     if (group.nonEmpty) group(0)._2 else None
@@ -138,20 +135,17 @@ object ReactTable {
     if (group.nonEmpty) group(0)._3 else None
   }
 
-
   def getColumnDiv(key: String, config: List[Config]) = {
     val group = config.groupBy(_._1).getOrElse(key, Nil)
     if (group.nonEmpty && group(0)._4.isDefined) <.div(^.flex := group(0)._4.get)
     else <.div()
   }
 
-
   def arrowUp: TagMod = Seq(^.width := 0, ^.height := 0, ^.borderLeft := "5px solid transparent", ^.borderRight := "5px solid transparent", ^.borderBottom := "5px solid black")
 
   def arrowDown: TagMod = Seq(^.width := 0, ^.height := 0, ^.borderLeft := "5px solid transparent", ^.borderRight := "5px solid transparent", ^.borderTop := "5px solid black")
 
   def emptyClass: TagMod = Seq(^.padding := "1px")
-
 
   val tableHeader = ReactComponentB[(Props, Backend, State)]("reactTableHeader")
     .render(P => {
@@ -175,7 +169,6 @@ object ReactTable {
     )
   }).build
 
-
   val tableRow = ReactComponentB[(Model, Props)]("TableRow")
     .render(P => {
     val (row, props) = P
@@ -192,7 +185,6 @@ object ReactTable {
     )
   }).build
 
-
   val tableC = ReactComponentB[(Props, State, Backend)]("table")
     .render(P => {
     val (props, state, b) = P
@@ -202,7 +194,6 @@ object ReactTable {
       rows
     )
   }).build
-
 
   val settingsBar = ReactComponentB[(Props, Backend, State)]("settingbar")
     .render(P => {
@@ -236,7 +227,6 @@ object ReactTable {
     )
   })
     .build
-
 
   case class Props(data: Vector[Model], columns: List[String], config: List[Config], rowsPerPage: Int, style: Style,enableSearch : Boolean,searchBoxStyle :ReactSearchBox.Style)
 

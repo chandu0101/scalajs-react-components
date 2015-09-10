@@ -19,7 +19,6 @@ object MuiTabsDemo {
       padding(40.px))
   }
 
-
   val code =
     """
       |   MuiTabs(

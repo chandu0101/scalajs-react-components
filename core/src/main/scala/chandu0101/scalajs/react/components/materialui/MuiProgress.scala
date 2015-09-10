@@ -21,7 +21,6 @@ case class MuiCircularProgress(size: js.UndefOr[Double] = js.undefined,
 
 }
 
-
 case class MuiLinearProgress(size: js.UndefOr[Double] = js.undefined,
                              style: js.UndefOr[js.Any] = js.undefined,
                              min: js.UndefOr[Int] = js.undefined,
@@ -39,9 +38,7 @@ case class MuiLinearProgress(size: js.UndefOr[Double] = js.undefined,
 
 }
 
-
 class MuiProgressMode private(val value: String) extends AnyVal
-
 
 object MuiProgressMode {
 

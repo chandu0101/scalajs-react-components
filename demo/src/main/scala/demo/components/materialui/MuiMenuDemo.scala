@@ -62,7 +62,6 @@ object MuiMenuDemo {
 
     val container = style(maxWidth(1024 px))
 
-
     val content = style(display.flex,
       padding(30.px),
       flexDirection.column,
@@ -117,8 +116,6 @@ object MuiMenuDemo {
     )
   }).buildU
 
-
   def apply() = component()
-
 
 }

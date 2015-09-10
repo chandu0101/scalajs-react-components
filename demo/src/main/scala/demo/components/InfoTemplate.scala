@@ -18,8 +18,6 @@ object InfoTemplate {
          paddingTop(40.px))
      }
 
-
-
   val component = ReactComponentB[Props]("InfoTemplate")
     .render((P,C) => {
       <.div(^.cls := "info-template")(
@@ -37,7 +35,6 @@ object InfoTemplate {
          )
        )
     }).build
-
 
   case class Props(browsersTested : List[String] ,componentFilePath : String,scalacss : Boolean)
 

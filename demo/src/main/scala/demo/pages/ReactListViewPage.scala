@@ -6,9 +6,7 @@ import demo.routes.{LeftRoute, ReactListViewRouteModule}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.extra.router2.RouterCtl
 
-
 object ReactListViewPage {
-
 
   val component = ReactComponentB[Props]("ReactListViewPage")
     .render((P) => {

@@ -27,8 +27,6 @@ trait CommonStyles extends RCustomTags{
 
   val outlineNone= ^.outline := "none"
 
-
-
   def backgroundClipPreFixer(value : String) = Seq(^.backgroundClip := value, webkitBackgroundClip := value)
 
   def boxShadowPreFixer(value : String) = Seq(^.boxShadow := value,WebkitBoxShadow := value)
@@ -39,6 +37,5 @@ trait CommonStyles extends RCustomTags{
   def styleSet(styles : (TagMod,Boolean) * ) : TagMod = {
     styles.filter(_._2).map(_._1)
   }
-
 
 }

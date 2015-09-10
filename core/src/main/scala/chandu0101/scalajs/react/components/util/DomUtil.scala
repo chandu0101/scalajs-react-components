@@ -7,7 +7,6 @@ import org.scalajs.dom
 import org.scalajs.dom._
 import scala.scalajs.js
 
-
 object DomUtil {
 
   def addClass(element : html.Element , className : String) = {
@@ -47,7 +46,6 @@ object DomUtil {
    el.style.display = originalDisplay
  }
 
-
  def isDecedant(parent : TopNode , child : TopNode) = {
    def loop(node : Node) : Boolean =  node match  {
      case null => false
@@ -55,7 +53,6 @@ object DomUtil {
    }
   loop(child.parentNode)
  }
-
 
   /**
    *  https://developer.mozilla.org/en-US/docs/Web/API/Element.matches#Browser_compatibility
@@ -77,7 +74,6 @@ object DomUtil {
    * @return whether device is touch enabled or not
    */
   def isTouchDevice = dom.window.hasOwnProperty("ontouchstart") || dom.window.hasOwnProperty("onmsgesturechange")
-
 
   def dragEventFor(name : String) = name match {
     case "start" => if (isTouchDevice) "touchstart" else "mousedown"

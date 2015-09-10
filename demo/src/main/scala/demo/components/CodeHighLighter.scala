@@ -8,7 +8,6 @@ import org.scalajs.dom.ext.PimpedNodeList
 
 object CodeHighLighter {
 
-
   val component = ReactComponentB[String]("CodeHighLighter")
 
     .render(P => {

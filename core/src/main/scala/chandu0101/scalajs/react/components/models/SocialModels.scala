@@ -3,7 +3,6 @@ package models
 
 import org.scalajs.dom
 
-
 case class Tweet(text: String = "", via: String = "", hashTags: List[String] = List(), url: String = dom.window.location.href, related: String = "", inReplyTo: String = "")
 
 case class FaceBookPost(url: String = dom.window.location.href)

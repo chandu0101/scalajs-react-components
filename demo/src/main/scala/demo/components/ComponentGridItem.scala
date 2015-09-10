@@ -8,7 +8,6 @@ import japgolly.scalajs.react.extra.router2.RouterCtl
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
 
-
 /**
  * Created by chandrasekharkode .
  */
@@ -38,7 +37,6 @@ object ComponentGridItem {
       ^.minWidth := "120px")
 
     val itemHover = Seq(^.boxShadow := "0 10px 18px rgba(16, 208, 194, 0.24)")
-
 
   }
 

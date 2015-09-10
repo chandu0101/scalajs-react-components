@@ -85,7 +85,7 @@ object HomePage {
       ),
       <.div(Style.searchSection)(
        ReactSearchBox(onTextChange = B.onTextChange),
-        !S.filterText.isEmpty ?= <.strong(alignSelf := "center" ,^.paddingLeft := "30px")(s"Results : ${S.results.length}")
+        !S.filterText.isEmpty ?= <.strong(^.alignSelf := "center" ,^.paddingLeft := "30px")(s"Results : ${S.results.length}")
       ),
       <.div(Style.componentsGrid)(
           S.results.map(c => ComponentGridItem(c.name, c.route, c.imagePath,P))

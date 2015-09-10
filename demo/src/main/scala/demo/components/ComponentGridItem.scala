@@ -23,7 +23,7 @@ object ComponentGridItem {
       ^.fontSize := "18px",
       ^.fontWeight := "500",
       ^.letterSpacing := "0",
-      lineHeight2 := "54px",
+      ^.lineHeight := "54px",
       ^.margin := "0",
       ^.padding := "0",
       ^.textAlign := "center")

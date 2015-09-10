@@ -1,6 +1,7 @@
 package demo
 package components
 
+import chandu0101.scalajs.react.components.util.RCustomTags._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
@@ -11,7 +12,7 @@ object AppHeader {
     val headerStyle: Seq[TagMod] = Seq(
       ^.background := "#F2706D",
       ^.fontSize := "1.5em",
-      ^.padding := "0", //todo: elc: these were ints
+      ^.padding := "0",
       ^.margin := "0",
       ^.position := "fixed",
       ^.width := "100%",

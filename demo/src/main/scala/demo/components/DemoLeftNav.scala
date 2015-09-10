@@ -14,7 +14,7 @@ object DemoLeftNav {
     def leftNav: TagMod = Seq[TagMod](^.display := "flex", ^.flexDirection := "column")
 
     def menuItem: TagMod = Seq(
-      lineHeight2 := "48px",
+      ^.lineHeight := "48px",
       ^.padding := "0 25px",
       ^.color := "black",
 //    ^.width := "190px",

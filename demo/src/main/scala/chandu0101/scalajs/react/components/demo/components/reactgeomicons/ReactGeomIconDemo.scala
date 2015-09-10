@@ -1,13 +1,10 @@
-package chandu0101.scalajs.react.components.demo.components.reactgeomicons
+package chandu0101.scalajs.react.components
+package demo.components.reactgeomicons
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
 import chandu0101.scalajs.react.components.icons.{IconName, ReactGeomIcon}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-
-import scala.scalajs.js.Dynamic.{literal => json}
-import scala.scalajs.js.{Array => JArray}
-
 
 object ReactGeomIconDemo {
 

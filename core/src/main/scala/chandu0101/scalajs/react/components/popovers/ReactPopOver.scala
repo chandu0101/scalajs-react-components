@@ -1,13 +1,12 @@
-package chandu0101.scalajs.react.components.popovers
+package chandu0101.scalajs.react.components
+package popovers
 
 
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.util.DomUtil
 import chandu0101.scalajs.react.components.util.DomUtil.ClientRect
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.html
-
 import scala.scalajs.js
 
 object ReactPopOver {

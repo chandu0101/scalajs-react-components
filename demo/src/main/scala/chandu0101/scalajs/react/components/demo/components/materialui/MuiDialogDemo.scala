@@ -1,11 +1,10 @@
-package chandu0101.scalajs.react.components.demo.components.materialui
+package chandu0101.scalajs.react.components
+package demo.components.materialui
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
-import chandu0101.scalajs.react.components.fascades.LatLng
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 import scala.scalajs.js
 
 object MuiDialogDemo {

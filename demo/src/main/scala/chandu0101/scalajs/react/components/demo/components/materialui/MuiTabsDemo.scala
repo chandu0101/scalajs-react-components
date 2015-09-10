@@ -1,11 +1,11 @@
-package chandu0101.scalajs.react.components.demo.components.materialui
+package chandu0101.scalajs.react.components
+package demo.components.materialui
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
 import chandu0101.scalajs.react.components.fascades.LatLng
 import chandu0101.scalajs.react.components.materialui.{MuiTab, MuiTabs}
-import japgolly.scalajs.react.{ReactComponentB, _}
+import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 

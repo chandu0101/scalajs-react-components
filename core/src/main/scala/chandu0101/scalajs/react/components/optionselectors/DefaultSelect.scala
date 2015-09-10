@@ -1,10 +1,9 @@
-package chandu0101.scalajs.react.components.optionselectors
+package chandu0101.scalajs.react.components
+package optionselectors
 
 
-import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 import scala.scalajs.js
 
 

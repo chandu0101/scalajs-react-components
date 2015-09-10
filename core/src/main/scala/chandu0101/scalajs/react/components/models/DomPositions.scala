@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.models
+package chandu0101.scalajs.react.components
+package models
 
 import org.scalajs.dom.Element
 

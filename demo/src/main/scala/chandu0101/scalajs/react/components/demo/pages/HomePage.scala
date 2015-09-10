@@ -1,7 +1,7 @@
 
-package chandu0101.scalajs.react.components.demo.pages
+package chandu0101.scalajs.react.components
+package demo.pages
 
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.demo.components.ComponentGridItem
 import chandu0101.scalajs.react.components.demo.components.demo.LocalDemoButton
 import chandu0101.scalajs.react.components.demo.routes.AppRouter

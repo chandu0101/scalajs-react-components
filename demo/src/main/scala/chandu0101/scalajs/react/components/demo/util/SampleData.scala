@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.demo.util
+package chandu0101.scalajs.react.components
+package demo.util
 
 /**
  * Created by chandrasekharkode .

@@ -1,8 +1,8 @@
-package chandu0101.scalajs.react.components.demo.routes
+package chandu0101.scalajs.react.components
+package demo.routes
 
-import chandu0101.scalajs.react.components.demo.components.reactlistview.{ReactListViewDemo, ReactListViewInfo}
 import chandu0101.scalajs.react.components.demo.components.reacttagsinput.{ReactTagsInputDemo, ReactTagsInputInfo}
-import chandu0101.scalajs.react.components.demo.pages.{ReactTagsInputPage, ReactListViewPage}
+import chandu0101.scalajs.react.components.demo.pages.ReactTagsInputPage
 import japgolly.scalajs.react.extra.router2.RouterConfigDsl
 
 object ReactTagsInputRouteModule {

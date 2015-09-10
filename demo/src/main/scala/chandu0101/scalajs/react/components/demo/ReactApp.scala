@@ -1,9 +1,9 @@
-package chandu0101.scalajs.react.components.demo
+package chandu0101.scalajs.react.components
+package demo
 
 import chandu0101.scalajs.react.components.demo.css.AppCSS
 import chandu0101.scalajs.react.components.demo.routes.AppRouter
 import org.scalajs.dom
-
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.JSApp

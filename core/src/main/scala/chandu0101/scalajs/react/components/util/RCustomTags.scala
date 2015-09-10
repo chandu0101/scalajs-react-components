@@ -1,9 +1,7 @@
-package chandu0101.scalajs.react.components.util
+package chandu0101.scalajs.react.components
+package util
 
-
-import japgolly.scalajs.react.vdom.prefix_<^._
-
-
+import japgolly.scalajs.react.vdom.Implicits._
 
 /**
  *
@@ -28,8 +26,6 @@ trait RCustomTags {
 
   val webkitOverflowScrolling = "webkitOverflowScrolling".reactStyle
 
-  val alignItems = "alignItems".reactStyle
-
   val MsFlexAlign = "MsFlexAlign".reactStyle
   val WebkitAlignItems = "WebkitAlignItems".reactStyle
   val WebkitBoxAlign = "WebkitBoxAlign".reactStyle
@@ -40,7 +36,6 @@ trait RCustomTags {
   val WebkitBoxPack = "WebkitBoxPack".reactStyle
   val WebkitFlexDirection = "WebkitFlexDirection".reactStyle
   val WebkitJustifyContent = "WebkitJustifyContent".reactStyle
-  val justifyContent = "justifyContent".reactStyle
 
   val MsFlexWrap = "MsFlexWrap".reactStyle
   val WebkitFlexWrap = "WebkitFlexWrap".reactStyle
@@ -48,11 +43,7 @@ trait RCustomTags {
   val MsFlex = "MsFlex".reactStyle
   val WebkitBoxFlex = "WebkitBoxFlex".reactStyle
   val WebkitFlex = "WebkitFlex".reactStyle
-  val flex = "flex".reactStyle
   val alignSelf = "alignSelf".reactStyle
-  val flexDirection = "flexDirection".reactStyle
-
-  val flexWrap = "flexWrap".reactStyle
 
   val lineHeight2 = "lineHeight".reactStyle
 
@@ -83,9 +74,5 @@ trait RCustomTags {
   val svgtag = "svg".reactTag
 
   val polygon = "polygon".reactTag
-
-  val path = "path".reactTag
-
-
 
 }

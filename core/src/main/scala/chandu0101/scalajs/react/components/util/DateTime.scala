@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.util
+package chandu0101.scalajs.react.components
+package util
 
 import scala.scalajs.js.Date
 

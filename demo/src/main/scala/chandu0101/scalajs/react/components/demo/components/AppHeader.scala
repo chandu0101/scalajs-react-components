@@ -1,8 +1,8 @@
-package chandu0101.scalajs.react.components.demo.components
+package chandu0101.scalajs.react.components
+package demo.components
 
-import chandu0101.scalajs.react.components.all._
+import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-import japgolly.scalajs.react.{BackendScope, ReactComponentB, _}
 
 /**
  * Created by chandrasekharkode .

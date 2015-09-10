@@ -1,17 +1,13 @@
-package chandu0101.scalajs.react.components.demo.components.materialui
+package chandu0101.scalajs.react.components
+package demo.components.materialui
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
-import chandu0101.scalajs.react.components.materialui.{MuiPaper, MuiAppBar}
+import chandu0101.scalajs.react.components.materialui.MuiPaper
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
-import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
-import scala.scalajs.js
-import scala.scalajs.js
-import scala.scalajs.js.undefined
-import scala.scalajs.js.UndefOr
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
+
 object MuiPaperDemo {
 
    object Style extends StyleSheet.Inline {

@@ -1,8 +1,7 @@
-package chandu0101.scalajs.react.components.optionselectors
+package chandu0101.scalajs.react.components
+package optionselectors
 
-import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-
 import scala.scalajs.js
 import scala.scalajs.js.{Array => JArray}
 

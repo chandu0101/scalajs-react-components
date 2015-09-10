@@ -1,10 +1,10 @@
-package chandu0101.scalajs.react.components.demo.components.reacttagsinput
+package chandu0101.scalajs.react.components
+package demo.components.reacttagsinput
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
 import chandu0101.scalajs.react.components.textfields.ReactTagsInput
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 import scala.scalajs.js.{Array => JArray}
 
 

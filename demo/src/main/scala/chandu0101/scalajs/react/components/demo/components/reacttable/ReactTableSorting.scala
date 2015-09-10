@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.demo.components.reacttable
+package chandu0101.scalajs.react.components
+package demo.components.reacttable
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
 import chandu0101.scalajs.react.components.demo.util.SampleData

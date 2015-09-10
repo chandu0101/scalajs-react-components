@@ -1,7 +1,8 @@
-package chandu0101.scalajs.react.components.demo.pages
+package chandu0101.scalajs.react.components
+package demo.pages
 
 import chandu0101.scalajs.react.components.demo.components.LeftNavPage
-import chandu0101.scalajs.react.components.demo.routes.{SpinnerRouteModule, LeftRoute, ReactSelectRouteModule}
+import chandu0101.scalajs.react.components.demo.routes.{LeftRoute, SpinnerRouteModule}
 import chandu0101.scalajs.react.components.mixins.AsyncLoad
 import japgolly.scalajs.react.extra.router2.RouterCtl
 import japgolly.scalajs.react.{BackendScope, ReactComponentB}

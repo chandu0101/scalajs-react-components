@@ -1,8 +1,8 @@
-package chandu0101.scalajs.react.components.demo.routes
+package chandu0101.scalajs.react.components
+package demo.routes
 
 import chandu0101.scalajs.react.components.demo.components.reactinfinite.{ReactInfiniteDemo, ReactInfiniteInfo}
-import chandu0101.scalajs.react.components.demo.components.reactselect.{ReactSelectDemo, ReactSelectInfo}
-import chandu0101.scalajs.react.components.demo.pages.{ReactInfinitePage, ReactSelectPage}
+import chandu0101.scalajs.react.components.demo.pages.ReactInfinitePage
 import japgolly.scalajs.react.extra.router2.RouterConfigDsl
 
 object ReactInfiniteRouteModule {

@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.demo.routes
+package chandu0101.scalajs.react.components
+package demo.routes
 
 import chandu0101.scalajs.react.components.demo.components.reactgeomicons.{ReactGeomIconDemo, ReactGeomIconInfo}
 import chandu0101.scalajs.react.components.demo.pages.ReactGeomIconPage

@@ -1,8 +1,8 @@
-package chandu0101.scalajs.react.components.reactbootstrap
+package chandu0101.scalajs.react.components
+package reactbootstrap
 
-import japgolly.scalajs.react.{React, ReactComponentU_}
 import japgolly.scalajs.react.vdom.prefix_<^._
-
+import japgolly.scalajs.react.{React, ReactComponentU_}
 import scala.scalajs.js
 
 

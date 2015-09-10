@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.demo.components.reacttreeview
+package chandu0101.scalajs.react.components
+package demo.components.reacttreeview
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
 import chandu0101.scalajs.react.components.treeviews.{ReactTreeView, TreeItem}

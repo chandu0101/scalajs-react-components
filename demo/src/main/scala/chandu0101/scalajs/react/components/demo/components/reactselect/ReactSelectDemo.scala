@@ -1,15 +1,12 @@
-package chandu0101.scalajs.react.components.demo.components.reactselect
+package chandu0101.scalajs.react.components
+package demo.components.reactselect
 
-import chandu0101.macros.tojs.JSMacro
 import chandu0101.scalajs.react.components.demo.components.CodeExample
 import chandu0101.scalajs.react.components.optionselectors.ReactSelect
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{literal => json}
 import scala.scalajs.js.{Array => JArray}
-
 
 object ReactSelectDemo {
 

@@ -1,11 +1,10 @@
-package chandu0101.scalajs.react.components.demo.components.materialui
+package chandu0101.scalajs.react.components
+package demo.components.materialui
 
-import chandu0101.scalajs.react.components.demo.components.{RedLink, InfoTemplate}
+import chandu0101.scalajs.react.components.demo.components.{InfoTemplate, RedLink}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-import scala.scalajs.js
 import scalacss.Defaults._
-import scalacss.ScalaCssReact._
 object MuiInfo {
 
    object Style extends StyleSheet.Inline {

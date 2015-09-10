@@ -1,10 +1,8 @@
-package chandu0101.scalajs.react.components.icons
+package chandu0101.scalajs.react.components
+package icons
 
-import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-
 import scala.scalajs.js
-
 
 case class ReactGeomIcon(name: IconName,
                          height: js.UndefOr[String] = js.undefined,

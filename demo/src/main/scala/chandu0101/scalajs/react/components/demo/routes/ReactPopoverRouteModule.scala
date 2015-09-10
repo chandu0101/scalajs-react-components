@@ -1,8 +1,8 @@
-package chandu0101.scalajs.react.components.demo.routes
+package chandu0101.scalajs.react.components
+package demo.routes
 
 import chandu0101.scalajs.react.components.demo.components.reactpopover.{ReactPopoverDemo, ReactPopoverInfo}
-import chandu0101.scalajs.react.components.demo.components.reacttreeview.{ReactTreeViewDemo, ReactTreeViewInfo}
-import chandu0101.scalajs.react.components.demo.pages.{ReactPopoverPage, ReactTreeViewPage}
+import chandu0101.scalajs.react.components.demo.pages.ReactPopoverPage
 import japgolly.scalajs.react.extra.router2.RouterConfigDsl
 
 object ReactPopoverRouteModule {

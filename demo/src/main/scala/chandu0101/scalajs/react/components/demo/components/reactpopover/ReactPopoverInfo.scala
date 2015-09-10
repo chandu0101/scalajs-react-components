@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.demo.components.reactpopover
+package chandu0101.scalajs.react.components
+package demo.components.reactpopover
 
 import chandu0101.scalajs.react.components.demo.components.InfoTemplate
 import japgolly.scalajs.react.ReactComponentB

@@ -1,7 +1,6 @@
 package chandu0101.scalajs.react.components
 
 import japgolly.scalajs.react.{ReactNode, _}
-
 import scala.scalajs.js
 
 

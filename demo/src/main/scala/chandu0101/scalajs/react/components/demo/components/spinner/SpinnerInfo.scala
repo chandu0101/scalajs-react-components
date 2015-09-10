@@ -1,9 +1,9 @@
-package chandu0101.scalajs.react.components.demo.components.spinner
+package chandu0101.scalajs.react.components
+package demo.components.spinner
 
 import chandu0101.scalajs.react.components.demo.components.{InfoTemplate, RedLink}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 import scalacss.Defaults._
 
 object SpinnerInfo {

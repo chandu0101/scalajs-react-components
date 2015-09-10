@@ -1,7 +1,7 @@
-package chandu0101.scalajs.react.components.util
+package chandu0101.scalajs.react.components
+package util
 
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 
 trait CommonStyles extends RCustomTags{
 

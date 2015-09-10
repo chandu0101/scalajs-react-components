@@ -1,7 +1,8 @@
-package chandu0101.scalajs.react.components.demo.components.materialui
+package chandu0101.scalajs.react.components
+package demo.components.materialui
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
-import chandu0101.scalajs.react.components.materialui.{MuiLinearProgress, MuiProgressMode, MuiCircularProgress, MuiAppBar}
+import chandu0101.scalajs.react.components.materialui.{MuiCircularProgress, MuiLinearProgress, MuiProgressMode}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 

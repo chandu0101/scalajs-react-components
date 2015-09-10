@@ -1,8 +1,8 @@
-package chandu0101.scalajs.react.components.util
+package chandu0101.scalajs.react.components
+package util
 
 import japgolly.scalajs.react.TopNode
 import org.scalajs.dom.{Event, EventTarget}
-
 import scala.scalajs.js
 
 

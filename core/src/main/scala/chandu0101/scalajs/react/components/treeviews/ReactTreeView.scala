@@ -1,10 +1,9 @@
-package chandu0101.scalajs.react.components.treeviews
+package chandu0101.scalajs.react.components
+package treeviews
 
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
+import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-import japgolly.scalajs.react.{ReactComponentB, _}
-
 import scala.collection.mutable
 import scala.scalajs.js
 

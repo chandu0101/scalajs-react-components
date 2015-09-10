@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.demo.pages
+package chandu0101.scalajs.react.components
+package demo.pages
 
 import chandu0101.scalajs.react.components.demo.components.LeftNavPage
 import chandu0101.scalajs.react.components.demo.routes.{LeftRoute, ReactTagsInputRouteModule}

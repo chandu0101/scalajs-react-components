@@ -1,12 +1,11 @@
-package chandu0101.scalajs.react.components.demo.components.materialui
+package chandu0101.scalajs.react.components
+package demo.components.materialui
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
-import chandu0101.scalajs.react.components.materialui.{MuiRaisedButton, MuiSnackBarM, MuiSnackBar, MuiAppBar}
+import chandu0101.scalajs.react.components.materialui.{MuiRaisedButton, MuiSnackBar, MuiSnackBarM}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
-
-import scala.scalajs.js
 
 object MuiSnackBarDemo {
 

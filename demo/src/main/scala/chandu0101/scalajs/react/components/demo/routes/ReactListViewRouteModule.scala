@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.demo.routes
+package chandu0101.scalajs.react.components
+package demo.routes
 
 import chandu0101.scalajs.react.components.demo.components.reactlistview.{ReactListViewDemo, ReactListViewInfo}
 import chandu0101.scalajs.react.components.demo.pages.ReactListViewPage
@@ -13,9 +14,7 @@ object ReactListViewRouteModule {
   val menu : List[LeftRoute] = List(Info,Demo)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
-
     import dsl._
-
     menu.map(i =>
       staticRoute(i.route, i) ~> renderR(r => ReactListViewPage(i, r))
     ).reduce(_ | _)

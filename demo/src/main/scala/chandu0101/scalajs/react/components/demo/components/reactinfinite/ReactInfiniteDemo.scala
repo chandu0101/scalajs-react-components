@@ -1,12 +1,10 @@
-package chandu0101.scalajs.react.components.demo.components.reactinfinite
+package chandu0101.scalajs.react.components
+package demo.components.reactinfinite
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
 import chandu0101.scalajs.react.components.listviews.ReactInfinite
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-
-import scala.scalajs.js.Dynamic.{literal => json}
-import scala.scalajs.js.{Array => JArray}
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 

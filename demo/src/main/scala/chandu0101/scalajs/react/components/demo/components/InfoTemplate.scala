@@ -1,17 +1,10 @@
-package chandu0101.scalajs.react.components.demo.components
+package chandu0101.scalajs.react.components
+package demo.components
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 import scala.scalajs.js
-import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
-import scala.scalajs.js
-import scala.scalajs.js
-import scala.scalajs.js.undefined
-import scala.scalajs.js.UndefOr
 import scalacss.Defaults._
-import scalacss.ScalaCssReact._
 
 /**
  * Created by chandrasekharkode .

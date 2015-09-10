@@ -1,7 +1,6 @@
-package chandu0101.scalajs.react.components.draggables
+package chandu0101.scalajs.react.components
+package draggables
 
-
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.models.{RElementPosition, RGrid, RPoint}
 import chandu0101.scalajs.react.components.util.DomUtil._
 import chandu0101.scalajs.react.components.util.Events
@@ -9,10 +8,8 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.Event
-
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
-
 
 object ReactDraggable {
 

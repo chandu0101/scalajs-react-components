@@ -1,11 +1,8 @@
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
-import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import materialui.Mui
-
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{literal => json}
 import scala.scalajs.js.{Array => JArray}
 
 

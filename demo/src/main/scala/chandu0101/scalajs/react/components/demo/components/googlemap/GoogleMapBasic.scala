@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.demo.components.googlemap
+package chandu0101.scalajs.react.components
+package demo.components.googlemap
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
 import chandu0101.scalajs.react.components.fascades.LatLng

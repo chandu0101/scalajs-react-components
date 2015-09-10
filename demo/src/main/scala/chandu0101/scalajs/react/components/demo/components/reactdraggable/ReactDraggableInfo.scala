@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.demo.components.reactdraggable
+package chandu0101.scalajs.react.components
+package demo.components.reactdraggable
 
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._

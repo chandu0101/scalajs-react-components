@@ -1,12 +1,11 @@
-package chandu0101.scalajs.react.components.textfields
+package chandu0101.scalajs.react.components
+package textfields
 
 
-import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.html
-
 import scala.scalajs.js
 
 

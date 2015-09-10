@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.demo.components.reactlistview
+package chandu0101.scalajs.react.components
+package demo.components.reactlistview
 
 import chandu0101.scalajs.react.components.demo.components.CodeExample
 import chandu0101.scalajs.react.components.listviews.ReactListView

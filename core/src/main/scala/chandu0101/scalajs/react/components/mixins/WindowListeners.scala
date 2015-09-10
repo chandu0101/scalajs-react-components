@@ -1,10 +1,10 @@
-package chandu0101.scalajs.react.components.mixins
+package chandu0101.scalajs.react.components
+package mixins
 
 import chandu0101.scalajs.react.components.util.Events
 import japgolly.scalajs.react._
 import org.scalajs.dom
 import org.scalajs.dom.Event
-
 import scala.scalajs.js
 
 

@@ -14,7 +14,9 @@ class GLatLng(lat: Double, lng: Double) extends js.Object
 
 
 @js.native @JSName("google.maps.Map")
-class GMap(node: TopNode, options: js.Dynamic) extends js.Object
+class GMap(node: TopNode, options: js.Dynamic) extends js.Object {
+  def setCenter(latLng: GLatLng): Unit = js.native
+}
 
 @js.native @JSName("google.maps.Point")
 class GPoint(x: Int, y: Int) extends js.Object

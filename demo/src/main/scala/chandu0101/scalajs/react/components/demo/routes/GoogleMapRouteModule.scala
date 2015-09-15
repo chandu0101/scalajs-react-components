@@ -12,11 +12,13 @@ object GoogleMapRouteModule {
 
   case object Marker extends LeftRoute("Map With Markers", "markers", () => GoogleMapMarkers())
 
+  case object MutableMarker extends LeftRoute("Mutable Markers", "mutableMarkers", () => MutableGoogleMapMarkers())
+
   case object MarkerIcon extends LeftRoute("Custom Marker Icon", "markericon", () => GoogleMapCustomMarkerIcon())
 
   case object MarkerInfoWindow extends LeftRoute("Marker Info Window", "markerinfowindow", () => GoogleMapMarkerInfoWindow())
 
-  val menu: List[LeftRoute] = List(Info, Basic, Marker, MarkerIcon, MarkerInfoWindow)
+  val menu: List[LeftRoute] = List(Info, Basic, Marker, MutableMarker, MarkerIcon, MarkerInfoWindow)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
 

@@ -1,14 +1,11 @@
-package chandu0101.scalajs.react.components.demo.components.googlemap
+package demo.components
+package googlemap
 
-import chandu0101.scalajs.react.components.demo.components.CodeExample
-import chandu0101.scalajs.react.components.fascades.{Marker, LatLng}
+import chandu0101.scalajs.react.components.fascades.{LatLng, Marker}
 import chandu0101.scalajs.react.components.maps.GoogleMap
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-/**
- * created by mproch
- */
 object MutableGoogleMapMarkers {
 
   val code =

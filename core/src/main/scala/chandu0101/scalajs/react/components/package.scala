@@ -6,7 +6,7 @@ package object components
   extends util.CommonStyles
   with util.MTypes {
 
-  private[components] val JSMacro   = _root_.chandu0101.macros.tojs.JSMacro
+  private[components] val JSMacro   = chandu0101.macros.tojs.JSMacro
 
   /* type alias for `js.undefined` */
   private[components] type U[T] = js.UndefOr[T]

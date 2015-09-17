@@ -16,15 +16,20 @@ object ScalajsReactComponents extends Build {
   def commonSettings: PE =
     _.enablePlugins(ScalaJSPlugin)
       .settings(
-        organization       := "com.github.chandu0101.scalajs-react-components",
-        version            := "0.2.0-SNAPSHOT",
-        homepage           := Some(url("https://github.com/chandu0101/scalajs-react-components")),
-        licenses           += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
-        scalaVersion       := Scala211,
-        scalacOptions     ++= Seq("-deprecation", "-unchecked", "-feature",
-                                "-language:postfixOps", "-language:implicitConversions",
-                                "-language:higherKinds", "-language:existentials"),
-        updateOptions      := updateOptions.value.withConsolidatedResolution(true))
+        organization         := "com.github.chandu0101.scalajs-react-components",
+        version              := "0.2.0-SNAPSHOT",
+        homepage             := Some(url("https://github.com/chandu0101/scalajs-react-components")),
+        licenses             += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
+        scalaVersion         := Scala211,
+        scalacOptions       ++= Seq("-deprecation", "-unchecked", "-feature",
+                                  "-language:postfixOps", "-language:implicitConversions",
+                                  "-language:higherKinds", "-language:existentials"),
+        updateOptions        := updateOptions.value.withCachedResolution(true),
+        dependencyOverrides ++= Set(
+          "org.scala-lang" %  "scala-reflect"          % scalaVersion.value,
+          "org.scala-js"   %% "scalajs-test-interface" % "0.6.5"
+        )
+      )
 
   def preventPublication: PE =
     _.settings(

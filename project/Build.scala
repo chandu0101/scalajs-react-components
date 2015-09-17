@@ -10,7 +10,6 @@ object ScalajsReactComponents extends Build {
 
   val scalajsReactVersion = "0.9.2"
   val scalaCSSVersion = "0.3.0"
-  val macrosVersion = "0.5"
 
   type PE = Project => Project
 
@@ -99,7 +98,7 @@ object ScalajsReactComponents extends Build {
 
   // ==============================================================================================
   lazy val root = Project("root", file("."))
-    .aggregate(core, demo)
+    .aggregate(macros, core, demo)
     .configure(commonSettings, preventPublication, addCommandAliases(
       "t"  -> "; test:compile ; test/test",
       "tt" -> ";+test:compile ;+test/test",
@@ -107,15 +106,26 @@ object ScalajsReactComponents extends Build {
       "TT" -> ";+clean ;tt"))
 
   // ==============================================================================================
+
+  lazy val macros = project
+    .configure(commonSettings, utestSettings, preventPublication)
+    .settings(
+      name := "macros",
+      libraryDependencies ++= Seq(
+        "org.scalatest" %%% "scalatest" % "3.0.0-M6" % Test
+      )
+    )
+
+  // ==============================================================================================
   lazy val core = project
     .configure(commonSettings, publicationSettings)
+    .dependsOn(macros)
     .settings(
       name := "core",
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalajs-react" %%% "core" % scalajsReactVersion,
         "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion,
         "com.github.japgolly.scalacss" %%% "core" % scalaCSSVersion,
-        "com.github.chandu0101" %%% "macros" % macrosVersion,
         "com.github.japgolly.scalacss" %%% "ext-react" % scalaCSSVersion),
       target in Compile in doc := baseDirectory.value / "docs"
     )

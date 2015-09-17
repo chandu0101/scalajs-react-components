@@ -1,13 +1,13 @@
-package chandu0101.scalajs.react.components.maps
+package chandu0101.scalajs.react.components
+package maps
 
 import chandu0101.scalajs.react.components.fascades._
 import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.{Event, document, html}
-
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{global => g, literal => json, newInstance => jsnew}
+import scala.scalajs.js.Dynamic.{global => g}
 
 object GoogleMap {
 
@@ -54,7 +54,7 @@ object GoogleMap {
     }
   }
 
-  case class Props(width : String , height : String,center: LatLng, zoom: Int, markers: Seq[Marker],url :String)
+  case class Props(width: String, height: String,center: LatLng, zoom: Int, markers: Seq[Marker],url :String)
 
   val component = ReactComponentB[Props]("googleMap")
     .initialState(State())
@@ -84,6 +84,6 @@ object GoogleMap {
    *              you can override if you want .
    * @return
    */
-  def apply(width : String = "500px" , height : String = "500px", center: LatLng, zoom: Int = 4, markers: List[Marker] = Nil,url : String = "https://maps.googleapis.com/maps/api/js") = component(Props(width,height,center, zoom, markers,url))
+  def apply(width: String = "500px", height: String = "500px", center: LatLng, zoom: Int = 4, markers: List[Marker] = Nil,url: String = "https://maps.googleapis.com/maps/api/js") = component(Props(width,height,center, zoom, markers,url))
 
 }

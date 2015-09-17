@@ -1,19 +1,17 @@
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
-import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import materialui.Mui
-
 import scala.scalajs.js
 
-case class MuiCircularProgress(size: js.UndefOr[Double] = js.undefined,
-                               style: js.UndefOr[js.Any] = js.undefined,
-                               min: js.UndefOr[Int] = js.undefined,
-                               ref: js.UndefOr[String] = js.undefined,
-                               key: js.UndefOr[String] = js.undefined,
-                               max: js.UndefOr[Int] = js.undefined,
-                               mode: js.UndefOr[MuiProgressMode] = js.undefined,
-                               value: js.UndefOr[Int] = js.undefined) {
+case class MuiCircularProgress(size: U[Double] = uNone,
+                               style: U[js.Any] = uNone,
+                               min: U[Int] = uNone,
+                               ref: U[String] = uNone,
+                               key: U[String] = uNone,
+                               max: U[Int] = uNone,
+                               mode: U[MuiProgressMode] = uNone,
+                               value: U[Int] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiCircularProgress](this)
@@ -23,15 +21,14 @@ case class MuiCircularProgress(size: js.UndefOr[Double] = js.undefined,
 
 }
 
-
-case class MuiLinearProgress(size: js.UndefOr[Double] = js.undefined,
-                             style: js.UndefOr[js.Any] = js.undefined,
-                             min: js.UndefOr[Int] = js.undefined,
-                             ref: js.UndefOr[String] = js.undefined,
-                             key: js.UndefOr[String] = js.undefined,
-                             max: js.UndefOr[Int] = js.undefined,
-                             mode: js.UndefOr[MuiProgressMode] = js.undefined,
-                             value: js.UndefOr[Int] = js.undefined) {
+case class MuiLinearProgress(size: U[Double] = uNone,
+                             style: U[js.Any] = uNone,
+                             min: U[Int] = uNone,
+                             ref: U[String] = uNone,
+                             key: U[String] = uNone,
+                             max: U[Int] = uNone,
+                             mode: U[MuiProgressMode] = uNone,
+                             value: U[Int] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiLinearProgress](this)
@@ -41,9 +38,7 @@ case class MuiLinearProgress(size: js.UndefOr[Double] = js.undefined,
 
 }
 
-
 class MuiProgressMode private(val value: String) extends AnyVal
-
 
 object MuiProgressMode {
 

@@ -1,8 +1,8 @@
-package chandu0101.scalajs.react.components.pagers
+package chandu0101.scalajs.react.components
+package pagers
 
+import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-import japgolly.scalajs.react.{ReactComponentB, _}
-
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 
@@ -50,6 +50,5 @@ object Pager {
   def apply(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: () => Unit, previousClick: () => Unit, style: Style = DefaultStyle) = {
     component(Props(itemsPerPage, totalItems, offset, nextClick, previousClick, style))
   }
-
 
 }

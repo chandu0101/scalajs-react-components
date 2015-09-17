@@ -1,9 +1,5 @@
-package chandu0101.scalajs.react.components.util
-
-
-import chandu0101.scalajs.react.components.all._
-
-
+package chandu0101.scalajs.react.components
+package util
 
 object CommonUtils {
 

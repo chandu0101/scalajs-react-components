@@ -1,16 +1,13 @@
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
-import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import materialui.Mui
-
 import scala.scalajs.js
 
-
-case class MuiSvgIcon(key: js.UndefOr[String] = js.undefined,
-                      style: js.UndefOr[js.Any] = js.undefined,
-                      ref: js.UndefOr[String] = js.undefined,
-                      viewBox: js.UndefOr[String] = js.undefined) {
+case class MuiSvgIcon(key: U[String] = uNone,
+                      style: U[js.Any] = uNone,
+                      ref: U[String] = uNone,
+                      viewBox: U[String] = uNone) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiSvgIcon](this)

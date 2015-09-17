@@ -1,17 +1,15 @@
-package chandu0101.scalajs.react.components.fascades
+package chandu0101.scalajs.react.components
+package fascades
 
 import japgolly.scalajs.react.TopNode
 import org.scalajs.dom.Event
-
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{global => g, literal => json, newInstance => jsnew}
+import scala.scalajs.js.Dynamic.{literal => json}
 import scala.scalajs.js.JSConverters.genTravConvertible2JSRichGenTrav
 import scala.scalajs.js.annotation.JSName
 
-
 @js.native @JSName("google.maps.LatLng")
 class GLatLng(lat: Double, lng: Double) extends js.Object
-
 
 @js.native @JSName("google.maps.Map")
 class GMap(node: TopNode, options: js.Dynamic) extends js.Object {
@@ -51,7 +49,6 @@ class GClearInstanceListeners(marker: GMarker) extends js.Object
 
 @js.native @JSName("google.maps.event.clearListeners")
 class GClearListeners(marker: GMarker, `type`: String) extends js.Object
-
 
 case class Point(x: Int, y: Int) {
   def toGPoint = new GPoint(x, y)

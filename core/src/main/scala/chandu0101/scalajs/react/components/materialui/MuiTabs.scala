@@ -1,18 +1,15 @@
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
-import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import materialui.Mui
-
 import scala.scalajs.js
-import scala.scalajs.js.{UndefOr, undefined}
 
-case class MuiTabs(style: UndefOr[js.Any] = undefined,
-                   onChange: UndefOr[(Int, ReactElement) => Unit] = undefined,
-                   ref: UndefOr[String] = undefined,
-                   key: UndefOr[String] = undefined,
-                   tabWidth: UndefOr[Int] = undefined,
-                   initialSelectedIndex: UndefOr[Int] = undefined) {
+case class MuiTabs(style: U[js.Any] = uNone,
+                   onChange: U[(Int, ReactElement) => Unit] = uNone,
+                   ref: U[String] = uNone,
+                   key: U[String] = uNone,
+                   tabWidth: U[Int] = uNone,
+                   initialSelectedIndex: U[Int] = uNone) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiTabs](this)

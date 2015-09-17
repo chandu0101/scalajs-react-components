@@ -1,18 +1,16 @@
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
-import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import materialui.Mui
-
 import scala.scalajs.js
 
-case class MuiSnackBar(openOnMount: js.UndefOr[Boolean] = js.undefined,
-                       style: js.UndefOr[js.Any] = js.undefined,
-                       ref: js.UndefOr[String] = js.undefined,
-                       key: js.UndefOr[String] = js.undefined,
-                       onActionTouchTap: js.UndefOr[ReactEvent => Unit] = js.undefined,
+case class MuiSnackBar(openOnMount: U[Boolean] = uNone,
+                       style: U[js.Any] = uNone,
+                       ref: U[String] = uNone,
+                       key: U[String] = uNone,
+                       onActionTouchTap: U[ReactEvent => Unit] = uNone,
                        message: String,
-                       action: js.UndefOr[String] = js.undefined) {
+                       action: U[String] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiSnackBar](this)

@@ -1,17 +1,14 @@
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
-import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import materialui.Mui
-
 import scala.scalajs.js
 
-
-case class MuiFontIcon(style: js.UndefOr[js.Any] = js.undefined,
-                       ref: js.UndefOr[String] = js.undefined,
-                       key: js.UndefOr[String] = js.undefined,
-                       className: js.UndefOr[String] = js.undefined,
-                       hoverColor: js.UndefOr[String] = js.undefined) {
+case class MuiFontIcon(style: U[js.Any] = uNone,
+                       ref: U[String] = uNone,
+                       key: U[String] = uNone,
+                       className: U[String] = uNone,
+                       hoverColor: U[String] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiFontIcon](this)

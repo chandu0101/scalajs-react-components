@@ -1,5 +1,6 @@
-import japgolly.scalajs.react.{React, ReactComponentSpec, TopNode}
+package chandu0101.scalajs.react.components
 
+import japgolly.scalajs.react.{React, ReactComponentSpec, TopNode}
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSName
 

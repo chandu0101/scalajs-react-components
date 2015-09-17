@@ -1,21 +1,19 @@
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
-
-import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import materialui.Mui
 import scala.scalajs.js
 import scala.scalajs.js.{Array => JArray}
 
 case class MuiDropdownMenu(menuItems: JArray[MuiDropdownMenuItem],
-                           style: js.UndefOr[js.Any] = js.undefined,
-                           onChange: js.UndefOr[(ReactEvent, Int, js.Object) => Unit] = js.undefined,
-                           ref: js.UndefOr[String] = js.undefined,
-                           menuItemStyle: js.UndefOr[js.Any] = js.undefined,
-                           key: js.UndefOr[String] = js.undefined,
-                           autoWidth: js.UndefOr[Boolean] = js.undefined,
-                           className: js.UndefOr[String] = js.undefined,
-                           selectedIndex: js.UndefOr[Int] = js.undefined) {
+                           style: U[js.Any] = uNone,
+                           onChange: U[(ReactEvent, Int, js.Object) => Unit] = uNone,
+                           ref: U[String] = uNone,
+                           menuItemStyle: U[js.Any] = uNone,
+                           key: U[String] = uNone,
+                           autoWidth: U[Boolean] = uNone,
+                           className: U[String] = uNone,
+                           selectedIndex: U[Int] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiDropdownMenu](this)

@@ -1,12 +1,11 @@
-package chandu0101.scalajs.react.components.mixins
+package chandu0101.scalajs.react.components
+package mixins
 
 import chandu0101.scalajs.react.components.util.DomUtil
 import japgolly.scalajs.react._
 import org.scalajs.dom
 import org.scalajs.dom.{Event, html}
-
 import scala.scalajs.js
-
 
 trait ClickAwayable {
   def onClickAway()

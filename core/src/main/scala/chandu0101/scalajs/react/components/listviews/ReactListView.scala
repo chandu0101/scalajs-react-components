@@ -1,10 +1,9 @@
-package chandu0101.scalajs.react.components.listviews
-
+package chandu0101.scalajs.react.components
+package listviews
 
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 import scala.scalajs.js
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
@@ -71,6 +70,6 @@ object ReactListView {
 
   case class Props(items: List[String], onItemSelect: String => Unit, showSearchBox: Boolean, style: Style)
 
-  def apply(items: List[String], onItemSelect: String => Unit = null, showSearchBox: Boolean = false, style: Style = DefaultStyle, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(items, onItemSelect, showSearchBox, style))
+  def apply(items: List[String], onItemSelect: String => Unit = null, showSearchBox: Boolean = false, style: Style = DefaultStyle, ref: U[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(items, onItemSelect, showSearchBox, style))
 
 }

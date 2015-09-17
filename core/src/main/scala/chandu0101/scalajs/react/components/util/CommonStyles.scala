@@ -1,7 +1,7 @@
-package chandu0101.scalajs.react.components.util
+package chandu0101.scalajs.react.components
+package util
 
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 
 trait CommonStyles extends RCustomTags{
 
@@ -27,18 +27,15 @@ trait CommonStyles extends RCustomTags{
 
   val outlineNone= ^.outline := "none"
 
+  def backgroundClipPreFixer(value: String) = Seq(^.backgroundClip := value, webkitBackgroundClip := value)
 
+  def boxShadowPreFixer(value: String) = Seq(^.boxShadow := value,WebkitBoxShadow := value)
 
-  def backgroundClipPreFixer(value : String) = Seq(^.backgroundClip := value, webkitBackgroundClip := value)
-
-  def boxShadowPreFixer(value : String) = Seq(^.boxShadow := value,WebkitBoxShadow := value)
-
-  def styleSet1(st1 : TagMod , more : (TagMod,Boolean) * ) : TagMod = {
+  def styleSet1(st1: TagMod, more: (TagMod,Boolean) * ): TagMod = {
      st1.+(more.filter(_._2).map(_._1))
   }
-  def styleSet(styles : (TagMod,Boolean) * ) : TagMod = {
+  def styleSet(styles: (TagMod,Boolean) * ): TagMod = {
     styles.filter(_._2).map(_._1)
   }
-
 
 }

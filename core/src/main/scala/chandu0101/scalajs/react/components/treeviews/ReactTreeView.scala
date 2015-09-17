@@ -1,20 +1,17 @@
-package chandu0101.scalajs.react.components.treeviews
+package chandu0101.scalajs.react.components
+package treeviews
 
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
+import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-import japgolly.scalajs.react.{ReactComponentB, _}
-
 import scala.collection.mutable
 import scala.scalajs.js
-
 
 case class TreeItem(item: Any, children: TreeItem*) {
   def apply(item: Any): TreeItem = this(item, Nil)
 }
 
 object ReactTreeView {
-
 
   trait Style {
 
@@ -43,7 +40,6 @@ object ReactTreeView {
 
     def treeItemHasChildrenOpened = Seq(^.contentStyle := "▼")
 
-
   }
 
   val nodeRefs: mutable.Map[String, RefComp[NodeProps, NodeState, NodeBackend, TopNode]] = mutable.Map.empty
@@ -70,7 +66,6 @@ object ReactTreeView {
     }
 
   }
-
 
   class NodeBackend(t: BackendScope[NodeProps, NodeState]) {
 
@@ -129,7 +124,6 @@ object ReactTreeView {
   })
     .build
 
-
   val component = ReactComponentB[Props]("ReactTreeView")
     .initialState(State())
     .backend(new Backend(_))
@@ -143,7 +137,6 @@ object ReactTreeView {
 
   case class Props(root: TreeItem, open: Boolean, onItemSelect: StringStringIntAny, showSearchBox: Boolean, style: Style)
 
-
-  def apply(root: TreeItem, openByDefault: Boolean = false, onItemSelect: StringStringIntAny = null, showSearchBox: Boolean = false, ref: js.UndefOr[String] = "", key: js.Any = "dude", style: Style = new Style {}) = component.set(key, ref)(Props(root, openByDefault, onItemSelect, showSearchBox, style))
+  def apply(root: TreeItem, openByDefault: Boolean = false, onItemSelect: StringStringIntAny = null, showSearchBox: Boolean = false, ref: U[String] = "", key: js.Any = "dude", style: Style = new Style {}) = component.set(key, ref)(Props(root, openByDefault, onItemSelect, showSearchBox, style))
 
 }

@@ -1,16 +1,13 @@
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
-import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import materialui.Mui
-
 import scala.scalajs.js
 
-case class MuiToolbar(key: js.UndefOr[String] = js.undefined,
-                      style: js.UndefOr[js.Any] = js.undefined,
-                      ref: js.UndefOr[String] = js.undefined,
-                      className: js.UndefOr[String] = js.undefined) {
-
+case class MuiToolbar(key: U[String] = uNone,
+                      style: U[js.Any] = uNone,
+                      ref: U[String] = uNone,
+                      className: U[String] = uNone) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiToolbar](this)
@@ -19,10 +16,9 @@ case class MuiToolbar(key: js.UndefOr[String] = js.undefined,
   }
 }
 
-
-case class MuiToolbarSeparator(key: js.UndefOr[String] = js.undefined,
-                               style: js.UndefOr[js.Any] = js.undefined,
-                               ref: js.UndefOr[String] = js.undefined) {
+case class MuiToolbarSeparator(key: U[String] = uNone,
+                               style: U[js.Any] = uNone,
+                               ref: U[String] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiToolbarSeparator](this)
@@ -32,11 +28,10 @@ case class MuiToolbarSeparator(key: js.UndefOr[String] = js.undefined,
 
 }
 
-
-case class MuiToolbarTitle(key: js.UndefOr[String] = js.undefined,
-                           style: js.UndefOr[js.Any] = js.undefined,
-                           ref: js.UndefOr[String] = js.undefined,
-                           text: js.UndefOr[String] = js.undefined) {
+case class MuiToolbarTitle(key: U[String] = uNone,
+                           style: U[js.Any] = uNone,
+                           ref: U[String] = uNone,
+                           text: U[String] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiToolbarTitle](this)
@@ -46,11 +41,11 @@ case class MuiToolbarTitle(key: js.UndefOr[String] = js.undefined,
 
 }
 
-case class MuiToolbarGroup(float: js.UndefOr[String] = js.undefined,
-                           style: js.UndefOr[js.Any] = js.undefined,
-                           ref: js.UndefOr[String] = js.undefined,
-                           key: js.UndefOr[String] = js.undefined,
-                           className: js.UndefOr[String] = js.undefined) {
+case class MuiToolbarGroup(float: U[String] = uNone,
+                           style: U[js.Any] = uNone,
+                           ref: U[String] = uNone,
+                           key: U[String] = uNone,
+                           className: U[String] = uNone) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiToolbarGroup](this)

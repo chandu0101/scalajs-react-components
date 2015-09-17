@@ -1,7 +1,6 @@
-package chandu0101.scalajs.react.components.draggables
+package chandu0101.scalajs.react.components
+package draggables
 
-
-import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.models.{RElementPosition, RGrid, RPoint}
 import chandu0101.scalajs.react.components.util.DomUtil._
 import chandu0101.scalajs.react.components.util.Events
@@ -9,10 +8,8 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.Event
-
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
-
 
 object ReactDraggable {
 
@@ -37,7 +34,6 @@ object ReactDraggable {
     lazy val handleDragStart_ref: js.Function1[Event, _] = handleDragStart _
 
     lazy val handleDragEnd_ref: js.Function1[Event, _] = handleDragEnd _
-
 
     def handleDragStart(e: Event) = {
       // Make it possible to attach event handlers on top of this one
@@ -113,7 +109,7 @@ object ReactDraggable {
     def canDragX = t.props.axis == "both" || t.props.axis == "x"
 
     def positionToCSSTransform(left: Int, top: Int) = {
-      val trans = s"translate(${left}px , ${top}px)"
+      val trans = s"translate(${left}px, ${top}px)"
       Seq(^.transform := trans, mozTransform := trans, webkitTransform := trans, msTransform := trans)
     }
   }
@@ -145,8 +141,7 @@ object ReactDraggable {
   })
     .build
 
-
-  case class Props(cancel: String, onDrag: EventRElementPositionAny, useCSSTransforms: Boolean, clsNames: CssClassType, ref: js.UndefOr[String], moveOnStartChange: Boolean, grid: RGrid, key: js.Any, zIndex: Int, axis: String, onStop: EventRElementPositionAny, start: RPoint, onStart: EventRElementPositionAny, onMouseDown: EventUnit, handle: String, minConstraints: RGrid, maxConstraints: RGrid)
+  case class Props(cancel: String, onDrag: EventRElementPositionAny, useCSSTransforms: Boolean, clsNames: CssClassType, ref: U[String], moveOnStartChange: Boolean, grid: RGrid, key: js.Any, zIndex: Int, axis: String, onStop: EventRElementPositionAny, start: RPoint, onStart: EventRElementPositionAny, onMouseDown: EventUnit, handle: String, minConstraints: RGrid, maxConstraints: RGrid)
 
   /**
    *
@@ -175,7 +170,7 @@ object ReactDraggable {
    * @param children
    * @return
    */
-  def apply(cancel: String = "", onDrag: EventRElementPositionAny = null, useCSSTransforms: Boolean = false, clsNames: CssClassType = Map(), ref: js.UndefOr[String] = "", moveOnStartChange: Boolean = false, grid: RGrid = null, key: js.Any = {}, zIndex: Int = 0, axis: String = "both", onStop: EventRElementPositionAny = null, start: RPoint = RPoint(0, 0), onStart: EventRElementPositionAny = null, onMouseDown: EventUnit = null, handle: String = "", minConstraints: RGrid = null, maxConstraints: RGrid = null)(children: ReactNode) =
+  def apply(cancel: String = "", onDrag: EventRElementPositionAny = null, useCSSTransforms: Boolean = false, clsNames: CssClassType = Map(), ref: U[String] = "", moveOnStartChange: Boolean = false, grid: RGrid = null, key: js.Any = {}, zIndex: Int = 0, axis: String = "both", onStop: EventRElementPositionAny = null, start: RPoint = RPoint(0, 0), onStart: EventRElementPositionAny = null, onMouseDown: EventUnit = null, handle: String = "", minConstraints: RGrid = null, maxConstraints: RGrid = null)(children: ReactNode) =
     component.set(key, ref)(Props(cancel, onDrag, useCSSTransforms, clsNames, ref, moveOnStartChange, grid, key, zIndex, axis, onStop, start, onStart, onMouseDown, handle, minConstraints, maxConstraints), children)
 
 }

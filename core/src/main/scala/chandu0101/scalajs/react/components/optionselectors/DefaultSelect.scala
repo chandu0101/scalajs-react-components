@@ -1,12 +1,9 @@
-package chandu0101.scalajs.react.components.optionselectors
+package chandu0101.scalajs.react.components
+package optionselectors
 
-
-import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
-
 import scala.scalajs.js
-
 
 object DefaultSelect {
 
@@ -30,5 +27,5 @@ object DefaultSelect {
 
   case class Props(label: String, options: List[String], value: String, onChange: StringUnit)
 
-  def apply(ref: js.UndefOr[String] = "", key: js.Any = {}, label: String, options: List[String], value: String, onChange: StringUnit) = component.set(key, ref)(Props(label, options, value, onChange))
+  def apply(ref: U[String] = "", key: js.Any = {}, label: String, options: List[String], value: String, onChange: StringUnit) = component.set(key, ref)(Props(label, options, value, onChange))
 }

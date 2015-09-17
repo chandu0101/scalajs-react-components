@@ -1,5 +1,5 @@
-package chandu0101.scalajs.react.components.util
-
+package chandu0101.scalajs.react.components
+package util
 
 object KeyLine {
 
@@ -10,5 +10,5 @@ object KeyLine {
      val MENU_ITEM_HEIGHT = 32
    }
 
-  def getIncrementalDim(dim : Double) = Math.ceil( dim / Desktop.INCREMENT) * Desktop.INCREMENT
+  def getIncrementalDim(dim: Double) = Math.ceil( dim / Desktop.INCREMENT) * Desktop.INCREMENT
 }

@@ -1,12 +1,14 @@
-
 package chandu0101.scalajs.react
 
-import chandu0101.scalajs.react.components.util.{CommonStyles, MTypes}
+import scala.scalajs.js
 
+package object components
+  extends util.CommonStyles
+  with util.MTypes {
 
-package object components {
+  private[components] val JSMacro   = chandu0101.macros.tojs.JSMacro
 
-
-  object all extends CommonStyles with MTypes
-
+  /* type alias for `js.undefined` */
+  private[components] type U[T] = js.UndefOr[T]
+  private[components] val uNone = js.undefined
 }

@@ -25,4 +25,11 @@ project/plugins/project/
 
 demo/assets/
 
-demo/node_modules/
+demo/node_modules//*/.cache
+
+/**/.cache-main
+/**/.cache-tests
+/**/.classpath
+/**/.metadata
+/**/.project
+/**/.settings

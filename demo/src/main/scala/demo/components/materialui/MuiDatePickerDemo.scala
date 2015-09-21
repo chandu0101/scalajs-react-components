@@ -7,7 +7,7 @@ import chandu0101.scalajs.react.components.materialui.{MuiDatePicker, MuiDatePic
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-object MuiDatePickerDemoX {
+object MuiDatePickerDemo {
 
   val code =
     """

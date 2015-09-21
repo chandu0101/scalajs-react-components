@@ -127,13 +127,19 @@ object ScalajsReactComponents extends Build {
     .dependsOn(macros)
     .settings(
       name := "core",
+      addCompilerPlugin(compilerPlugin("org.scalamacros" % "paradise" % "2.0.1" cross CrossVersion.full)),
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalajs-react" %%% "core" % scalajsReactVersion,
         "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion,
+        "com.github.japgolly.scalajs-react" %%% "ext-monocle" % scalajsReactVersion,
+        "com.github.japgolly.fork.monocle" %%% "monocle-core" % "1.1.1",
+        "com.github.japgolly.fork.monocle" %%% "monocle-macro" % "1.1.1",
+        "com.github.japgolly.fork.scalaz" %%% "scalaz-effect" % "7.1.3",
         "com.github.japgolly.scalacss" %%% "core" % scalaCSSVersion,
         "com.github.japgolly.scalacss" %%% "ext-react" % scalaCSSVersion),
       target in Compile in doc := baseDirectory.value / "docs"
     )
+    
 
   // ==============================================================================================
   lazy val demo = project

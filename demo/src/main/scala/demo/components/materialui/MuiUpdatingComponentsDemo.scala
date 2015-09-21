@@ -21,6 +21,24 @@ object MuiUpdatingComponentsDemo {
   def ??[T](a : T, b: => T) : T = if (a != null) a else b
   def after(a: Date, b: Date) = a != null && b != null && a.getTime > b.getTime
   def onlyWeekdays = (d: Date) => (d.getDay() + 1) % 6 != 1
+  def setTimePart(d: Date, t: Date) = {
+    if (d == null) t
+    else if (t == null) d
+    else {
+      val r = new Date(d.getTime()) // copy d
+      r.setHours(t.getHours(), t.getMinutes(), t.getSeconds())
+      r
+    }
+  }
+  def setDatePart(d: Date, dd: Date) = {
+    if (d == null) dd
+    else if (dd == null) d
+    else {
+      val r = new Date(d.getTime()) // copy d
+      r.setFullYear(dd.getFullYear(), dd.getMonth(), dd.getDate())
+      r
+    }
+  }
 
   def autoOkName(b: Boolean) = if (b) "on" else "off"
 
@@ -46,15 +64,22 @@ object MuiUpdatingComponentsDemo {
     .render( $ => {
 
 
-      def updateStart       = (_: Date, d: Date) => $.modState(s => s.copy(start = d,
-                                                end = if (after(d, s.end)) d else s.end))
-      def updateEnd         = (_: Date, d: Date) => $.modState(_.copy(end = d))
+      def updateStartTime   = (_: Date, d: Date) => $.modState(s => s.copy(start = setTimePart(s.start, d)))
+      def updateStartDate   = (_: Date, d: Date) => $.modState{ s =>
+        val updatedStart = setDatePart(s.start, d)
+        s.copy(start = updatedStart, end = if (after(updatedStart, s.end)) updatedStart else s.end)
+      }
+
+      def updateEndDate     = (_: Date, d: Date) => $.modState( s => s.copy(end = setDatePart(s.end, d)))
+      def updateEndTime     = (_: Date, d: Date) => $.modState( s => s.copy(end = setTimePart(s.end, d)))
       def modeSwitch        = (_: ReactEvent, mode: String) => $.modState(_.copy(pickerMode = MuiDatePickerMode.newMode(mode)))
       def autoOkToggle      = (_: ReactEvent, toggled: Boolean) => $.modState(_.copy(useAutoOk = toggled))
       def dateFormatUpdate  = (_: ReactEvent, index: Int, _: js.Object) => $.modState(_.copy(dateFormatterOffset = index))
 
-
-      def onSubmit : ReactEventH => Unit = (_:ReactEventH) => global.alert(" Do something Ajax-y with: " + $.state)
+      // since alert returns js.Dynamic, we must explicitly specify that onSubmit returns Unit
+      // by specify its type is ReactEventH => Unit ("ReactEventH to Unit")
+      // but since we did that, we don't have to specify the type of the argument
+      def onSubmit : ReactEventH => Unit = _ => global.alert(" Do something Ajax-y with: " + $.state)
 
       val state = $.state
 
@@ -69,7 +94,7 @@ object MuiUpdatingComponentsDemo {
                 onToggle = autoOkToggle,
                 defaultToggled = state.useAutoOk,
                 labelPosition = MuiSwitchLabelPosition.RIGHT,
-                label="Switch to AutoOk:" + autoOkName(! state.useAutoOk) + " DatePickers"
+                label=s"Pickers AutoOk is ${autoOkName(state.useAutoOk)}. Switch to AutoOk:${autoOkName(! state.useAutoOk)}."
               )(),
 
               // while we can use a toggle for the picker orientation,
@@ -98,7 +123,7 @@ object MuiUpdatingComponentsDemo {
                 MuiDatePicker(
                    defaultDate = state.start,
                    hintText = "Date Departing",
-                   onChange = updateStart,
+                   onChange = updateStartDate,
                    minDate = new Date(),
                    mode = state.pickerMode,
                    autoOk = state.useAutoOk,
@@ -106,16 +131,32 @@ object MuiUpdatingComponentsDemo {
                  )()
               ),
 
+              <.label("Depart At or After:",
+                MuiTimePicker(
+                  defaultTime = ??(state.start, new Date()),
+                  hintText = "Departing At or After",
+                  onChange = updateStartTime
+                )()
+              ),
+
               <.label("Return On:",
                  MuiDatePicker(
                    defaultDate = state.end,
                    hintText = "Date Returning",
-                   onChange = updateEnd,
+                   onChange = updateEndDate,
                    minDate = ??(state.start, new Date()),
                    mode = state.pickerMode,
                    autoOk = state.useAutoOk,
                    formatDate = dateFormatters(state.dateFormatterOffset)._2
                  )()
+              ),
+
+              <.label("Return At or After:",
+                MuiTimePicker(
+                  defaultTime = ??(state.end, new Date()),
+                  hintText = "Departing At or After",
+                  onChange = updateEndTime
+                )()
               ),
 
               MuiRaisedButton(

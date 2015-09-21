@@ -35,7 +35,7 @@ object MuiUpdatingComponentsDemo {
       |
     """.stripMargin
   val component = ReactComponentB[Unit]("MuiUpdatingComponentsDemo")
-    .initialState(DateSpan(new Date(), null, None, false, false, false))
+    .initialState(DateSpan(null, null, None, false, false, false))
     .render( $ => {
 
 
@@ -47,6 +47,8 @@ object MuiUpdatingComponentsDemo {
       def dateFormatToggle  = (_: ReactEvent, toggled: Boolean) => $.modState(_.copy(useYYYYMMDD = toggled))
 
       def onSubmit : ReactEventH => Unit = (_:ReactEventH) => global.alert(" Do something Ajax-y with: " + $.state)
+
+      def ??[T](a : T, b: => T) : T = if(a != null) a else b
 
 
       val state = $.state
@@ -93,7 +95,7 @@ object MuiUpdatingComponentsDemo {
                  defaultDate = state.end,
                  hintText = "End Date",
                  onChange = updateEnd,
-                 minDate = state.start,
+                 minDate = ??(state.start, new Date()),
                  mode = modeName(state.landscapeMode),
                  autoOk = state.useAutoOk,
                  formatDate = if (state.useYYYYMMDD) dateFormatterYYYMMDD else dateFormatterToString
@@ -108,9 +110,8 @@ object MuiUpdatingComponentsDemo {
                )()
             )
           ),
-           MuiDatePicker(hintText = "Protrait Dialog")(),
-           MuiDatePicker(hintText = "Landscape Dialog",mode = MuiDatePickerMode.LANDSCAPE)(),
-           <.div(state.start.toString),
+
+           <.div(dateFormatterToString(state.start)),
            <.div(if (state.end == null) "Not Set" else state.end.toString),
            <.div(state.errorMsg.map( s => <.span(s))),
            <.button(^.onClick --> {global.alert(" Do something Ajax-y with:" + state)}, "Submit")

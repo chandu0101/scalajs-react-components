@@ -17,7 +17,7 @@ object MuiUpdatingComponentsDemo {
   
   //@Lenses
   case class DateSpan(start: Date, end: Date, errorMsg: Option[String],
-                      landscapeMode: Boolean, useAutoOk: Boolean, useYYYYMMDD: Boolean)
+                      pickerMode: MuiDatePickerMode, useAutoOk: Boolean, useYYYYMMDD: Boolean)
 
   def after(a: Date, b: Date) = a != null && b != null && a.getTime > b.getTime
   def dateFormatterYYYMMDD = (d: Date) => if (d == null) "" else f"${d.getFullYear}-${d.getMonth + 1}%02d-${d.getDate}%02d"
@@ -35,14 +35,14 @@ object MuiUpdatingComponentsDemo {
       |
     """.stripMargin
   val component = ReactComponentB[Unit]("MuiUpdatingComponentsDemo")
-    .initialState(DateSpan(null, null, None, false, false, false))
+    .initialState(DateSpan(null, null, None, MuiDatePickerMode.PORTRAIT, false, false))
     .render( $ => {
 
 
       def updateStart       = (_: Date, d: Date) => $.modState(s => s.copy(start = d,
                                                 end = if (after(d, s.end)) d else s.end))
       def updateEnd         = (_: Date, d: Date) => $.modState(_.copy(end = d))
-      def modeToggle        = (_: ReactEvent, toggled: Boolean) => $.modState(_.copy(landscapeMode = toggled))
+      def modeSwitch        = (_: ReactEvent, mode: String) => $.modState(_.copy(pickerMode = MuiDatePickerMode.newMode(mode)))
       def autoOkToggle      = (_: ReactEvent, toggled: Boolean) => $.modState(_.copy(useAutoOk = toggled))
       def dateFormatToggle  = (_: ReactEvent, toggled: Boolean) => $.modState(_.copy(useYYYYMMDD = toggled))
 
@@ -53,18 +53,26 @@ object MuiUpdatingComponentsDemo {
 
       val state = $.state
 
+      //val portrait : UndefOr[String] =
+
       <.div(
         CodeExample(code,"MuiUpdatingComponentsDemo")(
           MuiPaper(zDepth = 3)(
             <.div(^.padding := 3.em,
 
-              MuiToggle(
-                onToggle = modeToggle,
-                defaultToggled = state.landscapeMode,
-                labelPosition = MuiSwitchLabelPosition.RIGHT,
-                label="Switch to " + modeName(! state.landscapeMode).value.toLowerCase() + " mode DatePickers"
-              )(),
-
+              // while we can use a toggle for the picker orientation,
+              // a radio group is more appropriate, because no mode
+              // maps to "off" and the other to "on"
+              // We will also change DateSpan's Boolean (is)landscapeMode to a String, pickerMode
+              <.label("Picker orientation:",
+                MuiRadioButtonGroup(
+                  name = "pickerdisplayorientation",
+                  defaultSelected = state.pickerMode.value,
+                  onChange = modeSwitch)(
+                    MuiRadioButton(value = MuiDatePickerMode.PORTRAIT.value, label = MuiDatePickerMode.PORTRAIT.value)(),
+                    MuiRadioButton(value = MuiDatePickerMode.LANDSCAPE.value, label = MuiDatePickerMode.LANDSCAPE.value)()
+                  )
+              ),
               MuiToggle(
                 onToggle = autoOkToggle,
                 defaultToggled = state.useAutoOk,
@@ -86,7 +94,7 @@ object MuiUpdatingComponentsDemo {
                  hintText = "Start Date",
                  onChange = updateStart,
                  minDate = new Date(),
-                 mode = modeName(state.landscapeMode),
+                 mode = state.pickerMode,
                  autoOk = state.useAutoOk,
                  formatDate = if (state.useYYYYMMDD) dateFormatterYYYMMDD else dateFormatterToString
                )()),
@@ -96,7 +104,7 @@ object MuiUpdatingComponentsDemo {
                  hintText = "End Date",
                  onChange = updateEnd,
                  minDate = ??(state.start, new Date()),
-                 mode = modeName(state.landscapeMode),
+                 mode = state.pickerMode,
                  autoOk = state.useAutoOk,
                  formatDate = if (state.useYYYYMMDD) dateFormatterYYYMMDD else dateFormatterToString
                )()),
@@ -107,7 +115,14 @@ object MuiUpdatingComponentsDemo {
                  label = "Find Reservations",
                  disabled = state.end == null,
                  onTouchTap = onSubmit
-               )()
+               )(),
+              <.p(
+                """
+                  | While we can use a toggle for the picker orientation,
+                  | a radio group is more appropriate, because no mode
+                  | maps to "off" and the other to "on".
+                  | We will also change DateSpan's Boolean (is)landscapeMode to a String, pickerMode.
+                """.stripMargin)
             )
           ),
 

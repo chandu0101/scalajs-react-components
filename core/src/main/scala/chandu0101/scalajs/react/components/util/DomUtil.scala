@@ -2,7 +2,7 @@ package chandu0101.scalajs.react.components
 package util
 
 import chandu0101.scalajs.react.components.models.RPoint
-import japgolly.scalajs.react.{Callback, TopNode}
+import japgolly.scalajs.react.TopNode
 import org.scalajs.dom
 import org.scalajs.dom._
 import scala.scalajs.js
@@ -39,21 +39,6 @@ object DomUtil {
     ClientRect(rect.top + scrollTop, rect.left + scrollLeft )
   }
 
- def forceRedraw(el: html.Element) = Callback {
-   val originalDisplay = el.style.display
-   el.style.display = "none"
-   el.offsetHeight
-   el.style.display = originalDisplay
- }
-
- def isDecedant(parent: TopNode, child: TopNode) = {
-   def loop(node: Node): Boolean =  node match  {
-     case null => false
-     case _ => if(node == parent) true else loop(node.parentNode)
-   }
-  loop(child.parentNode)
- }
-
   /**
    *  https://developer.mozilla.org/en-US/docs/Web/API/Element.matches#Browser_compatibility
    * @param element dom element
@@ -75,13 +60,6 @@ object DomUtil {
    */
   def isTouchDevice = dom.window.hasOwnProperty("ontouchstart") || dom.window.hasOwnProperty("onmsgesturechange")
 
-  def dragEventFor(name: String) = name match {
-    case "start" => if (isTouchDevice) "touchstart" else "mousedown"
-    case "move" => if (isTouchDevice) "touchmove" else "mousemove"
-    case "end" => if (isTouchDevice) "touchend" else "mouseup"
-    case _ => ""
-  }
-
   def dragEventFor(e:Event, name: String) = name match {
     case "start" => if (e.`type`.contains("touch")) "touchstart" else "mousedown"
     case "move" => if (e.`type`.contains("touch")) "touchmove" else "mousemove"
@@ -97,12 +75,6 @@ object DomUtil {
       val position = e.asInstanceOf[MouseEvent]
       RPoint(position.clientX, position.clientY)
     }
-
-  def withoutTransition(el: html.Element, callback: Callback): Callback =
-    Callback(el.style.transition = "none") >>
-    callback >>
-    forceRedraw(el) >>
-    Callback(el.style.transition)
 
   def isLeftClick(e: Event) =  e.`type` == "touchstart" || e.asInstanceOf[MouseEvent].button == 0
 

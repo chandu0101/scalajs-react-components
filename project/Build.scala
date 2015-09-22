@@ -113,7 +113,7 @@ object ScalajsReactComponents extends Build {
   // ==============================================================================================
 
   lazy val macros = project
-    .configure(commonSettings, utestSettings, preventPublication)
+    .configure(commonSettings, utestSettings, publicationSettings)
     .settings(
       name := "macros",
       libraryDependencies ++= Seq(

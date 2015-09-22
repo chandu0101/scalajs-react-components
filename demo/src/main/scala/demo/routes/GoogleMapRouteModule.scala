@@ -3,7 +3,7 @@ package routes
 
 import demo.components.googlemap._
 import demo.pages.GoogleMapPage
-import japgolly.scalajs.react.extra.router2.RouterConfigDsl
+import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object GoogleMapRouteModule {
 

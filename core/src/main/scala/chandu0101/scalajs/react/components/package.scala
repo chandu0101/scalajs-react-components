@@ -1,11 +1,12 @@
 package chandu0101.scalajs.react
 
-import japgolly.scalajs.react.{CallbackOption, BackendScope, Callback, CallbackTo, Ref}
+import japgolly.scalajs.react.{BackendScope, CallbackOption, CallbackTo, Ref}
 import scala.scalajs.js
 
 package object components
-  extends util.CommonStyles
-  with util.MTypes {
+  extends util.CommonStyles {
+
+  type CssClassType = Map[String, Boolean]
 
   private[components] val JSMacro = chandu0101.macros.tojs.JSMacro
 

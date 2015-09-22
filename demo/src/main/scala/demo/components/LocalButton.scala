@@ -48,8 +48,8 @@ object LocalDemoButton {
     .renderBackend[Backend]
     .build
 
-  case class Props(name: String, onButtonClick: U[REventHUnit], linkButton: Boolean, href: String, style: Style)
+  case class Props(name: String, onButtonClick: U[ReactEventH => Callback], linkButton: Boolean, href: String, style: Style)
 
-  def apply(name: String, onButtonClick: U[REventHUnit] = uNone, linkButton: Boolean = false, href: String = "", style: Style = new Style {}, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(name, onButtonClick, linkButton, href, style))
+  def apply(name: String, onButtonClick: U[ReactEventH => Callback] = uNone, linkButton: Boolean = false, href: String = "", style: Style = new Style {}, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(name, onButtonClick, linkButton, href, style))
 
 }

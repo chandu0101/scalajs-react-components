@@ -185,7 +185,7 @@ object ReactDraggable {
     .build
 
   case class Props(cancel: U[String],
-                   onDrag: U[EventRElementPositionAny],
+                   onDrag: U[(Event, RElementPosition) => Callback],
                    useCSSTransforms: Boolean,
                    clsNames: CssClassType,
                    ref: U[String],
@@ -194,10 +194,10 @@ object ReactDraggable {
                    key: js.Any,
                    zIndex: Int,
                    axis: String,
-                   onStop: U[EventRElementPositionAny],
+                   onStop: U[(Event, RElementPosition) => Callback],
                    start: RPoint,
-                   onStart: U[EventRElementPositionAny],
-                   onMouseDown: U[EventUnit],
+                   onStart: U[(Event, RElementPosition) => Callback],
+                   onMouseDown: U[Event => Callback],
                    handle: U[String],
                    minConstraints: U[RGrid],
                    maxConstraints: U[RGrid])
@@ -230,7 +230,7 @@ object ReactDraggable {
    * @return
    */
   def apply(cancel: U[String] = uNone,
-            onDrag: U[EventRElementPositionAny] = uNone,
+            onDrag: U[(Event, RElementPosition) => Callback] = uNone,
             useCSSTransforms: Boolean = false,
             clsNames: CssClassType = Map(),
             ref: U[String] = uNone,
@@ -239,10 +239,10 @@ object ReactDraggable {
             key: js.Any = {},
             zIndex: Int = 0,
             axis: String = "both",
-            onStop: U[EventRElementPositionAny] = uNone,
+            onStop: U[(Event, RElementPosition) => Callback] = uNone,
             start: RPoint = RPoint(0, 0),
-            onStart: U[EventRElementPositionAny] = uNone,
-            onMouseDown: U[EventUnit] = uNone,
+            onStart: U[(Event, RElementPosition) => Callback] = uNone,
+            onMouseDown: U[Event => Callback] = uNone,
             handle: U[String] = uNone,
             minConstraints: U[RGrid] = uNone,
             maxConstraints: U[RGrid] = uNone)

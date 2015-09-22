@@ -27,7 +27,7 @@ object DefaultSelect {
     .renderBackend[Backend]
     .build
 
-  case class Props(label: String, options: List[String], value: String, onChange: StringUnit)
+  case class Props(label: String, options: List[String], value: String, onChange: String => Callback)
 
-  def apply(ref: U[String] = "", key: js.Any = {}, label: String, options: List[String], value: String, onChange: StringUnit) = component.set(key, ref)(Props(label, options, value, onChange))
+  def apply(ref: U[String] = "", key: js.Any = {}, label: String, options: List[String], value: String, onChange: String => Callback) = component.set(key, ref)(Props(label, options, value, onChange))
 }

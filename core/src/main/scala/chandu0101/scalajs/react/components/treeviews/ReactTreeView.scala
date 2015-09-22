@@ -194,13 +194,13 @@ object ReactTreeView {
 
   case class Props(root: TreeItem,
                    open: Boolean,
-                   onItemSelect: U[StringStringIntAny],
+                   onItemSelect: U[(String, String, Int) => Callback],
                    showSearchBox: Boolean,
                    style: Style)
 
   def apply(root: TreeItem,
             openByDefault: Boolean = false,
-            onItemSelect: U[StringStringIntAny] = uNone,
+            onItemSelect: U[(String, String, Int) => Callback] = uNone,
             showSearchBox: Boolean = false,
             ref: U[String] = uNone,
             key: U[js.Any] = uNone,

@@ -1,13 +1,13 @@
 package chandu0101.scalajs.react.components
 package materialui
 
-import japgolly.scalajs.react.{React, ReactComponentU_, ReactElement, ReactNode}
+import japgolly.scalajs.react._
 import scala.scalajs.js
 
 case class MuiDialog(contentClassName: U[String] = uNone,
                      modal: U[Boolean]=uNone,
-                     onDismiss: U[() => Unit] = uNone,
-                     onShow: U[() => Unit] = uNone,
+                     onDismiss: U[Callback] = uNone,
+                     onShow: U[Callback] = uNone,
                      openImmediately: U[Boolean]=uNone,
                      style: U[js.Any] = uNone,
                      ref: U[String] = uNone,

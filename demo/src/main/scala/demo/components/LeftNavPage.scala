@@ -3,7 +3,7 @@ package components
 
 import demo.routes.LeftRoute
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.extra.router2.RouterCtl
+import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
 import scalacss.Defaults._
@@ -25,13 +25,16 @@ object LeftNavPage {
      flex := "1")
   }
 
+  case class Backend($: BackendScope[Props, _]){
+    def render(P: Props) = {
+      <.div(Style.container,
+        <.div(Style.nav, LeftNav(P.menu,P.selectedPage,P.ctrl)),
+        <.div(Style.content, P.selectedPage.render())
+      )
+    }
+  }
   val component = ReactComponentB[Props]("LeftNavPage")
-    .render(P => {
-    <.div(Style.container,
-      <.div(Style.nav, LeftNav(P.menu,P.selectedPage,P.ctrl)),
-      <.div(Style.content, P.selectedPage.render())
-    )
-  })
+    .renderBackend[Backend]
     .build
 
   case class Props(menu: List[LeftRoute], selectedPage: LeftRoute,ctrl: RouterCtl[LeftRoute])

@@ -8,8 +8,8 @@ object ScalajsReactComponents extends Build {
 
   val Scala211 = "2.11.7"
 
-  val scalajsReactVersion = "0.9.2"
-  val scalaCSSVersion = "0.3.0"
+  val scalajsReactVersion = "0.10.0-SNAPSHOT"
+  val scalaCSSVersion = "0.4.0-SNAPSHOT"
 
   type PE = Project => Project
 
@@ -23,7 +23,7 @@ object ScalajsReactComponents extends Build {
         scalaVersion         := Scala211,
         scalacOptions       ++= Seq("-deprecation", "-unchecked", "-feature",
                                   "-language:postfixOps", "-language:implicitConversions",
-                                  "-language:higherKinds", "-language:existentials"),
+                                  "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions        := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
           "org.scala-lang" %  "scala-reflect"          % scalaVersion.value,

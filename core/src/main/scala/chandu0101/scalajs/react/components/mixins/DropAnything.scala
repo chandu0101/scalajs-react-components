@@ -8,35 +8,34 @@ trait DropAnything {
 
   private def _onDrop(ev: Event): Unit = {
     ev.preventDefault()
-    val de = ev.asInstanceOf[DragEvent]
-    onDrop(de)
+    onDrop(ev.asInstanceOf[DragEvent])
   }
 
-  def onDrop(de: DragEvent): Unit = ???
+  def onDrop(de: DragEvent): Unit
 
-  def onDragEnter(ev: Event): Unit = {
+  def onDragEnter(ev: Event): Unit =
     ev.preventDefault()
-  }
 
-  def onDragOver(ev: Event): Unit = {
+  def onDragOver(ev: Event): Unit =
     ev.preventDefault()
-  }
 }
 
 object DropAnything {
   def mixin[P, S, B <: DropAnything, N <: TopNode] = (c: ReactComponentB[P, S, B, N]) => {
-    c.componentDidMount(scope => {
-      val drop = scope.backend.asInstanceOf[DropAnything]
-      val node = scope.getDOMNode()
-      node.addEventListener("drop", drop._onDrop _, false)
-      node.addEventListener("dragenter", drop.onDragEnter _, false)
-      node.addEventListener("dragover", drop.onDragOver _, false)
-    }).componentWillUnmount { scope =>
-      val drop = scope.backend.asInstanceOf[DropAnything]
-      val node = scope.getDOMNode()
-      node.removeEventListener("drop", drop._onDrop _, false)
-      node.removeEventListener("dragenter", drop.onDragEnter _, false)
-      node.removeEventListener("dragover", drop.onDragOver _, false)
-    }
+    c.componentDidMount(scope =>
+      Callback{
+        val node = scope.getDOMNode()
+        node.addEventListener("drop", scope.backend._onDrop _, useCapture = false)
+        node.addEventListener("dragenter", scope.backend.onDragEnter _, useCapture = false)
+        node.addEventListener("dragover", scope.backend.onDragOver _, useCapture = false)
+      }
+    ).componentWillUnmount(scope =>
+      Callback{
+        val node = scope.getDOMNode()
+        node.removeEventListener("drop", scope.backend._onDrop _, useCapture = false)
+        node.removeEventListener("dragenter", scope.backend.onDragEnter _, useCapture = false)
+        node.removeEventListener("dragover", scope.backend.onDragOver _, useCapture = false)
+      }
+    )
   }
 }

@@ -3,7 +3,7 @@ package routes
 
 import demo.components.reactgeomicons.{ReactGeomIconDemo, ReactGeomIconInfo}
 import demo.pages.ReactGeomIconPage
-import japgolly.scalajs.react.extra.router2.RouterConfigDsl
+import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactGeomIcontRouteModule {
 

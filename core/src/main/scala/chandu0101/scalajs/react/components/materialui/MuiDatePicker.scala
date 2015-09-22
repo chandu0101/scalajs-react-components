@@ -6,10 +6,10 @@ import scala.scalajs.js
 import scala.scalajs.js.{Date => JDate}
 
 case class MuiDatePicker(defaultDate: U[JDate] = uNone,
-                         onDismiss: U[() => Unit] = uNone,
-                         onShow: U[() => Unit] = uNone,
+                         onDismiss: U[Callback] = uNone,
+                         onShow: U[Callback] = uNone,
                          style: U[js.Any] = uNone,
-                         onChange: U[(JDate, JDate) => Unit] = uNone,
+                         onChange: U[(JDate, JDate) => Callback] = uNone,
                          autoOk: U[Boolean] = uNone,
                          ref: U[String] = uNone,
                          maxDate: U[JDate] = uNone,
@@ -18,9 +18,9 @@ case class MuiDatePicker(defaultDate: U[JDate] = uNone,
                          key: U[String] = uNone,
                          hideToolbarYearChange: U[Boolean] = uNone,
                          minDate: U[JDate] = uNone,
-                         onTouchTap: U[ReactEventI => Unit] = uNone,
+                         onTouchTap: U[ReactEventI => Callback] = uNone,
                          formatDate: U[JDate => String] = uNone,
-                         onFocus: U[ReactEventI => Unit] = uNone,
+                         onFocus: U[ReactEventI => Callback] = uNone,
                          mode: U[MuiDatePickerMode] = uNone,
                          showYearSelector: U[Boolean] = uNone) {
 

@@ -3,7 +3,7 @@ package routes
 
 import demo.components.reacttagsinput.{ReactTagsInputDemo, ReactTagsInputInfo}
 import demo.pages.ReactTagsInputPage
-import japgolly.scalajs.react.extra.router2.RouterConfigDsl
+import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactTagsInputRouteModule {
 

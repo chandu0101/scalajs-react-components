@@ -7,7 +7,7 @@ import scala.scalajs.js.{Array => JArray}
 
 case class MuiDropdownMenu(menuItems: JArray[MuiDropdownMenuItem],
                            style: U[js.Any] = uNone,
-                           onChange: U[(ReactEvent, Int, js.Object) => Unit] = uNone,
+                           onChange: U[(ReactEvent, Int, js.Object) => Callback] = uNone,
                            ref: U[String] = uNone,
                            menuItemStyle: U[js.Any] = uNone,
                            key: U[String] = uNone,

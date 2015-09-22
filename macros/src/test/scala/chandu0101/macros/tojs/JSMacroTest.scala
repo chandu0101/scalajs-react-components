@@ -1,5 +1,6 @@
 package chandu0101.macros.tojs
 
+import japgolly.scalajs.react.{Callback, CallbackTo}
 import org.scalatest.FunSuite
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{literal => json}
@@ -59,6 +60,27 @@ case class TPTest[T <: SelectOption](o : js.UndefOr[js.Array[T]])
 
 case class AnyValTest2(st: SeedType2 = SeedType2.RICE)
 
+import js.UndefOr.{any2undefOrA => u}
+case class CallbackTest(//<ocd>
+   f0:                                CallbackTo[Int]  =                   CallbackTo(0),
+   fu:                         ()  => CallbackTo[Int]  =    ()          => CallbackTo(0),
+   f1:                        Int  => CallbackTo[Int]  =    i1          => CallbackTo(i1),
+   f2:                  (Int, Int) => CallbackTo[Int]  =   (i1, i2)     => CallbackTo(i1 + i2),
+   f3:            (Int,  Int, Int) => CallbackTo[Int]  =   (i1, i2, i3) => CallbackTo(i1 + i2 + i3),
+
+  f0c:                                Callback         =                   Callback(()),
+  fuc:                         ()  => Callback         =    ()          => Callback(()),
+  f1c:                        Int  => Callback         =    i1          => Callback(()),
+  f2c:                  (Int, Int) => Callback         =   (i1, i2)     => Callback(()),
+  f3c:            (Int,  Int, Int) => Callback         =   (i1, i2, i3) => Callback(()),
+
+  f0u: js.UndefOr[                    CallbackTo[Int]] = u(                CallbackTo(0)),
+  fuu: js.UndefOr[             ()  => CallbackTo[Int]] = u( ()          => CallbackTo(0)),
+  f1u: js.UndefOr[            Int  => CallbackTo[Int]] = u( i1          => CallbackTo(i1)),
+  f2u: js.UndefOr[      (Int, Int) => CallbackTo[Int]] = u((i1, i2)     => CallbackTo(i1 + i2)),
+  f3u: js.UndefOr[(Int,  Int, Int) => CallbackTo[Int]] = u((i1, i2, i3) => CallbackTo(i1 + i2 + i3))
+)
+
 class JSMacroTest[T <: SelectOption] extends FunSuite {
 
   def printResult(result : js.Any) = {
@@ -70,6 +92,27 @@ class JSMacroTest[T <: SelectOption] extends FunSuite {
     assert(plain.name.toString == "bpt")
     assert(plain.category.toString == "rice")
     assert(!plain.asInstanceOf[js.Object].hasOwnProperty("peracre"))
+  }
+
+  test("callbacks") {
+    val c  = CallbackTest()
+    val out = JSMacro[CallbackTest](c).asInstanceOf[js.Dynamic]
+
+    assert(0  == out.f0.apply().asInstanceOf[Int])
+    assert(0  == out.fu.apply(()).asInstanceOf[Int])
+    assert(1  == out.f1.apply(1).asInstanceOf[Int])
+    assert(2  == out.f2.apply(1, 1).asInstanceOf[Int])
+    assert(3  == out.f3.apply(1, 1, 1).asInstanceOf[Int])
+    assert(0  == out.f0u.apply().asInstanceOf[Int])
+    assert(0  == out.fuu.apply(()).asInstanceOf[Int])
+    assert(1  == out.f1u.apply(1).asInstanceOf[Int])
+    assert(2  == out.f2u.apply(1, 1).asInstanceOf[Int])
+    assert(3  == out.f3u.apply(1, 1, 1).asInstanceOf[Int])
+    assert(      out.f0c.apply().isInstanceOf[Unit])
+    assert(      out.fuc.apply(()).isInstanceOf[Unit])
+    assert(      out.f1c.apply(1).isInstanceOf[Unit])
+    assert(      out.f2c.apply(1, 1).isInstanceOf[Unit])
+    assert(      out.f3c.apply(1, 1, 1).isInstanceOf[Unit])
   }
 
   test("should handle seq") {
@@ -125,6 +168,4 @@ class JSMacroTest[T <: SelectOption] extends FunSuite {
     val result = JSMacro[TPTest[SampleOption]](TPTest(js.Array(SampleOption())))
     printResult(result)
   }
-
-
 }

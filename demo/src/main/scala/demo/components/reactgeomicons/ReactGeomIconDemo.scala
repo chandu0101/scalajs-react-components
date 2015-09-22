@@ -20,24 +20,24 @@ object ReactGeomIconDemo {
   case class State(value: String = "", multiValue: String = "")
 
   class Backend(t: BackendScope[_, State]) {
-
+    def render(S: State) = {
+      <.div(
+        CodeExample(code, "Demo")(
+          <.div(
+            ReactGeomIcon(name = IconName.CAMERA, width = "2em", height = "2em", fill = "red")(),
+            ReactGeomIcon(name = IconName.CALENDAR, width = "2em", height = "2em", fill = "blue")(),
+            ReactGeomIcon(name = IconName.CHAT, width = "2em", height = "2em", fill = "black")(),
+            ReactGeomIcon(name = IconName.CHEVRONDOWN, width = "2em", height = "2em", fill = "orange")()
+          )
+        )
+      )
+    }
   }
 
   val component = ReactComponentB[Unit]("ReactGeomIconDemo")
     .initialState(State())
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    <.div(
-      CodeExample(code, "Demo")(
-        <.div(
-          ReactGeomIcon(name = IconName.CAMERA, width = "2em", height = "2em", fill = "red")(),
-          ReactGeomIcon(name = IconName.CALENDAR, width = "2em", height = "2em", fill = "blue")(),
-          ReactGeomIcon(name = IconName.CHAT, width = "2em", height = "2em", fill = "black")(),
-          ReactGeomIcon(name = IconName.CHEVRONDOWN, width = "2em", height = "2em", fill = "orange")()
-        )
-      )
-    )
-  }).buildU
+    .renderBackend[Backend]
+    .buildU
 
   def apply() = component()
 

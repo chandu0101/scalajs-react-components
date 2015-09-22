@@ -4,7 +4,7 @@ package components
 import chandu0101.scalajs.react.components._
 import demo.routes.AppRouter.Page
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.extra.router2.RouterCtl
+import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
 
@@ -45,18 +45,19 @@ object ComponentGridItem {
 
     def onMouseOut() = t.modState(_.copy(itemHover = false))
 
+    def render(P: Props, S: State) = {
+      <.div(Style.item, S.itemHover ?= Style.itemHover,P.ctrl setOnClick P.route,
+        onMouseEnter --> onMouseOver, onMouseLeave --> onMouseOut)(
+        <.h3(Style.itemTitle, ^.key := P.heading)(P.heading),
+        <.img(^.src := P.img, Style.itemImage, ^.key := "alink")
+       )
+
+    }
   }
 
   val component = ReactComponentB[Props]("ComponentGridElement")
     .initialState(State())
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-   <.div(Style.item, S.itemHover ?= Style.itemHover,P.ctrl setOnClick P.route,
-     onMouseEnter --> B.onMouseOver, onMouseLeave --> B.onMouseOut)(
-     <.h3(Style.itemTitle, ^.key := P.heading)(P.heading),
-     <.img(^.src := P.img, Style.itemImage, ^.key := "alink")
-    )
-  })
+    .renderBackend[Backend]
     .build
 
   case class Props(heading: String, route: Page, img: String,ctrl: RouterCtl[Page])

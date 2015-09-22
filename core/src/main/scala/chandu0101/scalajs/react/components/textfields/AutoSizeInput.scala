@@ -11,26 +11,16 @@ object AutoSizeInput {
 
   val theSizerRef = Ref[html.Element]("theSizerRef")
   val theInputRef = Ref[html.Input]("theInputrRef")
-  val component = ReactComponentB[Props]("AutoSizeInput")
-    .initialStateP(p => State(p.minWidth))
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    val nbpsValue = P.value.replaceAll(" ", "&nbsp;")
-    val inputStyle: TagMod = P.style.autoSizeInput.+(^.width := S.inputWidth)
-   <.div(P.style.autoSizeInputWrapper)(
-      <.input(P.inputProps, ^.ref := theInputRef, inputStyle),
-     <.div(^.ref := theSizerRef, P.style.sizerStyle)(^.dangerouslySetInnerHtml(nbpsValue))
-    )
 
-  })
-    .componentDidMount(scope => {
-    scope.backend.copyInputStyles
-    scope.backend.updateInputWidth
-  })
-    .componentDidUpdate((scope, _, _) => {
-    scope.backend.updateInputWidth
-  })
-    .build
+  val component = ReactComponentB[Props]("AutoSizeInput")
+    .initialState_P(p => State(p.minWidth))
+    .renderBackend[Backend]
+    .componentDidMount($ =>
+      $.backend.copyInputStyles >> $.backend.updateInputWidth($.props, $.state)
+    )
+    .componentDidUpdate(($, _, _) =>
+      $.backend.updateInputWidth($.props, $.state)
+    ).build
 
   def apply(minWidth: Int = 1, ref: U[String] = "", key: js.Any = {}, defaultValue: String = "", value: String = "", onFocus: EmptyFunc = null, onChange: REventIUnit = null, style: Style = new Style {})(inputProps: TagMod*) =
     component.set(key, ref)(Props(minWidth, ref, key, defaultValue, value, onFocus, onChange, style, inputProps))
@@ -48,32 +38,41 @@ object AutoSizeInput {
   case class State(inputWidth: Int)
 
   class Backend(t: BackendScope[Props, State]) {
+    
+    val withInput = withRef(theInputRef, t) _
+    val withSizer = withRef(theSizerRef, t) _
 
-    def getInput = theInputRef(t).get
+    def focus: Callback = withInput(s => Callback(s.getDOMNode().focus()))
 
-    def focus() = {
-      theInputRef(t).tryFocus()
-    }
+    def select: Callback =
+      withInput(s => Callback(s.getDOMNode().select()))
 
-    def select() = theInputRef(t).get.getDOMNode().select()
-
-    def copyInputStyles() = {
-      if (t.isMounted() && !js.isUndefined(js.Dynamic.global.getComputedStyle)) {
+    def copyInputStyles: Callback =
+      withInput(input => Callback {
         val inputStyle = dom.window.getComputedStyle(theInputRef(t).get.getDOMNode())
         val widthNode = theSizerRef(t).get.getDOMNode()
         widthNode.style.fontSize = inputStyle.fontSize
         widthNode.style.fontFamily = inputStyle.fontFamily
-      }
-    }
+      }).conditionally(t.isMounted() && !js.isUndefined(js.Dynamic.global.getComputedStyle)).void
 
-    def updateInputWidth() = {
-      if (t.isMounted()) {
-        var newInputWidth = theSizerRef(t).get.getDOMNode().scrollWidth + 20
-        if (newInputWidth < t.props.minWidth) newInputWidth = t.props.minWidth
-        if (newInputWidth != t.state.inputWidth) t.modState(_.copy(inputWidth = newInputWidth))
-      }
-    }
+    def updateInputWidth(P: Props, S: State): Callback =
+      withSizer{sizer =>
+        var newInputWidth = sizer.getDOMNode().scrollWidth + 20
+        if (newInputWidth < P.minWidth) newInputWidth = P.minWidth
 
+        t.modState(_.copy(inputWidth = newInputWidth))
+          .conditionally(newInputWidth != S.inputWidth)
+          .void
+      }.conditionally(t.isMounted()).void
+
+    def render(P: Props, S: State) = {
+      val nbpsValue = P.value.replaceAll(" ", "&nbsp;")
+      val inputStyle: TagMod = P.style.autoSizeInput.+(^.width := S.inputWidth)
+     <.div(P.style.autoSizeInputWrapper)(
+        <.input(P.inputProps, ^.ref := theInputRef, inputStyle),
+       <.div(^.ref := theSizerRef, P.style.sizerStyle)(^.dangerouslySetInnerHtml(nbpsValue))
+      )
+    }
   }
 
   case class Props(minWidth: Int, ref: U[String], key: js.Any, defaultValue: String, value: String, onFocus: EmptyFunc, onChange: REventIUnit, style: Style, inputProps: TagMod*)

@@ -6,16 +6,16 @@ import scala.scalajs.js
 import scala.scalajs.js.{Date => JDate}
 
 case class MuiTimePicker(format: U[MuiTimePickerFormat] = uNone,
-                         onDismiss: U[() => Unit] = uNone,
-                         onShow: U[() => Unit] = uNone,
+                         onDismiss: U[Callback] = uNone,
+                         onShow: U[Callback] = uNone,
                          style: U[js.Any] = uNone,
-                         onChange: U[(JDate, JDate) => Unit] = uNone,
+                         onChange: U[(JDate, JDate) => Callback] = uNone,
                          ref: U[String] = uNone,
                          hintText: U[String] = uNone,
                          key: U[String] = uNone,
                          defaultTime: U[JDate] = uNone,
-                         onTouchTap: U[ReactEventI => Unit] = uNone,
-                         onFocus: U[ReactEventI => Unit] = uNone) {
+                         onTouchTap: U[ReactEventI => Callback] = uNone,
+                         onFocus: U[ReactEventI => Callback] = uNone) {
 
   def apply() = {
     val props = JSMacro[MuiTimePicker](this)

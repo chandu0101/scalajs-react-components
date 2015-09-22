@@ -41,38 +41,38 @@ object ReactSelectDemo {
 
   class Backend(t: BackendScope[_, State]) {
 
-    def onChange(value: String) = {
+    def onChange(value: String) =
       t.modState(_.copy(value = value))
-    }
 
-    def onMultiChange(value: String) = {
+
+    def onMultiChange(value: String) =
       t.modState(_.copy(multiValue = value))
-    }
 
+    def render(S: State) = {
+      <.div(
+        CodeExample(code, "Demo")(
+          <.div(
+            <.h3("Single Select"),
+            ReactSelect(options = options,
+              value = S.value,
+              onChange = onChange _)()
+          ),
+          <.div(
+            <.h3("Multi Select"),
+            ReactSelect(options = options,
+              value = S.multiValue,
+              multi = true,
+              onChange = onMultiChange _)()
+          )
+        )
+      )
+    }
   }
 
   val component = ReactComponentB[Unit]("ReactSelectDemo")
     .initialState(State())
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    <.div(
-      CodeExample(code, "Demo")(
-        <.div(
-          <.h3("Single Select"),
-          ReactSelect(options = options,
-            value = S.value,
-            onChange = B.onChange _)()
-        ),
-        <.div(
-          <.h3("Multi Select"),
-          ReactSelect(options = options,
-            value = S.multiValue,
-            multi = true,
-            onChange = B.onMultiChange _)()
-        )
-      )
-    )
-  }).buildU
+    .renderBackend[Backend]
+    .buildU
 
   case class SampleOption(value: String, label: String) {
     val toJS: js.Object = JSMacro[SampleOption](this)

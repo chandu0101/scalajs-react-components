@@ -5,10 +5,10 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.{Array => JArray}
 
-case class ReactTagsInput(onBlur: U[() => Unit] = uNone,
-                          onKeyDown: U[ReactEventI => Unit] = uNone,
-                          onTagRemove: U[String => Unit] = uNone,
-                          onChange: U[(JArray[String], String) => Unit] = uNone,
+case class ReactTagsInput(onBlur: U[Callback] = uNone,
+                          onKeyDown: U[ReactEventI => Callback] = uNone,
+                          onTagRemove: U[String => Callback] = uNone,
+                          onChange: U[(JArray[String], String) => Callback] = uNone,
                           removeKeys: U[JArray[Int]] = uNone,
                           validate: U[String => Boolean] = uNone,
                           classNamespace: U[String] = uNone,
@@ -16,14 +16,14 @@ case class ReactTagsInput(onBlur: U[() => Unit] = uNone,
                           addOnBlur: U[Boolean] = uNone,
                           placeholder: U[String] = uNone,
                           valueLink: U[js.Object] = uNone,
-                          onKeyUp: U[ReactEventI => Unit] = uNone,
+                          onKeyUp: U[ReactEventI => Callback] = uNone,
                           key: U[String] = uNone,
                           addKeys: U[JArray[Int]] = uNone,
-                          onTagAdd: U[String => Unit] = uNone,
+                          onTagAdd: U[String => Callback] = uNone,
                           validateAsync: U[js.Function] = uNone,
-                          onChangeInput: U[String => Unit] = uNone,
+                          onChangeInput: U[String => Callback] = uNone,
                           defaultValue: U[JArray[String]] = uNone,
-                          transform: U[String => Unit] = uNone,
+                          transform: U[String => Callback] = uNone,
                           value: U[JArray[String]] = uNone) {
 
   def apply() = {

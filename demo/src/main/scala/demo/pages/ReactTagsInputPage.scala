@@ -4,21 +4,21 @@ package pages
 import chandu0101.scalajs.react.components.mixins.AsyncLoad
 import demo.components.LeftNavPage
 import demo.routes.{LeftRoute, ReactTagsInputRouteModule}
-import japgolly.scalajs.react.extra.router2.RouterCtl
+import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 
 object ReactTagsInputPage {
 
-  class Backend(t: BackendScope[_, _]) extends AsyncLoad {
+  class Backend(t: BackendScope[Props, _]) extends AsyncLoad {
     override val jsResources: Vector[String] = Vector("assets/reacttagpage-bundle.js")
+    def render(P: Props) = {
+      LeftNavPage(ReactTagsInputRouteModule.menu, P.selectedPage, P.ctrl)
+    }
   }
 
   val component = ReactComponentB[Props]("ReactTagsInputPage")
     .stateless
-    .backend(new Backend(_))
-    .render((P,S,B) => {
-    LeftNavPage(ReactTagsInputRouteModule.menu, P.selectedPage, P.ctrl)
-  })
+    .renderBackend[Backend]
     .configure(AsyncLoad.mixin)
     .build
 

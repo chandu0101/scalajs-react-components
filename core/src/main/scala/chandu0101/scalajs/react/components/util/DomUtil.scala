@@ -2,7 +2,7 @@ package chandu0101.scalajs.react.components
 package util
 
 import chandu0101.scalajs.react.components.models.RPoint
-import japgolly.scalajs.react.TopNode
+import japgolly.scalajs.react.{Callback, TopNode}
 import org.scalajs.dom
 import org.scalajs.dom._
 import scala.scalajs.js
@@ -39,7 +39,7 @@ object DomUtil {
     ClientRect(rect.top + scrollTop, rect.left + scrollLeft )
   }
 
- def forceRedraw(el: html.Element) = {
+ def forceRedraw(el: html.Element) = Callback {
    val originalDisplay = el.style.display
    el.style.display = "none"
    el.offsetHeight
@@ -95,13 +95,12 @@ object DomUtil {
      else { val position = e.asInstanceOf[MouseEvent] ; RPoint(position.clientX,position.clientY) }
   }
 
-  def withoutTransition(el: html.Element, callback: () => Unit) = {
-    el.style.transition = "none"
-    callback()
-    forceRedraw(el)
-    el.style.transition = ""
-  }
-  
+  def withoutTransition(el: html.Element, callback: Callback): Callback =
+    Callback(el.style.transition = "none") >>
+    callback >>
+    forceRedraw(el) >>
+    Callback(el.style.transition)
+
   def isLeftClick(e: Event) =  e.`type` == "touchstart" || e.asInstanceOf[MouseEvent].button == 0
 
 }

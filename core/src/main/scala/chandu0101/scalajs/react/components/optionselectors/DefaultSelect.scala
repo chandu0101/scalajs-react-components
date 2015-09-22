@@ -9,20 +9,22 @@ object DefaultSelect {
 
   class Backend(t: BackendScope[Props, _]) {
 
-    def onChange(e: ReactEventI) = t.props.onChange(e.target.value)
+    def onChange(P: Props)(e: ReactEventI) =
+      P.onChange(e.target.value)
+
+    def render(P: Props) = {
+      <.div(
+        <.label(<.strong(P.label)),
+        <.select(^.paddingLeft := "5px", ^.id := "reactselect", ^.value := P.value, ^.onChange ==> onChange(P))(
+          P.options.map(item => <.option(item))
+        )
+      )
+    }
   }
 
   val component = ReactComponentB[Props]("DefaultSelect")
     .stateless
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    <.div(
-      <.label(<.strong(P.label)),
-      <.select(^.paddingLeft := "5px", ^.id := "reactselect", ^.value := P.value, ^.onChange ==> B.onChange)(
-        P.options.map(item => <.option(item))
-      )
-    )
-  })
+    .renderBackend[Backend]
     .build
 
   case class Props(label: String, options: List[String], value: String, onChange: StringUnit)

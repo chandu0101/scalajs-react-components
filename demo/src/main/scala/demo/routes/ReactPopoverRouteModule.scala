@@ -3,7 +3,7 @@ package routes
 
 import demo.components.reactpopover.{ReactPopoverDemo, ReactPopoverInfo}
 import demo.pages.ReactPopoverPage
-import japgolly.scalajs.react.extra.router2.RouterConfigDsl
+import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactPopoverRouteModule {
 

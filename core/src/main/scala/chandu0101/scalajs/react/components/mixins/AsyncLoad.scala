@@ -18,25 +18,27 @@ trait AsyncLoad {
 }
 
 object AsyncLoad {
-  def mixin[P, S, B <: AsyncLoad, N <: TopNode] = (c: ReactComponentB[P, S, B, N]) => {
-    c.componentWillMount(scope => {
-      val async = scope.backend.asInstanceOf[AsyncLoad]
+  def mixin[P, S, B <: AsyncLoad, N <: TopNode] = (c: ReactComponentB[P, S, B, N]) =>
+    c.componentWillMount{$ =>
       val links = dom.document.getElementsByTagName("link")
-      async.cssResources.foreach(s => {
-        val head =   dom.document.head
-        val link = dom.document.createElement("link")
-        link.setAttribute("rel","stylesheet")
-        link.setAttribute("href",s)
-        if(!links.contains(link)) head.appendChild(link)
-      })
       val scripts = dom.document.getElementsByTagName("src")
-      async.jsResources.foreach(s => {
-        val body = dom.document.body
-        val script = dom.document.createElement("script")
-        script.setAttribute("type","text/javascript")
-        script.setAttribute("src",s)
-        if(!scripts.contains(script)) body.appendChild(script)
-      })
-    })
-  }
+
+      Callback{
+        $.backend.cssResources.foreach{s =>
+          val head = dom.document.head
+          val link = dom.document.createElement("link")
+          link.setAttribute("rel","stylesheet")
+          link.setAttribute("href",s)
+          if(!links.contains(link)) head.appendChild(link)
+        }
+
+        $.backend.jsResources.foreach{s =>
+          val body = dom.document.body
+          val script = dom.document.createElement("script")
+          script.setAttribute("type","text/javascript")
+          script.setAttribute("src",s)
+          if(!scripts.contains(script)) body.appendChild(script)
+        }
+      }
+    }
 }

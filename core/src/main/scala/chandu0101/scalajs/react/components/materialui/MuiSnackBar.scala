@@ -8,7 +8,7 @@ case class MuiSnackBar(openOnMount: U[Boolean] = uNone,
                        style: U[js.Any] = uNone,
                        ref: U[String] = uNone,
                        key: U[String] = uNone,
-                       onActionTouchTap: U[ReactEvent => Unit] = uNone,
+                       onActionTouchTap: U[ReactEvent => Callback] = uNone,
                        message: String,
                        action: U[String] = uNone) {
 

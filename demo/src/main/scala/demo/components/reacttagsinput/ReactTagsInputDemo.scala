@@ -20,30 +20,30 @@ object ReactTagsInputDemo {
 
   class Backend(t: BackendScope[_, State]) {
 
-    def onChange(tags: JArray[String], tag: String) = {
-      t.modState(_.copy(tags = tags))
-      println(s" Final Tags: ${tags}, Added/Removed Tag: ${tag}")
-    }
+    def onChange(tags: JArray[String], tag: String): Callback =
+      t.modState(_.copy(tags = tags)) >>
+      Callback.info(s"Final Tags: $tags, Added/Removed Tag: $tag")
 
+    def render(S: State) = {
+      <.div(
+        CodeExample(code, "Demo")(
+          <.div(
+            <.h4("Uncontrolled: "),
+            ReactTagsInput(ref = "uncontrolledtags")()
+          ),
+          <.div(
+            <.h4("Controlled: "),
+            ReactTagsInput(value = S.tags, onChange = onChange _)()
+          )
+        )
+      )
+    }
   }
 
   val component = ReactComponentB[Unit]("ReactTagsInputDemo")
     .initialState(State())
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    <.div(
-      CodeExample(code, "Demo")(
-        <.div(
-          <.h4("Uncontrolled: "),
-          ReactTagsInput(ref = "uncontrolledtags")()
-        ),
-        <.div(
-          <.h4("Controlled: "),
-          ReactTagsInput(value = S.tags, onChange = B.onChange _)()
-        )
-      )
-    )
-  }).buildU
+    .renderBackend[Backend]
+    .buildU
 
   def apply() = component()
 

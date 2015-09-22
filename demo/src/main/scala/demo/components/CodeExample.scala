@@ -22,21 +22,24 @@ object CodeExample {
     ^.paddingBottom := "15px")
 
   }
-
-  val component = ReactComponentB[Props]("codeexample")
-    .render((P, C) => {
-    <.div(
-      P.title.nonEmpty ?= <.h3(P.title,Style.title),
-      <.div(Style.pageBodyContent)(
-        <.div(Style.contentDemo, ^.key := "dan")(
-          C
-        ),
-        <.pre(Style.contentCode, ^.key := "code")(
-          CodeHighLighter(P.code)
+  case class Backend($: BackendScope[Props, _]){
+    def render(P: Props, C: PropsChildren) = {
+      <.div(
+        P.title.nonEmpty ?= <.h3(P.title,Style.title),
+        <.div(Style.pageBodyContent)(
+          <.div(Style.contentDemo, ^.key := "dan")(
+            C
+          ),
+          <.pre(Style.contentCode, ^.key := "code")(
+            CodeHighLighter(P.code)
+          )
         )
       )
-    )
-  })
+    }
+  }
+
+  val component = ReactComponentB[Props]("codeexample")
+    .renderBackend[Backend]
     .build
 
   case class Props(code: String,title: String)

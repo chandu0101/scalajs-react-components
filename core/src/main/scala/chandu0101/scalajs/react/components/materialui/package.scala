@@ -93,13 +93,16 @@ package object materialui {
     val types :js.Dynamic = js.native
   }
 
-  lazy val ThemeManager = js.Dynamic.newInstance(Mui.Styles.ThemeManager)().asInstanceOf[ThemeManager]
+  // I'm getting this error when the val is named ThemeManager:
+  // scalajs-react-components\core\src\main\scala\chandu0101\scalajs\react\components\materialui\package.scala:96:
+  // ThemeManager is already defined as (compiler-generated) case class companion object ThemeManager
+  lazy val themeManager = js.Dynamic.newInstance(Mui.Styles.ThemeManager)().asInstanceOf[ThemeManager]
 
   def installMuiContext[P, S, B, N <: TopNode]: ReactComponentSpec[P, S, B, N] => Unit =
     spec => {
       val t = spec.asInstanceOf[js.Dynamic]
       t.updateDynamic("childContextTypes")(js.Dynamic.literal("muiTheme" -> React.asInstanceOf[js.Dynamic].PropTypes.`object`): js.Object)
-      t.updateDynamic("getChildContext")((() => js.Dynamic.literal("muiTheme" -> ThemeManager.getCurrentTheme())): js.Function)
+      t.updateDynamic("getChildContext")((() => js.Dynamic.literal("muiTheme" -> themeManager.getCurrentTheme())): js.Function)
     }
 
 }

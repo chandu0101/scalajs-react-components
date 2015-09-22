@@ -24,7 +24,7 @@ trait MTypes {
 
   type StringIntUnit = (String,Int) => Callback
 
-  type StringStringIntAny = (String,String,Int) => Any
+  type StringStringIntAny = (String,String,Int) => Callback
 
   type REventIDateUnit = (ReactEventI, Date) => Callback
 

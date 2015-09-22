@@ -34,30 +34,36 @@ object ReactTreeViewDemo {
 
   class Backend(t: BackendScope[_, _]) {
 
-    def onItemSelect(item: String, parent: String, depth: Int) = {
+    def onItemSelect(item: String, parent: String, depth: Int): Callback = {
       val content =
         s"""Selected Item: $item <br>
-                                   |Its Parent : $parent <br>
-                                                           |Its depth:  $depth <br> """.stripMargin
-      dom.document.getElementById("treeviewcontent").innerHTML = content
+          |Its Parent : $parent <br>
+          |Its depth:  $depth <br>
+          """.stripMargin
+      Callback(dom.document.getElementById("treeviewcontent").innerHTML = content)
     }
 
+    def render = {
+      <.div(
+        <.h3("Demo"), CodeExample(code)(
+          <.div(Style.treeViewDemo)(
+            ReactTreeView(
+              root = data,
+              openByDefault = true,
+              onItemSelect = onItemSelect _,
+              showSearchBox = true
+            ),
+            <.strong(^.id := "treeviewcontent", Style.selectedContent)
+          )
+        )
+      )
+    }
   }
 
   val component = ReactComponentB[Unit]("ReactTreeViewDemo")
     .initialState(State())
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    <.div(
-      <.h3("Demo"),
-      CodeExample(code)(
-        <.div(Style.treeViewDemo)(
-          ReactTreeView(root = data, openByDefault = true, onItemSelect = B.onItemSelect, showSearchBox = false),
-          <.strong(^.id := "treeviewcontent", Style.selectedContent)
-        )
-      )
-    )
-  }).buildU
+    .renderBackend[Backend]
+    .buildU
 
   lazy val data = TreeItem("root",
     TreeItem("dude1",

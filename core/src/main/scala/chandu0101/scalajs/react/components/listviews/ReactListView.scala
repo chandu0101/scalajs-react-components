@@ -36,40 +36,53 @@ object ReactListView {
 
   object DefaultStyle extends Style
 
-  case class State(filterText: String = "", selectedItem: String = "", hoverIndex: Int = -1)
+  case class State(filterText: String, selectedItem: String)
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def onTextChange(text: String) = {
+    def onTextChange(text: String): Callback =
       t.modState(_.copy(filterText = text))
+
+    def onItemSelect(onItemSelect: U[String => Callback])(value: String): Callback = {
+      val setSelected = t.modState(_.copy(selectedItem = value))
+      val onSelect    = onItemSelect.asCbo(value)
+
+      setSelected >> onSelect
     }
 
-    def onItemSelect(value: String) = {
-      t.modState(_.copy(selectedItem = value, hoverIndex = -1))
-      if (t.props.onItemSelect != null) t.props.onItemSelect(value)
+    def render(P: Props, S: State) = {
+      val fItems = P.items.filter(item => item.toString.toLowerCase.contains(S.filterText.toLowerCase))
+      <.div(
+        P.showSearchBox ?= ReactSearchBox(onTextChange = onTextChange),
+        <.ul(
+          P.style.listGroup,
+          fItems.map{item =>
+            val selected = item.toString == S.selectedItem
+            <.li(
+              P.style.listItem(selected),
+              ^.onClick --> onItemSelect(P.onItemSelect)(item.toString), item)
+          }
+        )
+      )
     }
-
   }
 
   val component = ReactComponentB[Props]("ReactListView")
-    .initialState(State())
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    val fItems = P.items.filter(item => item.toString.toLowerCase.contains(S.filterText.toLowerCase))
-    <.div(
-      P.showSearchBox ?= ReactSearchBox(onTextChange = B.onTextChange),
-      <.ul(P.style.listGroup)(
-        fItems.map(item => {
-          val selected = item.toString == S.selectedItem
-          <.li(P.style.listItem(selected), ^.onClick --> B.onItemSelect(item.toString), item)
-        })
-      )
-    )
-  })
+    .initialState(State(filterText = "", selectedItem = ""))
+    .renderBackend[Backend]
     .build
 
-  case class Props(items: List[String], onItemSelect: String => Unit, showSearchBox: Boolean, style: Style)
+  case class Props(items: List[String],
+                   onItemSelect: U[String => Callback],
+                   showSearchBox: Boolean,
+                   style: Style)
 
-  def apply(items: List[String], onItemSelect: String => Unit = null, showSearchBox: Boolean = false, style: Style = DefaultStyle, ref: U[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(items, onItemSelect, showSearchBox, style))
+  def apply(items: List[String],
+            onItemSelect: U[String => Callback] = uNone,
+            showSearchBox: Boolean = false,
+            style: Style = DefaultStyle,
+            ref: U[String] = uNone,
+            key: js.Any = {}) =
+    component.set(key, ref)(Props(items, onItemSelect, showSearchBox, style))
 
 }

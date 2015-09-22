@@ -36,7 +36,7 @@ class MuiDatePickerMode(val value: String) extends AnyVal
 
 object MuiDatePickerMode {
 
-  val PROTRAIT = new MuiDatePickerMode("portrait")
+  val PORTRAIT = new MuiDatePickerMode("portrait")
 
   val LANDSCAPE = new MuiDatePickerMode("landscape")
 

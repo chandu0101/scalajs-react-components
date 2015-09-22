@@ -33,7 +33,8 @@ var googleMapImage = require("./images/googleMap.png");
    reactInfiniteImage = require("./images/reactInfinite.png"),
    reactGeomIconImage = require("./images/reactGeomIcon.png"),
    spinnerImage = require("./images/spinner.png"),
-   reactPopoverImage = require("./images/reactPopover.png");
+   reactPopoverImage = require("./images/reactPopover.png"),
+   reactDraggableImage = require("./images/reactDraggable.png");
 
 
 window.googleMapImage = googleMapImage;

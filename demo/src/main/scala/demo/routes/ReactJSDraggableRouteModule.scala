@@ -1,16 +1,15 @@
 package demo
 package routes
 
-import demo.components.reactpopover.ReactPopoverInfo
-import demo.components.reacttable.ReactTableBasic
+import demo.components.reactdraggable.{ReactDraggableDemo, ReactDraggableInfo}
 import demo.pages.ReactJSDraggablePage
-import japgolly.scalajs.react.extra.router2.RouterConfigDsl
+import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactJSDraggableRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactPopoverInfo())
+  case object Info extends LeftRoute("Info", "info", () => ReactDraggableInfo())
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactTableBasic())
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactDraggableDemo())
 
   val menu: List[LeftRoute] = List(Info,Demo)
 

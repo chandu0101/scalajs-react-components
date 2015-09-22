@@ -89,11 +89,14 @@ object DomUtil {
     case _ => ""
   }
 
-  def getControlPosition(e: Event)  = {
-    if(isTouchDevice || e.`type`.contains("touch"))  { val position = e.asInstanceOf[TouchEvent].touches(0) ; RPoint(position.clientX,position.clientY) }
-
-     else { val position = e.asInstanceOf[MouseEvent] ; RPoint(position.clientX,position.clientY) }
-  }
+  def getControlPosition(e: Event): RPoint =
+    if (isTouchDevice || e.`type`.contains("touch")) {
+      val position = e.asInstanceOf[TouchEvent].touches(0)
+      RPoint(position.clientX, position.clientY)
+    } else {
+      val position = e.asInstanceOf[MouseEvent]
+      RPoint(position.clientX, position.clientY)
+    }
 
   def withoutTransition(el: html.Element, callback: Callback): Callback =
     Callback(el.style.transition = "none") >>

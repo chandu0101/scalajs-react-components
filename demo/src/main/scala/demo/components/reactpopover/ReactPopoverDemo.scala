@@ -25,32 +25,32 @@ object ReactPopoverDemo {
       | 
     """.stripMargin
 
-  val theRightRef = Ref.to(ReactPopOver.component, "theRightRef")
-  val theLeftRef = Ref.to(ReactPopOver.component, "theLeftRef")
-  val theTopRef = Ref.to(ReactPopOver.component, "theTopRef")
-  val theBottomtRef = Ref.to(ReactPopOver.component, "theBottomRef")
+  val rightRef   = Ref.to(ReactPopOver.component, "theRightRef")
+  val leftRef    = Ref.to(ReactPopOver.component, "theLeftRef")
+  val topRef     = Ref.to(ReactPopOver.component, "theTopRef")
+  val bottomtRef = Ref.to(ReactPopOver.component, "theBottomRef")
 
   object Style {
     val popoverExample = Seq(^.display := "flex", ^.flexDirection := "column", ^.alignItems := "center")
   }
 
   class Backend(t: BackendScope[_, _]) {
-    val withRight  = withRef(theRightRef, t) _
-    val withLeft   = withRef(theLeftRef, t) _
-    val withTop    = withRef(theTopRef, t) _
-    val withBottom = withRef(theBottomtRef, t) _
+    val rightRefC  = callbackRef(rightRef, t)
+    val leftRefC   = callbackRef(leftRef, t)
+    val topRefC    = callbackRef(topRef, t)
+    val bottomRefC = callbackRef(bottomtRef, t)
 
-    def onRightButtonClick(e: ReactEventH) =
-      withRight(_.backend.toggle(e.target))
+    def onRightButtonClick(e: ReactEventH): Callback =
+      rightRefC.flatMap(_.backend.toggle(e.target))
 
-    def onLeftButtonClick(e: ReactEventH) =
-      withLeft(_.backend.toggle(e.target))
+    def onLeftButtonClick(e: ReactEventH): Callback =
+      leftRefC.flatMap(_.backend.toggle(e.target))
 
-    def onTopButtonClick(e: ReactEventH) =
-      withTop(_.backend.toggle(e.target))
+    def onTopButtonClick(e: ReactEventH): Callback =
+      topRefC.flatMap(_.backend.toggle(e.target))
 
-    def onBottomButtonClick(e: ReactEventH) =
-      withBottom(_.backend.toggle(e.target))
+    def onBottomButtonClick(e: ReactEventH): Callback =
+      bottomRefC.flatMap(_.backend.toggle(e.target))
 
     def render = {
     <.div(
@@ -58,26 +58,26 @@ object ReactPopoverDemo {
       CodeExample(code)(
        <.div(Style.popoverExample)(
         <.div(^.padding := "20px")(
-          ReactPopOver(placement = "top", ref = theTopRef)(
+          ReactPopOver(placement = "top", ref = topRef)(
             "I am Top Pop Over"
           ),
           LocalDemoButton(name = "Top Button" ,onButtonClick = onTopButtonClick _)
         ),
         <.div(^.padding := "20px")(
-          ReactPopOver(placement = "left", ref = theLeftRef, title = "Left Title")(
+          ReactPopOver(placement = "left", ref = leftRef, title = "Left Title")(
             "I am Left Popover"
           ),
           LocalDemoButton(name = "Left Button" ,onButtonClick = onLeftButtonClick _)
         ),
         <.div(^.padding := "20px")(
-          ReactPopOver(ref = theRightRef, title = "Right Title")(
+          ReactPopOver(ref = rightRef, title = "Right Title")(
             "I am right Popover"
           ),
           LocalDemoButton(name = "Right Button" ,onButtonClick = onRightButtonClick _)
         ),
 
         <.div(^.padding := "20px")(
-          ReactPopOver(placement = "bottom", ref = theBottomtRef)(
+          ReactPopOver(placement = "bottom", ref = bottomtRef)(
             "I am bottom Popover"
           ),
           LocalDemoButton(name = "Bottom Button" ,onButtonClick = onBottomButtonClick _)

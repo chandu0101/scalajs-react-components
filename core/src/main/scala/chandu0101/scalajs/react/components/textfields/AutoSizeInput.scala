@@ -5,12 +5,13 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.html
+import org.scalajs.dom.html.{Input, Element}
 import scala.scalajs.js
 
 object AutoSizeInput {
 
   val theSizerRef = Ref[html.Element]("theSizerRef")
-  val theInputRef = Ref[html.Input]("theInputrRef")
+  val theInputRef = Ref[html.Input]("theInputRef")
 
   val component = ReactComponentB[Props]("AutoSizeInput")
     .initialState_P(p => State(p.minWidth))
@@ -39,31 +40,35 @@ object AutoSizeInput {
 
   class Backend(t: BackendScope[Props, State]) {
     
-    val withInput = withRef(theInputRef, t) _
-    val withSizer = withRef(theSizerRef, t) _
+    val inputRefC   = callbackRef(theInputRef, t)
+    val sizerInputC = callbackRef(theSizerRef, t)
 
-    def focus: Callback = withInput(s => Callback(s.getDOMNode().focus()))
+    def focus: Callback =
+      inputRefC.map(_.getDOMNode().focus())
 
     def select: Callback =
-      withInput(s => Callback(s.getDOMNode().select()))
+      inputRefC.map(_.getDOMNode().select())
 
     def copyInputStyles: Callback =
-      withInput(input => Callback {
-        val inputStyle = dom.window.getComputedStyle(theInputRef(t).get.getDOMNode())
-        val widthNode = theSizerRef(t).get.getDOMNode()
-        widthNode.style.fontSize = inputStyle.fontSize
-        widthNode.style.fontFamily = inputStyle.fontFamily
-      }).conditionally(t.isMounted() && !js.isUndefined(js.Dynamic.global.getComputedStyle)).void
+      for {
+        input <- inputRefC
+        sizer <- sizerInputC
+        if t.isMounted()
+        if !js.isUndefined(js.Dynamic.global.getComputedStyle)
+        inputStyle = dom.window.getComputedStyle(input.getDOMNode())
+      } yield {
+        sizer.getDOMNode().style.fontSize   = inputStyle.fontSize
+        sizer.getDOMNode().style.fontFamily = inputStyle.fontFamily
+      }
 
     def updateInputWidth(P: Props, S: State): Callback =
-      withSizer{sizer =>
-        var newInputWidth = sizer.getDOMNode().scrollWidth + 20
-        if (newInputWidth < P.minWidth) newInputWidth = P.minWidth
-
-        t.modState(_.copy(inputWidth = newInputWidth))
-          .conditionally(newInputWidth != S.inputWidth)
-          .void
-      }.conditionally(t.isMounted()).void
+      for {
+        sizer <- sizerInputC
+        if t.isMounted()
+        newInputWidth = math.min(P.minWidth, sizer.getDOMNode().scrollWidth + 20)
+        if newInputWidth != S.inputWidth
+        _ <- t.modState(_.copy(inputWidth = newInputWidth))
+      } yield ()
 
     def render(P: Props, S: State) = {
       val nbpsValue = P.value.replaceAll(" ", "&nbsp;")

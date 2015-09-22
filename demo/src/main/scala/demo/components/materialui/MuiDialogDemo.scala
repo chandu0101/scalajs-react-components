@@ -26,16 +26,16 @@ object MuiDialogDemo {
     """.stripMargin
 
   class Backend(t: BackendScope[_,_]) {
-    val withDialog = withRef(dialogRef, t) _
+    val dialogRefC = callbackRef(dialogRef, t)
 
     def handleDialogCancel(e: ReactEventH): Callback =
-      withDialog(d => Callback(d.dismiss())) >> Callback.info("Cancel Clicked")
+      dialogRefC.map(_.dismiss()) >> Callback.info("Cancel Clicked")
 
     def handleDialogSubmit(e: ReactEventH): Callback =
-      withDialog(d => Callback(d.dismiss())) << Callback.info("Submit Clicked")
+      dialogRefC.map(_.dismiss()) << Callback.info("Submit Clicked")
 
     def openDialog(e: ReactEventH): Callback =
-      withDialog(d => Callback(d.show()))
+      dialogRefC.map(_.show())
 
     def render = {
       val actions: js.Array[ReactElement] = js.Array(

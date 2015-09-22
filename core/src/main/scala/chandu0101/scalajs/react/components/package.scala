@@ -1,6 +1,6 @@
 package chandu0101.scalajs.react
 
-import japgolly.scalajs.react.{BackendScope, Callback, CallbackTo, Ref}
+import japgolly.scalajs.react.{CallbackOption, BackendScope, Callback, CallbackTo, Ref}
 import scala.scalajs.js
 
 package object components
@@ -13,9 +13,8 @@ package object components
   type U[T] = js.UndefOr[T]
   val uNone = js.undefined
 
-  def withRef[P, S](ref: Ref, t: => BackendScope[P, S])
-                   (f: ref.R => Callback): Callback =
-    ref(t).fold(Callback.info(s"${ref.name} not found"))(r => f(r))
+  def callbackRef[P, S](ref: Ref, t: => BackendScope[P, S]): CallbackOption[ref.R] =
+    CallbackOption.liftOptionLike(ref(t))
 
   implicit class CallbackToX[T](private val ct: CallbackTo[T]){
     def zip[U](cu: CallbackTo[U]): CallbackTo[(T, U)] = for {

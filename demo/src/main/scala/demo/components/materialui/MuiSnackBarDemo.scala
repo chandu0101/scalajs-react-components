@@ -21,13 +21,13 @@ object MuiSnackBarDemo {
     """.stripMargin
 
   class Backend(t: BackendScope[_,_]) {
-    val withSnackBar = withRef(snackBarRef, t) _
+    val snackBarRefC = callbackRef(snackBarRef, t)
 
     def handleAction(e: ReactEvent) =
       Callback(dom.window.alert("We removed Event from your cal"))
 
     def buttonClick(e: ReactEventH): Callback =
-      withSnackBar(r => Callback(r.show()))
+      snackBarRefC.map(_.show())
 
     def render = {
       CodeExample(code, "MuiSnackBar")(

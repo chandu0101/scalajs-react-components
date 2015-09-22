@@ -46,14 +46,14 @@ object MuiLeftNavDemo {
   case class State(isDocked: Boolean = false)
 
   class Backend(t: BackendScope[_, State]) {
-    val withDockedLeftnav       = withRef(dockedLeftnavRef, t) _
-    val withNondockedLeftnavRef = withRef(nondockedLeftnavRef, t) _
+    val dockedLeftNavRefC    = callbackRef(dockedLeftnavRef, t)
+    val nondockedLeftNavRefC = callbackRef(nondockedLeftnavRef, t)
 
     def handleDockedLeftNav(e: ReactEventH): Callback =
-      withDockedLeftnav(r => Callback(r.toggle())) >> t.modState(s => s.copy(isDocked = !s.isDocked))
+      dockedLeftNavRefC.map(_.toggle()) >> t.modState(s => s.copy(isDocked = !s.isDocked))
 
     def handleHidableLeftNav(e: ReactEventH): Callback =
-      withNondockedLeftnavRef(r => Callback(r.toggle()))
+      nondockedLeftNavRefC.map(_.toggle())
 
     def render(S: State) = {
       <.div(

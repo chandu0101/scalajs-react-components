@@ -24,15 +24,20 @@ object ReactTableSorting {
       |  ReactTable(data = data ,columns = columns, config = config)
       |
     """.stripMargin
-  val component = ReactComponentB[Unit]("ReactTableSorting")
-    .render(P => {
-   <.div(
-     <.h2(^.cls := "mui-font-style-headline")("Sorting Table"),
-      CodeExample(code)(
-       ReactTable(data = data ,columns = columns, config = config)
+
+  case class Backend($: BackendScope[_, _]){
+    def render =
+     <.div(
+       <.h2(^.cls := "mui-font-style-headline")("Sorting Table"),
+        CodeExample(code)(
+         ReactTable(data = data ,columns = columns, config = config)
+        )
       )
-    )
-  }).buildU
+  }
+
+  val component = ReactComponentB[Unit]("ReactTableSorting")
+    .renderBackend[Backend]
+    .buildU
 
   val data: Vector[Map[String, Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
   val columns: List[String] = List("fname", "lname", "email", "country")

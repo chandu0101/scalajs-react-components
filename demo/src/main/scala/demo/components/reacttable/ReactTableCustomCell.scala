@@ -26,15 +26,20 @@ object ReactTableCustomCell {
       |  ReactTable( data = data ,columns = columns, config = config)
       |
     """.stripMargin
-  val component = ReactComponentB[Unit]("plain")
-    .render(P => {
-   <.div(
-     <.h2(^.cls := "mui-font-style-headline")("Custom Cell Factory"),
-      CodeExample(code)(
-        ReactTable( data = data ,columns = columns, config = config)
+
+  case class Backend($: BackendScope[_, _]){
+    def render =
+     <.div(
+       <.h2(^.cls := "mui-font-style-headline")("Custom Cell Factory"),
+        CodeExample(code)(
+          ReactTable( data = data ,columns = columns, config = config)
+        )
       )
-    )
-  }).buildU
+  }
+
+  val component = ReactComponentB[Unit]("plain")
+    .renderBackend[Backend]
+    .buildU
 
   val data: Vector[Map[String, Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
   val columns: List[String] = List("fname", "lname", "email", "country")

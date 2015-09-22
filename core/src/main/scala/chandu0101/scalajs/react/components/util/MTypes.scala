@@ -32,7 +32,7 @@ trait MTypes {
 
   type EventUnit = (Event) => Callback
 
-  type EventRElementPositionAny = (Event,RElementPosition) => Any
+  type EventRElementPositionAny = (Event, RElementPosition) => Callback
 
   type REventIDoubleUnit = (ReactEventI, Double) => Callback
 

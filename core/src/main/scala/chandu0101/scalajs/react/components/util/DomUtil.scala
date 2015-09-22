@@ -59,7 +59,7 @@ object DomUtil {
    * @param element dom element
    * @param selector css selector
    */
- def matchesSelector(element: js.Dynamic ,selector: String): Boolean = {
+ def matchesSelector(element: js.Dynamic)(selector: String): Boolean = {
     val funcName =  Stream("matches",
     "webkitMatchesSelector",
     "mozMatchesSelector",

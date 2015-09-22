@@ -3,20 +3,12 @@ package components
 package materialui
 
 import chandu0101.scalajs.react.components.materialui._
-import japgolly.scalajs.react.{ReactComponentB, _}
 import japgolly.scalajs.react.vdom.prefix_<^._
-
+import japgolly.scalajs.react.{ReactComponentB, _}
+import org.scalajs.dom
 import scala.scalajs.js
-import scala.scalajs.js.Date
-import scala.scalajs.js.Dynamic.global
-import scalacss.Attrs.{float, color}
 
-
-/* OK, up to now our component hasn't had a backend; instead we've used local functions/closures
-   to implement functionality. Now we'll add a backend and do it right.
- */
-
-
+//todo: why are there nulls here?
 object MuiUpdatingComponentsDemo {
   
   /* This is our state class.
@@ -25,20 +17,14 @@ object MuiUpdatingComponentsDemo {
 
      Please note that only the date portions of start/endDate are valid, and only the time portions of start/endTime.
    */
-  case class State(startDate: Date, startTime: Date, endDate: Date, endTime: Date,
-                      errorMsg: Option[String], useAutoOk: Boolean,
-                      pickerMode: MuiDatePickerMode, dateFormatterOffset: Int) /*{
-    def copy(startDate: Date = this.startDate, startTime: Date = this.startTime,
-             endDate: Date = this.endDate, endTime: Date = this.endTime,
-             errorMsg: Option[String] = this.errorMsg, useAutoOk: Boolean = this.useAutoOk,
-              pickerMode: MuiDatePickerMode = this.pickerMode, dateFormatterOffset: Int = this.dateFormatterOffset): State = {
-      if(startTime != null && endTime != null
-        && after(merge(startDate, startTime), add(merge(endDate, endTime), -twoHoursInMillis))) {
-           State(startDate, startTime, null, null, Some("Return must be at least two hours after Departure"),
-            useAutoOk, pickerMode, dateFormatterOffset)
-      } else State(startDate, startTime, endDate, endTime, None, useAutoOk, pickerMode, dateFormatterOffset)
-    }
-  }*/
+  case class State(startDate: js.Date,
+                   startTime: js.Date,
+                   endDate: js.Date,
+                   endTime: js.Date,
+                   errorMsg: Option[String],
+                   useAutoOk: Boolean,
+                   pickerMode: MuiDatePickerMode,
+                   dateFormatterOffset: Int)
 
   val twoHoursInMillis = 2 * 60 * 60 * 1000
 
@@ -74,61 +60,25 @@ object MuiUpdatingComponentsDemo {
    */
 
   class Backend($: BackendScope[Unit, State]) {
-    def updateStartDate   = (_: Date, d: Date) => $.modState(s =>
-      validStateOrSetError(s.copy(startDate = d, endDate = if (after(d, s.endDate)) d else s.endDate)))
-    def updateStartTime   = (_: Date, d: Date) => $.modState(s => validStateOrSetError(s.copy(startTime = d)))
-    def updateEndDate     = (_: Date, d: Date) => $.modState(s => validStateOrSetError(s.copy(endDate = d)))
-    def updateEndTime     = (_: Date, d: Date) => $.modState( s => validStateOrSetError(s.copy(endTime = d)))
+    def updateStartDate   = (_: js.Date, d: js.Date) =>
+      $.modState(s => validStateOrSetError(s.copy(startDate = d, endDate = if (after(d, s.endDate)) d else s.endDate)))
+    def updateStartTime   = (_: js.Date, d: js.Date) => $.modState(s => validStateOrSetError(s.copy(startTime = d)))
+    def updateEndDate     = (_: js.Date, d: js.Date) => $.modState(s => validStateOrSetError(s.copy(endDate = d)))
+    def updateEndTime     = (_: js.Date, d: js.Date) => $.modState( s => validStateOrSetError(s.copy(endTime = d)))
     def modeSwitch        = (_: ReactEvent, mode: String) => $.modState(_.copy(pickerMode = MuiDatePickerMode.newMode(mode)))
     def autoOkToggle      = (_: ReactEvent, toggled: Boolean) => $.modState(_.copy(useAutoOk = toggled))
     def dateFormatUpdate  = (_: ReactEvent, index: Int, _: js.Object) => $.modState(_.copy(dateFormatterOffset = index))
 
-    // since alert returns js.Dynamic, we must explicitly specify that onSubmit returns Unit
-    // by specifying its type is ReactEventH => Unit ("ReactEventH to Unit")
-    // but since we did that, we don't have to specify the type of the argument
-    def onSubmit : ReactEventH => Unit = _ => global.alert(" Do something Ajax-y with: " + $.state)
-  }
+    def onSubmit: ReactEventH => Callback = _ => Callback(dom.alert("Do something Ajax-y with: " + $.state))
 
-  // note that b is a by-name parameter, so we effectively get short-circuit evaluation
-  def ??[T](a : T, b: => T) : T = if (a != null) a else b
-  def after(a: Date, b: Date) = a != null && b != null && a.getTime > b.getTime
-  def add(d: Date, millis: Double) = new Date(d.getTime() + millis) // getTime returns millis??
-  def merge(date: Date, time: Date) = {
-    if (date == null) time
-    else if (time == null) date
-    else {
-      val r = new Date(date.getTime())
-      r.setHours(time.getHours(), time.getMinutes(), time.getSeconds(), time.getMilliseconds())
-      r
-    }
-  }
-  def autoOkName(b: Boolean) = if (b) "on" else "off"
-
-  val dateFormatters = Seq[(String, Date => String)](
-    "YYYY-MM-DD"     -> ((d: Date) => if (d == null) "" else f"${d.getFullYear}-${d.getMonth + 1}%02d-${d.getDate}%02d"),
-    "toString"       -> ((d: Date) => if (d == null) "" else d.toString),
-    "US MM/DD/YYYY"  -> ((d: Date) => if (d == null) "" else f"${d.getMonth + 1}%02d/${d.getDate}%02d/${d.getFullYear}"), // US
-    "EUR DD/MM/YYYY" -> ((d: Date) => if (d == null) "" else f"${d.getDate}%02d/${d.getMonth + 1}%02d/${d.getFullYear}") // Eur
-  )
-
-  val dateFormattersMenuItems = dateFormatters.zipWithIndex.map {
-    case((label, f), i) => MuiDropdownMenuItem(payload = i.toString, text = label + " " + f(new Date()))
-  }.toJsArray
-
-
-  val component = ReactComponentB[Unit]("MuiUpdatingComponentsDemo")
-    // TimePicker can't handle null times.
-    .initialState(State(null, new Date(), null, new Date(), None, false, MuiDatePickerMode.PORTRAIT, 0))
-    .backend(new Backend(_))
-    .render( (_, S, B) => {
-
+    def render(S: State) = {
       <.div(
         CodeExample(code,"MuiUpdatingComponentsDemo")(
           MuiPaper(zDepth = 3)(
             <.div(^.padding := 3.em,
 
               MuiToggle(
-                onToggle = B.autoOkToggle,
+                onToggle = autoOkToggle,
                 defaultToggled = S.useAutoOk,
                 labelPosition = MuiSwitchLabelPosition.RIGHT,
                 label = s"Date Picker AutoOk is ${autoOkName(S.useAutoOk)}. Switch to AutoOk:${autoOkName(! S.useAutoOk)}."
@@ -142,7 +92,7 @@ object MuiUpdatingComponentsDemo {
                 MuiRadioButtonGroup(
                   name = "pickerdisplayorientation",
                   defaultSelected = S.pickerMode.value,
-                  onChange = B.modeSwitch)(
+                  onChange = modeSwitch)(
                     MuiRadioButton(value = MuiDatePickerMode.PORTRAIT.value, label = MuiDatePickerMode.PORTRAIT.value)(),
                     MuiRadioButton(value = MuiDatePickerMode.LANDSCAPE.value, label = MuiDatePickerMode.LANDSCAPE.value)()
                   )
@@ -151,7 +101,7 @@ object MuiUpdatingComponentsDemo {
               <.label("Date display:",
                 MuiDropdownMenu(
                   menuItems = dateFormattersMenuItems,
-                  onChange = B.dateFormatUpdate)()
+                  onChange = dateFormatUpdate)()
               ),
 
               <.h2("Select your travel dates"),
@@ -166,8 +116,8 @@ object MuiUpdatingComponentsDemo {
                   MuiDatePicker(
                      defaultDate = S.startDate,
                      hintText = "Date Departing",
-                     onChange = B.updateStartDate,
-                     minDate = new Date(),
+                     onChange = updateStartDate,
+                     minDate = new js.Date(),
                      mode = S.pickerMode,
                      autoOk = S.useAutoOk,
                      formatDate = dateFormatters(S.dateFormatterOffset)._2
@@ -178,7 +128,7 @@ object MuiUpdatingComponentsDemo {
                   MuiTimePicker(
                     defaultTime = S.startTime, // there's a bug in MuiTimePicker, null/undefined initialTime causes NPE
                     hintText = "Time Departing",
-                    onChange = B.updateStartTime
+                    onChange = updateStartTime
                   )()
                 )
               ),
@@ -189,8 +139,8 @@ object MuiUpdatingComponentsDemo {
                    MuiDatePicker(
                      defaultDate = S.endDate,
                      hintText = "Date Returning",
-                     onChange = B.updateEndDate,
-                     minDate = ??(S.startDate, new Date()),
+                     onChange = updateEndDate,
+                     minDate = ??(S.startDate, new js.Date()),
                      mode = S.pickerMode,
                      autoOk = S.useAutoOk,
                      formatDate = dateFormatters(S.dateFormatterOffset)._2
@@ -201,7 +151,7 @@ object MuiUpdatingComponentsDemo {
                   MuiTimePicker(
                     defaultTime = S.endTime,
                     hintText = "Time Returning",
-                    onChange = B.updateEndTime
+                    onChange = updateEndTime
                   )()
                 )
               ),
@@ -210,7 +160,7 @@ object MuiUpdatingComponentsDemo {
                      primary = true,
                      label = "Find Reservations",
                      disabled = S.endDate == null || S.endTime == null,
-                     onTouchTap = B.onSubmit
+                     onTouchTap = onSubmit
                    )()
               ),
 
@@ -242,112 +192,47 @@ object MuiUpdatingComponentsDemo {
           )
         )
       )
-  }).buildU
+
+    }
+  }
+
+  // note that b is a by-name parameter, so we effectively get short-circuit evaluation
+  def ??[T](a : T, b: => T) : T = if (a != null) a else b
+  def after(a: js.Date, b: js.Date) = a != null && b != null && a.getTime > b.getTime
+  def add(d: js.Date, millis: Double) = new js.Date(d.getTime() + millis) // getTime returns millis??
+  def merge(date: js.Date, time: js.Date) = {
+    if (date == null) time
+    else if (time == null) date
+    else {
+      val r = new js.Date(date.getTime())
+      r.setHours(time.getHours(), time.getMinutes(), time.getSeconds(), time.getMilliseconds())
+      r
+    }
+  }
+  def autoOkName(b: Boolean) = if (b) "on" else "off"
+
+  val dateFormatters = Seq[(String, js.Date => String)](
+    "YYYY-MM-DD"     -> ((d: js.Date) => if (d == null) "" else f"${d.getFullYear()}-${d.getMonth + 1}%02d-${d.getDate()}%02d"),
+    "toString"       -> ((d: js.Date) => if (d == null) "" else d.toString),
+    "US MM/DD/YYYY"  -> ((d: js.Date) => if (d == null) "" else f"${d.getMonth + 1}%02d/${d.getDate()}%02d/${d.getFullYear()}"), // US
+    "EUR DD/MM/YYYY" -> ((d: js.Date) => if (d == null) "" else f"${d.getDate()}%02d/${d.getMonth + 1}%02d/${d.getFullYear()}") // Eur
+  )
+
+  val dateFormattersMenuItems = dateFormatters.zipWithIndex.map {
+    case((label, f), i) => MuiDropdownMenuItem(payload = i.toString, text = label + " " + f(new js.Date()))
+  }.toJsArray
+
+
+  val component = ReactComponentB[Unit]("MuiUpdatingComponentsDemo")
+    // TimePicker can't handle null times.
+    .initialState(State(null, new js.Date(), null, new js.Date(), None, useAutoOk = false, MuiDatePickerMode.PORTRAIT, 0))
+    .renderBackend[Backend]
+    .buildU
 
   def apply() = component()
 
   val code =
-    """
-      |  val component = ReactComponentB[Unit]("MuiUpdatingComponentsDemo")
-      |    // TimePicker can't handle null times.
-      |    .initialState(State(null, new Date(), null, new Date(), None, false, MuiDatePickerMode.PORTRAIT, 0))
-      |    .backend(new Backend(_))
-      |    .render( (_, S, B) => {
-      |
-      |
-      |      <.div(
-      |        CodeExample(code,"MuiUpdatingComponentsDemo")(
-      |          MuiPaper(zDepth = 3)(
-      |            <.div(^.padding := 3.em,
-      |
-      |              MuiToggle(
-      |                onToggle = B.autoOkToggle,
-      |                defaultToggled = S.useAutoOk,
-      |                labelPosition = MuiSwitchLabelPosition.RIGHT,
-      |                label = s"Pickers AutoOk is ${autoOkName(S.useAutoOk)}. Switch to AutoOk:${autoOkName(! S.useAutoOk)}."
-      |              )(),
-      |
-      |              // while we can use a toggle for the picker orientation,
-      |              // a radio group is more appropriate, because no mode
-      |              // maps to "off" and the other to "on"
-      |              // We will also change DateSpan's Boolean (is)landscapeMode to a String, pickerMode
-      |              <.label("Picker orientation:",
-      |                MuiRadioButtonGroup(
-      |                  name = "pickerdisplayorientation",
-      |                  defaultSelected = S.pickerMode.value,
-      |                  onChange = B.modeSwitch)(
-      |                    MuiRadioButton(value = MuiDatePickerMode.PORTRAIT.value, label = MuiDatePickerMode.PORTRAIT.value)(),
-      |                    MuiRadioButton(value = MuiDatePickerMode.LANDSCAPE.value, label = MuiDatePickerMode.LANDSCAPE.value)()
-      |                  )
-      |              ),
-      |
-      |              <.label("Date display:",
-      |                MuiDropdownMenu(
-      |                  menuItems = dateFormattersMenuItems,
-      |                  onChange = B.dateFormatUpdate)()
-      |              ),
-      |
-      |              <.h2("Select your travel dates"),
-      |
-      |              <.div(^.color := "red", S.errorMsg.map( s => <.span(s))),
-      |              <.div(^.color := "red", S.errorMsg.map(
-      |                s => <.span("A bug prevents rendering it, but endTime is actually" + S.endTime.toString))),
-      |
-      |
-      |              <.label("Depart On:",
-      |                MuiDatePicker(
-      |                   defaultDate = S.startDate,
-      |                   hintText = "Date Departing",
-      |                   onChange = B.updateStartDate,
-      |                   minDate = new Date(),
-      |                   mode = S.pickerMode,
-      |                   autoOk = S.useAutoOk,
-      |                   formatDate = dateFormatters(S.dateFormatterOffset)._2
-      |                 )()
-      |              ),
-      |
-      |              <.label("Depart At or After:",
-      |                MuiTimePicker(
-      |                  defaultTime = S.startTime, // there's a bug in MuiTimePicker, null/undefined initialTime causes NPE
-      |                  hintText = "Time Departing",
-      |                  onChange = B.updateStartTime
-      |                )()
-      |              ),
-      |
-      |              <.label("Return On:",
-      |                 MuiDatePicker(
-      |                   defaultDate = S.endDate,
-      |                   hintText = "Date Returning",
-      |                   onChange = B.updateEndDate,
-      |                   minDate = ??(S.startDate, new Date()),
-      |                   mode = S.pickerMode,
-      |                   autoOk = S.useAutoOk,
-      |                   formatDate = dateFormatters(S.dateFormatterOffset)._2
-      |                 )()
-      |              ),
-      |
-      |              <.label("Return At or After:",
-      |                MuiTimePicker(
-      |                  defaultTime = S.endTime,
-      |                  hintText = "Time Returning",
-      |                  onChange = B.updateEndTime
-      |                )()
-      |              ),
-      |
-      |              MuiRaisedButton(
-      |                   primary = true,
-      |                   label = "Find Reservations",
-      |                   disabled = S.endDate == null || S.endTime == null,
-      |                   onTouchTap = B.onSubmit
-      |                 )()
-      |              )
-      |            )
-      |          )
-      |        )
-      |      )
-      |  }).buildU
-      |
-    """.stripMargin
+    """""".stripMargin
 }
 
 

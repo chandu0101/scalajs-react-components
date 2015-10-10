@@ -9,9 +9,6 @@ import scala.scalajs.js
 
 object AutoSizeInput {
 
-  val theSizerRef = Ref[html.Element]("theSizerRef")
-  val theInputRef = Ref[html.Input]("theInputRef")
-
   val component = ReactComponentB[Props]("AutoSizeInput")
     .initialState_P(p => State(p.minWidth))
     .renderBackend[Backend]
@@ -38,20 +35,19 @@ object AutoSizeInput {
   case class State(inputWidth: Int)
 
   class Backend(t: BackendScope[Props, State]) {
-    
-    val inputRefC   = callbackRef(theInputRef, t)
-    val sizerInputC = callbackRef(theSizerRef, t)
+    val sizerRef = RefHolder[ReactComponentM_[html.Element]]
+    val inputRef = RefHolder[ReactComponentM_[html.Input]]
 
     def focus: Callback =
-      inputRefC.map(_.getDOMNode().focus())
+      inputRef().map(_.getDOMNode().focus())
 
     def select: Callback =
-      inputRefC.map(_.getDOMNode().select())
+      inputRef().map(_.getDOMNode().select())
 
     def copyInputStyles: Callback =
       for {
-        input <- inputRefC
-        sizer <- sizerInputC
+        input <- inputRef()
+        sizer <- sizerRef()
         if t.isMounted()
         if !js.isUndefined(js.Dynamic.global.getComputedStyle)
         inputStyle = dom.window.getComputedStyle(input.getDOMNode())
@@ -62,7 +58,7 @@ object AutoSizeInput {
 
     def updateInputWidth(P: Props, S: State): Callback =
       for {
-        sizer <- sizerInputC
+        sizer <- sizerRef()
         if t.isMounted()
         newInputWidth = math.min(P.minWidth, sizer.getDOMNode().scrollWidth + 20)
         if newInputWidth != S.inputWidth
@@ -73,8 +69,16 @@ object AutoSizeInput {
       val nbpsValue = P.value.replaceAll(" ", "&nbsp;")
       val inputStyle: TagMod = P.style.autoSizeInput.+(^.width := S.inputWidth)
       <.div(P.style.autoSizeInputWrapper)(
-        <.input(P.inputProps, ^.ref := theInputRef, inputStyle),
-        <.div(^.ref := theSizerRef, P.style.sizerStyle)(^.dangerouslySetInnerHtml(nbpsValue))
+        <.input(
+          P.inputProps,
+          ^.ref(inputRef.set),
+          inputStyle
+        ),
+        <.div(
+          ^.ref(sizerRef.set),
+          P.style.sizerStyle,
+          ^.dangerouslySetInnerHtml(nbpsValue)
+        )
       )
     }
   }

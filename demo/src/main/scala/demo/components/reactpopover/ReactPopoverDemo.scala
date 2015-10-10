@@ -25,66 +25,61 @@ object ReactPopoverDemo {
       | 
     """.stripMargin
 
-  val rightRef   = Ref.to(ReactPopOver.component, "theRightRef")
-  val leftRef    = Ref.to(ReactPopOver.component, "theLeftRef")
-  val topRef     = Ref.to(ReactPopOver.component, "theTopRef")
-  val bottomtRef = Ref.to(ReactPopOver.component, "theBottomRef")
-
   object Style {
     val popoverExample = Seq(^.display := "flex", ^.flexDirection := "column", ^.alignItems := "center")
   }
 
   class Backend(t: BackendScope[_, _]) {
-    val rightRefC  = callbackRef(rightRef, t)
-    val leftRefC   = callbackRef(leftRef, t)
-    val topRefC    = callbackRef(topRef, t)
-    val bottomRefC = callbackRef(bottomtRef, t)
+    val rightRef  = RefHolder[ReactPopOver.Type]
+    val leftRef   = RefHolder[ReactPopOver.Type]
+    val topRef    = RefHolder[ReactPopOver.Type]
+    val bottomRef = RefHolder[ReactPopOver.Type]
 
-    def onRightButtonClick(e: ReactEventH): Callback =
-      rightRefC.flatMap(_.backend.toggle(e.target))
+    val onRightButtonClick: ReactEventH => Callback =
+      e => rightRef().flatMap(_.backend.toggle(e.target))
 
-    def onLeftButtonClick(e: ReactEventH): Callback =
-      leftRefC.flatMap(_.backend.toggle(e.target))
+    val onLeftButtonClick: ReactEventH => Callback =
+      e => leftRef().flatMap(_.backend.toggle(e.target))
 
-    def onTopButtonClick(e: ReactEventH): Callback =
-      topRefC.flatMap(_.backend.toggle(e.target))
+    val onTopButtonClick: ReactEventH => Callback =
+      e => topRef().flatMap(_.backend.toggle(e.target))
 
-    def onBottomButtonClick(e: ReactEventH): Callback =
-      bottomRefC.flatMap(_.backend.toggle(e.target))
+    val onBottomButtonClick: ReactEventH => Callback =
+      e => bottomRef().flatMap(_.backend.toggle(e.target))
 
     def render = {
-    <.div(
-      <.h3("Demo"),
-      CodeExample(code)(
-       <.div(Style.popoverExample)(
-        <.div(^.padding := "20px")(
-          ReactPopOver(placement = "top", ref = topRef)(
-            "I am Top Pop Over"
-          ),
-          LocalDemoButton(name = "Top Button" ,onButtonClick = onTopButtonClick _)
-        ),
-        <.div(^.padding := "20px")(
-          ReactPopOver(placement = "left", ref = leftRef, title = "Left Title")(
-            "I am Left Popover"
-          ),
-          LocalDemoButton(name = "Left Button" ,onButtonClick = onLeftButtonClick _)
-        ),
-        <.div(^.padding := "20px")(
-          ReactPopOver(ref = rightRef, title = "Right Title")(
-            "I am right Popover"
-          ),
-          LocalDemoButton(name = "Right Button" ,onButtonClick = onRightButtonClick _)
-        ),
+      <.div(
+        <.h3("Demo"),
+        CodeExample(code)(
+          <.div(Style.popoverExample)(
+            <.div(^.padding := "20px")(
+              ReactPopOver(placement = "top", ref = topRef.set)(
+                "I am Top Pop Over"
+              ),
+              LocalDemoButton(name = "Top Button", onButtonClick = onTopButtonClick)
+            ),
+            <.div(^.padding := "20px")(
+              ReactPopOver(placement = "left", ref = leftRef.set, title = "Left Title")(
+                "I am Left Popover"
+              ),
+              LocalDemoButton(name = "Left Button", onButtonClick = onLeftButtonClick)
+            ),
+            <.div(^.padding := "20px")(
+              ReactPopOver(placement = "right", ref = rightRef.set, title = "Right Title")(
+                "I am right Popover"
+              ),
+              LocalDemoButton(name = "Right Button", onButtonClick = onRightButtonClick)
+            ),
 
-        <.div(^.padding := "20px")(
-          ReactPopOver(placement = "bottom", ref = bottomtRef)(
-            "I am bottom Popover"
-          ),
-          LocalDemoButton(name = "Bottom Button" ,onButtonClick = onBottomButtonClick _)
+            <.div(^.padding := "20px")(
+              ReactPopOver(placement = "bottom", ref = bottomRef.set)(
+                "I am bottom Popover"
+              ),
+              LocalDemoButton(name = "Bottom Button", onButtonClick = onBottomButtonClick)
+            )
+          )
         )
-       )
       )
-    )
     }
   }
 

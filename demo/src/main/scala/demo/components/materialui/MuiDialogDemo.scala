@@ -9,8 +9,6 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
 
 object MuiDialogDemo {
-  val dialogRef: RefJSComp[MuiDialogM] = Ref.toJS[MuiDialogM]("dialogref")
-
   val code =
     """
       | val actions: js.Array[ReactElement] = js.Array(
@@ -26,16 +24,16 @@ object MuiDialogDemo {
     """.stripMargin
 
   class Backend(t: BackendScope[_,_]) {
-    val dialogRefC = callbackRef(dialogRef, t)
+    var dialogRef = RefHolder[MuiDialogM]
 
     def handleDialogCancel(e: ReactEventH): Callback =
-      dialogRefC.map(_.dismiss()) >> Callback.info("Cancel Clicked")
+      dialogRef().map(_.dismiss()) >> Callback.info("Cancel Clicked")
 
     def handleDialogSubmit(e: ReactEventH): Callback =
-      dialogRefC.map(_.dismiss()) << Callback.info("Submit Clicked")
+      dialogRef().map(_.dismiss()) << Callback.info("Submit Clicked")
 
     def openDialog(e: ReactEventH): Callback =
-      dialogRefC.map(_.show())
+      dialogRef().map(_.show())
 
     def render = {
       val actions: js.Array[ReactElement] = js.Array(
@@ -47,14 +45,13 @@ object MuiDialogDemo {
         <.div(
           MuiDialog(title = "Dialog With Actions",
             actions = actions,
-            ref = "dialogref")(
+            ref = dialogRef.set)(
               "Dialog example with floating buttons"
             ),
           MuiRaisedButton(label = "Dialog", onTouchTap = openDialog _ )()
         )
         )
       )
-
     }
 
   }

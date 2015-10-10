@@ -39,31 +39,32 @@ object MuiLeftNavDemo {
       payload = "https://github.com/chandu0101/scalajs-react-components")
   )
 
-  lazy val dockedLeftnavRef = Ref.toJS[MuiLeftNavM]("leftnavdocked")
-
-  lazy val nondockedLeftnavRef = Ref.toJS[MuiLeftNavM]("leftnav")
-
   case class State(isDocked: Boolean = false)
 
   class Backend(t: BackendScope[_, State]) {
-    val dockedLeftNavRefC    = callbackRef(dockedLeftnavRef, t)
-    val nondockedLeftNavRefC = callbackRef(nondockedLeftnavRef, t)
+    val dockedLeftRef = RefHolder[MuiLeftNavM]
+    val leftRef       = RefHolder[MuiLeftNavM]
 
     def handleDockedLeftNav(e: ReactEventH): Callback =
-      dockedLeftNavRefC.map(_.toggle()) >> t.modState(s => s.copy(isDocked = !s.isDocked))
+      dockedLeftRef().map(_.toggle()) >>
+        t.modState(s => s.copy(isDocked = !s.isDocked))
 
     def handleHidableLeftNav(e: ReactEventH): Callback =
-      nondockedLeftNavRefC.map(_.toggle())
+      leftRef().map(_.toggle())
 
     def render(S: State) = {
       <.div(
         CodeExample(code, "MuiAppBar")(
           <.div(
-            MuiLeftNav(ref = "leftnav",
-              menuItems = menuItems,docked = false
+            MuiLeftNav(
+              ref = leftRef.set,
+              menuItems = menuItems,
+              docked = false
             )(),
-            MuiLeftNav(ref = "leftnavdocked",
-              menuItems = menuItems,docked = S.isDocked
+            MuiLeftNav(
+              ref = dockedLeftRef.set,
+              menuItems = menuItems,
+              docked = S.isDocked
             )(),
             MuiRaisedButton(label = "Toggle Docked Left Nav" ,onTouchTap = handleDockedLeftNav _)(),
             <.br(),

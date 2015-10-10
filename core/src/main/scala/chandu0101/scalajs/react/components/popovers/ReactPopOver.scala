@@ -190,6 +190,16 @@ object ReactPopOver {
 
   case class Props(title: String,placement: String ,style: Style)
 
-  def apply(title: String = "",placement: String = "right",ref: U[String] = "", key: js.Any = {} ,style: Style = new Style {})(children: ReactNode*) = component.set(key, ref)(Props(title,placement,style),children)
+  type Type = ReactComponentU[Props, State, Backend, TopNode]
 
+  def apply(title: String = "",
+            placement: String = "right",
+            ref: U[Type ⇒ Unit],
+            key: js.Any = {},
+            style: Style = new Style {})(children: ReactNode*) =
+
+    component.set(key)( //todo ref!
+      Props(title, placement, style),
+      children
+    )
 }

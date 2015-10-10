@@ -8,7 +8,7 @@ import scala.scalajs.js.{Array => JArray}
 case class MuiLeftNav(menuItems: JArray[MuiMenuItem],
                       style: U[js.Any] = uNone,
                       onChange: U[(ReactEvent, Int, js.Object) => Callback] = uNone,
-                      ref: U[String] = uNone,
+                      ref: U[MuiLeftNavM => Unit] = uNone,
                       onNavClose: U[Callback] = uNone,
                       onNavOpen: U[Callback] = uNone,
                       key: U[String] = uNone,
@@ -28,6 +28,8 @@ case class MuiLeftNav(menuItems: JArray[MuiMenuItem],
 
 @js.native
 trait MuiLeftNavM extends js.Object {
+
+  def open(): Unit = js.native
 
   def close(): Unit = js.native
 

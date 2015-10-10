@@ -6,7 +6,7 @@ import scala.scalajs.js
 
 case class MuiSnackBar(openOnMount: U[Boolean] = uNone,
                        style: U[js.Any] = uNone,
-                       ref: U[String] = uNone,
+                       ref: U[MuiSnackBarM => Unit] = uNone,
                        key: U[String] = uNone,
                        onActionTouchTap: U[ReactEvent => Callback] = uNone,
                        message: String,

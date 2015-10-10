@@ -16,7 +16,7 @@ object CodeHighLighter {
   def installSyntaxHighlighting[P, S, B, N <: TopNode] =
     (_: ReactComponentB[P, S, B, N])
       .componentDidMount(_ => applySyntaxHighlight)
-      .componentDidUpdate((_, _, _) => applySyntaxHighlight)
+      .componentDidUpdate(_ => applySyntaxHighlight)
 
   def applySyntaxHighlight = Callback {
     import scala.scalajs.js.Dynamic.{global => g}

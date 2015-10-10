@@ -8,7 +8,7 @@ object ScalajsReactComponents extends Build {
 
   val Scala211 = "2.11.7"
 
-  val scalajsReactVersion = "0.10.0-SNAPSHOT"
+  val scalajsReactVersion = "0.10.0-M3"
   val scalaCSSVersion = "0.4.0-SNAPSHOT"
 
   type PE = Project => Project

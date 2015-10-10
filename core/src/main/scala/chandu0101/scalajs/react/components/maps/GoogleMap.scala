@@ -63,7 +63,9 @@ object GoogleMap {
   val component = ReactComponentB[Props]("googleMap")
     .initialState(State(None, Nil))
     .renderBackend[Backend]
-    .componentWillReceiveProps(($, P) => $.backend.updateMap(P))
+    .componentWillReceiveProps{
+      case ComponentWillReceiveProps(_$, nextProps) => _$.backend.updateMap(nextProps)
+    }
     .componentDidMount($ => $.backend.loadScript($.props))
     .componentWillUnmount($ => Callback($.state.markers.foreach(new GClearInstanceListeners(_))))
     .build

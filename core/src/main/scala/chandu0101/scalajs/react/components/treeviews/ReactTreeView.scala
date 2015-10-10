@@ -180,9 +180,9 @@ object ReactTreeView {
     .initialState_P(P => if (P.open) NodeState(P.root.children) else NodeState())
     .renderBackend[NodeBackend]
     .componentWillReceiveProps {
-      ($, P) =>
-        $.modState(_.copy(children = if (P.open) P.root.children else Nil))
-          .conditionally(P.filterMode)
+      case ComponentWillReceiveProps(_$, newProps) =>
+        _$.modState(_.copy(children = if (newProps.open) newProps.root.children else Nil))
+          .conditionally(newProps.filterMode)
           .void
     }
     .build

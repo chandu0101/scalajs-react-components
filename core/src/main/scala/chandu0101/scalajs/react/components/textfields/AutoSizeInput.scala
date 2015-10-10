@@ -18,9 +18,9 @@ object AutoSizeInput {
     .componentDidMount($ =>
       $.backend.copyInputStyles >> $.backend.updateInputWidth($.props, $.state)
     )
-    .componentDidUpdate(($, _, _) =>
-      $.backend.updateInputWidth($.props, $.state)
-    ).build
+    .componentDidUpdate {
+      case ComponentDidUpdate(_$, _, _) ⇒ _$.backend.updateInputWidth(_$.props, _$.state)
+    }.build
 
   def apply(minWidth: Int = 1, ref: U[String] = "", key: js.Any = {}, defaultValue: String = "", value: String = "", onChange: ReactEventI => Callback = null, style: Style = new Style {})(inputProps: TagMod*) =
     component.set(key, ref)(Props(minWidth, ref, key, defaultValue, value, onChange, style, inputProps))
@@ -72,9 +72,9 @@ object AutoSizeInput {
     def render(P: Props, S: State) = {
       val nbpsValue = P.value.replaceAll(" ", "&nbsp;")
       val inputStyle: TagMod = P.style.autoSizeInput.+(^.width := S.inputWidth)
-     <.div(P.style.autoSizeInputWrapper)(
+      <.div(P.style.autoSizeInputWrapper)(
         <.input(P.inputProps, ^.ref := theInputRef, inputStyle),
-       <.div(^.ref := theSizerRef, P.style.sizerStyle)(^.dangerouslySetInnerHtml(nbpsValue))
+        <.div(^.ref := theSizerRef, P.style.sizerStyle)(^.dangerouslySetInnerHtml(nbpsValue))
       )
     }
   }

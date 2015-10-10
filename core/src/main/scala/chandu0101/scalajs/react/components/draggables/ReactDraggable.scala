@@ -4,13 +4,13 @@ package draggables
 import chandu0101.scalajs.react.components.models.{RElementPosition, RGrid, RPoint}
 import chandu0101.scalajs.react.components.util.{DomUtil, Events}
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.extra.Reusability
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.Event
 import scala.scalajs.js
 
 object ReactDraggable {
-
   /**
    * @param dragging whether or not currently dragging
    * @param startX Start left of t.getDOmNode()
@@ -30,6 +30,8 @@ object ReactDraggable {
     clientY: Int = 0,
     stopListening: U[Callback]
   )
+  implicit val r0 = Reusability.byRef[Props]
+  implicit val r1 = Reusability.byRef[State]
 
   // Add a class to the body to disable user-select. This prevents text from
   // being selected all over the page.
@@ -177,10 +179,11 @@ object ReactDraggable {
   val component = ReactComponentB[Props]("ReactDraggable")
     .initialState_P(newStateFrom)
     .renderBackend[Backend]
-    .componentWillReceiveProps(($, nextProps) =>
-      $.setState(newStateFrom(nextProps)).conditionally(nextProps.moveOnStartChange).void
-    )
-    .shouldComponentUpdate(($, nextP, nextS) => !($.props == nextP) || !($.state == nextS))
+    .componentWillReceiveProps{
+      case ComponentWillReceiveProps(_$, nextProps) ⇒
+        _$.setState(newStateFrom(nextProps)).conditionally(nextProps.moveOnStartChange).void
+    }
+    .configure(Reusability.shouldComponentUpdate)
     .componentWillUnmount($ => $.state.stopListening.getOrElse(Callback.empty))
     .build
 

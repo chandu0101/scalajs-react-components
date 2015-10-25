@@ -11,6 +11,25 @@ import org.scalajs.dom.Event
 import scala.scalajs.js
 
 object ReactDraggable {
+
+  case class Props(cancel: U[String],
+                   onDrag: U[(Event, RElementPosition) => Callback],
+                   useCSSTransforms: Boolean,
+                   clsNames: CssClassType,
+                   ref: U[String],
+                   moveOnStartChange: Boolean,
+                   grid: U[RGrid],
+                   key: js.Any,
+                   zIndex: Int,
+                   axis: String,
+                   onStop: U[(Event, RElementPosition) => Callback],
+                   start: RPoint,
+                   onStart: U[(Event, RElementPosition) => Callback],
+                   onMouseDown: U[Event => Callback],
+                   handle: U[String],
+                   minConstraints: U[RGrid],
+                   maxConstraints: U[RGrid])
+
   /**
    * @param dragging whether or not currently dragging
    * @param startX Start left of t.getDOmNode()
@@ -21,15 +40,16 @@ object ReactDraggable {
    * @param clientY Current top of this.getDOMNode()
    */
   case class State(
-    dragging: Boolean, 
-    startX: Int = 0, 
-    startY: Int = 0, 
-    offsetX: Int = 0, 
-    offsetY: Int = 0, 
-    clientX: Int = 0, 
-    clientY: Int = 0,
+    dragging: Boolean,
+    startX: Int,
+    startY: Int,
+    offsetX: Int,
+    offsetY: Int,
+    clientX: Int,
+    clientY: Int,
     stopListening: U[Callback]
   )
+
   implicit val r0 = Reusability.byRef[Props]
   implicit val r1 = Reusability.byRef[State]
 
@@ -47,21 +67,23 @@ object ReactDraggable {
 
   class Backend(t: BackendScope[Props, State]) {
     
-    def createUIEvent(S: State) =
+    def pos(S: State) =
       RElementPosition(t.getDOMNode(), top = S.clientY, left = S.clientX)
 
     def handleDragStart(P: Props)(e: Event): Callback = {
+      val moveEventType = DomUtil.dragEventFor(e, "move")
+      val endEventType  = DomUtil.dragEventFor(e, "end")
+      val dragPoint     = DomUtil.getControlPosition(e)
+
       val mouseDown: Callback =
         P.onMouseDown.asCbo(e)
 
       val onStart: Callback =
-        t.state.flatMap(S => P.onStart.asCbo(e, createUIEvent(S)))
-      
-      val startDrag = t.modState { S =>
-        val u1 = Events.register(dom.window, DomUtil.dragEventFor(e, "move"), handleDrag(P))
-        val u2 = Events.register(dom.window, DomUtil.dragEventFor(e, "end"),  handleDragEnd(P))
+        t.state.flatMap(S => P.onStart.asCbo(e, pos(S)))
 
-        val dragPoint = DomUtil.getControlPosition(e)
+      val startDrag = t.modState { S =>
+        val u1 = Events.register(dom.window, moveEventType, handleDrag(P))
+        val u2 = Events.register(dom.window, endEventType, handleDragEnd(P))
 
         S.copy(
           dragging      = true,
@@ -80,11 +102,11 @@ object ReactDraggable {
     }
 
     def handleDrag(P: Props)(e: Event): Callback = {
+      val dragPoint = DomUtil.getControlPosition(e)
 
       val c1 = t.modState{ S =>
 
         // calculate top and left
-        val dragPoint = DomUtil.getControlPosition(e)
         var clientX   = S.startX + (dragPoint.x - S.offsetX)
         var clientY   = S.startY + (dragPoint.y - S.offsetY)
 
@@ -119,7 +141,7 @@ object ReactDraggable {
       }
 
       //call event handler
-      val c2 = t.state.flatMap(S => P.onDrag.asCbo(e, createUIEvent(S)))
+      val c2 = t.state.flatMap(S => P.onDrag.asCbo(e, pos(S)))
 
       c1 >> c2
     }
@@ -128,7 +150,7 @@ object ReactDraggable {
       val unregister: Callback =
         t.state.flatMap(_.stopListening.asCbo)
       val onStop: Callback =
-        t.state.flatMap(S => P.onStop.asCbo(e, createUIEvent(S)))
+        t.state.flatMap(S => P.onStop.asCbo(e, pos(S)))
       val stopDragging: Callback =
         t.modState(_.copy(dragging = false, stopListening = uNone))
 
@@ -169,6 +191,8 @@ object ReactDraggable {
   def newStateFrom(P: Props): State =
     State(
       dragging = false,
+      startX  = 0,
+      startY  = 0,
       clientX = P.start.x.toInt,
       clientY = P.start.y.toInt,
       offsetX = 0,
@@ -186,24 +210,6 @@ object ReactDraggable {
     .configure(Reusability.shouldComponentUpdate)
     .componentWillUnmount($ => $.state.stopListening.getOrElse(Callback.empty))
     .build
-
-  case class Props(cancel: U[String],
-                   onDrag: U[(Event, RElementPosition) => Callback],
-                   useCSSTransforms: Boolean,
-                   clsNames: CssClassType,
-                   ref: U[String],
-                   moveOnStartChange: Boolean,
-                   grid: U[RGrid],
-                   key: js.Any,
-                   zIndex: Int,
-                   axis: String,
-                   onStop: U[(Event, RElementPosition) => Callback],
-                   start: RPoint,
-                   onStart: U[(Event, RElementPosition) => Callback],
-                   onMouseDown: U[Event => Callback],
-                   handle: U[String],
-                   minConstraints: U[RGrid],
-                   maxConstraints: U[RGrid])
 
   /**
    *

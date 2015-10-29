@@ -1,4 +1,4 @@
-package chandu0101.scalajs.react.components.materialui
+iDpackage chandu0101.scalajs.react.components.materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react.{React, ReactComponentU_, ReactElement, ReactNode}
@@ -20,7 +20,9 @@ case class MuiDialog(contentClassName : js.UndefOr[String] = js.undefined,
                      contentStyle : js.UndefOr[js.Any] = js.undefined,
                      title :  js.UndefOr[String] = js.undefined,
                      actionFocus : js.UndefOr[String] = js.undefined,
-                     repositionOnUpdate : js.UndefOr[Boolean]=js.undefined) {
+                     repositionOnUpdate : js.UndefOr[Boolean]=js.undefined,
+                     autoDetectWindowHeight: U[Boolean] = js.undefined,
+                     autoScrollBodyContent: U[Boolean] = js.undefined) {
 
   def apply(children : ReactNode*) = {
     val props = JSMacro[MuiDialog](this)

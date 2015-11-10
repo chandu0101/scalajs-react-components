@@ -60,27 +60,27 @@ object MuiUpdatingComponentsDemo {
    */
 
   class Backend($: BackendScope[Unit, State]) {
-    def updateStartDate   = (_: js.Date, d: js.Date) =>
+    def updateStartDate   = (_: js.UndefOr[Nothing], d: js.Date) =>
       $.modState(s => validStateOrSetError(s.copy(startDate = d, endDate = if (after(d, s.endDate)) d else s.endDate)))
-    def updateStartTime   = (_: js.Date, d: js.Date) => $.modState(s => validStateOrSetError(s.copy(startTime = d)))
-    def updateEndDate     = (_: js.Date, d: js.Date) => $.modState(s => validStateOrSetError(s.copy(endDate = d)))
-    def updateEndTime     = (_: js.Date, d: js.Date) => $.modState( s => validStateOrSetError(s.copy(endTime = d)))
-    def modeSwitch        = (_: ReactEvent, mode: String) => $.modState(_.copy(pickerMode = MuiDatePickerMode.newMode(mode)))
+    def updateStartTime   = (_: js.UndefOr[Nothing], d: js.Date) => $.modState(s => validStateOrSetError(s.copy(startTime = d)))
+    def updateEndDate     = (_: js.UndefOr[Nothing], d: js.Date) => $.modState(s => validStateOrSetError(s.copy(endDate = d)))
+    def updateEndTime     = (_: js.UndefOr[Nothing], d: js.Date) => $.modState( s => validStateOrSetError(s.copy(endTime = d)))
+    def modeSwitch        = (_: ReactEvent, mode: String) => $.modState(_.copy(pickerMode = if (mode == MuiDatePickerMode.PORTRAIT.value) MuiDatePickerMode.PORTRAIT else MuiDatePickerMode.LANDSCAPE))
     def autoOkToggle      = (_: ReactEvent, toggled: Boolean) => $.modState(_.copy(useAutoOk = toggled))
-    def dateFormatUpdate  = (_: ReactEvent, index: Int, _: js.Object) => $.modState(_.copy(dateFormatterOffset = index))
+    def dateFormatUpdate  = (_: ReactEvent, index: Int, _: js.Any) => $.modState(_.copy(dateFormatterOffset = index))
 
     def onSubmit: ReactEventH => Callback = _ => Callback(dom.alert("Do something Ajax-y with: " + $.state))
 
     def render(S: State) = {
       <.div(
         CodeExample(code,"MuiUpdatingComponentsDemo")(
-          MuiPaper(zDepth = 3)(
+          MuiPaper(zDepth = MuiPaperZDepth._3)(
             <.div(^.padding := 3.em,
 
               MuiToggle(
                 onToggle = autoOkToggle,
                 defaultToggled = S.useAutoOk,
-                labelPosition = MuiSwitchLabelPosition.RIGHT,
+                labelPosition = MuiToggleLabelPosition.RIGHT,
                 label = s"Date Picker AutoOk is ${autoOkName(S.useAutoOk)}. Switch to AutoOk:${autoOkName(! S.useAutoOk)}."
               )(),
 
@@ -99,7 +99,7 @@ object MuiUpdatingComponentsDemo {
               ),
 
               <.label("Date display:",
-                MuiDropdownMenu(
+                MuiDropDownMenu(
                   menuItems = dateFormattersMenuItems,
                   onChange = dateFormatUpdate)()
               ),
@@ -219,7 +219,7 @@ object MuiUpdatingComponentsDemo {
   )
 
   val dateFormattersMenuItems = dateFormatters.zipWithIndex.map {
-    case((label, f), i) => MuiDropdownMenuItem(payload = i.toString, text = label + " " + f(new js.Date()))
+    case((label, f), i) => MuiDropDownMenuItem(payload = i.toString, text = label + " " + f(new js.Date()))
   }.toJsArray
 
 

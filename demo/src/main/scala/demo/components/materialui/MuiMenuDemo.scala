@@ -6,17 +6,13 @@ import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
+import scala.scalajs.js.`|`
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 import scalacss.mutable.StyleSheet.Inline
 
 object MuiMenuDemo {
 
-  val code =
-    """
-      | MuiAppBar(title = "Title")()
-      |
-    """.stripMargin
 
   val labelMenuCode =
     """
@@ -25,9 +21,9 @@ object MuiMenuDemo {
       |    MuiMenuItem(payload = "2",text = "Type",data = "Announcement"),
       |    MuiMenuItem(payload = "3",text = "Caller ID",data = "(123) 456-7890")
       |  )
-      | 
+      |
       |  MuiMenu(menuItems = labelMenuItems)
-      | 
+      |
       |
     """.stripMargin
 
@@ -38,7 +34,7 @@ object MuiMenuDemo {
       |    MuiMenuItem(payload = "2",text = "Uncategorized",number = "6"),
       |    MuiMenuItem(payload = "3",text = "Trash",number = "11")
       |  )
-      | 
+      |
       | MuiMenu(menuItems = numberMenuItems,autoWidth = false)
       |
     """.stripMargin
@@ -69,52 +65,67 @@ object MuiMenuDemo {
   }
 
   lazy val labelMenuItems = js.Array(
-    MuiMenuItem(payload = "1",text = "ID",data = "12345678"),
-    MuiMenuItem(payload = "2",text = "Type",data = "Announcement"),
-    MuiMenuItem(payload = "3",text = "Caller ID",data = "(123) 456-7890")
+    MuiMenuItemJson(payload = "1", text = "ID", data = "12345678"),
+    MuiMenuItemJson(payload = "2", text = "Type", data = "Announcement"),
+    MuiMenuItemJson(payload = "3", text = "Caller ID", data = "(123) 456-7890")
   )
 
   lazy val numberMenuItems = js.Array(
-    MuiMenuItem(payload = "1",text = "All",number = "2"),
-    MuiMenuItem(payload = "2",text = "Uncategorized",number = "6"),
-    MuiMenuItem(payload = "3",text = "Trash",number = "11")
+    MuiMenuItemJson(payload = "1", text = "All", number = "2"),
+    MuiMenuItemJson(payload = "2", text = "Uncategorized", number = "6"),
+    MuiMenuItemJson(payload = "3", text = "Trash", number = "11")
   )
 
   lazy val filterMenuItems = js.Array(
-    MuiMenuItem(payload = "1",text = "Text Opt-in",toggle = true),
-    MuiMenuItem(payload = "2",text = "Text Opt-out",toggle = true,defaultToggled = true),
-    MuiMenuItem(payload = "3",text = "Voice Opt-out",toggle = true)
+    MuiMenuItemJson(payload = "1", text = "Text Opt-in", toggle = true),
+    MuiMenuItemJson(payload = "2", text = "Text Opt-out", toggle = true, defaultToggled = true),
+    MuiMenuItemJson(payload = "3", text = "Voice Opt-out", toggle = true)
   )
 
-  val component = ReactComponentB[Unit]("MuiMenuDemo")
-    .render(P => {
-    <.div(Style.container,
-      <.h3("Menus"),
-      MuiTabs()(
-        MuiTab(label = "Label Menu")(
-          CodeExample(labelMenuCode)(
-            <.div(Style.content,
-              MuiMenu(menuItems = labelMenuItems,autoWidth = false)()
-            )
-          )
-        ),
-        MuiTab(label = "Number Menu")(
-          CodeExample(numberMenuCode)(
-            <.div(Style.content,
-              MuiMenu(menuItems = numberMenuItems,autoWidth = false)()
-            )
-          )
-        ),
-        MuiTab(label = "Filter Menu")(
-          CodeExample(filterMenuCode)(
-            <.div(Style.content,
-              MuiMenu(menuItems = filterMenuItems,autoWidth = false)()
+  case class State(selected: String | js.Array[String])
+
+  class Backend($: BackendScope[Unit, State]){
+    val onChange: (ReactEvent, (String | js.Array[String])) => Callback =
+      (e, value) => Callback.info(s"chose $value") >> $.setState(State(value))
+    val onItemTouchTap: (ReactTouchEvent, ReactElement) => Callback =
+      (e, elem) => Callback.info(s"touched $elem")
+
+    def render(S: State) = {
+      <.div(Style.container,
+        <.h3("Menus"),
+        MuiTabs()(
+          MuiTab(label = "Menu example")(
+            CodeExample(filterMenuCode)(
+              <.div(Style.content,
+                MuiMenu(
+                  desktop = true,
+                  width = 320: (String | Int),
+                  onChange = onChange,
+                  onItemTouchTap = onItemTouchTap,
+                  value = S.selected,
+                  multiple = true,
+                  openDirection = MuiMenuOpenDirection.TOP_LEFT
+                )(
+                  MuiMenuItem(primaryText = "Bold",          value = "bold", checked = true, secondaryText = "&#8984;B")(),
+                  MuiMenuItem(primaryText = "Italic",        value = "italic", secondaryText = "&#8984;I")(),
+                  MuiMenuItem(primaryText = "Underline",     value = "under", secondaryText = "&#8984;U")(),
+                  MuiMenuItem(primaryText = "Strikethrough", value = "strike", secondaryText = "Alt+Shift+5")(),
+                  MuiMenuItem(primaryText = "Superscript",   value = "super", secondaryText = "&#8984;.")(),
+                  MuiMenuItem(primaryText = "Subscript",     value = "sub", secondaryText = "&#8984;,")(),
+                  MuiMenuDivider()(),
+                  MuiMenuItem(primaryText = "Align",         value = "align")()
+                )
+              )
             )
           )
         )
       )
-    )
-  }).buildU
+    }
+  }
+  val component = ReactComponentB[Unit]("MuiMenuDemo")
+    .initialState(State(js.Array[String]()))
+    .renderBackend[Backend]
+    .buildU
 
   def apply() = component()
 

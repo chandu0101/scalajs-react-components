@@ -3,11 +3,11 @@ package components
 package materialui
 
 import chandu0101.scalajs.react.components._
-import chandu0101.scalajs.react.components.materialui.{MuiRaisedButton, MuiSnackBar, MuiSnackBarM}
+import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import org.scalajs.dom
 
-object MuiSnackBarDemo {
+object MuiSnackbarDemo {
   val code =
     """
       |  MuiSnackBar(message = " Event added to your calender",
@@ -18,7 +18,7 @@ object MuiSnackBarDemo {
     """.stripMargin
 
   class Backend(t: BackendScope[_,_]) {
-    val snackBarRef = RefHolder[MuiSnackBarM]
+    val snackBarRef = RefHolder[MuiSnackbarM]
 
     val handleAction: ReactEvent => Callback =
       e ⇒ Callback(dom.window.alert("We removed Event from your cal"))
@@ -28,7 +28,7 @@ object MuiSnackBarDemo {
 
     def render = {
       CodeExample(code, "MuiSnackBar")(
-        MuiSnackBar(
+        MuiSnackbar(
           message = "Event added to your calender",
           action = "undo",
           ref = snackBarRef.set,

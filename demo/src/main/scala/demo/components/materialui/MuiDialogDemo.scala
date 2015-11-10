@@ -23,40 +23,45 @@ object MuiDialogDemo {
       |
     """.stripMargin
 
-  class Backend(t: BackendScope[_,_]) {
-    var dialogRef = RefHolder[MuiDialogM]
+  case class State(isOpen: Boolean)
 
-    def handleDialogCancel(e: ReactEventH): Callback =
-      dialogRef().map(_.dismiss()) >> Callback.info("Cancel Clicked")
+  class Backend($: BackendScope[_, State]) {
+    val open  = $.setState(State(true))
+    val close = $.setState(State(false))
 
-    def handleDialogSubmit(e: ReactEventH): Callback =
-      dialogRef().map(_.dismiss()) << Callback.info("Submit Clicked")
+    def handleDialogCancel: ReactEventH => Callback =
+      e => close >> Callback.info("Cancel Clicked")
 
-    def openDialog(e: ReactEventH): Callback =
-      dialogRef().map(_.show())
+    def handleDialogSubmit: ReactEventH => Callback =
+      e => close >> Callback.info("Submit Clicked")
 
-    def render = {
+    val openDialog: ReactEventH => Callback =
+      e => open >> Callback.info("Opened")
+
+    def render(S: State) = {
       val actions: js.Array[ReactElement] = js.Array(
-       MuiFlatButton(label = "Cancel",secondary = true,onTouchTap = handleDialogCancel _)(),
-       MuiFlatButton(label = "Submit",secondary = true,onTouchTap = handleDialogSubmit _)()
+        MuiFlatButton(key = "1", label = "Cancel", secondary = true, onTouchTap = handleDialogCancel)(),
+        MuiFlatButton(key = "2", label = "Submit", secondary = true, onTouchTap = handleDialogSubmit)()
       )
       <.div(
-        CodeExample(code,"MuiDialog")(
-        <.div(
-          MuiDialog(title = "Dialog With Actions",
-            actions = actions,
-            ref = dialogRef.set)(
+        CodeExample(code, "MuiDialog")(
+          <.div(
+            MuiDialog(
+              key = System.currentTimeMillis().toString, //gotta be a bug!
+              title = "Dialog With Actions",
+              actions = actions,
+              openImmediately = S.isOpen)(
               "Dialog example with floating buttons"
             ),
-          MuiRaisedButton(label = "Dialog", onTouchTap = openDialog _ )()
-        )
+            MuiRaisedButton(label = "Dialog", onTouchTap = openDialog)()
+          )
         )
       )
     }
-
   }
 
   val component = ReactComponentB[Unit]("MuiDialogDemo")
+    .initialState(State(isOpen = false))
     .renderBackend[Backend]
     .buildU
 

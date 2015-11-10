@@ -72,13 +72,13 @@ object MuiSwitchesDemo {
         MuiTab(label = "Checkbox")(
           CodeExample(checkboxCode)(
             <.div(Style.content,
-              MuiCheckBox(name="checkboxName1",
+              MuiCheckbox(name="checkboxName1",
                 value="checkboxValue1",
                 label="went for a run today")(),
-              MuiCheckBox(name="checkboxName2",
+              MuiCheckbox(name="checkboxName2",
                 value="checkboxValue2",
                 label="feed the dog")(),
-              MuiCheckBox(name="checkboxName3",
+              MuiCheckbox(name="checkboxName3",
                 value="checkboxValue3",
                 label="built a house on the moon",
                 disabled = true
@@ -89,8 +89,7 @@ object MuiSwitchesDemo {
         MuiTab(label = "RadioButton")(
           CodeExample(radioButtonCode)(
             <.div(Style.content,
-              MuiRadioButtonGroup(name = "shipspeed",
-                defaultSelected = "not_light")(
+              MuiRadioButtonGroup(name = "shipspeed", defaultSelected = "not_light")(
                 MuiRadioButton(value = "light" ,label = "prepare for light speed")(),
                 MuiRadioButton(value = "no_light" ,label = "light speed too slow")(),
                 MuiRadioButton(value = "ludicrous" ,label = "go to ludicrous speed",disabled = true)()

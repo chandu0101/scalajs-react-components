@@ -6,14 +6,14 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
   
-case class MuiListDivider(
+case class MuiMenuDivider(
 	key: js.UndefOr[String]   = js.undefined,
 	ref: js.UndefOr[String]   = js.undefined)
 {
 
   def apply() = {
-    val props = JSMacro[MuiListDivider](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.ListDivider)
+    val props = JSMacro[MuiMenuDivider](this)
+    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.MenuDivider)
     f(props).asInstanceOf[ReactComponentU_]
   }
 }

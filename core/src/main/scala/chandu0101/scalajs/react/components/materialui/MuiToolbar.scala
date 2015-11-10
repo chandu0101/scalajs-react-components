@@ -6,15 +6,14 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
   
-case class MuiListDivider(
+case class MuiToolbar(
 	key: js.UndefOr[String]   = js.undefined,
 	ref: js.UndefOr[String]   = js.undefined)
 {
 
-  def apply() = {
-    val props = JSMacro[MuiListDivider](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.ListDivider)
-    f(props).asInstanceOf[ReactComponentU_]
+  def apply(children: ReactNode*) = {
+    val props = JSMacro[MuiToolbar](this)
+    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Toolbar)
+    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }
-    

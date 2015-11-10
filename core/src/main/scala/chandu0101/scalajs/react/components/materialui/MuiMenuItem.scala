@@ -1,58 +1,42 @@
-package chandu0101.scalajs.react.components
-package materialui
 
+package chandu0101.scalajs.react.components.materialui
+
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
-import scala.scalajs.js.{Array => JArray}
+import scala.scalajs.js.`|`
+  
+case class MuiMenuItem(
+	key:           js.UndefOr[String]          = js.undefined,
+	ref:           js.UndefOr[String]          = js.undefined,
+	/* default: false: If true, a left check mark will be rendered*/
+	checked:       js.UndefOr[Boolean]         = js.undefined,
+	/* default: false: Indicates if the menu should render with compact desktop styles.*/
+	desktop:       js.UndefOr[Boolean]         = js.undefined,
+	/* default: false: Disables a menu item.*/
+	disabled:      js.UndefOr[Boolean]         = js.undefined,
+	/*  Style overrides for the inner div.*/
+	innerDivStyle: js.UndefOr[CssProperties]   = js.undefined,
+	/* default: false: If true, the children will be indented. Only needed when there is no leftIcon.*/
+	insetChildren: js.UndefOr[Boolean]         = js.undefined,
+	/*  This is the SvgIcon or FontIcon to be displayed on the left side.*/
+	leftIcon:      js.UndefOr[ReactElement]    = js.undefined,
+	/*  This is the block element that contains the primary text. If a string is passed in, a div tag will be rendered.*/
+	primaryText:   js.UndefOr[ReactNode]       = js.undefined,
+	/*  This is the SvgIcon or FontIcon to be displayed on the right side.*/
+	rightIcon:     js.UndefOr[ReactElement]    = js.undefined,
+	/*  This is the block element that contains the secondary text. If a string is passed in, a div tag will be rendered.*/
+	secondaryText: js.UndefOr[ReactNode]       = js.undefined,
+	/*  Override the inline-styles of the menu item's root element.*/
+	style:         js.UndefOr[CssProperties]   = js.undefined,
+	/*  The value of the menu item.*/
+	value:         js.UndefOr[String]          = js.undefined)
+{
 
-
-
-case class MuiMenuItem(payload: U[String] = uNone,
-                       text: U[String] = uNone,
-                       id: U[String] = uNone,
-                       number: U[String] = uNone,
-                       data: U[String] = uNone,
-                       iconClassName: U[String] = uNone,
-                       toggle: U[Boolean] = uNone,
-                       disabled: U[Boolean] = uNone,
-                       defaultToggled: U[Boolean] = uNone,
-                       route: U[String] = uNone,
-                       `type`: U[MuiMenuItemType] = uNone,
-                       className: U[String] = uNone,
-                       selected: U[Boolean] = uNone,
-                       style: U[js.Any] = uNone) {
-
-  val toJS = JSMacro[MuiMenuItem](this)
+  def apply() = {
+    val props = JSMacro[MuiMenuItem](this)
+    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.MenuItem)
+    f(props).asInstanceOf[ReactComponentU_]
+  }
 }
-
-object MuiMenuItem {
-
-  def fromJson(obj: js.Dynamic) =
-    MuiMenuItem(
-      defaultToggled = if (js.isUndefined(obj.defaultToggled)) uNone else obj.defaultToggled.asInstanceOf[Boolean],
-      text = if (js.isUndefined(obj.text)) uNone else obj.text.asInstanceOf[String],
-      data = if (js.isUndefined(obj.data)) uNone else obj.text.asInstanceOf[String],
-      number = if (js.isUndefined(obj.number)) uNone else obj.number.asInstanceOf[String],
-      iconClassName = if (js.isUndefined(obj.iconClassName)) uNone else obj.iconClassName.asInstanceOf[String],
-      route = if (js.isUndefined(obj.route)) uNone else obj.route.asInstanceOf[String],
-      disabled = if (js.isUndefined(obj.disabled)) uNone else obj.disabled.asInstanceOf[Boolean],
-      payload = if (js.isUndefined(obj.payload)) uNone else obj.payload.asInstanceOf[String],
-      toggle = if (js.isUndefined(obj.toggle)) uNone else obj.toggle.asInstanceOf[Boolean],
-      id = if (js.isUndefined(obj.id)) uNone else obj.id.asInstanceOf[String],
-      className = if (js.isUndefined(obj.className)) uNone else obj.className.asInstanceOf[String],
-      style = if (js.isUndefined(obj.style)) uNone else obj.style.asInstanceOf[js.Any],
-      selected = if (js.isUndefined(obj.selected)) uNone else obj.selected.asInstanceOf[Boolean]
-    )
-}
-
-class MuiMenuItemType private(val value: String) extends AnyVal
-
-object MuiMenuItemType {
-
-  val SUBHEADER = new MuiMenuItemType("SUBHEADER")
-  val LINK = new MuiMenuItemType("LINK")
-  val NESTED = new MuiMenuItemType("NESTED")
-
-  def newType(name: String) = new MuiMenuItemType(name)
-
-}
+    

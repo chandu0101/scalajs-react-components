@@ -81,6 +81,6 @@ object ThemeInstaller{
       val theme = Mui.Styles.ThemeManager.getMuiTheme(rawTheme)
       val t = spec.asInstanceOf[js.Dynamic]
       t.updateDynamic("childContextTypes")(js.Dynamic.literal("muiTheme" -> React.asInstanceOf[js.Dynamic].PropTypes.`object`): js.Object)
-      t.updateDynamic("getChildContext")(((any: js.Object) => {println(any);js.Dynamic.literal("muiTheme" -> theme)}): js.Function)
+      t.updateDynamic("getChildContext")(((any: js.Object) => js.Dynamic.literal("muiTheme" -> theme)): js.Function)
     }
 }

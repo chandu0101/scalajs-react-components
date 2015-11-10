@@ -1,7 +1,9 @@
 package chandu0101.scalajs.react
 
 import japgolly.scalajs.react._
+import scala.reflect.ClassTag
 import scala.scalajs.js
+import scala.scalajs.js.`|`
 
 package object components
   extends util.CommonStyles {

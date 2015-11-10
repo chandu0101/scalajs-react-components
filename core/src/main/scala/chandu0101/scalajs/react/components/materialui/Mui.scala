@@ -38,6 +38,7 @@ object Mui extends js.Object {
   val ListDivider:          js.Dynamic = js.native
   val ListItem:             js.Dynamic = js.native
   val Menu:                 js.Dynamic = js.native
+  val MenuDivider:          js.Dynamic = js.native
   val MenuItem:             js.Dynamic = js.native
   val Mixins:               js.Dynamic = js.native
   val Overlay:              js.Dynamic = js.native

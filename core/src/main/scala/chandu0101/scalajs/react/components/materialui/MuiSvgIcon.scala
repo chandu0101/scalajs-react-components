@@ -3,6 +3,7 @@ package materialui
 
 import japgolly.scalajs.react._
 import scala.scalajs.js
+import chandu0101.macros.tojs.JSMacro
 
 case class MuiSvgIcon(key: js.UndefOr[String] = js.undefined,
                       style: js.UndefOr[js.Any] = js.undefined,

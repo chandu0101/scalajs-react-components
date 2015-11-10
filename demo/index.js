@@ -14,6 +14,11 @@ window.mui = mui;
 
 require("./styles/default.css");
 
+//use new menus
+window.mui.Menu = require('material-ui/lib/menus/menu');
+window.mui.MenuItem = require('material-ui/lib/menus/menu-item');
+window.mui.MenuDivider = require('material-ui/lib/menus/menu-divider');
+
 //images
 var googleMapImage = require("./images/googleMap.png");
    reactListViewImage = require("./images/reactListView.png"),

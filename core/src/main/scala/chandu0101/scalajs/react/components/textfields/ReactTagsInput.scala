@@ -4,27 +4,28 @@ package textfields
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.{Array => JArray}
+import chandu0101.macros.tojs.JSMacro
 
-case class ReactTagsInput(onBlur: U[Callback] = uNone,
-                          onKeyDown: U[ReactEventI => Callback] = uNone,
-                          onTagRemove: U[String => Callback] = uNone,
-                          onChange: U[(JArray[String], String) => Callback] = uNone,
-                          removeKeys: U[JArray[Int]] = uNone,
-                          validate: U[String => Boolean] = uNone,
-                          classNamespace: U[String] = uNone,
-                          ref: U[ReactTagsInputM => Unit] = uNone,
-                          addOnBlur: U[Boolean] = uNone,
-                          placeholder: U[String] = uNone,
-                          valueLink: U[js.Object] = uNone,
-                          onKeyUp: U[ReactEventI => Callback] = uNone,
-                          key: U[String] = uNone,
-                          addKeys: U[JArray[Int]] = uNone,
-                          onTagAdd: U[String => Callback] = uNone,
-                          validateAsync: U[js.Function] = uNone,
-                          onChangeInput: U[String => Callback] = uNone,
-                          defaultValue: U[JArray[String]] = uNone,
-                          transform: U[String => Callback] = uNone,
-                          value: U[JArray[String]] = uNone) {
+case class ReactTagsInput(onBlur: js.UndefOr[Callback] = js.undefined,
+                          onKeyDown: js.UndefOr[ReactEventI => Callback] = js.undefined,
+                          onTagRemove: js.UndefOr[String => Callback] = js.undefined,
+                          onChange: js.UndefOr[(JArray[String], String) => Callback] = js.undefined,
+                          removeKeys: js.UndefOr[JArray[Int]] = js.undefined,
+                          validate: js.UndefOr[String => Boolean] = js.undefined,
+                          classNamespace: js.UndefOr[String] = js.undefined,
+                          ref: js.UndefOr[ReactTagsInputM => Unit] = js.undefined,
+                          addOnBlur: js.UndefOr[Boolean] = js.undefined,
+                          placeholder: js.UndefOr[String] = js.undefined,
+                          valueLink: js.UndefOr[js.Object] = js.undefined,
+                          onKeyUp: js.UndefOr[ReactEventI => Callback] = js.undefined,
+                          key: js.UndefOr[String] = js.undefined,
+                          addKeys: js.UndefOr[JArray[Int]] = js.undefined,
+                          onTagAdd: js.UndefOr[String => Callback] = js.undefined,
+                          validateAsync: js.UndefOr[js.Function] = js.undefined,
+                          onChangeInput: js.UndefOr[String => Callback] = js.undefined,
+                          defaultValue: js.UndefOr[JArray[String]] = js.undefined,
+                          transform: js.UndefOr[String => Callback] = js.undefined,
+                          value: js.UndefOr[JArray[String]] = js.undefined) {
 
   def apply() = {
     val props = JSMacro[ReactTagsInput](this)

@@ -46,7 +46,7 @@ object ReactTreeView {
 
   case class State(filterText: String,
                    filterMode: Boolean,
-                   selectedNode: U[NodeC])
+                   selectedNode: js.UndefOr[NodeC])
 
   class Backend($: BackendScope[Props, State]) {
 
@@ -188,22 +188,22 @@ object ReactTreeView {
     .build
 
   val component = ReactComponentB[Props]("ReactTreeView")
-    .initialState(State("", false, uNone))
+    .initialState(State("", false, js.undefined))
     .renderBackend[Backend]
     .build
 
   case class Props(root: TreeItem,
                    open: Boolean,
-                   onItemSelect: U[(String, String, Int) => Callback],
+                   onItemSelect: js.UndefOr[(String, String, Int) => Callback],
                    showSearchBox: Boolean,
                    style: Style)
 
   def apply(root: TreeItem,
             openByDefault: Boolean = false,
-            onItemSelect: U[(String, String, Int) => Callback] = uNone,
+            onItemSelect: js.UndefOr[(String, String, Int) => Callback] = js.undefined,
             showSearchBox: Boolean = false,
-            ref: U[String] = uNone,
-            key: U[js.Any] = uNone,
+            ref: js.UndefOr[String] = js.undefined,
+            key: js.UndefOr[js.Any] = js.undefined,
             style: Style = new Style {}) =
     component.set(key, ref)(Props(root, openByDefault, onItemSelect, showSearchBox, style))
 

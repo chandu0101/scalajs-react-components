@@ -1,24 +1,25 @@
 package chandu0101.scalajs.react.components
 package listviews
 
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import org.scalajs.dom.raw.HTMLElement
 import scala.scalajs.js
 import scala.scalajs.js.JSConverters.JSRichGenTraversableOnce
 
-case class ReactInfinite(handleScroll: U[HTMLElement => Callback] = uNone,
-                         preloadAdditionalHeight: U[Int] = uNone,
-                         isInfiniteLoading: U[Boolean] = uNone,
-                         preloadBatchSize: U[Int] = uNone,
+case class ReactInfinite(handleScroll: js.UndefOr[HTMLElement => Callback] = js.undefined,
+                         preloadAdditionalHeight: js.UndefOr[Int] = js.undefined,
+                         isInfiniteLoading: js.UndefOr[Boolean] = js.undefined,
+                         preloadBatchSize: js.UndefOr[Int] = js.undefined,
                          containerHeight: Int,
-                         ref: U[ReactInfiniteM => Unit] = uNone,
-                         loadingSpinnerDelegate: U[ReactElement] = uNone,
-                         timeScrollStateLastsForAfterUserScrolls: U[Int] = uNone,
+                         ref: js.UndefOr[ReactInfiniteM => Unit] = js.undefined,
+                         loadingSpinnerDelegate: js.UndefOr[ReactElement] = js.undefined,
+                         timeScrollStateLastsForAfterUserScrolls: js.UndefOr[Int] = js.undefined,
                          elementHeight: Double,
-                         key: U[String] = uNone,
-                         className: U[String] = uNone,
-                         infiniteLoadBeginBottomOffset: U[Int] = uNone,
-                         onInfiniteLoad: U[Callback] = uNone) {
+                         key: js.UndefOr[String] = js.undefined,
+                         className: js.UndefOr[String] = js.undefined,
+                         infiniteLoadBeginBottomOffset: js.UndefOr[Int] = js.undefined,
+                         onInfiniteLoad: js.UndefOr[Callback] = js.undefined) {
 
   def apply(children: Seq[ReactElement]) = {
     val props = JSMacro[ReactInfinite](this)

@@ -2,7 +2,6 @@ package chandu0101.scalajs.react.components
 package maps
 
 import chandu0101.scalajs.react.components.fascades._
-import chandu0101.scalajs.react.components.util.CommonUtils
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.{Event, document, html}
@@ -10,6 +9,16 @@ import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
 
 object GoogleMap {
+
+  def parameterizeUrl(url: String, parameters: Map[String, Any]): String = {
+    require(url != null, "Missing argument 'url'.")
+    require(parameters != null, "Missing argument 'parameters'.")
+
+    parameters.foldLeft(url)((base, kv) =>
+      base ++ {
+        if (base.contains("?")) "&" else "?"
+      } ++ kv._1 ++ "=" + kv._2)
+  }
 
   case class State(mapObjects: Option[(GMap, GInfoWindow)], markers: List[GMarker])
 
@@ -19,7 +28,7 @@ object GoogleMap {
         Callback {
           val script = document.createElement("script").asInstanceOf[html.Script]
           script.`type` = "text/javascript"
-          script.src = CommonUtils.parameterizeUrl(P.url, Map("callback" -> "gmapinit"))
+          script.src = parameterizeUrl(P.url, Map("callback" -> "gmapinit"))
           document.body.appendChild(script)
           g.gmapinit = initialize(P).toJsFn
         } else initialize(P)

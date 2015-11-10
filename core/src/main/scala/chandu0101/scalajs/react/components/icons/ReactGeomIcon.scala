@@ -1,22 +1,22 @@
 package chandu0101.scalajs.react.components
 package icons
 
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 
 case class ReactGeomIcon(name: IconName,
-                         height: U[String] = uNone,
-                         ref: U[String] = uNone,
-                         key: U[String] = uNone,
-                         fill: U[String] = uNone,
-                         width: U[String] = uNone) {
+                         height: js.UndefOr[String] = js.undefined,
+                         ref: js.UndefOr[String] = js.undefined,
+                         key: js.UndefOr[String] = js.undefined,
+                         fill: js.UndefOr[String] = js.undefined,
+                         width: js.UndefOr[String] = js.undefined) {
 
   def apply() = {
     val props = JSMacro[ReactGeomIcon](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactGeomIcon)
     f(props).asInstanceOf[ReactComponentU_]
   }
-
 }
 
 class IconName private(val value: String) extends AnyVal

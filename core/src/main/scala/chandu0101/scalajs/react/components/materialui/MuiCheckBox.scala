@@ -62,8 +62,8 @@ object MuiCheckboxLabelPosition{
 @js.native
 class MuiCheckboxM extends js.Object{
 	/* Checkbox.isChecked(): Returns true if the checkbox is currently checked. Returns false otherwise*/
-	def isChecked(): Unit = js.native
+	def isChecked(): Boolean = js.native
 
 	/* Checkbox.setChecked(newCheckedValue): Sets the checkbox to the value of newCheckedValue. This method cannot be used while "checked" is defined as a property.*/
-	def setChecked(): Unit = js.native
+	def setChecked(b: Boolean): Unit = js.native
 }

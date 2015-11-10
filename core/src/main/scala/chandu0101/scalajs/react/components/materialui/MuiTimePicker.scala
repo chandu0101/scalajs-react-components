@@ -54,13 +54,13 @@ object MuiTimePickerFormat{
 @js.native
 class MuiTimePickerM extends js.Object{
 	/* TimePicker.getTime(): Returns the current time value.*/
-	def getTime(): Unit = js.native
+	def getTime(): js.Date = js.native
 
 	/* TimePicker.setTime(t): Sets the time value to t, where t is a date object.*/
-	def setTime(): Unit = js.native
+	def setTime(value: js.Date): Unit = js.native
 
 	/* TimePicker.formatTime(time): Formats the Date object to a current component's time format.*/
-	def formatTime(): Unit = js.native
+	def formatTime(value: js.Date): String = js.native
 
 	/* TimePicker.openDialog(): Opens the time-picker dialog programmatically. Use this if you want to open the dialog in response to some event other than focus/tap on the input field, such as an external button click.*/
 	def openDialog(): Unit = js.native

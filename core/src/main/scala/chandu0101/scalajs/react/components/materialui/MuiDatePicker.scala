@@ -74,10 +74,10 @@ object MuiDatePickerMode{
 @js.native
 class MuiDatePickerM extends js.Object{
 	/* DatePicker.getDate(): Returns the current date value.*/
-	def getDate(): Unit = js.native
+	def getDate(): js.Date = js.native
 
 	/* DatePicker.setDate(d): Sets the date value to d, where d is a date object.*/
-	def setDate(): Unit = js.native
+	def setDate(value: js.Date): Unit = js.native
 
 	/* DatePicker.openDialog(): Opens the date-picker dialog programmatically. Use this if you want to open the dialog in response to some event other than focus/tap on the input field, such as an external button click.*/
 	def openDialog(): Unit = js.native

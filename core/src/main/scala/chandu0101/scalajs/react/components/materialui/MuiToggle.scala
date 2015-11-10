@@ -61,8 +61,8 @@ object MuiToggleLabelPosition{
 @js.native
 class MuiToggleM extends js.Object{
 	/* Toggle.isToggled(): Returns true if the checkbox is currently checked. Returns false otherwise*/
-	def isToggled(): Unit = js.native
+	def isToggled(): Boolean = js.native
 
 	/* Toggle.setToggled(newToggledValue): Sets the toggle to the value of newToggledValue. This method cannot be used while "checked" is defined as a property.*/
-	def setToggled(): Unit = js.native
+	def setToggled(value: Boolean): Unit = js.native
 }

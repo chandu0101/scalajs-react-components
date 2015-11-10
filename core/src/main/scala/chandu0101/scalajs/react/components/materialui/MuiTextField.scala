@@ -76,11 +76,11 @@ class MuiTextFieldM extends js.Object{
 	def focus(): Unit = js.native
 
 	/* TextField.getValue(): Returns the value of the input.*/
-	def getValue(): Unit = js.native
+	def getValue(): String = js.native
 
 	/* TextField.setErrorText(newErrorText): Sets the error text on the input element.*/
-	def setErrorText(): Unit = js.native
+	def setErrorText(value: String): Unit = js.native
 
 	/* TextField.setValue(newValue): Sets the value of the input element.*/
-	def setValue(): Unit = js.native
+	def setValue(value: String): Unit = js.native
 }

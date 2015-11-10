@@ -41,10 +41,10 @@ object MuiRadioButtonGroupLabelPosition{
 @js.native
 class MuiRadioButtonGroupM extends js.Object{
 	/* RadioButtonGroup.getSelectedValue(): Returns the string value of the radio button that is currently selected. If nothing has been selected, an empty string is returned.*/
-	def getSelectedValue(): Unit = js.native
+	def getSelectedValue(): String = js.native
 
 	/* RadioButtonGroup.setSelectedValue(newSelectionValue): Sets the selected radio button to the radio button whose value matches newSelectionValue*/
-	def setSelectedValue(): Unit = js.native
+	def setSelectedValue(value: String): Unit = js.native
 
 	/* RadioButtonGroup.clearValue(): Clears the selected value for the radio button group.*/
 	def clearValue(): Unit = js.native

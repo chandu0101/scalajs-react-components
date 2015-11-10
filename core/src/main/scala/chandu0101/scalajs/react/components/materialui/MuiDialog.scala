@@ -50,5 +50,5 @@ case class MuiDialog(
 @js.native
 class MuiDialogM extends js.Object{
 	/* Dialog.isOpen(): Get the dialog open state.*/
-	def isOpen(): Unit = js.native
+	def isOpen(): Boolean = js.native
 }

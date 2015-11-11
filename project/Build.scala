@@ -10,6 +10,7 @@ object ScalajsReactComponents extends Build {
 
   val scalajsReactVersion = "0.10.0"
   val scalaCSSVersion = "0.3.1"
+  val macrosVersion = "0.5"
 
   type PE = Project => Project
 

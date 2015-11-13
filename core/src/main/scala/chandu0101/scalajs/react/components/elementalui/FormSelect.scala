@@ -1,9 +1,10 @@
 package chandu0101.scalajs.react.components
 package elementalui
 
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
-import scala.scalajs.js.{ Array ⇒ JArray }
+import scala.scalajs.js.`|`
 
 object FormSelect {
   case class Option(label: String, value: String) {
@@ -15,19 +16,19 @@ object FormSelect {
 }
 
 case class FormSelect(
-    className: U[String] = uNone,
-    alwaysValidate: U[Boolean] = uNone,
-    disabled: U[Boolean] = uNone,
-    firstOption: U[String] = uNone,
-    htmFor: U[String] = uNone,
-    id: U[String] = uNone,
-    lable: U[String] = uNone,
-    options: JArray[FormSelect.Option] = JArray(),
-    prependEmptyOption: U[Boolean] = uNone,
-    onChange: U[ReactEventI ⇒ Callback] = uNone,
-    required: U[Boolean] = uNone,
-    requiredMessage: U[String] = uNone,
-    value: U[String] = uNone) {
+    className: js.UndefOr[String] = js.undefined,
+    alwaysValidate: js.UndefOr[Boolean] = js.undefined,
+    disabled: js.UndefOr[Boolean] = js.undefined,
+    firstOption: js.UndefOr[String] = js.undefined,
+    htmFor: js.UndefOr[String] = js.undefined,
+    id: js.UndefOr[String] = js.undefined,
+    lable: js.UndefOr[String] = js.undefined,
+    options: js.Array[FormSelect.Option] = js.Array(),
+    prependEmptyOption: js.UndefOr[Boolean] = js.undefined,
+    onChange: js.UndefOr[ReactEventI ⇒ Callback] = js.undefined,
+    required: js.UndefOr[Boolean] = js.undefined,
+    requiredMessage: js.UndefOr[String] = js.undefined,
+    value: js.UndefOr[String] = js.undefined) {
   def apply(children: ReactNode*) = {
     val props = JSMacro[FormSelect](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.FormSelect)

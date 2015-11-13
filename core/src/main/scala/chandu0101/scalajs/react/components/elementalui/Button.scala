@@ -1,20 +1,22 @@
 package chandu0101.scalajs.react.components
 package elementalui
 
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
+import scala.scalajs.js.`|`
 
 case class Button(
-    block: U[Boolean] = uNone,
-    className: U[String] = uNone,
-    href: U[String] = uNone,
-    component: U[String] = uNone,
-    isActive: U[Boolean] = uNone,
-    size: U[ButtonSize] = uNone,
-    submit: U[Boolean] = uNone,
-    `type`: U[ButtonType] = uNone,
-    onclick: U[ReactEventH ⇒ Callback] = uNone,
-    ondblclick: U[ReactEventH ⇒ Callback] = uNone) {
+    block: js.UndefOr[Boolean] = js.undefined,
+    className: js.UndefOr[String] = js.undefined,
+    href: js.UndefOr[String] = js.undefined,
+    component: js.UndefOr[String] = js.undefined,
+    isActive: js.UndefOr[Boolean] = js.undefined,
+    size: js.UndefOr[ButtonSize] = js.undefined,
+    submit: js.UndefOr[Boolean] = js.undefined,
+    `type`: js.UndefOr[ButtonType] = js.undefined,
+    onclick: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined,
+    ondblclick: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[Button](this)

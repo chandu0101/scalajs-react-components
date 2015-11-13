@@ -21,8 +21,8 @@ object MuiTimePickerDemo {
     .render(P => {
     <.div(
       CodeExample(code, "MuiTimePicker")(
-        MuiTimePicker(format = MuiTimePickerFormat.AM_PM, hintText = "12 hr format")(),
-        MuiTimePicker(format = MuiTimePickerFormat.TWENTY_FOUR_HOUR, hintText = "24 hr format")()
+        MuiTimePicker(format = MuiTimePickerFormat.AMPM, hintText = "12 hr format")(),
+        MuiTimePicker(format = MuiTimePickerFormat._24HR, hintText = "24 hr format")()
       )
     )
   }).buildU

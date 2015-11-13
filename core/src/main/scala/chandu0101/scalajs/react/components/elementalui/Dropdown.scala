@@ -1,20 +1,21 @@
 package chandu0101.scalajs.react.components
 package elementalui
 
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
-import scala.scalajs.js.{ Array ⇒ JArray }
+import scala.scalajs.js.`|`
 
 case class Dropdown(
-    alignRight: U[Boolean] = uNone,
-    buttonHasDisclosureArrow: U[Boolean] = uNone,
-    buttonLabel: U[String] = uNone,
-    buttonType: U[ButtonType] = uNone,
-    className: U[String] = uNone,
-    isOpen: U[Boolean] = uNone,
-    children: U[Boolean] = uNone,
-    items: JArray[DropdownMenuItem],
-    onSelect: U[ReactEventH ⇒ Callback] = uNone) {
+    alignRight: js.UndefOr[Boolean] = js.undefined,
+    buttonHasDisclosureArrow: js.UndefOr[Boolean] = js.undefined,
+    buttonLabel: js.UndefOr[String] = js.undefined,
+    buttonType: js.UndefOr[ButtonType] = js.undefined,
+    className: js.UndefOr[String] = js.undefined,
+    isOpen: js.UndefOr[Boolean] = js.undefined,
+    children: js.UndefOr[Boolean] = js.undefined,
+    items: js.Array[DropdownMenuItem],
+    onSelect: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[Dropdown](this)

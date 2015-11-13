@@ -192,10 +192,10 @@ object ReactPopOver {
 
   def apply(title: String = "",
             placement: String = "right",
-            ref: U[String] = uNone,
+            ref: js.UndefOr[String] = js.undefined,
             key: js.Any = {},
             style: Style = new Style {})
-           (children: ReactNode*): ReactComponentU[Props, State, Backend, TopNode] =
+           (children: ReactNode*) =
 
     component.set(key = key, ref = ref)(
       Props(title, placement, style),

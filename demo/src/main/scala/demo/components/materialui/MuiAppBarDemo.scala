@@ -2,7 +2,7 @@ package demo
 package components
 package materialui
 
-import chandu0101.scalajs.react.components.materialui.MuiAppBar
+import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 

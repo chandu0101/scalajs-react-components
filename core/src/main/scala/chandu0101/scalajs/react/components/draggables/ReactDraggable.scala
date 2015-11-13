@@ -11,24 +11,25 @@ import org.scalajs.dom.Event
 import scala.scalajs.js
 
 object ReactDraggable {
+  type CssClassType = Map[String, Boolean]
 
-  case class Props(cancel: U[String],
-                   onDrag: U[(Event, RElementPosition) => Callback],
+  case class Props(cancel: js.UndefOr[String],
+                   onDrag: js.UndefOr[(Event, RElementPosition) => Callback],
                    useCSSTransforms: Boolean,
                    clsNames: CssClassType,
-                   ref: U[String],
+                   ref: js.UndefOr[String],
                    moveOnStartChange: Boolean,
-                   grid: U[RGrid],
+                   grid: js.UndefOr[RGrid],
                    key: js.Any,
                    zIndex: Int,
                    axis: String,
-                   onStop: U[(Event, RElementPosition) => Callback],
+                   onStop: js.UndefOr[(Event, RElementPosition) => Callback],
                    start: RPoint,
-                   onStart: U[(Event, RElementPosition) => Callback],
-                   onMouseDown: U[Event => Callback],
-                   handle: U[String],
-                   minConstraints: U[RGrid],
-                   maxConstraints: U[RGrid])
+                   onStart: js.UndefOr[(Event, RElementPosition) => Callback],
+                   onMouseDown: js.UndefOr[Event => Callback],
+                   handle: js.UndefOr[String],
+                   minConstraints: js.UndefOr[RGrid],
+                   maxConstraints: js.UndefOr[RGrid])
 
   /**
    * @param dragging whether or not currently dragging
@@ -47,7 +48,7 @@ object ReactDraggable {
     offsetY: Int,
     clientX: Int,
     clientY: Int,
-    stopListening: U[Callback]
+    stopListening: js.UndefOr[Callback]
   )
 
   implicit val r0 = Reusability.byRef[Props]
@@ -152,7 +153,7 @@ object ReactDraggable {
       val onStop: Callback =
         t.state.flatMap(S => P.onStop.asCbo(e, pos(S)))
       val stopDragging: Callback =
-        t.modState(_.copy(dragging = false, stopListening = uNone))
+        t.modState(_.copy(dragging = false, stopListening = js.undefined))
 
       unregister >> onStop >> stopDragging >> hack.enableUserSelect
     }
@@ -197,7 +198,7 @@ object ReactDraggable {
       clientY = P.start.y.toInt,
       offsetX = 0,
       offsetY = 0,
-      stopListening = uNone
+      stopListening = js.undefined
     )
   
   val component = ReactComponentB[Props]("ReactDraggable")
@@ -238,23 +239,23 @@ object ReactDraggable {
    * @param children
    * @return
    */
-  def apply(cancel: U[String] = uNone,
-            onDrag: U[(Event, RElementPosition) => Callback] = uNone,
+  def apply(cancel: js.UndefOr[String] = js.undefined,
+            onDrag: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
             useCSSTransforms: Boolean = false,
             clsNames: CssClassType = Map(),
-            ref: U[String] = uNone,
+            ref: js.UndefOr[String] = js.undefined,
             moveOnStartChange: Boolean = false,
-            grid: U[RGrid] = uNone,
+            grid: js.UndefOr[RGrid] = js.undefined,
             key: js.Any = {},
             zIndex: Int = 0,
             axis: String = "both",
-            onStop: U[(Event, RElementPosition) => Callback] = uNone,
+            onStop: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
             start: RPoint = RPoint(0, 0),
-            onStart: U[(Event, RElementPosition) => Callback] = uNone,
-            onMouseDown: U[Event => Callback] = uNone,
-            handle: U[String] = uNone,
-            minConstraints: U[RGrid] = uNone,
-            maxConstraints: U[RGrid] = uNone)
+            onStart: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
+            onMouseDown: js.UndefOr[Event => Callback] = js.undefined,
+            handle: js.UndefOr[String] = js.undefined,
+            minConstraints: js.UndefOr[RGrid] = js.undefined,
+            maxConstraints: js.UndefOr[RGrid] = js.undefined)
            (children: ReactNode) =
     component.set(key, ref)(
       Props(

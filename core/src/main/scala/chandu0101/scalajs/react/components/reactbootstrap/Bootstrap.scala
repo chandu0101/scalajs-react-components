@@ -103,8 +103,8 @@ object ReactBootstrap extends js.Object {
 
 object bootStrap {
 
-  case class Button(bsSize: U[String] = uNone, onClick: U[js.Function0[Unit]] = uNone,
-                    navDropdown: U[Boolean] = uNone, block: U[Boolean] = uNone, disabled: U[Boolean] = uNone, bsStyle: U[String] = uNone, componentClass: U[String] = uNone, navItem: U[Boolean] = uNone, bsClass: U[String] = uNone, active: U[Boolean] = uNone ,hrefB: U[String] = uNone) {
+  case class Button(bsSize: js.UndefOr[String] = js.undefined, onClick: js.UndefOr[js.Function0[Unit]] = js.undefined,
+                    navDropdown: js.UndefOr[Boolean] = js.undefined, block: js.UndefOr[Boolean] = js.undefined, disabled: js.UndefOr[Boolean] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, componentClass: js.UndefOr[String] = js.undefined, navItem: js.UndefOr[Boolean] = js.undefined, bsClass: js.UndefOr[String] = js.undefined, active: js.UndefOr[Boolean] = js.undefined ,hrefB: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       active.foreach(v => p.updateDynamic("active")(v))
@@ -139,7 +139,7 @@ object bootStrap {
     }
   }
 
-  case class Affix(offset: U[Double] = uNone, offsetTop: U[Double] = uNone, offsetBottom: U[Double] = uNone) {
+  case class Affix(offset: js.UndefOr[Double] = js.undefined, offsetTop: js.UndefOr[Double] = js.undefined, offsetBottom: js.UndefOr[Double] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       offset.foreach(v => p.updateDynamic("offset")(v))
@@ -155,7 +155,7 @@ object bootStrap {
   }
 
   //TODO  onDismiss: React.PropTypes.func,
-  case class Alert(bsClass: U[String] = uNone, bsStyle: U[String] = uNone, bsSize: U[String] = uNone, dismissAfter: U[Double] = uNone) {
+  case class Alert(bsClass: js.UndefOr[String] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, bsSize: js.UndefOr[String] = js.undefined, dismissAfter: js.UndefOr[Double] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       bsClass.foreach(v => p.updateDynamic("bsClass")(v))
@@ -171,7 +171,7 @@ object bootStrap {
     }
   }
 
-  case class Badge(pullRight: U[Boolean] = uNone) {
+  case class Badge(pullRight: js.UndefOr[Boolean] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       pullRight.foreach(v => p.updateDynamic("pullRight")(v))
@@ -184,7 +184,7 @@ object bootStrap {
     }
   }
 
-  case class ButtonGroup(justified: U[Boolean] = uNone, bsSize: U[String] = uNone, vertical: U[Boolean] = uNone, bsStyle: U[String] = uNone, bsClass: U[String] = uNone) {
+  case class ButtonGroup(justified: js.UndefOr[Boolean] = js.undefined, bsSize: js.UndefOr[String] = js.undefined, vertical: js.UndefOr[Boolean] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, bsClass: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       justified.foreach(v => p.updateDynamic("justified")(v))
@@ -201,7 +201,7 @@ object bootStrap {
     }
   }
 
-  case class ButtonToolbar(bsClass: U[String] = uNone, bsStyle: U[String] = uNone, bsSize: U[String] = uNone) {
+  case class ButtonToolbar(bsClass: js.UndefOr[String] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, bsSize: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       bsClass.foreach(v => p.updateDynamic("bsClass")(v))
@@ -218,7 +218,7 @@ object bootStrap {
 
   //TODO   onSelect: React.PropTypes.func,
   // onSlideEnd: React.PropTypes.func,
-  case class Carousel(bsSize: U[String] = uNone, defaultActiveIndex: U[Double] = uNone, onSlideEnd: U[js.Any] = uNone, direction: U[String] = uNone, wrap: U[Boolean] = uNone, slide: U[Boolean] = uNone, indicators: U[Boolean] = uNone, activeIndex: U[Double] = uNone, pauseOnHover: U[Boolean] = uNone, onSelect: U[js.Any] = uNone, bsStyle: U[String] = uNone, bsClass: U[String] = uNone, controls: U[Boolean] = uNone) {
+  case class Carousel(bsSize: js.UndefOr[String] = js.undefined, defaultActiveIndex: js.UndefOr[Double] = js.undefined, onSlideEnd: js.UndefOr[js.Any] = js.undefined, direction: js.UndefOr[String] = js.undefined, wrap: js.UndefOr[Boolean] = js.undefined, slide: js.UndefOr[Boolean] = js.undefined, indicators: js.UndefOr[Boolean] = js.undefined, activeIndex: js.UndefOr[Double] = js.undefined, pauseOnHover: js.UndefOr[Boolean] = js.undefined, onSelect: js.UndefOr[js.Any] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, bsClass: js.UndefOr[String] = js.undefined, controls: js.UndefOr[Boolean] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       controls.foreach(v => p.updateDynamic("controls")(v))
@@ -243,7 +243,7 @@ object bootStrap {
     }
   }
 
-  case class Col(xs: U[Double] = uNone, lgPush: U[Double] = uNone, xsOffset: U[Double] = uNone, smPush: U[Double] = uNone, xsPull: U[Double] = uNone, xsPush: U[Double] = uNone, smOffset: U[Double] = uNone, lg: U[Double] = uNone, sm: U[Double] = uNone, lgPull: U[Double] = uNone, mdOffset: U[Double] = uNone, componentClass: U[String], mdPush: U[Double] = uNone, md: U[Double] = uNone, lgOffset: U[Double] = uNone, smPull: U[Double] = uNone, mdPull: U[Double] = uNone) {
+  case class Col(xs: js.UndefOr[Double] = js.undefined, lgPush: js.UndefOr[Double] = js.undefined, xsOffset: js.UndefOr[Double] = js.undefined, smPush: js.UndefOr[Double] = js.undefined, xsPull: js.UndefOr[Double] = js.undefined, xsPush: js.UndefOr[Double] = js.undefined, smOffset: js.UndefOr[Double] = js.undefined, lg: js.UndefOr[Double] = js.undefined, sm: js.UndefOr[Double] = js.undefined, lgPull: js.UndefOr[Double] = js.undefined, mdOffset: js.UndefOr[Double] = js.undefined, componentClass: js.UndefOr[String], mdPush: js.UndefOr[Double] = js.undefined, md: js.UndefOr[Double] = js.undefined, lgOffset: js.UndefOr[Double] = js.undefined, smPull: js.UndefOr[Double] = js.undefined, mdPull: js.UndefOr[Double] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       lgPush.foreach(v => p.updateDynamic("lgPush")(v))
@@ -274,7 +274,7 @@ object bootStrap {
 
   // TODO  onClick:   React.PropTypes.func,
   //  onSelect:  React.PropTypes.func,
-  case class DropdownButton(bsSize: U[String] = uNone, onClick: U[js.Any] = uNone, dropup: U[Boolean] = uNone, onSelect: U[js.Any] = uNone, bsStyle: U[String] = uNone, title: U[String] = uNone, href: U[String] = uNone, navItem: U[Boolean] = uNone, pullRight: U[Boolean] = uNone, bsClass: U[String] = uNone) {
+  case class DropdownButton(bsSize: js.UndefOr[String] = js.undefined, onClick: js.UndefOr[js.Any] = js.undefined, dropup: js.UndefOr[Boolean] = js.undefined, onSelect: js.UndefOr[js.Any] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, title: js.UndefOr[String] = js.undefined, href: js.UndefOr[String] = js.undefined, navItem: js.UndefOr[Boolean] = js.undefined, pullRight: js.UndefOr[Boolean] = js.undefined, bsClass: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       onSelect.foreach(v => p.updateDynamic("onSelect")(v))
@@ -297,7 +297,7 @@ object bootStrap {
   }
 
   //TODO   onSelect: React.PropTypes.func
-  case class DropdownMenu(pullRight: U[Boolean] = uNone, onSelect: U[js.Any] = uNone) {
+  case class DropdownMenu(pullRight: js.UndefOr[Boolean] = js.undefined, onSelect: js.UndefOr[js.Any] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       pullRight.foreach(v => p.updateDynamic("pullRight")(v))
@@ -311,7 +311,7 @@ object bootStrap {
     }
   }
 
-  case class Glyphicon(glyph: U[String]) {
+  case class Glyphicon(glyph: js.UndefOr[String]) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       glyph.foreach(v => p.updateDynamic("glyph")(v))
@@ -326,7 +326,7 @@ object bootStrap {
 
   //TODO     componentClass: React.PropTypes.node.isRequired
 
-  case class Grid(fluid: U[Boolean] = uNone, componentClass: U[String]) {
+  case class Grid(fluid: js.UndefOr[Boolean] = js.undefined, componentClass: js.UndefOr[String]) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       fluid.foreach(v => p.updateDynamic("fluid")(v))
@@ -340,7 +340,7 @@ object bootStrap {
     }
   }
 
-  case class input(groupClassName: U[String] = uNone, wrapperClassName: U[String] = uNone, labelB: U[String] = uNone, labelClassName: U[String] = uNone, addonBefore: U[String] = uNone, buttonAfter: U[String] = uNone, help: U[String] = uNone, buttonBefore: U[String] = uNone, hasFeedback: U[Boolean] = uNone, addonAfter: U[String] = uNone, disabledB: U[Boolean] = uNone, bsStyle: U[String] = uNone, typeB: U[String] = uNone) {
+  case class input(groupClassName: js.UndefOr[String] = js.undefined, wrapperClassName: js.UndefOr[String] = js.undefined, labelB: js.UndefOr[String] = js.undefined, labelClassName: js.UndefOr[String] = js.undefined, addonBefore: js.UndefOr[String] = js.undefined, buttonAfter: js.UndefOr[String] = js.undefined, help: js.UndefOr[String] = js.undefined, buttonBefore: js.UndefOr[String] = js.undefined, hasFeedback: js.UndefOr[Boolean] = js.undefined, addonAfter: js.UndefOr[String] = js.undefined, disabledB: js.UndefOr[Boolean] = js.undefined, bsStyle: js.UndefOr[String] = js.undefined, typeB: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       labelB.foreach(v => p.updateDynamic("label")(v))
@@ -365,7 +365,7 @@ object bootStrap {
     }
   }
 
-  case class Interpolate(format: U[String] = uNone) {
+  case class Interpolate(format: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       format.foreach(v => p.updateDynamic("format")(v))
@@ -390,7 +390,7 @@ object bootStrap {
     }
   }
 
-  case class label(bsClass: U[String] = uNone,bsStyle: U[String] = uNone,bsSize: U[String] = uNone) {
+  case class label(bsClass: js.UndefOr[String] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,bsSize: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       bsClass.foreach(v => p.updateDynamic("bsClass")(v))
@@ -406,7 +406,7 @@ object bootStrap {
   }
 
   //TODO onClick: React.PropTypes.func
-  case class ListGroup(onClick: U[js.Any] = uNone) {
+  case class ListGroup(onClick: js.UndefOr[js.Any] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       onClick.foreach(v => p.updateDynamic("onClick")(v))
@@ -419,7 +419,7 @@ object bootStrap {
     }
   }
 
-  case class ListGroupItem(bsSize: U[String] = uNone,onClick: U[js.Any] = uNone,header: U[String] = uNone,disabled: U[js.Any] = uNone,bsStyle: U[String] = uNone,eventKey: U[js.Any] = uNone,bsClass: U[String] = uNone,active: U[js.Any] = uNone) {
+  case class ListGroupItem(bsSize: js.UndefOr[String] = js.undefined,onClick: js.UndefOr[js.Any] = js.undefined,header: js.UndefOr[String] = js.undefined,disabled: js.UndefOr[js.Any] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,eventKey: js.UndefOr[js.Any] = js.undefined,bsClass: js.UndefOr[String] = js.undefined,active: js.UndefOr[js.Any] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       active.foreach(v => p.updateDynamic("active")(v))
@@ -439,8 +439,8 @@ object bootStrap {
     }
   }
 
-  case class MenuItem(divider: U[Boolean] = uNone,
-                      header: U[Boolean] = uNone,onSelect: U[js.Any] = uNone,title: U[String] = uNone,href: U[String] = uNone,eventKey: U[String]=uNone) {
+  case class MenuItem(divider: js.UndefOr[Boolean] = js.undefined,
+                      header: js.UndefOr[Boolean] = js.undefined,onSelect: js.UndefOr[js.Any] = js.undefined,title: js.UndefOr[String] = js.undefined,href: js.UndefOr[String] = js.undefined,eventKey: js.UndefOr[String]=js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       onSelect.foreach(v => p.updateDynamic("onSelect")(v))
@@ -458,7 +458,7 @@ object bootStrap {
     }
   }
 
-  case class Modal(backdrop: U[String] = uNone,onRequestHide: U[js.Any],keyboard: U[Boolean] = uNone,bsSize: U[String] = uNone,closeButton: U[Boolean] = uNone,animation: U[Boolean] = uNone,bsStyle: U[String] = uNone,title: U[String] = uNone,bsClass: U[String] = uNone) {
+  case class Modal(backdrop: js.UndefOr[String] = js.undefined,onRequestHide: js.UndefOr[js.Any],keyboard: js.UndefOr[Boolean] = js.undefined,bsSize: js.UndefOr[String] = js.undefined,closeButton: js.UndefOr[Boolean] = js.undefined,animation: js.UndefOr[Boolean] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,title: js.UndefOr[String] = js.undefined,bsClass: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       bsSize.foreach(v => p.updateDynamic("bsSize")(v))
@@ -479,7 +479,7 @@ object bootStrap {
     }
   }
 
-  case class ModalTrigger(modal: U[String]) {
+  case class ModalTrigger(modal: js.UndefOr[String]) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       modal.foreach(v => p.updateDynamic("modal")(v))
@@ -492,7 +492,7 @@ object bootStrap {
     }
   }
 
-  case class Nav(stacked: U[Boolean] = uNone,navbar: U[Boolean] = uNone,justified: U[Boolean] = uNone,defaultExpanded: U[Boolean] = uNone,expanded: U[Boolean] = uNone,collapsable: U[Boolean] = uNone,onSelect: U[js.Any] = uNone,bsStyle: U[String] = uNone,eventKey: U[js.Any]=uNone,right: U[Boolean] = uNone) {
+  case class Nav(stacked: js.UndefOr[Boolean] = js.undefined,navbar: js.UndefOr[Boolean] = js.undefined,justified: js.UndefOr[Boolean] = js.undefined,defaultExpanded: js.UndefOr[Boolean] = js.undefined,expanded: js.UndefOr[Boolean] = js.undefined,collapsable: js.UndefOr[Boolean] = js.undefined,onSelect: js.UndefOr[js.Any] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,eventKey: js.UndefOr[js.Any]=js.undefined,right: js.UndefOr[Boolean] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       onSelect.foreach(v => p.updateDynamic("onSelect")(v))
@@ -514,7 +514,7 @@ object bootStrap {
     }
   }
 
-  case class NavItem(bsSize: U[String] = uNone,disabled: U[Boolean] = uNone,onSelect: U[js.Any] = uNone,bsStyle: U[String] = uNone,title: U[String] = uNone,href: U[String] = uNone,eventKey: U[js.Any]=uNone,bsClass: U[String] = uNone,active: U[Boolean] = uNone) {
+  case class NavItem(bsSize: js.UndefOr[String] = js.undefined,disabled: js.UndefOr[Boolean] = js.undefined,onSelect: js.UndefOr[js.Any] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,title: js.UndefOr[String] = js.undefined,href: js.UndefOr[String] = js.undefined,eventKey: js.UndefOr[js.Any]=js.undefined,bsClass: js.UndefOr[String] = js.undefined,active: js.UndefOr[Boolean] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       active.foreach(v => p.updateDynamic("active")(v))
@@ -535,7 +535,7 @@ object bootStrap {
     }
   }
 
-  case class Navbar(onToggle: U[js.Any] = uNone,toggleButton: U[String] = uNone,bsSize: U[String] = uNone,fluid: U[Boolean] = uNone,role: U[String] = uNone,fixedTop: U[Boolean] = uNone,staticTop: U[Boolean] = uNone,navExpanded: U[Boolean] = uNone,brand: U[String] = uNone,inverse: U[Boolean] = uNone,fixedBottom: U[Boolean] = uNone,defaultNavExpanded: U[Boolean] = uNone,bsStyle: U[String] = uNone,componentClass: U[String],bsClass: U[String] = uNone) {
+  case class Navbar(onToggle: js.UndefOr[js.Any] = js.undefined,toggleButton: js.UndefOr[String] = js.undefined,bsSize: js.UndefOr[String] = js.undefined,fluid: js.UndefOr[Boolean] = js.undefined,role: js.UndefOr[String] = js.undefined,fixedTop: js.UndefOr[Boolean] = js.undefined,staticTop: js.UndefOr[Boolean] = js.undefined,navExpanded: js.UndefOr[Boolean] = js.undefined,brand: js.UndefOr[String] = js.undefined,inverse: js.UndefOr[Boolean] = js.undefined,fixedBottom: js.UndefOr[Boolean] = js.undefined,defaultNavExpanded: js.UndefOr[Boolean] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,componentClass: js.UndefOr[String],bsClass: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       defaultNavExpanded.foreach(v => p.updateDynamic("defaultNavExpanded")(v))
@@ -562,7 +562,7 @@ object bootStrap {
     }
   }
 
-  case class OverlayTrigger(delay: U[Double] = uNone,overlay: U[ReactComponentU_],delayShow: U[Double] = uNone,delayHide: U[Double] = uNone,placement: U[String] = uNone,defaultOverlayShown: U[Boolean] = uNone,trigger: U[String] = uNone) {
+  case class OverlayTrigger(delay: js.UndefOr[Double] = js.undefined,overlay: js.UndefOr[ReactComponentU_],delayShow: js.UndefOr[Double] = js.undefined,delayHide: js.UndefOr[Double] = js.undefined,placement: js.UndefOr[String] = js.undefined,defaultOverlayShown: js.UndefOr[Boolean] = js.undefined,trigger: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       delayShow.foreach(v => p.updateDynamic("delayShow")(v))
@@ -594,7 +594,7 @@ object bootStrap {
     }
   }
 
-  case class PageItem(previous: U[Boolean] = uNone,next: U[Boolean] = uNone,disabled: U[Boolean] = uNone,onSelect: U[js.Any] = uNone,eventKey: U[js.Any]=uNone) {
+  case class PageItem(previous: js.UndefOr[Boolean] = js.undefined,next: js.UndefOr[Boolean] = js.undefined,disabled: js.UndefOr[Boolean] = js.undefined,onSelect: js.UndefOr[js.Any] = js.undefined,eventKey: js.UndefOr[js.Any]=js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       onSelect.foreach(v => p.updateDynamic("onSelect")(v))
@@ -611,7 +611,7 @@ object bootStrap {
     }
   }
 
-  case class Pager(onSelect: U[js.Any] = uNone) {
+  case class Pager(onSelect: js.UndefOr[js.Any] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       onSelect.foreach(v => p.updateDynamic("onSelect")(v))
@@ -624,9 +624,9 @@ object bootStrap {
     }
   }
 
-  case class Panel(bsSize: U[String] = uNone,defaultExpanded: U[Boolean] = uNone,
-                   expanded: U[Boolean] = uNone,collapsable: U[Boolean] = uNone,
-                   header: U[String] = uNone,onSelect: U[js.Any] = uNone,bsStyle: U[String] = uNone,eventKey: U[js.Any]=uNone,footer: U[String] = uNone,bsClass: U[String] = uNone) {
+  case class Panel(bsSize: js.UndefOr[String] = js.undefined,defaultExpanded: js.UndefOr[Boolean] = js.undefined,
+                   expanded: js.UndefOr[Boolean] = js.undefined,collapsable: js.UndefOr[Boolean] = js.undefined,
+                   header: js.UndefOr[String] = js.undefined,onSelect: js.UndefOr[js.Any] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,eventKey: js.UndefOr[js.Any]=js.undefined,footer: js.UndefOr[String] = js.undefined,bsClass: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       onSelect.foreach(v => p.updateDynamic("onSelect")(v))
@@ -648,7 +648,7 @@ object bootStrap {
     }
   }
 
-  case class PanelGroup(activeKey: U[js.Any]=uNone,bsSize: U[String] = uNone,collapsable: U[Boolean] = uNone,defaultActiveKey: U[js.Any]=uNone,onSelect: U[js.Any] = uNone,bsStyle: U[String] = uNone,bsClass: U[String] = uNone) {
+  case class PanelGroup(activeKey: js.UndefOr[js.Any]=js.undefined,bsSize: js.UndefOr[String] = js.undefined,collapsable: js.UndefOr[Boolean] = js.undefined,defaultActiveKey: js.UndefOr[js.Any]=js.undefined,onSelect: js.UndefOr[js.Any] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,bsClass: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       activeKey.foreach(v => p.updateDynamic("activeKey")(v))
@@ -667,7 +667,7 @@ object bootStrap {
     }
   }
 
-  case class Popover(bsSize: U[String] = uNone,positionLeft: U[Double] = uNone,positionTop: U[Double] = uNone,arrowOffsetLeft: U[Double] = uNone,placement: U[String] = uNone,bsStyle: U[String] = uNone,title: U[String] = uNone,bsClass: U[String] = uNone,arrowOffsetTop: U[Double] = uNone) {
+  case class Popover(bsSize: js.UndefOr[String] = js.undefined,positionLeft: js.UndefOr[Double] = js.undefined,positionTop: js.UndefOr[Double] = js.undefined,arrowOffsetLeft: js.UndefOr[Double] = js.undefined,placement: js.UndefOr[String] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,title: js.UndefOr[String] = js.undefined,bsClass: js.UndefOr[String] = js.undefined,arrowOffsetTop: js.UndefOr[Double] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       arrowOffsetLeft.foreach(v => p.updateDynamic("arrowOffsetLeft")(v))
@@ -688,10 +688,10 @@ object bootStrap {
     }
   }
 
-  case class ProgressBar(label: U[String] = uNone,
-                         bsStyle: U[String] = uNone,
-                         key: U[Int] = uNone,
-                         striped: U[Boolean] = uNone,min: U[Double] = uNone,now: U[Double] = uNone,max: U[Double] = uNone,srOnly: U[Boolean] = uNone,active: U[Boolean] = uNone) {
+  case class ProgressBar(label: js.UndefOr[String] = js.undefined,
+                         bsStyle: js.UndefOr[String] = js.undefined,
+                         key: js.UndefOr[Int] = js.undefined,
+                         striped: js.UndefOr[Boolean] = js.undefined,min: js.UndefOr[Double] = js.undefined,now: js.UndefOr[Double] = js.undefined,max: js.UndefOr[Double] = js.undefined,srOnly: js.UndefOr[Boolean] = js.undefined,active: js.UndefOr[Boolean] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       label.foreach(v => p.updateDynamic("label")(v))
@@ -712,7 +712,7 @@ object bootStrap {
     }
   }
 
-  case class Row(componentClass: U[String]) {
+  case class Row(componentClass: js.UndefOr[String]) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       componentClass.foreach(v => p.updateDynamic("componentClass")(v))
@@ -725,7 +725,7 @@ object bootStrap {
     }
   }
 
-  case class SplitButton(bsSize: U[String] = uNone,onClick: U[js.Any] = uNone,dropdownTitle: U[String] = uNone,disabled: U[Boolean] = uNone,onSelect: U[js.Any] = uNone,bsStyle: U[String] = uNone,title: U[String] = uNone,href: U[String] = uNone,pullRight: U[Boolean] = uNone,bsClass: U[String] = uNone) {
+  case class SplitButton(bsSize: js.UndefOr[String] = js.undefined,onClick: js.UndefOr[js.Any] = js.undefined,dropdownTitle: js.UndefOr[String] = js.undefined,disabled: js.UndefOr[Boolean] = js.undefined,onSelect: js.UndefOr[js.Any] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,title: js.UndefOr[String] = js.undefined,href: js.UndefOr[String] = js.undefined,pullRight: js.UndefOr[Boolean] = js.undefined,bsClass: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       onSelect.foreach(v => p.updateDynamic("onSelect")(v))
@@ -747,7 +747,7 @@ object bootStrap {
     }
   }
 
-  case class propTypes(bsSize: U[String] = uNone,text: U[String] = uNone,disabled: U[Boolean] = uNone,onSelect: U[js.Any] = uNone,bsStyle: U[String] = uNone,title: U[String] = uNone,href: U[String] = uNone,bsClass: U[String] = uNone,active: U[Boolean] = uNone) {
+  case class propTypes(bsSize: js.UndefOr[String] = js.undefined,text: js.UndefOr[String] = js.undefined,disabled: js.UndefOr[Boolean] = js.undefined,onSelect: js.UndefOr[js.Any] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,title: js.UndefOr[String] = js.undefined,href: js.UndefOr[String] = js.undefined,bsClass: js.UndefOr[String] = js.undefined,active: js.UndefOr[Boolean] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       active.foreach(v => p.updateDynamic("active")(v))
@@ -768,7 +768,7 @@ object bootStrap {
     }
   }
 
-  case class SubNav(bsSize: U[String] = uNone,text: U[String] = uNone,disabled: U[Boolean] = uNone,onSelect: U[js.Any] = uNone,bsStyle: U[String] = uNone,title: U[String] = uNone,href: U[String] = uNone,bsClass: U[String] = uNone,active: U[Boolean] = uNone) {
+  case class SubNav(bsSize: js.UndefOr[String] = js.undefined,text: js.UndefOr[String] = js.undefined,disabled: js.UndefOr[Boolean] = js.undefined,onSelect: js.UndefOr[js.Any] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,title: js.UndefOr[String] = js.undefined,href: js.UndefOr[String] = js.undefined,bsClass: js.UndefOr[String] = js.undefined,active: js.UndefOr[Boolean] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       active.foreach(v => p.updateDynamic("active")(v))
@@ -802,7 +802,7 @@ object bootStrap {
     }
   }
 
-  case class TabbedArea(bsSize: U[String] = uNone,animation: U[Boolean] = uNone,onSelect: U[js.Any] = uNone,bsStyle: U[String] = uNone,bsClass: U[String] = uNone) {
+  case class TabbedArea(bsSize: js.UndefOr[String] = js.undefined,animation: js.UndefOr[Boolean] = js.undefined,onSelect: js.UndefOr[js.Any] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,bsClass: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       onSelect.foreach(v => p.updateDynamic("onSelect")(v))
@@ -819,7 +819,7 @@ object bootStrap {
     }
   }
 
-  case class table(bordered: U[Boolean] = uNone,hover: U[Boolean] = uNone,striped: U[Boolean] = uNone,condensed: U[Boolean] = uNone,responsive: U[Boolean] = uNone) {
+  case class table(bordered: js.UndefOr[Boolean] = js.undefined,hover: js.UndefOr[Boolean] = js.undefined,striped: js.UndefOr[Boolean] = js.undefined,condensed: js.UndefOr[Boolean] = js.undefined,responsive: js.UndefOr[Boolean] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       bordered.foreach(v => p.updateDynamic("bordered")(v))
@@ -836,7 +836,7 @@ object bootStrap {
     }
   }
 
-  case class Tooltip(bsSize: U[String] = uNone,positionLeft: U[Double] = uNone,positionTop: U[Double] = uNone,arrowOffsetLeft: U[Double] = uNone,placement: U[String] = uNone,bsStyle: U[String] = uNone,bsClass: U[String] = uNone,arrowOffsetTop: U[Double] = uNone) {
+  case class Tooltip(bsSize: js.UndefOr[String] = js.undefined,positionLeft: js.UndefOr[Double] = js.undefined,positionTop: js.UndefOr[Double] = js.undefined,arrowOffsetLeft: js.UndefOr[Double] = js.undefined,placement: js.UndefOr[String] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,bsClass: js.UndefOr[String] = js.undefined,arrowOffsetTop: js.UndefOr[Double] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       arrowOffsetLeft.foreach(v => p.updateDynamic("arrowOffsetLeft")(v))
@@ -856,7 +856,7 @@ object bootStrap {
     }
   }
 
-  case class Well(bsClass: U[String] = uNone,bsStyle: U[String] = uNone,bsSize: U[String] = uNone) {
+  case class Well(bsClass: js.UndefOr[String] = js.undefined,bsStyle: js.UndefOr[String] = js.undefined,bsSize: js.UndefOr[String] = js.undefined) {
     def toJs: js.Object = {
       val p = js.Dynamic.literal()
       bsClass.foreach(v => p.updateDynamic("bsClass")(v))

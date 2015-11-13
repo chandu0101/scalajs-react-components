@@ -20,5 +20,5 @@ final class RefHolder[N]{
     CallbackOption.liftOptionLike(r)
 
   val invalidate: Unit =
-    Callback(r = js.undefined)
+    r = js.undefined
 }

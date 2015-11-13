@@ -43,7 +43,7 @@ object ReactListView {
     def onTextChange(text: String): Callback =
       t.modState(_.copy(filterText = text))
 
-    def onItemSelect(onItemSelect: U[String => Callback])(value: String): Callback = {
+    def onItemSelect(onItemSelect: js.UndefOr[String => Callback])(value: String): Callback = {
       val setSelected = t.modState(_.copy(selectedItem = value))
       val onSelect    = onItemSelect.asCbo(value)
 
@@ -73,15 +73,15 @@ object ReactListView {
     .build
 
   case class Props(items: List[String],
-                   onItemSelect: U[String => Callback],
+                   onItemSelect: js.UndefOr[String => Callback],
                    showSearchBox: Boolean,
                    style: Style)
 
   def apply(items: List[String],
-            onItemSelect: U[String => Callback] = uNone,
+            onItemSelect: js.UndefOr[String => Callback] = js.undefined,
             showSearchBox: Boolean = false,
             style: Style = DefaultStyle,
-            ref: U[String] = uNone,
+            ref: js.UndefOr[String] = js.undefined,
             key: js.Any = {}) =
     component.set(key, ref)(Props(items, onItemSelect, showSearchBox, style))
 

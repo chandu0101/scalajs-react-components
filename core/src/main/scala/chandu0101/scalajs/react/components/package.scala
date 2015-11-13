@@ -1,25 +1,12 @@
 package chandu0101.scalajs.react
 
 import japgolly.scalajs.react._
+import scala.reflect.ClassTag
 import scala.scalajs.js
+import scala.scalajs.js.`|`
 
 package object components
   extends util.CommonStyles {
-
-  type CssClassType = Map[String, Boolean]
-
-  private[components] val JSMacro = chandu0101.macros.tojs.JSMacro
-
-  /* type alias for `js.undefined` */
-  type U[T] = js.UndefOr[T]
-  val uNone = js.undefined
-
-  implicit class CallbackToX[T](private val ct: CallbackTo[T]){
-    def zip[U](cu: CallbackTo[U]): CallbackTo[(T, U)] = for {
-      t <- ct
-      u <- cu
-    } yield (t, u)
-  }
 
   @inline private[components] implicit final class UCB[R](private val uc: js.UndefOr[CallbackTo[R]]) extends AnyVal {
     @inline def asCbo: CallbackOption[R] =

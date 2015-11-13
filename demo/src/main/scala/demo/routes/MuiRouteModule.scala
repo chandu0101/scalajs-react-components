@@ -29,7 +29,7 @@ object MuiRouteModule {
 
   case object Progress extends LeftRoute("Progress Bars", "progress", () => MuiProgressDemo())
 
-  case object SnackBar extends LeftRoute("SnackBar", "snackbar", () => MuiSnackBarDemo())
+  case object SnackBar extends LeftRoute("SnackBar", "snackbar", () => MuiSnackbarDemo())
 
   case object Slider extends LeftRoute("Slider", "slider", () => MuiSliderDemo())
 

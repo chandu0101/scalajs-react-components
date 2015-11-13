@@ -1,23 +1,25 @@
 package chandu0101.scalajs.react.components
 package elementalui
 
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
+import scala.scalajs.js.`|`
 
 case class FormInput(
-    autofocus: U[Boolean] = uNone,
-    className: U[String] = uNone,
-    disabled: U[Boolean] = uNone,
-    href: U[String] = uNone,
-    placeholder: U[String] = uNone,
-    id: U[String] = uNone,
-    multiline: U[Boolean] = uNone,
-    name: U[String] = uNone,
-    noedit: U[Boolean] = uNone,
-    onChange: U[ReactEventH ⇒ Callback] = uNone,
-    size: U[FormInputSize] = uNone,
-    `type`: U[String] = uNone,
-    value: U[String] = uNone) {
+    autofocus: js.UndefOr[Boolean] = js.undefined,
+    className: js.UndefOr[String] = js.undefined,
+    disabled: js.UndefOr[Boolean] = js.undefined,
+    href: js.UndefOr[String] = js.undefined,
+    placeholder: js.UndefOr[String] = js.undefined,
+    id: js.UndefOr[String] = js.undefined,
+    multiline: js.UndefOr[Boolean] = js.undefined,
+    name: js.UndefOr[String] = js.undefined,
+    noedit: js.UndefOr[Boolean] = js.undefined,
+    onChange: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined,
+    size: js.UndefOr[FormInputSize] = js.undefined,
+    `type`: js.UndefOr[String] = js.undefined,
+    value: js.UndefOr[String] = js.undefined) {
 
   def apply() = {
     val props = JSMacro[FormInput](this)

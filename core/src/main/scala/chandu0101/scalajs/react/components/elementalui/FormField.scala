@@ -1,16 +1,18 @@
 package chandu0101.scalajs.react.components
 package elementalui
 
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
+import scala.scalajs.js.`|`
 
 case class FormField(
-    className: U[String] = uNone,
-    htmlFor: U[String] = uNone,
-    id: U[String] = uNone,
-    label: U[String] = uNone,
-    offsetAbsentLabel: U[Boolean] = uNone,
-    width: U[FormFieldWidth] = uNone) {
+    className: js.UndefOr[String] = js.undefined,
+    htmlFor: js.UndefOr[String] = js.undefined,
+    id: js.UndefOr[String] = js.undefined,
+    label: js.UndefOr[String] = js.undefined,
+    offsetAbsentLabel: js.UndefOr[Boolean] = js.undefined,
+    width: js.UndefOr[FormFieldWidth] = js.undefined) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[FormField](this)

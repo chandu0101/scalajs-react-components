@@ -15,6 +15,7 @@ case class FormInput(
     id: js.UndefOr[String] = js.undefined,
     multiline: js.UndefOr[Boolean] = js.undefined,
     name: js.UndefOr[String] = js.undefined,
+    pattern: js.UndefOr[String] = js.undefined,
     noedit: js.UndefOr[Boolean] = js.undefined,
     onChange: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined,
     size: js.UndefOr[FormInputSize] = js.undefined,

@@ -6,13 +6,11 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
-object FormSelect {
-  case class Option(label: String, value: String) {
-    val toJS = JSMacro[Option](this)
-  }
-  object Option {
-    def fromJson(obj: js.Dynamic) = Option(label = obj.text.toString, value = obj.payload.toString)
-  }
+case class SelectOption(label: String, value: String) {
+  val toJS = JSMacro[SelectOption](this)
+}
+object SelectOption {
+  def fromJson(obj: js.Dynamic) = SelectOption(label = obj.text.toString, value = obj.payload.toString)
 }
 
 case class FormSelect(
@@ -22,10 +20,10 @@ case class FormSelect(
     firstOption: js.UndefOr[String] = js.undefined,
     htmFor: js.UndefOr[String] = js.undefined,
     id: js.UndefOr[String] = js.undefined,
-    lable: js.UndefOr[String] = js.undefined,
-    options: js.Array[FormSelect.Option] = js.Array(),
+    label: js.UndefOr[String] = js.undefined,
+    options: js.Array[SelectOption] = js.Array(),
     prependEmptyOption: js.UndefOr[Boolean] = js.undefined,
-    onChange: js.UndefOr[ReactEventI ⇒ Callback] = js.undefined,
+    onChange: js.UndefOr[String ⇒ Callback] = js.undefined,
     required: js.UndefOr[Boolean] = js.undefined,
     requiredMessage: js.UndefOr[String] = js.undefined,
     value: js.UndefOr[String] = js.undefined) {

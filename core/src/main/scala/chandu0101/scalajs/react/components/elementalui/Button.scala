@@ -12,7 +12,9 @@ case class Button(
     isActive: U[Boolean] = uNone,
     size: U[ButtonSize] = uNone,
     submit: U[Boolean] = uNone,
-    `type`: U[ButtonType] = uNone) {
+    `type`: U[ButtonType] = uNone,
+    onclick: U[ReactEventH ⇒ Callback] = uNone,
+    ondblclick: U[ReactEventH ⇒ Callback] = uNone) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[Button](this)
@@ -22,12 +24,14 @@ case class Button(
 
 }
 
-case class ButtonSize private (val value: String) extends AnyVal
+case class ButtonSize private (value: String) extends AnyVal
 
 object ButtonSize {
   val LG = ButtonSize("lg")
   val SM = ButtonSize("sm")
   val XS = ButtonSize("xs")
+
+  val values = List(LG, SM, XS)
 }
 
 case class ButtonType private (val value: String) extends AnyVal
@@ -50,4 +54,22 @@ object ButtonType {
   val LINK_TEXT = ButtonType("link-text")
   val LINK_CANCEL = ButtonType("link-cancel")
   val LINK_DELETE = ButtonType("link-delete")
+  val values = List(
+    DEFAULT,
+    DEFAULT_PRIMARY,
+    DEFAULT_SUCCESS,
+    DEFAULT_WARNING,
+    DEFAULT_DANGER,
+    HOLLOW_PRIMARY,
+    HOLLOW_SUCCESS,
+    HOLLOW_WARNING,
+    HOLLOW_DANGER,
+    PRIMARY,
+    SUCCESS,
+    WARNING,
+    DANGER,
+    LINK,
+    LINK_TEXT,
+    LINK_CANCEL,
+    LINK_DELETE)
 }

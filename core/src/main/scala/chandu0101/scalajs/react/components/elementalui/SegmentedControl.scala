@@ -6,11 +6,15 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
-case class XXXSegmentedControl(
-    className: js.UndefOr[String] = js.undefined) {
+case class SegmentedControl(
+    equalWidthSegments: js.UndefOr[String] = js.undefined,
+    onChange: js.UndefOr[String] = js.undefined,
+    options: js.Array[SelectOption] = js.Array(),
+    `type`: js.UndefOr[GlyphType] = js.undefined,
+    value: js.UndefOr[String] = js.undefined) {
 
   def apply() = {
-    val props = JSMacro[XXXSegmentedControl](this)
+    val props = JSMacro[SegmentedControl](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.SegmentedControl)
     f(props).asInstanceOf[ReactComponentU_]
   }

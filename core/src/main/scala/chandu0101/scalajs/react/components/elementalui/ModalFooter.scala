@@ -6,12 +6,12 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
-case class XXXModalFooter(
+case class ModalFooter(
     className: js.UndefOr[String] = js.undefined) {
 
-  def apply() = {
-    val props = JSMacro[XXXModalFooter](this)
+  def apply(children: ReactNode*) = {
+    val props = JSMacro[ModalFooter](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.ModalFooter)
-    f(props).asInstanceOf[ReactComponentU_]
+    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }

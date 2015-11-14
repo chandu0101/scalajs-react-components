@@ -6,12 +6,15 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
-case class XXXModalHeader(
-    className: js.UndefOr[String] = js.undefined) {
+case class ModalHeader(
+    className: js.UndefOr[String] = js.undefined,
+    showCloseButton: js.UndefOr[Boolean] = js.undefined,
+    text: js.UndefOr[String] = js.undefined,
+    onClose: js.UndefOr[ReactEvent ⇒ Callback] = js.undefined) {
 
-  def apply() = {
-    val props = JSMacro[XXXModalHeader](this)
+  def apply(children: ReactNode*) = {
+    val props = JSMacro[ModalHeader](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.ModalHeader)
-    f(props).asInstanceOf[ReactComponentU_]
+    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }

@@ -6,12 +6,12 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
-case class XXXTable(
+case class Table(
     className: js.UndefOr[String] = js.undefined) {
 
-  def apply() = {
-    val props = JSMacro[XXXTable](this)
+  def apply(children: ReactNode*) = {
+    val props = JSMacro[Table](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.Table)
-    f(props).asInstanceOf[ReactComponentU_]
+    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }

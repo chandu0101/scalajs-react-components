@@ -6,12 +6,13 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
-case class XXXInputGroupSection(
-    className: js.UndefOr[String] = js.undefined) {
+case class InputGroupSection(
+    className: js.UndefOr[String] = js.undefined,
+    grow: js.UndefOr[Boolean] = js.undefined) {
 
-  def apply() = {
-    val props = JSMacro[XXXInputGroupSection](this)
+  def apply(children: ReactNode*) = {
+    val props = JSMacro[InputGroupSection](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.InputGroupSection)
-    f(props).asInstanceOf[ReactComponentU_]
+    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }

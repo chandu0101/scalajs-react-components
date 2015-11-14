@@ -6,12 +6,21 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
-case class XXXAlert(
-    className: js.UndefOr[String] = js.undefined) {
+case class Alert(
+    className: js.UndefOr[String] = js.undefined,
+    `type`: js.UndefOr[AlertType] = js.undefined) {
 
-  def apply() = {
-    val props = JSMacro[XXXAlert](this)
+  def apply(children: ReactNode*) = {
+    val props = JSMacro[Alert](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.Alert)
-    f(props).asInstanceOf[ReactComponentU_]
+    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
+}
+
+case class AlertType private (val value: String) extends AnyVal
+object AlertType {
+  val INFO = AlertType("info")
+  val PRIMARY = AlertType("primary")
+  val SUCCESS = AlertType("success")
+  val WARNING = AlertType("warning")
 }

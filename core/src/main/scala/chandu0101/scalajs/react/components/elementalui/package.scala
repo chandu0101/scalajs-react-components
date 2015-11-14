@@ -8,7 +8,7 @@ package object elementalui {
   @js.native @JSName("elemental")
   object Eui extends js.Object {
     val Alert: js.Dynamic = js.native
-    val BlankSlate: js.Dynamic = js.native
+    val BlankState: js.Dynamic = js.native
     val ButtonGroup: js.Dynamic = js.native
     val Button: js.Dynamic = js.native
     val Card: js.Dynamic = js.native

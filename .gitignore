@@ -25,6 +25,7 @@ project/plugins/project/
 
 demo/assets/
 
+<<<<<<< Updated upstream
 demo/node_modules//*/.cache
 
 /**/.cache-main
@@ -33,3 +34,18 @@ demo/node_modules//*/.cache
 /**/.metadata
 /**/.project
 /**/.settings
+=======
+demo/node_modules/
+
+core/.cache-main
+core/.classpath
+core/.gitignore
+core/.project
+core/.settings/
+core/docs/
+demo/.cache-main
+demo/.classpath
+demo/.gitignore
+demo/.project
+demo/.settings/
+>>>>>>> Stashed changes

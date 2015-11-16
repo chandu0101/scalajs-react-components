@@ -27,13 +27,13 @@
   },
   "dependencies": {
     "material-ui": "v0.13.2",
+    "elemental": "v0.5.4",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-addons-create-fragment": "^0.14.2",
     "react-addons-pure-render-mixin": "^0.14.2",
     "react-addons-transition-group": "^0.14.2",
     "react-addons-update": "^0.14.2",
-
     "react-geomicons": "^2.0.4",
     "react-infinite": "^0.5.7",
     "react-select": "^0.8.1",

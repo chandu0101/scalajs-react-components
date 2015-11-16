@@ -24,7 +24,7 @@ object EuiFormsDemo {
     inputPassword: String = "",
     inputConfirmPassword: String = "",
     files: scala.scalajs.js.Array[File] = scala.scalajs.js.Array())
-  class Backend($: BackendScope[Unit, State]) {
+  case class Backend($: BackendScope[Unit, State]) {
     def onDrop(files: scala.scalajs.js.Array[File]) = {
       scala.scalajs.js.Dynamic.global.alert(files)
       $.modState(_.copy(files = files))
@@ -61,7 +61,7 @@ object EuiFormsDemo {
 
   val component = ReactComponentB[Unit]("EuiFormsDemo")
     .initialState(State())
-    .backend(new Backend(_))
+    .backend(Backend(_))
     .render($ ⇒ {
       def renderBasicExample = {
         <.div(^.className := "code-example__example",

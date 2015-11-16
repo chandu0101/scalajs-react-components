@@ -9,7 +9,10 @@ import scala.scalajs.js.`|`
 case class FormInput(
     autofocus: js.UndefOr[Boolean] = js.undefined,
     className: js.UndefOr[String] = js.undefined,
+    label: js.UndefOr[String] = js.undefined,
+    ref: js.UndefOr[String] = js.undefined,
     disabled: js.UndefOr[Boolean] = js.undefined,
+    required: js.UndefOr[Boolean] = js.undefined,
     href: js.UndefOr[String] = js.undefined,
     placeholder: js.UndefOr[String] = js.undefined,
     id: js.UndefOr[String] = js.undefined,
@@ -17,10 +20,10 @@ case class FormInput(
     name: js.UndefOr[String] = js.undefined,
     pattern: js.UndefOr[String] = js.undefined,
     noedit: js.UndefOr[Boolean] = js.undefined,
-    onChange: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined,
+    onChange: js.UndefOr[ReactEventI ⇒ Callback] = js.undefined,
     size: js.UndefOr[FormInputSize] = js.undefined,
     `type`: js.UndefOr[String] = js.undefined,
-    value: js.UndefOr[String] = js.undefined) {
+    value: js.UndefOr[String | Int] = js.undefined) {
 
   def apply() = {
     val props = JSMacro[FormInput](this)

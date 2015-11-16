@@ -11,10 +11,10 @@ case class Spinner(
     size: js.UndefOr[SpinnerSize] = js.undefined,
     `type`: js.UndefOr[SpinnerType] = js.undefined) {
 
-  def apply() = {
+  def apply(children: ReactNode*) = {
     val props = JSMacro[Spinner](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.Spinner)
-    f(props).asInstanceOf[ReactComponentU_]
+    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }
 

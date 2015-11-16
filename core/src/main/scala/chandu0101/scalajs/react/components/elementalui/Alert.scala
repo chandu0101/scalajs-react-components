@@ -23,4 +23,5 @@ object AlertType {
   val PRIMARY = AlertType("primary")
   val SUCCESS = AlertType("success")
   val WARNING = AlertType("warning")
+  val DANGER = AlertType("danger")
 }

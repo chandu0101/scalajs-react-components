@@ -1,10 +1,20 @@
 package chandu0101.scalajs.react.components
 
-import japgolly.scalajs.react.{ Callback, React, ReactComponentSpec, TopNode }
+import japgolly.scalajs.react.{ Callback, React, ReactComponentSpec, TopNode, ReactNode }
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.`|`
+import scala.reflect.ClassTag
 
 package object elementalui {
+  implicit def StringToReactNodeU(s: String): js.UndefOr[ReactNode] =
+    s: ReactNode
+  implicit def UnionEvidence[A: ClassTag, B: ClassTag](ab: A | B)(implicit eva: A ⇒ js.Any, evb: B ⇒ js.Any): js.Any =
+    ab match {
+      case a: A ⇒ eva(a)
+      case b: B ⇒ evb(b)
+    }
+
   @js.native @JSName("elemental")
   object Eui extends js.Object {
     val Alert: js.Dynamic = js.native

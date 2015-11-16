@@ -9,7 +9,7 @@ import scala.scalajs.js.`|`
 case class Pagination(
     className: js.UndefOr[String] = js.undefined,
     currentPage: js.UndefOr[Int] = js.undefined,
-    onPageSelect: js.UndefOr[ReactEvent ⇒ Callback] = js.undefined,
+    onPageSelect: js.UndefOr[Int ⇒ Callback] = js.undefined,
     pageSize: js.UndefOr[Int] = js.undefined,
     plural: js.UndefOr[String] = js.undefined,
     singular: js.UndefOr[String] = js.undefined,

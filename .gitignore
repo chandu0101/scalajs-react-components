@@ -13,8 +13,14 @@ project/boot/
 project/plugins/project/
 
 # Scala-IDE specific
-.scala_dependencies
-.worksheet
+.scala_dependencies/
+.worksheet/
+.cache-main/
+.cache-tests/
+.classpath/
+.metadata/
+.project/
+.settings/
 
 #intellij
 
@@ -22,30 +28,5 @@ project/plugins/project/
 .idea_modules
 
 #project
-
-demo/assets/
-
-<<<<<<< Updated upstream
-demo/node_modules//*/.cache
-
-/**/.cache-main
-/**/.cache-tests
-/**/.classpath
-/**/.metadata
-/**/.project
-/**/.settings
-=======
-demo/node_modules/
-
-core/.cache-main
-core/.classpath
-core/.gitignore
-core/.project
-core/.settings/
-core/docs/
-demo/.cache-main
-demo/.classpath
-demo/.gitignore
-demo/.project
-demo/.settings/
->>>>>>> Stashed changes
+assets/
+node_modules/

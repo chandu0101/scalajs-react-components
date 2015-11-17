@@ -12,33 +12,41 @@
   },
   "devDependencies": {
     "compression-webpack-plugin": "^0.2.0",
-    "css-loader": "^0.14.5",
+    "css-loader": "^0.23.0",
     "file-loader": "^0.8.4",
     "gulp-decompress": "^1.1.0",
     "image-webpack-loader": "^1.6.1",
-    "imagemin": "^3.2.0",
+    "imagemin": "^4.0.0",
     "lodash": "^3.9.3",
     "node-libs-browser": "^0.5.2",
     "react-hot-loader": "^1.2.7",
-    "style-loader": "^0.12.3",
+    "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.9.10",
-    "webpack-dev-server": "^1.9.0"
+    "webpack-dev-server": "^1.9.0",
+    "react-tap-event-plugin": "^0.2.1"
+
+  },
+  "peerDependencies" : {
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-tap-event-plugin": "^0.2.1"
   },
   "dependencies": {
     "material-ui": "v0.13.2",
-    "elemental": "v0.5.4",
+    "elemental": "v0.5.5",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
+    "react-addons-css-transition-group": "^0.14.2",
     "react-addons-create-fragment": "^0.14.2",
     "react-addons-pure-render-mixin": "^0.14.2",
     "react-addons-transition-group": "^0.14.2",
     "react-addons-update": "^0.14.2",
     "react-geomicons": "^2.0.4",
-    "react-infinite": "^0.5.7",
-    "react-select": "^0.8.1",
-    "react-spinner": "^0.2.2",
-    "react-tagsinput": "^2.0.0",
+    "react-infinite": "^0.6.0",
+    "react-select": "^1.0.0-beta5",
+    "react-spinner": "^0.2.3",
+    "react-tagsinput": "^3.0.2",
     "react-tap-event-plugin": "^0.2.1",
     "svg-loader": "0.0.2"
   }

@@ -1,5 +1,4 @@
-package chandu0101.scalajs.react.components
-package pagers
+package chandu0101.scalajs.react.components.tables
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -9,7 +8,6 @@ import scalacss.ScalaCssReact._
 object Pager {
 
   class Style extends StyleSheet.Inline {
-
     import dsl._
 
     val pager = style(margin :=! "15px 0",
@@ -37,8 +35,16 @@ object Pager {
   case class Backend(t: BackendScope[Props, _]){
     def render(P: Props) = {
       <.div(P.style.pager)(
-        P.offset > 0 ?= <.a(^.onClick --> P.previousClick, ^.float := "left")("← Previous"),
-        P.offset + P.itemsPerPage < P.totalItems ?= <.a(^.onClick --> P.nextClick, ^.float := "right")("Next →")
+        P.offset > 0 ?= <.a(
+          ^.onClick --> P.previousClick,
+          ^.float := "left",
+          "← Previous"
+        ),
+        P.offset + P.itemsPerPage < P.totalItems ?= <.a(
+          ^.onClick --> P.nextClick,
+          ^.float := "right",
+          "Next →"
+        )
       )
     }
   }

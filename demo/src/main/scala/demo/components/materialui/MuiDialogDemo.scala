@@ -38,10 +38,9 @@ object MuiDialogDemo {
         CodeExample(code, "MuiDialog")(
           <.div(
             MuiDialog(
-              key = System.currentTimeMillis().toString, //gotta be a bug!
               title = "Dialog With Actions",
               actions = actions,
-              defaultOpen = S.isOpen)(
+              open = S.isOpen)(
               "Dialog example with floating buttons"
             ),
             MuiRaisedButton(label = "Dialog", onTouchTap = openDialog)()

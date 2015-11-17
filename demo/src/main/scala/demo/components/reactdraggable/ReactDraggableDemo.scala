@@ -3,10 +3,8 @@ package components
 package reactdraggable
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.draggables.ReactDraggable
-import chandu0101.scalajs.react.components.icons.{IconName, ReactGeomIcon}
-import chandu0101.scalajs.react.components.mixins.AsyncLoad
-import chandu0101.scalajs.react.components.models.RElementPosition
+import chandu0101.scalajs.react.components.AsyncLoad
+import chandu0101.scalajs.react.components.draggables.{RElementPosition, ReactDraggable}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.raw.Event

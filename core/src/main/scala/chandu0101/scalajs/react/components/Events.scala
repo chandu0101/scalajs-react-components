@@ -1,8 +1,8 @@
 package chandu0101.scalajs.react.components
-package util
 
 import japgolly.scalajs.react.Callback
 import org.scalajs.dom.{Event, EventTarget}
+
 import scala.scalajs.js
 
 object Events {

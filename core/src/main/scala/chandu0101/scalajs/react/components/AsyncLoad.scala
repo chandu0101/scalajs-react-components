@@ -1,5 +1,4 @@
 package chandu0101.scalajs.react.components
-package mixins
 
 import japgolly.scalajs.react._
 import org.scalajs.dom

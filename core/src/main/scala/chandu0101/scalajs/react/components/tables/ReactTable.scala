@@ -1,8 +1,6 @@
 package chandu0101.scalajs.react.components
 package tables
 
-import chandu0101.scalajs.react.components.optionselectors.DefaultSelect
-import chandu0101.scalajs.react.components.pagers.Pager
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._

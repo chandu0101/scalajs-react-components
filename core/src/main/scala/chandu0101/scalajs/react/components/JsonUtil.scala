@@ -1,5 +1,4 @@
 package chandu0101.scalajs.react.components
-package util
 
 import scala.scalajs.js
 import scala.scalajs.js.JSON

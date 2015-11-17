@@ -51,7 +51,7 @@ object DemoLeftNav {
           val hover = S.hoveredItem == item.text
           <.a(^.key := item.text, P.style.menuItem, selected ?= P.style.selectedMenuItem,
             hover ?= P.style.menuItemHover)(
-              onMouseEnter --> onMouseEnter_(item.text),
+            ^.onMouseEnter --> onMouseEnter_(item.text),
               ^.onMouseOut --> onMouseLeave_)(^.href := item.route)(item.text)
         }
         }

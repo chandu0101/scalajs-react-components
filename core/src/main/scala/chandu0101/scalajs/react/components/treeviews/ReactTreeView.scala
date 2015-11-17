@@ -21,18 +21,16 @@ object ReactTreeView {
 
     def treeItem = Seq(^.listStyleType := "none")
 
-    def treeItemContent = Seq(cursorPointer)
-
     def selectedTreeItemContent = Seq(^.backgroundColor := "#1B8EB0",
       ^.color := "white", ^.fontWeight := 400,
       ^.padding := "0 7px")
 
     def treeItemBefore = Seq(
-      displayInlineBlock,
+      ^.display := "inline-block",
       ^.fontSize := "11px",
       ^.color := "grey",
       ^.margin := "3px 7px 0 0",
-      textAlignCenter,
+      ^.textAlign := "center",
       ^.width := "11px"
     )
 
@@ -144,7 +142,7 @@ object ReactTreeView {
         P.style.treeItem,
         treeMenuToggle,
         ^.key := "toggle",
-        P.style.treeItemContent,
+        ^.cursor := "pointer",
         <.span(
           S.selected ?= P.style.selectedTreeItemContent,
           ^.onClick ==> onItemSelect(P),

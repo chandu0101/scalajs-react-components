@@ -1,8 +1,8 @@
-package chandu0101.scalajs.react.components
-package optionselectors
+package chandu0101.scalajs.react.components.tables
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scala.scalajs.js
 
 object DefaultSelect {

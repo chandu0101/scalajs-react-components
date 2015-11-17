@@ -1,16 +1,19 @@
 package chandu0101.scalajs.react.components
 package draggables
 
-import chandu0101.scalajs.react.components.models.{RElementPosition, RGrid, RPoint}
-import chandu0101.scalajs.react.components.util.{DomUtil, Events}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.Reusability
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
-import org.scalajs.dom.Event
+import org.scalajs.dom._
+
 import scala.scalajs.js
 
+case class RGrid(width: Double, height: Double)
+case class RElementPosition(element: Element, top: Double = 0, left: Double = 0, right: Double = 0, bottom: Double = 0)
+
 object ReactDraggable {
+  import RCustomStyles._
   type CssClassType = Map[String, Boolean]
 
   case class Props(cancel: js.UndefOr[String],
@@ -164,7 +167,7 @@ object ReactDraggable {
     def canDragX(P: Props): Boolean =
       P.axis == "both" || P.axis == "x"
 
-    private val transforms = Seq(^.transform, mozTransform, webkitTransform, msTransform)
+    private val transforms = Seq(^.transform, mozTransform, WebkitTransform, msTransform)
 
     def positionToCSSTransform(left: Int, top: Int): TagMod =
       transforms map (_ := s"translate(${left}px, ${top}px)")

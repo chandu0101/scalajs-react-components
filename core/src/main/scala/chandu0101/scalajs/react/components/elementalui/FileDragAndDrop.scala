@@ -15,7 +15,7 @@ case class FileDragAndDrop(
     label: js.UndefOr[String] = js.undefined,
     labelActive: js.UndefOr[String] = js.undefined,
     files: js.Array[File] = js.Array(),
-    onDrop: js.UndefOr[js.Array[File] ⇒ Callback] = js.undefined) {
+    onDrop: js.UndefOr[js.Array[File] => Callback] = js.undefined) {
 
   def apply() = {
     val props = JSMacro[FileDragAndDrop](this)

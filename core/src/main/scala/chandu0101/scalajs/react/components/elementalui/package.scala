@@ -9,10 +9,10 @@ import scala.reflect.ClassTag
 package object elementalui {
   implicit def StringToReactNodeU(s: String): js.UndefOr[ReactNode] =
     s: ReactNode
-  implicit def UnionEvidence[A: ClassTag, B: ClassTag](ab: A | B)(implicit eva: A ⇒ js.Any, evb: B ⇒ js.Any): js.Any =
+  implicit def UnionEvidence[A: ClassTag, B: ClassTag](ab: A | B)(implicit eva: A => js.Any, evb: B => js.Any): js.Any =
     ab match {
-      case a: A ⇒ eva(a)
-      case b: B ⇒ evb(b)
+      case a: A => eva(a)
+      case b: B => evb(b)
     }
 
   @js.native @JSName("elemental")

@@ -23,7 +23,7 @@ case class FormSelect(
     label: js.UndefOr[String] = js.undefined,
     options: js.Array[SelectOption] = js.Array(),
     prependEmptyOption: js.UndefOr[Boolean] = js.undefined,
-    onChange: js.UndefOr[String ⇒ Callback] = js.undefined,
+    onChange: js.UndefOr[String => Callback] = js.undefined,
     required: js.UndefOr[Boolean] = js.undefined,
     requiredMessage: js.UndefOr[String] = js.undefined,
     value: js.UndefOr[String] = js.undefined) {

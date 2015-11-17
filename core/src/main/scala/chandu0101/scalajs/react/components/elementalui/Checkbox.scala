@@ -15,8 +15,8 @@ case class CheckBox(
     label: js.UndefOr[String] = js.undefined,
     style: js.UndefOr[String] = js.undefined,
     title: js.UndefOr[String] = js.undefined,
-    onclick: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined,
-    ondblclick: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined) {
+    onclick: js.UndefOr[ReactEventH => Callback] = js.undefined,
+    ondblclick: js.UndefOr[ReactEventH => Callback] = js.undefined) {
 
   def apply() = {
     val props = JSMacro[CheckBox](this)

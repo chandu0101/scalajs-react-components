@@ -14,8 +14,8 @@ import scala.scalajs.js.`|`
 case class Pill(
     className: js.UndefOr[String] = js.undefined,
     label: js.UndefOr[String] = js.undefined,
-    onClear: js.UndefOr[ReactEvent ⇒ Callback] = js.undefined,
-    onClick: js.UndefOr[ReactEvent ⇒ Callback] = js.undefined,
+    onClear: js.UndefOr[ReactEvent => Callback] = js.undefined,
+    onClick: js.UndefOr[ReactEvent => Callback] = js.undefined,
     `type`: js.UndefOr[PillType] = js.undefined) {
 
   def apply() = {

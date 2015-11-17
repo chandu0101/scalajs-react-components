@@ -10,7 +10,7 @@ case class EmailInputGroup(className: js.UndefOr[String] = js.undefined,
     alwaysValidate: js.UndefOr[Boolean] = js.undefined,
     invalidMessage: js.UndefOr[String] = js.undefined,
     label: js.UndefOr[String] = js.undefined,
-    onChange: js.UndefOr[ReactEventI ⇒ Callback] = js.undefined,
+    onChange: js.UndefOr[ReactEventI => Callback] = js.undefined,
     required: js.UndefOr[Boolean] = js.undefined,
     requiredMessage: js.UndefOr[String] = js.undefined,
     value: js.UndefOr[String] = js.undefined) {

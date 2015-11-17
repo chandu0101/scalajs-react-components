@@ -20,7 +20,7 @@ case class FormInput(
     name: js.UndefOr[String] = js.undefined,
     pattern: js.UndefOr[String] = js.undefined,
     noedit: js.UndefOr[Boolean] = js.undefined,
-    onChange: js.UndefOr[ReactEventI ⇒ Callback] = js.undefined,
+    onChange: js.UndefOr[ReactEventI => Callback] = js.undefined,
     size: js.UndefOr[FormInputSize] = js.undefined,
     `type`: js.UndefOr[String] = js.undefined,
     value: js.UndefOr[String | Int] = js.undefined) {

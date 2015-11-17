@@ -25,7 +25,7 @@ case class FileUpload(className: js.UndefOr[String] = js.undefined,
     buttonLabelChange: js.UndefOr[String] = js.undefined,
     buttonLabelInitial: js.UndefOr[String] = js.undefined,
     file: js.UndefOr[File] = js.undefined,
-    onChange: js.UndefOr[ReactEvent ⇒ Callback] = js.undefined) {
+    onChange: js.UndefOr[ReactEvent => Callback] = js.undefined) {
 
   def apply() = {
     val props = JSMacro[FileUpload](this)

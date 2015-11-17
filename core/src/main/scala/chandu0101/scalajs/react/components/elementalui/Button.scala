@@ -7,7 +7,7 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
 
 case class Button(
-    onClick: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined,
+    onClick: js.UndefOr[ReactEventH => Callback] = js.undefined,
     `type`: js.UndefOr[ButtonType] = js.undefined,
     block: js.UndefOr[Boolean] = js.undefined,
     disabled: js.UndefOr[Boolean] = js.undefined,
@@ -17,7 +17,7 @@ case class Button(
     isActive: js.UndefOr[Boolean] = js.undefined,
     size: js.UndefOr[ButtonSize] = js.undefined,
     submit: js.UndefOr[Boolean] = js.undefined,
-    ondblclick: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined) {
+    ondblclick: js.UndefOr[ReactEventH => Callback] = js.undefined) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[Button](this)

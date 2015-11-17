@@ -9,7 +9,7 @@ case class Modal(
     className: js.UndefOr[String] = js.undefined,
     backdropClosesModal: js.UndefOr[Boolean] = js.undefined,
     isOpen: js.UndefOr[Boolean] = js.undefined,
-    onCancel: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined,
+    onCancel: js.UndefOr[ReactEventH => Callback] = js.undefined,
     width: js.UndefOr[String | Int] = js.undefined) {
 
   def apply(children: ReactNode*) = {

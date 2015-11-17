@@ -15,7 +15,7 @@ case class Dropdown(
     isOpen: js.UndefOr[Boolean] = js.undefined,
     children: js.UndefOr[Boolean] = js.undefined,
     items: js.Array[DropdownMenuItem],
-    onSelect: js.UndefOr[ReactEventH ⇒ Callback] = js.undefined) {
+    onSelect: js.UndefOr[ReactEventH => Callback] = js.undefined) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[Dropdown](this)
@@ -33,9 +33,9 @@ object DropdownMenuItemType {
   val DEFAULT = DropdownMenuItemType("")
 
   def fromString(str: String): DropdownMenuItemType = str match {
-    case "divider" ⇒ DIVIDER
-    case "header"  ⇒ HEADER
-    case _         ⇒ DEFAULT
+    case "divider" => DIVIDER
+    case "header"  => HEADER
+    case _         => DEFAULT
   }
 
 }

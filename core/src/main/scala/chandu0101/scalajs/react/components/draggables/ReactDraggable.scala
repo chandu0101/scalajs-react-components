@@ -205,7 +205,7 @@ object ReactDraggable {
     .initialState_P(newStateFrom)
     .renderBackend[Backend]
     .componentWillReceiveProps{
-      case ComponentWillReceiveProps(_$, nextProps) ⇒
+      case ComponentWillReceiveProps(_$, nextProps) =>
         _$.setState(newStateFrom(nextProps)).conditionally(nextProps.moveOnStartChange).void
     }
     .configure(Reusability.shouldComponentUpdate)

@@ -16,7 +16,7 @@ object AutoSizeInput {
       $.backend.copyInputStyles >> $.backend.updateInputWidth($.props, $.state)
     )
     .componentDidUpdate {
-      case ComponentDidUpdate(_$, _, _) ⇒ _$.backend.updateInputWidth(_$.props, _$.state)
+      case ComponentDidUpdate(_$, _, _) => _$.backend.updateInputWidth(_$.props, _$.state)
     }.build
 
   def apply(minWidth: Int = 1, ref: js.UndefOr[String] = "", key: js.Any = {}, defaultValue: String = "", value: String = "", onChange: ReactEventI => Callback = null, style: Style = new Style {})(inputProps: TagMod*) =

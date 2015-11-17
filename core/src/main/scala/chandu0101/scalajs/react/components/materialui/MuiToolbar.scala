@@ -7,8 +7,10 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiToolbar(
-	key: js.UndefOr[String]   = js.undefined,
-	ref: js.UndefOr[String]   = js.undefined)
+	key:   js.UndefOr[String]          = js.undefined,
+	ref:   js.UndefOr[String]          = js.undefined,
+	/*  Override the inline-styles of the toolbar group's root element.*/
+	style: js.UndefOr[CssProperties]   = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

@@ -46,16 +46,16 @@ case class Origin(vertical: MuiPopoverVertical, horizontal: MuiPopoverHorizontal
 class MuiPopoverVertical(val value: String) extends AnyVal
 object MuiPopoverVertical{
 	val top    = new MuiPopoverVertical("top")
-	val middle = new MuiPopoverVertical("middle")
+	val center = new MuiPopoverVertical("center")
 	val bottom = new MuiPopoverVertical("bottom")
- val values = List(top, middle, bottom)
+ val values = List(top, center, bottom)
 }
 
 class MuiPopoverHorizontal(val value: String) extends AnyVal
 object MuiPopoverHorizontal{
 	val left   = new MuiPopoverHorizontal("left")
-	val center = new MuiPopoverHorizontal("center")
+	val middle = new MuiPopoverHorizontal("middle")
 	val right  = new MuiPopoverHorizontal("right")
- val values = List(left, center, right)
+ val values = List(left, middle, right)
 }
 

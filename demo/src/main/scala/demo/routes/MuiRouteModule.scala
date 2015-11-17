@@ -62,7 +62,7 @@ object MuiRouteModule {
     MList,
     Menu,
     Paper,
-//    Popover, //wait until release
+    Popover,
     Progress,
     SelectField,
     Switches,

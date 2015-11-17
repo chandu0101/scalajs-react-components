@@ -2,18 +2,15 @@ package demo
 package components
 package materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui.{MuiDatePicker, MuiDatePickerMode}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 object MuiDatePickerDemo {
+  val code = GhPagesMacros.exampleSource
 
-  val code =
-    """
-      | MuiDatePicker(hintText = "Protrait Dialog"),
-      | MuiDatePicker(hintText = "Landscape Dialog",mode = MuiDatePickerMode.LANDSCAPE)
-      |
-    """.stripMargin
+  // EXAMPLE:START
 
   val component = ReactComponentB[Unit]("MuiDatePickerDemo")
     .render(P => {
@@ -24,6 +21,8 @@ object MuiDatePickerDemo {
         )
       )
     }).buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

@@ -2,6 +2,7 @@ package demo
 package components
 package reactdraggable
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.draggables.ReactDraggable
 import chandu0101.scalajs.react.components.icons.{IconName, ReactGeomIcon}
 import chandu0101.scalajs.react.components.mixins.AsyncLoad
@@ -12,19 +13,9 @@ import org.scalajs.dom.raw.Event
 
 object ReactDraggableDemo {
 
-  val code =
-    """
-    |ReactDraggable(
-    |  zIndex = 100,
-    |  onStop = (e: Event, pos: RElementPosition) => Callback.info(s"stopped at $pos"))(
-    |  <.div(
-    |    <.h2("Drag me"),
-    |    ^.backgroundColor := "#F2706D",
-    |    ^.padding := "20px",
-    |    ^.width := "200px"
-    |  )
-    |)
-    """.stripMargin
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
 
   case class Backend($: BackendScope[Unit, Unit]) extends AsyncLoad {
 
@@ -52,6 +43,8 @@ object ReactDraggableDemo {
     .renderBackend[Backend]
     .configure(AsyncLoad.mixin)
     .buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

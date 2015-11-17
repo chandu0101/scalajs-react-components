@@ -2,6 +2,7 @@ package demo
 package components
 package materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import japgolly.scalajs.react.{ReactComponentB, _}
@@ -11,6 +12,9 @@ import scala.scalajs.js
 
 //todo: why are there nulls here?
 object MuiUpdatingComponentsDemo {
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
 
   /* This is our state class.
      Note that the state includes not only our domain object, but also all the state we need to manage
@@ -244,10 +248,10 @@ object MuiUpdatingComponentsDemo {
     .renderBackend[Backend]
     .buildU
 
+  // EXAMPLE:END
+
   def apply() = component()
 
-  val code =
-    """""".stripMargin
 }
 
 

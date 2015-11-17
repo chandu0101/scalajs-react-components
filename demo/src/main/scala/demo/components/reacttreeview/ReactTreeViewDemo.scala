@@ -2,6 +2,7 @@ package demo
 package components
 package reacttreeview
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.treeviews.{ReactTreeView, TreeItem}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -9,26 +10,25 @@ import org.scalajs.dom
 
 object ReactTreeViewDemo {
 
-  val code =
-    """
-      | val data = TreeItem("root",
-      |    TreeItem("dude1",
-      |        TreeItem("dude1c")),
-      |    TreeItem("dude2"),
-      |    TreeItem("dude3"),
-      |    TreeItem("dude4",
-      |      TreeItem("dude4c",
-      |        TreeItem("dude4cc")))
-      |  )
-      |ReactTreeView(root = data, openByDefault = true, onItemSelect = B.onItemSelect ,showSearchBox = true),
-      |
-    """.stripMargin
-
   object Style {
     def treeViewDemo = Seq(^.display := "flex")
 
     def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px")
   }
+
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
+
+  val data = TreeItem("root",
+    TreeItem("dude1",
+      TreeItem("dude1c")),
+    TreeItem("dude2"),
+    TreeItem("dude3"),
+    TreeItem("dude4",
+      TreeItem("dude4c",
+        TreeItem("dude4cc")))
+  )
 
   case class State(content: String = "")
 
@@ -37,8 +37,8 @@ object ReactTreeViewDemo {
     def onItemSelect(item: String, parent: String, depth: Int): Callback = {
       val content =
         s"""Selected Item: $item <br>
-          |Its Parent : $parent <br>
-          |Its depth:  $depth <br>
+            |Its Parent : $parent <br>
+            |Its depth:  $depth <br>
           """.stripMargin
       Callback(dom.document.getElementById("treeviewcontent").innerHTML = content)
     }
@@ -65,15 +65,7 @@ object ReactTreeViewDemo {
     .renderBackend[Backend]
     .buildU
 
-  lazy val data = TreeItem("root",
-    TreeItem("dude1",
-        TreeItem("dude1c")),
-    TreeItem("dude2"),
-    TreeItem("dude3"),
-    TreeItem("dude4",
-      TreeItem("dude4c",
-        TreeItem("dude4cc")))
-  )
+  // EXAMPLE:END
 
   def apply() = component()
 

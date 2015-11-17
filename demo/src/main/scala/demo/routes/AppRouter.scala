@@ -7,7 +7,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
-import scala.scalajs.js.Dynamic.{ global ⇒ g }
+import scala.scalajs.js.Dynamic.{ global => g }
 
 object AppRouter {
 
@@ -43,23 +43,23 @@ object AppRouter {
 
   case class SpinnerPages(p: LeftRoute) extends Page
 
-  val config = RouterConfigDsl[Page].buildConfig { dsl ⇒
+  val config = RouterConfigDsl[Page].buildConfig { dsl =>
     import dsl._
-    val reactListViewRoutes: Rule = ReactListViewRouteModule.routes.prefixPath_/("#reactlistview").pmap[Page](ReactListViewPages) { case ReactListViewPages(p) ⇒ p }
-    val reactTreeViewRoutes: Rule = ReactTreeViewRouteModule.routes.prefixPath_/("#reacttreeview").pmap[Page](ReactTreeViewPages) { case ReactTreeViewPages(p) ⇒ p }
-    val reactPopoverRoutes: Rule = ReactPopoverRouteModule.routes.prefixPath_/("#reactpopover").pmap[Page](ReactPopoverPages) { case ReactPopoverPages(p) ⇒ p }
-    val reactTableRoutes: Rule = ReactTableRouteModule.routes.prefixPath_/("#reacttable").pmap[Page](ReactTablePages) { case ReactTablePages(p) ⇒ p }
-    val reactTagsInputRoutes: Rule = ReactTagsInputRouteModule.routes.prefixPath_/("#reacttagsinput").pmap[Page](ReactTagsInputPages) { case ReactTagsInputPages(p) ⇒ p }
-    val reactSelectRoutes: Rule = ReactSelectRouteModule.routes.prefixPath_/("#reactselect").pmap[Page](ReactSelectPages) { case ReactSelectPages(p) ⇒ p }
-    val reactGeomIconRoutes: Rule = ReactGeomIcontRouteModule.routes.prefixPath_/("#reactgeomicon").pmap[Page](ReactGeomIconPages) { case ReactGeomIconPages(p) ⇒ p }
-    val reactInfiniteRoutes: Rule = ReactInfiniteRouteModule.routes.prefixPath_/("#reactinite").pmap[Page](ReactInfinitePages) { case ReactInfinitePages(p) ⇒ p }
-    val reactDraggableRoutes: Rule = ReactJSDraggableRouteModule.routes.prefixPath_/("#reactdraggable").pmap[Page](ReactDraggablePages) { case ReactDraggablePages(p) ⇒ p }
-    val googleMapRoutes: Rule = GoogleMapRouteModule.routes.prefixPath_/("#googlemap").pmap[Page](GoogleMapPages) { case GoogleMapPages(p) ⇒ p }
-    val muiRoutes: Rule = MuiRouteModule.routes.prefixPath_/("#materialui").pmap[Page](MuiPages) { case MuiPages(p) ⇒ p }
-    val euiRoutes: Rule = EuiRouteModule.routes.prefixPath_/("#elementalui").pmap[Page](EuiPages) { case EuiPages(p) ⇒ p }
-    val spinnerRoutes: Rule = SpinnerRouteModule.routes.prefixPath_/("#spinner").pmap[Page](SpinnerPages) { case SpinnerPages(p) ⇒ p }
+    val reactListViewRoutes: Rule = ReactListViewRouteModule.routes.prefixPath_/("#reactlistview").pmap[Page](ReactListViewPages) { case ReactListViewPages(p) => p }
+    val reactTreeViewRoutes: Rule = ReactTreeViewRouteModule.routes.prefixPath_/("#reacttreeview").pmap[Page](ReactTreeViewPages) { case ReactTreeViewPages(p) => p }
+    val reactPopoverRoutes: Rule = ReactPopoverRouteModule.routes.prefixPath_/("#reactpopover").pmap[Page](ReactPopoverPages) { case ReactPopoverPages(p) => p }
+    val reactTableRoutes: Rule = ReactTableRouteModule.routes.prefixPath_/("#reacttable").pmap[Page](ReactTablePages) { case ReactTablePages(p) => p }
+    val reactTagsInputRoutes: Rule = ReactTagsInputRouteModule.routes.prefixPath_/("#reacttagsinput").pmap[Page](ReactTagsInputPages) { case ReactTagsInputPages(p) => p }
+    val reactSelectRoutes: Rule = ReactSelectRouteModule.routes.prefixPath_/("#reactselect").pmap[Page](ReactSelectPages) { case ReactSelectPages(p) => p }
+    val reactGeomIconRoutes: Rule = ReactGeomIcontRouteModule.routes.prefixPath_/("#reactgeomicon").pmap[Page](ReactGeomIconPages) { case ReactGeomIconPages(p) => p }
+    val reactInfiniteRoutes: Rule = ReactInfiniteRouteModule.routes.prefixPath_/("#reactinite").pmap[Page](ReactInfinitePages) { case ReactInfinitePages(p) => p }
+    val reactDraggableRoutes: Rule = ReactJSDraggableRouteModule.routes.prefixPath_/("#reactdraggable").pmap[Page](ReactDraggablePages) { case ReactDraggablePages(p) => p }
+    val googleMapRoutes: Rule = GoogleMapRouteModule.routes.prefixPath_/("#googlemap").pmap[Page](GoogleMapPages) { case GoogleMapPages(p) => p }
+    val muiRoutes: Rule = MuiRouteModule.routes.prefixPath_/("#materialui").pmap[Page](MuiPages) { case MuiPages(p) => p }
+    val euiRoutes: Rule = EuiRouteModule.routes.prefixPath_/("#elementalui").pmap[Page](EuiPages) { case EuiPages(p) => p }
+    val spinnerRoutes: Rule = SpinnerRouteModule.routes.prefixPath_/("#spinner").pmap[Page](SpinnerPages) { case SpinnerPages(p) => p }
     (trimSlashes
-      | staticRoute(root, Home) ~> renderR(ctrl ⇒ HomePage(ctrl))
+      | staticRoute(root, Home) ~> renderR(ctrl => HomePage(ctrl))
       | staticRoute("#scalacss", ScalaCSSDoc) ~> render(ScalaCSSTutorial())
       | reactListViewRoutes
       | reactTreeViewRoutes

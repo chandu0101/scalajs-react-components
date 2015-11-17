@@ -2,21 +2,15 @@ package demo
 package components
 package materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui.MuiTextField
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 object MuiTextFieldDemo {
+  val code = GhPagesMacros.exampleSource
 
-  val code =
-    """
-      |MuiTextField(hintText = "Hint Text"),
-      |MuiTextField(hintText = "Hint Text",floatingLabelText = "Floating Label Text"),
-      |MuiTextField(hintText = "Multi line Text", multiLine = true),
-      |MuiTextField(hintText = "Multi line Text", multiLine = true,floatingLabelText = "Multi Line Floating Label Text"),
-      |MuiTextField(hintText = "Disabled Hint text",disabled = true)
-      |
-    """.stripMargin
+  // EXAMPLE:START
 
   val component = ReactComponentB[Unit]("MuiTextFieldDemo")
     .render(P => {
@@ -32,6 +26,7 @@ object MuiTextFieldDemo {
         )
       )
     }).buildU
+  // EXAMPLE:END
 
   def apply() = component()
 }

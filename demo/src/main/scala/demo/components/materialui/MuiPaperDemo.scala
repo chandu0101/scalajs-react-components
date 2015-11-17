@@ -2,6 +2,7 @@ package demo
 package components
 package materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui.{MuiPaper, MuiZDepth}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -26,26 +27,10 @@ object MuiPaperDemo {
       )
     )
   }
+  val code = GhPagesMacros.exampleSource
 
-  val code =
-    """
-      |  MuiPaper(zDepth = 1)(<.p("zDepth = 1")),
-      |  MuiPaper(zDepth = 2)(<.p("zDepth = 2")),
-      |  MuiPaper(zDepth = 3)(<.p("zDepth = 3")),
-      |  MuiPaper(zDepth = 4)(<.p("zDepth = 4")),
-      |  MuiPaper(zDepth = 5)(<.p("zDepth = 5")),
-      |  MuiPaper(zDepth = 1,rounded = false)(<.p("rounded = false")),
-      |  MuiPaper(zDepth = 2,rounded = false)(<.p("rounded = false")),
-      |  MuiPaper(zDepth = 3,rounded = false)(<.p("rounded = false")),
-      |  MuiPaper(zDepth = 4,rounded = false)(<.p("rounded = false")),
-      |  MuiPaper(zDepth = 5,rounded = false)(<.p("rounded = false")),
-      |  MuiPaper(zDepth = 1,circle = true)(<.p("circle = true")),
-      |  MuiPaper(zDepth = 2,circle = true)(<.p("circle = true")),
-      |  MuiPaper(zDepth = 3,circle = true)(<.p("circle = true")),
-      |  MuiPaper(zDepth = 4,circle = true)(<.p("circle = true")),
-      |  MuiPaper(zDepth = 5,circle = true)(<.p("circle = true"))
-      |
-    """.stripMargin
+  // EXAMPLE:START
+
   val component = ReactComponentB[Unit]("MuiPaperDemo")
     .render(P => {
       <.div(
@@ -70,6 +55,8 @@ object MuiPaperDemo {
         )
       )
     }).buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

@@ -1,6 +1,8 @@
 package demo.components.materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
+import demo.components.CodeExample
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
@@ -9,6 +11,9 @@ import scala.scalajs.js.`|`
 
 
 object MuiTableDemo {
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
 
   case class State(
     fixedHeader: Boolean,
@@ -71,71 +76,72 @@ object MuiTableDemo {
       }
     }
 
-    def render(S: State) = {
-      <.div(
-        MuiTable(
-          key                 = S.toString,
-          height              = S.height,
-          fixedHeader         = S.fixedHeader,
-          fixedFooter         = S.fixedFooter,
-          selectable          = S.selectable,
-          multiSelectable     = S.multiSelectable,
-          onRowSelection      = onRowSelection
-        )(
-          MuiTableHeader(enableSelectAll = S.enableSelectAll)(
-            MuiTableRow()(
-              MuiTableHeaderColumn(
-                tooltip = "Super Header",
-                style = js.Dynamic.literal("textAlign" -> "center"))()
-            ),
-            colNames
-          ),
-          MuiTableBody(
-            deselectOnClickaway = S.deselectOnClickaway,
-            showRowHover = S.showRowHover,
-            stripedRows = S.stripedRows
+    def render(S: State) =
+      CodeExample(code)(
+        <.div(
+          MuiTable(
+            key                 = S.toString,
+            height              = S.height,
+            fixedHeader         = S.fixedHeader,
+            fixedFooter         = S.fixedFooter,
+            selectable          = S.selectable,
+            multiSelectable     = S.multiSelectable,
+            onRowSelection      = onRowSelection
           )(
-            renderPersons(S.selected) :_*
+            MuiTableHeader(enableSelectAll = S.enableSelectAll)(
+              MuiTableRow()(
+                MuiTableHeaderColumn(
+                  tooltip = "Super Header",
+                  style = js.Dynamic.literal("textAlign" -> "center"))()
+              ),
+              colNames
+            ),
+            MuiTableBody(
+              deselectOnClickaway = S.deselectOnClickaway,
+              showRowHover = S.showRowHover,
+              stripedRows = S.stripedRows
+            )(
+              renderPersons(S.selected) :_*
+            ),
+            MuiTableFooter()(
+              colNames,
+              MuiTableRow(style = js.Dynamic.literal("textAlign" -> "center"))()
+            )
           ),
-          MuiTableFooter()(
-            colNames,
-            MuiTableRow(style = js.Dynamic.literal("textAlign" -> "center"))()
+          MuiPaper(rounded = true, style = js.Dynamic.literal("width" -> "300", "padding" -> "20px"))(
+            MuiToggle(
+              label = "selectable": ReactNode,
+              defaultToggled = S.selectable,
+              onToggle = toggleSelectable
+            )(),
+            MuiToggle(
+              label = "multiSelectable": ReactNode,
+              defaultToggled = S.multiSelectable,
+              onToggle = toggleMultiSelectable
+            )(),
+            MuiToggle(
+              label = "enableSelectAll": ReactNode,
+              defaultToggled = S.enableSelectAll,
+              onToggle = toggleEnableSelectAll
+            )(),
+            MuiToggle(
+              label = "deselectOnClickaway": ReactNode,
+              defaultToggled = S.deselectOnClickaway,
+              onToggle = toggleDeselectOnClickaway
+            )(),
+            MuiToggle(
+              label = "fixedHeader": ReactNode,
+              defaultToggled = S.fixedHeader,
+              onToggle = toggleFixedHeader
+            )(),
+            MuiToggle(
+              label = "fixedFooter": ReactNode,
+              defaultToggled = S.fixedFooter,
+              onToggle = toggleFixedFooter
+            )()
           )
-        ),
-        MuiPaper(rounded = true, style = js.Dynamic.literal("width" -> "300", "padding" -> "20px"))(
-          MuiToggle(
-            label = "selectable": ReactNode,
-            defaultToggled = S.selectable,
-            onToggle = toggleSelectable
-          )(),
-          MuiToggle(
-            label = "multiSelectable": ReactNode,
-            defaultToggled = S.multiSelectable,
-            onToggle = toggleMultiSelectable
-          )(),
-          MuiToggle(
-            label = "enableSelectAll": ReactNode,
-            defaultToggled = S.enableSelectAll,
-            onToggle = toggleEnableSelectAll
-          )(),
-          MuiToggle(
-            label = "deselectOnClickaway": ReactNode,
-            defaultToggled = S.deselectOnClickaway,
-            onToggle = toggleDeselectOnClickaway
-          )(),
-          MuiToggle(
-            label = "fixedHeader": ReactNode,
-            defaultToggled = S.fixedHeader,
-            onToggle = toggleFixedHeader
-          )(),
-          MuiToggle(
-            label = "fixedFooter": ReactNode,
-            defaultToggled = S.fixedFooter,
-            onToggle = toggleFixedFooter
-          )()
         )
       )
-    }
   }
 
   val component = ReactComponentB[Unit]("MuiTableDemo")
@@ -153,6 +159,8 @@ object MuiTableDemo {
     ))
     .renderBackend[Backend]
     .buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

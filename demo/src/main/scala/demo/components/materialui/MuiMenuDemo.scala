@@ -2,6 +2,7 @@ package demo
 package components
 package materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -13,45 +14,6 @@ import scalacss.ScalaCssReact._
 import scalacss.mutable.StyleSheet.Inline
 
 object MuiMenuDemo {
-
-
-  val labelMenuCode =
-    """
-      |lazy val labelMenuItems = js.Array(
-      |    MuiMenuItem(payload = "1",text = "ID",data = "12345678"),
-      |    MuiMenuItem(payload = "2",text = "Type",data = "Announcement"),
-      |    MuiMenuItem(payload = "3",text = "Caller ID",data = "(123) 456-7890")
-      |  )
-      |
-      |  MuiMenu(menuItems = labelMenuItems)
-      |
-      |
-    """.stripMargin
-
-  val numberMenuCode =
-    """
-      |lazy val numberMenuItems = js.Array(
-      |    MuiMenuItem(payload = "1",text = "All",number = "2"),
-      |    MuiMenuItem(payload = "2",text = "Uncategorized",number = "6"),
-      |    MuiMenuItem(payload = "3",text = "Trash",number = "11")
-      |  )
-      |
-      | MuiMenu(menuItems = numberMenuItems,autoWidth = false)
-      |
-    """.stripMargin
-
-  val filterMenuCode =
-    """
-      | lazy val filterMenuItems = js.Array(
-      |    MuiMenuItem(payload = "1",text = "Text Opt-in",toggle = true),
-      |    MuiMenuItem(payload = "2",text = "Text Opt-out",toggle = true,defaultToggled = true),
-      |    MuiMenuItem(payload = "3",text = "Voice Opt-out",toggle = true)
-      |  )
-      |
-      | MuiMenu(menuItems = filterMenuItems,autoWidth = false)
-      |
-      |
-    """.stripMargin
 
   object Style extends Inline {
 
@@ -65,38 +27,25 @@ object MuiMenuDemo {
       alignItems.center)
   }
 
-  lazy val labelMenuItems = js.Array(
-    MuiMenuItemJson(payload = "1", text = "ID", data = "12345678"),
-    MuiMenuItemJson(payload = "2", text = "Type", data = "Announcement"),
-    MuiMenuItemJson(payload = "3", text = "Caller ID", data = "(123) 456-7890")
-  )
+  val code = GhPagesMacros.exampleSource
 
-  lazy val numberMenuItems = js.Array(
-    MuiMenuItemJson(payload = "1", text = "All", number = "2"),
-    MuiMenuItemJson(payload = "2", text = "Uncategorized", number = "6"),
-    MuiMenuItemJson(payload = "3", text = "Trash", number = "11")
-  )
-
-  lazy val filterMenuItems = js.Array(
-    MuiMenuItemJson(payload = "1", text = "Text Opt-in", toggle = true),
-    MuiMenuItemJson(payload = "2", text = "Text Opt-out", toggle = true, defaultToggled = true),
-    MuiMenuItemJson(payload = "3", text = "Voice Opt-out", toggle = true)
-  )
+  // EXAMPLE:START
 
   case class State(selected: String | js.Array[String])
 
   class Backend($: BackendScope[Unit, State]) {
+
     val onChange: (ReactEvent, (String | js.Array[String])) => Callback =
       (e, value) => Callback.info(s"chose $value") >> $.setState(State(value))
     val onItemTouchTap: (ReactTouchEvent, ReactElement) => Callback =
       (e, elem) => Callback.info(s"touched $elem")
 
-    def render(S: State) = {
-      <.div(Style.container,
-        <.h3("Menus"),
-        MuiTabs()(
-          MuiTab(label = "Menu example")(
-            CodeExample(filterMenuCode)(
+    def render(S: State) =
+      CodeExample(code)(
+        <.div(Style.container,
+          <.h3("Menus"),
+          MuiTabs()(
+            MuiTab(label = "Menu example")(
               <.div(Style.content,
                 MuiMenu(
                   desktop = true,
@@ -121,14 +70,15 @@ object MuiMenuDemo {
           )
         )
       )
-    }
   }
 
-  val component = ReactComponentB[Unit]("MuiMenuDemo")
-    .initialState(State(js.Array[String]()))
-    .renderBackend[Backend]
-    .buildU
+val component = ReactComponentB[Unit] ("MuiMenuDemo")
+.initialState (State (js.Array[String] () ) )
+.renderBackend[Backend]
+.buildU
 
-  def apply() = component()
+// EXAMPLE:END
+
+def apply () = component ()
 
 }

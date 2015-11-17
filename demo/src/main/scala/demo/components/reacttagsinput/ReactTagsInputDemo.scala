@@ -2,6 +2,7 @@ package demo
 package components
 package reacttagsinput
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.RefHolder
 import chandu0101.scalajs.react.components.textfields.{ReactTagsInput, ReactTagsInputM}
 import japgolly.scalajs.react._
@@ -11,12 +12,9 @@ import scala.scalajs.js
 
 object ReactTagsInputDemo {
 
-  val code =
-    """
-      | ReactTagsInput(ref = "uncontrolledtags")
-      | ReactTagsInput(value = S.tags,onChange = B.onChange _)
-      |
-    """.stripMargin
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
 
   case class State(tags: js.Array[String] = js.Array("scala", "scalajs"))
 
@@ -48,6 +46,8 @@ object ReactTagsInputDemo {
     .initialState(State())
     .renderBackend[Backend]
     .buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

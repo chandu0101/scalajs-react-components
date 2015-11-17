@@ -2,6 +2,7 @@ package demo
 package components
 package materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.fascades.LatLng
 import chandu0101.scalajs.react.components.materialui.{MuiTab, MuiTabs}
 import japgolly.scalajs.react.ReactComponentB
@@ -20,25 +21,15 @@ object MuiTabsDemo {
       padding(40.px))
   }
 
-  val code =
-    """
-      |   MuiTabs(
-      |    )(
-      |       MuiTab(label = "Tab1")(
-      |          <.h3(Style.tabContent, "Tab1 Content")
-      |        ),
-      |        MuiTab(label = "Tab2")(
-      |          <.h3(Style.tabContent, "Tab2 Content")
-      |        )
-      |      )
-      |
-    """.stripMargin
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
+
   val component = ReactComponentB[Unit]("MuiTabsDemo")
     .render(P => {
       <.div(
         CodeExample(code, "MuiTabs")(
-          MuiTabs(
-          )(
+          MuiTabs()(
             MuiTab(label = "Tab1")(
               <.h3(Style.tabContent, "Tab1 Content")
             ),
@@ -50,7 +41,7 @@ object MuiTabsDemo {
       )
     }).buildU
 
-  lazy val latlng = LatLng(16.3008, 80.4428)
+  // EXAMPLE:END
 
   def apply() = component()
 }

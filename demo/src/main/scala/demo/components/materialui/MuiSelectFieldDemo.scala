@@ -1,11 +1,16 @@
 package demo.components.materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
+import demo.components.CodeExample
 import japgolly.scalajs.react._
 
 import scala.scalajs.js
 
 object MuiSelectFieldDemo {
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
 
   case class State(selected: js.UndefOr[Int])
 
@@ -26,13 +31,14 @@ object MuiSelectFieldDemo {
       MuiSelectItem("5", "Weekly")
     )
 
-    def render(S: State) = {
-      MuiSelectField(
-        menuItems = menuItems,
-        onChange = onChange,
-        selectedIndex = S.selected
-      )()
-    }
+    def render(S: State) =
+      CodeExample(code)(
+        MuiSelectField(
+          menuItems = menuItems,
+          onChange = onChange,
+          selectedIndex = S.selected
+        )()
+      )
   }
 
   val component =
@@ -40,6 +46,8 @@ object MuiSelectFieldDemo {
       .initialState(State(js.undefined))
       .renderBackend[Backend]
       .buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

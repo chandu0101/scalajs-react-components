@@ -2,6 +2,7 @@ package demo
 package components
 package materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components._
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
@@ -11,33 +12,15 @@ import scala.scalajs.js
 
 object MuiLeftNavDemo {
 
-  val code =
-    """
-      | lazy val menuItems = js.Array(
-      |    MuiMenuItem(route = "get-started", text = "Get-started"),
-      |    MuiMenuItem(`type` = MuiMenuItemType.SUBHEADER, text = " Resources"),
-      |    MuiMenuItem(`type` = MuiMenuItemType.LINK,
-      |      text = "Github",
-      |      payload = "https://github.com/chandu0101/scalajs-react-components")
-      |  )
-      |  // hidebale left nav
-      |    MuiLeftNav(ref = "leftnav",
-      |            menuItems = menuItems,docked = false
-      |          ),
-      |
-      |    MuiLeftNav(ref = "leftnavdocked",
-      |            menuItems = menuItems,docked = S.isDocked
-      |      ),
-      |
-    """.stripMargin
+  val code = GhPagesMacros.exampleSource
 
-  lazy val menuItems = js.Array(
+  // EXAMPLE:START
+
+  val menuItems = js.Array(
     MuiMenuItemJson(route = "get-started", text = "Get-started"),
     MuiMenuItemJson(route = "toggle", text = "Toggle", toggle = true, selected = true),
     MuiMenuItemJson(`type` = MuiMenuItemType.SUBHEADER, text = "Resources"),
-    MuiMenuItemJson(`type` = MuiMenuItemType.LINK, disabled = true,
-      text = "Github",
-      payload = "https://github.com/chandu0101/scalajs-react-components")
+    MuiMenuItemJson(`type` = MuiMenuItemType.LINK, disabled = true, text = "Github", payload = "https://github.com/chandu0101/scalajs-react-components")
   )
 
   case class State(isDocked: Boolean = false)
@@ -84,6 +67,8 @@ object MuiLeftNavDemo {
     .initialState(State())
     .renderBackend[Backend]
     .buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

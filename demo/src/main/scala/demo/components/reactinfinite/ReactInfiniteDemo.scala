@@ -2,6 +2,7 @@ package demo
 package components
 package reactinfinite
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.listviews.ReactInfinite
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -9,19 +10,6 @@ import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 
 object ReactInfiniteDemo {
-
-  val code =
-    """
-      |
-      |   val data = (1 to 500).toVector.map(i => s"List Item $i")
-      |
-      |   <.div(
-      |          if(S.isLoading) <.div("Loading ..")
-      |          else ReactInfinite(elementHeight = 40,
-      |          containerHeight = 400)(S.data.map(B.renderRow _))
-      |        )
-      |
-    """.stripMargin
 
   object styles extends StyleSheet.Inline {
 
@@ -41,6 +29,10 @@ object ReactInfiniteDemo {
     val border = style(borderBottom :=! "2px solid rgba(0, 0, 0, 0.1)",
       marginLeft(4 px))
   }
+
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
 
   case class State(isLoading: Boolean = true, data: Vector[String] = Vector())
 
@@ -74,6 +66,8 @@ object ReactInfiniteDemo {
     .renderBackend[Backend]
     .componentDidMount(scope => scope.backend.loadData())
     .buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 

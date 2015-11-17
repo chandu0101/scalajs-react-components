@@ -1,5 +1,6 @@
 package demo.components.materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
@@ -8,6 +9,9 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
 
 object MuiPopoverDemo {
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
 
   case class OriginChoice[T](ts: Seq[T], label: String)(set: T => Callback, fromState: State => T, str: T => String) {
     val action: (ReactEvent, Int, js.Any) => Callback =
@@ -87,6 +91,8 @@ object MuiPopoverDemo {
     ))
     .renderBackend[Backend]
     .buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

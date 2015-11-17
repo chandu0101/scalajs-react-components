@@ -16,7 +16,7 @@ object EuiInfo {
   }
 
   val component = ReactComponentB[Unit]("EuiInfo")
-    .render(P ⇒ {
+    .render(P => {
       InfoTemplate(componentFilePath = "elementalui/")(
         <.div(
           <.h3("elemental-ui "),

@@ -61,13 +61,12 @@ object DomUtil {
 
   def dragEventFor(e:Event, name: String) = name match {
     case "start" => if (e.`type`.contains("touch")) "touchstart" else "mousedown"
-    case "move" => if (e.`type`.contains("touch")) "touchmove" else "mousemove"
-    case "end" => if (e.`type`.contains("touch")) "touchend" else "mouseup"
-    case _ => ""
+    case "move"  => if (e.`type`.contains("touch")) "touchmove"  else "mousemove"
+    case "end"   => if (e.`type`.contains("touch")) "touchend"   else "mouseup"
   }
 
   def getControlPosition(e: Event): RPoint =
-    if (isTouchDevice || e.`type`.contains("touch")) {
+    if (e.`type`.contains("touch")) {
       val position = e.asInstanceOf[TouchEvent].touches(0)
       RPoint(position.clientX, position.clientY)
     } else {
@@ -75,6 +74,7 @@ object DomUtil {
       RPoint(position.clientX, position.clientY)
     }
 
-  def isLeftClick(e: Event) =  e.`type` == "touchstart" || e.asInstanceOf[MouseEvent].button == 0
+  def isLeftClick(e: Event) =
+    e.`type` == "touchstart" || e.asInstanceOf[MouseEvent].button == 0
 
 }

@@ -2,10 +2,10 @@ package demo
 package components
 package materialui
 
-import chandu0101.scalajs.react.components._
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scala.scalajs.js
 
 object MuiDialogDemo {
@@ -26,7 +26,7 @@ object MuiDialogDemo {
   case class State(isOpen: Boolean)
 
   class Backend($: BackendScope[_, State]) {
-    val open  = $.setState(State(true))
+    val open = $.setState(State(true))
     val close = $.setState(State(false))
 
     def handleDialogCancel: ReactEventH => Callback =
@@ -50,7 +50,7 @@ object MuiDialogDemo {
               key = System.currentTimeMillis().toString, //gotta be a bug!
               title = "Dialog With Actions",
               actions = actions,
-              openImmediately = S.isOpen)(
+              defaultOpen = S.isOpen)(
               "Dialog example with floating buttons"
             ),
             MuiRaisedButton(label = "Dialog", onTouchTap = openDialog)()

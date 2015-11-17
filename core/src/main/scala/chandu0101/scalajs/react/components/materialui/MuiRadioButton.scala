@@ -51,4 +51,5 @@ class MuiRadioButtonLabelPosition(val value: String) extends AnyVal
 object MuiRadioButtonLabelPosition{
 	val LEFT = new MuiRadioButtonLabelPosition("left")
 	val RIGHT = new MuiRadioButtonLabelPosition("right")
+	val values = List(LEFT, RIGHT)
 }

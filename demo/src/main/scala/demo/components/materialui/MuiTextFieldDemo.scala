@@ -20,18 +20,18 @@ object MuiTextFieldDemo {
 
   val component = ReactComponentB[Unit]("MuiTextFieldDemo")
     .render(P => {
-    <.div(
-      CodeExample(code, "MuiTextField")(
-       <.div(^.display.flex,^.flexDirection.column,
-        MuiTextField(hintText = "Hint Text")(),
-        MuiTextField(hintText = "Hint Text",floatingLabelText = "Floating Label Text")(),
-        MuiTextField(hintText = "Multi line Text", multiLine = true)(),
-        MuiTextField(hintText = "Multi line Text", multiLine = true,floatingLabelText = "Multi Line Floating Label Text")(),
-        MuiTextField(hintText = "Disabled Hint text",disabled = true)()
+      <.div(
+        CodeExample(code, "MuiTextField")(
+          <.div(^.display.flex, ^.flexDirection.column,
+            MuiTextField(hintText = "Hint Text")(),
+            MuiTextField(hintText = "Hint Text", floatingLabelText = "Floating Label Text")(),
+            MuiTextField(hintText = "Multi line Text", multiLine = true)(),
+            MuiTextField(hintText = "Multi line Text", multiLine = true, floatingLabelText = "Multi Line Floating Label Text")(),
+            MuiTextField(hintText = "Disabled Hint text", disabled = true)()
+          )
+        )
       )
-      )
-    )
-  }).buildU
+    }).buildU
 
   def apply() = component()
 }

@@ -30,7 +30,7 @@ case class MuiMenu(
 	/*  Sets the width of the menu. If not specified, the menu width will be dictated by its children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).*/
 	width:          js.UndefOr[String | Int]                                          = js.undefined,
 	/*  Sets the width of the menu. If not specified, the menu width will be dictated by its children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).*/
-	zDepth:         js.UndefOr[MuiMenuZDepth]                                         = js.undefined,
+	zDepth:         js.UndefOr[MuiZDepth]                                             = js.undefined,
 	/* function(event): Fired when an Esc key is keyed down.*/
 	onEscKeyDown:   js.UndefOr[ReactKeyboardEvent => Callback]                        = js.undefined,
 	/* function(event, item): Fired when a menu item is touchTapped.*/
@@ -53,15 +53,5 @@ object MuiMenuOpenDirection{
 	val BOTTOM_RIGHT = new MuiMenuOpenDirection("bottom-right")
 	val TOP_LEFT = new MuiMenuOpenDirection("top-left")
 	val TOP_RIGHT = new MuiMenuOpenDirection("top-right")
-}
-
-
-class MuiMenuZDepth(val value: String) extends AnyVal
-object MuiMenuZDepth{
-	val _0 = new MuiMenuZDepth("0")
-	val _1 = new MuiMenuZDepth("1")
-	val _2 = new MuiMenuZDepth("2")
-	val _3 = new MuiMenuZDepth("3")
-	val _4 = new MuiMenuZDepth("4")
-	val _5 = new MuiMenuZDepth("5")
+	val values = List(BOTTOM_LEFT, BOTTOM_RIGHT, TOP_LEFT, TOP_RIGHT)
 }

@@ -6,6 +6,7 @@ import chandu0101.scalajs.react.components.fascades.LatLng
 import chandu0101.scalajs.react.components.materialui.{MuiTab, MuiTabs}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 
@@ -34,10 +35,10 @@ object MuiTabsDemo {
     """.stripMargin
   val component = ReactComponentB[Unit]("MuiTabsDemo")
     .render(P => {
-    <.div(
-      CodeExample(code, "MuiTabs")(
-        MuiTabs(
-        )(
+      <.div(
+        CodeExample(code, "MuiTabs")(
+          MuiTabs(
+          )(
             MuiTab(label = "Tab1")(
               <.h3(Style.tabContent, "Tab1 Content")
             ),
@@ -45,9 +46,9 @@ object MuiTabsDemo {
               <.h3(Style.tabContent, "Tab2 Content")
             )
           )
+        )
       )
-    )
-  }).buildU
+    }).buildU
 
   lazy val latlng = LatLng(16.3008, 80.4428)
 

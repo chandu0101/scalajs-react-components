@@ -51,4 +51,5 @@ object MuiIconMenuOpenDirection{
 	val BOTTOM_RIGHT = new MuiIconMenuOpenDirection("bottom-right")
 	val TOP_LEFT = new MuiIconMenuOpenDirection("top-left")
 	val TOP_RIGHT = new MuiIconMenuOpenDirection("top-right")
+	val values = List(BOTTOM_LEFT, BOTTOM_RIGHT, TOP_LEFT, TOP_RIGHT)
 }

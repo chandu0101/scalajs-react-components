@@ -39,11 +39,12 @@ object MuiLeftNavDemo {
       text = "Github",
       payload = "https://github.com/chandu0101/scalajs-react-components")
   )
+
   case class State(isDocked: Boolean = false)
 
   class Backend(t: BackendScope[Unit, State]) {
     val dockedLeftRef = RefHolder[MuiLeftNavM]
-    val leftRef       = RefHolder[MuiLeftNavM]
+    val leftRef = RefHolder[MuiLeftNavM]
 
     val handleDockedLeftNav: ReactEventH => Callback =
       e => dockedLeftRef().map(_.toggle()) >>
@@ -60,13 +61,13 @@ object MuiLeftNavDemo {
         CodeExample(code, "MuiAppBar")(
           <.div(
             MuiLeftNav(
-              ref        = leftRef.set,
-              menuItems  = menuItems,
-              docked     = false,
-              onChange   = onChange,
-              onNavOpen  = Callback.info("onNavOpen"),
+              ref = leftRef.set,
+              menuItems = menuItems,
+              docked = false,
+              onChange = onChange,
+              onNavOpen = Callback.info("onNavOpen"),
               onNavClose = Callback.info("onNavClose"),
-              openRight  = false
+              openRight = false
             )(),
             MuiLeftNav(ref = dockedLeftRef.set, menuItems = menuItems, docked = S.isDocked, onChange = onChange)(),
             MuiRaisedButton(label = "Show Hideable Left Nav", onTouchTap = handleHidableLeftNav)(),

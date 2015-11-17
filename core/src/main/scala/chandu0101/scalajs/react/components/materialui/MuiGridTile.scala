@@ -45,6 +45,7 @@ class MuiGridTileActionPosition(val value: String) extends AnyVal
 object MuiGridTileActionPosition{
 	val LEFT = new MuiGridTileActionPosition("left")
 	val RIGHT = new MuiGridTileActionPosition("right")
+	val values = List(LEFT, RIGHT)
 }
 
 
@@ -52,4 +53,5 @@ class MuiGridTileTitlePosition(val value: String) extends AnyVal
 object MuiGridTileTitlePosition{
 	val TOP = new MuiGridTileTitlePosition("top")
 	val BOTTOM = new MuiGridTileTitlePosition("bottom")
+	val values = List(TOP, BOTTOM)
 }

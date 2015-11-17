@@ -13,6 +13,8 @@ case class MuiSnackbar(
 	action:           js.UndefOr[String]                        = js.undefined,
 	/*  The number of milliseconds to wait before automatically dismissing. If no value is specified the snackbar will dismiss normally. If a value is provided the snackbar can still be dismissed normally. If a snackbar is dismissed before the timer expires, the timer will be cleared.*/
 	autoHideDuration: js.UndefOr[Int]                           = js.undefined,
+	/*  Override the inline-styles of the Snackbar's body element.*/
+	bodyStyle:        js.UndefOr[CssProperties]                 = js.undefined,
 	/* required: The message to be displayed on the snackbar.*/
 	message:          String,
 	/* default: false: If true, the snackbar will open once mounted.*/

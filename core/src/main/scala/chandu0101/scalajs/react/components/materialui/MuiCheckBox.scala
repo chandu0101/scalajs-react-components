@@ -56,6 +56,7 @@ class MuiCheckboxLabelPosition(val value: String) extends AnyVal
 object MuiCheckboxLabelPosition{
 	val LEFT = new MuiCheckboxLabelPosition("left")
 	val RIGHT = new MuiCheckboxLabelPosition("right")
+	val values = List(LEFT, RIGHT)
 }
 
 

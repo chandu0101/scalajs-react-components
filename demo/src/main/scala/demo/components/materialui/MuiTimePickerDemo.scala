@@ -19,13 +19,13 @@ object MuiTimePickerDemo {
     """.stripMargin
   val component = ReactComponentB[Unit]("MuiTimePickerDemo")
     .render(P => {
-    <.div(
-      CodeExample(code, "MuiTimePicker")(
-        MuiTimePicker(format = MuiTimePickerFormat.AMPM, hintText = "12 hr format")(),
-        MuiTimePicker(format = MuiTimePickerFormat._24HR, hintText = "24 hr format")()
+      <.div(
+        CodeExample(code, "MuiTimePicker")(
+          MuiTimePicker(format = MuiTimePickerFormat.AMPM, hintText = "12 hr format")(),
+          MuiTimePicker(format = MuiTimePickerFormat._24HR, hintText = "24 hr format")()
+        )
       )
-    )
-  }).buildU
+    }).buildU
 
   def apply() = component()
 }

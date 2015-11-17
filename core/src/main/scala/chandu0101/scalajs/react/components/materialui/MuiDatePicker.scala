@@ -13,6 +13,8 @@ case class MuiDatePicker(
 	DateTimeFormat:       js.UndefOr[js.Function]                                  = js.undefined,
 	/* default: false: If true, automatically accept and close the picker on select a date.*/
 	autoOk:               js.UndefOr[Boolean]                                      = js.undefined,
+	/* default: dialog: The date pickers container type*/
+	container:            js.UndefOr[MuiDatePickerContainer]                       = js.undefined,
 	/*  This is the initial date value of the component. If either `value` or `valueLink` is provided they will override this prop with `value` taking precedence.*/
 	defaultDate:          js.UndefOr[js.Date]                                      = js.undefined,
 	/*  If true, year selection will be disabled, otherwise, year selection will be enabled.*/
@@ -64,10 +66,19 @@ case class Wordings(ok: String, cancel: String){
       
 
 
+class MuiDatePickerContainer(val value: String) extends AnyVal
+object MuiDatePickerContainer{
+	val DIALOG = new MuiDatePickerContainer("dialog")
+	val INLINE = new MuiDatePickerContainer("inline")
+	val values = List(DIALOG, INLINE)
+}
+
+
 class MuiDatePickerMode(val value: String) extends AnyVal
 object MuiDatePickerMode{
 	val PORTRAIT = new MuiDatePickerMode("portrait")
 	val LANDSCAPE = new MuiDatePickerMode("landscape")
+	val values = List(PORTRAIT, LANDSCAPE)
 }
 
 

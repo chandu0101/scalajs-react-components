@@ -48,6 +48,7 @@ class MuiTimePickerFormat(val value: String) extends AnyVal
 object MuiTimePickerFormat{
 	val AMPM = new MuiTimePickerFormat("ampm")
 	val _24HR = new MuiTimePickerFormat("24hr")
+	val values = List(AMPM, _24HR)
 }
 
 

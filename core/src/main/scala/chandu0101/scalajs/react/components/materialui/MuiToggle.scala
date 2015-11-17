@@ -55,6 +55,7 @@ class MuiToggleLabelPosition(val value: String) extends AnyVal
 object MuiToggleLabelPosition{
 	val LEFT = new MuiToggleLabelPosition("left")
 	val RIGHT = new MuiToggleLabelPosition("right")
+	val values = List(LEFT, RIGHT)
 }
 
 

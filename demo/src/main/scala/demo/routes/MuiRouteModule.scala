@@ -25,9 +25,13 @@ object MuiRouteModule {
 
   case object Paper extends LeftRoute("Paper", "paper", () => MuiPaperDemo())
 
+  case object Popover extends LeftRoute("Popover", "popover", () => MuiPopoverDemo())
+
   case object TextField extends LeftRoute("Text Field", "textfield", () => MuiTextFieldDemo())
 
   case object Progress extends LeftRoute("Progress Bars", "progress", () => MuiProgressDemo())
+
+  case object SelectField extends LeftRoute("Select Field", "selectfield", () => MuiSelectFieldDemo())
 
   case object SnackBar extends LeftRoute("SnackBar", "snackbar", () => MuiSnackbarDemo())
 
@@ -45,6 +49,8 @@ object MuiRouteModule {
 
   case object MList extends LeftRoute("List", "list", () => MuiListDemo())
 
+  case object Table extends LeftRoute("Table", "table", () => MuiTableDemo())
+
   val menu: List[LeftRoute] = List(Info,
     Updates,
     AppBar,
@@ -56,12 +62,15 @@ object MuiRouteModule {
     MList,
     Menu,
     Paper,
+//    Popover, //wait until release
     Progress,
+    SelectField,
     Switches,
     Slider,
     SnackBar,
     TextField,
     TimePicker,
+    Table,
     Tabs,
     Toolbar)
 

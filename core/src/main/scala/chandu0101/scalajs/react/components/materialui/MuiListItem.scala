@@ -69,4 +69,5 @@ class MuiListItemSecondaryTextLines(val value: String) extends AnyVal
 object MuiListItemSecondaryTextLines{
 	val _1 = new MuiListItemSecondaryTextLines("1")
 	val _2 = new MuiListItemSecondaryTextLines("2")
+	val values = List(_1, _2)
 }

@@ -16,7 +16,7 @@ case class MuiLinearProgress(
 	/* default: indeterminate: The mode of show your progress, indeterminate for when there is no value for progress. */
 	mode:  js.UndefOr[MuiLinearProgressMode]   = js.undefined,
 	/* default: 1: The size of the progress.*/
-	size:  js.UndefOr[Double]                  = js.undefined,
+	size:  js.UndefOr[Int]                     = js.undefined,
 	/*  Override the inline-styles of the progress's root element.*/
 	style: js.UndefOr[CssProperties]           = js.undefined,
 	/* default: 0: The value of progress, only works in determinate mode. */
@@ -36,4 +36,5 @@ class MuiLinearProgressMode(val value: String) extends AnyVal
 object MuiLinearProgressMode{
 	val DETERMINATE = new MuiLinearProgressMode("determinate")
 	val INDETERMINATE = new MuiLinearProgressMode("indeterminate")
+	val values = List(DETERMINATE, INDETERMINATE)
 }

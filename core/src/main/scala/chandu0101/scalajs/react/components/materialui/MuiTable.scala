@@ -26,15 +26,15 @@ case class MuiTable(
 	/*  Called when a row is selected. selectedRows is an array of all row selections. IF all rows have been selected, the string "all" will be returned instead to indicate that all rows have been selected.*/
 	onRowSelection:  js.UndefOr[String | js.Array[Int] => Callback]   = js.undefined,
 	/*  Called when a row cell is clicked. rowNumber is the row number and columnId is the column number or the column key.*/
-	onCellClick:     js.UndefOr[(Int, String) => Callback]            = js.undefined,
+	onCellClick:     js.UndefOr[(Int, Int) => Callback]               = js.undefined,
 	/*  Called when a table row is hovered. rowNumber is the row number of the hovered row.*/
 	onRowHover:      js.UndefOr[Int => Callback]                      = js.undefined,
 	/*  Called when a table row is no longer hovered. rowNumber is the row number of the row that is no longer hovered.*/
 	onRowHoverExit:  js.UndefOr[Int => Callback]                      = js.undefined,
 	/*  Called when a table cell is hovered. rowNumber is the row number of the hovered row and columnId is the column number or the column key of the cell.*/
-	onCellHover:     js.UndefOr[(Int, String) => Callback]            = js.undefined,
+	onCellHover:     js.UndefOr[(Int, Int) => Callback]               = js.undefined,
 	/*  Called when a table cell is no longer hovered. rowNumber is the row number of the row and columnId is the column number or the column key of the cell.*/
-	onCellHoverExit: js.UndefOr[(Int, String) => Callback]            = js.undefined)
+	onCellHoverExit: js.UndefOr[(Int, Int) => Callback]               = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

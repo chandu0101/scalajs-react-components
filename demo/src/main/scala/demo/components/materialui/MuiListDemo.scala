@@ -21,19 +21,19 @@ object MuiListDemo {
     """.stripMargin
   val component = ReactComponentB[Unit]("MuiListDemo")
     .render(P => {
-    <.div(
-      CodeExample(code, "MuiList")(
-        MobileTearSheet(
-          MuiList()(
-            MuiListItem(leftIcon = ContentInbox())("Inbox"),
-            MuiListItem(leftIcon = ActionGrade())("Starred"),
-            MuiListItem(leftIcon = ContentSend())("Sent Mail"),
-            MuiListItem(leftIcon = ContentDrafts())("Drafts")
+      <.div(
+        CodeExample(code, "MuiList")(
+          MobileTearSheet(
+            MuiList()(
+              MuiListItem(leftIcon = ContentInbox())("Inbox"),
+              MuiListItem(leftIcon = ActionGrade())("Starred"),
+              MuiListItem(leftIcon = ContentSend())("Sent Mail"),
+              MuiListItem(leftIcon = ContentDrafts())("Drafts")
+            )
           )
         )
       )
-    )
-  }).buildU
+    }).buildU
 
   def apply() = component()
 }

@@ -17,7 +17,7 @@ object MuiSnackbarDemo {
       |
     """.stripMargin
 
-  class Backend(t: BackendScope[_,_]) {
+  class Backend(t: BackendScope[_, _]) {
     val snackBarRef = RefHolder[MuiSnackbarM]
 
     val handleAction: ReactEvent => Callback =

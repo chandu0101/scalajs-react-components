@@ -12,7 +12,7 @@ case class MuiTableBody(
 	/* default: false: Set to true to indicate that all rows should be selected.*/
 	allRowsSelected:     js.UndefOr[Boolean]         = js.undefined,
 	/* default: true: Controls whether or not to deselect all selected rows after clicking outside the table.*/
-	deselectOnClickAway: js.UndefOr[Boolean]         = js.undefined,
+	deselectOnClickaway: js.UndefOr[Boolean]         = js.undefined,
 	/*  Controls the display of the row checkbox. The default value is true.*/
 	displayRowCheckbox:  js.UndefOr[Boolean]         = js.undefined,
 	/*  If true, multiple table rows can be selected. CTRL/CMD+Click and SHIFT+Click are valid actions. The default value is false.*/

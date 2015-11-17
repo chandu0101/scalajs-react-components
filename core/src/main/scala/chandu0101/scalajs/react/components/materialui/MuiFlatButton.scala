@@ -15,7 +15,7 @@ case class MuiFlatButton(
 	disabled:             js.UndefOr[Boolean]                           = js.undefined,
 	/*  Override the inline hover color of the button's root element.*/
 	hoverColor:           js.UndefOr[MuiColor]                          = js.undefined,
-	/*  This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed. Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />and a span that acts as our label to be displayed.) This only applies to flat and raised buttons.*/
+	/* required: This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed. Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />and a span that acts as our label to be displayed.) This only applies to flat and raised buttons.*/
 	label:                js.UndefOr[String]                            = js.undefined,
 	/* default: "before": Place label before or after the passed children*/
 	labelPosition:        js.UndefOr[MuiFlatButtonLabelPosition]        = js.undefined,
@@ -41,11 +41,13 @@ case class MuiFlatButton(
 	focusRippleOpacity:   js.UndefOr[Double]                            = js.undefined,
 	touchRippleOpacity:   js.UndefOr[Double]                            = js.undefined,
 	tabIndex:             js.UndefOr[Double]                            = js.undefined,
+	onClick:              js.UndefOr[ReactEventH => Callback]           = js.undefined,
 	onBlur:               js.UndefOr[ReactEventH => Callback]           = js.undefined,
 	onFocus:              js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
 	onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	onKeyDown:            js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	onKeyUp:              js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
+	/*  Called when a touch tap event occures on the button.*/
 	onTouchTap:           js.UndefOr[ReactTouchEventH => Callback]      = js.undefined)
 {
 
@@ -61,4 +63,5 @@ class MuiFlatButtonLabelPosition(val value: String) extends AnyVal
 object MuiFlatButtonLabelPosition{
 	val BEFORE = new MuiFlatButtonLabelPosition("before")
 	val AFTER = new MuiFlatButtonLabelPosition("after")
+	val values = List(BEFORE, AFTER)
 }

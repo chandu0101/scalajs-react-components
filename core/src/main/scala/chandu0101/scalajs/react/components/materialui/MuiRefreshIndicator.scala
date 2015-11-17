@@ -37,4 +37,5 @@ object MuiRefreshIndicatorStatus{
 	val READY = new MuiRefreshIndicatorStatus("ready")
 	val LOADING = new MuiRefreshIndicatorStatus("loading")
 	val HIDE = new MuiRefreshIndicatorStatus("hide")
+	val values = List(READY, LOADING, HIDE)
 }

@@ -15,12 +15,12 @@ object MuiAppBarDemo {
     """.stripMargin
   val component = ReactComponentB[Unit]("MuiAppBarDemo")
     .render(P => {
-    <.div(
-      CodeExample(code, "MuiAppBar")(
-        MuiAppBar(title = "Title")()
+      <.div(
+        CodeExample(code, "MuiAppBar")(
+          MuiAppBar(title = "Title")()
+        )
       )
-    )
-  }).buildU
+    }).buildU
 
   def apply() = component()
 }

@@ -26,11 +26,13 @@ case class MuiAppBar(
 	/*  The title to display on the app bar. Could be number, string, element or an array containing these types.*/
 	title:                     js.UndefOr[ReactNode]                     = js.undefined,
 	/* default: 1: The zDepth of the app bar. The shadow of the app bar is also dependent on this property.*/
-	zDepth:                    js.UndefOr[MuiAppBarZDepth]               = js.undefined,
+	zDepth:                    js.UndefOr[MuiZDepth]                     = js.undefined,
 	/* AppBar.onLeftIconButtonTouchTap(e): Callback function for when the left icon is selected via a touch tap.*/
 	onLeftIconButtonTouchTap:  js.UndefOr[ReactTouchEvent => Callback]   = js.undefined,
 	/* AppBar.onRightIconButtonTouchTap(e): Callback function for when the right icon is selected via a touch tap.*/
-	onRightIconButtonTouchTap: js.UndefOr[ReactTouchEvent => Callback]   = js.undefined)
+	onRightIconButtonTouchTap: js.UndefOr[ReactTouchEvent => Callback]   = js.undefined,
+	/* AppBar.onTitleTouchTap(e): Callback function for when the title text is selected via a touch tap.*/
+	onTitleTouchTap:           js.UndefOr[ReactTouchEvent => Callback]   = js.undefined)
 {
 
   def apply(children: ReactNode*) = {
@@ -38,15 +40,4 @@ case class MuiAppBar(
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.AppBar)
     f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-class MuiAppBarZDepth(val value: String) extends AnyVal
-object MuiAppBarZDepth{
-	val _0 = new MuiAppBarZDepth("0")
-	val _1 = new MuiAppBarZDepth("1")
-	val _2 = new MuiAppBarZDepth("2")
-	val _3 = new MuiAppBarZDepth("3")
-	val _4 = new MuiAppBarZDepth("4")
-	val _5 = new MuiAppBarZDepth("5")
 }

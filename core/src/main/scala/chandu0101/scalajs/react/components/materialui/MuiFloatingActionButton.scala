@@ -39,11 +39,13 @@ case class MuiFloatingActionButton(
 	focusRippleOpacity:   js.UndefOr[Double]                            = js.undefined,
 	touchRippleOpacity:   js.UndefOr[Double]                            = js.undefined,
 	tabIndex:             js.UndefOr[Double]                            = js.undefined,
+	onClick:              js.UndefOr[ReactEventH => Callback]           = js.undefined,
 	onBlur:               js.UndefOr[ReactEventH => Callback]           = js.undefined,
 	onFocus:              js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
 	onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	onKeyDown:            js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	onKeyUp:              js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
+	/*  Called when a touch tap event occures on the button.*/
 	onTouchTap:           js.UndefOr[ReactTouchEventH => Callback]      = js.undefined)
 {
 

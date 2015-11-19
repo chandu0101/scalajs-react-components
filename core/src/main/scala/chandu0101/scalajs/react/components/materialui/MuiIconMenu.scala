@@ -34,7 +34,13 @@ case class MuiIconMenu(
 	/* function(event, item): Fired when a menu item is touchTapped.*/
 	onItemTouchTap:      js.UndefOr[(ReactTouchEvent, ReactElement) => Callback]    = js.undefined,
 	/* function(event, value): Fired when a menu item is touchTapped and the menu item value is not equal to the current menu value.*/
-	onChange:            js.UndefOr[(ReactEvent, js.UndefOr[String]) => Callback]   = js.undefined)
+	onChange:            js.UndefOr[(ReactEvent, js.UndefOr[String]) => Callback]   = js.undefined,
+	onMouseLeave:        js.UndefOr[ReactEvent => Callback]                         = js.undefined,
+	onMouseUp:           js.UndefOr[ReactEvent => Callback]                         = js.undefined,
+	onKeyboardFocus:     js.UndefOr[ReactEvent => Callback]                         = js.undefined,
+	onTouchTap:          js.UndefOr[ReactEvent => Callback]                         = js.undefined,
+	onMouseEnter:        js.UndefOr[ReactEvent => Callback]                         = js.undefined,
+	onMouseDown:         js.UndefOr[ReactEvent => Callback]                         = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

@@ -35,7 +35,8 @@ case class MuiRadioButton(
 	disableFocusRipple:   js.UndefOr[Boolean]                             = js.undefined,
 	disableTouchRipple:   js.UndefOr[Boolean]                             = js.undefined,
 	onParentShouldUpdate: js.UndefOr[Boolean => Callback]                 = js.undefined,
-	onSwitch:             js.UndefOr[(ReactEvent, Boolean) => Callback]   = js.undefined)
+	onSwitch:             js.UndefOr[(ReactEvent, Boolean) => Callback]   = js.undefined,
+	onCheck:              js.UndefOr[ReactEvent => Callback]              = js.undefined)
 {
 
   def apply() = {

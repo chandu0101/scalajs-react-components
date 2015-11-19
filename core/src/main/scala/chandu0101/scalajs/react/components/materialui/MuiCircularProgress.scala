@@ -7,20 +7,22 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiCircularProgress(
-	key:   js.UndefOr[String]                    = js.undefined,
-	ref:   js.UndefOr[String]                    = js.undefined,
+	key:        js.UndefOr[String]                    = js.undefined,
+	ref:        js.UndefOr[String]                    = js.undefined,
 	/* default: 100: The max value of progress, only works in determinate mode. */
-	max:   js.UndefOr[Double]                    = js.undefined,
+	max:        js.UndefOr[Double]                    = js.undefined,
 	/* default: 0: The min value of progress, only works in determinate mode. */
-	min:   js.UndefOr[Double]                    = js.undefined,
+	min:        js.UndefOr[Double]                    = js.undefined,
 	/* default: indeterminate: The mode of show your progress, indeterminate for when there is no value for progress. */
-	mode:  js.UndefOr[MuiCircularProgressMode]   = js.undefined,
+	mode:       js.UndefOr[MuiCircularProgressMode]   = js.undefined,
 	/* default: 1: The size of the progress.*/
-	size:  js.UndefOr[Int]                       = js.undefined,
+	size:       js.UndefOr[Int]                       = js.undefined,
 	/*  Override the inline-styles of the progress's root element.*/
-	style: js.UndefOr[CssProperties]             = js.undefined,
+	style:      js.UndefOr[CssProperties]             = js.undefined,
 	/* default: 0: The value of progress, only works in determinate mode. */
-	value: js.UndefOr[Double]                    = js.undefined)
+	value:      js.UndefOr[Double]                    = js.undefined,
+	color:      js.UndefOr[MuiColor]                  = js.undefined,
+	innerStyle: js.UndefOr[CssProperties]             = js.undefined)
 {
 
   def apply() = {

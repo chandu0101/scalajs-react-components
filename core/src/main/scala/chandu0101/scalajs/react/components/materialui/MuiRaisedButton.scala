@@ -54,7 +54,13 @@ case class MuiRaisedButton(
 	onKeyDown:               js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	onKeyUp:                 js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	/*  Called when a touch tap event occures on the button.*/
-	onTouchTap:              js.UndefOr[ReactTouchEventH => Callback]      = js.undefined)
+	onTouchTap:              js.UndefOr[ReactTouchEventH => Callback]      = js.undefined,
+	onMouseLeave:            js.UndefOr[ReactEvent => Callback]            = js.undefined,
+	onTouchStart:            js.UndefOr[ReactEvent => Callback]            = js.undefined,
+	onMouseUp:               js.UndefOr[ReactEvent => Callback]            = js.undefined,
+	onTouchEnd:              js.UndefOr[ReactEvent => Callback]            = js.undefined,
+	className:               js.UndefOr[String]                            = js.undefined,
+	onMouseDown:             js.UndefOr[ReactEvent => Callback]            = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

@@ -16,7 +16,8 @@ case class MuiList(
 	/*  The subheader string that will be displayed at the top of the list.*/
 	subheader:      js.UndefOr[ReactNode]       = js.undefined,
 	/*  The style object to override subheader styles.*/
-	subheaderStyle: js.UndefOr[CssProperties]   = js.undefined)
+	subheaderStyle: js.UndefOr[CssProperties]   = js.undefined,
+	zDepth:         js.UndefOr[MuiZDepth]       = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

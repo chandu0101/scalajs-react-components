@@ -7,14 +7,16 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiFontIcon(
-	key:        js.UndefOr[String]          = js.undefined,
-	ref:        js.UndefOr[String]          = js.undefined,
+	key:          js.UndefOr[String]                   = js.undefined,
+	ref:          js.UndefOr[String]                   = js.undefined,
 	/*  This is the fill color of the svg icon. If not specified, this component will default to muiTheme.palette.textColor.*/
-	color:      js.UndefOr[MuiColor]        = js.undefined,
+	color:        js.UndefOr[MuiColor]                 = js.undefined,
 	/*  This is the icon color when the mouse hovers over the icon.*/
-	hoverColor: js.UndefOr[MuiColor]        = js.undefined,
+	hoverColor:   js.UndefOr[MuiColor]                 = js.undefined,
 	/*  Override the inline-styles of the svg icon's root element.*/
-	style:      js.UndefOr[CssProperties]   = js.undefined)
+	style:        js.UndefOr[CssProperties]            = js.undefined,
+	onMouseLeave: js.UndefOr[ReactEvent => Callback]   = js.undefined,
+	onMouseEnter: js.UndefOr[ReactEvent => Callback]   = js.undefined)
 {
 
   def apply() = {

@@ -7,8 +7,10 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiListDivider(
-	key: js.UndefOr[String]   = js.undefined,
-	ref: js.UndefOr[String]   = js.undefined)
+	key:   js.UndefOr[String]          = js.undefined,
+	ref:   js.UndefOr[String]          = js.undefined,
+	inset: js.UndefOr[Boolean]         = js.undefined,
+	style: js.UndefOr[CssProperties]   = js.undefined)
 {
 
   def apply() = {

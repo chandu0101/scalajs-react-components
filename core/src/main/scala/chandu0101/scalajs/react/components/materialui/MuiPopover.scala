@@ -7,30 +7,33 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiPopover(
-	key:                    js.UndefOr[String]      = js.undefined,
-	ref:                    js.UndefOr[String]      = js.undefined,
+	key:                    js.UndefOr[String]          = js.undefined,
+	ref:                    js.UndefOr[String]          = js.undefined,
 	/*  */
-	anchorEl:               js.UndefOr[js.Any]      = js.undefined,
+	anchorEl:               js.UndefOr[js.Any]          = js.undefined,
 	/*  This is the point on the anchor where the popover targetOrigin will stick to.
 Options:
 vertical: [top, middle, bottom]
 horizontal: [left, center, right]
 */
-	anchorOrigin:           js.UndefOr[Origin]      = js.undefined,
+	anchorOrigin:           js.UndefOr[Origin]          = js.undefined,
 	/* default: false: If true, the popover will apply transitions when added it gets added to the DOM.*/
-	animated:               js.UndefOr[Boolean]     = js.undefined,
+	animated:               js.UndefOr[Boolean]         = js.undefined,
 	/* default: true: If true, the popover will hide when the anchor scrolls off the screen*/
-	autoCloseWhenOffScreen: js.UndefOr[Boolean]     = js.undefined,
+	autoCloseWhenOffScreen: js.UndefOr[Boolean]         = js.undefined,
 	/* default: true: If true, the popover (potentially) ignores targetOrigin and anchorOrigin to make itself fit on screen,which is useful for mobile devices.*/
-	canAutoPosition:        js.UndefOr[Boolean]     = js.undefined,
+	canAutoPosition:        js.UndefOr[Boolean]         = js.undefined,
 	/* default: false: Controls the visibility of the popover.*/
-	open:                   js.UndefOr[Boolean]     = js.undefined,
+	open:                   js.UndefOr[Boolean]         = js.undefined,
 	/*  This is the point on the popover which will stick to the anchors origin.Options:vertical: [top, middle, bottom]horizontal: [left, center, right]*/
-	targetOrigin:           js.UndefOr[Origin]      = js.undefined,
+	targetOrigin:           js.UndefOr[Origin]          = js.undefined,
 	/* default: 1: This number represents the zDepth of the paper shadow.*/
-	zDepth:                 js.UndefOr[MuiZDepth]   = js.undefined,
+	zDepth:                 js.UndefOr[MuiZDepth]       = js.undefined,
 	/* function(): This is a callback that fires when the popover thinks it should close. (e.g. click-away or scroll off-screen)*/
-	onRequestClose:         js.UndefOr[Callback]    = js.undefined)
+	onRequestClose:         js.UndefOr[Callback]        = js.undefined,
+	children:               js.UndefOr[js.Object]       = js.undefined,
+	style:                  js.UndefOr[CssProperties]   = js.undefined,
+	className:              js.UndefOr[String]          = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

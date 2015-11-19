@@ -30,7 +30,8 @@ case class MuiMenuItem(
 	/*  Override the inline-styles of the menu item's root element.*/
 	style:         js.UndefOr[CssProperties]   = js.undefined,
 	/*  The value of the menu item.*/
-	value:         js.UndefOr[String]          = js.undefined)
+	value:         js.UndefOr[String]          = js.undefined,
+	focusState:    js.UndefOr[js.Object]       = js.undefined)
 {
 
   def apply() = {

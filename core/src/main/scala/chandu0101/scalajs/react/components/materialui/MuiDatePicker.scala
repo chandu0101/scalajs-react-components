@@ -7,48 +7,51 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiDatePicker(
-	key:                  js.UndefOr[String]                                       = js.undefined,
-	ref:                  js.UndefOr[MuiDatePickerM => Unit]                       = js.undefined,
+	key:                   js.UndefOr[String]                                       = js.undefined,
+	ref:                   js.UndefOr[MuiDatePickerM => Unit]                       = js.undefined,
 	/* default: custom function defined inside utils/date-time.js that only supports en-US locale: Constructor for time formatting. Follow this specificaction: ECMAScript Internationalization API 1.0 (ECMA-402).*/
-	DateTimeFormat:       js.UndefOr[js.Function]                                  = js.undefined,
+	DateTimeFormat:        js.UndefOr[js.Function]                                  = js.undefined,
 	/* default: false: If true, automatically accept and close the picker on select a date.*/
-	autoOk:               js.UndefOr[Boolean]                                      = js.undefined,
+	autoOk:                js.UndefOr[Boolean]                                      = js.undefined,
 	/* default: dialog: The date pickers container type*/
-	container:            js.UndefOr[MuiDatePickerContainer]                       = js.undefined,
+	container:             js.UndefOr[MuiDatePickerContainer]                       = js.undefined,
 	/*  This is the initial date value of the component. If either `value` or `valueLink` is provided they will override this prop with `value` taking precedence.*/
-	defaultDate:          js.UndefOr[js.Date]                                      = js.undefined,
+	defaultDate:           js.UndefOr[js.Date]                                      = js.undefined,
 	/*  If true, year selection will be disabled, otherwise, year selection will be enabled.*/
-	disableYearSelection: js.UndefOr[Boolean]                                      = js.undefined,
+	disableYearSelection:  js.UndefOr[Boolean]                                      = js.undefined,
 	/*  The text string to use for the floating label element.*/
-	floatingLabelText:    js.UndefOr[String]                                       = js.undefined,
+	floatingLabelText:     js.UndefOr[String]                                       = js.undefined,
 	/* default: formats to M/D/YYYY: This function is called to format the date to display in the input box. By default, date objects are formatted to M/D/YYYY.*/
-	formatDate:           js.UndefOr[js.Date => String]                            = js.undefined,
+	formatDate:            js.UndefOr[js.Date => String]                            = js.undefined,
 	/*  The hint text string to display. Note, floatingLabelText will overide this.*/
-	hintText:             js.UndefOr[String]                                       = js.undefined,
+	hintText:              js.UndefOr[String]                                       = js.undefined,
 	/* default: en-US: Locale used for formatting date. If you are not using the default value, you have to provide a DateTimeFormat that supports it. You can use Intl.DateTimeFormat if it's supported by your environment. https://github.com/andyearnshaw/Intl.js is a good polyfill.*/
-	locale:               js.UndefOr[String]                                       = js.undefined,
+	locale:                js.UndefOr[String]                                       = js.undefined,
 	/*  The ending of a range of valid dates. The range includes the endDate. The default value is current date + 100 years.*/
-	maxDate:              js.UndefOr[js.Date]                                      = js.undefined,
+	maxDate:               js.UndefOr[js.Date]                                      = js.undefined,
 	/*  The beginning of a range of valid dates. The range includes the startDate. The default value is current date - 100 years.*/
-	minDate:              js.UndefOr[js.Date]                                      = js.undefined,
+	minDate:               js.UndefOr[js.Date]                                      = js.undefined,
 	/* default: portrait: Tells the component to display the picker in portrait or landscape mode.*/
-	mode:                 js.UndefOr[MuiDatePickerMode]                            = js.undefined,
+	mode:                  js.UndefOr[MuiDatePickerMode]                            = js.undefined,
 	/*  Called during render time of a given day. If this method returns false the day is disabled otherwise it is displayed normally.*/
-	shouldDisableDate:    js.UndefOr[js.Date => Boolean]                           = js.undefined,
+	shouldDisableDate:     js.UndefOr[js.Date => Boolean]                           = js.undefined,
 	/*  Override the inline-styles of DatePicker's root element.*/
-	style:                js.UndefOr[CssProperties]                                = js.undefined,
+	style:                 js.UndefOr[CssProperties]                                = js.undefined,
 	/*  Override the inline-styles of DatePicker's TextField element.*/
-	textFieldStyle:       js.UndefOr[CssProperties]                                = js.undefined,
+	textFieldStyle:        js.UndefOr[CssProperties]                                = js.undefined,
 	/* default: {ok: 'OK', cancel: 'Cancel' }: Wordings used inside the button of the dialog.*/
-	wordings:             js.UndefOr[Wordings]                                     = js.undefined,
+	wordings:              js.UndefOr[Wordings]                                     = js.undefined,
 	/* function(null, date): Callback function that is fired when the date value changes. Since there is no particular event associated with the change the first argument will always be null and the second argument will be the new Date instance.*/
-	onChange:             js.UndefOr[(js.UndefOr[Nothing], js.Date) => Callback]   = js.undefined,
+	onChange:              js.UndefOr[(js.UndefOr[Nothing], js.Date) => Callback]   = js.undefined,
 	/* function(): Fired when the datepicker dialog is dismissed.*/
-	onDismiss:            js.UndefOr[Callback]                                     = js.undefined,
+	onDismiss:             js.UndefOr[Callback]                                     = js.undefined,
 	/* function(event): Callback function that is fired when the datepicker field gains focus.*/
-	onFocus:              js.UndefOr[ReactEvent => Callback]                       = js.undefined,
+	onFocus:               js.UndefOr[ReactEvent => Callback]                       = js.undefined,
 	/* function(): Fired when the datepicker dialog is shown.*/
-	onShow:               js.UndefOr[Callback]                                     = js.undefined)
+	onShow:                js.UndefOr[Callback]                                     = js.undefined,
+	hideToolbarYearChange: js.UndefOr[Boolean]                                      = js.undefined,
+	onTouchTap:            js.UndefOr[ReactEvent => Callback]                       = js.undefined,
+	showYearSelector:      js.UndefOr[Boolean]                                      = js.undefined)
 {
 
   def apply() = {

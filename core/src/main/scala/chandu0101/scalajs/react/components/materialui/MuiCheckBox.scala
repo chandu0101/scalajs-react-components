@@ -40,7 +40,8 @@ case class MuiCheckbox(
 	disableFocusRipple:   js.UndefOr[Boolean]                             = js.undefined,
 	disableTouchRipple:   js.UndefOr[Boolean]                             = js.undefined,
 	onParentShouldUpdate: js.UndefOr[Boolean => Callback]                 = js.undefined,
-	onSwitch:             js.UndefOr[(ReactEvent, Boolean) => Callback]   = js.undefined)
+	onSwitch:             js.UndefOr[(ReactEvent, Boolean) => Callback]   = js.undefined,
+	checked:              js.UndefOr[Boolean]                             = js.undefined)
 {
 
   def apply() = {

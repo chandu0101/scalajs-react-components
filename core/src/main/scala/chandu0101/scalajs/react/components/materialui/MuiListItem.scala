@@ -54,7 +54,10 @@ case class MuiListItem(
 	/*  Called when touches start.*/
 	onTouchStart:                js.UndefOr[ReactTouchEvent => Callback]                 = js.undefined,
 	/*  Called when a touch tap event occures on the component.*/
-	onTouchTap:                  js.UndefOr[ReactTouchEvent => Callback]                 = js.undefined)
+	onTouchTap:                  js.UndefOr[ReactTouchEvent => Callback]                 = js.undefined,
+	innerStyle:                  js.UndefOr[CssProperties]                               = js.undefined,
+	innerDivStyle:               js.UndefOr[CssProperties]                               = js.undefined,
+	disableKeyboardFocus:        js.UndefOr[Boolean]                                     = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

@@ -34,7 +34,8 @@ case class MuiLeftNav(
 	/* function(): Fired when the component is opened*/
 	onNavOpen:                  js.UndefOr[Callback]                                = js.undefined,
 	/* function(): Fired when the component is closed*/
-	onNavClose:                 js.UndefOr[Callback]                                = js.undefined)
+	onNavClose:                 js.UndefOr[Callback]                                = js.undefined,
+	className:                  js.UndefOr[String]                                  = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

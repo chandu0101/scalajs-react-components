@@ -50,7 +50,15 @@ case class MuiSelectField(
 	/* function(event, selectedIndex, item): Callback function that is fired when the selectfield's value changes.*/
 	onChange:               js.UndefOr[(ReactEvent, Int, js.Any) => Callback]   = js.undefined,
 	/* function(event): Callback function that is fired when the selectfield gains focus.*/
-	onFocus:                js.UndefOr[ReactEvent => Callback]                  = js.undefined)
+	onFocus:                js.UndefOr[ReactEvent => Callback]                  = js.undefined,
+	multiLine:              js.UndefOr[Boolean]                                 = js.undefined,
+	onEnterKeyDown:         js.UndefOr[ReactEvent => Callback]                  = js.undefined,
+	onKeyDown:              js.UndefOr[ReactEvent => Callback]                  = js.undefined,
+	inputStyle:             js.UndefOr[CssProperties]                           = js.undefined,
+	autoWidth:              js.UndefOr[Boolean]                                 = js.undefined,
+	id:                     js.UndefOr[String]                                  = js.undefined,
+	`type`:                 js.UndefOr[String]                                  = js.undefined,
+	rows:                   js.UndefOr[Double]                                  = js.undefined)
 {
 
   def apply() = {

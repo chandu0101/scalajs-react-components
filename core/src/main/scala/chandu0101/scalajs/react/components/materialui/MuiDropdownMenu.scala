@@ -34,7 +34,8 @@ case class MuiDropDownMenu(
 	/* default: payload: DropDownMenu will use payload as default value, with this property you can choose another name.*/
 	valueMember:     js.UndefOr[String]                                  = js.undefined,
 	/* function(event, selectedIndex, menuItem): Fired when a menu item is clicked that is not the one currently selected.*/
-	onChange:        js.UndefOr[(ReactEvent, Int, js.Any) => Callback]   = js.undefined)
+	onChange:        js.UndefOr[(ReactEvent, Int, js.Any) => Callback]   = js.undefined,
+	className:       js.UndefOr[String]                                  = js.undefined)
 {
 
   def apply() = {

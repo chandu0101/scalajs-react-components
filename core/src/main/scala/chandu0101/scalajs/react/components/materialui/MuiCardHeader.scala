@@ -16,7 +16,14 @@ case class MuiCardHeader(
 	/*  Whether this card component include a button to expand the card. CardTitle, CardHeader and CardActions implement showExpandableButton. Any child component of Card can implements showExpandableButton or forwards the property to a child component supporting it.*/
 	showExpandableButton: js.UndefOr[Boolean]         = js.undefined,
 	/*  Override the inline-styles of the card's root element.*/
-	style:                js.UndefOr[CssProperties]   = js.undefined)
+	style:                js.UndefOr[CssProperties]   = js.undefined,
+	subtitle:             js.UndefOr[ReactNode]       = js.undefined,
+	textStyle:            js.UndefOr[CssProperties]   = js.undefined,
+	subtitleStyle:        js.UndefOr[CssProperties]   = js.undefined,
+	titleStyle:           js.UndefOr[CssProperties]   = js.undefined,
+	titleColor:           js.UndefOr[MuiColor]        = js.undefined,
+	subtitleColor:        js.UndefOr[MuiColor]        = js.undefined,
+	title:                js.UndefOr[ReactNode]       = js.undefined)
 {
 
   def apply() = {

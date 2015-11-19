@@ -26,7 +26,10 @@ case class MuiIconButton(
 	/* IconButton.onBlur(e): Callback function for when the component loses focus.*/
 	onBlur:          js.UndefOr[ReactEvent => Callback]   = js.undefined,
 	/* IconButton.onFocus(e): Callback function for when the component gains focus.*/
-	onFocus:         js.UndefOr[ReactEvent => Callback]   = js.undefined)
+	onFocus:         js.UndefOr[ReactEvent => Callback]   = js.undefined,
+	onKeyboardFocus: js.UndefOr[ReactEvent => Callback]   = js.undefined,
+	className:       js.UndefOr[String]                   = js.undefined,
+	disabled:        js.UndefOr[Boolean]                  = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

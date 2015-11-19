@@ -39,7 +39,8 @@ case class MuiToggle(
 	disableFocusRipple:   js.UndefOr[Boolean]                             = js.undefined,
 	disableTouchRipple:   js.UndefOr[Boolean]                             = js.undefined,
 	onParentShouldUpdate: js.UndefOr[Boolean => Callback]                 = js.undefined,
-	onSwitch:             js.UndefOr[(ReactEvent, Boolean) => Callback]   = js.undefined)
+	onSwitch:             js.UndefOr[(ReactEvent, Boolean) => Callback]   = js.undefined,
+	toggled:              js.UndefOr[Boolean]                             = js.undefined)
 {
 
   def apply() = {
@@ -62,8 +63,8 @@ object MuiToggleLabelPosition{
 @js.native
 class MuiToggleM extends js.Object{
 	/* Toggle.isToggled(): Returns true if the checkbox is currently checked. Returns false otherwise*/
-	def isToggled(): Boolean = js.native
+	def isToggled(): Unit = js.native
 
 	/* Toggle.setToggled(newToggledValue): Sets the toggle to the value of newToggledValue. This method cannot be used while "checked" is defined as a property.*/
-	def setToggled(value: Boolean): Unit = js.native
+	def setToggled(): Unit = js.native
 }

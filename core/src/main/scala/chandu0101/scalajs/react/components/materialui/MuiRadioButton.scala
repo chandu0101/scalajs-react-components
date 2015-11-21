@@ -36,6 +36,7 @@ case class MuiRadioButton(
 	disableTouchRipple:   js.UndefOr[Boolean]                             = js.undefined,
 	onParentShouldUpdate: js.UndefOr[Boolean => Callback]                 = js.undefined,
 	onSwitch:             js.UndefOr[(ReactEvent, Boolean) => Callback]   = js.undefined,
+	checked:              js.UndefOr[Boolean]                             = js.undefined,
 	onCheck:              js.UndefOr[ReactEvent => Callback]              = js.undefined)
 {
 

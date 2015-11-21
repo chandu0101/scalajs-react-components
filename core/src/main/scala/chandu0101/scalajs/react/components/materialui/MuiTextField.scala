@@ -54,7 +54,8 @@ case class MuiTextField(
 	/* function(event): Callback function that is fired when the textfield gains focus.*/
 	onFocus:                js.UndefOr[ReactEvent => Callback]   = js.undefined,
 	onKeyDown:              js.UndefOr[ReactEvent => Callback]   = js.undefined,
-	id:                     js.UndefOr[String]                   = js.undefined)
+	id:                     js.UndefOr[String]                   = js.undefined,
+	value:                  js.UndefOr[String]                   = js.undefined)
 {
 
   def apply() = {

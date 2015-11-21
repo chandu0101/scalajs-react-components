@@ -35,7 +35,8 @@ case class MuiDropDownMenu(
 	valueMember:     js.UndefOr[String]                                  = js.undefined,
 	/* function(event, selectedIndex, menuItem): Fired when a menu item is clicked that is not the one currently selected.*/
 	onChange:        js.UndefOr[(ReactEvent, Int, js.Any) => Callback]   = js.undefined,
-	className:       js.UndefOr[String]                                  = js.undefined)
+	className:       js.UndefOr[String]                                  = js.undefined,
+	value:           js.UndefOr[js.Object]                               = js.undefined)
 {
 
   def apply() = {

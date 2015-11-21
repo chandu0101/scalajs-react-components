@@ -20,7 +20,8 @@ case class MuiLinearProgress(
 	/*  Override the inline-styles of the progress's root element.*/
 	style: js.UndefOr[CssProperties]           = js.undefined,
 	/* default: 0: The value of progress, only works in determinate mode. */
-	value: js.UndefOr[Double]                  = js.undefined)
+	value: js.UndefOr[Double]                  = js.undefined,
+	color: js.UndefOr[MuiColor]                = js.undefined)
 {
 
   def apply() = {

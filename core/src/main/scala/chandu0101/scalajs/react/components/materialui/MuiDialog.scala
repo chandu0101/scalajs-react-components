@@ -44,6 +44,7 @@ case class MuiDialog(
 	onShow:                 js.UndefOr[Callback]                 = js.undefined,
 	/* function(buttonClicked): Fired when the dialog is requested to be closed by a click outside the dialog or on the buttons.*/
 	onRequestClose:         js.UndefOr[ReactEvent => Callback]   = js.undefined,
+	titleStyle:             js.UndefOr[CssProperties]            = js.undefined,
 	repositionOnUpdate:     js.UndefOr[Boolean]                  = js.undefined)
 {
 

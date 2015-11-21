@@ -20,7 +20,8 @@ case class MuiRadioButtonGroup(
 	/*  The value of the currently selected radio button.*/
 	valueSelected:   js.UndefOr[String]                             = js.undefined,
 	/*  Callback function that is fired when a radio button has been clicked. Returns the event and the value of the radio button that has been selected.*/
-	onChange:        js.UndefOr[(ReactEvent, String) => Callback]   = js.undefined)
+	onChange:        js.UndefOr[(ReactEvent, String) => Callback]   = js.undefined,
+	className:       js.UndefOr[String]                             = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

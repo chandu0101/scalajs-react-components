@@ -51,6 +51,7 @@ case class MuiDatePicker(
 	onShow:                js.UndefOr[Callback]                                     = js.undefined,
 	hideToolbarYearChange: js.UndefOr[Boolean]                                      = js.undefined,
 	onTouchTap:            js.UndefOr[ReactEvent => Callback]                       = js.undefined,
+	value:                 js.UndefOr[js.Object]                                    = js.undefined,
 	showYearSelector:      js.UndefOr[Boolean]                                      = js.undefined)
 {
 

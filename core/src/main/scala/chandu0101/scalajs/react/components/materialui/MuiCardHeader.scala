@@ -18,6 +18,7 @@ case class MuiCardHeader(
 	/*  Override the inline-styles of the card's root element.*/
 	style:                js.UndefOr[CssProperties]   = js.undefined,
 	subtitle:             js.UndefOr[ReactNode]       = js.undefined,
+	avatar:               js.UndefOr[ReactElement]    = js.undefined,
 	textStyle:            js.UndefOr[CssProperties]   = js.undefined,
 	subtitleStyle:        js.UndefOr[CssProperties]   = js.undefined,
 	titleStyle:           js.UndefOr[CssProperties]   = js.undefined,

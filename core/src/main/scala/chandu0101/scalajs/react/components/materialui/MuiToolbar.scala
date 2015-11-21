@@ -11,7 +11,8 @@ case class MuiToolbar(
 	ref:       js.UndefOr[String]          = js.undefined,
 	/*  Override the inline-styles of the toolbar group's root element.*/
 	style:     js.UndefOr[CssProperties]   = js.undefined,
-	className: js.UndefOr[String]          = js.undefined)
+	className: js.UndefOr[String]          = js.undefined,
+	noGutter:  js.UndefOr[Boolean]         = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

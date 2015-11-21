@@ -60,6 +60,7 @@ case class MuiRaisedButton(
 	onMouseUp:               js.UndefOr[ReactEvent => Callback]            = js.undefined,
 	onTouchEnd:              js.UndefOr[ReactEvent => Callback]            = js.undefined,
 	className:               js.UndefOr[String]                            = js.undefined,
+	onMouseEnter:            js.UndefOr[ReactEvent => Callback]            = js.undefined,
 	onMouseDown:             js.UndefOr[ReactEvent => Callback]            = js.undefined)
 {
 

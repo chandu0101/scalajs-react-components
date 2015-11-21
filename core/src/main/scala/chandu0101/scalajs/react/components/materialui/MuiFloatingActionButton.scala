@@ -51,6 +51,7 @@ case class MuiFloatingActionButton(
 	onTouchStart:         js.UndefOr[ReactEvent => Callback]            = js.undefined,
 	onMouseUp:            js.UndefOr[ReactEvent => Callback]            = js.undefined,
 	onTouchEnd:           js.UndefOr[ReactEvent => Callback]            = js.undefined,
+	onMouseEnter:         js.UndefOr[js.Object]                         = js.undefined,
 	onMouseDown:          js.UndefOr[ReactEvent => Callback]            = js.undefined)
 {
 

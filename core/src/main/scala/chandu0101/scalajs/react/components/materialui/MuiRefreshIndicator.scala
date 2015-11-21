@@ -7,20 +7,22 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiRefreshIndicator(
-	key:        js.UndefOr[String]                      = js.undefined,
-	ref:        js.UndefOr[String]                      = js.undefined,
+	key:          js.UndefOr[String]                      = js.undefined,
+	ref:          js.UndefOr[String]                      = js.undefined,
 	/* required: The absolute left position of the indicator in pixels.*/
-	left:       Int,
+	left:         Int,
 	/* default: 0: The confirmation progress to fetch data. Max value is 100*/
-	percentage: js.UndefOr[Double]                      = js.undefined,
+	percentage:   js.UndefOr[Double]                      = js.undefined,
 	/* default: 40: Size in pixels.*/
-	size:       js.UndefOr[Int]                         = js.undefined,
+	size:         js.UndefOr[Int]                         = js.undefined,
 	/* default: hide: The display status of the indicator. If the status is "ready", the indicator will display the ready state arrow. If the status is "loading", it will display the loading progress indicator. If the status is "hide", the indicator will be hidden.*/
-	status:     js.UndefOr[MuiRefreshIndicatorStatus]   = js.undefined,
+	status:       js.UndefOr[MuiRefreshIndicatorStatus]   = js.undefined,
 	/*  Override the inline-styles of the indicator's root element.*/
-	style:      js.UndefOr[CssProperties]               = js.undefined,
+	style:        js.UndefOr[CssProperties]               = js.undefined,
 	/* required: The absolute right position of the indicator in pixels.*/
-	top:        Int)
+	top:          Int,
+	color:        js.UndefOr[MuiColor]                    = js.undefined,
+	loadingColor: js.UndefOr[MuiColor]                    = js.undefined)
 {
 
   def apply() = {

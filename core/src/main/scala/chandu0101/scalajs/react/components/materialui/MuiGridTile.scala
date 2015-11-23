@@ -18,7 +18,7 @@ case class MuiGridTile(
 	/*  Width of the tile in number of grid cells. Defaults to 1.*/
 	cols:            js.UndefOr[Int]                         = js.undefined,
 	/*  Either a string used as tag name for the tile root element, or a ReactComponent. Defaults to "div".This is useful when you have, for example, a custom implementation of a navigation link (that knowsabout your routes) and you want to use it as primary tile action. In case you pass a ReactComponent, please make sure that it passes all props, accepts styles overrides and render it's children.*/
-	rootClass:       js.UndefOr[String | ReactElement]       = js.undefined,
+	rootClass:       js.UndefOr[String | js.Any]             = js.undefined,
 	/*  Height of the tile in number of grid cells. Defaults to 1.*/
 	rows:            js.UndefOr[Int]                         = js.undefined,
 	/*  Override the inline-styles of the grid tile's root element.*/

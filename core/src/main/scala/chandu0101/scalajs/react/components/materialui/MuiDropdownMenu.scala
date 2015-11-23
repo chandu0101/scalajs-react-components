@@ -7,36 +7,36 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiDropDownMenu(
-	key:             js.UndefOr[String]                                  = js.undefined,
-	ref:             js.UndefOr[String]                                  = js.undefined,
+	key:             js.UndefOr[String]                                   = js.undefined,
+	ref:             js.UndefOr[String]                                   = js.undefined,
 	/* default: true: The width will automatically be set according to the items inside the menu. To control this width in Css instead, set this prop to false.*/
-	autoWidth:       js.UndefOr[Boolean]                                 = js.undefined,
+	autoWidth:       js.UndefOr[Boolean]                                  = js.undefined,
 	/* default: false: Disables the menu.*/
-	disabled:        js.UndefOr[Boolean]                                 = js.undefined,
+	disabled:        js.UndefOr[Boolean]                                  = js.undefined,
 	/* default: text: DropDownMenu will use text as default value, with this property you can choose another name.*/
-	displayMember:   js.UndefOr[String]                                  = js.undefined,
+	displayMember:   js.UndefOr[String]                                   = js.undefined,
 	/*  Overrides the styles of DropDownMenu's icon element.*/
-	iconStyle:       js.UndefOr[CssProperties]                           = js.undefined,
+	iconStyle:       js.UndefOr[CssProperties]                            = js.undefined,
 	/*  Overrides the styles of DropDownMenu's label when the DropDownMenu is inactive.*/
-	labelStyle:      js.UndefOr[CssProperties]                           = js.undefined,
+	labelStyle:      js.UndefOr[CssProperties]                            = js.undefined,
 	/*  Overrides the inline-styles of the MenuItems when the DropDownMenu is expanded.*/
-	menuItemStyle:   js.UndefOr[CssProperties]                           = js.undefined,
+	menuItemStyle:   js.UndefOr[CssProperties]                            = js.undefined,
 	/* required: JSON data representing all menu items in the dropdown.*/
 	menuItems:       js.Array[MuiDropDownMenuItem],
 	/* default: false: Set to true to have the DropDownMenu automatically open on mount.*/
-	openImmediately: js.UndefOr[Boolean]                                 = js.undefined,
+	openImmediately: js.UndefOr[Boolean]                                  = js.undefined,
 	/* default: 0: Index of the item selected.*/
-	selectedIndex:   js.UndefOr[Int]                                     = js.undefined,
+	selectedIndex:   js.UndefOr[Int]                                      = js.undefined,
 	/*  Overrides the inline-styles of DropDownMenu's root element.*/
-	style:           js.UndefOr[CssProperties]                           = js.undefined,
+	style:           js.UndefOr[CssProperties]                            = js.undefined,
 	/*  Overrides the styles of DropDownMenu's underline.*/
-	underlineStyle:  js.UndefOr[CssProperties]                           = js.undefined,
+	underlineStyle:  js.UndefOr[CssProperties]                            = js.undefined,
 	/* default: payload: DropDownMenu will use payload as default value, with this property you can choose another name.*/
-	valueMember:     js.UndefOr[String]                                  = js.undefined,
+	valueMember:     js.UndefOr[String]                                   = js.undefined,
 	/* function(event, selectedIndex, menuItem): Fired when a menu item is clicked that is not the one currently selected.*/
-	onChange:        js.UndefOr[(ReactEvent, Int, js.Any) => Callback]   = js.undefined,
-	className:       js.UndefOr[String]                                  = js.undefined,
-	value:           js.UndefOr[js.Object]                               = js.undefined)
+	onChange:        js.UndefOr[(ReactEventI, Int, js.Any) => Callback]   = js.undefined,
+	className:       js.UndefOr[String]                                   = js.undefined,
+	value:           js.UndefOr[js.Object]                                = js.undefined)
 {
 
   def apply() = {

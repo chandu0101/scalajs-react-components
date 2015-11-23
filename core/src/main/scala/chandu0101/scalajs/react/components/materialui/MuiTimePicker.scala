@@ -30,9 +30,10 @@ case class MuiTimePicker(
 	/* function(): Fired when the timepicker dialog is dismissed.*/
 	onDismiss:         js.UndefOr[Callback]                                     = js.undefined,
 	/* function(event): Callback function that is fired when the timepicker field gains focus.*/
-	onFocus:           js.UndefOr[ReactEvent => Callback]                       = js.undefined,
+	onFocus:           js.UndefOr[ReactFocusEventH => Callback]                 = js.undefined,
 	/* function(): Fired when the timepicker dialog is shown.*/
-	onShow:            js.UndefOr[Callback]                                     = js.undefined)
+	onShow:            js.UndefOr[Callback]                                     = js.undefined,
+	onTouchTap:        js.UndefOr[ReactTouchEventH => Callback]                 = js.undefined)
 {
 
   def apply() = {

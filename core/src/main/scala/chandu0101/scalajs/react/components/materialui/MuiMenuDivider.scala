@@ -7,8 +7,9 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiMenuDivider(
-	key: js.UndefOr[String]   = js.undefined,
-	ref: js.UndefOr[String]   = js.undefined)
+	key:   js.UndefOr[String]          = js.undefined,
+	ref:   js.UndefOr[String]          = js.undefined,
+	style: js.UndefOr[CssProperties]   = js.undefined)
 {
 
   def apply() = {

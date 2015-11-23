@@ -7,41 +7,41 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiCheckbox(
-	key:                  js.UndefOr[String]                              = js.undefined,
-	ref:                  js.UndefOr[MuiCheckboxM => Unit]                = js.undefined,
+	key:                  js.UndefOr[String]                               = js.undefined,
+	ref:                  js.UndefOr[MuiCheckboxM => Unit]                 = js.undefined,
 	/*  The SvgIcon to use for the checked state. This is useful to create icon toggles.*/
-	checkedIcon:          js.UndefOr[ReactElement]                        = js.undefined,
+	checkedIcon:          js.UndefOr[ReactElement]                         = js.undefined,
 	/* default:false: The default state of our checkbox component.*/
-	defaultChecked:       js.UndefOr[Boolean]                             = js.undefined,
+	defaultChecked:       js.UndefOr[Boolean]                              = js.undefined,
 	/*  Overrides the inline-styles of the icon element.*/
-	iconStyle:            js.UndefOr[CssProperties]                       = js.undefined,
+	iconStyle:            js.UndefOr[CssProperties]                        = js.undefined,
 	/*  The text that is displayed beside the checkbox.*/
-	label:                js.UndefOr[ReactNode]                           = js.undefined,
+	label:                js.UndefOr[ReactNode]                            = js.undefined,
 	/* default:"right": Where the label will be placed next to the checkbox. Options include "left" and "right" (case-sensitive). Default option is "right".*/
-	labelPosition:        js.UndefOr[MuiCheckboxLabelPosition]            = js.undefined,
+	labelPosition:        js.UndefOr[MuiCheckboxLabelPosition]             = js.undefined,
 	/*  Overrides the inline-styles of the Checkbox element label.*/
-	labelStyle:           js.UndefOr[CssProperties]                       = js.undefined,
+	labelStyle:           js.UndefOr[CssProperties]                        = js.undefined,
 	/*  Override the inline-styles of the Checkbox's root element.*/
-	style:                js.UndefOr[CssProperties]                       = js.undefined,
+	style:                js.UndefOr[CssProperties]                        = js.undefined,
 	/*  The SvgIcon to use for the unchecked state. This is useful to create icon toggles.*/
-	unCheckedIcon:        js.UndefOr[ReactElement]                        = js.undefined,
+	unCheckedIcon:        js.UndefOr[ReactElement]                         = js.undefined,
 	/*  Callback function that is fired when the checkbox is checked.*/
-	onCheck:              js.UndefOr[(ReactEvent, Boolean) => Callback]   = js.undefined,
-	id:                   js.UndefOr[String]                              = js.undefined,
-	rippleStyle:          js.UndefOr[CssProperties]                       = js.undefined,
-	rippleColor:          js.UndefOr[MuiColor]                            = js.undefined,
-	thumbStyle:           js.UndefOr[CssProperties]                       = js.undefined,
-	trackStyle:           js.UndefOr[CssProperties]                       = js.undefined,
-	name:                 js.UndefOr[String]                              = js.undefined,
-	value:                js.UndefOr[String]                              = js.undefined,
-	required:             js.UndefOr[Boolean]                             = js.undefined,
-	disabled:             js.UndefOr[Boolean]                             = js.undefined,
-	defaultSwitched:      js.UndefOr[Boolean]                             = js.undefined,
-	disableFocusRipple:   js.UndefOr[Boolean]                             = js.undefined,
-	disableTouchRipple:   js.UndefOr[Boolean]                             = js.undefined,
-	onParentShouldUpdate: js.UndefOr[Boolean => Callback]                 = js.undefined,
-	onSwitch:             js.UndefOr[(ReactEvent, Boolean) => Callback]   = js.undefined,
-	checked:              js.UndefOr[Boolean]                             = js.undefined)
+	onCheck:              js.UndefOr[(ReactEventH, Boolean) => Callback]   = js.undefined,
+	id:                   js.UndefOr[String]                               = js.undefined,
+	rippleStyle:          js.UndefOr[CssProperties]                        = js.undefined,
+	rippleColor:          js.UndefOr[MuiColor]                             = js.undefined,
+	thumbStyle:           js.UndefOr[CssProperties]                        = js.undefined,
+	trackStyle:           js.UndefOr[CssProperties]                        = js.undefined,
+	name:                 js.UndefOr[String]                               = js.undefined,
+	value:                js.UndefOr[String]                               = js.undefined,
+	required:             js.UndefOr[Boolean]                              = js.undefined,
+	disabled:             js.UndefOr[Boolean]                              = js.undefined,
+	defaultSwitched:      js.UndefOr[Boolean]                              = js.undefined,
+	disableFocusRipple:   js.UndefOr[Boolean]                              = js.undefined,
+	disableTouchRipple:   js.UndefOr[Boolean]                              = js.undefined,
+	onParentShouldUpdate: js.UndefOr[Boolean => Callback]                  = js.undefined,
+	onSwitch:             js.UndefOr[(ReactEvent, Boolean) => Callback]    = js.undefined,
+	checked:              js.UndefOr[Boolean]                              = js.undefined)
 {
 
   def apply() = {

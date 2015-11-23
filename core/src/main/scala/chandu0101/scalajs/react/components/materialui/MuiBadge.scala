@@ -18,7 +18,8 @@ case class MuiBadge(
 	/* default: false: If true, the badge will use the secondary badge colors.*/
 	secondary:    js.UndefOr[Boolean]         = js.undefined,
 	/*  Override the inline-styles of the root element.*/
-	style:        js.UndefOr[CssProperties]   = js.undefined)
+	style:        js.UndefOr[CssProperties]   = js.undefined,
+	className:    js.UndefOr[String]          = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

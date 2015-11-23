@@ -7,21 +7,21 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiRadioButtonGroup(
-	key:             js.UndefOr[String]                             = js.undefined,
-	ref:             js.UndefOr[MuiRadioButtonGroupM => Unit]       = js.undefined,
+	key:             js.UndefOr[String]                              = js.undefined,
+	ref:             js.UndefOr[MuiRadioButtonGroupM => Unit]        = js.undefined,
 	/*  Sets the default radio button to be the one whose value matches defaultSelected (case-sensitive). This will override any individual radio button with the defaultChecked or checked property stated.*/
-	defaultSelected: js.UndefOr[String]                             = js.undefined,
+	defaultSelected: js.UndefOr[String]                              = js.undefined,
 	/*  Where the label will be placed for all radio buttons. Options include "left" and "right" (case-sensitive). This will override any labelPosition properties defined for an individual radio button.*/
-	labelPosition:   js.UndefOr[MuiRadioButtonGroupLabelPosition]   = js.undefined,
+	labelPosition:   js.UndefOr[MuiRadioButtonGroupLabelPosition]    = js.undefined,
 	/* required: The name that will be applied to all radio buttons inside it.*/
 	name:            String,
 	/*  Override the inline-styles of the RadioButtonGroup's root element.*/
-	style:           js.UndefOr[CssProperties]                      = js.undefined,
+	style:           js.UndefOr[CssProperties]                       = js.undefined,
 	/*  The value of the currently selected radio button.*/
-	valueSelected:   js.UndefOr[String]                             = js.undefined,
+	valueSelected:   js.UndefOr[String]                              = js.undefined,
 	/*  Callback function that is fired when a radio button has been clicked. Returns the event and the value of the radio button that has been selected.*/
-	onChange:        js.UndefOr[(ReactEvent, String) => Callback]   = js.undefined,
-	className:       js.UndefOr[String]                             = js.undefined)
+	onChange:        js.UndefOr[(ReactEventI, String) => Callback]   = js.undefined,
+	className:       js.UndefOr[String]                              = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

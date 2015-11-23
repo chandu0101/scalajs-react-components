@@ -7,55 +7,55 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiTextField(
-	key:                    js.UndefOr[String]                   = js.undefined,
-	ref:                    js.UndefOr[MuiTextFieldM => Unit]    = js.undefined,
+	key:                    js.UndefOr[String]                            = js.undefined,
+	ref:                    js.UndefOr[MuiTextFieldM => Unit]             = js.undefined,
 	/*  The text string to use for the default value.*/
-	defaultValue:           js.UndefOr[String]                   = js.undefined,
+	defaultValue:           js.UndefOr[String]                            = js.undefined,
 	/*  Disables the text field if set to true.*/
-	disabled:               js.UndefOr[Boolean]                  = js.undefined,
+	disabled:               js.UndefOr[Boolean]                           = js.undefined,
 	/*  The style object to use to override error styles.*/
-	errorStyle:             js.UndefOr[CssProperties]            = js.undefined,
-	/*  The error text string to display.*/
-	errorText:              js.UndefOr[String]                   = js.undefined,
+	errorStyle:             js.UndefOr[CssProperties]                     = js.undefined,
+	/*  The error content to display.*/
+	errorText:              js.UndefOr[ReactNode]                         = js.undefined,
 	/*  The style object to use to override floating label styles.*/
-	floatingLabelStyle:     js.UndefOr[CssProperties]            = js.undefined,
-	/*  The text string to use for the floating label element.*/
-	floatingLabelText:      js.UndefOr[String]                   = js.undefined,
+	floatingLabelStyle:     js.UndefOr[CssProperties]                     = js.undefined,
+	/*  The content to use for the floating label element.*/
+	floatingLabelText:      js.UndefOr[ReactNode]                         = js.undefined,
 	/*  If true, the field receives the property width 100%.*/
-	fullWidth:              js.UndefOr[Boolean]                  = js.undefined,
+	fullWidth:              js.UndefOr[Boolean]                           = js.undefined,
 	/*  Override the inline-styles of the TextField's hint text element.*/
-	hintStyle:              js.UndefOr[CssProperties]            = js.undefined,
-	/*  The hint text string to display.*/
-	hintText:               js.UndefOr[String]                   = js.undefined,
+	hintStyle:              js.UndefOr[CssProperties]                     = js.undefined,
+	/*  The hint content to display.*/
+	hintText:               js.UndefOr[ReactNode]                         = js.undefined,
 	/*  Override the inline-styles of the TextField's input element.*/
-	inputStyle:             js.UndefOr[CssProperties]            = js.undefined,
+	inputStyle:             js.UndefOr[CssProperties]                     = js.undefined,
 	/* default: false: If true, a textarea element will be rendered. The textarea also grows and shrinks according to the number of lines.*/
-	multiLine:              js.UndefOr[Boolean]                  = js.undefined,
-	/*  The function to call when the user presses the Enter key.*/
-	onEnterKeyDown:         js.UndefOr[js.Function]              = js.undefined,
+	multiLine:              js.UndefOr[Boolean]                           = js.undefined,
 	/* default: 1: Number of rows to display when multiLine option is set to true.*/
-	rows:                   js.UndefOr[Int]                      = js.undefined,
+	rows:                   js.UndefOr[Int]                               = js.undefined,
 	/* default: null: Maximum number of rows to display when multiLine option is set to true.*/
-	rowsMax:                js.UndefOr[Int]                      = js.undefined,
+	rowsMax:                js.UndefOr[Int]                               = js.undefined,
 	/*  Override the inline-styles of the TextField's root element.*/
-	style:                  js.UndefOr[CssProperties]            = js.undefined,
+	style:                  js.UndefOr[CssProperties]                     = js.undefined,
 	/*  Specifies the type of input to display such as "password" or "text".*/
-	`type`:                 js.UndefOr[String]                   = js.undefined,
+	`type`:                 js.UndefOr[String]                            = js.undefined,
 	/*  Override the inline-styles of the TextField's underline element when disabled.*/
-	underlineDisabledStyle: js.UndefOr[CssProperties]            = js.undefined,
+	underlineDisabledStyle: js.UndefOr[CssProperties]                     = js.undefined,
 	/*  Override the inline-styles of the TextField's underline element when focussed.*/
-	underlineFocusStyle:    js.UndefOr[CssProperties]            = js.undefined,
+	underlineFocusStyle:    js.UndefOr[CssProperties]                     = js.undefined,
 	/*  Override the inline-styles of the TextField's underline element.*/
-	underlineStyle:         js.UndefOr[CssProperties]            = js.undefined,
+	underlineStyle:         js.UndefOr[CssProperties]                     = js.undefined,
 	/* function(event): Callback function that is fired when the textfield losesfocus.*/
-	onBlur:                 js.UndefOr[ReactEvent => Callback]   = js.undefined,
+	onBlur:                 js.UndefOr[ReactEventI => Callback]           = js.undefined,
 	/* function(event): Callback function that is fired when the textfield's value changes.*/
-	onChange:               js.UndefOr[ReactEvent => Callback]   = js.undefined,
+	onChange:               js.UndefOr[ReactEventI => Callback]           = js.undefined,
+	/* function(event): The function to call when the user presses the Enter key.*/
+	onEnterKeyDown:         js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	/* function(event): Callback function that is fired when the textfield gains focus.*/
-	onFocus:                js.UndefOr[ReactEvent => Callback]   = js.undefined,
-	onKeyDown:              js.UndefOr[ReactEvent => Callback]   = js.undefined,
-	id:                     js.UndefOr[String]                   = js.undefined,
-	value:                  js.UndefOr[String]                   = js.undefined)
+	onFocus:                js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
+	onKeyDown:              js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
+	id:                     js.UndefOr[String]                            = js.undefined,
+	value:                  js.UndefOr[String]                            = js.undefined)
 {
 
   def apply() = {

@@ -7,26 +7,26 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiSnackbar(
-	key:              js.UndefOr[String]                        = js.undefined,
-	ref:              js.UndefOr[MuiSnackbarM => Unit]          = js.undefined,
+	key:              js.UndefOr[String]                         = js.undefined,
+	ref:              js.UndefOr[MuiSnackbarM => Unit]           = js.undefined,
 	/*  The name of the action on the snackbar.*/
-	action:           js.UndefOr[String]                        = js.undefined,
+	action:           js.UndefOr[String]                         = js.undefined,
 	/*  The number of milliseconds to wait before automatically dismissing. If no value is specified the snackbar will dismiss normally. If a value is provided the snackbar can still be dismissed normally. If a snackbar is dismissed before the timer expires, the timer will be cleared.*/
-	autoHideDuration: js.UndefOr[Int]                           = js.undefined,
+	autoHideDuration: js.UndefOr[Int]                            = js.undefined,
 	/*  Override the inline-styles of the Snackbar's body element.*/
-	bodyStyle:        js.UndefOr[CssProperties]                 = js.undefined,
+	bodyStyle:        js.UndefOr[CssProperties]                  = js.undefined,
 	/* required: The message to be displayed on the snackbar.*/
 	message:          String,
 	/* default: false: If true, the snackbar will open once mounted.*/
-	openOnMount:      js.UndefOr[Boolean]                       = js.undefined,
+	openOnMount:      js.UndefOr[Boolean]                        = js.undefined,
 	/*  Override the inline-styles of the Snackbar's root element.*/
-	style:            js.UndefOr[CssProperties]                 = js.undefined,
+	style:            js.UndefOr[CssProperties]                  = js.undefined,
 	/* function(event): Fired when the action button is touchtapped.*/
-	onActionTouchTap: js.UndefOr[ReactTouchEvent => Callback]   = js.undefined,
+	onActionTouchTap: js.UndefOr[ReactTouchEventH => Callback]   = js.undefined,
 	/* function(): Fired when the snackbar is dismissed.*/
-	onDismiss:        js.UndefOr[Callback]                      = js.undefined,
+	onDismiss:        js.UndefOr[Callback]                       = js.undefined,
 	/* function(): Fired when the snackbar is shown.*/
-	onShow:           js.UndefOr[Callback]                      = js.undefined)
+	onShow:           js.UndefOr[Callback]                       = js.undefined)
 {
 
   def apply() = {

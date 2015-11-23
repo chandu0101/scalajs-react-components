@@ -7,17 +7,17 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiTableRowColumn(
-	key:          js.UndefOr[String]                   = js.undefined,
-	ref:          js.UndefOr[String]                   = js.undefined,
+	key:          js.UndefOr[String]                           = js.undefined,
+	ref:          js.UndefOr[String]                           = js.undefined,
 	/*  Number to identify the header row. This property is automatically populated when used with TableHeader.*/
-	columnNumber: js.UndefOr[Int]                      = js.undefined,
+	columnNumber: js.UndefOr[Int]                              = js.undefined,
 	/* default: false: If true, this column responds to hover events.*/
-	hoverable:    js.UndefOr[Boolean]                  = js.undefined,
+	hoverable:    js.UndefOr[Boolean]                          = js.undefined,
 	/*  Override the inline-styles of the table row column's root element.*/
-	style:        js.UndefOr[CssProperties]            = js.undefined,
-	onClick:      js.UndefOr[ReactEvent => Callback]   = js.undefined,
-	onHover:      js.UndefOr[ReactEvent => Callback]   = js.undefined,
-	onHoverExit:  js.UndefOr[ReactEvent => Callback]   = js.undefined)
+	style:        js.UndefOr[CssProperties]                    = js.undefined,
+	onClick:      js.UndefOr[(ReactEventH, Int) => Callback]   = js.undefined,
+	onHover:      js.UndefOr[(ReactEventH, Int) => Callback]   = js.undefined,
+	onHoverExit:  js.UndefOr[(ReactEventH, Int) => Callback]   = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

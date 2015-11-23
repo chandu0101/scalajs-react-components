@@ -46,11 +46,11 @@ case class MuiDatePicker(
 	/* function(): Fired when the datepicker dialog is dismissed.*/
 	onDismiss:             js.UndefOr[Callback]                                     = js.undefined,
 	/* function(event): Callback function that is fired when the datepicker field gains focus.*/
-	onFocus:               js.UndefOr[ReactEvent => Callback]                       = js.undefined,
+	onFocus:               js.UndefOr[ReactFocusEventH => Callback]                 = js.undefined,
 	/* function(): Fired when the datepicker dialog is shown.*/
 	onShow:                js.UndefOr[Callback]                                     = js.undefined,
 	hideToolbarYearChange: js.UndefOr[Boolean]                                      = js.undefined,
-	onTouchTap:            js.UndefOr[ReactEvent => Callback]                       = js.undefined,
+	onTouchTap:            js.UndefOr[ReactTouchEventH => Callback]                 = js.undefined,
 	value:                 js.UndefOr[js.Object]                                    = js.undefined,
 	showYearSelector:      js.UndefOr[Boolean]                                      = js.undefined)
 {

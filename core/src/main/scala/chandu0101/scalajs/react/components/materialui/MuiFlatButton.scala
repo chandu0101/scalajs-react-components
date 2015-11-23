@@ -47,11 +47,11 @@ case class MuiFlatButton(
 	onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	onKeyDown:            js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	onKeyUp:              js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
-	/*  Called when a touch tap event occures on the button.*/
+	/*  Called when a touch tap event occurs on the button.*/
 	onTouchTap:           js.UndefOr[ReactTouchEventH => Callback]      = js.undefined,
-	onMouseLeave:         js.UndefOr[ReactEvent => Callback]            = js.undefined,
-	onTouchStart:         js.UndefOr[ReactEvent => Callback]            = js.undefined,
-	onMouseEnter:         js.UndefOr[ReactEvent => Callback]            = js.undefined)
+	onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]      = js.undefined,
+	onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]      = js.undefined,
+	onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]      = js.undefined)
 {
 
   def apply(children: ReactNode*) = {

@@ -8,6 +8,7 @@ object Mui extends js.Object {
   val AppBar:               js.Dynamic = js.native
   val AppCanvas:            js.Dynamic = js.native
   val Avatar:               js.Dynamic = js.native
+  val AutoComplete:         js.Dynamic = js.native
   val Badge:                js.Dynamic = js.native
   val BeforeAfterWrapper:   js.Dynamic = js.native
   val Card:                 js.Dynamic = js.native

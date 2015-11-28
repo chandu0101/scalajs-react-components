@@ -29,7 +29,7 @@ object ReactPopoverDemo {
     def render = {
       <.div(
         <.h3("Demo"),
-        CodeExample(code)(
+        CodeExample(code, "ReactPopover")(
           <.div(Style.popoverExample)(
             <.div(^.padding := "20px")(
               ReactPopOver(ref = topRef, placement = "top", title = "Top Title")("I am Top Pop Over"),

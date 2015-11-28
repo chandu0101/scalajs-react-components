@@ -30,7 +30,7 @@ object MuiSwitchesDemo {
 
   val component = ReactComponentB[Unit]("MuiSwitchesDemo")
     .render(P =>
-      CodeExample(code)(
+      CodeExample(code, "MuiSwitches")(
         <.div(Style.container,
           <.h3("Switches"),
           MuiTabs()(

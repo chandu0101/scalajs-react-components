@@ -27,7 +27,7 @@ object GoogleMapMarkerInfoWindow {
     .render(P =>
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Marker InfoWindow"),
-        CodeExample(code)(
+        CodeExample(code, "GoogleMapMarkerInfoWindow")(
           GoogleMap(center = latlng, markers = markers, zoom = 10)
         )
       )

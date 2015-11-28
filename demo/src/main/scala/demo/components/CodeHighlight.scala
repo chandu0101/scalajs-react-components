@@ -6,7 +6,7 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom.ext.PimpedNodeList
 
-object CodeHighLighter {
+object CodeHighlight {
 
   val component = ReactComponentB[String]("CodeHighLighter")
     .render_P(P => <.code(^.padding := "20px", P))

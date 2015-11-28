@@ -32,13 +32,24 @@ object MuiButtonsDemo {
 
   val component = ReactComponentB[Unit]("MuiButtonsDemo")
     .render(P =>
-      CodeExample(code)(
+      CodeExample(code, "MuiButtons")(
         <.div(Style.container,
           <.h3("Buttons"),
           MuiTabs()(
             MuiTab(label = "Flat Buttons")(
               <.div(Style.content,
-                MuiFlatButton(label = "Default")(),
+                MuiFlatButton(
+                  label = "Default",
+                  onClick         = DemoEvents.f1("onClick"),
+                  onBlur          = DemoEvents.f1("onBlur"),
+                  onFocus         = DemoEvents.f1("onFocus"),
+                  onKeyboardFocus = DemoEvents.f1("onKeyboardFocus"),
+                  onKeyDown       = DemoEvents.f1("onKeyDown"),
+                  onKeyUp         = DemoEvents.f1("onKeyUp"),
+                  onTouchTap      = DemoEvents.f1("onTouchTap"),
+                  onMouseLeave    = DemoEvents.f1("onMouseLeave"),
+                  onTouchStart    = DemoEvents.f1("onTouchStart"),
+                  onMouseEnter    = DemoEvents.f1("onMouseEnter"))(),
                 MuiFlatButton(label = "Primary", primary = true)(),
                 MuiFlatButton(label = "Secondary", secondary = true)(),
                 MuiFlatButton(label = "Disabled", disabled = true)()

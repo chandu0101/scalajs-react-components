@@ -19,7 +19,16 @@ object MuiListDemo {
         CodeExample(code, "MuiList")(
           MobileTearSheet(
             MuiList()(
-              MuiListItem(leftIcon = ContentInbox())("Inbox"),
+              MuiListItem(
+                leftIcon           = ContentInbox(),
+                onKeyboardFocus    = DemoEvents.f1("onKeyboardFocus"),
+                onMouseLeave       = DemoEvents.f1("onMouseLeave"),
+                onMouseEnter       = DemoEvents.f1("onMouseEnter"),
+                onNestedListToggle = DemoEvents.f1_("onNestedListToggle"),
+                onTouchStart       = DemoEvents.f1("onTouchStart"),
+                onTouchTap         = DemoEvents.f1("onTouchTap")
+
+              )("Inbox"),
               MuiListItem(leftIcon = ActionGrade())("Starred"),
               MuiListItem(leftIcon = ContentSend())("Sent Mail"),
               MuiListItem(leftIcon = ContentDrafts())("Drafts")

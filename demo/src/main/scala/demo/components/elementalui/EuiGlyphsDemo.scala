@@ -54,7 +54,7 @@ object EuiGlyphsDemo {
       )
 
     def render: ReactComponentU[Props, Unit, CodeExample.Backend, TopNode] =
-      CodeExample(code)(
+      CodeExample(code, "EuiGlyphs")(
         <.div(
           <.h1("Glyphs"),
           <.h2("Basic Example"),

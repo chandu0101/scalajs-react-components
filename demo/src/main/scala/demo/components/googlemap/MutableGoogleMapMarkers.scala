@@ -35,7 +35,7 @@ object MutableGoogleMapMarkers {
 
     def render(S: State) =
       <.div(
-        <.h2(^.cls := "mui-font-style-headline")("Mutable markers"), CodeExample(code)(
+        <.h2(^.cls := "mui-font-style-headline")("Mutable markers"), CodeExample(code, "MutableGoogleMapMarkers")(
           <.div(
             <.input(^.`type` := "text", ^.value := S.lat.toString, ^.onChange ==> changeLat),
             <.input(^.`type` := "text", ^.value := S.lng.toString, ^.onChange ==> changeLng),

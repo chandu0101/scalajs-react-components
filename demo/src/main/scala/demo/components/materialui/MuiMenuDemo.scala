@@ -41,20 +41,22 @@ object MuiMenuDemo {
       (e, elem) => Callback.info(s"touched $elem")
 
     def render(S: State) =
-      CodeExample(code)(
+      CodeExample(code, "MuiMenu")(
         <.div(Style.container,
           <.h3("Menus"),
           MuiTabs()(
             MuiTab(label = "Menu example")(
               <.div(Style.content,
                 MuiMenu(
-                  desktop = true,
-                  width = 320: (String | Int),
-                  onChange = onChange,
-                  onItemTouchTap = onItemTouchTap,
-                  value = S.selected,
-                  multiple = true,
-                  openDirection = MuiMenuOpenDirection.TOP_LEFT
+                  desktop        = true,
+                  width          = 320: (String | Int),
+                  value          = S.selected,
+                  multiple       = true,
+                  openDirection  = MuiMenuOpenDirection.TOP_LEFT,
+                  onItemTouchTap = onItemTouchTap ,
+                  onChange       = onChange,
+                  onKeyDown      = DemoEvents.f1("onKeyDown"),
+                  onEscKeyDown   = DemoEvents.f1("onEscKeyDown")
                 )(
                   MuiMenuItem(primaryText = "Bold", value = "bold", checked = true, secondaryText = "&#8984;B")(),
                   MuiMenuItem(primaryText = "Italic", value = "italic", secondaryText = "&#8984;I")(),

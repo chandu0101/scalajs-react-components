@@ -64,7 +64,7 @@ object ScalaCSSTutorial {
       "For example if you want to use ReactTable component in ur project "
       ),
       <.pre(
-        CodeHighLighter(basicCode)
+        CodeHighlight(basicCode)
       ),
       <.a(^.href := "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/chandu0101/scalajs/react/components/demo/css/AppCSS.scala" ,
         "real world example",
@@ -78,7 +78,7 @@ object ScalaCSSTutorial {
         "For example we want to add custom hover color for ReactTable component"
       ),
        <.pre(
-         CodeHighLighter(customCode)
+         CodeHighlight(customCode)
        )
      )
     )

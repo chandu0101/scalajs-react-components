@@ -167,7 +167,7 @@ object EuiMiscDemo {
         Pill(label = "Clear All")())
 
     def render(S: State) =
-      CodeExample(code)(
+      CodeExample(code, "EuiMisc")(
         <.div(
           <.h1("Miscellaneous"),
           <.h2("Alerts"),

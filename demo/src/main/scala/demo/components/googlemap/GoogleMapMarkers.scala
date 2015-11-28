@@ -27,7 +27,7 @@ object GoogleMapMarkers {
     .render(P => {
    <.div(
      <.h2(^.cls := "mui-font-style-headline")("Markers"),
-      CodeExample(code)(
+      CodeExample(code, "GoogleMapMarkers")(
        GoogleMap(center = latlng ,markers = markers ,zoom = 10)
       )
     )

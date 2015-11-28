@@ -374,7 +374,7 @@ object EuiFormsDemo {
 
 
     def render(S: State) =
-      CodeExample(code)(
+      CodeExample(code, "EuiForms")(
         <.div(
           <.h1("Forms"),
           <.h2("Basic Example"),

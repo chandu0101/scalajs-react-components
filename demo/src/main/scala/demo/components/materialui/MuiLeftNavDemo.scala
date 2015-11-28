@@ -36,9 +36,6 @@ object MuiLeftNavDemo {
     val handleHidableLeftNav: ReactEventH => Callback =
       e => leftRef().map(_.toggle())
 
-    val onChange: (ReactEvent, Int, js.Any) => Callback =
-      (e, idx, any) => Callback.info(e.toString + idx + js.JSON.stringify(any))
-
     def render(S: State) = {
       <.div(
         CodeExample(code, "MuiAppBar")(
@@ -47,12 +44,16 @@ object MuiLeftNavDemo {
               ref = leftRef.set,
               menuItems = menuItems,
               docked = false,
-              onChange = onChange,
-              onNavOpen = Callback.info("onNavOpen"),
-              onNavClose = Callback.info("onNavClose"),
+              onChange = DemoEvents.f3("onChange"),
+              onNavOpen = DemoEvents.f0("onNavOpen"),
+              onNavClose = DemoEvents.f0("onNavClose"),
               openRight = false
             )(),
-            MuiLeftNav(ref = dockedLeftRef.set, menuItems = menuItems, docked = S.isDocked, onChange = onChange)(),
+            MuiLeftNav(
+              ref = dockedLeftRef.set,
+              menuItems = menuItems,
+              docked = S.isDocked,
+              onChange = DemoEvents.f3("onChange"))(),
             MuiRaisedButton(label = "Show Hideable Left Nav", onTouchTap = handleHidableLeftNav)(),
             <.br(),
             <.br(),

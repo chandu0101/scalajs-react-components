@@ -20,7 +20,7 @@ object MuiSelectFieldDemo {
       (e, idx, chosen) => {
         val payload = chosen.asInstanceOf[js.Dynamic].payload
         $.modState(_.copy(selected = idx)) >>
-          Callback.info(s"chose $payload")
+          DemoEvents.f3("onChange")(e, idx, chosen)
       }
 
     val menuItems = js.Array(
@@ -32,11 +32,15 @@ object MuiSelectFieldDemo {
     )
 
     def render(S: State) =
-      CodeExample(code)(
+      CodeExample(code, "MuiSelectField")(
         MuiSelectField(
           menuItems = menuItems,
           onChange = onChange,
-          selectedIndex = S.selected
+          selectedIndex = S.selected,
+          onBlur         = DemoEvents.f1("onBlur"),
+          onFocus        = DemoEvents.f1("onFocus"),
+          onEnterKeyDown = DemoEvents.f1("onEnterKeyDown"),
+          onKeyDown      = DemoEvents.f1("onKeyDown")
         )()
       )
   }

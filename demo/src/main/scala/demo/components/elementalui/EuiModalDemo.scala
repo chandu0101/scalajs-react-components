@@ -124,7 +124,7 @@ object EuiModalDemo {
           ModalBody()(<.p("&hellip;"))))
 
     def render(S: State) =
-      CodeExample(code)(
+      CodeExample(code, "EuiModal")(
         Container(maxWidth = 800, className = "demo-container")(
           <.h1("Modal"),
           <.h2("Static Example"),

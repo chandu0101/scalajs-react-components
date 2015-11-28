@@ -26,7 +26,8 @@ object MuiDropDownMenuDemo {
       )
       <.div(
         CodeExample(code, "MuiDropDownMenu")(
-          MuiDropDownMenu(menuItems = menuItems)()
+          MuiDropDownMenu(menuItems = menuItems,
+            onChange = DemoEvents.f3("onChange"))()
         )
       )
     }).buildU

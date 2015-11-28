@@ -32,7 +32,7 @@ object ReactTableSorting {
     def render =
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Sorting Table"),
-        CodeExample(code)(
+        CodeExample(code, "ReactTableSorting")(
           ReactTable(data = data, columns = columns, config = config)
         )
       )

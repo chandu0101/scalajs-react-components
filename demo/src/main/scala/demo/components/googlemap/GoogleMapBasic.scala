@@ -19,7 +19,7 @@ object GoogleMapBasic {
     .render(P =>
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Basic Map"),
-        CodeExample(code)(
+        CodeExample(code, "GoogleMapBasic")(
           GoogleMap(width = "600px", height = "500px", center = latlng, zoom = 8)
         )
       )

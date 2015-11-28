@@ -41,7 +41,7 @@ object ReactTableCustomCell {
     def render =
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Custom Cell Factory"),
-        CodeExample(code)(
+        CodeExample(code, "ReactTableCustomCell")(
           ReactTable(data = data, columns = columns, config = config)
         )
       )

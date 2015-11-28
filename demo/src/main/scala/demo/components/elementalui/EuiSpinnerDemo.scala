@@ -13,7 +13,7 @@ object EuiSpinnerDemo {
 
   val component = ReactComponentB[Unit]("EuiSpinnerDemo")
     .render(P =>
-      CodeExample(code)(
+      CodeExample(code, "EuiSpinner")(
         <.div(
           <.h1("Spinner"),
           <.h2("Common Use Cases"),

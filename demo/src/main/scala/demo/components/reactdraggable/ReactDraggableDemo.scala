@@ -22,7 +22,7 @@ object ReactDraggableDemo {
     def render =
      <.div(^.cls := "react-draggable-demo",
        <.h2(^.cls := "mui-font-style-headline", "Demo"),
-        CodeExample(code)(
+        CodeExample(code, "ReactDraggable")(
           ReactDraggable(
             zIndex = 100,
             onStop = (e: Event, pos: RElementPosition) => Callback.info(s"stopped at $pos"))(

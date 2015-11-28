@@ -52,7 +52,7 @@ object GoogleMapCustomMarkerIcon {
     .render(P => {
    <.div(
      <.h2(^.cls := "mui-font-style-headline")("Custom Marker Icon"),
-      CodeExample(code)(
+      CodeExample(code, "GoogleMapCustomMarkerIcon")(
         GoogleMap(center = latlng, markers = markers, zoom = 10)
       )
     )

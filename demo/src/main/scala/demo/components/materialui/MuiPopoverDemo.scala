@@ -60,7 +60,7 @@ object MuiPopoverDemo {
 
     def render(S: State) = {
       <.div(
-        CodeExample("""""", "MuiPopoverDemo")(
+        CodeExample(code, "MuiPopoverDemo")(
           <.div(
             <.div(
               ^.ref := ref,

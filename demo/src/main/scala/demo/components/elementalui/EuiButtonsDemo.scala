@@ -29,7 +29,7 @@ object EuiButtonsDemo {
       )
 
     def render: ReactElement =
-      CodeExample(code)(
+      CodeExample(code, "EuiButtons")(
         <.div(
           <.h1("Buttons"),
           <.h2("Sizes"),

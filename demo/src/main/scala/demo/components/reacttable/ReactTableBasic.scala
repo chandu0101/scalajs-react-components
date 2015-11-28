@@ -23,7 +23,7 @@ object ReactTableBasic {
     def render =
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Basic Table"),
-        CodeExample(code)(
+        CodeExample(code, "ReactTableBasic")(
           ReactTable(data = data, columns = columns, rowsPerPage = 6)
         )
       )

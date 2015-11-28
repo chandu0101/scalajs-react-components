@@ -45,7 +45,7 @@ object ReactTreeViewDemo {
 
     def render = {
       <.div(
-        <.h3("Demo"), CodeExample(code)(
+        <.h3("Demo"), CodeExample(code, "ReactTreeView")(
           <.div(Style.treeViewDemo)(
             ReactTreeView(
               root = data,

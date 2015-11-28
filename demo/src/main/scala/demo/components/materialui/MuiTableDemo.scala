@@ -61,7 +61,7 @@ object MuiTableDemo {
       Person("7", "Adam Moore", "Employed")
     )
 
-    def renderPersons(selecteds: String | js.Array[Int]): List[ReactComponentU_] = {
+    def renderPersons(selecteds: String | js.Array[Int]): List[ReactComponentU_] =
       persons.zipWithIndex.map {
         case (p, idx) =>
           val selected = selecteds match {
@@ -74,10 +74,9 @@ object MuiTableDemo {
             MuiTableRowColumn()(p.status)
           )
       }
-    }
 
     def render(S: State) =
-      CodeExample(code)(
+      CodeExample(code, "MuiTable")(
         <.div(
           MuiTable(
             key                 = S.toString,
@@ -110,32 +109,32 @@ object MuiTableDemo {
           ),
           MuiPaper(rounded = true, style = js.Dynamic.literal("width" -> "300", "padding" -> "20px"))(
             MuiToggle(
-              label = "selectable": ReactNode,
+              label = "selectable",
               defaultToggled = S.selectable,
               onToggle = toggleSelectable
             )(),
             MuiToggle(
-              label = "multiSelectable": ReactNode,
+              label = "multiSelectable",
               defaultToggled = S.multiSelectable,
               onToggle = toggleMultiSelectable
             )(),
             MuiToggle(
-              label = "enableSelectAll": ReactNode,
+              label = "enableSelectAll",
               defaultToggled = S.enableSelectAll,
               onToggle = toggleEnableSelectAll
             )(),
             MuiToggle(
-              label = "deselectOnClickaway": ReactNode,
+              label = "deselectOnClickaway",
               defaultToggled = S.deselectOnClickaway,
               onToggle = toggleDeselectOnClickaway
             )(),
             MuiToggle(
-              label = "fixedHeader": ReactNode,
+              label = "fixedHeader",
               defaultToggled = S.fixedHeader,
               onToggle = toggleFixedHeader
             )(),
             MuiToggle(
-              label = "fixedFooter": ReactNode,
+              label = "fixedFooter",
               defaultToggled = S.fixedFooter,
               onToggle = toggleFixedFooter
             )()

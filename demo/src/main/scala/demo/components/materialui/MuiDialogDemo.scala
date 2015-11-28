@@ -40,7 +40,11 @@ object MuiDialogDemo {
             MuiDialog(
               title = "Dialog With Actions",
               actions = actions,
-              open = S.isOpen)(
+              open = S.isOpen,
+              onRequestClose = DemoEvents.f1_("onRequestClose"),
+              onShow = DemoEvents.f0("onShow"),
+              onDismiss = DemoEvents.f0("onDismiss")
+            )(
               "Dialog example with floating buttons"
             ),
             MuiRaisedButton(label = "Dialog", onTouchTap = openDialog)()

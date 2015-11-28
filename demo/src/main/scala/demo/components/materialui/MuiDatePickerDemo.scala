@@ -16,7 +16,12 @@ object MuiDatePickerDemo {
     .render(P => {
       <.div(
         CodeExample(code, "MuiDatePicker")(
-          MuiDatePicker(hintText = "Protrait Dialog")(),
+          MuiDatePicker(hintText = "Protrait Dialog",
+            onChange   = DemoEvents.f2_("onChange"),
+            onDismiss  = DemoEvents.f0("onDismiss"),
+            onFocus    = DemoEvents.f1("onFocus"),
+            onShow     = DemoEvents.f0("onShow"),
+            onTouchTap = DemoEvents.f1("onTouchTap"))(),
           MuiDatePicker(hintText = "Landscape Dialog", mode = MuiDatePickerMode.LANDSCAPE)()
         )
       )

@@ -98,9 +98,9 @@ See the [demo](demo) to see how it can be done.
 http://chandu0101.github.io/sjrc/
 
 **Local :** 
-```scala
+```
+sbt demo/fastOptJS
 cd demo
-sbt ~fastOptJS
 //open a new terminal tab/window
 npm install
 npm start

@@ -52,7 +52,7 @@ object MuiRouteModule {
   case object Table extends LeftRoute("Table", "table", () => MuiTableDemo())
 
   val menu: List[LeftRoute] = List(Info,
-    Updates,
+//    Updates,
     AppBar,
     Buttons,
     DatePicker,

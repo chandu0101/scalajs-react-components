@@ -50,7 +50,7 @@ object AppRouter {
     val reactPopoverRoutes: Rule = ReactPopoverRouteModule.routes.prefixPath_/("#reactpopover").pmap[Page](ReactPopoverPages) { case ReactPopoverPages(p) => p }
     val reactTableRoutes: Rule = ReactTableRouteModule.routes.prefixPath_/("#reacttable").pmap[Page](ReactTablePages) { case ReactTablePages(p) => p }
     val reactTagsInputRoutes: Rule = ReactTagsInputRouteModule.routes.prefixPath_/("#reacttagsinput").pmap[Page](ReactTagsInputPages) { case ReactTagsInputPages(p) => p }
-    val reactSelectRoutes: Rule = ReactSelectRouteModule.routes.prefixPath_/("#reactselect").pmap[Page](ReactSelectPages) { case ReactSelectPages(p) => p }
+//    val reactSelectRoutes: Rule = ReactSelectRouteModule.routes.prefixPath_/("#reactselect").pmap[Page](ReactSelectPages) { case ReactSelectPages(p) => p }
     val reactGeomIconRoutes: Rule = ReactGeomIcontRouteModule.routes.prefixPath_/("#reactgeomicon").pmap[Page](ReactGeomIconPages) { case ReactGeomIconPages(p) => p }
     val reactInfiniteRoutes: Rule = ReactInfiniteRouteModule.routes.prefixPath_/("#reactinite").pmap[Page](ReactInfinitePages) { case ReactInfinitePages(p) => p }
     val reactDraggableRoutes: Rule = ReactJSDraggableRouteModule.routes.prefixPath_/("#reactdraggable").pmap[Page](ReactDraggablePages) { case ReactDraggablePages(p) => p }
@@ -64,7 +64,7 @@ object AppRouter {
       | reactListViewRoutes
       | reactTreeViewRoutes
       | reactTagsInputRoutes
-      | reactSelectRoutes
+//      | reactSelectRoutes
       | reactGeomIconRoutes
       | reactTableRoutes
       | reactInfiniteRoutes

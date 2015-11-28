@@ -7,7 +7,7 @@ import demo.components.{ComponentGridItem, LocalDemoButton}
 import demo.routes.AppRouter
 import demo.routes.AppRouter.Page
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.extra.router2.RouterCtl
+import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 object HomePage {
@@ -71,26 +71,26 @@ object HomePage {
       val results = AppRouter.homePageMenu.filter(c => c.tags.exists(s => s.contains(text)))
       t.modState(_.copy(results = results, filterText = text))
     }
+    def render(P: RouterCtl[Page], S: State) = {
+      <.div(
+        <.div(Style.info, ^.key := "info")(
+          <.h3(Style.infoContent)("Reusable ", <.a(^.href := "https://github.com/japgolly/scalajs-react",Style.infoLink ,^.target := "_blank")("scalajs-react"), " Components, want to Contribute ? "),
+          LocalDemoButton(name ="Welcome Mama",linkButton =  true,href  = "https://github.com/chandu0101/scalajs-react-components/tree/master/doc/CONTRIBUTE.md")
+        ),
+        <.div(Style.searchSection)(
+         ReactSearchBox(onTextChange = onTextChange),
+          !S.filterText.isEmpty ?= <.strong(^.alignSelf := "center" ,^.paddingLeft := "30px")(s"Results: ${S.results.length}")
+        ),
+        <.div(Style.componentsGrid)(
+            S.results.map(c => ComponentGridItem(c.name, c.route, c.imagePath,P))
+        )
+      )
+    }
   }
 
   val component = ReactComponentB[RouterCtl[Page]]("homepage")
     .initialState(State("", AppRouter.homePageMenu))
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    <.div(
-      <.div(Style.info, ^.key := "info")(
-        <.h3(Style.infoContent)("Reusable ", <.a(^.href := "https://github.com/japgolly/scalajs-react",Style.infoLink ,^.target := "_blank")("scalajs-react"), " Components, want to Contribute ? "),
-        LocalDemoButton(name ="Welcome Mama",linkButton =  true,href  = "https://github.com/chandu0101/scalajs-react-components/tree/master/doc/CONTRIBUTE.md")
-      ),
-      <.div(Style.searchSection)(
-       ReactSearchBox(onTextChange = B.onTextChange),
-        !S.filterText.isEmpty ?= <.strong(^.alignSelf := "center" ,^.paddingLeft := "30px")(s"Results: ${S.results.length}")
-      ),
-      <.div(Style.componentsGrid)(
-          S.results.map(c => ComponentGridItem(c.name, c.route, c.imagePath,P))
-      )
-    )
-  })
+    .renderBackend[Backend]
     .build
 
   def apply(ctrl: RouterCtl[Page]) = component(ctrl)

@@ -6,7 +6,7 @@ import scala.scalajs.js
 
 case class MuiTab(style: U[js.Any] = uNone,
                   label: U[String] = uNone,
-                  onActive: U[ReactElement => Unit] = uNone,
+                  onActive: U[ReactElement => Callback] = uNone,
                   ref: U[String] = uNone,
                   key: U[String] = uNone,
                   route: U[String] = uNone) {

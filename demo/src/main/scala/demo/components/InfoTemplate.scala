@@ -14,9 +14,8 @@ object InfoTemplate {
          fontSize(30.px),
          paddingTop(40.px))
      }
-
-  val component = ReactComponentB[Props]("InfoTemplate")
-    .render((P,C) => {
+  case class Backend($: BackendScope[Props, _]){
+    def render(P: Props, C: PropsChildren) = {
       <.div(^.cls := "info-template")(
         <.div(^.cls := "component-info")(C),
         P.scalacss ?= <.div(
@@ -31,7 +30,12 @@ object InfoTemplate {
            ComponentCredits(filePath = s"core/src/main/scala/chandu0101/scalajs/react/components/${P.componentFilePath}")
          )
        )
-    }).build
+    }
+  }
+
+  val component = ReactComponentB[Props]("InfoTemplate")
+    .renderBackend[Backend]
+    .build
 
   case class Props(browsersTested: List[String] ,componentFilePath: String,scalacss: Boolean)
 

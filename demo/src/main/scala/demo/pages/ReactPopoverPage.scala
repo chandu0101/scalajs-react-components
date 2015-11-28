@@ -3,15 +3,18 @@ package pages
 
 import demo.components.LeftNavPage
 import demo.routes.{LeftRoute, ReactPopoverRouteModule}
-import japgolly.scalajs.react.ReactComponentB
-import japgolly.scalajs.react.extra.router2.RouterCtl
+import japgolly.scalajs.react.{BackendScope, ReactComponentB}
+import japgolly.scalajs.react.extra.router.RouterCtl
 
 object ReactPopoverPage {
+  case class Backend($: BackendScope[Props, _]){
+    def render(P: Props) = {
+      LeftNavPage(ReactPopoverRouteModule.menu, P.selectedPage, P.ctrl)
+    }
+  }
 
   val component = ReactComponentB[Props]("ReactPopOverPage")
-    .render((P) => {
-    LeftNavPage(ReactPopoverRouteModule.menu, P.selectedPage, P.ctrl)
-  })
+    .renderBackend[Backend]
     .build
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])

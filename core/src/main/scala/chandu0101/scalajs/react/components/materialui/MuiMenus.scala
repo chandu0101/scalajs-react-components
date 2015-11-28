@@ -7,10 +7,10 @@ import scala.scalajs.js.{Array => JArray}
 
 case class MuiLeftNav(menuItems: JArray[MuiMenuItem],
                       style: U[js.Any] = uNone,
-                      onChange: U[(ReactEvent, Int, js.Object) => Unit] = uNone,
-                      ref: U[String] = uNone,
-                      onNavClose: U[() => Unit] = uNone,
-                      onNavOpen: U[() => Unit] = uNone,
+                      onChange: U[(ReactEvent, Int, js.Object) => Callback] = uNone,
+                      ref: U[MuiLeftNavM => Unit] = uNone,
+                      onNavClose: U[Callback] = uNone,
+                      onNavOpen: U[Callback] = uNone,
                       key: U[String] = uNone,
                       className: U[String] = uNone,
                       docked: U[Boolean] = uNone,
@@ -29,17 +29,19 @@ case class MuiLeftNav(menuItems: JArray[MuiMenuItem],
 @js.native
 trait MuiLeftNavM extends js.Object {
 
+  def open(): Unit = js.native
+
   def close(): Unit = js.native
 
   def toggle(): Unit = js.native
 }
 
-case class MuiMenu(onToggle: U[(ReactEvent, Int, Boolean) => Unit] = uNone,
+case class MuiMenu(onToggle: U[(ReactEvent, Int, Boolean) => Callback] = uNone,
                    menuItems: JArray[MuiMenuItem],
                    visible: U[Boolean] = uNone,
                    style: U[js.Any] = uNone,
                    ref: U[String] = uNone,
-                   onItemTap: U[(ReactEvent, Int, js.Object) => Unit] = uNone,
+                   onItemTap: U[(ReactEvent, Int, js.Object) => Callback] = uNone,
                    menuItemStyleLink: U[js.Any] = uNone,
                    zDepth: U[Int] = uNone,
                    menuItemStyle: U[js.Any] = uNone,

@@ -8,8 +8,8 @@ object ScalajsReactComponents extends Build {
 
   val Scala211 = "2.11.7"
 
-  val scalajsReactVersion = "0.9.2"
-  val scalaCSSVersion = "0.3.0"
+  val scalajsReactVersion = "0.10.0"
+  val scalaCSSVersion = "0.3.1"
 
   type PE = Project => Project
 
@@ -23,7 +23,7 @@ object ScalajsReactComponents extends Build {
         scalaVersion         := Scala211,
         scalacOptions       ++= Seq("-deprecation", "-unchecked", "-feature",
                                   "-language:postfixOps", "-language:implicitConversions",
-                                  "-language:higherKinds", "-language:existentials"),
+                                  "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions        := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
           "org.scala-lang" %  "scala-reflect"          % scalaVersion.value,
@@ -113,11 +113,11 @@ object ScalajsReactComponents extends Build {
   // ==============================================================================================
 
   lazy val macros = project
-    .configure(commonSettings, utestSettings, preventPublication)
+    .configure(commonSettings, utestSettings, publicationSettings)
     .settings(
       name := "macros",
       libraryDependencies ++= Seq(
-        "org.scalatest" %%% "scalatest" % "3.0.0-M6" % Test
+        "org.scalatest" %%% "scalatest" % "3.0.0-M7" % Test
       )
     )
 

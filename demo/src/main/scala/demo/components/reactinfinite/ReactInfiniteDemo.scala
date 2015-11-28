@@ -56,23 +56,22 @@ object ReactInfiniteDemo {
       val data = (1 to 500).toVector.map(i => s"List Item $i")
       t.modState(_.copy(isLoading = false, data = data))
     }
-
+    def render(S: State) = {
+      <.div(
+        CodeExample(code, "Demo")(
+          <.div(styles.container,
+            if (S.isLoading) <.div("Loading ..")
+            else ReactInfinite(elementHeight = 70,
+              containerHeight = 400)(S.data.map(renderRow))
+          )
+        )
+      )
+    }
   }
 
   val component = ReactComponentB[Unit]("ReactSelectDemo")
     .initialState(State())
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    <.div(
-      CodeExample(code, "Demo")(
-        <.div(styles.container,
-          if (S.isLoading) <.div("Loading ..")
-          else ReactInfinite(elementHeight = 70,
-            containerHeight = 400)(S.data.map(B.renderRow _))
-        )
-      )
-    )
-  })
+    .renderBackend[Backend]
     .componentDidMount(scope => scope.backend.loadData())
     .buildU
 

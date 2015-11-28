@@ -13,9 +13,9 @@ case class MuiAppBar(iconStyleRight: U[js.Object] = uNone,
                   iconElementLeft: U[ReactElement] = uNone,
                   showMenuIconButton: U[Boolean] = uNone,
                   title: U[String] = uNone,
-                  onLeftIconButtonTouchTap: U[ReactEventH => Unit] = uNone,
+                  onLeftIconButtonTouchTap: U[ReactEventH => Callback] = uNone,
                   iconElementRight: U[ReactElement] = uNone,
-                  onRightIconButtonTouchTap: U[ReactEventH => Unit] = uNone) {
+                  onRightIconButtonTouchTap: U[ReactEventH => Callback] = uNone) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiAppBar](this)

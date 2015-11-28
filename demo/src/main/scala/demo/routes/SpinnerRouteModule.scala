@@ -3,7 +3,7 @@ package routes
 
 import demo.components.spinner.{SpinnerDemo, SpinnerInfo}
 import demo.pages.SpinnerPage
-import japgolly.scalajs.react.extra.router2.RouterConfigDsl
+import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object SpinnerRouteModule {
 

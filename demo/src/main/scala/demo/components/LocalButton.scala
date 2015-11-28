@@ -29,28 +29,27 @@ object LocalDemoButton {
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def onButtonClick(e: ReactEventI) = {
-      if (t.props.onButtonClick != null) t.props.onButtonClick(e)
-      e.preventDefault()
+    def onButtonClick(P: Props)(e: ReactEventI): Callback =
+      P.onButtonClick.fold(Callback.empty)(_.apply(e)) >> e.preventDefaultCB
+
+    val onMouseEnter_ = t.modState(_.copy(buttonHover = true))
+
+    val onMouseLeave_ = t.modState(_.copy(buttonHover = false))
+
+    def render(P: Props, S: State) = {
+      val buttonStyle = styleSet1(P.style.button, P.style.buttonHover -> S.buttonHover)
+      if (P.linkButton)<.a(buttonStyle, ^.href := P.href,^.target := "_blank", onMouseEnter --> onMouseEnter_, onMouseLeave --> onMouseLeave_)(P.name)
+      else<.a(buttonStyle, ^.onClick ==> onButtonClick(P), onMouseEnter --> onMouseEnter_, onMouseLeave --> onMouseLeave_)(P.name)
     }
-
-    def onMouseEnter = t.modState(_.copy(buttonHover = true))
-
-    def onMouseLeave = t.modState(_.copy(buttonHover = false))
   }
 
   val component = ReactComponentB[Props]("LocalDemoButton")
     .initialState(State())
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    val buttonStyle = styleSet1(P.style.button, P.style.buttonHover -> S.buttonHover)
-    if (P.linkButton)<.a(buttonStyle, ^.href := P.href,^.target := "_blank", onMouseEnter --> B.onMouseEnter, onMouseLeave --> B.onMouseLeave)(P.name)
-    else<.a(buttonStyle, ^.onClick ==> P.onButtonClick, onMouseEnter --> B.onMouseEnter, onMouseLeave --> B.onMouseLeave)(P.name)
-  })
+    .renderBackend[Backend]
     .build
 
-  case class Props(name: String, onButtonClick: REventHUnit, linkButton: Boolean, href: String, style: Style)
+  case class Props(name: String, onButtonClick: U[ReactEventH => Callback], linkButton: Boolean, href: String, style: Style)
 
-  def apply(name: String, onButtonClick: REventHUnit = null, linkButton: Boolean = false, href: String = "", style: Style = new Style {}, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(name, onButtonClick, linkButton, href, style))
+  def apply(name: String, onButtonClick: U[ReactEventH => Callback] = uNone, linkButton: Boolean = false, href: String = "", style: Style = new Style {}, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(name, onButtonClick, linkButton, href, style))
 
 }

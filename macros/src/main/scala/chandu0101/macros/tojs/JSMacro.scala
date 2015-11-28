@@ -1,8 +1,9 @@
 package chandu0101.macros.tojs
 
+import japgolly.scalajs.react.CallbackTo
 import scala.collection.{GenMap, GenTraversableOnce}
 import scala.language.experimental.macros
-import scala.reflect.macros.blackbox.Context
+import scala.reflect.macros.blackbox
 import scala.scalajs.js
 
 /**
@@ -10,87 +11,93 @@ import scala.scalajs.js
  * via https://github.com/chandu0101/macros/blob/master/src/main/scala/chandu0101/macros/tojs/JSMacro.scala
  */
 object JSMacro {
-  val REGULAR = "regular"
-
-  val UNDEFS = "undefs"
-
   type TOJS = {
     val toJS: js.Object
   }
 
-  implicit def apply[T]: T => js.Object = macro tojs_macro_impl[T]
+  implicit def apply[T]: T => js.Object = macro applyImpl[T]
 
-  def tojs_macro_impl[T: c.WeakTypeTag](c: Context): c.Tree = {
+  def applyImpl[T: c.WeakTypeTag](c: blackbox.Context): c.Tree = {
     import c.universe._
-    val tpe = c.weakTypeOf[T]
-    val fields = tpe.decls.collectFirst {
+
+    def isOptional(tpe: Type): Boolean =
+      tpe <:< typeOf[Option[_]] || tpe <:< typeOf[js.UndefOr[_]]
+
+    def isNotPrimitiveAnyVal(tpe: Type) =
+      !tpe.typeSymbol.fullName.startsWith("scala.")
+
+    def getJSValueTree(target: Tree, rt: Type) = {
+      if (rt <:< typeOf[TOJS])
+        q"""if ($target != null) $target.toJS else null"""
+
+      /* scala collections */
+      else if (rt <:< typeOf[GenMap[String, _]])
+        if (rt.typeArgs(1) <:< typeOf[TOJS])
+          q"""$target.map{ case (k, o) => k -> (if(o == null) null else o.toJS)}.toJSDictionary"""
+        else
+          q"""$target.toJSDictionary"""
+      else if (rt <:< typeOf[GenTraversableOnce[_]] || (rt <:< typeOf[Array[_]]))
+        if (rt.typeArgs.head <:< typeOf[TOJS])
+          q"""$target.map(o => if(o == null) null else o.toJS).toJSArray"""
+        else
+          q"""$target.toJSArray"""
+
+      /* javascript collections. Only need to rewrite if type parameter is <:< TOJS */
+      else if (rt <:< typeOf[js.Dictionary[_]] && rt.typeArgs.head <:< typeOf[TOJS])
+        q"""$target.map{case(k, o) => (k, if(o == null) null else o.toJS)}.toJSDictionary"""
+      else if (rt <:< typeOf[js.Array[_]] && rt.typeArgs.head <:< typeOf[TOJS])
+        q"""$target.map(o => if(o == null) null else o.toJS)"""
+
+      /* rewrite functions returning a Callback so that javascript land can call them */
+      else if (rt <:< typeOf[CallbackTo[_]])
+        q"""$target.toJsFn"""
+      else if (rt <:< typeOf[Function0[CallbackTo[_]]])
+        q"""$target().toJsFn"""
+      else if (rt <:< typeOf[Function1[_, CallbackTo[_]]])
+        q"""((t0: ${rt.typeArgs(0)}) => $target(t0).runNow())"""
+      else if (rt <:< typeOf[Function2[_, _, CallbackTo[_]]])
+        q"""((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}) => $target(t0, t1).runNow())"""
+      else if (rt <:< typeOf[Function3[_, _, _, CallbackTo[_]]])
+        q"""((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}, t2: ${rt.typeArgs(2)}) => $target(t0, t1, t2).runNow())"""
+
+      /* Other values. Keep AnyVal below at least CallbackTo */
+      else if (rt <:< typeOf[AnyVal] && isNotPrimitiveAnyVal(rt))
+        q"""$target.value"""
+      else if (rt <:< typeOf[Enumeration#Value])
+        q"""$target.toString()"""
+      else
+        q"""$target"""
+    }
+
+
+    val tpe    = c.weakTypeOf[T]
+    val target = c.freshName[TermName](TermName("t"))
+    val props  = c.freshName[TermName](TermName("p"))
+
+    val fieldSymbols: List[Symbol] = tpe.decls.collectFirst {
       case m: MethodSymbol if m.isPrimaryConstructor => m
     }.get.paramLists.head
 
-    def isNotPrimitiveAnyVal(tpe: Type) = {
-      !tpe.typeSymbol.fullName.startsWith("scala.")
-    }
-    val rawParams = fields.map { field =>
-      val name = field.asTerm.name
-      val decoded = name.decodedName.toString
-      val symToJs = typeOf[TOJS].typeSymbol
-      val returnType = field.typeSignature
-      def getJSValueTree(returnType: Type, undef: Boolean = false) = {
-        if (returnType <:< typeOf[TOJS])
-          if (undef) q"""v.toJS""" else q"""if(t.$name == null) null else  t.$name.toJS"""
-        else if (returnType <:< typeOf[Enumeration#Value])
-          if (undef) q"""v.toString()""" else q"""t.$name.toString()"""
-        else if (returnType <:< typeOf[AnyVal] && isNotPrimitiveAnyVal(returnType))
-          if (undef) q"""v.value""" else q"""t.$name.value"""
-        else if (returnType <:< typeOf[GenMap[String, _]] &&
-          returnType.typeArgs(1) <:< typeOf[TOJS])
-          if (undef) q"""v.map{ case (k, o) => k -> (if(o == null) null else o.toJS)}.toJSDictionary""" else q"""t.$name.map{ case (k, o) => k -> (if(o == null) null else o.toJS) }.toJSDictionary"""
-        else if (returnType <:< typeOf[GenMap[String, _]])
-          if (undef) q"""v.toJSDictionary""" else q"""t.$name.toJSDictionary"""
-        else if ((returnType <:< typeOf[GenTraversableOnce[_]] ||
-          returnType <:< typeOf[Array[_]]) &&
-          returnType.typeArgs(0) <:< typeOf[TOJS])
-          if (undef) q"""v.map((o: $symToJs) => if(o == null) null else o.toJS).toJSArray""" else q"""t.$name.map((o: $symToJs) => if(o == null) null else o.toJS).toJSArray"""
-        else if ((returnType <:< typeOf[GenTraversableOnce[_]] ||
-          returnType <:< typeOf[Array[_]]))
-          if (undef) q"""v.toJSArray""" else q"""t.$name.toJSArray"""
-        else if (returnType <:< typeOf[js.Dictionary[_]] &&
-          returnType.typeArgs(0) <:< typeOf[TOJS])
-          if (undef) q"""v.map{ case(k, o) => (k, if(o == null) null else o.toJS)}.toJSDictionary""" else q"""t.$name.map{ case (k: String, o: $symToJs) => (k, if(o == null) null else o.toJS)}.toJSDictionary"""
-        else if (returnType <:< typeOf[js.Array[_]] &&
-          returnType.typeArgs(0) <:< typeOf[TOJS])
-          if (undef) q"""v.map((o: $symToJs) => if(o == null) null else o.toJS)""" else q"""t.$name.map((o: $symToJs) => if(o == null) null else o.toJS)"""
-        else
-        if (undef) q"""v""" else q"""t.$name"""
-      }
+    val fieldUpdates = fieldSymbols.map{
+      f =>
+        val name      = f.asTerm.name
+        val decoded   = name.decodedName.toString
 
-      if (returnType <:< typeOf[Option[_]] ||
-        returnType <:< typeOf[js.UndefOr[_]]) {
-        val arg0 = returnType.typeArgs(0)
-        val valueTree = getJSValueTree(arg0, true)
-        (UNDEFS, q"""t.$name.foreach(v => p.updateDynamic($decoded)($valueTree))""")
-      }
-      else {
-        val jsValueTree = getJSValueTree(returnType)
-        (REGULAR, q"""$decoded -> $jsValueTree """)
-      }
-
-    }
-
-
-    def getTrees(key: String) = rawParams.filter(_._1 == key).map(_._2)
-
-    val params = getTrees(REGULAR)
-    val undefs = getTrees(UNDEFS)
-
-    q""" (t: $tpe) => {
-          import scala.language.reflectiveCalls
-          import scalajs.js.JSConverters._
-          val p = scala.scalajs.js.Dynamic.literal(..$params)
-            ..$undefs
-           p
+        if (isOptional(f.typeSignature)){
+          val valueTree = getJSValueTree(q"v", f.typeSignature.typeArgs.head)
+          q"""$target.$name.foreach(v => $props.updateDynamic($decoded)($valueTree))"""
+        } else {
+          val valueTree = getJSValueTree(q"$target.$name", f.typeSignature)
+          q"""$props.updateDynamic($decoded)($valueTree)"""
         }
-       """
-  }
+    }
 
+    q""" ($target: $tpe) => {
+      import scala.language.reflectiveCalls
+      import scalajs.js.JSConverters._
+      val $props = scala.scalajs.js.Dynamic.literal()
+      ..$fieldUpdates
+      $props
+    }"""
+  }
 }

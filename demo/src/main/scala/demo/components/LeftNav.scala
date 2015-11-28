@@ -3,7 +3,7 @@ package components
 
 import demo.routes.LeftRoute
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.extra.router2.RouterCtl
+import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
 import scala.scalajs.js.UndefOr
@@ -39,16 +39,18 @@ object LeftNav {
 
   //  implicit val currentPageReuse = Reusability.by_==[LeftRoute]
   //  implicit val propsReuse = Reusability.by((_: Props).selectedPage)
-
+  case class Backend($: BackendScope[Props, _]){
+    def render(P: Props) = {
+      <.ul(Style.container)(
+        P.menus.map(item => <.li(^.key := item.name,
+          Style.menuItem(item == P.selectedPage),
+          item.name,
+          P.ctrl setOnClick item))
+      )
+    }
+  }
   val component = ReactComponentB[Props]("LeftNav")
-    .render(P => {
-    <.ul(Style.container)(
-      P.menus.map(item => <.li(^.key := item.name,
-        Style.menuItem(item == P.selectedPage),
-        item.name,
-        P.ctrl setOnClick item))
-    )
-  })
+    .renderBackend[Backend]
     //    .configure(Reusability.shouldComponentUpdate)
     .build
 

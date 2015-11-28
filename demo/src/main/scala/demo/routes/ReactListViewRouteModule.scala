@@ -3,7 +3,7 @@ package routes
 
 import demo.components.reactlistview.{ReactListViewDemo, ReactListViewInfo}
 import demo.pages.ReactListViewPage
-import japgolly.scalajs.react.extra.router2.RouterConfigDsl
+import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactListViewRouteModule {
 

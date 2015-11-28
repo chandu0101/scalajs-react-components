@@ -32,17 +32,20 @@ object MobileTearSheet {
       width(360 px))
   }
 
+  case class Backend($: BackendScope[Unit, _]){
+    def render(C: PropsChildren) = {
+      <.div(Style.root,
+        <.div(Style.container,
+          C
+        ),
+        <.img(Style.bottomTear, ^.src := js.Dynamic.global.bottomTearImage.toString)
+      )
+    }
+  }
+
   val component = ReactComponentB[Unit]("MobileTearSheet")
-
-    .render((P, C) => {
-    <.div(Style.root,
-      <.div(Style.container,
-        C
-      ),
-      <.img(Style.bottomTear, ^.src := js.Dynamic.global.bottomTearImage.toString)
-
-    )
-  }).buildU
+    .renderBackend[Backend]
+    .buildU
 
   def apply(children: ReactNode*) = component(children)
 }

@@ -5,7 +5,7 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 
 case class MuiTabs(style: U[js.Any] = uNone,
-                   onChange: U[(Int, ReactElement) => Unit] = uNone,
+                   onChange: U[(Int, ReactElement) => Callback] = uNone,
                    ref: U[String] = uNone,
                    key: U[String] = uNone,
                    tabWidth: U[Int] = uNone,

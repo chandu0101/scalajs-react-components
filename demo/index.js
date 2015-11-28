@@ -1,25 +1,18 @@
-var React = require('react/addons'),
-    mui = require("material-ui"),
-    injectTapEventPlugin = require('react-tap-event-plugin');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var mui = require("material-ui");
+var injectTapEventPlugin = require('react-tap-event-plugin');
+var highlight = require("./js/highlight.pak.js");
 
 injectTapEventPlugin();
 
-window.mui = mui;
-
-require("./js/highlight.pak.js")
-
-
-
+window.ReactDOM = ReactDOM;
 window.React = React;
-
-
-
+window.mui = mui;
 
 //css
 
-require("./styles/default.css")
-
-
+require("./styles/default.css");
 
 //images
 var googleMapImage = require("./images/googleMap.png");
@@ -33,7 +26,8 @@ var googleMapImage = require("./images/googleMap.png");
    reactInfiniteImage = require("./images/reactInfinite.png"),
    reactGeomIconImage = require("./images/reactGeomIcon.png"),
    spinnerImage = require("./images/spinner.png"),
-   reactPopoverImage = require("./images/reactPopover.png");
+   reactPopoverImage = require("./images/reactPopover.png"),
+   reactDraggableImage = require("./images/reactDraggable.png");
 
 
 window.googleMapImage = googleMapImage;

@@ -116,69 +116,54 @@ object ReactPopOver {
 
   case class State(open: Boolean ,top: Double = 0,left: Double = 0)
 
-  class Backend(t: BackendScope[Props, State]) {
+  class Backend($: BackendScope[Props, State]) {
 
-    private def show(position: ClientRect) = t.modState(_.copy(open = true, top = position.top, left = position.left))
-
-    private def hide() = t.modState(_.copy(open = false))
-
-    def toggle(node: html.Element) = {
-      if(t.state.open) hide()
-      else {
-        val position = getPosition(node)
-        show(position)
+    def toggle(node: html.Element): Callback =
+      ($.props zip $.state).flatMap {
+        case (p, s) => if (s.open) hide else show(getPosition(p)(node))
       }
-    }
 
-    def getPosition(node: html.Element): ClientRect = {
+    private def show(position: ClientRect) =
+      $.modState(_.copy(open = true, top = position.top, left = position.left))
+
+    private val hide = $.modState(_.copy(open = false))
+
+    def getPosition(P: Props)(node: html.Element): ClientRect = {
       val offset = DomUtil.offset(node)
       val height = node.offsetHeight
       val width = node.offsetWidth
-      val popoverHeight = t.getDOMNode().asInstanceOf[html.Element].offsetHeight
-      val popoverWidth = t.getDOMNode().asInstanceOf[html.Element].offsetWidth
-      t.props.placement match {
-        case "right" => {
-           val top = offset.top + height/2 - popoverHeight/2
-           val left = offset.left + width
-           ClientRect(top,left)
-        }
-
-        case "left" => {
-           val top = offset.top + height/2 - popoverHeight/2
-           val left = offset.left - popoverWidth
-           ClientRect(top,left)
-        }
-
-        case "top" => {
-           val top = offset.top - popoverHeight
-           val left = offset.left + width/2 - popoverWidth/2
-           ClientRect(top,left)
-        }
-
-        case "bottom" => {
-           val top = offset.top + height
+      val popoverHeight = $.getDOMNode().asInstanceOf[html.Element].offsetHeight
+      val popoverWidth = $.getDOMNode().asInstanceOf[html.Element].offsetWidth
+      P.placement match {
+        case "right" =>
+          val top = offset.top + height/2 - popoverHeight/2
+          val left = offset.left + width
+          ClientRect(top,left)
+        case "left" =>
+          val top = offset.top + height/2 - popoverHeight/2
+          val left = offset.left - popoverWidth
+          ClientRect(top,left)
+        case "top" =>
+          val top = offset.top - popoverHeight
           val left = offset.left + width/2 - popoverWidth/2
-           ClientRect(top,left)
-        }
-
-        case _ => throw new Exception(s"unsupported placement: ${t.props.placement}")
+          ClientRect(top,left)
+        case "bottom" =>
+          val top = offset.top + height
+          val left = offset.left + width/2 - popoverWidth/2
+          ClientRect(top,left)
+        case _ => throw new Exception(s"unsupported placement: ${P.placement}")
       }
     }
 
-    def arrowAfter: TagMod = {
-      val P = t.props
+    def arrowAfter(P: Props): TagMod = {
       if  (P.placement == "top")  <.span(P.style.popoverArrowAfter,P.style.popoverTopArrowAfter," ")
       else if (P.placement == "left")  <.span(P.style.popoverArrowAfter,P.style.popoverLeftArrowAfter," ")
       else if  (P.placement == "right")  <.span(P.style.popoverArrowAfter,P.style.popoverRightArrowAfter," ")
       else if  (P.placement == "bottom") <.span(P.style.popoverArrowAfter,P.style.popoverBottomArrowAfter," ")
       else ""
     }
-  }
 
-  val component = ReactComponentB[Props]("ReactPopover")
-    .initialState(State(open = false))
-    .backend(new Backend(_))
-    .render((P, C,S, B) => {
+    def render(P: Props, S: State, C: PropsChildren) = {
      <.div(P.style.popover,
         (P.placement == "top") ?= P.style.popoverTop,
         (P.placement == "left") ?= P.style.popoverLeft,
@@ -189,17 +174,31 @@ object ReactPopOver {
           (P.placement == "top") ?= P.style.popoverTopArrow,
           (P.placement == "left") ?= P.style.popoverLeftArrow,
           (P.placement == "right") ?= P.style.popoverRightArrow,
-          (P.placement == "bottom") ?= P.style.popoverBottomArrow,B.arrowAfter),
+          (P.placement == "bottom") ?= P.style.popoverBottomArrow, arrowAfter(P)),
         !P.title.isEmpty ?= <.h3(P.style.popoverTitle)(P.title),
        <.div(P.style.popoverContent)(
           C
         )
       )
-    })
+    }
+  }
+
+  val component = ReactComponentB[Props]("ReactPopover")
+    .initialState(State(open = false))
+    .renderBackend[Backend]
     .build
 
   case class Props(title: String,placement: String ,style: Style)
 
-  def apply(title: String = "",placement: String = "right",ref: U[String] = "", key: js.Any = {} ,style: Style = new Style {})(children: ReactNode*) = component.set(key, ref)(Props(title,placement,style),children)
+  def apply(title: String = "",
+            placement: String = "right",
+            ref: U[String] = uNone,
+            key: js.Any = {},
+            style: Style = new Style {})
+           (children: ReactNode*): ReactComponentU[Props, State, Backend, TopNode] =
 
+    component.set(key = key, ref = ref)(
+      Props(title, placement, style),
+      children
+    )
 }

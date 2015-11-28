@@ -3,7 +3,7 @@ package routes
 
 import demo.components.reacttable._
 import demo.pages.ReactTablePage
-import japgolly.scalajs.react.extra.router2.RouterConfigDsl
+import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactTableRouteModule {
 

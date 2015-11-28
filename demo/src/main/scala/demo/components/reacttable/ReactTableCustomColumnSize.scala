@@ -23,15 +23,6 @@ object ReactTableCustomColumnSize {
       |  ReactTable(data = data ,columns = columns, config = config)
       |
     """.stripMargin
-  val component = ReactComponentB[Unit]("ReactTableCustomColumnSize")
-    .render(P => {
-   <.div(
-      CodeExample(code,"Custom Column Size")(
-       ReactTable(data = data ,columns = columns, config = config
-       )
-      )
-   )
-  }).buildU
 
   val data: Vector[Map[String, Any]] = JsonUtil.jsonArrayToMap(SampleData.personJson)
   val columns: List[String] = List("fname", "lname", "email", "country")
@@ -41,6 +32,20 @@ object ReactTableCustomColumnSize {
   // ._3: Sorting function
   // ._4: column width (flex := width)
   val config  = List(("email",None,None,Some(2.0))) // getStringSort is helper function
+
+  case class Backend($: BackendScope[_, _]){
+    def render =
+     <.div(
+        CodeExample(code,"Custom Column Size")(
+         ReactTable(data = data ,columns = columns, config = config
+         )
+        )
+     )
+  }
+
+  val component = ReactComponentB[Unit]("ReactTableCustomColumnSize")
+    .renderBackend[Backend]
+    .buildU
 
   def apply() = component()
 }

@@ -34,20 +34,23 @@ object Pager {
       )
     )
   }
-
+  case class Backend(t: BackendScope[Props, _]){
+    def render(P: Props) = {
+      <.div(P.style.pager)(
+        P.offset > 0 ?= <.a(^.onClick --> P.previousClick, ^.float := "left")("← Previous"),
+        P.offset + P.itemsPerPage < P.totalItems ?= <.a(^.onClick --> P.nextClick, ^.float := "right")("Next →")
+      )
+    }
+  }
   object DefaultStyle extends Style
 
   val component = ReactComponentB[Props]("Pager")
-    .render((P) => {
-    <.div(P.style.pager)(
-      P.offset > 0 ?= <.a(^.onClick --> P.previousClick(), ^.float := "left")("← Previous"),
-      P.offset + P.itemsPerPage < P.totalItems ?= <.a(^.onClick --> P.nextClick(), ^.float := "right")("Next →")
-    )
-  }).build
+    .renderBackend[Backend]
+    .build
 
-  case class Props(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: () => Unit, previousClick: () => Unit, style: Style)
+  case class Props(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: Callback, previousClick: Callback, style: Style)
 
-  def apply(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: () => Unit, previousClick: () => Unit, style: Style = DefaultStyle) = {
+  def apply(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: Callback, previousClick: Callback, style: Style = DefaultStyle) = {
     component(Props(itemsPerPage, totalItems, offset, nextClick, previousClick, style))
   }
 

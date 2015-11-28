@@ -3,15 +3,17 @@ package pages
 
 import demo.components.LeftNavPage
 import demo.routes.{LeftRoute, ReactTableRouteModule}
-import japgolly.scalajs.react.ReactComponentB
-import japgolly.scalajs.react.extra.router2.RouterCtl
+import japgolly.scalajs.react.{BackendScope, ReactComponentB}
+import japgolly.scalajs.react.extra.router.RouterCtl
 
 object ReactTablePage {
+  case class Backend($: BackendScope[Props, _]){
+    def render(P: Props) =
+      LeftNavPage(ReactTableRouteModule.menu, P.selectedPage, P.ctrl)
+  }
 
   val component = ReactComponentB[Props]("ReactTablePage")
-    .render((P) => {
-    LeftNavPage(ReactTableRouteModule.menu, P.selectedPage, P.ctrl)
-  })
+    .renderBackend[Backend]
     .build
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])

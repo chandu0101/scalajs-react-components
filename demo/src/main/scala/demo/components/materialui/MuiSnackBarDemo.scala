@@ -2,13 +2,12 @@ package demo
 package components
 package materialui
 
+import chandu0101.scalajs.react.components._
 import chandu0101.scalajs.react.components.materialui.{MuiRaisedButton, MuiSnackBar, MuiSnackBarM}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 
 object MuiSnackBarDemo {
-
   val code =
     """
       |  MuiSnackBar(message = " Event added to your calender",
@@ -19,33 +18,33 @@ object MuiSnackBarDemo {
     """.stripMargin
 
   class Backend(t: BackendScope[_,_]) {
+    val snackBarRef = RefHolder[MuiSnackBarM]
 
-    def handleAction(e: ReactEvent) = {
-      dom.window.alert("We removed Event from your cal")
-    }
+    val handleAction: ReactEvent => Callback =
+      e ⇒ Callback(dom.window.alert("We removed Event from your cal"))
 
-    def buttonClick(e: ReactEventH) = {
-      snackBarRef(t).get.show()
+    val buttonClick: ReactEventH => Callback =
+      e => snackBarRef().map(_.show())
+
+    def render = {
+      CodeExample(code, "MuiSnackBar")(
+        MuiSnackBar(
+          message = "Event added to your calender",
+          action = "undo",
+          ref = snackBarRef.set,
+          onActionTouchTap = handleAction
+        )(),
+        MuiRaisedButton(
+          label = " Snack Bar Demo",
+          onTouchTap = buttonClick
+        )()
+      )
     }
   }
 
-  val snackBarRef = Ref.toJS[MuiSnackBarM]("snackbar")
-
   val component = ReactComponentB[Unit]("MuiAppBarDemo")
-    .stateless
-    .backend(new Backend(_))
-    .render((P,S,B) => {
-    <.div(
-      CodeExample(code, "MuiSnackBar")(
-        MuiSnackBar(message = " Event added to your calender",
-          action = "undo",
-          ref = "snackbar",
-          onActionTouchTap = B.handleAction _)(),
-        MuiRaisedButton(label = " Snack Bar Demo",onTouchTap = B.buttonClick _)()
-
-      )
-    )
-  }).buildU
+    .renderBackend[Backend]
+    .buildU
 
   def apply() = component()
 }

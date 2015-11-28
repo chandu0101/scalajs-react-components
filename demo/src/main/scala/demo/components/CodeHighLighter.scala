@@ -9,19 +9,16 @@ import org.scalajs.dom.ext.PimpedNodeList
 object CodeHighLighter {
 
   val component = ReactComponentB[String]("CodeHighLighter")
-
-    .render(P => {
-     <.code(^.padding := "20px", P)
-  })
+    .render_P(P => <.code(^.padding := "20px", P))
     .configure(installSyntaxHighlighting)
     .build
 
   def installSyntaxHighlighting[P, S, B, N <: TopNode] =
     (_: ReactComponentB[P, S, B, N])
-      .componentDidMount(_ => applySyntaxHighlight())
-      .componentDidUpdate((_, _, _) => applySyntaxHighlight())
+      .componentDidMount(_ => applySyntaxHighlight)
+      .componentDidUpdate(_ => applySyntaxHighlight)
 
-  def applySyntaxHighlight() = {
+  def applySyntaxHighlight = Callback {
     import scala.scalajs.js.Dynamic.{global => g}
     val nodeList = dom.document.querySelectorAll("code").toArray
     nodeList.foreach(n => g.hljs.highlightBlock(n))

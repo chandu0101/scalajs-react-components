@@ -15,14 +15,17 @@ object GithubUser {
 
     val userName = Seq(^.fontSize := "18px", ^.fontWeight := 500)
   }
-
-  val component = ReactComponentB[Props]("GithubUser")
-    .render((P) => {
-     <.a( Styles.userGroup, ^.href := P.user.html_url)(
+  case class Backend($: BackendScope[Props, _]){
+    def render(P: Props) = {
+      <.a( Styles.userGroup, ^.href := P.user.html_url)(
         <.img(Styles.userIcon, ^.src := P.user.avatar_url),
         <.span(Styles.userName)(P.user.login)
       )
-    })
+    }
+  }
+
+  val component = ReactComponentB[Props]("GithubUser")
+    .renderBackend[Backend]
     .build
 
   case class Props(user: Github)

@@ -3,7 +3,7 @@ package routes
 
 import demo.components.reactselect.{ReactSelectDemo, ReactSelectInfo}
 import demo.pages.ReactSelectPage
-import japgolly.scalajs.react.extra.router2.RouterConfigDsl
+import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactSelectRouteModule {
 

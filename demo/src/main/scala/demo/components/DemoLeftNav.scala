@@ -37,32 +37,31 @@ object DemoLeftNav {
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def onMouseEnter(item: String) = {
+    def onMouseEnter_(item: String) = {
       t.modState(_.copy(hoveredItem = item))
     }
 
-    def onMouseLeave() = {
+    def onMouseLeave_ = {
       t.modState(_.copy(hoveredItem = ""))
     }
-
+    def render(P: Props, S: State) = {
+      <.div(P.style.leftNav)(
+        P.menu.map { item => {
+          val selected = item.text == P.selectedItem
+          val hover = S.hoveredItem == item.text
+          <.a(^.key := item.text, P.style.menuItem, selected ?= P.style.selectedMenuItem,
+            hover ?= P.style.menuItemHover)(
+              onMouseEnter --> onMouseEnter_(item.text),
+              ^.onMouseOut --> onMouseLeave_)(^.href := item.route)(item.text)
+        }
+        }
+      )
+    }
   }
 
   val component = ReactComponentB[Props]("DemoLeftNav")
     .initialState(State())
-    .backend(new Backend(_))
-    .render((P, S, B) => {
-    <.div(P.style.leftNav)(
-      P.menu.map { item => {
-        val selected = item.text == P.selectedItem
-        val hover = S.hoveredItem == item.text
-        <.a(^.key := item.text, P.style.menuItem, selected ?= P.style.selectedMenuItem,
-          hover ?= P.style.menuItemHover)(
-            onMouseEnter --> B.onMouseEnter(item.text),
-            ^.onMouseOut --> B.onMouseLeave)(^.href := item.route)(item.text)
-      }
-      }
-    )
-  })
+    .renderBackend[Backend]
     .build
 
   case class Props(menu: List[Menu], selectedItem: String, style: Style)

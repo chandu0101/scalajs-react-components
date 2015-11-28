@@ -21,12 +21,12 @@ object MuiListDemo {
             MuiList()(
               MuiListItem(
                 leftIcon           = ContentInbox(),
-                onKeyboardFocus    = DemoEvents.f1("onKeyboardFocus"),
-                onMouseLeave       = DemoEvents.f1("onMouseLeave"),
-                onMouseEnter       = DemoEvents.f1("onMouseEnter"),
-                onNestedListToggle = DemoEvents.f1_("onNestedListToggle"),
-                onTouchStart       = DemoEvents.f1("onTouchStart"),
-                onTouchTap         = DemoEvents.f1("onTouchTap")
+                onKeyboardFocus    = DummyEvents.f1("onKeyboardFocus"),
+                onMouseLeave       = DummyEvents.f1("onMouseLeave"),
+                onMouseEnter       = DummyEvents.f1("onMouseEnter"),
+                onNestedListToggle = DummyEvents.f1_("onNestedListToggle"),
+                onTouchStart       = DummyEvents.f1("onTouchStart"),
+                onTouchTap         = DummyEvents.f1("onTouchTap")
 
               )("Inbox"),
               MuiListItem(leftIcon = ActionGrade())("Starred"),

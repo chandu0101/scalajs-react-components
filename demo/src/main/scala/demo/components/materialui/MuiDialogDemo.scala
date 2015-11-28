@@ -41,9 +41,9 @@ object MuiDialogDemo {
               title = "Dialog With Actions",
               actions = actions,
               open = S.isOpen,
-              onRequestClose = DemoEvents.f1_("onRequestClose"),
-              onShow = DemoEvents.f0("onShow"),
-              onDismiss = DemoEvents.f0("onDismiss")
+              onRequestClose = DummyEvents.f1_("onRequestClose"),
+              onShow = DummyEvents.f0("onShow"),
+              onDismiss = DummyEvents.f0("onDismiss")
             )(
               "Dialog example with floating buttons"
             ),

@@ -31,53 +31,69 @@ object MuiMenuDemo {
 
   // EXAMPLE:START
 
-  case class State(selected: String | js.Array[String])
+  case class State(isOpen: Boolean, multiple: Set[String]){
+    def touched(us: js.UndefOr[String]) = us.fold(this){
+      case s if multiple contains s =>
+        copy(multiple = multiple - s)
+      case s =>
+        copy(multiple = multiple + s)
+    }
+  }
 
   class Backend($: BackendScope[Unit, State]) {
+    val toggleOpen: ReactEvent => Callback =
+      e => $.modState(s => s.copy(isOpen = !s.isOpen))
 
-    val onChange: (ReactEvent, (String | js.Array[String])) => Callback =
-      (e, value) => Callback.info(s"chose $value") >> $.setState(State(value))
-    val onItemTouchTap: (ReactTouchEvent, ReactElement) => Callback =
-      (e, elem) => Callback.info(s"touched $elem")
+    val onTouchTap: (ReactUIEventH, JsComponentM[MuiMenuItemProps, _, TopNode]) => Callback =
+      (e, elem) => $.modState(_.touched(elem.props.value))
+
+    def renderOpen(S: State) =
+      <.div(
+        MuiFlatButton(label = "close menu", onClick = toggleOpen)(),
+        MuiMenu(
+          desktop        = true,
+          width          = 320: (String | Int),
+          value          = S.multiple.toJsArray: String | js.Array[String],
+          multiple       = true,
+          openDirection  = MuiMenuOpenDirection.BOTTOM_RIGHT,
+          onItemTouchTap = onTouchTap,
+          onKeyDown      = DummyEvents.f1("onKeyDown"),
+          onEscKeyDown   = toggleOpen
+        )(
+          MuiMenuItem(primaryText = "Bold", value = "bold", checked = true, secondaryText = "&#8984;B")(),
+          MuiMenuItem(primaryText = "Italic", value = "italic", secondaryText = "&#8984;I")(),
+          MuiMenuItem(primaryText = "Underline", value = "under", secondaryText = "&#8984;U")(),
+          MuiMenuItem(primaryText = "Strikethrough", value = "strike", secondaryText = "Alt+Shift+5")(),
+          MuiMenuItem(primaryText = "Superscript", value = "super", secondaryText = "&#8984;.")(),
+          MuiMenuItem(primaryText = "Subscript", value = "sub", secondaryText = "&#8984;,")(),
+          MuiMenuDivider()(),
+          MuiMenuItem(primaryText = "Align", value = "align")()
+        )
+      )
+    def renderClosed(S: State) =
+      MuiFlatButton(label = "open menu", onClick = toggleOpen)()
 
     def render(S: State) =
       CodeExample(code, "MuiMenu")(
-        <.div(Style.container,
+        <.div(
+          Style.container,
           <.h3("Menus"),
           MuiTabs()(
             MuiTab(label = "Menu example")(
-              <.div(Style.content,
-                MuiMenu(
-                  desktop        = true,
-                  width          = 320: (String | Int),
-                  value          = S.selected,
-                  multiple       = true,
-                  openDirection  = MuiMenuOpenDirection.TOP_LEFT,
-                  onItemTouchTap = onItemTouchTap ,
-                  onChange       = onChange,
-                  onKeyDown      = DemoEvents.f1("onKeyDown"),
-                  onEscKeyDown   = DemoEvents.f1("onEscKeyDown")
-                )(
-                  MuiMenuItem(primaryText = "Bold", value = "bold", checked = true, secondaryText = "&#8984;B")(),
-                  MuiMenuItem(primaryText = "Italic", value = "italic", secondaryText = "&#8984;I")(),
-                  MuiMenuItem(primaryText = "Underline", value = "under", secondaryText = "&#8984;U")(),
-                  MuiMenuItem(primaryText = "Strikethrough", value = "strike", secondaryText = "Alt+Shift+5")(),
-                  MuiMenuItem(primaryText = "Superscript", value = "super", secondaryText = "&#8984;.")(),
-                  MuiMenuItem(primaryText = "Subscript", value = "sub", secondaryText = "&#8984;,")(),
-                  MuiMenuDivider()(),
-                  MuiMenuItem(primaryText = "Align", value = "align")()
-                )
+              <.div(
+                Style.content,
+                if (S.isOpen) renderOpen(S) else renderClosed(S)
               )
-            )
           )
         )
       )
+    )
   }
 
 val component = ReactComponentB[Unit] ("MuiMenuDemo")
-.initialState (State (js.Array[String] () ) )
-.renderBackend[Backend]
-.buildU
+  .initialState(State(isOpen = false, Set.empty))
+  .renderBackend[Backend]
+  .buildU
 
 // EXAMPLE:END
 

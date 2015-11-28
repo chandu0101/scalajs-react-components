@@ -17,11 +17,11 @@ object MuiDatePickerDemo {
       <.div(
         CodeExample(code, "MuiDatePicker")(
           MuiDatePicker(hintText = "Protrait Dialog",
-            onChange   = DemoEvents.f2_("onChange"),
-            onDismiss  = DemoEvents.f0("onDismiss"),
-            onFocus    = DemoEvents.f1("onFocus"),
-            onShow     = DemoEvents.f0("onShow"),
-            onTouchTap = DemoEvents.f1("onTouchTap"))(),
+            onChange   = DummyEvents.f2_("onChange"),
+            onDismiss  = DummyEvents.f0("onDismiss"),
+            onFocus    = DummyEvents.f1("onFocus"),
+            onShow     = DummyEvents.f0("onShow"),
+            onTouchTap = DummyEvents.f1("onTouchTap"))(),
           MuiDatePicker(hintText = "Landscape Dialog", mode = MuiDatePickerMode.LANDSCAPE)()
         )
       )

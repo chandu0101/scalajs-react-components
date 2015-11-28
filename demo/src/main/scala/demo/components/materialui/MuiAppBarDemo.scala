@@ -18,9 +18,9 @@ object MuiAppBarDemo {
         CodeExample(code, "MuiAppBar")(
           MuiAppBar(
             title = "Title",
-            onLeftIconButtonTouchTap  = DemoEvents.f1("onLeftIconButtonTouchTap"),
-            onRightIconButtonTouchTap = DemoEvents.f1("onRightIconButtonTouchTap"),
-            onTitleTouchTap           = DemoEvents.f1("onTitleTouchTap"),
+            onLeftIconButtonTouchTap  = DummyEvents.f1("onLeftIconButtonTouchTap"),
+            onRightIconButtonTouchTap = DummyEvents.f1("onRightIconButtonTouchTap"),
+            onTitleTouchTap           = DummyEvents.f1("onTitleTouchTap"),
             showMenuIconButton = true
           )()
         )

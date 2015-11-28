@@ -2,29 +2,17 @@ package demo
 package components
 package reactdraggable
 
-import chandu0101.scalajs.react.components.draggables.ReactDraggable
-import chandu0101.scalajs.react.components.icons.{IconName, ReactGeomIcon}
-import chandu0101.scalajs.react.components.mixins.AsyncLoad
-import chandu0101.scalajs.react.components.models.RElementPosition
+import chandu0101.macros.tojs.GhPagesMacros
+import chandu0101.scalajs.react.components.{ReactDraggable, RElementPosition, AsyncLoad}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.raw.Event
 
 object ReactDraggableDemo {
 
-  val code =
-    """
-    |ReactDraggable(
-    |  zIndex = 100,
-    |  onStop = (e: Event, pos: RElementPosition) => Callback.info(s"stopped at $pos"))(
-    |  <.div(
-    |    <.h2("Drag me"),
-    |    ^.backgroundColor := "#F2706D",
-    |    ^.padding := "20px",
-    |    ^.width := "200px"
-    |  )
-    |)
-    """.stripMargin
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
 
   case class Backend($: BackendScope[Unit, Unit]) extends AsyncLoad {
 
@@ -33,7 +21,7 @@ object ReactDraggableDemo {
     def render =
      <.div(^.cls := "react-draggable-demo",
        <.h2(^.cls := "mui-font-style-headline", "Demo"),
-        CodeExample(code)(
+        CodeExample(code, "ReactDraggable")(
           ReactDraggable(
             zIndex = 100,
             onStop = (e: Event, pos: RElementPosition) => Callback.info(s"stopped at $pos"))(
@@ -52,6 +40,8 @@ object ReactDraggableDemo {
     .renderBackend[Backend]
     .configure(AsyncLoad.mixin)
     .buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

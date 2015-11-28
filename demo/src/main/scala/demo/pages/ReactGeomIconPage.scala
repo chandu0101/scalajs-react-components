@@ -1,7 +1,7 @@
 package demo
 package pages
 
-import chandu0101.scalajs.react.components.mixins.AsyncLoad
+import chandu0101.scalajs.react.components.AsyncLoad
 import demo.components.LeftNavPage
 import demo.routes.{LeftRoute, ReactGeomIcontRouteModule}
 import japgolly.scalajs.react.extra.router.RouterCtl

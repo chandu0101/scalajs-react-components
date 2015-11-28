@@ -9,3 +9,5 @@
 * To create a demo for your new component(like adding routes /pages /deps/..) check this [changelist](https://github.com/chandu0101/scalajs-react-components/commit/8619624d6de6be91dca7f6761c8ff48199084cf6) as an example.
 
 * That's all , have fun , happy coding :)
+
+* Keep in mind that some code is auto-generated (material-ui for now). File bug reports instead of PR for those

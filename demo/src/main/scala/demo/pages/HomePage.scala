@@ -2,7 +2,6 @@ package demo
 package pages
 
 import chandu0101.scalajs.react.components._
-import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import demo.components.{ComponentGridItem, LocalDemoButton}
 import demo.routes.AppRouter
 import demo.routes.AppRouter.Page
@@ -11,6 +10,7 @@ import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 object HomePage {
+  import RCustomStyles._
 
   case class ComponentInfo(name: String, imagePath: String, route: Page, tags: Stream[String])
 

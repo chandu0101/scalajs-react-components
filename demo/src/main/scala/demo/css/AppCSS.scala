@@ -1,10 +1,7 @@
 package demo
 package css
 
-import chandu0101.scalajs.react.components.listviews.ReactListView
-import chandu0101.scalajs.react.components.pagers.Pager
-import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
-import chandu0101.scalajs.react.components.tables.ReactTable
+import chandu0101.scalajs.react.components.{ReactTable, ReactSearchBox, Pager, ReactListView}
 import demo.components.materialui._
 import demo.components.reactinfinite.ReactInfiniteDemo
 import demo.components.{InfoTemplate, LeftNav, LeftNavPage, ScalaCSSTutorial}

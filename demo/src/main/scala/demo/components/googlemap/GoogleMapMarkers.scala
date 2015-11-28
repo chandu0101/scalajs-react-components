@@ -2,8 +2,8 @@ package demo
 package components
 package googlemap
 
-import chandu0101.scalajs.react.components.fascades.{LatLng, Marker}
-import chandu0101.scalajs.react.components.maps.GoogleMap
+import chandu0101.scalajs.react.components.fascades.{Marker, LatLng}
+import chandu0101.scalajs.react.components.GoogleMap
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
@@ -27,7 +27,7 @@ object GoogleMapMarkers {
     .render(P => {
    <.div(
      <.h2(^.cls := "mui-font-style-headline")("Markers"),
-      CodeExample(code)(
+      CodeExample(code, "GoogleMapMarkers")(
        GoogleMap(center = latlng ,markers = markers ,zoom = 10)
       )
     )

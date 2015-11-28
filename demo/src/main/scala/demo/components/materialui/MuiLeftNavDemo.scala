@@ -2,55 +2,39 @@ package demo
 package components
 package materialui
 
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components._
 import chandu0101.scalajs.react.components.materialui._
-import japgolly.scalajs.react.{Callback, BackendScope, ReactComponentB, ReactEventH, Ref}
+import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
 object MuiLeftNavDemo {
 
-  val code =
-    """
-      | lazy val menuItems = js.Array(
-      |    MuiMenuItem(route = "get-started", text = "Get-started"),
-      |    MuiMenuItem(`type` = MuiMenuItemType.SUBHEADER, text = " Resources"),
-      |    MuiMenuItem(`type` = MuiMenuItemType.LINK,
-      |      text = "Github",
-      |      payload = "https://github.com/chandu0101/scalajs-react-components")
-      |  )
-      |  // hidebale left nav
-      |    MuiLeftNav(ref = "leftnav",
-      |            menuItems = menuItems,docked = false
-      |          ),
-      |
-      |    MuiLeftNav(ref = "leftnavdocked",
-      |            menuItems = menuItems,docked = S.isDocked
-      |      ),
-      |
-    """.stripMargin
+  val code = GhPagesMacros.exampleSource
 
-  lazy val menuItems = js.Array(
-    MuiMenuItem(route = "get-started", text = "Get-started"),
-    MuiMenuItem(`type` = MuiMenuItemType.SUBHEADER, text = " Resources"),
-    MuiMenuItem(`type` = MuiMenuItemType.LINK,
-      text = "Github",
-      payload = "https://github.com/chandu0101/scalajs-react-components")
+  // EXAMPLE:START
+
+  val menuItems = js.Array(
+    MuiMenuItemJson(route = "get-started", text = "Get-started"),
+    MuiMenuItemJson(route = "toggle", text = "Toggle", toggle = true, selected = true),
+    MuiMenuItemJson(`type` = MuiMenuItemType.SUBHEADER, text = "Resources"),
+    MuiMenuItemJson(`type` = MuiMenuItemType.LINK, disabled = true, text = "Github", payload = "https://github.com/chandu0101/scalajs-react-components")
   )
 
   case class State(isDocked: Boolean = false)
 
-  class Backend(t: BackendScope[_, State]) {
+  class Backend(t: BackendScope[Unit, State]) {
     val dockedLeftRef = RefHolder[MuiLeftNavM]
-    val leftRef       = RefHolder[MuiLeftNavM]
+    val leftRef = RefHolder[MuiLeftNavM]
 
-    def handleDockedLeftNav(e: ReactEventH): Callback =
-      dockedLeftRef().map(_.toggle()) >>
+    val handleDockedLeftNav: ReactEventH => Callback =
+      e => dockedLeftRef().map(_.toggle()) >>
         t.modState(s => s.copy(isDocked = !s.isDocked))
 
-    def handleHidableLeftNav(e: ReactEventH): Callback =
-      leftRef().map(_.toggle())
+    val handleHidableLeftNav: ReactEventH => Callback =
+      e => leftRef().map(_.toggle())
 
     def render(S: State) = {
       <.div(
@@ -59,17 +43,21 @@ object MuiLeftNavDemo {
             MuiLeftNav(
               ref = leftRef.set,
               menuItems = menuItems,
-              docked = false
+              docked = false,
+              onChange = DummyEvents.f3("onChange"),
+              onNavOpen = DummyEvents.f0("onNavOpen"),
+              onNavClose = DummyEvents.f0("onNavClose"),
+              openRight = false
             )(),
             MuiLeftNav(
               ref = dockedLeftRef.set,
               menuItems = menuItems,
-              docked = S.isDocked
-            )(),
-            MuiRaisedButton(label = "Toggle Docked Left Nav" ,onTouchTap = handleDockedLeftNav _)(),
+              docked = S.isDocked,
+              onChange = DummyEvents.f3("onChange"))(),
+            MuiRaisedButton(label = "Show Hideable Left Nav", onTouchTap = handleHidableLeftNav)(),
             <.br(),
             <.br(),
-            MuiRaisedButton(label = "Show Hideable Left Nav" ,onTouchTap = handleHidableLeftNav _)()
+            MuiRaisedButton(centerRipple = S.isDocked, label = "Toggle Docked Left Nav", onTouchTap = handleDockedLeftNav)()
           )
         )
       )
@@ -80,6 +68,8 @@ object MuiLeftNavDemo {
     .initialState(State())
     .renderBackend[Backend]
     .buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

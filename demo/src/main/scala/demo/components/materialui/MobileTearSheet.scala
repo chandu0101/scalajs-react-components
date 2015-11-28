@@ -4,6 +4,7 @@ package materialui
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scala.scalajs.js
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
@@ -32,7 +33,7 @@ object MobileTearSheet {
       width(360 px))
   }
 
-  case class Backend($: BackendScope[Unit, _]){
+  case class Backend($: BackendScope[Unit, _]) {
     def render(C: PropsChildren) = {
       <.div(Style.root,
         <.div(Style.container,

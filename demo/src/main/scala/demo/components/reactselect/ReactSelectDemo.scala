@@ -2,40 +2,17 @@ package demo
 package components
 package reactselect
 
-import chandu0101.macros.tojs.JSMacro
-import chandu0101.scalajs.react.components.optionselectors.ReactSelect
+import chandu0101.macros.tojs.{GhPagesMacros, JSMacro}
+import chandu0101.scalajs.react.components.ReactSelect
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
-import scala.scalajs.js.{Array => JArray}
 
 object ReactSelectDemo {
 
-  val code =
-    """
-      |  case class SampleOption(value: String,label: String) extends SelectOption {
-      |    override def toJson: js.Dynamic = json(value = value,label = label)
-      |  }
-      |
-      |  val options = JArray(
-      |   SampleOption("value1","label1"),
-      |   SampleOption("value2","label2"),
-      |   SampleOption("value3","label3"),
-      |   SampleOption("value4","label4"),
-      |   SampleOption("value5","label5")
-      |  )
-      |
-      |ReactSelect(options = options,
-      |            value = S.value,
-      |            onChange = B.onChange _)
-      |
-      |//multi
-      |ReactSelect(options = options,
-      |            value = S.value,
-      |            multi = true,
-      |            onChange = B.onMultiChange _)
-      |
-    """.stripMargin
+  val code = GhPagesMacros.exampleSource
+
+  // EXAMPLE:START
 
   case class State(value: String = "", multiValue: String = "")
 
@@ -82,13 +59,15 @@ object ReactSelectDemo {
     def fromJson(obj: js.Dynamic) = SampleOption(value = obj.value.toString, label = obj.label.toString)
   }
 
-  val options = JArray(
+  val options = js.Array(
     SampleOption("value1", "label1").toJS,
     SampleOption("value2", "label2").toJS,
     SampleOption("value3", "label3").toJS,
     SampleOption("value4", "label4").toJS,
     SampleOption("value5", "label5").toJS
   )
+
+  // EXAMPLE:END
 
   def apply() = component()
 }

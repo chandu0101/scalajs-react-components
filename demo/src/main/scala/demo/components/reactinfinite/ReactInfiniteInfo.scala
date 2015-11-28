@@ -27,7 +27,7 @@ object ReactInfiniteInfo {
         ),
         <.div(
           <.h4("Supported Version :"),
-          <.span("0.4.1")
+          <.span("0.7.1")
         ),
         <.div(
           <.h4("How To Use :"),

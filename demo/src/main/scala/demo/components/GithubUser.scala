@@ -1,10 +1,16 @@
 package demo
 package components
 
-import chandu0101.scalajs.react.components.models.Github
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
+
+case class Github(login: String = "", html_url: String = "", avatar_url: String = "", time: Double = 0) {
+  override def equals(obj: Any): Boolean = obj match {
+    case that: Github => that.login.equalsIgnoreCase(this.login)
+    case _ => false
+  }
+}
 
 object GithubUser {
 

@@ -2,63 +2,64 @@ package demo
 package components
 package materialui
 
-import chandu0101.scalajs.react.components._
+import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scala.scalajs.js
 
 object MuiDialogDemo {
-  val code =
-    """
-      | val actions: js.Array[ReactElement] = js.Array(
-      |     MuiFlatButton(label = "Cancel",secondary = true,onTouchTap = B.handleDialogCancel _)(),
-      |     MuiFlatButton(label = "Submit",secondary = true,onTouchTap = B.handleDialogSubmit _)()
-      |    )
-      |  MuiDialog(title = "Dialog With Actions",
-      |          actions = actions,
-      |          ref = "dialogref")(
-      |            "Dialog example with floating buttons"
-      |          )
-      |
-    """.stripMargin
+  val code = GhPagesMacros.exampleSource
 
-  class Backend(t: BackendScope[_,_]) {
-    var dialogRef = RefHolder[MuiDialogM]
+  // EXAMPLE:START
 
-    def handleDialogCancel(e: ReactEventH): Callback =
-      dialogRef().map(_.dismiss()) >> Callback.info("Cancel Clicked")
+  case class State(isOpen: Boolean)
 
-    def handleDialogSubmit(e: ReactEventH): Callback =
-      dialogRef().map(_.dismiss()) << Callback.info("Submit Clicked")
+  class Backend($: BackendScope[_, State]) {
+    val open = $.setState(State(true))
+    val close = $.setState(State(false))
 
-    def openDialog(e: ReactEventH): Callback =
-      dialogRef().map(_.show())
+    def handleDialogCancel: ReactEventH => Callback =
+      e => close >> Callback.info("Cancel Clicked")
 
-    def render = {
+    def handleDialogSubmit: ReactEventH => Callback =
+      e => close >> Callback.info("Submit Clicked")
+
+    val openDialog: ReactEventH => Callback =
+      e => open >> Callback.info("Opened")
+
+    def render(S: State) = {
       val actions: js.Array[ReactElement] = js.Array(
-       MuiFlatButton(label = "Cancel",secondary = true,onTouchTap = handleDialogCancel _)(),
-       MuiFlatButton(label = "Submit",secondary = true,onTouchTap = handleDialogSubmit _)()
+        MuiFlatButton(key = "1", label = "Cancel", secondary = true, onTouchTap = handleDialogCancel)(),
+        MuiFlatButton(key = "2", label = "Submit", secondary = true, onTouchTap = handleDialogSubmit)()
       )
       <.div(
-        CodeExample(code,"MuiDialog")(
-        <.div(
-          MuiDialog(title = "Dialog With Actions",
-            actions = actions,
-            ref = dialogRef.set)(
+        CodeExample(code, "MuiDialog")(
+          <.div(
+            MuiDialog(
+              title = "Dialog With Actions",
+              actions = actions,
+              open = S.isOpen,
+              onRequestClose = DummyEvents.f1_("onRequestClose"),
+              onShow = DummyEvents.f0("onShow"),
+              onDismiss = DummyEvents.f0("onDismiss")
+            )(
               "Dialog example with floating buttons"
             ),
-          MuiRaisedButton(label = "Dialog", onTouchTap = openDialog _ )()
-        )
+            MuiRaisedButton(label = "Dialog", onTouchTap = openDialog)()
+          )
         )
       )
     }
-
   }
 
   val component = ReactComponentB[Unit]("MuiDialogDemo")
+    .initialState(State(isOpen = false))
     .renderBackend[Backend]
     .buildU
+
+  // EXAMPLE:END
 
   def apply() = component()
 

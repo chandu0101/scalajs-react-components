@@ -22,7 +22,7 @@ case class MuiRaisedButton(
 	/*  If true, will change the width of the button to span the full width of the parent.*/
 	fullWidth:               js.UndefOr[Boolean]                           = js.undefined,
 	/* required: This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed. Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />and a span that acts as our label to be displayed.) This only applies to flat and raised buttons.*/
-	label:                   js.UndefOr[String]                            = js.undefined,
+	label:                   String,
 	/*  Override the label color. Always takes precedence unless the button is disabled.*/
 	labelColor:              js.UndefOr[MuiColor]                          = js.undefined,
 	/* default: "before": Place label before or after the passed children*/

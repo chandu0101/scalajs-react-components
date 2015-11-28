@@ -50,7 +50,7 @@ case class MuiTextField(
 	/* function(event): Callback function that is fired when the textfield's value changes.*/
 	onChange:               js.UndefOr[ReactEventI => Callback]           = js.undefined,
 	/* function(event): The function to call when the user presses the Enter key.*/
-	onEnterKeyDown:         js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
+	onEnterKeyDown:         js.UndefOr[ReactKeyboardEventI => Callback]   = js.undefined,
 	/* function(event): Callback function that is fired when the textfield gains focus.*/
 	onFocus:                js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
 	onKeyDown:              js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
@@ -79,11 +79,11 @@ class MuiTextFieldM extends js.Object{
 	def focus(): Unit = js.native
 
 	/* TextField.getValue(): Returns the value of the input.*/
-	def getValue(): String = js.native
+	def getValue(): Unit = js.native
 
 	/* TextField.setErrorText(newErrorText): Sets the error text on the input element.*/
-	def setErrorText(value: String): Unit = js.native
+	def setErrorText(): Unit = js.native
 
 	/* TextField.setValue(newValue): Sets the value of the input element.*/
-	def setValue(value: String): Unit = js.native
+	def setValue(): Unit = js.native
 }

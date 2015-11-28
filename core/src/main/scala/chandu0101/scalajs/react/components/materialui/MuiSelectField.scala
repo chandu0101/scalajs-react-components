@@ -15,18 +15,20 @@ case class MuiSelectField(
 	displayMember:          js.UndefOr[String]                                   = js.undefined,
 	/*  The style object to use to override error styles.*/
 	errorStyle:             js.UndefOr[CssProperties]                            = js.undefined,
-	/*  The error text string to display.*/
-	errorText:              js.UndefOr[String]                                   = js.undefined,
+	/*  The error content to display.*/
+	errorText:              js.UndefOr[ReactNode]                                = js.undefined,
 	/*  The style object to use to override floating label styles.*/
 	floatingLabelStyle:     js.UndefOr[CssProperties]                            = js.undefined,
-	/*  The text string to use for the floating label element.*/
-	floatingLabelText:      js.UndefOr[String]                                   = js.undefined,
+	/*  The content to use for the floating label element.*/
+	floatingLabelText:      js.UndefOr[ReactNode]                                = js.undefined,
 	/*  If true, the field receives the property width 100%.*/
 	fullWidth:              js.UndefOr[Boolean]                                  = js.undefined,
-	/*  The hint text string to display.*/
-	hintText:               js.UndefOr[String]                                   = js.undefined,
+	/*  The hint content to display.*/
+	hintText:               js.UndefOr[ReactNode]                                = js.undefined,
 	/*  Overrides the styles of SelectField's icon element.*/
 	iconStyle:              js.UndefOr[CssProperties]                            = js.undefined,
+	/* default: text: DropDownMenu will use text as default value, with this property you can choose another name.*/
+	labelMember:            js.UndefOr[String]                                   = js.undefined,
 	/*  Overrides the styles of SelectField's label when the SelectField is inactive.*/
 	labelStyle:             js.UndefOr[CssProperties]                            = js.undefined,
 	/*  Overrides the inline-styles of the MenuItems when the SelectField is expanded.*/

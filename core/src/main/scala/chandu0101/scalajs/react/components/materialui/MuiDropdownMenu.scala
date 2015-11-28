@@ -17,6 +17,8 @@ case class MuiDropDownMenu(
 	displayMember:   js.UndefOr[String]                                   = js.undefined,
 	/*  Overrides the styles of DropDownMenu's icon element.*/
 	iconStyle:       js.UndefOr[CssProperties]                            = js.undefined,
+	/* default: text: DropDownMenu will use text as default value, with this property you can choose another name.*/
+	labelMember:     js.UndefOr[String]                                   = js.undefined,
 	/*  Overrides the styles of DropDownMenu's label when the DropDownMenu is inactive.*/
 	labelStyle:      js.UndefOr[CssProperties]                            = js.undefined,
 	/*  Overrides the inline-styles of the MenuItems when the DropDownMenu is expanded.*/

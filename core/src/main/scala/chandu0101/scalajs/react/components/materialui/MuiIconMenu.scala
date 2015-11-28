@@ -9,6 +9,12 @@ import scala.scalajs.js.`|`
 case class MuiIconMenu(
 	key:                 js.UndefOr[String]                                          = js.undefined,
 	ref:                 js.UndefOr[String]                                          = js.undefined,
+	/*  This is the point on the icon where the menu targetOrigin will stick to.
+Options:
+vertical: [top, middle, bottom]
+horizontal: [left, center, right]
+*/
+	anchorOrigin:        js.UndefOr[Origin]                                          = js.undefined,
 	/* default: true: If true, menu will close after an item is touchTapped.*/
 	closeOnItemTouchTap: js.UndefOr[Boolean]                                         = js.undefined,
 	/* default: false: Indicates if the menu should render with compact desktop styles.*/
@@ -21,10 +27,10 @@ case class MuiIconMenu(
 	menuStyle:           js.UndefOr[CssProperties]                                   = js.undefined,
 	/* default: false: If true, the value can an array and allow the menu to be a multi-select.*/
 	multiple:            js.UndefOr[Boolean]                                         = js.undefined,
-	/* default: bottom-left: This is the placement of the menu relative to the IconButton.*/
-	openDirection:       js.UndefOr[MuiIconMenuOpenDirection]                        = js.undefined,
 	/*  Override the inline-styles of the icon menu's root element.*/
 	style:               js.UndefOr[CssProperties]                                   = js.undefined,
+	/*  This is the point on the menu which will stick to the menu origin.Options:vertical: [top, middle, bottom]horizontal: [left, center, right]*/
+	targetOrigin:        js.UndefOr[Origin]                                          = js.undefined,
 	/* default: 200: Sets the delay in milliseconds before closing the menu when an item is clicked.*/
 	touchTapCloseDelay:  js.UndefOr[Int]                                             = js.undefined,
 	/*  The value of the selected menu item. If passed in, this will make the menu a controlled component. This component also supports valueLink.*/
@@ -48,14 +54,4 @@ case class MuiIconMenu(
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.IconMenu)
     f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-class MuiIconMenuOpenDirection(val value: String) extends AnyVal
-object MuiIconMenuOpenDirection{
-	val BOTTOM_LEFT = new MuiIconMenuOpenDirection("bottom-left")
-	val BOTTOM_RIGHT = new MuiIconMenuOpenDirection("bottom-right")
-	val TOP_LEFT = new MuiIconMenuOpenDirection("top-left")
-	val TOP_RIGHT = new MuiIconMenuOpenDirection("top-right")
-	val values = List(BOTTOM_LEFT, BOTTOM_RIGHT, TOP_LEFT, TOP_RIGHT)
 }

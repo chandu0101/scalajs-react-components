@@ -14,7 +14,7 @@ case class MuiRadioButton(
 	/*  Overrides the inline-styles of the icon element.*/
 	iconStyle:            js.UndefOr[CssProperties]                        = js.undefined,
 	/*  The text that is displayed beside the radio button.*/
-	label:                js.UndefOr[ReactNode]                            = js.undefined,
+	label:                js.UndefOr[String]                               = js.undefined,
 	/* default:"right": Where the label will be placed next to the radio button. Options include "left" and "right" (case-sensitive). Default option is "right".*/
 	labelPosition:        js.UndefOr[MuiRadioButtonLabelPosition]          = js.undefined,
 	/*  Overrides the inline-styles of the RadioButton element label.*/

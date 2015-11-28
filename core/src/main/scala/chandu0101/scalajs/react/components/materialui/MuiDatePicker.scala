@@ -13,7 +13,7 @@ case class MuiDatePicker(
 	DateTimeFormat:        js.UndefOr[js.Function]                                  = js.undefined,
 	/* default: false: If true, automatically accept and close the picker on select a date.*/
 	autoOk:                js.UndefOr[Boolean]                                      = js.undefined,
-	/* default: dialog: The date pickers container type*/
+	/* default: dialog: Used to control how the DatePicker will be displayed when a user tries to set a date. `dialog` (default) displays the DatePicker as a dialog with a modal. `inline` displays the DatePicker below the input field (similar to auto complete)*/
 	container:             js.UndefOr[MuiDatePickerContainer]                       = js.undefined,
 	/*  This is the initial date value of the component. If either `value` or `valueLink` is provided they will override this prop with `value` taking precedence.*/
 	defaultDate:           js.UndefOr[js.Date]                                      = js.undefined,

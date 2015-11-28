@@ -23,6 +23,8 @@ case class MuiLeftNav(
 	menuItemClassNameSubheader: js.UndefOr[String]                                   = js.undefined,
 	/*  JSON data representing all menu items to render.*/
 	menuItems:                  js.UndefOr[js.Array[MuiMenuItemJson]]                = js.undefined,
+	/* default: null: Indicates that the left nav should be opened, closed or uncontrolled. Providing a boolean will turn the left nav into a controlled component.*/
+	open:                       js.UndefOr[Boolean]                                  = js.undefined,
 	/* default: false: Positions the LeftNav to open from the right side.*/
 	openRight:                  js.UndefOr[Boolean]                                  = js.undefined,
 	/*  Indicates the particular item in the menuItems array that is currently selected.*/
@@ -31,10 +33,14 @@ case class MuiLeftNav(
 	style:                      js.UndefOr[CssProperties]                            = js.undefined,
 	/* function(event, selectedIndex, menuItem): Fired when a menu item is clicked that is not the one currently selected. Note that this requires the injectTapEventPlugin component. See the "Get Started" section for more detail.*/
 	onChange:                   js.UndefOr[(ReactEventH, Int, js.Any) => Callback]   = js.undefined,
-	/* function(): Fired when the component is opened*/
+	/* function(): Fired when the component is opened. Using this method is deprecated, use the open property and handle onChangeRequest to control the left nav.*/
+	@deprecated
 	onNavOpen:                  js.UndefOr[Callback]                                 = js.undefined,
-	/* function(): Fired when the component is closed*/
+	/* function(): Fired when the component is closed. Using this method is deprecated, use the open property and handle onChangeRequest to control the left nav.*/
+	@deprecated
 	onNavClose:                 js.UndefOr[Callback]                                 = js.undefined,
+	/* function(open, reason): Callback function that is fired when the open state of the left nav is requested to be changed. The provided open argument determines whether the left nav is requested to be opened or closed. Also, the reason argument states why the left nav got closed or opend. It can be either 'clickaway' for menuItem and overlay clicks, 'escape' for pressing the escape key and 'swipe' for swiping. For opening the reason is always 'swipe'.*/
+	onChangeRequest:            js.UndefOr[(Boolean, String) => Callback]            = js.undefined,
 	className:                  js.UndefOr[String]                                   = js.undefined)
 {
 
@@ -48,9 +54,15 @@ case class MuiLeftNav(
 
 @js.native
 class MuiLeftNavM extends js.Object{
-	/* LeftNav.close(): Closes the component, hiding it from view.*/
+	/* LeftNav.open(): Opens the component. Using this method is deprecated, use the open property and handle onChangeRequest to control the left nav.*/
+	@deprecated
+	def open(): Unit = js.native
+
+	/* LeftNav.close(): Closes the component, hiding it from view. Using this method is deprecated, use the open property and handle onChangeRequest to control the left nav.*/
+	@deprecated
 	def close(): Unit = js.native
 
-	/* LeftNav.toggle(): Toggles between the open and closed states.*/
+	/* LeftNav.toggle(): Toggles between the open and closed states. Using this method is deprecated, use the open property and handle onChangeRequest to control the left nav.*/
+	@deprecated
 	def toggle(): Unit = js.native
 }

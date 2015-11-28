@@ -9,8 +9,12 @@ import scala.scalajs.js.`|`
 case class MuiRefreshIndicator(
 	key:          js.UndefOr[String]                      = js.undefined,
 	ref:          js.UndefOr[String]                      = js.undefined,
+	/*  Override the theme's color of the indicator while it's status is "ready" or it's percentage is less than 100.*/
+	color:        js.UndefOr[MuiColor]                    = js.undefined,
 	/* required: The absolute left position of the indicator in pixels.*/
 	left:         Int,
+	/*  Override the theme's color of the indicator while it's status is "loading" or it's percentage is 100.*/
+	loadingColor: js.UndefOr[MuiColor]                    = js.undefined,
 	/* default: 0: The confirmation progress to fetch data. Max value is 100*/
 	percentage:   js.UndefOr[Double]                      = js.undefined,
 	/* default: 40: Size in pixels.*/
@@ -20,9 +24,7 @@ case class MuiRefreshIndicator(
 	/*  Override the inline-styles of the indicator's root element.*/
 	style:        js.UndefOr[CssProperties]               = js.undefined,
 	/* required: The absolute right position of the indicator in pixels.*/
-	top:          Int,
-	color:        js.UndefOr[MuiColor]                    = js.undefined,
-	loadingColor: js.UndefOr[MuiColor]                    = js.undefined)
+	top:          Int)
 {
 
   def apply() = {

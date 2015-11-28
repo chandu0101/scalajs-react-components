@@ -27,6 +27,8 @@ case class MuiIconButton(
 	onBlur:          js.UndefOr[ReactEventH => Callback]           = js.undefined,
 	/* IconButton.onFocus(e): Callback function for when the component gains focus.*/
 	onFocus:         js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
+	/* IconButton.onTouchTap(e): Callback function for when a touch tap / click event occurs on the button.*/
+	onTouchTap:      js.UndefOr[ReactTouchEventH => Callback]      = js.undefined,
 	onMouseLeave:    js.UndefOr[ReactMouseEventH => Callback]      = js.undefined,
 	onKeyboardFocus: js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	className:       js.UndefOr[String]                            = js.undefined,

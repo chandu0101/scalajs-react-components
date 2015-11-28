@@ -43,6 +43,8 @@ case class MuiListItem(
 	secondaryTextLines:          js.UndefOr[MuiListItemSecondaryTextLines]     = js.undefined,
 	/*  Override the inline-styles of the list item's root element.*/
 	style:                       js.UndefOr[CssProperties]                     = js.undefined,
+	/* optional, only available if HOC SelectableContainerEnhance is used: If valueLink prop is passed to List component, this prop is also required. It assigns an identifier to the listItem so that it can be hightlighted by the List.*/
+	value:                       js.UndefOr[Double]                            = js.undefined,
 	/*  Called when the ListItem has keyboard focus.*/
 	onKeyboardFocus:             js.UndefOr[ReactKeyboardEventH => Callback]   = js.undefined,
 	/*  Called when the mouse is no longer over the ListItem.*/

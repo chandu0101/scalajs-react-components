@@ -9,6 +9,8 @@ import scala.scalajs.js.`|`
 case class MuiCircularProgress(
 	key:        js.UndefOr[String]                    = js.undefined,
 	ref:        js.UndefOr[String]                    = js.undefined,
+	/*  Override the progress's color.*/
+	color:      js.UndefOr[MuiColor]                  = js.undefined,
 	/* default: 100: The max value of progress, only works in determinate mode. */
 	max:        js.UndefOr[Double]                    = js.undefined,
 	/* default: 0: The min value of progress, only works in determinate mode. */
@@ -21,7 +23,6 @@ case class MuiCircularProgress(
 	style:      js.UndefOr[CssProperties]             = js.undefined,
 	/* default: 0: The value of progress, only works in determinate mode. */
 	value:      js.UndefOr[Double]                    = js.undefined,
-	color:      js.UndefOr[MuiColor]                  = js.undefined,
 	innerStyle: js.UndefOr[CssProperties]             = js.undefined)
 {
 

@@ -7,39 +7,35 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiMenu(
-	key:                      js.UndefOr[String]                                                 = js.undefined,
-	ref:                      js.UndefOr[String]                                                 = js.undefined,
+	key:                      js.UndefOr[String]                                                                    = js.undefined,
+	ref:                      js.UndefOr[String]                                                                    = js.undefined,
 	/* default: false: If true, the menu will apply transitions when added it gets added to the DOM. In order for transitions to work, wrap the menu inside a ReactTransitionGroup.*/
-	animated:                 js.UndefOr[Boolean]                                                = js.undefined,
+	animated:                 js.UndefOr[Boolean]                                                                   = js.undefined,
 	/* default: true: If true, the width will automatically be set according to the items inside the menu using the proper keyline increment.*/
-	autoWidth:                js.UndefOr[Boolean]                                                = js.undefined,
+	autoWidth:                js.UndefOr[Boolean]                                                                   = js.undefined,
 	/* default: false: Indicates if the menu should render with compact desktop styles.*/
-	desktop:                  js.UndefOr[Boolean]                                                = js.undefined,
+	desktop:                  js.UndefOr[Boolean]                                                                   = js.undefined,
 	/*  The style object to use to override underlying list style.*/
-	listStyle:                js.UndefOr[CssProperties]                                          = js.undefined,
+	listStyle:                js.UndefOr[CssProperties]                                                             = js.undefined,
 	/*  The maxHeight of the menu in pixels. If specified, the menu will scroll if larger than the maxHeight.*/
-	maxHeight:                js.UndefOr[Int]                                                    = js.undefined,
+	maxHeight:                js.UndefOr[Int]                                                                       = js.undefined,
 	/* default: false: If true, the value can an array and allow the menu to be a multi-select.*/
-	multiple:                 js.UndefOr[Boolean]                                                = js.undefined,
+	multiple:                 js.UndefOr[Boolean]                                                                   = js.undefined,
 	/* default: bottom-left: This is the placement of the menu relative to the IconButton.*/
-	openDirection:            js.UndefOr[MuiMenuOpenDirection]                                   = js.undefined,
+	openDirection:            js.UndefOr[MuiMenuOpenDirection]                                                      = js.undefined,
 	/*  Override the inline-styles of the menu's root element.*/
-	style:                    js.UndefOr[CssProperties]                                          = js.undefined,
+	style:                    js.UndefOr[CssProperties]                                                             = js.undefined,
 	/*  The value of the selected menu item. If passed in, this will make the menu a controlled component. This component also supports valueLink.*/
-	value:                    js.UndefOr[String | js.Array[String]]                              = js.undefined,
+	value:                    js.UndefOr[String | js.Array[String]]                                                 = js.undefined,
 	/*  Sets the width of the menu. If not specified, the menu width will be dictated by its children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).*/
-	width:                    js.UndefOr[String | Int]                                           = js.undefined,
+	width:                    js.UndefOr[String | Int]                                                              = js.undefined,
 	/*  Sets the width of the menu. If not specified, the menu width will be dictated by its children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).*/
-	zDepth:                   js.UndefOr[MuiZDepth]                                              = js.undefined,
-	/* function(event): Fired when an Esc key is keyed down.*/
-	onEscKeyDown:             js.UndefOr[ReactKeyboardEventH => Callback]                        = js.undefined,
-	/* function(event, item): Fired when a menu item is touchTapped.*/
-	onItemTouchTap:           js.UndefOr[(ReactTouchEventH, ReactElement) => Callback]           = js.undefined,
-	/* function(event, value): Fired when a menu item is touchTapped and the menu item value is not equal to the current menu value.*/
-	onChange:                 js.UndefOr[(ReactEventH, String | js.Array[String]) => Callback]   = js.undefined,
-	onKeyDown:                js.UndefOr[ReactKeyboardEventH => Callback]                        = js.undefined,
-	selectedMenuItemStyle:    js.UndefOr[CssProperties]                                          = js.undefined,
-	initiallyKeyboardFocused: js.UndefOr[Boolean]                                                = js.undefined)
+	zDepth:                   js.UndefOr[MuiZDepth]                                                                 = js.undefined,
+	onEscKeyDown:             js.UndefOr[ReactKeyboardEventH => Callback]                                           = js.undefined,
+	onKeyDown:                js.UndefOr[ReactKeyboardEventH => Callback]                                           = js.undefined,
+	onItemTouchTap:           js.UndefOr[(ReactUIEventH, JsComponentM[MuiMenuItemProps, _, TopNode]) => Callback]   = js.undefined,
+	selectedMenuItemStyle:    js.UndefOr[CssProperties]                                                             = js.undefined,
+	initiallyKeyboardFocused: js.UndefOr[Boolean]                                                                   = js.undefined)
 {
 
   def apply(children: ReactNode*) = {
@@ -48,6 +44,12 @@ case class MuiMenu(
     f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }
+
+@js.native
+trait MuiMenuItemProps extends js.Object {
+	def value: js.UndefOr[String] = js.native
+}
+      
 
 
 class MuiMenuOpenDirection(val value: String) extends AnyVal

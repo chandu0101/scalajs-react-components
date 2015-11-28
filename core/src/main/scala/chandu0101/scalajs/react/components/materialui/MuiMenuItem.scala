@@ -7,31 +7,34 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
   
 case class MuiMenuItem(
-	key:           js.UndefOr[String]          = js.undefined,
-	ref:           js.UndefOr[String]          = js.undefined,
+	key:           js.UndefOr[String]                         = js.undefined,
+	ref:           js.UndefOr[String]                         = js.undefined,
 	/* default: false: If true, a left check mark will be rendered*/
-	checked:       js.UndefOr[Boolean]         = js.undefined,
+	checked:       js.UndefOr[Boolean]                        = js.undefined,
 	/* default: false: Indicates if the menu should render with compact desktop styles.*/
-	desktop:       js.UndefOr[Boolean]         = js.undefined,
+	desktop:       js.UndefOr[Boolean]                        = js.undefined,
 	/* default: false: Disables a menu item.*/
-	disabled:      js.UndefOr[Boolean]         = js.undefined,
+	disabled:      js.UndefOr[Boolean]                        = js.undefined,
 	/*  Style overrides for the inner div.*/
-	innerDivStyle: js.UndefOr[CssProperties]   = js.undefined,
+	innerDivStyle: js.UndefOr[CssProperties]                  = js.undefined,
 	/* default: false: If true, the children will be indented. Only needed when there is no leftIcon.*/
-	insetChildren: js.UndefOr[Boolean]         = js.undefined,
+	insetChildren: js.UndefOr[Boolean]                        = js.undefined,
 	/*  This is the SvgIcon or FontIcon to be displayed on the left side.*/
-	leftIcon:      js.UndefOr[ReactElement]    = js.undefined,
+	leftIcon:      js.UndefOr[ReactElement]                   = js.undefined,
 	/*  This is the block element that contains the primary text. If a string is passed in, a div tag will be rendered.*/
-	primaryText:   js.UndefOr[ReactNode]       = js.undefined,
+	primaryText:   js.UndefOr[ReactNode]                      = js.undefined,
 	/*  This is the SvgIcon or FontIcon to be displayed on the right side.*/
-	rightIcon:     js.UndefOr[ReactElement]    = js.undefined,
+	rightIcon:     js.UndefOr[ReactElement]                   = js.undefined,
 	/*  This is the block element that contains the secondary text. If a string is passed in, a div tag will be rendered.*/
-	secondaryText: js.UndefOr[ReactNode]       = js.undefined,
+	secondaryText: js.UndefOr[ReactNode]                      = js.undefined,
 	/*  Override the inline-styles of the menu item's root element.*/
-	style:         js.UndefOr[CssProperties]   = js.undefined,
+	style:         js.UndefOr[CssProperties]                  = js.undefined,
 	/*  The value of the menu item.*/
-	value:         js.UndefOr[String]          = js.undefined,
-	focusState:    js.UndefOr[js.Object]       = js.undefined)
+	value:         js.UndefOr[String]                         = js.undefined,
+	/* function(event, item): Fired when a menu item is touchTapped.*/
+	onTouchTap:    js.UndefOr[ReactTouchEventH => Callback]   = js.undefined,
+	onClick:       js.UndefOr[ReactEventH => Callback]        = js.undefined,
+	focusState:    js.UndefOr[js.Object]                      = js.undefined)
 {
 
   def apply() = {

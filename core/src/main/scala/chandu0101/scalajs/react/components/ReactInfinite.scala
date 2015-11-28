@@ -1,9 +1,9 @@
 package chandu0101.scalajs.react.components
-package listviews
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import org.scalajs.dom.raw.HTMLElement
+
 import scala.scalajs.js
 import scala.scalajs.js.JSConverters.JSRichGenTraversableOnce
 

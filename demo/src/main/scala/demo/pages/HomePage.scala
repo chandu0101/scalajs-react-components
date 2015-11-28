@@ -2,7 +2,6 @@ package demo
 package pages
 
 import chandu0101.scalajs.react.components._
-import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import demo.components.{ComponentGridItem, LocalDemoButton}
 import demo.routes.AppRouter
 import demo.routes.AppRouter.Page

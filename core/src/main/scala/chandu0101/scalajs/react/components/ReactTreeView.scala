@@ -1,10 +1,9 @@
 package chandu0101.scalajs.react.components
-package treeviews
 
-import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import japgolly.scalajs.react.CompScope._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scala.scalajs.js
 
 case class TreeItem(item: Any, children: TreeItem*) {

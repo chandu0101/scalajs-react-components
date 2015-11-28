@@ -25,7 +25,7 @@ object ReactTagsInputInfo {
        ),
        <.div(
         <.h4("Supported Version :"),
-        <.span("1.3.5")
+        <.span("3.0.2")
        ),
        <.div(
          <.h4("How To Use :"),

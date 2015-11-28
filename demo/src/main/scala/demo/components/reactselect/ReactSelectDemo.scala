@@ -3,7 +3,7 @@ package components
 package reactselect
 
 import chandu0101.macros.tojs.{GhPagesMacros, JSMacro}
-import chandu0101.scalajs.react.components.optionselectors.ReactSelect
+import chandu0101.scalajs.react.components.ReactSelect
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js

@@ -3,7 +3,7 @@ package components
 package reactinfinite
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.listviews.ReactInfinite
+import chandu0101.scalajs.react.components.ReactInfinite
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import scalacss.Defaults._

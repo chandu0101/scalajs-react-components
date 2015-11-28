@@ -3,8 +3,8 @@ package components
 package reactpopover
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.popovers.ReactPopOver
-import chandu0101.scalajs.react.components.popovers.ReactPopOver.{Props, State}
+import chandu0101.scalajs.react.components.ReactPopOver
+import ReactPopOver.{Props, State}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 

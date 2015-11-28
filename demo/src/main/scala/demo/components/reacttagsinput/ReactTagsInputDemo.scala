@@ -3,8 +3,7 @@ package components
 package reacttagsinput
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.RefHolder
-import chandu0101.scalajs.react.components.textfields.{ReactTagsInput, ReactTagsInputM}
+import chandu0101.scalajs.react.components.{ReactTagsInputM, ReactTagsInput, RefHolder}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 

@@ -1,10 +1,10 @@
 package chandu0101.scalajs.react.components
-package optionselectors
 
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+
 import scala.scalajs.js
 import scala.scalajs.js.{Array => JArray}
-import chandu0101.macros.tojs.JSMacro
 
 case class ReactSelect(inputProps: js.UndefOr[js.Object] = js.undefined,
                        onBlur: js.UndefOr[ReactEvent => Callback] = js.undefined,

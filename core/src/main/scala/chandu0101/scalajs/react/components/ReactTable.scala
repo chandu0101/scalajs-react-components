@@ -1,9 +1,8 @@
 package chandu0101.scalajs.react.components
-package tables
 
-import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scala.collection.immutable
 import scala.scalajs.js.Date
 import scalacss.Defaults._

@@ -3,7 +3,7 @@ package components
 package reactgeomicons
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.icons.{IconName, ReactGeomIcon}
+import chandu0101.scalajs.react.components.{IconName, ReactGeomIcon}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 

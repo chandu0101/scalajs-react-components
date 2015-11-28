@@ -1,15 +1,32 @@
 package chandu0101.scalajs.react.components
-package popovers
 
-import DomUtil.ClientRect
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+import org.scalajs.dom
 import org.scalajs.dom.html
 
 import scala.scalajs.js
 
 object ReactPopOver {
   import RCustomStyles._
+
+  case class ClientRect(top: Double,left: Double)
+
+  object DomUtil {
+    def offset(element: TopNode) = {
+      val rect = element.getBoundingClientRect()
+      var scrollTop = 0.0
+      var scrollLeft = 0.0
+      if(dom.document.body.scrollTop > 0) {
+        scrollTop = dom.document.body.scrollTop.toInt
+        scrollLeft = dom.document.body.scrollLeft.toInt
+      } else if(dom.document.documentElement.scrollTop >0) { // for firefox
+        scrollTop = dom.document.documentElement.scrollTop
+        scrollLeft = dom.document.documentElement.scrollLeft
+      }
+      ClientRect(rect.top + scrollTop, rect.left + scrollLeft )
+    }
+  }
 
   trait Style {
     def popover: TagMod = Seq(

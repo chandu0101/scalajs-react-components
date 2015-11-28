@@ -3,8 +3,8 @@ package components
 package googlemap
 
 import chandu0101.macros.tojs.GhPagesMacros
+import chandu0101.scalajs.react.components._
 import chandu0101.scalajs.react.components.fascades._
-import chandu0101.scalajs.react.components.maps.GoogleMap
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 

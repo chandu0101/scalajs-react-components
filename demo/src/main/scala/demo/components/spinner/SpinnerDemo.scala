@@ -3,7 +3,7 @@ package components
 package spinner
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.spinners.Spinner
+import chandu0101.scalajs.react.components.Spinner
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 

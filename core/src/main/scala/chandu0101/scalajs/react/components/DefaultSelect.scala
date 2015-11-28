@@ -1,4 +1,4 @@
-package chandu0101.scalajs.react.components.tables
+package chandu0101.scalajs.react.components
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._

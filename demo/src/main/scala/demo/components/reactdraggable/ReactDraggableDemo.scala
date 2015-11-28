@@ -3,8 +3,7 @@ package components
 package reactdraggable
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.AsyncLoad
-import chandu0101.scalajs.react.components.draggables.{RElementPosition, ReactDraggable}
+import chandu0101.scalajs.react.components.{ReactDraggable, RElementPosition, AsyncLoad}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.raw.Event

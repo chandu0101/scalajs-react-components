@@ -3,7 +3,7 @@ package components
 package reactlistview
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.listviews.ReactListView
+import chandu0101.scalajs.react.components.ReactListView
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom

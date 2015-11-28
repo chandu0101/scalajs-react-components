@@ -1,9 +1,8 @@
 package chandu0101.scalajs.react.components
-package listviews
 
-import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scala.scalajs.js
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._

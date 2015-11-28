@@ -1,10 +1,10 @@
 package chandu0101.scalajs.react.components
-package textfields
 
+import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+
 import scala.scalajs.js
 import scala.scalajs.js.{Array => JArray}
-import chandu0101.macros.tojs.JSMacro
 
 case class ReactTagsInput(onBlur: js.UndefOr[Callback] = js.undefined,
                           onKeyDown: js.UndefOr[ReactEventI => Callback] = js.undefined,

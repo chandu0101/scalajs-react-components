@@ -47,7 +47,7 @@ object ReactTreeView {
 
   class Backend($: BackendScope[Props, State]) {
 
-    def onNodeSelect(selected: NodeC): Callback = {
+    def onNodeSelect(P: Props)(selected: NodeC): Callback = {
       val removeSelection: Callback =
         $.state.flatMap(
           _.selectedNode
@@ -63,13 +63,11 @@ object ReactTreeView {
         selected.modState(_.copy(selected = true))
       
       val tell: Callback =
-        $.props.map(_.onItemSelect.fold(Callback.empty)(
-          _.apply(
-            selected.props.root.item.toString,
-            selected.props.parent,
-            selected.props.depth
-          )
-        ))
+        P.onItemSelect.asCbo(
+          selected.props.root.item.toString,
+          selected.props.parent,
+          selected.props.depth
+        )
 
       removeSelection >> updateThis >> setSelection >> tell
     }
@@ -81,12 +79,12 @@ object ReactTreeView {
       <.div(P.style.reactTreeView)(
         P.showSearchBox ?= ReactSearchBox(onTextChange = onTextChange),
         TreeNode.withKey("root")(NodeProps(
-          root = P.root,
-          open = if (S.filterText.nonEmpty) true else P.open,
-          onNodeSelect = onNodeSelect,
-          filterText = S.filterText,
-          style = P.style,
-          filterMode = S.filterMode
+          root         = P.root,
+          open         = if (S.filterText.nonEmpty) true else P.open,
+          onNodeSelect = onNodeSelect(P),
+          filterText   = S.filterText,
+          style        = P.style,
+          filterMode   = S.filterMode
         ))
       )
   }

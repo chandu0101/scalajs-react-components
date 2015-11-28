@@ -20,4 +20,9 @@ package object components {
     @inline def asCbo(t1: T1, t2: T2): CallbackOption[R] =
       CallbackOption.liftOptionLike(uc).flatMap(_.apply(t1, t2).toCBO)
   }
+
+  implicit final class UF3CB[T1, T2, T3, R](private val uc: js.UndefOr[(T1, T2, T3) => CallbackTo[R]]) extends AnyVal {
+    @inline def asCbo(t1: T1, t2: T2, t3: T3): CallbackOption[R] =
+      CallbackOption.liftOptionLike(uc).flatMap(_.apply(t1, t2, t3).toCBO)
+  }
 }

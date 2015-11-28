@@ -130,12 +130,11 @@ object ScalajsReactComponents extends Build {
       name := "core",
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalajs-react" %%% "core" % scalajsReactVersion,
-        "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion,
         "com.github.japgolly.scalacss" %%% "core" % scalaCSSVersion,
-        "com.github.japgolly.scalacss" %%% "ext-react" % scalaCSSVersion),
+        "com.github.japgolly.scalacss" %%% "ext-react" % scalaCSSVersion
+      ),
       target in Compile in doc := baseDirectory.value / "docs"
     )
-
   // ==============================================================================================
   lazy val demo = project
     .dependsOn(core)

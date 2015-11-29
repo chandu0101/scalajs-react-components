@@ -3,7 +3,7 @@ package components
 package reactdraggable
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.{ReactDraggable, RElementPosition, AsyncLoad}
+import chandu0101.scalajs.react.components.{RElementPosition, ReactDraggable}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.raw.Event
@@ -14,9 +14,7 @@ object ReactDraggableDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[Unit, Unit]) extends AsyncLoad {
-
-    override val cssResources = Vector("styles/react-draggable.css")
+  case class Backend($: BackendScope[Unit, Unit]) {
 
     def render =
      <.div(^.cls := "react-draggable-demo",
@@ -38,7 +36,6 @@ object ReactDraggableDemo {
 
   val component = ReactComponentB[Unit]("ReactDraggableDemo")
     .renderBackend[Backend]
-    .configure(AsyncLoad.mixin)
     .buildU
 
   // EXAMPLE:END

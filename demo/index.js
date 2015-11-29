@@ -1,19 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var mui = require("material-ui");
-var elemental = require("elemental");
 var injectTapEventPlugin = require('react-tap-event-plugin');
-var highlight = require("./js/highlight.pak.js");
-
 injectTapEventPlugin();
 
-window.ReactDOM = ReactDOM;
-window.React = React;
-window.mui = mui;
-window.elemental = elemental;
+window.ReactDOM = require('react-dom');
+window.React = require('react');
+window.mui = require("material-ui");
+window.elemental = require("elemental");
+window.hljs = require("highlight.js");
 
 //css
-
 require("./styles/default.css");
 require("./styles/site.css");
 

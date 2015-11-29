@@ -18,7 +18,7 @@ object ScalajsReactComponents extends Build {
     _.enablePlugins(ScalaJSPlugin)
       .settings(
         organization         := "com.github.chandu0101.scalajs-react-components",
-        version              := "0.2.0-SNAPSHOT",
+        version              := "0.2.0",
         homepage             := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses             += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion         := Scala211,
@@ -37,6 +37,7 @@ object ScalajsReactComponents extends Build {
       publishArtifact := false,
       publishLocalSigned := (),       // doesn't work
       publishSigned := (),            // doesn't work
+      publish := (),
       packagedArtifacts := Map.empty) // doesn't work - https://github.com/sbt/sbt-pgp/issues/42
 
   def publicationSettings: PE =

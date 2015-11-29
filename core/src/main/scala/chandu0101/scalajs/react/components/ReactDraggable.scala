@@ -7,6 +7,8 @@ import org.scalajs.dom
 import org.scalajs.dom._
 
 import scala.scalajs.js
+import scalacss.Defaults._
+import scalacss.ScalaCssReact._
 
 case class RPoint(x: Double, y: Double)
 case class RGrid(width: Double, height: Double)
@@ -15,26 +17,16 @@ case class ClientRect(top: Double,left: Double)
 
 object ReactDraggable {
 
+  object Style extends StyleSheet.Inline {
+    import dsl._
+    val draggable       = style(position.relative)
+    val draggableActive = style(userSelect := "none")
+  }
+
   import RCustomStyles._
   type CssClassType = Map[String, Boolean]
 
   object DomUtil {
-
-    def addClass(element: html.Element, className: String) = {
-      if(element.classList.length > 0)
-        element.classList.add(className)
-      else
-        element.className += s" $className"
-    }
-
-    def removeClass(element: html.Element, className: String) = {
-      if(element.classList.length > 0)
-        element.classList.remove(className)
-      else
-      //new RegExp("(^|\\b)" + className.split(" ").join("|") + "(\\b|$)", "gi"), " "
-        element.className = element.className.replace(s"(^|\\b)","")
-    }
-
 
     def offset(element: TopNode) = {
       val rect = element.getBoundingClientRect()
@@ -132,18 +124,6 @@ object ReactDraggable {
   implicit val r0 = Reusability.byRef[Props]
   implicit val r1 = Reusability.byRef[State]
 
-  // Add a class to the body to disable user-select. This prevents text from
-  // being selected all over the page.
-  object hack {
-    val draggableActive = "react-draggable-active"
-    
-    val disableUserSelect: Callback =
-      Callback(DomUtil.addClass(dom.document.body, draggableActive))
-    
-    val enableUserSelect: Callback =
-      Callback(DomUtil.removeClass(dom.document.body, draggableActive))
-  }
-
   class Backend(t: BackendScope[Props, State]) {
     
     def pos(S: State) =
@@ -177,7 +157,7 @@ object ReactDraggable {
         P.handle.fold(true)(matchesTarget) && P.cancel.fold(true)(matchesTarget)
       }
 
-      mouseDown << (onStart >> hack.disableUserSelect >> startDrag).conditionally(DomUtil.isLeftClick(e) && matches).void
+      mouseDown << (onStart >> startDrag).conditionally(DomUtil.isLeftClick(e) && matches).void
     }
 
     def handleDrag(P: Props)(e: Event): Callback = {
@@ -233,7 +213,7 @@ object ReactDraggable {
       val stopDragging: Callback =
         t.modState(_.copy(dragging = false, stopListening = js.undefined))
 
-      unregister >> onStop >> stopDragging >> hack.enableUserSelect
+      unregister >> onStop >> stopDragging
     }
 
     def canDragY(P: Props): Boolean =
@@ -257,7 +237,8 @@ object ReactDraggable {
         else                    Seq(^.top := topValue, ^.left := leftValue)
 
       <.div(
-        ^.classSet1("react-draggable", "react-draggable-dragging" -> S.dragging),
+        Style.draggable,
+        S.dragging ?= Style.draggableActive,
         stl,
         ^.onMouseDown  ==> handleDragStart(P),
         ^.onTouchStart ==> handleDragStart(P),

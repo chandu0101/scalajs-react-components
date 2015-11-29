@@ -1,7 +1,7 @@
 package demo
 package css
 
-import chandu0101.scalajs.react.components.{ReactTable, ReactSearchBox, Pager, ReactListView}
+import chandu0101.scalajs.react.components._
 import demo.components.materialui._
 import demo.components.reactinfinite.ReactInfiniteDemo
 import demo.components.{InfoTemplate, LeftNav, LeftNavPage, ScalaCSSTutorial}
@@ -26,6 +26,7 @@ object AppCSS {
       ScalaCSSTutorial.Style,
       InfoTemplate.Style,
       ReactInfiniteDemo.styles,
+      ReactDraggable.Style,
       MuiTabsDemo.Style)
     GlobalRegistry.addToDocumentOnRegistration()
   }

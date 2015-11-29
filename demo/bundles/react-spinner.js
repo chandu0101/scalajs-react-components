@@ -1,5 +1,5 @@
 var Spinner = require('react-spinner');
 
-require('../styles/reactSpinner.css')
+require('react-spinner/react-spinner.css')
 
 window.Spinner = Spinner;

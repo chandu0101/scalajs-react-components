@@ -5,46 +5,55 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom
 import org.scalajs.dom._
 import org.scalajs.dom.ext.PimpedNodeList
+import org.scalajs.dom.raw.HTMLScriptElement
 
 import scala.scalajs.js
 import scala.scalajs.js.JSON
 
-/**
-  *
-  * To load resources(javascript,stylesheet) on fly
-  */
-trait AsyncLoad {
+object WithAsyncScript {
+  case class Props(scripts: Set[String], toRender: ReactElement, loadingScreenOpt: js.UndefOr[Set[String] => ReactElement])
 
-  def jsResources: Vector[String] = Vector.empty
+  case class Backend($: BackendScope[Props, Set[String]]){
+    def render(P: Props, loadedScripts: Set[String]) =
+        if (P.scripts == loadedScripts) P.toRender
+        else P.loadingScreenOpt.fold[ReactElement](<.div())(f => f(P.scripts -- loadedScripts))
 
-  def cssResources: Vector[String] = Vector.empty
+    def load(P: Props, alreadyLoaded: Set[String]): Callback = {
+      val scripts       = dom.document.getElementsByTagName("src")
 
-}
+      Callback {
+        val loaded = P.scripts.map { s =>
+          val body   = dom.document.body
+          val script = dom.document.createElement("script").asInstanceOf[HTMLScriptElement]
 
-object AsyncLoad {
-  def mixin[P, S, B <: AsyncLoad, N <: TopNode] = (c: ReactComponentB[P, S, B, N]) =>
-    c.componentWillMount{$ =>
-      val links = dom.document.getElementsByTagName("link")
-      val scripts = dom.document.getElementsByTagName("src")
+          script.setAttribute("type", "text/javascript")
+          script.setAttribute("src", s)
 
-      Callback{
-        $.backend.cssResources.foreach{s =>
-          val head = dom.document.head
-          val link = dom.document.createElement("link")
-          link.setAttribute("rel","stylesheet")
-          link.setAttribute("href",s)
-          if(!links.contains(link)) head.appendChild(link)
+          if (scripts.contains(script))
+            Some(s)
+          else {
+            script.onload = (e: Event) => {
+              console.log(s"Loaded $s")
+              $.setState(alreadyLoaded + s).runNow()
+            }
+            body.appendChild(script)
+            None
+          }
         }
-
-        $.backend.jsResources.foreach{s =>
-          val body = dom.document.body
-          val script = dom.document.createElement("script")
-          script.setAttribute("type","text/javascript")
-          script.setAttribute("src",s)
-          if(!scripts.contains(script)) body.appendChild(script)
-        }
+        $.setState(loaded.flatten).runNow()
       }
     }
+  }
+
+  val component =
+    ReactComponentB[Props]("AsyncLoadC")
+    .initialState(Set.empty[String])
+    .renderBackend[Backend]
+    .componentWillMount($ => $.backend.load($.props, $.state))
+    .build
+
+  def apply(scripts: String*)(e: ReactElement, loadingScreenOpt: js.UndefOr[Set[String] => ReactElement] = js.undefined) =
+    component(Props(scripts.toSet, e, loadingScreenOpt))
 }
 
 

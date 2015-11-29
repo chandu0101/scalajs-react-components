@@ -6,12 +6,14 @@ var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 module.exports = {
 
     entry: {
-        mainpage: './index.js',
-        reacttagpage: './js/reactTagsInputPage.js',
-        reactselectpage: './js/reactSelectPage.js',
-        reactgeomiconspage: './js/reactGeomIconsPage.js',
-        reactInfinitePage: './js/reactInfinitePage.js',
-        spinnerPage: './js/spinnerPage.js'
+        index: './bundles/index.js',
+        elemental_ui: './bundles/elemental-ui.js',
+        material_ui: './bundles/material-ui.js',
+        react_tags_input: './bundles/react-tags-input.js',
+        react_select: './bundles/react-select.js',
+        react_geom_icons: './bundles/react-geom-icons.js',
+        react_infinite: './bundles/react-infinite.js',
+        react_spinner: './bundles/react-spinner.js',
     },
     output: {
         path: __dirname + '/assets',
@@ -21,7 +23,7 @@ module.exports = {
     plugins: [
         new webpack.NoErrorsPlugin(),
         new CommonsChunkPlugin({
-            name: "mainpage"
+            name: "index"
         })
     ],
     module: {

@@ -1,8 +1,8 @@
 'use strict';
 
-var webpack = require('webpack'),
-    CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin,
-    _ = require('lodash');
+var webpack = require('webpack');
+var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+var _ = require('lodash');
 
 module.exports = _.merge(require('./webpack.config.js'), {
 
@@ -11,7 +11,7 @@ module.exports = _.merge(require('./webpack.config.js'), {
     },
     plugins: [
         new CommonsChunkPlugin({
-            name: "mainpage"
+            name: "index"
         }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),

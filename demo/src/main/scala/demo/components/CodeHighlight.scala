@@ -9,7 +9,7 @@ import org.scalajs.dom.ext.PimpedNodeList
 object CodeHighlight {
 
   val component = ReactComponentB[String]("CodeHighLighter")
-    .render_P(P => <.code(^.padding := "20px", P))
+    .render_P(P => <.code(^.`class` := "scala", ^.padding := "20px", P))
     .configure(installSyntaxHighlighting)
     .build
 

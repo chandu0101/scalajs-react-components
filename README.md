@@ -16,7 +16,7 @@ Adding types to javascript is a lot of guesswork, and we're certain to have gott
 These components require you to provide javascript yourself.
 
 - material-ui 0.13.4
-- elemental-ui 0.5.5
+- elemental-ui 0.5.4
 - Google maps (downloads js directly from google)
 - ReactGeomIcon (react-geomicons: 2.0.4)
 - ReactInfinite (react-infinite, 0.7.1)

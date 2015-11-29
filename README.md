@@ -22,7 +22,7 @@ These components require you to provide javascript yourself.
 - ReactInfinite (react-infinite, 0.7.1)
 - Spinner (react-spinner, 0.2.3)
 - ReactSelect (react-select: 1.0.0-beta5) (BROKEN after upgrade)
-- ReactTagsInput (react-tagsinput, 3.0.2)
+- ReactTagsInput (react-tagsinput, 3.0.3)
 
 ### Components written in scala.js
 - DefaultSelect

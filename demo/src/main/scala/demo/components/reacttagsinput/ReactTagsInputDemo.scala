@@ -4,6 +4,7 @@ package reacttagsinput
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{ReactTagsInputM, ReactTagsInput, RefHolder}
+import demo.components.materialui.DummyEvents
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
@@ -20,25 +21,24 @@ object ReactTagsInputDemo {
   class Backend(t: BackendScope[_, State]) {
     val ref = RefHolder[ReactTagsInputM]
 
-    val onChange: (js.Array[String], String) => Callback =
-      (tags, tag) =>
-        t.modState(_.copy(tags = tags)) >>
-          Callback.info(s"Final Tags: $tags, Added/Removed Tag: $tag")
+    val onChange: (js.Array[String]) => Callback =
+      tags => t.modState(_.copy(tags = tags)) >> Callback.info(s"New state: $tags")
 
-    def render(S: State) = {
+    def render(S: State) =
       <.div(
         CodeExample(code, "Demo")(
           <.div(
-            <.h4("Uncontrolled: "),
-            ReactTagsInput(ref = ref.set)()
-          ),
-          <.div(
-            <.h4("Controlled: "),
-            ReactTagsInput(value = S.tags, onChange = onChange)()
+            ReactTagsInput(
+              value         = S.tags,
+              onChange      = onChange,
+              onBlur        = DummyEvents.f0("onBlur"),
+              onKeyDown     = DummyEvents.f1("onKeyDown"),
+              onKeyUp       = DummyEvents.f1("onKeyUp")
+            )()
           )
         )
       )
-    }
+
   }
 
   val component = ReactComponentB[Unit]("ReactTagsInputDemo")

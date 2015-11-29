@@ -39,7 +39,7 @@
     "react-infinite": "^0.7.1",
     "react-select": "^1.0.0-beta5",
     "react-spinner": "^0.2.3",
-    "react-tagsinput": "^3.0.2",
+    "react-tagsinput": "^3.0.3",
     "react-tap-event-plugin": "^0.2.1",
     "svg-loader": "0.0.2"
   }

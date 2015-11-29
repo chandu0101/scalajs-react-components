@@ -1,6 +1,7 @@
 package demo
 package pages
 
+import chandu0101.scalajs.react.components.WithAsyncScript
 import chandu0101.scalajs.react.components.materialui.ThemeInstaller
 import demo.components.LeftNavPage
 import demo.routes.{LeftRoute, MuiRouteModule}
@@ -8,9 +9,11 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
 
 object MuiPage {
-  case class Backend($: BackendScope[Props, _]){
+  case class Backend($: BackendScope[Props, _]) {
     def render(P: Props) = {
-      LeftNavPage(MuiRouteModule.menu, P.selectedPage, P.ctrl)
+      WithAsyncScript("assets/material_ui-bundle.js")(
+        LeftNavPage(MuiRouteModule.menu, P.selectedPage, P.ctrl)
+      )
     }
   }
 

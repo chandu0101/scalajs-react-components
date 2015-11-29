@@ -17,6 +17,8 @@
     "gulp-decompress": "^1.1.0",
     "image-webpack-loader": "^1.6.1",
     "imagemin": "^4.0.0",
+    "less": "^2.3.1",
+    "less-loader": "^2.2.2",
     "lodash": "^3.9.3",
     "node-libs-browser": "^0.5.2",
     "react-hot-loader": "^1.2.7",
@@ -27,7 +29,7 @@
   },
   "dependencies": {
     "material-ui": "v0.13.4",
-    "elemental": "v0.5.5",
+    "elemental": "v0.5.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-addons-css-transition-group": "^0.14.3",

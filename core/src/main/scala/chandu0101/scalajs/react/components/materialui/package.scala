@@ -18,6 +18,6 @@ package object materialui {
       case b: B => evb(b)
     }
 
-  def installMuiContext[P, S, B, N <: TopNode](theme: js.Any = Mui.Styles.LightRawTheme): ReactComponentSpec[P, S, B, N] => Callback =
-    ThemeInstaller.installMuiContext(theme.asInstanceOf[MuiRawTheme])
+  def installMuiContext[P, S, B, N <: TopNode](theme: js.UndefOr[MuiRawTheme]): ReactComponentSpec[P, S, B, N] => Callback =
+    ThemeInstaller.installMuiContext(theme)
 }

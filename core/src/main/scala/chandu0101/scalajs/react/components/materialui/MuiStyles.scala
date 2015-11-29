@@ -76,11 +76,14 @@ trait ThemeDecorator extends js.Object {
 }
 
 object ThemeInstaller{
-  def installMuiContext[P, S, B, N <: TopNode](rawTheme: MuiRawTheme = Mui.Styles.LightRawTheme): ReactComponentSpec[P, S, B, N] => Callback =
+  def installMuiContext[P, S, B, N <: TopNode](rawThemeOpt: js.UndefOr[MuiRawTheme] = js.undefined): ReactComponentSpec[P, S, B, N] => Callback =
     spec => Callback {
-      val theme = Mui.Styles.ThemeManager.getMuiTheme(rawTheme)
-      val t = spec.asInstanceOf[js.Dynamic]
-      t.updateDynamic("childContextTypes")(js.Dynamic.literal("muiTheme" -> React.asInstanceOf[js.Dynamic].PropTypes.`object`): js.Object)
-      t.updateDynamic("getChildContext")(((any: js.Object) => js.Dynamic.literal("muiTheme" -> theme)): js.Function)
+      if (Mui != js.undefined && Mui.Styles != js.undefined) {
+        val rawTheme = rawThemeOpt getOrElse Mui.Styles.LightRawTheme
+        val theme = Mui.Styles.ThemeManager.getMuiTheme(rawTheme)
+        val t = spec.asInstanceOf[js.Dynamic]
+        t.updateDynamic("childContextTypes")(js.Dynamic.literal("muiTheme" -> React.asInstanceOf[js.Dynamic].PropTypes.`object`): js.Object)
+        t.updateDynamic("getChildContext")(((any: js.Object) => js.Dynamic.literal("muiTheme" -> theme)): js.Function)
+      }
     }
 }

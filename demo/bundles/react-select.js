@@ -1,5 +1,5 @@
 var ReactSelect = require('react-select');
 
-require('../styles/react-select.css')
+require('react-select/dist/react-select.css');
 
 window.ReactSelect = ReactSelect;

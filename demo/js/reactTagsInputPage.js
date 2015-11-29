@@ -1,5 +1,5 @@
 var ReactTagsInput = require('react-tagsinput');
 
-require('../styles/react-tagsinput.css')
+require('react-tagsinput/react-tagsinput.css');
 
 window.ReactTagsInput = ReactTagsInput;

@@ -39,7 +39,6 @@ object EuiModalDemo {
                 label = "Email",
                 `type` = "email",
                 name = "email",
-                ref = "email",
                 placeholder = "name@example.com",
                 required = true)()
             ),
@@ -48,7 +47,6 @@ object EuiModalDemo {
                 label = "Password",
                 `type` = "password",
                 name = "password",
-                ref = "password",
                 placeholder = "Min 8 chars",
                 required = true)()
             ),
@@ -83,7 +81,6 @@ object EuiModalDemo {
                   label = "Email",
                   `type` = "email",
                   name = "email",
-                  ref = "email",
                   placeholder = "name@example.com",
                   required = true)()
               ),
@@ -92,7 +89,6 @@ object EuiModalDemo {
                   label = "Password",
                   `type` = "password",
                   name = "password",
-                  ref = "password",
                   placeholder = "Min 8 chars",
                   required = true
                 )()
@@ -125,7 +121,7 @@ object EuiModalDemo {
 
     def render(S: State) =
       CodeExample(code, "EuiModal")(
-        Container(maxWidth = 800, className = "demo-container")(
+        Container()(
           <.h1("Modal"),
           <.h2("Static Example"),
           renderStaticExample,

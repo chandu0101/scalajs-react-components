@@ -4,7 +4,6 @@ package reacttagsinput
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{ReactTagsInputM, ReactTagsInput, RefHolder}
-import demo.components.materialui.DummyEvents
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 

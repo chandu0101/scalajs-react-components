@@ -1,4 +1,4 @@
-package demo.components.materialui
+package demo.components
 
 import japgolly.scalajs.react._
 
@@ -9,24 +9,24 @@ object DummyEvents {
     a match {
       case e: ReactEvent =>
         val d = e.asInstanceOf[js.Dynamic]
-
+        val u = js.undefined.asInstanceOf[js.Dynamic]
         val event =
-          if (d.clipboardData != js.undefined)      "ReactClipboardEvent"
-          else if (d.data != js.undefined)          "ReactCompositionEvent"
-          else if (d.dataTransfer != js.undefined)  "ReactDragEvent"
-          else if (d.relatedTarget != js.undefined) "ReactFocusEvent"
-          else if (d.locale != js.undefined)        "ReactKeyboardEvent"
-          else if (d.buttons != js.undefined)       "ReactMouseEvent"
-          else if (d.touches != js.undefined)       "ReactTouchEvent"
-          else if (d.detail != js.undefined)        "ReactUIEvent"
-          else if (d.deltaZ != js.undefined)        "ReactWheelEvent"
-          else                                      "ReactEvent"
+               if (d.clipboardData != u) "ReactClipboardEvent"
+          else if (d.data != u)          "ReactCompositionEvent"
+          else if (d.dataTransfer != u)  "ReactDragEvent"
+          else if (d.relatedTarget != u) "ReactFocusEvent"
+          else if (d.locale != u)        "ReactKeyboardEvent"
+          else if (d.buttons != u)       "ReactMouseEvent"
+          else if (d.touches != u)       "ReactTouchEvent"
+          else if (d.detail != u)        "ReactUIEvent"
+          else if (d.deltaZ != u)        "ReactWheelEvent"
+          else                           "ReactEvent"
 
         val t = e.target.asInstanceOf[js.Dynamic]
         val target =
-               if (t.value != js.undefined) "I"
-          else if (t.offsetTop != js.undefined)  "H"
-          else                      ""
+               if (t.value     != u) "I"
+          else if (t.offsetTop != u) "H"
+          else                       ""
         s"$event$target: t.value: ${t.value}, t.offsetTop: ${t.offsetTop}"
     }
   }

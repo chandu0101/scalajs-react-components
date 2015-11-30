@@ -1,8 +1,8 @@
-package demo.components.materialui
+package demo.components
+package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
-import demo.components.CodeExample
 import japgolly.scalajs.react._
 
 import scala.scalajs.js

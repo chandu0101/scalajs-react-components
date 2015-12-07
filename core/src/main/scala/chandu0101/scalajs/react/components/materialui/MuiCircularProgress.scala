@@ -4,7 +4,6 @@ package chandu0101.scalajs.react.components.materialui
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
-import scala.scalajs.js.`|`
   
 case class MuiCircularProgress(
 	key:        js.UndefOr[String]                    = js.undefined,
@@ -18,7 +17,7 @@ case class MuiCircularProgress(
 	/* default: indeterminate: The mode of show your progress, indeterminate for when there is no value for progress. */
 	mode:       js.UndefOr[MuiCircularProgressMode]   = js.undefined,
 	/* default: 1: The size of the progress.*/
-	size:       js.UndefOr[Int]                       = js.undefined,
+	size:       js.UndefOr[Double]                    = js.undefined,
 	/*  Override the inline-styles of the progress's root element.*/
 	style:      js.UndefOr[CssProperties]             = js.undefined,
 	/* default: 0: The value of progress, only works in determinate mode. */

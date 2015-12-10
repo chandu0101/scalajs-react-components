@@ -83,7 +83,7 @@ object Build extends Build {
 
   def utestSettings: PE =
       _.settings(
-      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.3.0" % Test,
+      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.3.1" % Test,
       testFrameworks       += new TestFramework("utest.runner.Framework"),
       scalaJSStage in Test := FastOptStage,
       requiresDOM          := true,
@@ -118,7 +118,7 @@ object Build extends Build {
     .settings(
       name := "macros",
       libraryDependencies ++= Seq(
-        "org.scalatest" %%% "scalatest" % "3.0.0-M7" % Test
+        "org.scalatest" %%% "scalatest" % "3.0.0-M12" % Test
       )
     )
 

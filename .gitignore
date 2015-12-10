@@ -30,3 +30,4 @@ project/plugins/project/
 #project
 assets/
 node_modules/
+/core/docs

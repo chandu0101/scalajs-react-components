@@ -49,11 +49,28 @@ trait MuiPalette extends js.Object {
   val disabledColor:      MuiColor = js.native
 }
 
+object MuiPalette {
+  def apply(primary1Color: MuiColor, primary2Color: MuiColor, primary3Color: MuiColor, accent1Color: MuiColor,
+            accent2Color: MuiColor, accent3Color: MuiColor, textColor: MuiColor, alternateTextColor: MuiColor,
+            canvasColor: MuiColor, borderColor: MuiColor, disabledColor: MuiColor): MuiPalette = {
+    js.Dynamic.literal(primary1Color = primary1Color, primary2Color = primary2Color, primary3Color = primary3Color,
+      accent1Color = accent1Color, accent2Color = accent2Color, accent3Color = accent3Color, textColor = textColor,
+      alternateTextColor = alternateTextColor, canvasColor = canvasColor, borderColor = borderColor,
+      disabledColor = disabledColor).asInstanceOf[MuiPalette]
+  }
+}
+
 @js.native
 trait MuiRawTheme extends js.Object {
   val spacing:    MuiSpacings = js.native
   val fontFamily: String      = js.native
   val palette:    MuiPalette  = js.native
+}
+
+object MuiRawTheme {
+  def apply(spacing: js.Dynamic, fontFamily: String, palette: MuiPalette): MuiRawTheme = {
+    js.Dynamic.literal(spacing = spacing, fontFamily = fontFamily, palette = palette).asInstanceOf[MuiRawTheme]
+  }
 }
 
 @js.native

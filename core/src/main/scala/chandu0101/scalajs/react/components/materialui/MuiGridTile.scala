@@ -13,8 +13,6 @@ case class MuiGridTile(
 	actionIcon:      js.UndefOr[ReactElement]                = js.undefined,
 	/*  Position of secondary action IconButton. Defaults to "right".*/
 	actionPosition:  js.UndefOr[MuiGridTileActionPosition]   = js.undefined,
-	/* required: Theoretically you can pass any node as children, but the main use case is to pass an img, in whichcase GridTile takes care of making the image "cover" available space (similar to background-size: cover or to object-fit:cover)*/
-	children:        ReactNode,
 	/*  Width of the tile in number of grid cells. Defaults to 1.*/
 	cols:            js.UndefOr[Int]                         = js.undefined,
 	/*  Either a string used as tag name for the tile root element, or a ReactComponent. Defaults to "div".This is useful when you have, for example, a custom implementation of a navigation link (that knowsabout your routes) and you want to use it as primary tile action. In case you pass a ReactComponent, please make sure that it passes all props, accepts styles overrides and render it's children.*/

@@ -1,4 +1,5 @@
-package demo.components.materialui
+package demo.components
+package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
@@ -69,7 +70,13 @@ object MuiPopoverDemo {
 
             originChoices.map(_.menu(S)),
 
-            MuiPopover(open = S.open, anchorEl = ref($), anchorOrigin = S.anchor, targetOrigin = S.target, onRequestClose = hide)(
+            MuiPopover(
+              open = S.open,
+              anchorEl = ref($),
+              anchorOrigin = S.anchor,
+              targetOrigin = S.target,
+              onRequestClose = hide
+            )(
               <.div(
                 ^.padding := "20px",
                 <.h2("here is an arbitrary popover"),

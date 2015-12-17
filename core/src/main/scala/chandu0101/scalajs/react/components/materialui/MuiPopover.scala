@@ -36,10 +36,10 @@ horizontal: [left, center, right]
 	className:              js.UndefOr[String]          = js.undefined)
 {
 
-  def apply(children: ReactNode*) = {
+  def apply(child: ReactNode) = {
     val props = JSMacro[MuiPopover](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Popover)
-    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    f(props, child).asInstanceOf[ReactComponentU_]
   }
 }
 case class Origin(vertical: MuiPopoverVertical, horizontal: MuiPopoverHorizontal){

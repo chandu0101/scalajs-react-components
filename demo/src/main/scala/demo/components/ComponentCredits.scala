@@ -19,7 +19,7 @@ object ComponentCredits {
       else
       <.div(
         <.h4("Author: "),
-        GithubUser(S.users.head),
+        S.users.headOption.map(GithubUser(_)),
         <.h4("Contributors: "),
        <.div(^.marginRight := "10px")(S.users.tail.map(u => GithubUser(user = u, key = u.login)))
        )

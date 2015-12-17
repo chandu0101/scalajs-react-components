@@ -31,3 +31,8 @@ project/plugins/project/
 assets/
 node_modules/
 /core/docs
+
+#eclipse
+.classpath
+.project
+.cache-main

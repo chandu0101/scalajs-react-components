@@ -3,7 +3,7 @@ package components
 package reacttable
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.{ReactTable, JsonUtil}
+import chandu0101.scalajs.react.components.{ ReactTable, JsonUtil }
 import demo.util.SampleData
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -21,20 +21,13 @@ object ReactTableSorting {
     val columns: List[String] =
       List("fname", "lname", "email", "country")
 
-    //config is a List of touple4 (String, Option[(Any) => ReactElement], Option[(Model, Model) => Boolean],Option[Double])
-    // ._1: columnname you want to config
-    // ._2: custom render function (custom cell factory)
-    // ._3: Sorting function
-    // ._4: column width (flex := width)
-    val config = List(("fname", None, Some(ReactTable.getStringSort("fname")), None)) // getStringSort is helper function
+    val config = List(ReactTable.ColumnConfig(name = "fname", sortBy = Some(ReactTable.getStringSort("fname")))) // getStringSort is helper function
 
     def render =
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Sorting Table"),
         CodeExample(code, "ReactTableSorting")(
-          ReactTable(data = data, columns = columns, config = config)
-        )
-      )
+          ReactTable(data = data, columns = columns, config = config)))
   }
 
   val component = ReactComponentB[Unit]("ReactTableSorting")

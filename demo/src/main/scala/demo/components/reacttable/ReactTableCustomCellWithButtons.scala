@@ -8,7 +8,7 @@ import demo.util.SampleData
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
-object ReactTableCustomCell {
+object ReactTableCustomCellWithButtons {
 
   val code = GhPagesMacros.exampleSource
 
@@ -18,21 +18,26 @@ object ReactTableCustomCell {
     val data: Vector[Map[String, Any]] =
       JsonUtil.jsonArrayToMap(SampleData.personJson)
     val columns: List[String] =
-      List("fname", "lname", "email", "country")
+      List("fname", "lname", "email", "country", "actions")
 
-    val config = List(ReactTable.ColumnConfig(name = "fname", cellRenderer = customRenderer))
+    val config = List(ReactTable.ColumnConfig(name = "actions", cellRenderer = actionRenderer))
 
-    def customRenderer(model: ReactTable.Model, columnId: ReactTable.ColumnKey): ReactElement = {
-      val name = model(columnId).toString
-      if (name.startsWith("J"))
-        <.span(^.backgroundColor := "grey")(name)
-      else <.span(name)
+    def alertMe(name: String) = {
+      $.modState(state ⇒ {
+        scala.scalajs.js.Dynamic.global.alert(s"${name} was clicked!")
+        state
+      })
+    }
+
+    def actionRenderer(model: ReactTable.Model, columnId: ReactTable.ColumnKey): ReactElement = {
+      val name = model("fname").toString
+      <.button(^.onClick --> alertMe(name), "Click Me!")
     }
 
     def render =
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Custom Cell Factory"),
-        CodeExample(code, "ReactTableCustomCell")(
+        CodeExample(code, "ReactTableCustomCellWithButtons")(
           ReactTable(data = data, columns = columns, config = config)))
   }
 

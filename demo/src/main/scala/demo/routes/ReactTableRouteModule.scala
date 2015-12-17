@@ -15,6 +15,8 @@ object ReactTableRouteModule {
 
   case object CustomCell extends LeftRoute("Custom Cell", "customcell", () => ReactTableCustomCell())
 
+  case object CustomCellWithButtons extends LeftRoute("Cell With Buttons", "customcellwithbuttons", () => ReactTableCustomCellWithButtons())
+
   case object CustomColumn extends LeftRoute("Custom Colum Size", "customcolumsize", () => ReactTableCustomColumnSize())
 
   val menu: List[LeftRoute] = List(Info, Basic, Sorting, CustomCell, CustomColumn)

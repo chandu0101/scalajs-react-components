@@ -14,11 +14,13 @@ sbt fullOptJS
 
 cd demo
 
+npm install
+
 npm run build
 
 
 if [ "$comment" == "" ]; then
-comment="push form CI"
+comment="push from CI"
 echo "no comment specified to deploy, using default : $comment"
 fi
 

@@ -21,7 +21,7 @@ object EuiInfo {
         <.div(
           <.h3("elemental-ui "),
           <.p("scalajs-react wrapper for ",
-            RedLink("elemental-ui", "http://elementalui.com/#/")),
+            RedLink("elemental-ui", "http://elemental-ui.com")),
           <.div(
             <.h4("Supported Version :"),
             <.span("0.5.4")),
@@ -30,7 +30,7 @@ object EuiInfo {
             <.p("Follow the installation guide from :", RedLink("here", "https://github.com/elementalui/elemental"),
               <.br(),
               <.br(),
-              "Configure elemental-ui context in u r top level component :", RedLink("example", "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/chandu0101/scalajs/react/components/demo/pages/EuiPage.scala#L16")))))
+              "Configure elemental-ui context in your top level component :", RedLink("example", "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/demo/pages/EuiPage.scala")))))
 
     }).buildU
 

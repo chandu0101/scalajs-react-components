@@ -35,7 +35,7 @@ object MuiInfo {
             <.p("Follow the installation guide from :", RedLink("here", "https://github.com/callemall/material-ui#installation"),
               <.br(),
               <.br(),
-              "Configure material-ui context in u r top level component :", RedLink("example", "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/chandu0101/scalajs/react/components/demo/pages/MuiPage.scala#L16")
+              "Configure material-ui context in your top level component :", RedLink("example", "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/demo/pages/MuiPage.scala")
             )
           )
         )

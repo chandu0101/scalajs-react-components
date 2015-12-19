@@ -16,7 +16,7 @@ object MuiDatePickerDemo {
     .render(P => {
       <.div(
         CodeExample(code, "MuiDatePicker")(
-          MuiDatePicker(hintText = "Protrait Dialog",
+          MuiDatePicker(hintText = "Portrait Dialog",
             onChange   = DummyEvents.f2_("onChange"),
             onDismiss  = DummyEvents.f0("onDismiss"),
             onFocus    = DummyEvents.f1("onFocus"),

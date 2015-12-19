@@ -17,7 +17,7 @@ object MuiSnackbarDemo {
     val snackBarRef = RefHolder[MuiSnackbarM]
 
     val handleAction: ReactEvent => Callback =
-      e => Callback(dom.window.alert("We removed Event from your cal"))
+      e => Callback(dom.window.alert("We removed Event from your calendar"))
 
     val buttonClick: ReactEventH => Callback =
       e => snackBarRef().map(_.show())
@@ -25,7 +25,7 @@ object MuiSnackbarDemo {
     def render = {
       CodeExample(code, "MuiSnackBar")(
         MuiSnackbar(
-          message = "Event added to your calender",
+          message = "Event added to your calendar",
           action = "undo",
           ref = snackBarRef.set,
           onActionTouchTap = handleAction

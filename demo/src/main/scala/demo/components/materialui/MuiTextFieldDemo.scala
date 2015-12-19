@@ -25,8 +25,8 @@ object MuiTextFieldDemo {
               onFocus        = DummyEvents.f1("onFocus"),
               onKeyDown      = DummyEvents.f1("onKeyDown"))(),
             MuiTextField(hintText = "Hint Text": ReactNode, floatingLabelText = "Floating Label Text": ReactNode)(),
-            MuiTextField(hintText = "Multi line Text": ReactNode, multiLine = true)(),
-            MuiTextField(hintText = "Multi line Text": ReactNode, multiLine = true, floatingLabelText = "Multi Line Floating Label Text": ReactNode)(),
+            MuiTextField(hintText = "Multi Line Text": ReactNode, multiLine = true)(),
+            MuiTextField(hintText = "Multi Line Text": ReactNode, multiLine = true, floatingLabelText = "Multi Line Floating Label Text": ReactNode)(),
             MuiTextField(hintText = "Disabled Hint text": ReactNode, disabled = true)()
           )
         )

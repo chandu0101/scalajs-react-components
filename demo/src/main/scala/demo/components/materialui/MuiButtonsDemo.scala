@@ -4,7 +4,6 @@ package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
-import demo.components.materialui.svgicons.ActionGrade
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
@@ -29,7 +28,7 @@ object MuiButtonsDemo {
   }
 
   // EXAMPLE:START
-
+  import Mui.SvgIcons.ActionGrade
   val component = ReactComponentB[Unit]("MuiButtonsDemo")
     .render(P =>
       CodeExample(code, "MuiButtons")(
@@ -65,10 +64,10 @@ object MuiButtonsDemo {
             ),
           MuiTab(label = "Floating Action Buttons")(
             <.div(Style.content,
-              MuiFloatingActionButton()(ActionGrade()),
-              MuiFloatingActionButton(mini = true)(ActionGrade()),
-              MuiFloatingActionButton(secondary = true)(ActionGrade()),
-              MuiFloatingActionButton(secondary = true, mini = true)(ActionGrade())
+              MuiFloatingActionButton()(ActionGrade()()),
+              MuiFloatingActionButton(mini = true)(ActionGrade()()),
+              MuiFloatingActionButton(secondary = true)(ActionGrade()()),
+              MuiFloatingActionButton(secondary = true, mini = true)(ActionGrade()())
             )
           )
         )
@@ -79,5 +78,4 @@ object MuiButtonsDemo {
   // EXAMPLE:END
 
   def apply() = component()
-
 }

@@ -37,6 +37,8 @@ object MuiRouteModule {
 
   case object Slider extends LeftRoute("Slider", "slider", () => MuiSliderDemo())
 
+  case object SvgIcon extends LeftRoute("Svg icons", "svgicon", () => MuiSvgIconDemo())
+
   case object TimePicker extends LeftRoute("Time Picker", "timepicker", () => MuiTimePickerDemo())
 
   case object Switches extends LeftRoute("Switches", "switches", () => MuiSwitchesDemo())
@@ -67,6 +69,7 @@ object MuiRouteModule {
     SelectField,
     Switches,
     Slider,
+    SvgIcon,
     SnackBar,
     TextField,
     TimePicker,

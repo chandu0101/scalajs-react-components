@@ -11,7 +11,7 @@ trait MuiColor extends js.Object
 trait MuiStyles extends js.Object {
   val AutoPrefix:     js.Dynamic     = js.native
   val Colors:         MuiColors      = js.native
-  val Spacing:        js.Dynamic     = js.native
+  val Spacing:        MuiSpacings    = js.native
   val ThemeManager:   ThemeManager   = js.native
   val Typography:     js.Dynamic     = js.native
   val Transitions:    js.Dynamic     = js.native
@@ -34,6 +34,62 @@ trait MuiSpacings extends js.Object {
   val desktopToolbarHeight:          Int = js.native
 }
 
+object MuiSpacings {
+  def apply(iconSize:                      Int,
+            desktopGutter:                 Int,
+            desktopGutterMore:             Int,
+            desktopGutterLess:             Int,
+            desktopGutterMini:             Int,
+            desktopKeylineIncrement:       Int,
+            desktopDropDownMenuItemHeight: Int,
+            desktopDropDownMenuFontSize:   Int,
+            desktopLeftNavMenuItemHeight:  Int,
+            desktopSubheaderHeight:        Int,
+            desktopToolbarHeight:          Int) =
+
+      js.Dynamic.literal(
+        iconSize                      = iconSize,
+        desktopGutter                 = desktopGutter,
+        desktopGutterMore             = desktopGutterMore,
+        desktopGutterLess             = desktopGutterLess,
+        desktopGutterMini             = desktopGutterMini,
+        desktopKeylineIncrement       = desktopKeylineIncrement,
+        desktopDropDownMenuItemHeight = desktopDropDownMenuItemHeight,
+        desktopDropDownMenuFontSize   = desktopDropDownMenuFontSize,
+        desktopLeftNavMenuItemHeight  = desktopLeftNavMenuItemHeight,
+        desktopSubheaderHeight        = desktopSubheaderHeight,
+        desktopToolbarHeight          = desktopToolbarHeight
+      ).asInstanceOf[MuiSpacings]
+
+  implicit class MuiSpacingOps(s: MuiSpacings){
+    def copy(iconSize:                      Int = s.iconSize,
+             desktopGutter:                 Int = s.desktopGutter,
+             desktopGutterMore:             Int = s.desktopGutterMore,
+             desktopGutterLess:             Int = s.desktopGutterLess,
+             desktopGutterMini:             Int = s.desktopGutterMini,
+             desktopKeylineIncrement:       Int = s.desktopKeylineIncrement,
+             desktopDropDownMenuItemHeight: Int = s.desktopDropDownMenuItemHeight,
+             desktopDropDownMenuFontSize:   Int = s.desktopDropDownMenuFontSize,
+             desktopLeftNavMenuItemHeight:  Int = s.desktopLeftNavMenuItemHeight,
+             desktopSubheaderHeight:        Int = s.desktopSubheaderHeight,
+             desktopToolbarHeight:          Int = s.desktopToolbarHeight) =
+
+        js.Dynamic.literal(
+          iconSize                      = iconSize,
+          desktopGutter                 = desktopGutter,
+          desktopGutterMore             = desktopGutterMore,
+          desktopGutterLess             = desktopGutterLess,
+          desktopGutterMini             = desktopGutterMini,
+          desktopKeylineIncrement       = desktopKeylineIncrement,
+          desktopDropDownMenuItemHeight = desktopDropDownMenuItemHeight,
+          desktopDropDownMenuFontSize   = desktopDropDownMenuFontSize,
+          desktopLeftNavMenuItemHeight  = desktopLeftNavMenuItemHeight,
+          desktopSubheaderHeight        = desktopSubheaderHeight,
+          desktopToolbarHeight          = desktopToolbarHeight
+        ).asInstanceOf[MuiSpacings]
+  }
+}
+
 @js.native
 trait MuiPalette extends js.Object {
   val primary1Color:      MuiColor = js.native
@@ -50,13 +106,56 @@ trait MuiPalette extends js.Object {
 }
 
 object MuiPalette {
-  def apply(primary1Color: MuiColor, primary2Color: MuiColor, primary3Color: MuiColor, accent1Color: MuiColor,
-            accent2Color: MuiColor, accent3Color: MuiColor, textColor: MuiColor, alternateTextColor: MuiColor,
-            canvasColor: MuiColor, borderColor: MuiColor, disabledColor: MuiColor): MuiPalette = {
-    js.Dynamic.literal(primary1Color = primary1Color, primary2Color = primary2Color, primary3Color = primary3Color,
-      accent1Color = accent1Color, accent2Color = accent2Color, accent3Color = accent3Color, textColor = textColor,
-      alternateTextColor = alternateTextColor, canvasColor = canvasColor, borderColor = borderColor,
-      disabledColor = disabledColor).asInstanceOf[MuiPalette]
+  def apply(primary1Color:      MuiColor,
+            primary2Color:      MuiColor,
+            primary3Color:      MuiColor,
+            accent1Color:       MuiColor,
+            accent2Color:       MuiColor,
+            accent3Color:       MuiColor,
+            textColor:          MuiColor,
+            alternateTextColor: MuiColor,
+            canvasColor:        MuiColor,
+            borderColor:        MuiColor,
+            disabledColor:      MuiColor): MuiPalette = {
+    js.Dynamic.literal(
+      primary1Color      = primary1Color,
+      primary2Color      = primary2Color,
+      primary3Color      = primary3Color,
+      accent1Color       = accent1Color,
+      accent2Color       = accent2Color,
+      accent3Color       = accent3Color,
+      textColor          = textColor,
+      alternateTextColor = alternateTextColor,
+      canvasColor        = canvasColor,
+      borderColor        = borderColor,
+      disabledColor      = disabledColor).asInstanceOf[MuiPalette]
+  }
+
+  implicit class MuiPaletteOps(p: MuiPalette) {
+    def copy(primary1Color:      MuiColor = p.primary1Color,
+             primary2Color:      MuiColor = p.primary2Color,
+             primary3Color:      MuiColor = p.primary3Color,
+             accent1Color:       MuiColor = p.accent1Color,
+             accent2Color:       MuiColor = p.accent2Color,
+             accent3Color:       MuiColor = p.accent3Color,
+             textColor:          MuiColor = p.textColor,
+             alternateTextColor: MuiColor = p.alternateTextColor,
+             canvasColor:        MuiColor = p.canvasColor,
+             borderColor:        MuiColor = p.borderColor,
+             disabledColor:      MuiColor = p.disabledColor): MuiPalette =
+      js.Dynamic.literal(
+        primary1Color      = primary1Color,
+        primary2Color      = primary2Color,
+        primary3Color      = primary3Color,
+        accent1Color       = accent1Color,
+        accent2Color       = accent2Color,
+        accent3Color       = accent3Color,
+        textColor          = textColor,
+        alternateTextColor = alternateTextColor,
+        canvasColor        = canvasColor,
+        borderColor        = borderColor,
+        disabledColor      = disabledColor
+      ).asInstanceOf[MuiPalette]
   }
 }
 
@@ -68,7 +167,7 @@ trait MuiRawTheme extends js.Object {
 }
 
 object MuiRawTheme {
-  def apply(spacing: js.Dynamic, fontFamily: String, palette: MuiPalette): MuiRawTheme = {
+  def apply(spacing: MuiSpacings, fontFamily: String, palette: MuiPalette): MuiRawTheme = {
     js.Dynamic.literal(spacing = spacing, fontFamily = fontFamily, palette = palette).asInstanceOf[MuiRawTheme]
   }
 }

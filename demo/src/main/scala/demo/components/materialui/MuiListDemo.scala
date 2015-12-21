@@ -3,7 +3,7 @@ package components
 package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.materialui.{Mui, MuiList, MuiListItem}
+import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
@@ -12,7 +12,7 @@ object MuiListDemo {
 
   // EXAMPLE:START
 
-  import Mui.SvgIcons.{ContentInbox, ActionGrade, ContentSend, ContentDrafts}
+  import Mui.SvgIcons.{ContentInbox, ActionGrade, ContentSend, ContentDrafts, ActionInfo}
 
   val component = ReactComponentB[Unit]("MuiListDemo")
     .render(P => {
@@ -30,9 +30,16 @@ object MuiListDemo {
                 onTouchTap         = DummyEvents.f1("onTouchTap")
 
               )("Inbox"),
-              MuiListItem(leftIcon = ActionGrade()())("Starred"),
-              MuiListItem(leftIcon = ContentSend()())("Sent Mail"),
-              MuiListItem(leftIcon = ContentDrafts()())("Drafts")
+              MuiListItem(primaryText = "Starred",   leftIcon = ActionGrade()())(),
+              MuiListItem(primaryText = "Sent Mail", leftIcon = ContentSend()())(),
+              MuiListItem(primaryText = "Drafts",    leftIcon = ContentDrafts()())()
+            ),
+            MuiListDivider()(),
+            MuiList()(
+              MuiListItem(primaryText = "All mail",  rightIcon = ActionInfo()())(),
+              MuiListItem(primaryText = "Trash",     rightIcon = ActionInfo()())(),
+              MuiListItem(primaryText = "Spam",      rightIcon = ActionInfo()())(),
+              MuiListItem(primaryText = "Follow up", rightIcon = ActionInfo()())()
             )
           )
         )

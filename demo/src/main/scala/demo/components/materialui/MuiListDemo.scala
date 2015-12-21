@@ -3,8 +3,7 @@ package components
 package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.materialui.{MuiList, MuiListItem}
-import demo.components.materialui.svgicons._
+import chandu0101.scalajs.react.components.materialui.{Mui, MuiList, MuiListItem}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
@@ -13,6 +12,8 @@ object MuiListDemo {
 
   // EXAMPLE:START
 
+  import Mui.SvgIcons.{ContentInbox, ActionGrade, ContentSend, ContentDrafts}
+
   val component = ReactComponentB[Unit]("MuiListDemo")
     .render(P => {
       <.div(
@@ -20,7 +21,7 @@ object MuiListDemo {
           MobileTearSheet(
             MuiList()(
               MuiListItem(
-                leftIcon           = ContentInbox(),
+                leftIcon           = ContentInbox()(),
                 onKeyboardFocus    = DummyEvents.f1("onKeyboardFocus"),
                 onMouseLeave       = DummyEvents.f1("onMouseLeave"),
                 onMouseEnter       = DummyEvents.f1("onMouseEnter"),
@@ -29,9 +30,9 @@ object MuiListDemo {
                 onTouchTap         = DummyEvents.f1("onTouchTap")
 
               )("Inbox"),
-              MuiListItem(leftIcon = ActionGrade())("Starred"),
-              MuiListItem(leftIcon = ContentSend())("Sent Mail"),
-              MuiListItem(leftIcon = ContentDrafts())("Drafts")
+              MuiListItem(leftIcon = ActionGrade()())("Starred"),
+              MuiListItem(leftIcon = ContentSend()())("Sent Mail"),
+              MuiListItem(leftIcon = ContentDrafts()())("Drafts")
             )
           )
         )

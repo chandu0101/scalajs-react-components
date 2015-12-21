@@ -54,7 +54,7 @@ Unfortunately, if you supply a `String` here, scala will only run one implicit c
 ```scala
 MuiMenu(value = "value": String | js.Array[String])
 ```
-This will be [fixed](https://github.com/scala-js/scala-js/pull/2069]) in scala-js version 0.6.6
+This will be [fixed](https://github.com/scala-js/scala-js/pull/2069) in scala-js version 0.6.6
 
 #### Material-ui has two incompatible menu implementations
 
@@ -65,7 +65,7 @@ The new menu is the one documented on [material-ui](http://www.material-ui.com),
  if you `require('material-ui'')` you will get the old.
 
 We changed to the new version for scalajs-react-components 0.2.
-Check [index.js](demo/bundles/index.js) to see how to specify the new one.
+Check [index.js](demo/bundles/material-ui.js) to see how to specify the new one.
 
 This problem will be gone in material-ui 0.14.
 

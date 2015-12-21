@@ -13,6 +13,8 @@ object MuiRouteModule {
 
   case object AppBar extends LeftRoute("AppBar", "appbar", () => MuiAppBarDemo())
 
+  case object Avatar extends LeftRoute("Avatar", "avatar", () => MuiAvatarDemo())
+
   case object Tabs extends LeftRoute("Tabs", "tabs", () => MuiTabsDemo())
 
   case object Buttons extends LeftRoute("Buttons", "buttons", () => MuiButtonsDemo())
@@ -56,6 +58,7 @@ object MuiRouteModule {
   val menu: List[LeftRoute] = List(Info,
 //    Updates,
     AppBar,
+    Avatar,
     Buttons,
     DatePicker,
     Dialog,

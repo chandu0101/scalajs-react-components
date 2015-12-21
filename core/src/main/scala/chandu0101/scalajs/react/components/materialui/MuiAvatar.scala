@@ -23,9 +23,10 @@ case class MuiAvatar(
 	style:           js.UndefOr[CssProperties]   = js.undefined)
 {
 
-  def apply(character: js.UndefOr[Char] = js.undefined) = {
+  def apply(children: js.UndefOr[ReactNode] = js.undefined) = {
     val props = JSMacro[MuiAvatar](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Avatar)
-    f(props, character.map(_.toString)).asInstanceOf[ReactComponentU_]
+    f(props, children).asInstanceOf[ReactComponentU_]
   }
 }
+    

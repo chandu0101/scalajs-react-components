@@ -4,7 +4,7 @@ package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
-import japgolly.scalajs.react.ReactComponentB
+import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
@@ -15,22 +15,34 @@ object MuiDropDownMenuDemo {
 
   // EXAMPLE:START
 
-  val component = ReactComponentB[Unit]("MuiDropDownMenuDemo")
-    .render(P => {
-      val menuItems = js.Array(
-        MuiDropDownMenuItem(payload = "1", text = "Never"),
-        MuiDropDownMenuItem(payload = "2", text = "Every Night"),
-        MuiDropDownMenuItem(payload = "3", text = "Weeknights"),
-        MuiDropDownMenuItem(payload = "4", text = "Weekends"),
-        MuiDropDownMenuItem(payload = "5", text = "Weekly")
-      )
+  val items = Seq(
+    ("1", "Never"),
+    ("2", "Every Night"),
+    ("3", "Weeknights"),
+    ("4", "Weekends"),
+    ("5", "Weekly")
+  )
+
+  case class Backend($: BackendScope[Unit, js.Any]){
+    val choose: (ReactEventI, Int, js.Any) => Callback =
+      (e, idx, value) => $.setState(value) >> Callback.info(s"idx: $idx, value: $value")
+
+    def render(chosen: js.Any) =
       <.div(
         CodeExample(code, "MuiDropDownMenu")(
-          MuiDropDownMenu(menuItems = menuItems,
-            onChange = DummyEvents.f3("onChange"))()
+          MuiDropDownMenu(
+            onChange = choose, value = chosen)(
+            items map {
+              case (value, text) => MuiMenuItem(value = value, primaryText = text)()
+            } :_*
+          )
         )
       )
-    }).buildU
+  }
+  val component = ReactComponentB[Unit]("MuiDropDownMenuDemo")
+    .initialState[js.Any](items.head._1)
+    .renderBackend[Backend]
+    .buildU
 
   // EXAMPLE:END
 

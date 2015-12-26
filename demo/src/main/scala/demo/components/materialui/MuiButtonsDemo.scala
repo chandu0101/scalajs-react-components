@@ -39,7 +39,6 @@ object MuiButtonsDemo {
               <.div(Style.content,
                 MuiFlatButton(
                   label = "Default",
-                  onClick         = DummyEvents.f1("onClick"),
                   onBlur          = DummyEvents.f1("onBlur"),
                   onFocus         = DummyEvents.f1("onFocus"),
                   onKeyboardFocus = DummyEvents.f1("onKeyboardFocus"),

@@ -34,13 +34,11 @@ object MuiSelectFieldDemo {
     def render(S: State) =
       CodeExample(code, "MuiSelectField")(
         MuiSelectField(
-          menuItems = menuItems,
-          onChange = onChange,
+          menuItems     = menuItems,
+          onChange      = onChange,
           selectedIndex = S.selected,
-          onBlur         = DummyEvents.f1("onBlur"),
-          onFocus        = DummyEvents.f1("onFocus"),
-          onEnterKeyDown = DummyEvents.f1("onEnterKeyDown"),
-          onKeyDown      = DummyEvents.f1("onKeyDown")
+          onBlur        = DummyEvents.f1("onBlur"),
+          onFocus       = DummyEvents.f1("onFocus")
         )()
       )
   }

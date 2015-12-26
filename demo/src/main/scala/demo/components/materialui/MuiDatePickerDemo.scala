@@ -3,8 +3,8 @@ package components
 package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.materialui.{MuiDatePicker, MuiDatePickerMode}
-import japgolly.scalajs.react.ReactComponentB
+import chandu0101.scalajs.react.components.materialui._
+import japgolly.scalajs.react.{ReactNode, ReactComponentB}
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 object MuiDatePickerDemo {
@@ -22,7 +22,10 @@ object MuiDatePickerDemo {
             onFocus    = DummyEvents.f1("onFocus"),
             onShow     = DummyEvents.f0("onShow"),
             onTouchTap = DummyEvents.f1("onTouchTap"))(),
-          MuiDatePicker(hintText = "Landscape Dialog", mode = MuiDatePickerMode.LANDSCAPE)()
+          MuiDatePicker(
+            hintText = "Landscape Dialog",
+            mode = PortraitLandscape.landscape
+          )()
         )
       )
     }).buildU

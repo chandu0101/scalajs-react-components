@@ -3,7 +3,7 @@ package components
 package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.materialui.{MuiPaper, MuiZDepth}
+import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
@@ -36,21 +36,21 @@ object MuiPaperDemo {
       <.div(
         CodeExample(code, "MuiPaper")(
           <.div(Style.paperContainer,
-            MuiPaper(zDepth = MuiZDepth._1)(<.p("zDepth = 1")),
-            MuiPaper(zDepth = MuiZDepth._2)(<.p("zDepth = 2")),
-            MuiPaper(zDepth = MuiZDepth._3)(<.p("zDepth = 3")),
-            MuiPaper(zDepth = MuiZDepth._4)(<.p("zDepth = 4")),
-            MuiPaper(zDepth = MuiZDepth._5)(<.p("zDepth = 5")),
-            MuiPaper(zDepth = MuiZDepth._1, rounded = false)(<.p("rounded = false")),
-            MuiPaper(zDepth = MuiZDepth._2, rounded = false)(<.p("rounded = false")),
-            MuiPaper(zDepth = MuiZDepth._3, rounded = false)(<.p("rounded = false")),
-            MuiPaper(zDepth = MuiZDepth._4, rounded = false)(<.p("rounded = false")),
-            MuiPaper(zDepth = MuiZDepth._5, rounded = false)(<.p("rounded = false")),
-            MuiPaper(zDepth = MuiZDepth._1, circle = true)(<.p("circle = true")),
-            MuiPaper(zDepth = MuiZDepth._2, circle = true)(<.p("circle = true")),
-            MuiPaper(zDepth = MuiZDepth._3, circle = true)(<.p("circle = true")),
-            MuiPaper(zDepth = MuiZDepth._4, circle = true)(<.p("circle = true")),
-            MuiPaper(zDepth = MuiZDepth._5, circle = true)(<.p("circle = true"))
+            MuiPaper(zDepth = ZDepth._1)(<.p("zDepth = 1")),
+            MuiPaper(zDepth = ZDepth._2)(<.p("zDepth = 2")),
+            MuiPaper(zDepth = ZDepth._3)(<.p("zDepth = 3")),
+            MuiPaper(zDepth = ZDepth._4)(<.p("zDepth = 4")),
+            MuiPaper(zDepth = ZDepth._5)(<.p("zDepth = 5")),
+            MuiPaper(zDepth = ZDepth._1, rounded = false)(<.p("rounded = false")),
+            MuiPaper(zDepth = ZDepth._2, rounded = false)(<.p("rounded = false")),
+            MuiPaper(zDepth = ZDepth._3, rounded = false)(<.p("rounded = false")),
+            MuiPaper(zDepth = ZDepth._4, rounded = false)(<.p("rounded = false")),
+            MuiPaper(zDepth = ZDepth._5, rounded = false)(<.p("rounded = false")),
+            MuiPaper(zDepth = ZDepth._1, circle = true)(<.p("circle = true")),
+            MuiPaper(zDepth = ZDepth._2, circle = true)(<.p("circle = true")),
+            MuiPaper(zDepth = ZDepth._3, circle = true)(<.p("circle = true")),
+            MuiPaper(zDepth = ZDepth._4, circle = true)(<.p("circle = true")),
+            MuiPaper(zDepth = ZDepth._5, circle = true)(<.p("circle = true"))
           )
         )
       )

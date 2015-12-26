@@ -9,7 +9,7 @@ object Build extends Build {
   val Scala211 = "2.11.7"
 
   val scalajsReactVersion = "0.10.3"
-  val scalaCSSVersion = "0.3.1"
+  val scalaCSSVersion = "0.3.2"
 
   type PE = Project => Project
 

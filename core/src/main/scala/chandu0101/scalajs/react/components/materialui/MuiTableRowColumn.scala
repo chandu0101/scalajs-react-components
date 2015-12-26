@@ -1,28 +1,38 @@
-
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-  
+
+/**
+ * This file is generated - submit issues instead of PR against it
+ */
+    
 case class MuiTableRowColumn(
-	key:          js.UndefOr[String]                           = js.undefined,
-	ref:          js.UndefOr[String]                           = js.undefined,
-	/*  Number to identify the header row. This property is automatically populated when used with TableHeader.*/
-	columnNumber: js.UndefOr[Int]                              = js.undefined,
-	/* default: false: If true, this column responds to hover events.*/
-	hoverable:    js.UndefOr[Boolean]                          = js.undefined,
-	/*  Override the inline-styles of the table row column's root element.*/
-	style:        js.UndefOr[CssProperties]                    = js.undefined,
-	onClick:      js.UndefOr[(ReactEventH, Int) => Callback]   = js.undefined,
-	onHover:      js.UndefOr[(ReactEventH, Int) => Callback]   = js.undefined,
-	onHoverExit:  js.UndefOr[(ReactEventH, Int) => Callback]   = js.undefined)
-{
+  key:          js.UndefOr[String]                         = js.undefined,
+  ref:          js.UndefOr[String]                         = js.undefined,
+  /* The css class name of the root element.*/
+  className:    js.UndefOr[String]                         = js.undefined,
+  /* Number to identify the header row. This property is automatically populated when used with TableHeader.*/
+  columnNumber: js.UndefOr[Int]                            = js.undefined,
+  /* default: false: If true, this column responds to hover events.*/
+  hoverable:    js.UndefOr[Boolean]                        = js.undefined,
+  onClick:      js.UndefOr[(ReactEventH, Int) => Callback] = js.undefined,
+  onHover:      js.UndefOr[(ReactEventH, Int) => Callback] = js.undefined,
+  onHoverExit:  js.UndefOr[(ReactEventH, Int) => Callback] = js.undefined,
+  /* Override the inline-styles of the root element.*/
+  style:        js.UndefOr[CssProperties]                  = js.undefined){
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiTableRowColumn](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.TableRowColumn)
-    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    if (children.isEmpty)
+      f(props).asInstanceOf[ReactComponentU_]
+    else if (children.size == 1)
+      f(props, children.head).asInstanceOf[ReactComponentU_]
+    else
+      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }

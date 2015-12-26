@@ -1,17 +1,19 @@
-
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-  
+
+/**
+ * This file is generated - submit issues instead of PR against it
+ */
+    
+@deprecated
 case class MuiListDivider(
-	key:   js.UndefOr[String]          = js.undefined,
-	ref:   js.UndefOr[String]          = js.undefined,
-	inset: js.UndefOr[Boolean]         = js.undefined,
-	style: js.UndefOr[CssProperties]   = js.undefined)
-{
+  key: js.UndefOr[String] = js.undefined,
+  ref: js.UndefOr[String] = js.undefined){
 
   def apply() = {
     val props = JSMacro[MuiListDivider](this)
@@ -19,4 +21,4 @@ case class MuiListDivider(
     f(props).asInstanceOf[ReactComponentU_]
   }
 }
-    
+        

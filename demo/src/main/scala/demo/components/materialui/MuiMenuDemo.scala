@@ -49,29 +49,29 @@ object MuiMenuDemo {
 
     def renderOpen(S: State) =
       <.div(
-        MuiFlatButton(label = "close menu", onClick = toggleOpen)(),
+        MuiFlatButton(label = "close menu", onTouchTap = toggleOpen)(),
         MuiMenu(
           desktop        = true,
           width          = 320,
           value          = S.multiple.toJsArray,
           multiple       = true,
-          openDirection  = MuiMenuOpenDirection.BOTTOM_RIGHT,
+          openDirection  = Corners.bottom_right,
           onItemTouchTap = onTouchTap,
           onKeyDown      = DummyEvents.f1("onKeyDown"),
           onEscKeyDown   = toggleOpen
         )(
-          MuiMenuItem(primaryText = "Bold", value = "bold", checked = true, secondaryText = "&#8984;B")(),
-          MuiMenuItem(primaryText = "Italic", value = "italic", secondaryText = "&#8984;I")(),
-          MuiMenuItem(primaryText = "Underline", value = "under", secondaryText = "&#8984;U")(),
+          MuiMenuItem(primaryText = "Bold",          value = "bold", checked = true, secondaryText = "⌘B")(),
+          MuiMenuItem(primaryText = "Italic",        value = "italic", secondaryText = "⌘I")(),
+          MuiMenuItem(primaryText = "Underline",     value = "under", secondaryText = "⌘U")(),
           MuiMenuItem(primaryText = "Strikethrough", value = "strike", secondaryText = "Alt+Shift+5")(),
-          MuiMenuItem(primaryText = "Superscript", value = "super", secondaryText = "&#8984;.")(),
-          MuiMenuItem(primaryText = "Subscript", value = "sub", secondaryText = "&#8984;,")(),
-          MuiMenuDivider()(),
-          MuiMenuItem(primaryText = "Align", value = "align")()
+          MuiMenuItem(primaryText = "Superscript",   value = "super", secondaryText = "⌘.")(),
+          MuiMenuItem(primaryText = "Subscript",     value = "sub", secondaryText = "⌘,")(),
+          MuiDivider()(),
+          MuiMenuItem(value = "align")("Align")
         )
       )
     def renderClosed(S: State) =
-      MuiFlatButton(label = "open menu", onClick = toggleOpen)()
+      MuiFlatButton(label = "open menu", onTouchTap = toggleOpen)()
 
     def render(S: State) =
       CodeExample(code, "MuiMenu")(

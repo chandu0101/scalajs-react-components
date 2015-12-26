@@ -15,7 +15,7 @@ Adding types to javascript is a lot of guesswork, and we're certain to have gott
 ### Wrappers for javascript components:
 These components require you to provide javascript yourself.
 
-- Material-ui 0.13.4
+- Material-ui 0.14.0
 - Elemental-ui 0.5.4
 - Google maps (downloads js directly from google)
 - React GeomIcon (react-geomicons: 2.0.4)
@@ -59,19 +59,6 @@ This will be [fixed](https://github.com/scala-js/scala-js/pull/2069) in scala-js
 
 Another related issue is if a prop has type `js.UndefOr[ReactNode]` and you pass
 a `String`, you need to import `materialui.StringToReactNodeU` to make that work.
-
-#### Material-ui has two incompatible menu implementations
-
-old: `require('material-ui/menu/menu')`
-new: `require('material-ui/menus/menu')`
-
-The new menu is the one documented on [material-ui](http://www.material-ui.com), while
- if you `require('material-ui')` you will get the old.
-
-We changed to the new version for scalajs-react-components 0.2.0.
-Check [material-ui.js](demo/bundles/material-ui.js) to see how to specify the new one.
-
-This problem will be gone in material-ui 0.14.
 
 ## Setup
 

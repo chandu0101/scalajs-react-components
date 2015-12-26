@@ -28,10 +28,11 @@ object MuiSnackbarDemo {
           message = "Event added to your calendar",
           action = "undo",
           ref = snackBarRef.set,
-          onActionTouchTap = handleAction
+          onActionTouchTap = handleAction,
+          open = true
         )(),
         MuiRaisedButton(
-          label = " Snack Bar Demo",
+          label = "Snack Bar Demo",
           onTouchTap = buttonClick
         )()
       )

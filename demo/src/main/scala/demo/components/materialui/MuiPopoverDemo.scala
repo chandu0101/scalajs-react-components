@@ -44,16 +44,16 @@ object MuiPopoverDemo {
     val hide: Callback =
       $.modState(_.copy(open = false))
 
-    val anchorH = OriginChoice(MuiPopoverHorizontal.values, "Change anchor horizontal")(
+    val anchorH = OriginChoice(Horizontal.values, "Change anchor horizontal")(
       t => $.modState(s => s.copy(anchor = s.anchor.copy(horizontal = t))), _.anchor.horizontal, _.value
     )
-    val anchorV = OriginChoice(MuiPopoverVertical.values, "Change anchor vertical")(
+    val anchorV = OriginChoice(Vertical.values, "Change anchor vertical")(
       t => $.modState(s => s.copy(anchor = s.anchor.copy(vertical = t))), _.anchor.vertical, _.value
     )
-    val targetH = OriginChoice(MuiPopoverHorizontal.values, "Change target horizontal")(
+    val targetH = OriginChoice(Horizontal.values, "Change target horizontal")(
       t => $.modState(s => s.copy(target = s.target.copy(horizontal = t))), _.target.horizontal, _.value
     )
-    val targetV = OriginChoice(MuiPopoverVertical.values, "Change target vertical")(
+    val targetV = OriginChoice(Vertical.values, "Change target vertical")(
       t => $.modState(s => s.copy(target = s.target.copy(vertical = t))), _.target.vertical, _.value
     )
 
@@ -65,7 +65,7 @@ object MuiPopoverDemo {
           <.div(
             <.div(
               ^.ref := ref,
-              MuiRaisedButton(onClick = show, label = "Click on me to show a popover")()
+              MuiRaisedButton(onTouchTap = show, label = "Click on me to show a popover")()
             ),
 
             originChoices.map(_.menu(S)),
@@ -93,8 +93,8 @@ object MuiPopoverDemo {
   val component = ReactComponentB[Unit]("MuiPopoverDemo")
     .initialState(State(
       open = false,
-      target = Origin(MuiPopoverVertical.top, MuiPopoverHorizontal.left),
-      anchor = Origin(MuiPopoverVertical.bottom, MuiPopoverHorizontal.left)
+      target = Origin(Vertical.top,    Horizontal.left),
+      anchor = Origin(Vertical.bottom, Horizontal.left)
     ))
     .renderBackend[Backend]
     .buildU

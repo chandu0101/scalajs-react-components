@@ -252,6 +252,7 @@ object ReactTable {
   val component = ReactComponentB[Props]("ReactTable")
     .initialState_P(p => State(filterText = "", offset = 0, p.rowsPerPage, p.data, Map()))
     .renderBackend[Backend]
+    .componentWillReceiveProps(e => Callback.ifTrue(e.$.props.data != e.nextProps.data, e.$.backend.onTextChange(e.nextProps)(e.$.state.filterText)))
     .build
 
   case class Props(data: Vector[Model],

@@ -13,15 +13,17 @@ import scala.scalajs.js.`|`
 case class MuiGridList(
   key:        js.UndefOr[String]        = js.undefined,
   ref:        js.UndefOr[String]        = js.undefined,
-  /* Number of px for one cell height. Defaults to 180.*/
+  /* Number of px for one cell height.*/
   cellHeight: js.UndefOr[Int]           = js.undefined,
-  /* Number of columns. Defaults to 2.*/
+  /* Number of columns.*/
   cols:       js.UndefOr[Int]           = js.undefined,
-  /* Number of px for the padding/spacing between items. Defaults to 4.*/
+  /* Number of px for the padding/spacing between items.*/
   padding:    js.UndefOr[Int]           = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:      js.UndefOr[CssProperties] = js.undefined){
-
+  /**
+   * @param children Grid Tiles that will be in Grid List.
+   */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiGridList](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.GridList)

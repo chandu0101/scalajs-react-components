@@ -13,6 +13,9 @@ import scala.scalajs.js.`|`
 case class MuiSelectField(
   key:                    js.UndefOr[String]                                 = js.undefined,
   ref:                    js.UndefOr[String]                                 = js.undefined,
+  /* The width will automatically be set according to the
+items inside the menu. To control this width in css
+instead, set this prop to `false`.*/
   autoWidth:              js.UndefOr[Boolean]                                = js.undefined,
   /* Disables the select field if set to true.*/
   disabled:               js.UndefOr[Boolean]                                = js.undefined,
@@ -26,35 +29,42 @@ case class MuiSelectField(
   floatingLabelText:      js.UndefOr[ReactNode]                              = js.undefined,
   /* If true, the field receives the property width 100%.*/
   fullWidth:              js.UndefOr[Boolean]                                = js.undefined,
+  /* The style object to use to override hint styles.*/
+  hintStyle:              js.UndefOr[CssProperties]                          = js.undefined,
   /* The hint content to display.*/
   hintText:               js.UndefOr[ReactNode]                              = js.undefined,
-  /* Overrides the styles of SelectField's icon element.*/
+  /* Overrides the styles of the icon element.*/
   iconStyle:              js.UndefOr[CssProperties]                          = js.undefined,
-  /* default: text: DropDownMenu will use text as default value, with this property you can choose another name.*/
+  /* `SelectField` will use text as default value,
+with this property you can choose another name.*/
+  @deprecated("to promote composability.")
   labelMember:            js.UndefOr[String]                                 = js.undefined,
-  /* DEPRECATE*/
+  /* Overrides the styles of label when the `SelectField` is inactive.*/
   labelStyle:             js.UndefOr[CssProperties]                          = js.undefined,
-  /* DEPRECATE*/
+  /* JSON data representing all menu items in the dropdown.*/
+  @deprecated("to promote composability.")
   menuItems:              js.UndefOr[js.Array[MuiSelectItem]]                = js.undefined,
-  /* DEPRECATE*/
+  /* Callback function that is fired when the `SelectField` loses focus.*/
   onBlur:                 js.UndefOr[ReactEventH => Callback]                = js.undefined,
-  /* function(event, selectedIndex): Callback function that is fired when the selectfield's value changes.*/
+  /* Callback function that is fired when the value changes.*/
   onChange:               js.UndefOr[(ReactEventI, Int, js.Any) => Callback] = js.undefined,
-  /* function(event): Callback function that is fired when the selectfield gains focus.*/
+  /* Callback function that is fired when the `SelectField` gains focus.*/
   onFocus:                js.UndefOr[ReactFocusEventH => Callback]           = js.undefined,
-  /* The style object to use to override the drop-down menu*/
+  /* The style object to use to override the `DropDownMenu`.*/
   selectFieldRoot:        js.UndefOr[js.Any]                                 = js.undefined,
-  /* default: 0: Index of the item selected.*/
+  /* Must be changed!
+Index of the item selected.*/
+  @deprecated("with menuItems.")
   selectedIndex:          js.UndefOr[Int]                                    = js.undefined,
-  /* DEPRECATE
-Override the inline-styles of the root element.*/
+  /* Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties]                          = js.undefined,
-  /* Override the inline-styles of the SelectField's underline element when disabled.*/
+  /* Override the inline-styles of the underline element when disabled.*/
   underlineDisabledStyle: js.UndefOr[CssProperties]                          = js.undefined,
-  /* Override the inline-styles of the SelectField's underline element when focussed.*/
+  /* Override the inline-styles of the underline element when focused.*/
   underlineFocusStyle:    js.UndefOr[CssProperties]                          = js.undefined,
-  /* Overrides the styles of SelectField's underline.*/
+  /* Overrides the styles of the underline element.*/
   underlineStyle:         js.UndefOr[CssProperties]                          = js.undefined,
+  /* The value that is currently selected.*/
   value:                  js.UndefOr[js.Any]                                 = js.undefined,
   /* The css class name of the root element.
   (Passed on to DropDownMenu)*/
@@ -81,7 +91,12 @@ the name of the item.
   (Passed on to DropDownMenu)*/
   @deprecated("Instead, use composability.")
   valueMember:            js.UndefOr[String]                                 = js.undefined){
-
+  /**
+   * @param children The `MenuItem` elements to populate the `Menu` with.
+If the MenuItems have the prop `label` that value will
+be used to render the representation of that
+item within the field.
+   */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiSelectField](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.SelectField)

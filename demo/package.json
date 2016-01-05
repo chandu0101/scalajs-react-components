@@ -28,7 +28,7 @@
     "webpack-dev-server": "^1.9.0"
   },
   "dependencies": {
-    "material-ui": "v0.14.0",
+    "material-ui": "v0.14.1",
     "elemental": "v0.5.4",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",

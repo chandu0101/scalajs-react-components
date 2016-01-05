@@ -60,6 +60,7 @@ Clicking outside the `Dialog` will not trigger the `onRequestClose`.*/
   /* Overrides the inline-styles of the title's root container element.*/
   titleStyle:                js.UndefOr[CssProperties]       = js.undefined,
   /* Changes the width of the `Dialog`.*/
+  @deprecated("Use the contentStyle.")
   width:                     js.UndefOr[Int]                 = js.undefined){
   /**
    * @param children The contents of the `Dialog`.

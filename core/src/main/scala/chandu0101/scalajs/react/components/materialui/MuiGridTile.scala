@@ -16,18 +16,17 @@ case class MuiGridTile(
   /* An IconButton element to be used as secondary action target
 (primary action target is the tile itself).*/
   actionIcon:      js.UndefOr[ReactElement]    = js.undefined,
-  /* Position of secondary action IconButton. Defaults to "right".*/
+  /* Position of secondary action IconButton.*/
   actionPosition:  js.UndefOr[LeftRight]       = js.undefined,
-  /* Width of the tile in number of grid cells. Defaults to 1.*/
+  /* Width of the tile in number of grid cells.*/
   cols:            js.UndefOr[Int]             = js.undefined,
   /* Either a string used as tag name for the tile root element, or a ReactComponent.
-Defaults to "div".
-This is useful when you have, for example,
-a custom implementation of a navigation link (that knows about your routes)
-and you want to use it as primary tile action. In case you pass a ReactComponent,
-please make sure that it passes all props, accepts styles overrides and render it's children.*/
+This is useful when you have, for example, a custom implementation of
+a navigation link (that knowsabout your routes) and you want to use it as primary tile action.
+In case you pass a ReactComponent, please make sure that it passes all props,
+accepts styles overrides and render it's children.*/
   rootClass:       js.UndefOr[String | js.Any] = js.undefined,
-  /* Height of the tile in number of grid cells. Defaults to 1.*/
+  /* Height of the tile in number of grid cells.*/
   rows:            js.UndefOr[Int]             = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:           js.UndefOr[CssProperties]   = js.undefined,
@@ -36,16 +35,14 @@ please make sure that it passes all props, accepts styles overrides and render i
   /* Title to be displayed on tile.*/
   title:           js.UndefOr[ReactNode]       = js.undefined,
   /* Style used for title bar background.
-Defaults to "rgba(0, 0, 0, 0.4)".
 Useful for setting custom gradients for example*/
   titleBackground: js.UndefOr[String]          = js.undefined,
-  /* Position of the title bar (container of title, subtitle and action icon).
-Defaults to "bottom".*/
+  /* Position of the title bar (container of title, subtitle and action icon).*/
   titlePosition:   js.UndefOr[TopBottom]       = js.undefined){
   /**
-   * @param children required: Theoretically you can pass any node as children, but the main use case is to pass an img,
-in which case GridTile takes care of making the image "cover" available space
-(similar to background-size: cover or to object-fit:cover)
+   * @param children Theoretically you can pass any node as children, but the main use case is to pass an img,
+in whichcase GridTile takes care of making the image "cover" available space
+(similar to background-size: cover or to object-fit:cover).
    */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiGridTile](this)

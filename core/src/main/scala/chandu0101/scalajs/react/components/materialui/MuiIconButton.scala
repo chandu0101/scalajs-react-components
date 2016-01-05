@@ -15,30 +15,39 @@ case class MuiIconButton(
   ref:             js.UndefOr[String]                          = js.undefined,
   /* The css class name of the root element.*/
   className:       js.UndefOr[String]                          = js.undefined,
+  /* Disables the icon button.*/
   disabled:        js.UndefOr[Boolean]                         = js.undefined,
-  /* If you are using a stylesheet for your icons, enter the class name for the icon to be used here.*/
+  /* If you are using a stylesheet for your
+icons, enter the class name for the icon to be used here.*/
   iconClassName:   js.UndefOr[String]                          = js.undefined,
   /* Overrides the inline-styles of the icon element.*/
   iconStyle:       js.UndefOr[CssProperties]                   = js.undefined,
-  /* IconButton.onBlur(e): Callback function for when the component loses focus.*/
+  /* Callback function for when the component loses focus.*/
   onBlur:          js.UndefOr[ReactEventH => Callback]         = js.undefined,
-  /* IconButton.onFocus(e): Callback function for when the component gains focus.*/
+  /* Callback function for when the component gains focus.*/
   onFocus:         js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
+  /* Callback function for when the component
+receives keyboard focus.*/
   onKeyboardFocus: js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
+  /* Callback function for when mouse enters element.*/
   onMouseEnter:    js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Callback function for when mouse leaves element.*/
   onMouseLeave:    js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:           js.UndefOr[CssProperties]                   = js.undefined,
   /* The tooltip text to show.*/
   tooltip:         js.UndefOr[ReactNode]                       = js.undefined,
-  /* default: bottom-center: Allows the tooltip to be viewed with different alignments:
-"bottom-center", "top-center", "bottom-right", "top-right", "bottom-left" and "top-left"*/
+  /* Allows the tooltip to be viewed with different
+alignments: "bottom-center", "top-center",
+"bottom-right", "top-right", "bottom-left" and "top-left".*/
   tooltipPosition: js.UndefOr[CornersAndCenter]                = js.undefined,
-  /* Allows modification of tooltip styles.*/
+  /* Styles prop passed down to the tooltip.*/
   tooltipStyles:   js.UndefOr[CssProperties]                   = js.undefined,
-  /* default: false: If true, this component will render the touch sized tooltip.*/
+  /* Prop for tooltip to make it larger for mobile.*/
   touch:           js.UndefOr[Boolean]                         = js.undefined){
-
+  /**
+   * @param children Can be used to pass a font icon as the icon for the button.
+   */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiIconButton](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.IconButton)

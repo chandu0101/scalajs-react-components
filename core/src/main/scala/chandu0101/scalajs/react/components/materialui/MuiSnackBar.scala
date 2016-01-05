@@ -32,7 +32,7 @@ If a snackbar is dismissed before the timer expires, the timer will be cleared.*
   @deprecated("Instead, use the open property to control the component.")
   onDismiss:        js.UndefOr[Callback]                     = js.undefined,
   /* Fired when the `Snackbar` is requested to be closed by a click outside or when the time runs out.*/
-  onRequestClose:   js.UndefOr[String => Callback]           = js.undefined,
+  onRequestClose:   String => Callback,
   /* Fired when the `Snackbar` is shown.*/
   @deprecated("Instead, use the open property to control the component.")
   onShow:           js.UndefOr[Callback]                     = js.undefined,

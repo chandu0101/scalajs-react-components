@@ -25,14 +25,13 @@ object ComponentCredits {
        )
 
     }
-
   }
 
   val component = ReactComponentB[Props]("ComponentCredits")
     .initialState(State(List()))
     .renderBackend[Backend].componentDidMount(
     scope => Callback{
-      val url = s"https://api.github.com/repos/chandu0101/scalajs-react-components/commits?path=${scope.props.filePath }"
+      val url = s"https://api.github.com/repos/chandu0101/scalajs-react-components/commits?path=${scope.props.filePath}"
       Ajax.get(url).onSuccess {
         case xhr =>
           if (xhr.status == 200) {

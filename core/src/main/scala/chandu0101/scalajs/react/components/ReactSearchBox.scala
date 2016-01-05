@@ -15,7 +15,7 @@ object ReactSearchBox {
 
     val searchBox = style(marginBottom(10 px))
 
-    val input = style(border.none,
+    val input = style(
       fontSize(13 px),
       fontWeight._300,
       padding(3 px),

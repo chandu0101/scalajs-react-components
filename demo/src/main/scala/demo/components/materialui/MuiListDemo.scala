@@ -34,7 +34,7 @@ object MuiListDemo {
               MuiListItem(primaryText = "Sent Mail", leftIcon = ContentSend()())(),
               MuiListItem(primaryText = "Drafts",    leftIcon = ContentDrafts()())()
             ),
-            MuiListDivider()(),
+            MuiDivider()(),
             MuiList()(
               MuiListItem(primaryText = "All mail",  rightIcon = ActionInfo()())(),
               MuiListItem(primaryText = "Trash",     rightIcon = ActionInfo()())(),

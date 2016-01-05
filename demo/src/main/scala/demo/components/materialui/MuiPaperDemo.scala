@@ -12,21 +12,6 @@ import scalacss.ScalaCssReact._
 
 object MuiPaperDemo {
 
-  object Style extends StyleSheet.Inline {
-
-    import dsl._
-
-    val paperContainer = style(display.flex,
-      flexWrap.wrap,
-      paddingTop(20.px),
-      unsafeChild("div")(
-        margin(15 px),
-        unsafeChild("p")(
-          padding(15 px)
-        )
-      )
-    )
-  }
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
@@ -55,6 +40,20 @@ object MuiPaperDemo {
         )
       )
     }).buildU
+
+  object Style extends StyleSheet.Inline {
+    import dsl._
+    val paperContainer = style(display.flex,
+      flexWrap.wrap,
+      paddingTop(20.px),
+      unsafeChild("div")(
+        margin(15 px),
+        unsafeChild("p")(
+          padding(15 px)
+        )
+      )
+    )
+  }
 
   // EXAMPLE:END
 

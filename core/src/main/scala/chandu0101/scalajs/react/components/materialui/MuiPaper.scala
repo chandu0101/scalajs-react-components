@@ -13,17 +13,20 @@ import scala.scalajs.js.`|`
 case class MuiPaper(
   key:               js.UndefOr[String]        = js.undefined,
   ref:               js.UndefOr[String]        = js.undefined,
-  /* default: false: Set to true to generate a circlular paper container.*/
+  /* Set to true to generate a circlular paper container.*/
   circle:            js.UndefOr[Boolean]       = js.undefined,
-  /* default: true: By default, the paper container will have a border radius. Set this to false to generate a container with sharp corners.*/
+  /* By default, the paper container will have a border radius.
+Set this to false to generate a container with sharp corners.*/
   rounded:           js.UndefOr[Boolean]       = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:             js.UndefOr[CssProperties] = js.undefined,
-  /* default: true: Set to false to disable CSS transitions for the paper element.*/
+  /* Set to false to disable CSS transitions for the paper element.*/
   transitionEnabled: js.UndefOr[Boolean]       = js.undefined,
-  /* default: 1: This number represents the zDepth of the paper shadow.*/
+  /* This number represents the zDepth of the paper shadow.*/
   zDepth:            js.UndefOr[ZDepth]        = js.undefined){
-
+  /**
+   * @param children Children passed into the paper element.
+   */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiPaper](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Paper)

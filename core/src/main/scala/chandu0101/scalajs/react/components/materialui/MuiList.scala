@@ -13,7 +13,7 @@ import scala.scalajs.js.`|`
 case class MuiList(
   key:            js.UndefOr[String]        = js.undefined,
   ref:            js.UndefOr[String]        = js.undefined,
-  /* default: false: If true, the subheader will be indented by 72px.*/
+  /* If true, the subheader will be indented by 72px.*/
   insetSubheader: js.UndefOr[Boolean]       = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:          js.UndefOr[CssProperties] = js.undefined,
@@ -21,8 +21,12 @@ case class MuiList(
   subheader:      js.UndefOr[ReactNode]     = js.undefined,
   /* The style object to override subheader styles.*/
   subheaderStyle: js.UndefOr[CssProperties] = js.undefined,
+  /* The zDepth prop passed to the Paper element inside list.*/
   zDepth:         js.UndefOr[ZDepth]        = js.undefined){
-
+  /**
+   * @param children These are usually ListItems that are passed to
+be part of the list.
+   */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiList](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.List)

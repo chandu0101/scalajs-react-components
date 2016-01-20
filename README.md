@@ -42,8 +42,30 @@ These components require you to provide javascript yourself.
 MuiRaisedButton(label = "label")()
 ```
 
-#### Bad implicit inference for optional union types:
-Some components have props with types like this:
+#### Bad implicit inference for js.UndefOr[T]
+
+Scala will only run one implicit to convert a type to another,
+ which means that in order to convert a `String` to `js.UndefOr[ReactNode]`
+ it needs to be done in two steps:
+
+(1) `String => ReactNode`
+
+(2) `ReactNode` => `js.UndefOr[ReactNode]`
+
+We provide special versions of a few such implicits in
+`chandu0101.scalajs.react.components.Implicits`.
+To use:
+```scala
+import chandu0101.scalajs.react.components.Implicits._
+```
+or to put them in scope for your whole application:
+```scala
+package object mypackage extends chandu0101.scalajs.react.components.Implicits
+```
+#### Bad implicit inference for js.| (Union)
+
+The situation is bad also with regards to scala-js unions:
+
 ```scala
 case class MuiMenu(
   ...
@@ -56,9 +78,6 @@ Unfortunately, if you supply a `String` here, scala will only run one implicit c
 MuiMenu(value = "value": String | js.Array[String])
 ```
 This will be [fixed](https://github.com/scala-js/scala-js/pull/2069) in scala-js version 0.6.6
-
-Another related issue is if a prop has type `js.UndefOr[ReactNode]` and you pass
-a `String`, you need to import `materialui.StringToReactNodeU` to make that work.
 
 ## Setup
 

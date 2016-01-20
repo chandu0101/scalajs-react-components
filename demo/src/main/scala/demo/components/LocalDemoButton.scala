@@ -35,7 +35,8 @@ object LocalDemoButton {
   class Backend(t: BackendScope[Props, State]) {
 
     def onButtonClick(P: Props)(e: ReactEventI): Callback =
-      P.onButtonClick.asCbo(e) >> e.preventDefaultCB
+      CallbackOption.liftOptionLike(P.onButtonClick).map(f => f(e)) >>
+      e.preventDefaultCB
 
     val onMouseEnter: Callback =
       t.modState(_.copy(buttonHover = true))

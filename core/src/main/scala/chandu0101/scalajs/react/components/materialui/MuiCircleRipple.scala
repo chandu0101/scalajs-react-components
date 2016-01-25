@@ -11,12 +11,14 @@ import scala.scalajs.js.`|`
  */
     
 case class MuiCircleRipple(
-  key:     js.UndefOr[String]        = js.undefined,
-  ref:     js.UndefOr[String]        = js.undefined,
-  color:   js.UndefOr[MuiColor]      = js.undefined,
-  opacity: js.UndefOr[Double]        = js.undefined,
+  key:      js.UndefOr[String]        = js.undefined,
+  ref:      js.UndefOr[String]        = js.undefined,
+  color:    js.UndefOr[MuiColor]      = js.undefined,
+  /* The material-ui theme applied to this component.*/
+  muiTheme: MuiTheme,
+  opacity:  js.UndefOr[Double]        = js.undefined,
   /* Override the inline-styles of the root element.*/
-  style:   js.UndefOr[CssProperties] = js.undefined){
+  style:    js.UndefOr[CssProperties] = js.undefined){
 
   def apply() = {
     val props = JSMacro[MuiCircleRipple](this)

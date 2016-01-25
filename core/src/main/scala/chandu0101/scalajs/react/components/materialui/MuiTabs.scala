@@ -37,7 +37,7 @@ initialSelectedIndex will revert back to default.*/
   /* Makes Tabs controllable and selects the tab whose value prop matches this prop.*/
   value:                     js.UndefOr[js.Any]                                          = js.undefined){
   /**
-   * @param children Should be used to pass Tab components.
+   * @param children Should be used to pass `Tab` components.
    */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiTabs](this)

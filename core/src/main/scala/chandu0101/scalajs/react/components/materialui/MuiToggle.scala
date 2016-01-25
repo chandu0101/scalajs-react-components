@@ -13,22 +13,31 @@ import scala.scalajs.js.`|`
 case class MuiToggle(
   key:                  js.UndefOr[String]                             = js.undefined,
   ref:                  js.UndefOr[MuiToggleM => Unit]                 = js.undefined,
-  /* default:false: The value of the toggle button. Is true when toggle has been turned on. False otherwise.*/
+  /* Determines whether the Toggle is initially turned on.*/
   defaultToggled:       js.UndefOr[Boolean]                            = js.undefined,
+  /* Will disable the toggle if true.*/
   disabled:             js.UndefOr[Boolean]                            = js.undefined,
   /* Overrides the inline-styles of the Toggle element.*/
   elementStyle:         js.UndefOr[CssProperties]                      = js.undefined,
+  /* Overrides the inline-styles of the Icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                      = js.undefined,
-  /* default:"left": Where the label will be placed next to the toggle switch. Options include "left" and "right" (case-sensitive). Default option is "left".*/
+  /* Where the label will be placed next to the toggle.*/
   labelPosition:        js.UndefOr[LeftRight]                          = js.undefined,
   /* Overrides the inline-styles of the Toggle element label.*/
   labelStyle:           js.UndefOr[CssProperties]                      = js.undefined,
   /* Callback function that is fired when the toggle switch is toggled.*/
   onToggle:             js.UndefOr[(ReactEventI, Boolean) => Callback] = js.undefined,
+  /* Override style of ripple.*/
   rippleStyle:          js.UndefOr[CssProperties]                      = js.undefined,
+  /* Override the inline-styles of the root element.*/
+  style:                js.UndefOr[CssProperties]                      = js.undefined,
+  /* Override style for thumb.*/
   thumbStyle:           js.UndefOr[CssProperties]                      = js.undefined,
+  /* Toggled if set to true.*/
   toggled:              js.UndefOr[Boolean]                            = js.undefined,
+  /* Override style for track.*/
   trackStyle:           js.UndefOr[CssProperties]                      = js.undefined,
+  /* ValueLink prop for when using controlled toggle.*/
   valueLink:            js.UndefOr[js.Any]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   checked:              js.UndefOr[Boolean]                            = js.undefined,
@@ -73,9 +82,6 @@ case class MuiToggle(
   required:             js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   rippleColor:          js.UndefOr[MuiColor]                           = js.undefined,
-  /* Override the inline-styles of the root element.
-  (Passed on to EnhancedSwitch)*/
-  style:                js.UndefOr[CssProperties]                      = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   switchElement:        js.UndefOr[ReactElement]                       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/

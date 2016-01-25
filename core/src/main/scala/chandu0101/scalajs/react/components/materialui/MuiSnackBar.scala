@@ -13,7 +13,7 @@ import scala.scalajs.js.`|`
 case class MuiSnackbar(
   key:              js.UndefOr[String]                       = js.undefined,
   ref:              js.UndefOr[MuiSnackbarM => Unit]         = js.undefined,
-  /* The name of the action on the snackbar.*/
+  /* The label for the action on the snackbar.*/
   action:           js.UndefOr[String]                       = js.undefined,
   /* The number of milliseconds to wait before automatically dismissing.
 If no value is specified the snackbar will dismiss normally.
@@ -26,7 +26,8 @@ If a snackbar is dismissed before the timer expires, the timer will be cleared.*
   className:        js.UndefOr[String]                       = js.undefined,
   /* The message to be displayed.*/
   message:          ReactNode,
-  /* Fired when the action button is touchtapped.*/
+  /* Fired when the action button is touchtapped.
+@param {object} event Action button event.*/
   onActionTouchTap: js.UndefOr[ReactTouchEventH => Callback] = js.undefined,
   /* Fired when the `Snackbar` is dismissed.*/
   @deprecated("Instead, use the open property to control the component.")
@@ -35,9 +36,9 @@ If a snackbar is dismissed before the timer expires, the timer will be cleared.*
 `autoHideDuration` timer expires.
 Typically `onRequestClose` is used to set state in the parent component, which is used to control the `Snackbar`
 `open` prop.
-`onRequestClose` is called with an additional parameter: `reason`, which can be:`"timeout"` (autoHideDuration)
-or: `"clickaway"`
-This can optionally be used to control the response to `onRequestClose`, for example ignoring `clickaway`.*/
+The `reason` parameter can optionally be used to control the response to `onRequestClose`,
+for example ignoring `clickaway`.
+@param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`*/
   onRequestClose:   String => Callback,
   /* Fired when the `Snackbar` is shown.*/
   @deprecated("Instead, use the open property to control the component.")

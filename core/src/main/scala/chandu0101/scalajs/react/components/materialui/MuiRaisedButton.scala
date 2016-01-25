@@ -21,26 +21,43 @@ case class MuiRaisedButton(
   disabled:                js.UndefOr[Boolean]                         = js.undefined,
   /* Override the background color if the button is disabled.*/
   disabledBackgroundColor: js.UndefOr[MuiColor]                        = js.undefined,
-  /* Override the label color if the button is disabled.*/
+  /* Color of the label if disabled is true.*/
   disabledLabelColor:      js.UndefOr[MuiColor]                        = js.undefined,
-  /* If true, will change the width of the button to span the full width of the parent.*/
+  /* If true, then the button will take up the full
+width of its container.*/
   fullWidth:               js.UndefOr[Boolean]                         = js.undefined,
+  /* URL to link to when button clicked if `linkButton` is set to true.*/
+  href:                    js.UndefOr[String]                          = js.undefined,
+  /* Use this property to display an icon.*/
+  icon:                    js.UndefOr[ReactNode]                       = js.undefined,
+  /* The label for the button.*/
   label:                   js.UndefOr[String]                          = js.undefined,
-  /* Override the label color. Always takes precedence unless the button is disabled.*/
+  /* The color of the label for the button.*/
   labelColor:              js.UndefOr[MuiColor]                        = js.undefined,
-  /* default: "before": Place label before or after the passed children*/
+  /* Place label before or after the passed children.*/
   labelPosition:           js.UndefOr[BeforeAfter]                     = js.undefined,
   /* Override the inline-styles of the button's label element.*/
   labelStyle:              js.UndefOr[CssProperties]                   = js.undefined,
+  /* Enables use of `href` property to provide a URL to link to if set to true.*/
+  linkButton:              js.UndefOr[Boolean]                         = js.undefined,
+  /* Callback function for when the mouse is pressed down inside this element.*/
   onMouseDown:             js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Callback function for when the mouse enters this element.*/
   onMouseEnter:            js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Callback function for when the mouse leaves this element.*/
   onMouseLeave:            js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Callback function for when the mouse is realeased
+above this element.*/
   onMouseUp:               js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Callback function for when a touchTap event ends.*/
   onTouchEnd:              js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
+  /* Callback function for when a touchTap event starts.*/
   onTouchStart:            js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
-  /* default: false: If true, the button will use the primary button colors.*/
+  /* If true, colors button according to
+primaryTextColor from the Theme.*/
   primary:                 js.UndefOr[Boolean]                         = js.undefined,
-  /* default: false: If true, the button will use the secondary button colors.*/
+  /* If true, colors button according to secondaryTextColor from the theme.
+The primary prop has precendent if set to true.*/
   secondary:               js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                   js.UndefOr[CssProperties]                   = js.undefined,
@@ -61,9 +78,6 @@ case class MuiRaisedButton(
   focusRippleOpacity:      js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:         js.UndefOr[Boolean]                         = js.undefined,
-  /* default: false: If true, an anchor element will be generated instead of a button element.
-  (Passed on to EnhancedButton)*/
-  linkButton:              js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:                  js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/
@@ -84,7 +98,15 @@ case class MuiRaisedButton(
   touchRippleOpacity:      js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   `type`:                  js.UndefOr[String]                          = js.undefined){
-
+  /**
+   * @param children This is what will be displayed inside the button.
+If a label is specified, the text within the label prop will
+be displayed. Otherwise, the component will expect children
+which will then be displayed (in our example,
+we are nesting an <input type="file" />and a span
+that acts as our label to be displayed.) This only
+applies to flat and raised buttons.
+   */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiRaisedButton](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.RaisedButton)

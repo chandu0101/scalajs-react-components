@@ -15,6 +15,8 @@ case class MuiTouchRipple(
   ref:          js.UndefOr[String]        = js.undefined,
   centerRipple: js.UndefOr[Boolean]       = js.undefined,
   color:        js.UndefOr[MuiColor]      = js.undefined,
+  /* The material-ui theme applied to this component.*/
+  muiTheme:     MuiTheme,
   opacity:      js.UndefOr[Double]        = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:        js.UndefOr[CssProperties] = js.undefined){

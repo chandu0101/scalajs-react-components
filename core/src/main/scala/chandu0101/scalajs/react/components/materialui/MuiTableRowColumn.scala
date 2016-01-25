@@ -15,12 +15,16 @@ case class MuiTableRowColumn(
   ref:          js.UndefOr[String]                         = js.undefined,
   /* The css class name of the root element.*/
   className:    js.UndefOr[String]                         = js.undefined,
-  /* Number to identify the header row. This property is automatically populated when used with TableHeader.*/
+  /* Number to identify the header row. This property
+is automatically populated when used with TableHeader.*/
   columnNumber: js.UndefOr[Int]                            = js.undefined,
-  /* default: false: If true, this column responds to hover events.*/
+  /* If true, this column responds to hover events.*/
   hoverable:    js.UndefOr[Boolean]                        = js.undefined,
+  /* Callback function for click event.*/
   onClick:      js.UndefOr[(ReactEventH, Int) => Callback] = js.undefined,
+  /* Callback function for hover event.*/
   onHover:      js.UndefOr[(ReactEventH, Int) => Callback] = js.undefined,
+  /* Callback function for hover exit event.*/
   onHoverExit:  js.UndefOr[(ReactEventH, Int) => Callback] = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:        js.UndefOr[CssProperties]                  = js.undefined){

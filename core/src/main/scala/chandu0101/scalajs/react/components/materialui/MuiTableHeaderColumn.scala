@@ -15,12 +15,15 @@ case class MuiTableHeaderColumn(
   ref:          js.UndefOr[String]                         = js.undefined,
   /* The css class name of the root element.*/
   className:    js.UndefOr[String]                         = js.undefined,
-  /* Number to identify the header row. This property is automatically  populated when used with TableHeader.*/
+  /* Number to identify the header row. This property
+is automatically populated when used with TableHeader.*/
   columnNumber: js.UndefOr[Int]                            = js.undefined,
+  /* Callback function for click event.*/
   onClick:      js.UndefOr[(ReactEventH, Int) => Callback] = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:        js.UndefOr[CssProperties]                  = js.undefined,
-  /* The string to supply to the tooltip. If not string is supplied no tooltip will be shown.*/
+  /* The string to supply to the tooltip. If not
+string is supplied no tooltip will be shown.*/
   tooltip:      js.UndefOr[String]                         = js.undefined,
   /* Additional styling that can be applied to the tooltip.*/
   tooltipStyle: js.UndefOr[CssProperties]                  = js.undefined){

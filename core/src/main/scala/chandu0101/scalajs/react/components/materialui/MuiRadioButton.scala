@@ -13,15 +13,22 @@ import scala.scalajs.js.`|`
 case class MuiRadioButton(
   key:                  js.UndefOr[String]                             = js.undefined,
   ref:                  js.UndefOr[String]                             = js.undefined,
+  /* Used internally by `RadioButtonGroup`.
+Checked if true.*/
   checked:              js.UndefOr[Boolean]                            = js.undefined,
+  /* Disabled if true.*/
   disabled:             js.UndefOr[Boolean]                            = js.undefined,
   /* Overrides the inline-styles of the icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                      = js.undefined,
-  /* default:"right": Where the label will be placed next to the radio button. Options include "left" and "right" (case-sensitive). Default option is "right".*/
+  /* Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
+Where the label will be placed next to the radio button.*/
   labelPosition:        js.UndefOr[LeftRight]                          = js.undefined,
   /* Overrides the inline-styles of the RadioButton element label.*/
   labelStyle:           js.UndefOr[CssProperties]                      = js.undefined,
+  /* Callback function for checked event.*/
   onCheck:              js.UndefOr[(ReactEventH, Boolean) => Callback] = js.undefined,
+  /* Override the inline-styles of the root element.*/
+  style:                js.UndefOr[CssProperties]                      = js.undefined,
   /* The value of our radio button component.*/
   value:                js.UndefOr[String]                             = js.undefined,
   /* The css class name of the root element.
@@ -66,9 +73,6 @@ case class MuiRadioButton(
   rippleColor:          js.UndefOr[MuiColor]                           = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   rippleStyle:          js.UndefOr[CssProperties]                      = js.undefined,
-  /* Override the inline-styles of the root element.
-  (Passed on to EnhancedSwitch)*/
-  style:                js.UndefOr[CssProperties]                      = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   switchElement:        js.UndefOr[ReactElement]                       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/

@@ -37,13 +37,13 @@ app bar such as an SvgIcon.*/
   /* Determines whether or not to display the Menu icon next to the title.
 Setting this prop to false will hide the icon.*/
   showMenuIconButton:        js.UndefOr[Boolean]                      = js.undefined,
-  /* Override the inline-styles of the app bar's root element.*/
+  /* Override the inline-styles of the root element.*/
   style:                     js.UndefOr[CssProperties]                = js.undefined,
   /* The title to display on the app bar.*/
   title:                     js.UndefOr[ReactNode]                    = js.undefined,
   /* Override the inline-styles of the app bar's title element.*/
   titleStyle:                js.UndefOr[CssProperties]                = js.undefined,
-  /* The zDepth of the app bar.
+  /* The zDepth of the component.
 The shadow of the app bar is also dependent on this property.*/
   zDepth:                    js.UndefOr[ZDepth]                       = js.undefined){
   /**

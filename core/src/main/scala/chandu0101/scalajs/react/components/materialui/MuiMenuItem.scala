@@ -67,6 +67,9 @@ rightIcon/Button has been specified.
 This property is automatically managed so modify at your own risk.
   (Passed on to ListItem)*/
   nestedLevel:                 js.UndefOr[Int]                             = js.undefined,
+  /* Override the inline-styles of the nestedItems NestedList.
+  (Passed on to ListItem)*/
+  nestedListStyle:             js.UndefOr[CssProperties]                   = js.undefined,
   /* Called when the ListItem has keyboard focus.
   (Passed on to ListItem)*/
   onKeyboardFocus:             js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,

@@ -13,25 +13,39 @@ import scala.scalajs.js.`|`
 case class MuiFlatButton(
   key:                  js.UndefOr[String]                          = js.undefined,
   ref:                  js.UndefOr[String]                          = js.undefined,
+  /* Color of button when mouse is not hovering over it.*/
   backgroundColor:      js.UndefOr[MuiColor]                        = js.undefined,
   /* Disables the button if set to true.*/
   disabled:             js.UndefOr[Boolean]                         = js.undefined,
-  /* Override the inline hover color of the button's root element.*/
+  /* Color of button when mouse hovers over.*/
   hoverColor:           js.UndefOr[MuiColor]                        = js.undefined,
+  /* URL to link to when button clicked if `linkButton` is set to true.*/
+  href:                 js.UndefOr[String]                          = js.undefined,
+  /* Use this property to display an icon.*/
+  icon:                 js.UndefOr[ReactNode]                       = js.undefined,
+  /* Label for the button.*/
   label:                js.UndefOr[String]                          = js.undefined,
-  /* default: "before": Place label before or after the passed children*/
+  /* Place label before or after the passed children.*/
   labelPosition:        js.UndefOr[BeforeAfter]                     = js.undefined,
   /* Override the inline-styles of the button's label element.*/
   labelStyle:           js.UndefOr[CssProperties]                   = js.undefined,
+  /* Enables use of `href` property to provide a URL to link to if set to true.*/
+  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
+  /* Called when element is focused by the keyboard.*/
   onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
+  /* Called when the mouse enters the element.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Called when the mouse leaves the element.*/
   onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Called when a touch event is started inside the element.*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
-  /* default: false: If true, the button will use the primary button colors.*/
+  /* If true, colors button according to
+primaryTextColor from the Theme.*/
   primary:              js.UndefOr[Boolean]                         = js.undefined,
-  /* Override the inline color of the button's ripple element.*/
+  /* Color for the ripple after button is clicked.*/
   rippleColor:          js.UndefOr[MuiColor]                        = js.undefined,
-  /* default: false: If true, the button will use the secondary button colors.*/
+  /* If true, colors button according to secondaryTextColor from the theme.
+The primary prop has precendent if set to true.*/
   secondary:            js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                   = js.undefined,
@@ -52,9 +66,6 @@ case class MuiFlatButton(
   focusRippleOpacity:   js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
-  /* default: false: If true, an anchor element will be generated instead of a button element.
-  (Passed on to EnhancedButton)*/
-  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:               js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/
@@ -73,7 +84,10 @@ case class MuiFlatButton(
   touchRippleOpacity:   js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   `type`:               js.UndefOr[String]                          = js.undefined){
-
+  /**
+   * @param children Elements passed into the button. For example, the font
+icon passed into the GitHub button.
+   */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiFlatButton](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.FlatButton)

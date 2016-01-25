@@ -28,6 +28,10 @@ prop with `value` taking precedence.*/
   defaultDate:            js.UndefOr[js.Date]                                    = js.undefined,
   /* Disables the year selection in the date picker.*/
   disableYearSelection:   js.UndefOr[Boolean]                                    = js.undefined,
+  /* Used to change the first day of week. It drastically varies from
+Saturday to Monday (could even be Friday) between different locales.
+The allowed range is 0 (Sunday) to 6 (Saturday).*/
+  firstDayOfWeek:         js.UndefOr[Double]                                     = js.undefined,
   /* This function is called to format the date to display in the input box.
 By default, date objects are formatted to MM/DD/YYYY.*/
   formatDate:             js.UndefOr[js.Date => String]                          = js.undefined,
@@ -75,51 +79,76 @@ false the day is disabled otherwise it is displayed normally.*/
   /* The css class name of the root element.
   (Passed on to TextField)*/
   className:              js.UndefOr[String]                                     = js.undefined,
-  /* (Passed on to TextField)*/
+  /* The text string to use for the default value.
+  (Passed on to TextField)*/
   defaultValue:           js.UndefOr[String]                                     = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Disables the text field if set to true.
+  (Passed on to TextField)*/
   disabled:               js.UndefOr[Boolean]                                    = js.undefined,
-  /* (Passed on to TextField)*/
+  /* The style object to use to override error styles.
+  (Passed on to TextField)*/
   errorStyle:             js.UndefOr[CssProperties]                              = js.undefined,
-  /* (Passed on to TextField)*/
+  /* The error content to display.
+  (Passed on to TextField)*/
   errorText:              js.UndefOr[ReactNode]                                  = js.undefined,
-  /* (Passed on to TextField)*/
+  /* The style object to use to override floating label styles.
+  (Passed on to TextField)*/
   floatingLabelStyle:     js.UndefOr[CssProperties]                              = js.undefined,
-  /* The text string to use for the floating label element.
+  /* The content to use for the floating label element.
   (Passed on to TextField)*/
   floatingLabelText:      js.UndefOr[ReactNode]                                  = js.undefined,
-  /* (Passed on to TextField)*/
+  /* If true, the field receives the property width 100%.
+  (Passed on to TextField)*/
   fullWidth:              js.UndefOr[Boolean]                                    = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Override the inline-styles of the TextField's hint text element.
+  (Passed on to TextField)*/
   hintStyle:              js.UndefOr[CssProperties]                              = js.undefined,
-  /* The hint text string to display. Note, floatingLabelText will overide this.
+  /* The hint content to display.
   (Passed on to TextField)*/
   hintText:               js.UndefOr[ReactNode]                                  = js.undefined,
-  /* (Passed on to TextField)*/
+  /* The id prop for the text field.
+  (Passed on to TextField)*/
   id:                     js.UndefOr[String]                                     = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Override the inline-styles of the TextField's input element.
+  (Passed on to TextField)*/
   inputStyle:             js.UndefOr[CssProperties]                              = js.undefined,
-  /* (Passed on to TextField)*/
+  /* If true, a textarea element will be rendered.
+The textarea also grows and shrinks according to the number of lines.
+  (Passed on to TextField)*/
   multiLine:              js.UndefOr[Boolean]                                    = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Callback function that is fired when the textfield loses focus.
+  (Passed on to TextField)*/
   onBlur:                 js.UndefOr[ReactEventI => Callback]                    = js.undefined,
-  /* (Passed on to TextField)*/
+  /* The function to call when the user presses the Enter key.
+  (Passed on to TextField)*/
   onEnterKeyDown:         js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Callback function fired when key is pressed down.
+  (Passed on to TextField)*/
   onKeyDown:              js.UndefOr[ReactKeyboardEventH => Callback]            = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Number of rows to display when multiLine option is set to true.
+  (Passed on to TextField)*/
   rows:                   js.UndefOr[Int]                                        = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Maximum number of rows to display when
+multiLine option is set to true.
+  (Passed on to TextField)*/
   rowsMax:                js.UndefOr[Int]                                        = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Specifies the type of input to display
+such as "password" or "text".
+  (Passed on to TextField)*/
   `type`:                 js.UndefOr[String]                                     = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Override the inline-styles of the
+TextField's underline element when disabled.
+  (Passed on to TextField)*/
   underlineDisabledStyle: js.UndefOr[CssProperties]                              = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Override the inline-styles of the TextField's
+underline element when focussed.
+  (Passed on to TextField)*/
   underlineFocusStyle:    js.UndefOr[CssProperties]                              = js.undefined,
-  /* (Passed on to TextField)*/
+  /* If true, shows the underline for the text field.
+  (Passed on to TextField)*/
   underlineShow:          js.UndefOr[Boolean]                                    = js.undefined,
-  /* (Passed on to TextField)*/
+  /* Override the inline-styles of the TextField's underline element.
+  (Passed on to TextField)*/
   underlineStyle:         js.UndefOr[CssProperties]                              = js.undefined){
 
   def apply(children: ReactNode*) = {

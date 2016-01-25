@@ -15,7 +15,7 @@ Adding types to javascript is a lot of guesswork, and we're certain to have gott
 ### Wrappers for javascript components:
 These components require you to provide javascript yourself.
 
-- Material-ui 0.14.2
+- Material-ui 0.14.3
 - Elemental-ui 0.5.4
 - Google maps (downloads js directly from google)
 - React GeomIcon (react-geomicons: 2.0.4)

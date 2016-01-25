@@ -16,7 +16,7 @@ case class MuiToolbarGroup(
   /* The css class name of the root element.*/
   className:  js.UndefOr[String]        = js.undefined,
   /* Set this to true for if the `ToolbarGroup` is the first child of `Toolbar`
-to prevent setting the right gap.*/
+to prevent setting the left gap.*/
   firstChild: js.UndefOr[Boolean]       = js.undefined,
   /* Determines the side the `ToolbarGroup` will snap to. Either 'left' or 'right'.*/
   float:      js.UndefOr[LeftRight]     = js.undefined,

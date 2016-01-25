@@ -13,22 +13,29 @@ import scala.scalajs.js.`|`
 case class MuiCheckbox(
   key:                  js.UndefOr[String]                             = js.undefined,
   ref:                  js.UndefOr[MuiCheckboxM => Unit]               = js.undefined,
+  /* Checkbox is checked if true.*/
   checked:              js.UndefOr[Boolean]                            = js.undefined,
-  /* The SvgIcon to use for the checked state. This is useful to create icon toggles.*/
+  /* The SvgIcon to use for the checked state.
+This is useful to create icon toggles.*/
   checkedIcon:          js.UndefOr[ReactElement]                       = js.undefined,
-  /* default:false: The default state of our checkbox component.*/
+  /* The default state of our checkbox component.*/
   defaultChecked:       js.UndefOr[Boolean]                            = js.undefined,
+  /* Disabled if true.*/
   disabled:             js.UndefOr[Boolean]                            = js.undefined,
   /* Overrides the inline-styles of the icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                      = js.undefined,
-  /* default:"right": Where the label will be placed next to the checkbox. Options include "left" and "right" (case-sensitive). Default option is "right".*/
+  /* Where the label will be placed next to the checkbox.*/
   labelPosition:        js.UndefOr[LeftRight]                          = js.undefined,
   /* Overrides the inline-styles of the Checkbox element label.*/
   labelStyle:           js.UndefOr[CssProperties]                      = js.undefined,
   /* Callback function that is fired when the checkbox is checked.*/
   onCheck:              js.UndefOr[(ReactEventH, Boolean) => Callback] = js.undefined,
-  /* The SvgIcon to use for the unchecked state. This is useful to create icon toggles.*/
+  /* Override the inline-styles of the root element.*/
+  style:                js.UndefOr[CssProperties]                      = js.undefined,
+  /* The SvgIcon to use for the unchecked state.
+This is useful to create icon toggles.*/
   unCheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
+  /* ValueLink for when using controlled checkbox.*/
   valueLink:            js.UndefOr[js.Any]                             = js.undefined,
   /* The css class name of the root element.
   (Passed on to EnhancedSwitch)*/
@@ -72,9 +79,6 @@ case class MuiCheckbox(
   rippleColor:          js.UndefOr[MuiColor]                           = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   rippleStyle:          js.UndefOr[CssProperties]                      = js.undefined,
-  /* Override the inline-styles of the root element.
-  (Passed on to EnhancedSwitch)*/
-  style:                js.UndefOr[CssProperties]                      = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   switchElement:        js.UndefOr[ReactElement]                       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/

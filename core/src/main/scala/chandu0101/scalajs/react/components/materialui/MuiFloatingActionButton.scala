@@ -21,19 +21,33 @@ This has to be set separately using the disabledColor attribute.*/
   disabled:             js.UndefOr[Boolean]                         = js.undefined,
   /* This value will override the default background color for the button when it is disabled.*/
   disabledColor:        js.UndefOr[MuiColor]                        = js.undefined,
-  /* The icon within the FloatingActionButton is a FontIcon component. This property is the classname of the icon to be displayed inside the button. An alternative to adding an iconClassName would be to manually insert a FontIcon component or custom SvgIcon component or as a child of FloatingActionButton.*/
+  /* URL to link to when button clicked if `linkButton` is set to true.*/
+  href:                 js.UndefOr[String]                          = js.undefined,
+  /* The icon within the FloatingActionButton is a FontIcon component.
+This property is the classname of the icon to be displayed inside the button.
+An alternative to adding an iconClassName would be to manually insert a
+FontIcon component or custom SvgIcon component or as a child of FloatingActionButton.*/
   iconClassName:        js.UndefOr[String]                          = js.undefined,
-  /* This is the equivalent to iconClassName except that it is used for overriding the inline-styles of the FontIcon component.*/
+  /* This is the equivalent to iconClassName except that it is used for
+overriding the inline-styles of the FontIcon component.*/
   iconStyle:            js.UndefOr[CssProperties]                   = js.undefined,
-  /* default: false: If true, the button will be a small floating action button.*/
+  /* Enables use of `href` property to provide a URL to link to if set to true.*/
+  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
+  /* If true, the button will be a small floating action button.*/
   mini:                 js.UndefOr[Boolean]                         = js.undefined,
+  /* Called when mouse down event occurs on the button.*/
   onMouseDown:          js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Called when mouse enter event occurs on the button.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Called when mouse leave event occurs on the button.*/
   onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Called when mouse up event occurs on the button.*/
   onMouseUp:            js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Called when touch end event occurs on the button.*/
   onTouchEnd:           js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
+  /* Called when touch start event occurs on the button.*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
-  /* default: false: If true, the button will use the secondary button colors.*/
+  /* If true, the button will use the secondary button colors.*/
   secondary:            js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                   = js.undefined,
@@ -57,9 +71,6 @@ This is useful for generating link buttons with the react router link element.
   focusRippleOpacity:   js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
-  /* default: false: If true, an anchor element will be generated instead of a button element.
-  (Passed on to EnhancedButton)*/
-  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:               js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/
@@ -80,7 +91,9 @@ This is useful for generating link buttons with the react router link element.
   touchRippleOpacity:   js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   `type`:               js.UndefOr[String]                          = js.undefined){
-
+  /**
+   * @param children This is what displayed inside the floating action button; for example, a SVG Icon.
+   */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiFloatingActionButton](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.FloatingActionButton)

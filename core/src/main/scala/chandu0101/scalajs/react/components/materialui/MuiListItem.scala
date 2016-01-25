@@ -44,6 +44,8 @@ Only needed if there is no left avatar or left icon.*/
   /* Controls how deep a ListItem appears.
 This property is automatically managed so modify at your own risk.*/
   nestedLevel:                 js.UndefOr[Int]                             = js.undefined,
+  /* Override the inline-styles of the nestedItems NestedList.*/
+  nestedListStyle:             js.UndefOr[CssProperties]                   = js.undefined,
   /* Called when the ListItem has keyboard focus.*/
   onKeyboardFocus:             js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
   /* Called when the mouse is over the ListItem.*/

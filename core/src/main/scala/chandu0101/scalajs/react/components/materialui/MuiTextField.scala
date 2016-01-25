@@ -33,36 +33,44 @@ case class MuiTextField(
   hintStyle:              js.UndefOr[CssProperties]                   = js.undefined,
   /* The hint content to display.*/
   hintText:               js.UndefOr[ReactNode]                       = js.undefined,
+  /* The id prop for the text field.*/
   id:                     js.UndefOr[String]                          = js.undefined,
   /* Override the inline-styles of the TextField's input element.*/
   inputStyle:             js.UndefOr[CssProperties]                   = js.undefined,
-  /* default: false: If true, a textarea element will be rendered.
+  /* If true, a textarea element will be rendered.
 The textarea also grows and shrinks according to the number of lines.*/
   multiLine:              js.UndefOr[Boolean]                         = js.undefined,
-  /* function(event): Callback function that is fired when the textfield losesfocus.*/
+  /* Callback function that is fired when the textfield loses focus.*/
   onBlur:                 js.UndefOr[ReactEventI => Callback]         = js.undefined,
-  /* function(event): Callback function that is fired when the textfield's value changes.*/
+  /* Callback function that is fired when the textfield's value changes.*/
   onChange:               js.UndefOr[ReactEventI => Callback]         = js.undefined,
   /* The function to call when the user presses the Enter key.*/
   onEnterKeyDown:         js.UndefOr[ReactKeyboardEventI => Callback] = js.undefined,
-  /* function(event): Callback function that is fired when the textfield gains focus.*/
+  /* Callback function that is fired when the textfield gains focus.*/
   onFocus:                js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
+  /* Callback function fired when key is pressed down.*/
   onKeyDown:              js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
-  /* default: 1: Number of rows to display when multiLine option is set to true.*/
+  /* Number of rows to display when multiLine option is set to true.*/
   rows:                   js.UndefOr[Int]                             = js.undefined,
-  /* default: null: Maximum number of rows to display when multiLine option is set to true.*/
+  /* Maximum number of rows to display when
+multiLine option is set to true.*/
   rowsMax:                js.UndefOr[Int]                             = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties]                   = js.undefined,
-  /* Specifies the type of input to display such as "password" or "text".*/
+  /* Specifies the type of input to display
+such as "password" or "text".*/
   `type`:                 js.UndefOr[String]                          = js.undefined,
-  /* Override the inline-styles of the TextField's underline element when disabled.*/
+  /* Override the inline-styles of the
+TextField's underline element when disabled.*/
   underlineDisabledStyle: js.UndefOr[CssProperties]                   = js.undefined,
-  /* Override the inline-styles of the TextField's underline element when focussed.*/
+  /* Override the inline-styles of the TextField's
+underline element when focussed.*/
   underlineFocusStyle:    js.UndefOr[CssProperties]                   = js.undefined,
+  /* If true, shows the underline for the text field.*/
   underlineShow:          js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline-styles of the TextField's underline element.*/
   underlineStyle:         js.UndefOr[CssProperties]                   = js.undefined,
+  /* The value of the text field.*/
   value:                  js.UndefOr[String]                          = js.undefined){
 
   def apply(children: ReactNode*) = {

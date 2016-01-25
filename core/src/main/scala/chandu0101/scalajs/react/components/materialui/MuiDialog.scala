@@ -41,7 +41,8 @@ will be enforced so that the content does not extend beyond the viewport.*/
   /* Force the user to use one of the actions in the `Dialog`.
 Clicking outside the `Dialog` will not trigger the `onRequestClose`.*/
   modal:                     js.UndefOr[Boolean]             = js.undefined,
-  /* Fired when the `Dialog is requested to be closed by a click outside the `Dialog` or on the buttons.*/
+  /* Fired when the `Dialog` is requested to be closed by a click outside the `Dialog` or on the buttons.
+@param {bool} buttonClicked Determines whether a button click triggered this request.*/
   onRequestClose:            js.UndefOr[Boolean => Callback] = js.undefined,
   /* Controls whether the Dialog is opened or not.*/
   open:                      Boolean,

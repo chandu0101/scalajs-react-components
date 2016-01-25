@@ -38,7 +38,7 @@ of an input element.*/
   onChange:           js.UndefOr[(ReactEventH, Double) => Callback] = js.undefined,
   /* Callback function that is fired when the slider has begun to move.*/
   onDragStart:        js.UndefOr[ReactDragEventH => Callback]       = js.undefined,
-  /* Callback function that is fried when teh slide has stopped moving.*/
+  /* Callback function that is fried when the slide has stopped moving.*/
   onDragStop:         js.UndefOr[ReactDragEventH => Callback]       = js.undefined,
   /* Callback fired when the user has focused on the slider.*/
   onFocus:            js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,

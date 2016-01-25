@@ -52,8 +52,8 @@ object MuiMenuDemo {
         MuiFlatButton(label = "close menu", onClick = toggleOpen)(),
         MuiMenu(
           desktop        = true,
-          width          = 320: (String | Int),
-          value          = S.multiple.toJsArray: String | js.Array[String],
+          width          = 320,
+          value          = S.multiple.toJsArray,
           multiple       = true,
           openDirection  = MuiMenuOpenDirection.BOTTOM_RIGHT,
           onItemTouchTap = onTouchTap,

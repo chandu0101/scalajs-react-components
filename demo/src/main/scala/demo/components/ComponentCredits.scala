@@ -5,7 +5,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 import org.scalajs.dom.ext.Ajax
 
-import scala.scalajs.concurrent.JSExecutionContext.Implicits.runNow
+import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js
 import scala.scalajs.js.{Date, JSON}
 

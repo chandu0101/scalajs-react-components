@@ -39,7 +39,7 @@
     "react-addons-update": "^0.14.3",
     "react-geomicons": "^2.0.4",
     "react-infinite": "^0.7.1",
-    "react-select": "^1.0.0-beta5",
+    "react-select": "^1.0.0-beta",
     "react-spinner": "^0.2.3",
     "react-tagsinput": "^3.0.3",
     "react-tap-event-plugin": "^0.2.1",

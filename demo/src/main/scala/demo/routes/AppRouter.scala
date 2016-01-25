@@ -96,7 +96,7 @@ object AppRouter {
       | reactInfiniteRoutes
       | reactListViewRoutes
       | reactPopoverRoutes
-//      | reactSelectRoutes
+      | reactSelectRoutes
       | reactTableRoutes
       | reactTagsInputRoutes
       | reactTreeViewRoutes
@@ -157,12 +157,12 @@ object AppRouter {
       route = ReactTagsInputPages(ReactTagsInputRouteModule.Info),
       tags = Stream("tags", "input")
     ),
-//    HomePage.ComponentInfo(
-//      name = "React Select",
-//      imagePath = g.reactSelectImage.toString,
-//      route = ReactSelectPages(ReactSelectRouteModule.Info),
-//      tags = Stream("select", "multi", "search", "filter", "multi select")
-//    ),
+    HomePage.ComponentInfo(
+      name = "React Select",
+      imagePath = g.reactSelectImage.toString,
+      route = ReactSelectPages(ReactSelectRouteModule.Info),
+      tags = Stream("select", "multi", "search", "filter", "multi select")
+    ),
     HomePage.ComponentInfo(
       name = "React GeomIcons",
       imagePath = g.reactGeomIconImage.toString,

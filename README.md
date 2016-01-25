@@ -21,8 +21,9 @@ These components require you to provide javascript yourself.
 - React GeomIcon (react-geomicons: 2.0.4)
 - React Infinite (react-infinite, 0.7.1)
 - Spinner (react-spinner, 0.2.3)
-- ReactSelect (react-select: 1.0.0-beta5) (BROKEN after upgrade)
-- ReactTagsInput (react-tagsinput, 3.0.3)
+- React Select (react-select: 1.0.0-beta)
+- React TagsInput (react-tagsinput, 3.0.3)
+- React Slick (react-slick: 0.9.3)
 
 ### Components written in scala.js
 - DefaultSelect

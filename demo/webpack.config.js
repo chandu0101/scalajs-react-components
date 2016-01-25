@@ -14,6 +14,7 @@ module.exports = {
         react_geom_icons: './bundles/react-geom-icons.js',
         react_infinite: './bundles/react-infinite.js',
         react_spinner: './bundles/react-spinner.js',
+        react_slick: './bundles/react-slick.js'
     },
     output: {
         path: __dirname + '/assets',

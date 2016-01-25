@@ -5,6 +5,7 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 
 package object components {
+  type CssProperties = js.Any
 
   implicit final class UCB[R](private val uc: js.UndefOr[CallbackTo[R]]) extends AnyVal {
     @inline def asCbo: CallbackOption[R] =

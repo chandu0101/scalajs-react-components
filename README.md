@@ -15,11 +15,11 @@ Adding types to javascript is a lot of guesswork, and we're certain to have gott
 ### Wrappers for javascript components:
 These components require you to provide javascript yourself.
 
-- material-ui 0.13.4
-- elemental-ui 0.5.4
+- Material-ui 0.13.4
+- Elemental-ui 0.5.4
 - Google maps (downloads js directly from google)
-- ReactGeomIcon (react-geomicons: 2.0.4)
-- ReactInfinite (react-infinite, 0.7.1)
+- React GeomIcon (react-geomicons: 2.0.4)
+- React Infinite (react-infinite, 0.7.1)
 - Spinner (react-spinner, 0.2.3)
 - ReactSelect (react-select: 1.0.0-beta5) (BROKEN after upgrade)
 - ReactTagsInput (react-tagsinput, 3.0.3)

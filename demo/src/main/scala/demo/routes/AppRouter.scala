@@ -24,6 +24,7 @@ object AppRouter {
   case class ReactListViewPages(p: LeftRoute) extends Page
   case class ReactPopoverPages(p: LeftRoute) extends Page
   case class ReactSelectPages(p: LeftRoute) extends Page
+  case class ReactSlickPages(p: LeftRoute) extends Page
   case class ReactTablePages(p: LeftRoute) extends Page
   case class ReactTagsInputPages(p: LeftRoute) extends Page
   case class ReactTreeViewPages(p: LeftRoute) extends Page
@@ -68,6 +69,10 @@ object AppRouter {
       ReactJSDraggableRouteModule.routes.prefixPath_/("#reactdraggable")
         .pmap[Page](ReactDraggablePages) { case ReactDraggablePages(p) => p }
 
+    val reactSlickRoutes: Rule =
+      ReactSlickRouteModule.routes.prefixPath_/("#reactslick")
+        .pmap[Page](ReactSlickPages) { case ReactSlickPages(p) => p }
+
     val googleMapRoutes: Rule =
       GoogleMapRouteModule.routes.prefixPath_/("#googlemap")
         .pmap[Page](GoogleMapPages) { case GoogleMapPages(p) => p }
@@ -97,6 +102,7 @@ object AppRouter {
       | reactListViewRoutes
       | reactPopoverRoutes
       | reactSelectRoutes
+      | reactSlickRoutes
       | reactTableRoutes
       | reactTagsInputRoutes
       | reactTreeViewRoutes
@@ -174,6 +180,12 @@ object AppRouter {
       imagePath = g.reactInfiniteImage.toString,
       route = ReactInfinitePages(ReactInfiniteRouteModule.Info),
       tags = Stream("infinite scroll", "listview")
+    ),
+    HomePage.ComponentInfo(
+      name = "React Slick",
+      imagePath = g.reactInfiniteImage.toString,
+      route = ReactSlickPages(ReactSlickRouteModule.Info),
+      tags = Stream("slick", "slick")
     ),
     HomePage.ComponentInfo(
       name = "Spinner",

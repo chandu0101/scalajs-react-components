@@ -3,7 +3,6 @@ package components
 package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components._
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import org.scalajs.dom
@@ -13,32 +12,45 @@ object MuiSnackbarDemo {
 
   // EXAMPLE:START
 
-  class Backend(t: BackendScope[_, _]) {
-    val snackBarRef = RefHolder[MuiSnackbarM]
+  class Backend($: BackendScope[_, Boolean]) {
+    val close = $.setState(false)
+    val open  = $.setState(true)
 
-    val handleAction: ReactEvent => Callback =
-      e => Callback(dom.window.alert("We removed Event from your calendar"))
+    val undoAdd: ReactEvent => Callback =
+      e => close >> Callback(dom.window.alert("We removed Event from your calendar"))
 
-    val buttonClick: ReactEventH => Callback =
-      e => snackBarRef().map(_.show())
+    val closeRequested: String => Callback =
+      reason => close >> Callback.info(s"onRequestClose: $reason")
 
-    def render = {
+    val toggleSnack: ReactEventH => Callback =
+      e => $.modState(!_)
+
+    def render(isOpen: Boolean) = {
       CodeExample(code, "MuiSnackBar")(
         MuiSnackbar(
-          message = "Event added to your calendar",
-          action = "undo",
-          ref = snackBarRef.set,
-          onActionTouchTap = handleAction
+          autoHideDuration = 5000,
+          message          = "Event added to your calendar",
+          action           = "undo",
+          onActionTouchTap = undoAdd,
+          onRequestClose   = closeRequested,
+          open             = isOpen
         )(),
+      !isOpen ?
         MuiRaisedButton(
-          label = " Snack Bar Demo",
-          onTouchTap = buttonClick
+          label      = "Add event to calendar",
+          onTouchTap = toggleSnack
         )()
       )
     }
   }
 
+  implicit class BooleanNodeX[T](b: Boolean){
+    def ?(n: => ReactNode): ReactNode =
+      if (b) n else null
+  }
+
   val component = ReactComponentB[Unit]("MuiSnackBar")
+    .initialState(false)
     .renderBackend[Backend]
     .buildU
 

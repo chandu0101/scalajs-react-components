@@ -17,7 +17,7 @@ object ReactApp extends JSApp {
       dom.document.body.className.replace("pg-loading", "")
       dom.document.body.className += " pg-loaded"
     }
-    AppCSS.load
+    AppCSS.load()
     AppRouter.router().render(dom.document.getElementById("container"))
   }
 }

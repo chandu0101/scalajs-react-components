@@ -22,15 +22,17 @@ object MobileTearSheet {
       width(360 px)
     )
 
-    val container = style(border :=! "solid 1px #d9d9d9",
-      borderBottom :=! "none",
+    val container = style(
+      border :=! "solid 1px #d9d9d9",
       height :=! "500px",
-      overflow.hidden)
+      overflow.hidden
+    )
 
     val bottomTear = style(display.block,
       position.relative,
       marginTop :=! "-10px",
-      width(360 px))
+      width(360 px)
+    )
   }
 
   case class Backend($: BackendScope[Unit, _]) {

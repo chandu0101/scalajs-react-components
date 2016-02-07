@@ -44,6 +44,11 @@ object CodeExample {
 
   case class Props(code: String,title: String)
 
-  def apply(code: String, title: String, ref: js.UndefOr[String] = "", key: js.Any = {})(children: ReactNode*) = component.set(key, ref)(Props(code,title), children)
+  def apply(code:     String,
+            title:    String,
+            ref:      js.UndefOr[String] = "",
+            key:      js.Any = {})
+           (children: ReactNode*) =
+    component.set(key, ref)(Props(code,title), if (children.size == 1) children.head else children)
 
 }

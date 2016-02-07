@@ -28,7 +28,7 @@ object MuiUpdatingComponentsDemo {
                    endTime: js.Date,
                    errorMsg: Option[String],
                    useAutoOk: Boolean,
-                   pickerMode: MuiDatePickerMode,
+                   pickerMode: PortraitLandscape,
                    dateFormatterOffset: Int)
 
   val twoHoursInMillis = 2 * 60 * 60 * 1000
@@ -74,7 +74,7 @@ object MuiUpdatingComponentsDemo {
 
     def updateEndTime = (_: js.UndefOr[Nothing], d: js.Date) => $.modState(s => validStateOrSetError(s.copy(endTime = d)))
 
-    def modeSwitch = (_: ReactEvent, mode: String) => $.modState(_.copy(pickerMode = if (mode == MuiDatePickerMode.PORTRAIT.value) MuiDatePickerMode.PORTRAIT else MuiDatePickerMode.LANDSCAPE))
+    def modeSwitch = (_: ReactEvent, mode: String) => $.modState(_.copy(pickerMode = if (mode == PortraitLandscape.portrait.value) PortraitLandscape.portrait else PortraitLandscape.landscape))
 
     def autoOkToggle = (_: ReactEvent, toggled: Boolean) => $.modState(_.copy(useAutoOk = toggled))
 
@@ -85,13 +85,13 @@ object MuiUpdatingComponentsDemo {
     def render(S: State) = {
       <.div(
         CodeExample(code, "MuiUpdatingComponentsDemo")(
-          MuiPaper(zDepth = MuiZDepth._3)(
+          MuiPaper(zDepth = ZDepth._3)(
             <.div(^.padding := 3.em,
 
               MuiToggle(
                 onToggle = autoOkToggle,
                 defaultToggled = S.useAutoOk,
-                labelPosition = MuiToggleLabelPosition.RIGHT,
+                labelPosition = LeftRight.right,
                 label = s"Date Picker AutoOk is ${autoOkName(S.useAutoOk)}. Switch to AutoOk:${autoOkName(!S.useAutoOk)}."
               )(),
 
@@ -104,8 +104,8 @@ object MuiUpdatingComponentsDemo {
                   name = "pickerdisplayorientation",
                   defaultSelected = S.pickerMode.value,
                   onChange = modeSwitch)(
-                  MuiRadioButton(value = MuiDatePickerMode.PORTRAIT.value, label = MuiDatePickerMode.PORTRAIT.value)(),
-                  MuiRadioButton(value = MuiDatePickerMode.LANDSCAPE.value, label = MuiDatePickerMode.LANDSCAPE.value)()
+                  MuiRadioButton(value = PortraitLandscape.portrait.value, label = PortraitLandscape.portrait.value)(),
+                  MuiRadioButton(value = PortraitLandscape.landscape.value, label = PortraitLandscape.landscape.value)()
                 )
               ),
 
@@ -244,7 +244,7 @@ object MuiUpdatingComponentsDemo {
 
   val component = ReactComponentB[Unit]("MuiUpdatingComponentsDemo")
     // TimePicker can't handle null times.
-    .initialState(State(null, new js.Date(), null, new js.Date(), None, useAutoOk = false, MuiDatePickerMode.PORTRAIT, 0))
+    .initialState(State(null, new js.Date(), null, new js.Date(), None, useAutoOk = false, PortraitLandscape.portrait, 0))
     .renderBackend[Backend]
     .buildU
 

@@ -30,7 +30,7 @@ object MuiDialogDemo {
       e => open >> Callback.info("Opened")
 
     def render(S: State) = {
-      val actions: js.Array[ReactElement] = js.Array(
+      val actions: ReactNode = js.Array(
         MuiFlatButton(key = "1", label = "Cancel", secondary = true, onTouchTap = handleDialogCancel)(),
         MuiFlatButton(key = "2", label = "Submit", secondary = true, onTouchTap = handleDialogSubmit)()
       )
@@ -41,9 +41,7 @@ object MuiDialogDemo {
               title = "Dialog With Actions",
               actions = actions,
               open = S.isOpen,
-              onRequestClose = DummyEvents.f1_("onRequestClose"),
-              onShow = DummyEvents.f0("onShow"),
-              onDismiss = DummyEvents.f0("onDismiss")
+              onRequestClose = DummyEvents.f1_("onRequestClose")
             )(
               "Dialog example with floating buttons"
             ),

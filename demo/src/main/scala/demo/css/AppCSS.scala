@@ -11,13 +11,12 @@ import scalacss.mutable.GlobalRegistry
 
 object AppCSS {
 
-  def load = {
+  def load() = {
     GlobalRegistry.register(LeftNav.Style,
       LeftNavPage.Style,
       MuiButtonsDemo.Style,
       MuiPaperDemo.Style,
       MuiSwitchesDemo.Style,
-      MuiMenuDemo.Style,
       MobileTearSheet.Style,
       ReactTable.DefaultStyle,
       ReactListView.DefaultStyle,

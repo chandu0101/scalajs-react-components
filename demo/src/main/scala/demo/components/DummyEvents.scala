@@ -30,18 +30,21 @@ object DummyEvents {
         s"$event$target: t.value: ${t.value}, t.offsetTop: ${t.offsetTop}"
     }
   }
+  def str(a: Any): String =
+    if(a == js.undefined || a == null) "undefined" else a.toString
+
   def f0(name: String): Callback =
     Callback.info(s"Event handler: $name")
   def f1(name: String): ReactEvent => Callback =
     e1 => Callback.info(s"Event handler: $name, ${eventType(e1)}")
   def f1_(name: String): Any => Callback =
-    e1 => Callback.info(s"Event handler: $name, ${e1.toString}")
+    e1 => Callback.info(s"Event handler: $name, ${str(e1)}")
   def f21(name: String): (ReactEvent, Any) => Callback =
-    (e1, e2) => Callback.info(s"Event handler: $name, ${eventType(e1)}, ${e2.toString}")
+    (e1, e2) => Callback.info(s"Event handler: $name, ${eventType(e1)}, ${str(e2)}")
   def f22(name: String): (Any, ReactEvent) => Callback =
-    (e1, e2) => Callback.info(s"Event handler: $name, ${e1.toString}, ${eventType(e2)}")
+    (e1, e2) => Callback.info(s"Event handler: $name, ${str(e1)}, ${eventType(e2)}")
   def f2_(name: String): (Any, Any) => Callback =
-    (e1, e2) => Callback.info(s"Event handler: $name, ${e1.toString}, ${e2.toString}")
+    (e1, e2) => Callback.info(s"Event handler: $name, ${str(e1)}, ${str(e2)}")
   def f3(name: String): (ReactEvent, Any, Any) => Callback =
-    (e1, e2, e3) => Callback.info(s"Event handler: $name, ${eventType(e1)}, ${e2.toString}, ${e3.toString}")
+    (e1, e2, e3) => Callback.info(s"Event handler: $name, ${eventType(e1)}, ${str(e2)}, ${str(e3)}")
 }

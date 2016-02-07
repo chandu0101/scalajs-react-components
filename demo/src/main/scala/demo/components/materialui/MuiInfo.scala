@@ -20,7 +20,7 @@ object MuiInfo {
 
   val component = ReactComponentB[Unit]("MuiInfo")
     .render(P => {
-      InfoTemplate(componentFilePath = "materialui/")(
+      InfoTemplate(componentFilePath = "materialui/package.scala")(
         <.div(
           <.h3("Material-ui "),
           <.p("scalajs-react wrapper for ",
@@ -28,7 +28,7 @@ object MuiInfo {
           ),
           <.div(
             <.h4("Supported Version :"),
-            <.span("0.13.4")
+            <.span("0.14.4")
           ),
           <.div(
             <.h4("How To Use :"),

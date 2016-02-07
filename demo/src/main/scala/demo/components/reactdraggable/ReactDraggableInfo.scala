@@ -9,9 +9,14 @@ object ReactDraggableInfo {
 
   val component = ReactComponentB[Unit]("ReactDraggableInfo")
     .render(P =>
-       <.div(^.cls := "full-width-section")(
-         <.h3("React Draggable :"),
-          <.p("Port of ", <.a(^.href := "https://github.com/STRML/react-draggable")("react-draggable"))
+      InfoTemplate(componentFilePath = "ReactDraggable.scala")(
+        <.div(^.cls := "full-width-section")(
+          <.h3("React Draggable :"), <.p(
+            "Port of ", <.a(^.href := "https://github.com/STRML/react-draggable")(
+              "react-draggable"
+            )
+          )
+        )
       )
     ).buildU
 

@@ -1,4 +1,4 @@
-#0.2.0
+# 0.2.0
 * Ported to scalajs-react 0.10
 * Regenerated all material-ui, added heaps of new props and components.
 * Deleted bootstrap wrappers for now

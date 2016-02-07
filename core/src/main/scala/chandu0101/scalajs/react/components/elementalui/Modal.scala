@@ -1,4 +1,5 @@
-package chandu0101.scalajs.react.components.elementalui
+package chandu0101.scalajs.react.components
+package elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._

@@ -19,16 +19,19 @@ object Mui extends js.Object {
   val CardText:             js.Dynamic = js.native
   val CardTitle:            js.Dynamic = js.native
   val Checkbox:             js.Dynamic = js.native
+  val CircleRipple:         js.Dynamic = js.native
   val CircularProgress:     js.Dynamic = js.native
   val ClearFix:             js.Dynamic = js.native
   val DatePicker:           js.Dynamic = js.native
   val DatePickerDialog:     js.Dynamic = js.native
   val Dialog:               js.Dynamic = js.native
+  val Divider:              js.Dynamic = js.native
   val DropDownIcon:         js.Dynamic = js.native
   val DropDownMenu:         js.Dynamic = js.native
   val EnhancedButton:       js.Dynamic = js.native
   val FlatButton:           js.Dynamic = js.native
   val FloatingActionButton: js.Dynamic = js.native
+  val FocusRipple:          js.Dynamic = js.native
   val FontIcon:             js.Dynamic = js.native
   val GridList:             js.Dynamic = js.native
   val GridTile:             js.Dynamic = js.native
@@ -66,6 +69,7 @@ object Mui extends js.Object {
   val TableRow:             js.Dynamic = js.native
   val TableRowColumn:       js.Dynamic = js.native
   val Toggle:               js.Dynamic = js.native
+  val TouchRipple:          js.Dynamic = js.native
   val ThemeWrapper:         js.Dynamic = js.native
   val TimePicker:           js.Dynamic = js.native
   val TextField:            js.Dynamic = js.native

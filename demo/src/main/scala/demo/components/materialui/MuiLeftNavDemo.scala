@@ -16,48 +16,87 @@ object MuiLeftNavDemo {
 
   // EXAMPLE:START
 
-  val menuItems = js.Array(
-    MuiMenuItemJson(route = "get-started", text = "Get-started"),
-    MuiMenuItemJson(route = "toggle", text = "Toggle", toggle = true, selected = true),
-    MuiMenuItemJson(`type` = MuiMenuItemType.SUBHEADER, text = "Resources"),
-    MuiMenuItemJson(`type` = MuiMenuItemType.LINK, disabled = true, text = "Github", payload = "https://github.com/chandu0101/scalajs-react-components")
+  case class State(
+    selected: js.UndefOr[String],
+    isOpen:   Boolean,
+    isDocked: Boolean,
+    isRight:  Boolean
   )
 
-  case class State(isDocked: Boolean = false)
+  case class Choice(id: String, text: String)
 
-  class Backend(t: BackendScope[Unit, State]) {
-    val dockedLeftRef = RefHolder[MuiLeftNavM]
-    val leftRef = RefHolder[MuiLeftNavM]
+  val choices = Seq(
+    Choice("1", "First option"),
+    Choice("2", "Second option"),
+    Choice("3", "Third option"),
+    Choice("4", "Fourth option")
+  )
 
-    val handleDockedLeftNav: ReactEventH => Callback =
-      e => dockedLeftRef().map(_.toggle()) >>
-        t.modState(s => s.copy(isDocked = !s.isDocked))
+  class Backend($: BackendScope[Unit, State]) {
+    val toggleOpenCb: Callback =
+      $.modState(s => s.copy(isOpen = !s.isOpen))
 
-    val handleHidableLeftNav: ReactEventH => Callback =
-      e => leftRef().map(_.toggle())
+    val toggleOpen: (ReactEventI, Boolean) => Callback =
+      (e, b) => toggleOpenCb
+
+    val toggleDocked: (ReactEventI, Boolean) => Callback =
+      (e, b) => $.modState(s => s.copy(isDocked = !s.isDocked))
+
+    val toggleRight: (ReactEventI, Boolean) => Callback =
+      (e, b) => $.modState(s => s.copy(isRight = !s.isRight))
+
+    val onRequestChange: (Boolean, String) => Callback =
+      (open, reason) =>
+        Callback.info(s"onRequestChange: open: $open, reason: $reason") >>
+        toggleOpenCb
+
+    val selectItem: String => ReactTouchEventH => Callback =
+      id => e => $.modState(s => s.copy(selected = id))
 
     def render(S: State) = {
       <.div(
-        CodeExample(code, "MuiAppBar")(
+        CodeExample(code, "MuiLeftNav")(
           <.div(
             MuiLeftNav(
-              ref = leftRef.set,
-              menuItems = menuItems,
-              docked = false,
-              onChange = DummyEvents.f3("onChange"),
-              onNavOpen = DummyEvents.f0("onNavOpen"),
-              onNavClose = DummyEvents.f0("onNavClose"),
-              openRight = false
+              onRequestChange = onRequestChange,
+              openRight       = S.isRight,
+              open            = S.isOpen,
+              docked          = S.isDocked)(
+              /* hack in a cheesy centered avatar */
+              MuiAvatar(
+                size            = 112,
+                backgroundColor = Mui.Styles.Colors.red400,
+                style           = js.Dynamic.literal(
+                  margin  = "auto",
+                  display = "block",
+                  padding = "10px"
+                ))(
+                ":D"
+              ),
+              choices map (c =>
+                MuiMenuItem(
+                  primaryText = c.text,
+                  checked     = S.selected == c.id,
+                  onTouchTap  = selectItem(c.id)
+                )()
+              )
+            ),
+
+            MuiToggle(
+              toggled  = S.isOpen,
+              label    = "Show Left Nav",
+              onToggle = toggleOpen
             )(),
-            MuiLeftNav(
-              ref = dockedLeftRef.set,
-              menuItems = menuItems,
-              docked = S.isDocked,
-              onChange = DummyEvents.f3("onChange"))(),
-            MuiRaisedButton(label = "Show Hideable Left Nav", onTouchTap = handleHidableLeftNav)(),
-            <.br(),
-            <.br(),
-            MuiRaisedButton(centerRipple = S.isDocked, label = "Toggle Docked Left Nav", onTouchTap = handleDockedLeftNav)()
+            MuiToggle(
+              toggled  = S.isDocked,
+              label    = "Show docked",
+              onToggle = toggleDocked
+            )(),
+            MuiToggle(
+              toggled  = S.isRight,
+              label    = "Show on right side",
+              onToggle = toggleRight
+            )()
           )
         )
       )
@@ -65,7 +104,14 @@ object MuiLeftNavDemo {
   }
 
   val component = ReactComponentB[Unit]("MuiLeftNavDemo")
-    .initialState(State())
+    .initialState(
+      State(
+        selected = js.undefined,
+        isOpen   = false,
+        isDocked = false,
+        isRight  = false
+      )
+    )
     .renderBackend[Backend]
     .buildU
 

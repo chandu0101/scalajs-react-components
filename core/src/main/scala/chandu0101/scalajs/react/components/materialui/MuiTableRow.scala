@@ -20,6 +20,11 @@ If false, no border will be drawn.*/
   displayBorder:   js.UndefOr[Boolean]                        = js.undefined,
   /* Controls whether or not the row reponseds to hover events.*/
   hoverable:       js.UndefOr[Boolean]                        = js.undefined,
+  /* Controls whether or not the row should be rendered as being
+hovered. This property is evaluated in addition to this.state.hovered
+and can be used to synchronize the hovered state with some other
+external events.*/
+  hovered:         js.UndefOr[Boolean]                        = js.undefined,
   /* Called when a row cell is clicked.
 rowNumber is the row number and columnId is
 the column number or the column key.*/

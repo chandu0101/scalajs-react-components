@@ -102,8 +102,8 @@ The primary prop has precendent if set to true.*/
    * @param children This is what will be displayed inside the button.
 If a label is specified, the text within the label prop will
 be displayed. Otherwise, the component will expect children
-which will then be displayed (in our example,
-we are nesting an <input type="file" />and a span
+which will then be displayed. (In our example,
+we are nesting an `<input type="file" />` and a `span`
 that acts as our label to be displayed.) This only
 applies to flat and raised buttons.
    */

@@ -15,6 +15,8 @@ case class MuiTab(
   ref:        js.UndefOr[String]                       = js.undefined,
   /* The css class name of the root element.*/
   className:  js.UndefOr[String]                       = js.undefined,
+  /* Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.*/
+  icon:       js.UndefOr[ReactNode]                    = js.undefined,
   /* Sets the text value of the tab item to the string specified.*/
   label:      js.UndefOr[ReactNode]                    = js.undefined,
   /* Fired when the active tab changes by touch or tap.

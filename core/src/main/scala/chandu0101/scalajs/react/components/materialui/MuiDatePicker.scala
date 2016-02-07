@@ -28,6 +28,8 @@ prop with `value` taking precedence.*/
   defaultDate:            js.UndefOr[js.Date]                                    = js.undefined,
   /* Disables the year selection in the date picker.*/
   disableYearSelection:   js.UndefOr[Boolean]                                    = js.undefined,
+  /* Disables the DatePicker.*/
+  disabled:               js.UndefOr[Boolean]                                    = js.undefined,
   /* Used to change the first day of week. It drastically varies from
 Saturday to Monday (could even be Friday) between different locales.
 The allowed range is 0 (Sunday) to 6 (Saturday).*/
@@ -82,9 +84,6 @@ false the day is disabled otherwise it is displayed normally.*/
   /* The text string to use for the default value.
   (Passed on to TextField)*/
   defaultValue:           js.UndefOr[String]                                     = js.undefined,
-  /* Disables the text field if set to true.
-  (Passed on to TextField)*/
-  disabled:               js.UndefOr[Boolean]                                    = js.undefined,
   /* The style object to use to override error styles.
   (Passed on to TextField)*/
   errorStyle:             js.UndefOr[CssProperties]                              = js.undefined,

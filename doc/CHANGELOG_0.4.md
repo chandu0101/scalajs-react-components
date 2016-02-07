@@ -1,5 +1,5 @@
 # 0.4.0 (Unreleased)
-* Material-ui bumped from 0.13 to 0.14.3
+* Material-ui bumped from 0.13 to 0.14.4
 * Bumped Scala-js to 0.6.6 to avoid some implicit resolution issues
 * Bumped scalacss dependency
 * Rewrote React Select wrapper, added Async support

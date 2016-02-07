@@ -16,7 +16,7 @@ case class MuiPaper(
   /* Set to true to generate a circlular paper container.*/
   circle:            js.UndefOr[Boolean]       = js.undefined,
   /* By default, the paper container will have a border radius.
-Set this to false to generate a container with sharp corners.*/
+  Set this to false to generate a container with sharp corners.*/
   rounded:           js.UndefOr[Boolean]       = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:             js.UndefOr[CssProperties] = js.undefined,

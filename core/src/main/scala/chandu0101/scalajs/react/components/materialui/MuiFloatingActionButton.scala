@@ -14,9 +14,11 @@ case class MuiFloatingActionButton(
   key:                  js.UndefOr[String]                          = js.undefined,
   ref:                  js.UndefOr[String]                          = js.undefined,
   /* This value will override the default background color for the button.
-However it will not override the default disabled background color.
-This has to be set separately using the disabledColor attribute.*/
+  However it will not override the default disabled background color.
+  This has to be set separately using the disabledColor attribute.*/
   backgroundColor:      js.UndefOr[MuiColor]                        = js.undefined,
+  /* The css class name of the root element.*/
+  className:            js.UndefOr[String]                          = js.undefined,
   /* Disables the button if set to true.*/
   disabled:             js.UndefOr[Boolean]                         = js.undefined,
   /* This value will override the default background color for the button when it is disabled.*/
@@ -24,12 +26,12 @@ This has to be set separately using the disabledColor attribute.*/
   /* URL to link to when button clicked if `linkButton` is set to true.*/
   href:                 js.UndefOr[String]                          = js.undefined,
   /* The icon within the FloatingActionButton is a FontIcon component.
-This property is the classname of the icon to be displayed inside the button.
-An alternative to adding an iconClassName would be to manually insert a
-FontIcon component or custom SvgIcon component or as a child of FloatingActionButton.*/
+  This property is the classname of the icon to be displayed inside the button.
+  An alternative to adding an iconClassName would be to manually insert a
+  FontIcon component or custom SvgIcon component or as a child of FloatingActionButton.*/
   iconClassName:        js.UndefOr[String]                          = js.undefined,
   /* This is the equivalent to iconClassName except that it is used for
-overriding the inline-styles of the FontIcon component.*/
+  overriding the inline-styles of the FontIcon component.*/
   iconStyle:            js.UndefOr[CssProperties]                   = js.undefined,
   /* Enables use of `href` property to provide a URL to link to if set to true.*/
   linkButton:           js.UndefOr[Boolean]                         = js.undefined,
@@ -51,13 +53,11 @@ overriding the inline-styles of the FontIcon component.*/
   secondary:            js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                   = js.undefined,
+  /* The zDepth of the underlying `Paper` component.*/
+  zDepth:               js.UndefOr[ZDepth]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   centerRipple:         js.UndefOr[Boolean]                         = js.undefined,
-  /* default: button: This component will render a button element by default and an anchor element
-if linkButton is set to true.
-However, you can override this behavior by passing in a string or another react element into this prop.
-This is useful for generating link buttons with the react router link element.
-  (Passed on to EnhancedButton)*/
+  /* (Passed on to EnhancedButton)*/
   containerElement:     js.UndefOr[String | ReactElement]           = js.undefined,
   /* (Passed on to EnhancedButton)*/
   disableFocusRipple:   js.UndefOr[Boolean]                         = js.undefined,
@@ -73,6 +73,8 @@ This is useful for generating link buttons with the react router link element.
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:               js.UndefOr[ReactEventH => Callback]         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onClick:              js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/

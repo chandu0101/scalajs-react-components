@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiTextField(
   key:                    js.UndefOr[String]                          = js.undefined,
-  ref:                    js.UndefOr[MuiTextFieldM => Unit]           = js.undefined,
+  ref:                    js.UndefOr[String]                          = js.undefined,
   /* The css class name of the root element.*/
   className:              js.UndefOr[String]                          = js.undefined,
   /* The text string to use for the default value.*/
@@ -35,16 +35,21 @@ case class MuiTextField(
   hintText:               js.UndefOr[ReactNode]                       = js.undefined,
   /* The id prop for the text field.*/
   id:                     js.UndefOr[String]                          = js.undefined,
-  /* Override the inline-styles of the TextField's input element.*/
+  /* Override the inline-styles of the TextField's input element.
+  When multiLine is false: define the style of the input element.
+  When multiLine is true: define the style of the container of the textarea.*/
   inputStyle:             js.UndefOr[CssProperties]                   = js.undefined,
   /* If true, a textarea element will be rendered.
-The textarea also grows and shrinks according to the number of lines.*/
+  The textarea also grows and shrinks according to the number of lines.*/
   multiLine:              js.UndefOr[Boolean]                         = js.undefined,
+  /* Name applied to the input.*/
+  name:                   js.UndefOr[String]                          = js.undefined,
   /* Callback function that is fired when the textfield loses focus.*/
   onBlur:                 js.UndefOr[ReactEventI => Callback]         = js.undefined,
   /* Callback function that is fired when the textfield's value changes.*/
   onChange:               js.UndefOr[ReactEventI => Callback]         = js.undefined,
   /* The function to call when the user presses the Enter key.*/
+  @deprecated("Use onKeyDown and check for keycode instead.")
   onEnterKeyDown:         js.UndefOr[ReactKeyboardEventI => Callback] = js.undefined,
   /* Callback function that is fired when the textfield gains focus.*/
   onFocus:                js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
@@ -53,25 +58,35 @@ The textarea also grows and shrinks according to the number of lines.*/
   /* Number of rows to display when multiLine option is set to true.*/
   rows:                   js.UndefOr[Int]                             = js.undefined,
   /* Maximum number of rows to display when
-multiLine option is set to true.*/
+  multiLine option is set to true.*/
   rowsMax:                js.UndefOr[Int]                             = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties]                   = js.undefined,
+  /* Override the inline-styles of the TextField's textarea element.
+  The TextField use either a textarea or an input,
+  this property has effects only when multiLine is true.*/
+  textareaStyle:          js.UndefOr[CssProperties]                   = js.undefined,
   /* Specifies the type of input to display
-such as "password" or "text".*/
+  such as "password" or "text".*/
   `type`:                 js.UndefOr[String]                          = js.undefined,
   /* Override the inline-styles of the
-TextField's underline element when disabled.*/
+  TextField's underline element when disabled.*/
   underlineDisabledStyle: js.UndefOr[CssProperties]                   = js.undefined,
   /* Override the inline-styles of the TextField's
-underline element when focussed.*/
+  underline element when focussed.*/
   underlineFocusStyle:    js.UndefOr[CssProperties]                   = js.undefined,
   /* If true, shows the underline for the text field.*/
   underlineShow:          js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline-styles of the TextField's underline element.*/
   underlineStyle:         js.UndefOr[CssProperties]                   = js.undefined,
   /* The value of the text field.*/
-  value:                  js.UndefOr[String]                          = js.undefined){
+  value:                  js.UndefOr[String]                          = js.undefined,
+  /* (Passed on to EnhancedTextarea)*/
+  onHeightChange:         js.UndefOr[(ReactEvent, Int)=> Callback]    = js.undefined,
+  /* (Passed on to EnhancedTextarea)*/
+  shadowStyle:            js.UndefOr[CssProperties]                   = js.undefined,
+  /* (Passed on to EnhancedTextarea)*/
+  valueLink:              js.UndefOr[js.Any]                          = js.undefined){
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiTextField](this)
@@ -83,26 +98,4 @@ underline element when focussed.*/
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiTextFieldM extends js.Object {
-  /* Removes focus on the input element.*/
-  def blur(): Unit = js.native
-
-  /* Clears the value on the input element.*/
-  def clearValue(): Unit = js.native
-
-  /* Sets the focus on the input element.*/
-  def focus(): Unit = js.native
-
-  /* Returns the value of the input.*/
-  def getValue(): String = js.native
-
-  /* Sets the error text on the input element.*/
-  def setErrorText(newErrorText: String): Unit = js.native
-
-  /* Sets the value of the input element.*/
-  def setValue(newValue: String): Unit = js.native
 }

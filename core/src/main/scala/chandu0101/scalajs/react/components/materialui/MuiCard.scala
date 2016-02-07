@@ -13,18 +13,22 @@ import scala.scalajs.js.`|`
 case class MuiCard(
   key:                  js.UndefOr[String]              = js.undefined,
   ref:                  js.UndefOr[String]              = js.undefined,
-  /* Whether a click on this card component expands the card. Can be set on any child of the Card component.*/
+  /* If true, a click on this card component expands the card. Can be set on any child of the `Card` component.*/
   actAsExpander:        js.UndefOr[Boolean]             = js.undefined,
-  /* Whether this card component is expandable. Can be set on any child of the Card component.*/
+  /* If true, this card component is expandable. Can be set on any child of the `Card` component.*/
   expandable:           js.UndefOr[Boolean]             = js.undefined,
+  /* Whether this card is expanded.
+  If `true` or `false` the component is controlled.
+  if `null` the component is uncontrolled.*/
+  expanded:             js.UndefOr[Boolean]             = js.undefined,
   /* Whether this card is initially expanded.*/
   initiallyExpanded:    js.UndefOr[Boolean]             = js.undefined,
-  /* Fired when the expandable state changes.*/
+  /* Callback function fired when the `expandable` state of the card has changed.*/
   onExpandChange:       js.UndefOr[Boolean => Callback] = js.undefined,
-  /* Whether this card component include a button to expand the card. CardTitle,
-CardHeader and CardActions implement showExpandableButton. Any child component
-of Card can implements showExpandableButton or forwards the property to a child
-component supporting it.*/
+  /* If true, this card component will include a button to expand the card. `CardTitle`,
+  `CardHeader` and `CardActions` implement `showExpandableButton`. Any child component
+  of `Card` can implements `showExpandableButton` or forwards the property to a child
+  component supporting it.*/
   showExpandableButton: js.UndefOr[Boolean]             = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]       = js.undefined){

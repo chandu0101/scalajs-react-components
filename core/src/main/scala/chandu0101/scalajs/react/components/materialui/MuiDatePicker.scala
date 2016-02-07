@@ -12,62 +12,64 @@ import scala.scalajs.js.`|`
     
 case class MuiDatePicker(
   key:                    js.UndefOr[String]                                     = js.undefined,
-  ref:                    js.UndefOr[MuiDatePickerM => Unit]                     = js.undefined,
-  /* Constructor for time formatting.
-Follow this specificaction: ECMAScript Internationalization API 1.0 (ECMA-402).*/
+  ref:                    js.UndefOr[String]                                     = js.undefined,
+  /* Constructor for date formatting for the specified `locale`.
+  The constructor must follow this specification: ECMAScript Internationalization API 1.0 (ECMA-402).
+  `Intl.DateTimeFormat` is supported by most modern browsers, see http://caniuse.com/#search=intl,
+  otherwise https://github.com/andyearnshaw/Intl.js is a good polyfill.*/
   DateTimeFormat:         js.UndefOr[js.Function]                                = js.undefined,
   /* If true, automatically accept and close the picker on select a date.*/
   autoOk:                 js.UndefOr[Boolean]                                    = js.undefined,
+  /* Override the default text of the 'Cancel' button.*/
+  cancelLabel:            js.UndefOr[String]                                     = js.undefined,
   /* Used to control how the DatePicker will be displayed when a user tries to set a date.
-`dialog` (default) displays the DatePicker as a dialog with a modal.
-`inline` displays the DatePicker below the input field (similar to auto complete).*/
+  `dialog` (default) displays the DatePicker as a dialog with a modal.
+  `inline` displays the DatePicker below the input field (similar to auto complete).*/
   container:              js.UndefOr[DialogInline]                               = js.undefined,
   /* This is the initial date value of the component.
-If either `value` or `valueLink` is provided they will override this
-prop with `value` taking precedence.*/
+  If either `value` or `valueLink` is provided they will override this
+  prop with `value` taking precedence.*/
   defaultDate:            js.UndefOr[js.Date]                                    = js.undefined,
   /* Disables the year selection in the date picker.*/
   disableYearSelection:   js.UndefOr[Boolean]                                    = js.undefined,
   /* Disables the DatePicker.*/
   disabled:               js.UndefOr[Boolean]                                    = js.undefined,
-  /* Used to change the first day of week. It drastically varies from
-Saturday to Monday (could even be Friday) between different locales.
-The allowed range is 0 (Sunday) to 6 (Saturday).*/
+  /* Used to change the first day of week. It varies from
+  Saturday to Monday between different locales.
+  The allowed range is 0 (Sunday) to 6 (Saturday).
+  The default is `1`, Monday, as per ISO 8601.*/
   firstDayOfWeek:         js.UndefOr[Double]                                     = js.undefined,
-  /* This function is called to format the date to display in the input box.
-By default, date objects are formatted to MM/DD/YYYY.*/
+  /* This function is called to format the date displayed in the input box, and should return a string.
+  By default if no `locale` and `DateTimeFormat` is provided date objects are formatted to ISO 8601 YYYY-MM-DD.*/
   formatDate:             js.UndefOr[js.Date => String]                          = js.undefined,
-  /* Locale used for formatting date. If you are not using the default value, you
-have to provide a DateTimeFormat that supports it. You can use Intl.DateTimeFormat
-if it's supported by your environment.
-https:github.com/andyearnshaw/Intl.js is a good polyfill.*/
+  /* Locale used for formatting the dialog date strings. If you are not using the default value, you
+  have to provide a `DateTimeFormat` that supports it.*/
   locale:                 js.UndefOr[String]                                     = js.undefined,
   /* The ending of a range of valid dates. The range includes the endDate.
-The default value is current date + 100 years.*/
+  The default value is current date + 100 years.*/
   maxDate:                js.UndefOr[js.Date]                                    = js.undefined,
   /* The beginning of a range of valid dates. The range includes the startDate.
-The default value is current date - 100 years.*/
+  The default value is current date - 100 years.*/
   minDate:                js.UndefOr[js.Date]                                    = js.undefined,
   /* Tells the component to display the picker in portrait or landscape mode.*/
   mode:                   js.UndefOr[PortraitLandscape]                          = js.undefined,
+  /* Override the default text of the 'OK' button.*/
+  okLabel:                js.UndefOr[String]                                     = js.undefined,
   /* Callback function that is fired when the date value changes. Since there
-is no particular event associated with the change the first argument
-will always be null and the second argument will be the new Date instance.*/
+  is no particular event associated with the change the first argument
+  will always be null and the second argument will be the new Date instance.*/
   onChange:               js.UndefOr[(js.UndefOr[Nothing], js.Date) => Callback] = js.undefined,
-  /* Fired when the datepicker dialog is dismissed.*/
+  /* Fired when the Date Picker dialog is dismissed.*/
   onDismiss:              js.UndefOr[Callback]                                   = js.undefined,
-  /* Callback function that is fired when the datepicker field gains focus.*/
+  /* Fired when the Date Picker field gains focus.*/
   onFocus:                js.UndefOr[ReactFocusEventH => Callback]               = js.undefined,
-  /* Fired when the datepicker dialog is shown.*/
+  /* Fired when the Date Picker dialog is shown.*/
   onShow:                 js.UndefOr[Callback]                                   = js.undefined,
   /* Called when touch tap event occurs on text-field.*/
   onTouchTap:             js.UndefOr[ReactTouchEventH => Callback]               = js.undefined,
   /* Called during render time of a given day. If this method returns
-false the day is disabled otherwise it is displayed normally.*/
+  false the day is disabled, otherwise it is displayed normally.*/
   shouldDisableDate:      js.UndefOr[js.Date => Boolean]                         = js.undefined,
-  /* Enables the year selection in the date picker.*/
-  @deprecated("Instead, use disableYearSelection.")
-  showYearSelector:       js.UndefOr[Boolean]                                    = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties]                              = js.undefined,
   /* Override the inline-styles of DatePicker's TextField element.*/
@@ -77,6 +79,7 @@ false the day is disabled otherwise it is displayed normally.*/
   /* Creates a ValueLink with the value of date picker.*/
   valueLink:              js.UndefOr[js.Any]                                     = js.undefined,
   /* Wordings used inside the button of the dialog.*/
+  @deprecated("Instead, use `cancelLabel` and `okLabel`.")
   wordings:               js.UndefOr[Wordings]                                   = js.undefined,
   /* The css class name of the root element.
   (Passed on to TextField)*/
@@ -109,17 +112,23 @@ false the day is disabled otherwise it is displayed normally.*/
   (Passed on to TextField)*/
   id:                     js.UndefOr[String]                                     = js.undefined,
   /* Override the inline-styles of the TextField's input element.
+  When multiLine is false: define the style of the input element.
+  When multiLine is true: define the style of the container of the textarea.
   (Passed on to TextField)*/
   inputStyle:             js.UndefOr[CssProperties]                              = js.undefined,
   /* If true, a textarea element will be rendered.
-The textarea also grows and shrinks according to the number of lines.
+  The textarea also grows and shrinks according to the number of lines.
   (Passed on to TextField)*/
   multiLine:              js.UndefOr[Boolean]                                    = js.undefined,
+  /* Name applied to the input.
+  (Passed on to TextField)*/
+  name:                   js.UndefOr[String]                                     = js.undefined,
   /* Callback function that is fired when the textfield loses focus.
   (Passed on to TextField)*/
   onBlur:                 js.UndefOr[ReactEventI => Callback]                    = js.undefined,
   /* The function to call when the user presses the Enter key.
   (Passed on to TextField)*/
+  @deprecated("Use onKeyDown and check for keycode instead.")
   onEnterKeyDown:         js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
   /* Callback function fired when key is pressed down.
   (Passed on to TextField)*/
@@ -128,19 +137,24 @@ The textarea also grows and shrinks according to the number of lines.
   (Passed on to TextField)*/
   rows:                   js.UndefOr[Int]                                        = js.undefined,
   /* Maximum number of rows to display when
-multiLine option is set to true.
+  multiLine option is set to true.
   (Passed on to TextField)*/
   rowsMax:                js.UndefOr[Int]                                        = js.undefined,
+  /* Override the inline-styles of the TextField's textarea element.
+  The TextField use either a textarea or an input,
+  this property has effects only when multiLine is true.
+  (Passed on to TextField)*/
+  textareaStyle:          js.UndefOr[CssProperties]                              = js.undefined,
   /* Specifies the type of input to display
-such as "password" or "text".
+  such as "password" or "text".
   (Passed on to TextField)*/
   `type`:                 js.UndefOr[String]                                     = js.undefined,
   /* Override the inline-styles of the
-TextField's underline element when disabled.
+  TextField's underline element when disabled.
   (Passed on to TextField)*/
   underlineDisabledStyle: js.UndefOr[CssProperties]                              = js.undefined,
   /* Override the inline-styles of the TextField's
-underline element when focussed.
+  underline element when focussed.
   (Passed on to TextField)*/
   underlineFocusStyle:    js.UndefOr[CssProperties]                              = js.undefined,
   /* If true, shows the underline for the text field.
@@ -167,19 +181,3 @@ case class Wordings(ok: String, cancel: String){
 }
 
       
-
-
-@js.native
-class MuiDatePickerM extends js.Object {
-  /* Returns the current date value.*/
-  def getDate(): js.Date = js.native
-
-  /* Sets the date value to d, where d is a date object.*/
-  def setDate(d: js.Date): Unit = js.native
-
-  /* Opens the date-picker dialog programmatically. Use this if you want to open the dialog in response to some event other than focus/tap on the input field, such as an external button click.*/
-  def openDialog(): Unit = js.native
-
-  /* An alias for the `openDialog()` method to allow more generic use alongside `TextField`.*/
-  def focus(): Unit = js.native
-}

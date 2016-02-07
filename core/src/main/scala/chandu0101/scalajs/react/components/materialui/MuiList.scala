@@ -14,12 +14,15 @@ case class MuiList(
   key:            js.UndefOr[String]        = js.undefined,
   ref:            js.UndefOr[String]        = js.undefined,
   /* If true, the subheader will be indented by 72px.*/
+  @deprecated("Refer to the `subheader` property.")
   insetSubheader: js.UndefOr[Boolean]       = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:          js.UndefOr[CssProperties] = js.undefined,
   /* The subheader string that will be displayed at the top of the list.*/
+  @deprecated("Instead, nest the `Subheader` component directly inside the `List`.")
   subheader:      js.UndefOr[ReactNode]     = js.undefined,
   /* The style object to override subheader styles.*/
+  @deprecated("Refer to the `subheader` property.")
   subheaderStyle: js.UndefOr[CssProperties] = js.undefined,
   /* The zDepth prop passed to the Paper element inside list.*/
   zDepth:         js.UndefOr[ZDepth]        = js.undefined){

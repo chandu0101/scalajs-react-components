@@ -13,23 +13,33 @@ import scala.scalajs.js.`|`
 case class MuiCardHeader(
   key:                  js.UndefOr[String]        = js.undefined,
   ref:                  js.UndefOr[String]        = js.undefined,
-  /* Whether a click on this card component expands the card. Can be set on any child of the Card component.*/
+  /* If true, a click on this card component expands the card.*/
   actAsExpander:        js.UndefOr[Boolean]       = js.undefined,
+  /* This is the [Avatar](/#/components/avatar) element to be displayed on the Card Header.*/
   avatar:               js.UndefOr[ReactNode]     = js.undefined,
-  /* Whether this card component is expandable. Can be set on any child of the Card component.*/
+  /* If true, this card component is expandable.*/
   expandable:           js.UndefOr[Boolean]       = js.undefined,
-  /* Whether this card component include a button to expand the card. CardTitle, CardHeader and CardActions implement showExpandableButton. Any child component of Card can implements showExpandableButton or forwards the property to a child component supporting it.*/
+  /* If true, this card component will include a button to expand the card.*/
   showExpandableButton: js.UndefOr[Boolean]       = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties] = js.undefined,
+  /* Can be used to render a subtitle in Card Header.*/
   subtitle:             js.UndefOr[ReactNode]     = js.undefined,
+  /* Override the subtitle color.*/
   subtitleColor:        js.UndefOr[MuiColor]      = js.undefined,
+  /* Override the inline-styles of the subtitle.*/
   subtitleStyle:        js.UndefOr[CssProperties] = js.undefined,
+  /* Override the inline-styles of the text.*/
   textStyle:            js.UndefOr[CssProperties] = js.undefined,
+  /* Can be used to render a title in Card Header.*/
   title:                js.UndefOr[ReactNode]     = js.undefined,
+  /* Override the title color.*/
   titleColor:           js.UndefOr[MuiColor]      = js.undefined,
+  /* Override the inline-styles of the title.*/
   titleStyle:           js.UndefOr[CssProperties] = js.undefined){
-
+  /**
+   * @param children Can be used to render elements inside the Card Header.
+   */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiCardHeader](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.CardHeader)

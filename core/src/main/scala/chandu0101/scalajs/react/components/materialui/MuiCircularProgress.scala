@@ -22,10 +22,10 @@ case class MuiCircularProgress(
   /* The min value of progress, only works in determinate mode.*/
   min:        js.UndefOr[Double]                   = js.undefined,
   /* The mode of show your progress, indeterminate
-for when there is no value for progress.*/
+  for when there is no value for progress.*/
   mode:       js.UndefOr[DeterminateIndeterminate] = js.undefined,
   /* The size of the progress.*/
-  size:       js.UndefOr[Double]                      = js.undefined,
+  size:       js.UndefOr[Double]                   = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:      js.UndefOr[CssProperties]            = js.undefined,
   /* The value of progress, only works in determinate mode.*/

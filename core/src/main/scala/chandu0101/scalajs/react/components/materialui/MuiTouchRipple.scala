@@ -11,15 +11,17 @@ import scala.scalajs.js.`|`
  */
     
 case class MuiTouchRipple(
-  key:          js.UndefOr[String]        = js.undefined,
-  ref:          js.UndefOr[String]        = js.undefined,
-  centerRipple: js.UndefOr[Boolean]       = js.undefined,
-  color:        js.UndefOr[MuiColor]      = js.undefined,
+  key:           js.UndefOr[String]        = js.undefined,
+  ref:           js.UndefOr[String]        = js.undefined,
+  abortOnScroll: js.UndefOr[Boolean]       = js.undefined,
+  centerRipple:  js.UndefOr[Boolean]       = js.undefined,
+  color:         js.UndefOr[MuiColor]      = js.undefined,
   /* The material-ui theme applied to this component.*/
-  muiTheme:     MuiTheme,
-  opacity:      js.UndefOr[Double]        = js.undefined,
+  @deprecated("Internal API")
+  muiTheme:      MuiTheme,
+  opacity:       js.UndefOr[Double]        = js.undefined,
   /* Override the inline-styles of the root element.*/
-  style:        js.UndefOr[CssProperties] = js.undefined){
+  style:         js.UndefOr[CssProperties] = js.undefined){
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiTouchRipple](this)

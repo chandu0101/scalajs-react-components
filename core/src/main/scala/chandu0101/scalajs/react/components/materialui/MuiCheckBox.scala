@@ -12,11 +12,11 @@ import scala.scalajs.js.`|`
     
 case class MuiCheckbox(
   key:                  js.UndefOr[String]                             = js.undefined,
-  ref:                  js.UndefOr[MuiCheckboxM => Unit]               = js.undefined,
+  ref:                  js.UndefOr[String]                             = js.undefined,
   /* Checkbox is checked if true.*/
   checked:              js.UndefOr[Boolean]                            = js.undefined,
   /* The SvgIcon to use for the checked state.
-This is useful to create icon toggles.*/
+  This is useful to create icon toggles.*/
   checkedIcon:          js.UndefOr[ReactElement]                       = js.undefined,
   /* The default state of our checkbox component.*/
   defaultChecked:       js.UndefOr[Boolean]                            = js.undefined,
@@ -24,6 +24,8 @@ This is useful to create icon toggles.*/
   disabled:             js.UndefOr[Boolean]                            = js.undefined,
   /* Overrides the inline-styles of the icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                      = js.undefined,
+  /* Overrides the inline-styles of the input element.*/
+  inputStyle:           js.UndefOr[CssProperties]                      = js.undefined,
   /* Where the label will be placed next to the checkbox.*/
   labelPosition:        js.UndefOr[LeftRight]                          = js.undefined,
   /* Overrides the inline-styles of the Checkbox element label.*/
@@ -33,8 +35,12 @@ This is useful to create icon toggles.*/
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                      = js.undefined,
   /* The SvgIcon to use for the unchecked state.
-This is useful to create icon toggles.*/
+  This is useful to create icon toggles.*/
+  @deprecated("Use uncheckedIcon instead.")
   unCheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
+  /* The SvgIcon to use for the unchecked state.
+  This is useful to create icon toggles.*/
+  uncheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
   /* ValueLink for when using controlled checkbox.*/
   valueLink:            js.UndefOr[js.Any]                             = js.undefined,
   /* The css class name of the root element.
@@ -47,11 +53,8 @@ This is useful to create icon toggles.*/
   /* (Passed on to EnhancedSwitch)*/
   disableTouchRipple:   js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  id:                   js.UndefOr[String]                             = js.undefined,
-  /* (Passed on to EnhancedSwitch)*/
   inputType:            js.UndefOr[String]                             = js.undefined,
-  /* The text that is displayed beside the checkbox.
-  (Passed on to EnhancedSwitch)*/
+  /* (Passed on to EnhancedSwitch)*/
   label:                js.UndefOr[ReactNode]                          = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   name:                 js.UndefOr[String]                             = js.undefined,
@@ -74,8 +77,6 @@ This is useful to create icon toggles.*/
   /* (Passed on to EnhancedSwitch)*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  required:             js.UndefOr[Boolean]                            = js.undefined,
-  /* (Passed on to EnhancedSwitch)*/
   rippleColor:          js.UndefOr[MuiColor]                           = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   rippleStyle:          js.UndefOr[CssProperties]                      = js.undefined,
@@ -97,13 +98,3 @@ This is useful to create icon toggles.*/
   }
 }
         
-
-
-@js.native
-class MuiCheckboxM extends js.Object {
-  /* Returns true if the checkbox is currently checked. Returns false otherwise*/
-  def isChecked(): Boolean = js.native
-
-  /* Sets the checkbox to the value of newCheckedValue. This method cannot be used while "checked" is defined as a property.*/
-  def isChecked(newCheckedValue: Boolean): Unit = js.native
-}

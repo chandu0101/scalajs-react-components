@@ -24,13 +24,13 @@ case class MuiSlider(
   /* An error message for the slider.*/
   error:              js.UndefOr[String]                            = js.undefined,
   /* The maximum value the slider can slide to on
-a scale from 0 to 1 inclusive. Cannot be equal to min.*/
+  a scale from 0 to 1 inclusive. Cannot be equal to min.*/
   max:                js.UndefOr[Double]                            = js.undefined,
   /* The minimum value the slider can slide to on a scale
-from 0 to 1 inclusive. Cannot be equal to max.*/
+  from 0 to 1 inclusive. Cannot be equal to max.*/
   min:                js.UndefOr[Double]                            = js.undefined,
   /* The name of the slider. Behaves like the name attribute
-of an input element.*/
+  of an input element.*/
   name:               js.UndefOr[String]                            = js.undefined,
   /* Callback function that is fired when the focus has left the slider.*/
   onBlur:             js.UndefOr[ReactEventH => Callback]           = js.undefined,

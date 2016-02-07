@@ -29,12 +29,14 @@ object Mui extends js.Object {
   val DropDownIcon:         js.Dynamic = js.native
   val DropDownMenu:         js.Dynamic = js.native
   val EnhancedButton:       js.Dynamic = js.native
+  val EnhancedTextarea:     js.Dynamic = js.native
   val FlatButton:           js.Dynamic = js.native
   val FloatingActionButton: js.Dynamic = js.native
   val FocusRipple:          js.Dynamic = js.native
   val FontIcon:             js.Dynamic = js.native
   val GridList:             js.Dynamic = js.native
   val GridTile:             js.Dynamic = js.native
+  val HorizontalStep:       js.Dynamic = js.native
   val IconButton:           js.Dynamic = js.native
   val IconMenu:             js.Dynamic = js.native
   val LeftNav:              js.Dynamic = js.native
@@ -59,6 +61,8 @@ object Mui extends js.Object {
   val SvgIcons:             MuiSvgIcons = js.native
   val Styles:               MuiStyles  = js.native
   val Snackbar:             js.Dynamic = js.native
+  val Step:                 js.Dynamic = js.native
+  val Stepper:              js.Dynamic = js.native
   val Tab:                  js.Dynamic = js.native
   val Tabs:                 js.Dynamic = js.native
   val Table:                js.Dynamic = js.native
@@ -79,4 +83,5 @@ object Mui extends js.Object {
   val ToolbarTitle:         js.Dynamic = js.native
   val Tooltip:              js.Dynamic = js.native
   val Utils:                MuiUtil    = js.native
+  val VerticalStep:         js.Dynamic = js.native
 }

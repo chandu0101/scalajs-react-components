@@ -18,7 +18,7 @@ case class MuiIconButton(
   /* Disables the icon button.*/
   disabled:             js.UndefOr[Boolean]                         = js.undefined,
   /* If you are using a stylesheet for your
-icons, enter the class name for the icon to be used here.*/
+  icons, enter the class name for the icon to be used here.*/
   iconClassName:        js.UndefOr[String]                          = js.undefined,
   /* Overrides the inline-styles of the icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                   = js.undefined,
@@ -27,19 +27,21 @@ icons, enter the class name for the icon to be used here.*/
   /* Callback function for when the component gains focus.*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* Callback function for when the component
-receives keyboard focus.*/
+  receives keyboard focus.*/
   onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
   /* Callback function for when mouse enters element.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   /* Callback function for when mouse leaves element.*/
   onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* Callback function for when mouse goes out of element it works with disabled element.*/
+  onMouseOut:           js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                   = js.undefined,
   /* The tooltip text to show.*/
   tooltip:              js.UndefOr[ReactNode]                       = js.undefined,
   /* Allows the tooltip to be viewed with different
-alignments: "bottom-center", "top-center",
-"bottom-right", "top-right", "bottom-left" and "top-left".*/
+  alignments: "bottom-center", "top-center",
+  "bottom-right", "top-right", "bottom-left" and "top-left".*/
   tooltipPosition:      js.UndefOr[CornersAndCenter]                = js.undefined,
   /* Styles prop passed down to the tooltip.*/
   tooltipStyles:        js.UndefOr[CssProperties]                   = js.undefined,
@@ -63,6 +65,8 @@ alignments: "bottom-center", "top-center",
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   linkButton:           js.UndefOr[Boolean]                         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onClick:              js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onKeyDown:            js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
   /* (Passed on to EnhancedButton)*/

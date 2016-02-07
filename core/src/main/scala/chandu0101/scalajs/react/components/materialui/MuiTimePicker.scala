@@ -12,19 +12,23 @@ import scala.scalajs.js.`|`
     
 case class MuiTimePicker(
   key:                    js.UndefOr[String]                                     = js.undefined,
-  ref:                    js.UndefOr[MuiTimePickerM => Unit]                     = js.undefined,
+  ref:                    js.UndefOr[String]                                     = js.undefined,
   /* If true, automatically accept and close the picker on set minutes.*/
   autoOk:                 js.UndefOr[Boolean]                                    = js.undefined,
+  /* Override the label of the 'Cancel' button.*/
+  cancelLabel:            js.UndefOr[String]                                     = js.undefined,
   /* This is the initial time value of the component.*/
   defaultTime:            js.UndefOr[js.Date]                                    = js.undefined,
   /* Tells the component to display the picker in
-ampm (12hr) format or 24hr format.*/
+  ampm (12hr) format or 24hr format.*/
   format:                 js.UndefOr[Ampm_24hr]                                  = js.undefined,
+  /* Override the label of the 'OK' button.*/
+  okLabel:                js.UndefOr[String]                                     = js.undefined,
   /* Callback function that is fired when the time
-value changes. The time value is passed in a Date
-Object.Since there is no particular event associated
-with the change the first argument will always be null
-and the second argument will be the new Date instance.*/
+  value changes. The time value is passed in a Date
+  Object.Since there is no particular event associated
+  with the change the first argument will always be null
+  and the second argument will be the new Date instance.*/
   onChange:               js.UndefOr[(js.UndefOr[Nothing], js.Date) => Callback] = js.undefined,
   /* Fired when the timepicker dialog is dismissed.*/
   onDismiss:              js.UndefOr[Callback]                                   = js.undefined,
@@ -35,16 +39,18 @@ and the second argument will be the new Date instance.*/
   /* Callback for touch tap event.*/
   onTouchTap:             js.UndefOr[ReactTouchEventH => Callback]               = js.undefined,
   /* It's technically more correct to refer to
-"12 noon" and "12 midnight" rather than
-"12 a.m." and "12 p.m." and it avoids real
-confusion between different locales. By default
-(for compatibility reasons) TimePicker uses
-(12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.*/
+  "12 noon" and "12 midnight" rather than
+  "12 a.m." and "12 p.m." and it avoids real
+  confusion between different locales. By default
+  (for compatibility reasons) TimePicker uses
+  (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.*/
   pedantic:               js.UndefOr[Boolean]                                    = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties]                              = js.undefined,
   /* Override the inline-styles of TimePicker's TextField element.*/
   textFieldStyle:         js.UndefOr[CssProperties]                              = js.undefined,
+  /* Sets the time for the Time Picker programmatically.*/
+  value:                  js.UndefOr[js.Date]                                    = js.undefined,
   /* The css class name of the root element.
   (Passed on to TextField)*/
   className:              js.UndefOr[String]                                     = js.undefined,
@@ -79,17 +85,23 @@ confusion between different locales. By default
   (Passed on to TextField)*/
   id:                     js.UndefOr[String]                                     = js.undefined,
   /* Override the inline-styles of the TextField's input element.
+  When multiLine is false: define the style of the input element.
+  When multiLine is true: define the style of the container of the textarea.
   (Passed on to TextField)*/
   inputStyle:             js.UndefOr[CssProperties]                              = js.undefined,
   /* If true, a textarea element will be rendered.
-The textarea also grows and shrinks according to the number of lines.
+  The textarea also grows and shrinks according to the number of lines.
   (Passed on to TextField)*/
   multiLine:              js.UndefOr[Boolean]                                    = js.undefined,
+  /* Name applied to the input.
+  (Passed on to TextField)*/
+  name:                   js.UndefOr[String]                                     = js.undefined,
   /* Callback function that is fired when the textfield loses focus.
   (Passed on to TextField)*/
   onBlur:                 js.UndefOr[ReactEventI => Callback]                    = js.undefined,
   /* The function to call when the user presses the Enter key.
   (Passed on to TextField)*/
+  @deprecated("Use onKeyDown and check for keycode instead.")
   onEnterKeyDown:         js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
   /* Callback function fired when key is pressed down.
   (Passed on to TextField)*/
@@ -98,19 +110,24 @@ The textarea also grows and shrinks according to the number of lines.
   (Passed on to TextField)*/
   rows:                   js.UndefOr[Int]                                        = js.undefined,
   /* Maximum number of rows to display when
-multiLine option is set to true.
+  multiLine option is set to true.
   (Passed on to TextField)*/
   rowsMax:                js.UndefOr[Int]                                        = js.undefined,
+  /* Override the inline-styles of the TextField's textarea element.
+  The TextField use either a textarea or an input,
+  this property has effects only when multiLine is true.
+  (Passed on to TextField)*/
+  textareaStyle:          js.UndefOr[CssProperties]                              = js.undefined,
   /* Specifies the type of input to display
-such as "password" or "text".
+  such as "password" or "text".
   (Passed on to TextField)*/
   `type`:                 js.UndefOr[String]                                     = js.undefined,
   /* Override the inline-styles of the
-TextField's underline element when disabled.
+  TextField's underline element when disabled.
   (Passed on to TextField)*/
   underlineDisabledStyle: js.UndefOr[CssProperties]                              = js.undefined,
   /* Override the inline-styles of the TextField's
-underline element when focussed.
+  underline element when focussed.
   (Passed on to TextField)*/
   underlineFocusStyle:    js.UndefOr[CssProperties]                              = js.undefined,
   /* If true, shows the underline for the text field.
@@ -118,10 +135,7 @@ underline element when focussed.
   underlineShow:          js.UndefOr[Boolean]                                    = js.undefined,
   /* Override the inline-styles of the TextField's underline element.
   (Passed on to TextField)*/
-  underlineStyle:         js.UndefOr[CssProperties]                              = js.undefined,
-  /* The value of the text field.
-  (Passed on to TextField)*/
-  value:                  js.UndefOr[String]                                     = js.undefined){
+  underlineStyle:         js.UndefOr[CssProperties]                              = js.undefined){
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiTimePicker](this)
@@ -133,23 +147,4 @@ underline element when focussed.
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiTimePickerM extends js.Object {
-  /* Returns the current time value.*/
-  def getTime(): js.Date = js.native
-
-  /* Sets the time value to t, where t is a date object.*/
-  def setTime(d: js.Date): Unit = js.native
-
-  /* Formats the Date object to a current component's time format.*/
-  def formatTime(d: js.Date): String = js.native
-
-  /* Opens the time-picker dialog programmatically. Use this if you want to open the dialog in response to some event other than focus/tap on the input field, such as an external button click.*/
-  def openDialog(): Unit = js.native
-
-  /* An alias for the `openDialog()` method to allow more generic use alongside `TextField`.*/
-  def focus(): Unit = js.native
 }

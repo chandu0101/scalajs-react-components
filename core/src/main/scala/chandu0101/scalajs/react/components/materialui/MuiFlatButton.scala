@@ -40,19 +40,18 @@ case class MuiFlatButton(
   /* Called when a touch event is started inside the element.*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* If true, colors button according to
-primaryTextColor from the Theme.*/
+  primaryTextColor from the Theme.*/
   primary:              js.UndefOr[Boolean]                         = js.undefined,
   /* Color for the ripple after button is clicked.*/
   rippleColor:          js.UndefOr[MuiColor]                        = js.undefined,
   /* If true, colors button according to secondaryTextColor from the theme.
-The primary prop has precendent if set to true.*/
+  The primary prop has precendent if set to true.*/
   secondary:            js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                   = js.undefined,
   /* (Passed on to EnhancedButton)*/
   centerRipple:         js.UndefOr[Boolean]                         = js.undefined,
-  /* default: button: This component will render a button element by default and an anchor element if linkButton is set to true. However, you can override this behavior by passing in a string or another react element into this prop. This is useful for generating link buttons with the react router link element.
-  (Passed on to EnhancedButton)*/
+  /* (Passed on to EnhancedButton)*/
   containerElement:     js.UndefOr[String | ReactElement]           = js.undefined,
   /* (Passed on to EnhancedButton)*/
   disableFocusRipple:   js.UndefOr[Boolean]                         = js.undefined,
@@ -68,6 +67,8 @@ The primary prop has precendent if set to true.*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:               js.UndefOr[ReactEventH => Callback]         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onClick:              js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/

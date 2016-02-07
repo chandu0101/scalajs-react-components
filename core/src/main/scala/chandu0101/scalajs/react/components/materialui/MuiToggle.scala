@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiToggle(
   key:                  js.UndefOr[String]                             = js.undefined,
-  ref:                  js.UndefOr[MuiToggleM => Unit]                 = js.undefined,
+  ref:                  js.UndefOr[String]                             = js.undefined,
   /* Determines whether the Toggle is initially turned on.*/
   defaultToggled:       js.UndefOr[Boolean]                            = js.undefined,
   /* Will disable the toggle if true.*/
@@ -21,6 +21,8 @@ case class MuiToggle(
   elementStyle:         js.UndefOr[CssProperties]                      = js.undefined,
   /* Overrides the inline-styles of the Icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                      = js.undefined,
+  /* Overrides the inline-styles of the input element.*/
+  inputStyle:           js.UndefOr[CssProperties]                      = js.undefined,
   /* Where the label will be placed next to the toggle.*/
   labelPosition:        js.UndefOr[LeftRight]                          = js.undefined,
   /* Overrides the inline-styles of the Toggle element label.*/
@@ -51,14 +53,10 @@ case class MuiToggle(
   /* (Passed on to EnhancedSwitch)*/
   disableTouchRipple:   js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  id:                   js.UndefOr[String]                             = js.undefined,
-  /* (Passed on to EnhancedSwitch)*/
   inputType:            js.UndefOr[String]                             = js.undefined,
-  /* The text that is displayed beside the toggle switch.
-  (Passed on to EnhancedSwitch)*/
+  /* (Passed on to EnhancedSwitch)*/
   label:                js.UndefOr[ReactNode]                          = js.undefined,
-  /* This is the name of the toggle.
-  (Passed on to EnhancedSwitch)*/
+  /* (Passed on to EnhancedSwitch)*/
   name:                 js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   onBlur:               js.UndefOr[ReactEventH => Callback]            = js.undefined,
@@ -79,15 +77,12 @@ case class MuiToggle(
   /* (Passed on to EnhancedSwitch)*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  required:             js.UndefOr[Boolean]                            = js.undefined,
-  /* (Passed on to EnhancedSwitch)*/
   rippleColor:          js.UndefOr[MuiColor]                           = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   switchElement:        js.UndefOr[ReactElement]                       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   switched:             js.UndefOr[Boolean]                            = js.undefined,
-  /* The value of our toggle component.
-  (Passed on to EnhancedSwitch)*/
+  /* (Passed on to EnhancedSwitch)*/
   value:                js.UndefOr[String]                             = js.undefined){
 
   def apply() = {
@@ -97,13 +92,3 @@ case class MuiToggle(
   }
 }
         
-
-
-@js.native
-class MuiToggleM extends js.Object {
-  /* Returns true if the checkbox is currently checked. Returns false otherwise*/
-  def isToggled(): Boolean = js.native
-
-  /* Sets the toggle to the value of newToggledValue. This method cannot be used while "checked" is defined as a property.*/
-  def setToggled(newToggledValue: Boolean): Unit = js.native
-}

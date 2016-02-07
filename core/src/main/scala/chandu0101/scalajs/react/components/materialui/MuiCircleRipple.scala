@@ -13,8 +13,10 @@ import scala.scalajs.js.`|`
 case class MuiCircleRipple(
   key:      js.UndefOr[String]        = js.undefined,
   ref:      js.UndefOr[String]        = js.undefined,
+  aborted:  js.UndefOr[Boolean]       = js.undefined,
   color:    js.UndefOr[MuiColor]      = js.undefined,
   /* The material-ui theme applied to this component.*/
+  @deprecated("Internal API")
   muiTheme: MuiTheme,
   opacity:  js.UndefOr[Double]        = js.undefined,
   /* Override the inline-styles of the root element.*/

@@ -12,19 +12,16 @@ import scala.scalajs.js.`|`
     
 case class MuiDialog(
   key:                       js.UndefOr[String]              = js.undefined,
-  ref:                       js.UndefOr[MuiDialogM => Unit]  = js.undefined,
-  /* The `ref` of the action to focus on when the `Dialog` is displayed.*/
-  @deprecated("Instead, use a custom `actions` property.")
-  actionFocus:               js.UndefOr[String]              = js.undefined,
+  ref:                       js.UndefOr[String]              = js.undefined,
   /* This prop can be either a JSON object containing the actions to render (This is **DEPRECATED**),
-a react elements, or an array of react elements.*/
+  a react elements, or an array of react elements.*/
   actions:                   js.UndefOr[ReactNode]           = js.undefined,
   /* The `className` to add to the actions container's root element.*/
   actionsContainerClassName: js.UndefOr[String]              = js.undefined,
   /* Overrides the inline-styles of the actions container's root element.*/
   actionsContainerStyle:     js.UndefOr[CssProperties]       = js.undefined,
   /* If set to true, the height of the `Dialog` will be auto detected. A max height
-will be enforced so that the content does not extend beyond the viewport.*/
+  will be enforced so that the content does not extend beyond the viewport.*/
   autoDetectWindowHeight:    js.UndefOr[Boolean]             = js.undefined,
   /* If set to true, the body content of the `Dialog` will be scrollable.*/
   autoScrollBodyContent:     js.UndefOr[Boolean]             = js.undefined,
@@ -39,10 +36,9 @@ will be enforced so that the content does not extend beyond the viewport.*/
   /* Overrides the inline-styles of the content container.*/
   contentStyle:              js.UndefOr[CssProperties]       = js.undefined,
   /* Force the user to use one of the actions in the `Dialog`.
-Clicking outside the `Dialog` will not trigger the `onRequestClose`.*/
+  Clicking outside the `Dialog` will not trigger the `onRequestClose`.*/
   modal:                     js.UndefOr[Boolean]             = js.undefined,
-  /* Fired when the `Dialog` is requested to be closed by a click outside the `Dialog` or on the buttons.
-@param {bool} buttonClicked Determines whether a button click triggered this request.*/
+  /* Fired when the `Dialog` is requested to be closed by a click outside the `Dialog` or on the buttons.*/
   onRequestClose:            js.UndefOr[Boolean => Callback] = js.undefined,
   /* Controls whether the Dialog is opened or not.*/
   open:                      Boolean,
@@ -59,10 +55,7 @@ Clicking outside the `Dialog` will not trigger the `onRequestClose`.*/
   /* The `className` to add to the title's root container element.*/
   titleClassName:            js.UndefOr[String]              = js.undefined,
   /* Overrides the inline-styles of the title's root container element.*/
-  titleStyle:                js.UndefOr[CssProperties]       = js.undefined,
-  /* Changes the width of the `Dialog`.*/
-  @deprecated("Use the contentStyle.")
-  width:                     js.UndefOr[Int]                 = js.undefined){
+  titleStyle:                js.UndefOr[CssProperties]       = js.undefined){
   /**
    * @param children The contents of the `Dialog`.
    */
@@ -76,19 +69,4 @@ Clicking outside the `Dialog` will not trigger the `onRequestClose`.*/
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiDialogM extends js.Object {
-  /* Deprecated: Hides the dialog.*/
-  @deprecated
-  def dismiss(): Unit = js.native
-
-  /* Deprecated: Shows the dialog.*/
-  @deprecated
-  def show(): Unit = js.native
-
-  /* Get the dialog open state.*/
-  def isOpen(): Boolean = js.native
 }

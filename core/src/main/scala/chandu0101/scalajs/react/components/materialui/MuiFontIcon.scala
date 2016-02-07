@@ -14,7 +14,7 @@ case class MuiFontIcon(
   key:          js.UndefOr[String]                       = js.undefined,
   ref:          js.UndefOr[String]                       = js.undefined,
   /* This is the font color of the font icon. If not specified,
-this component will default to muiTheme.palette.textColor.*/
+  this component will default to muiTheme.palette.textColor.*/
   color:        js.UndefOr[MuiColor]                     = js.undefined,
   /* This is the icon color when the mouse hovers over the icon.*/
   hoverColor:   js.UndefOr[MuiColor]                     = js.undefined,

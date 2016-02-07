@@ -16,6 +16,7 @@ case class MuiFocusRipple(
   color:      js.UndefOr[MuiColor]      = js.undefined,
   innerStyle: js.UndefOr[CssProperties] = js.undefined,
   /* The material-ui theme applied to this component.*/
+  @deprecated("Internal API")
   muiTheme:   MuiTheme,
   opacity:    js.UndefOr[Double]        = js.undefined,
   show:       js.UndefOr[Boolean]       = js.undefined,

@@ -14,8 +14,8 @@ case class MuiSelectField(
   key:                    js.UndefOr[String]                                 = js.undefined,
   ref:                    js.UndefOr[String]                                 = js.undefined,
   /* The width will automatically be set according to the
-items inside the menu. To control this width in css
-instead, set this prop to `false`.*/
+  items inside the menu. To control this width in css
+  instead, set this prop to `false`.*/
   autoWidth:              js.UndefOr[Boolean]                                = js.undefined,
   /* Disables the select field if set to true.*/
   disabled:               js.UndefOr[Boolean]                                = js.undefined,
@@ -35,15 +35,8 @@ instead, set this prop to `false`.*/
   hintText:               js.UndefOr[ReactNode]                              = js.undefined,
   /* Overrides the styles of the icon element.*/
   iconStyle:              js.UndefOr[CssProperties]                          = js.undefined,
-  /* `SelectField` will use text as default value,
-with this property you can choose another name.*/
-  @deprecated("to promote composability.")
-  labelMember:            js.UndefOr[String]                                 = js.undefined,
   /* Overrides the styles of label when the `SelectField` is inactive.*/
   labelStyle:             js.UndefOr[CssProperties]                          = js.undefined,
-  /* JSON data representing all menu items in the dropdown.*/
-  @deprecated("to promote composability.")
-  menuItems:              js.UndefOr[js.Array[MuiSelectItem]]                = js.undefined,
   /* Callback function that is fired when the `SelectField` loses focus.*/
   onBlur:                 js.UndefOr[ReactEventH => Callback]                = js.undefined,
   /* Callback function that is fired when the value changes.*/
@@ -53,10 +46,7 @@ with this property you can choose another name.*/
   /* The style object to use to override the `DropDownMenu`.*/
   selectFieldRoot:        js.UndefOr[js.Any]                                 = js.undefined,
   /* Must be changed!
-Index of the item selected.*/
-  @deprecated("with menuItems.")
-  selectedIndex:          js.UndefOr[Int]                                    = js.undefined,
-  /* Override the inline-styles of the root element.*/
+  Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties]                          = js.undefined,
   /* Override the inline-styles of the underline element when disabled.*/
   underlineDisabledStyle: js.UndefOr[CssProperties]                          = js.undefined,
@@ -69,11 +59,9 @@ Index of the item selected.*/
   /* The css class name of the root element.
   (Passed on to DropDownMenu)*/
   className:              js.UndefOr[String]                                 = js.undefined,
-  /* `DropDownMenu` will use this member to display
-the name of the item.
+  /* The style object to use to override underlying list style.
   (Passed on to DropDownMenu)*/
-  @deprecated("Instead, use composability.")
-  displayMember:          js.UndefOr[String]                                 = js.undefined,
+  listStyle:              js.UndefOr[CssProperties]                          = js.undefined,
   /* The maximum height of the `Menu` when it is displayed.
   (Passed on to DropDownMenu)*/
   maxHeight:              js.UndefOr[Int]                                    = js.undefined,
@@ -82,15 +70,7 @@ the name of the item.
   menuStyle:              js.UndefOr[CssProperties]                          = js.undefined,
   /* Set to true to have the `DropDownMenu` automatically open on mount.
   (Passed on to DropDownMenu)*/
-  openImmediately:        js.UndefOr[Boolean]                                = js.undefined,
-  /* Two-way binding link.
-  (Passed on to DropDownMenu)*/
-  @deprecated("It\'s deprecated by React too.")
-  valueLink:              js.UndefOr[js.Any]                                 = js.undefined,
-  /* `DropDownMenu` will use this member as the value representing an item.
-  (Passed on to DropDownMenu)*/
-  @deprecated("Instead, use composability.")
-  valueMember:            js.UndefOr[String]                                 = js.undefined){
+  openImmediately:        js.UndefOr[Boolean]                                = js.undefined){
   /**
    * @param children The `MenuItem` elements to populate the `Menu` with.
 If the MenuItems have the prop `label` that value will

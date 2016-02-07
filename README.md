@@ -62,23 +62,6 @@ or to put them in scope for your whole application:
 ```scala
 package object mypackage extends chandu0101.scalajs.react.components.Implicits
 ```
-#### Bad implicit inference for js.| (Union)
-
-The situation is bad also with regards to scala-js unions:
-
-```scala
-case class MuiMenu(
-  ...
-  value: js.UndefOr[String | js.Array[String]] = js.undefined,
-  ...
-```
-Unfortunately, if you supply a `String` here, scala will only run one implicit conversion,
- not two like would be needed. The result is that you need to provide a type casting hint for now:
-```scala
-MuiMenu(value = "value": String | js.Array[String])
-```
-This will be [fixed](https://github.com/scala-js/scala-js/pull/2069) in scala-js version 0.6.6
-
 ## Setup
 
 #### SBT

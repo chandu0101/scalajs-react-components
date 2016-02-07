@@ -3,17 +3,18 @@ package components
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scala.scalajs.js
 import scalacss.Defaults._
 
 object InfoTemplate {
 
-   object Style extends StyleSheet.Inline {
-       import dsl._
-       val content = style(textAlign.center,
-         fontSize(30.px),
-         paddingTop(40.px))
-     }
+  case class Props(
+    browsersTested: List[String],
+    componentFilePath: String,
+    scalacss: Boolean
+  )
+
   case class Backend($: BackendScope[Props, _]){
     def render(P: Props, C: PropsChildren) = {
       <.div(^.cls := "info-template")(
@@ -37,8 +38,23 @@ object InfoTemplate {
     .renderBackend[Backend]
     .build
 
-  case class Props(browsersTested: List[String] ,componentFilePath: String,scalacss: Boolean)
+  object Style extends StyleSheet.Inline {
+    import dsl._
+    val content = style(
+      textAlign.center,
+      fontSize(30.px),
+      paddingTop(40.px))
+  }
 
-  def apply(componentFilePath: String,scalacss: Boolean = false, browsersTested: List[String] = List(), ref: js.UndefOr[String] = "", key: js.Any = {})(children: ReactNode*) = component.set(key, ref)(Props(browsersTested,componentFilePath,scalacss),children)
+  def apply(componentFilePath: String,
+            scalacss:          Boolean            = false,
+            browsersTested:    List[String]       = List(),
+            ref:               js.UndefOr[String] = "",
+            key:               js.Any             = {})
+           (children:          ReactNode*)        =
 
+    component.set(key, ref)(
+      Props(browsersTested,componentFilePath,scalacss),
+      children
+    )
 }

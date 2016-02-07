@@ -12,7 +12,7 @@ object MuiListDemo {
 
   // EXAMPLE:START
 
-  import Mui.SvgIcons.{ContentInbox, ActionGrade, ContentSend, ContentDrafts, ActionInfo}
+  import Mui.SvgIcons.{ActionGrade, ActionInfo, ContentDrafts, ContentInbox, ContentSend}
 
   val component = ReactComponentB[Unit]("MuiListDemo")
     .render(P => {
@@ -22,12 +22,12 @@ object MuiListDemo {
             MuiList()(
               MuiListItem(
                 leftIcon           = ContentInbox()(),
-                onKeyboardFocus    = DummyEvents.f1("onKeyboardFocus"),
-                onMouseLeave       = DummyEvents.f1("onMouseLeave"),
-                onMouseEnter       = DummyEvents.f1("onMouseEnter"),
-                onNestedListToggle = DummyEvents.f1_("onNestedListToggle"),
-                onTouchStart       = DummyEvents.f1("onTouchStart"),
-                onTouchTap         = DummyEvents.f1("onTouchTap")
+                onKeyboardFocus    = CallbackDebug.f1("onKeyboardFocus"),
+                onMouseLeave       = CallbackDebug.f1("onMouseLeave"),
+                onMouseEnter       = CallbackDebug.f1("onMouseEnter"),
+                onNestedListToggle = CallbackDebug.f1("onNestedListToggle"),
+                onTouchStart       = CallbackDebug.f1("onTouchStart"),
+                onTouchTap         = CallbackDebug.f1("onTouchTap")
 
               )("Inbox"),
               MuiListItem(primaryText = "Starred",   leftIcon = ActionGrade()())(),

@@ -1,12 +1,10 @@
-package demo.components.spinner
+package demo.components
 
-import demo.components._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scalacss.Defaults._
 
-object SlickInfo {
+object ReactSlickInfo {
 
    object Style extends StyleSheet.Inline {
        import dsl._

@@ -5,6 +5,7 @@ import demo.routes.LeftRoute
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scala.scalajs.js
 import scala.scalajs.js.UndefOr
 import scalacss.Defaults._

@@ -1,14 +1,14 @@
 package demo.routes
 
-import demo.components.spinner.{SlickInfo, SlickDemo, SpinnerInfo}
+import demo.components.{ReactSlickInfo, ReactSlickDemo}
 import demo.pages.SlickPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactSlickRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => SlickInfo())
+  case object Info extends LeftRoute("Info", "info", () => ReactSlickInfo())
 
-  case object Demo extends LeftRoute("Demo", "demo", () => SlickDemo())
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactSlickDemo())
 
   val menu: List[LeftRoute] = List(Info,Demo)
 

@@ -1,7 +1,7 @@
 package demo
 package routes
 
-import demo.components.reactpopover.{ReactPopoverDemo, ReactPopoverInfo}
+import demo.components.{ReactPopoverInfo, ReactPopoverDemo}
 import demo.pages.ReactPopoverPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 

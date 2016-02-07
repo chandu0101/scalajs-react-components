@@ -1,6 +1,4 @@
-package demo
-package components
-package reactlistview
+package demo.components
 
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._

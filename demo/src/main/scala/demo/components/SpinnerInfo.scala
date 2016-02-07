@@ -1,9 +1,8 @@
-package demo
-package components
-package spinner
+package demo.components
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scalacss.Defaults._
 
 object SpinnerInfo {

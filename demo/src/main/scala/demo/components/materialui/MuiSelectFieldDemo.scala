@@ -22,8 +22,8 @@ object MuiSelectFieldDemo {
       CodeExample(code, "MuiSelectField")(
         MuiSelectField(
           value    = selected,
-          onBlur   = DummyEvents.f1("onBlur"),
-          onFocus  = DummyEvents.f1("onFocus"),
+          onBlur   = CallbackDebug.f1("onBlur"),
+          onFocus  = CallbackDebug.f1("onFocus"),
           onChange = onChange)(
           choices map (
             c => MuiMenuItem(key = c.id.value, value = c.id.value, primaryText = c.text)()

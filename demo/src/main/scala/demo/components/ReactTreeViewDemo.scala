@@ -1,6 +1,4 @@
-package demo
-package components
-package reacttreeview
+package demo.components
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{ReactTreeView, TreeItem}

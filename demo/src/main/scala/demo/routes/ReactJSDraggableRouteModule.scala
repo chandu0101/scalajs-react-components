@@ -1,7 +1,7 @@
 package demo
 package routes
 
-import demo.components.reactdraggable.{ReactDraggableDemo, ReactDraggableInfo}
+import demo.components.{ReactDraggableInfo, ReactDraggableDemo}
 import demo.pages.ReactJSDraggablePage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 

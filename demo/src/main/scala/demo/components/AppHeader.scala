@@ -2,7 +2,7 @@ package demo
 package components
 
 import chandu0101.scalajs.react.components.RCustomStyles
-import RCustomStyles._
+import chandu0101.scalajs.react.components.RCustomStyles._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 

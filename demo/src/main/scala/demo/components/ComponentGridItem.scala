@@ -1,7 +1,6 @@
 package demo
 package components
 
-import chandu0101.scalajs.react.components._
 import demo.routes.AppRouter.Page
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl

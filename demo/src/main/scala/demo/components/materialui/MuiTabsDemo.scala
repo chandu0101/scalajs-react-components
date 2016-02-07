@@ -3,7 +3,6 @@ package components
 package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.fascades.LatLng
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._

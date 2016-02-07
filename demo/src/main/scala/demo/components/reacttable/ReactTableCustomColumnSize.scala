@@ -3,7 +3,7 @@ package components
 package reacttable
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.{ReactTable, JsonUtil}
+import chandu0101.scalajs.react.components.{JsonUtil, ReactTable}
 import demo.util.SampleData
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._

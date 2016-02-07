@@ -3,6 +3,7 @@ package components
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scala.scalajs.js
 
 case class Github(login: String = "", html_url: String = "", avatar_url: String = "", time: Double = 0) {

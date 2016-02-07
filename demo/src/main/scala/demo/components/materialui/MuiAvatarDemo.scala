@@ -11,8 +11,8 @@ object MuiAvatarDemo {
 
   // EXAMPLE:START
 
-  import Mui.SvgIcons
   import Mui.Styles.Colors
+  import Mui.SvgIcons
 
   val component = ReactComponentB[Unit]("MuiAvatarDemo")
     .render(P => {

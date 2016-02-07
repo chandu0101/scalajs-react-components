@@ -3,8 +3,8 @@ package components
 package reacttable
 
 import chandu0101.macros.tojs.GhPagesMacros
-import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 
 object ReactTableInfo {
   val code = GhPagesMacros.exampleSource

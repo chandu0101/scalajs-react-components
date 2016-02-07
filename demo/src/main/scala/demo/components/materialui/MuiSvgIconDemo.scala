@@ -4,7 +4,7 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.extra.{Reusability, Px}
+import japgolly.scalajs.react.extra.{Px, Reusability}
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js

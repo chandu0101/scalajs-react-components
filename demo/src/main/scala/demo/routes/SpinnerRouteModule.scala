@@ -1,7 +1,7 @@
 package demo
 package routes
 
-import demo.components.spinner.{SpinnerDemo, SpinnerInfo}
+import demo.components.{SpinnerInfo, SpinnerDemo}
 import demo.pages.SpinnerPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 

@@ -8,7 +8,6 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 object MuiMenuDemo {
   val code = GhPagesMacros.exampleSource
@@ -44,7 +43,7 @@ object MuiMenuDemo {
           multiple       = true,
           openDirection  = Corners.bottom_right,
           onItemTouchTap = onTouchTap,
-          onKeyDown      = DummyEvents.f1("onKeyDown"),
+          onKeyDown      = CallbackDebug.f1("onKeyDown"),
           onEscKeyDown   = toggleOpen
         )(
           MuiMenuItem(value = "bold",   secondaryText = "⌘B", checked = true)("Bold"),

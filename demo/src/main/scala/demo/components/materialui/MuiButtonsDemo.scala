@@ -39,15 +39,15 @@ object MuiButtonsDemo {
               <.div(Style.content,
                 MuiFlatButton(
                   label = "Default",
-                  onBlur          = DummyEvents.f1("onBlur"),
-                  onFocus         = DummyEvents.f1("onFocus"),
-                  onKeyboardFocus = DummyEvents.f1("onKeyboardFocus"),
-                  onKeyDown       = DummyEvents.f1("onKeyDown"),
-                  onKeyUp         = DummyEvents.f1("onKeyUp"),
-                  onTouchTap      = DummyEvents.f1("onTouchTap"),
-                  onMouseLeave    = DummyEvents.f1("onMouseLeave"),
-                  onTouchStart    = DummyEvents.f1("onTouchStart"),
-                  onMouseEnter    = DummyEvents.f1("onMouseEnter"))(),
+                  onBlur          = CallbackDebug.f1("onBlur"),
+                  onFocus         = CallbackDebug.f1("onFocus"),
+                  onKeyboardFocus = CallbackDebug.f1("onKeyboardFocus"),
+                  onKeyDown       = CallbackDebug.f1("onKeyDown"),
+                  onKeyUp         = CallbackDebug.f1("onKeyUp"),
+                  onTouchTap      = CallbackDebug.f1("onTouchTap"),
+                  onMouseLeave    = CallbackDebug.f1("onMouseLeave"),
+                  onTouchStart    = CallbackDebug.f1("onTouchStart"),
+                  onMouseEnter    = CallbackDebug.f1("onMouseEnter"))(),
                 MuiFlatButton(label = "Primary", primary = true)(),
                 MuiFlatButton(label = "Secondary", secondary = true)(),
                 MuiFlatButton(label = "Disabled", disabled = true)()
@@ -71,7 +71,7 @@ object MuiButtonsDemo {
           ),
           MuiTab(label = "Icon Buttons")(
             <.div(Style.content,
-              MuiIconButton(onTouchTap = DummyEvents.f1("onTouchTap"))(ActionGrade()())
+              MuiIconButton(onTouchTap = CallbackDebug.f1("onTouchTap"))(ActionGrade()())
             )
           )
         )

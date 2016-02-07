@@ -1,6 +1,5 @@
 package demo
 
-import demo.css.AppCSS
 import demo.routes.AppRouter
 import org.scalajs.dom
 import scala.scalajs.js

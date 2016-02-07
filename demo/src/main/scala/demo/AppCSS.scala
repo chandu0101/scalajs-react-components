@@ -1,9 +1,8 @@
 package demo
-package css
 
 import chandu0101.scalajs.react.components._
+import demo.components._
 import demo.components.materialui._
-import demo.components.reactinfinite.ReactInfiniteDemo
 import demo.components.{InfoTemplate, LeftNav, LeftNavPage, ScalaCSSTutorial}
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._

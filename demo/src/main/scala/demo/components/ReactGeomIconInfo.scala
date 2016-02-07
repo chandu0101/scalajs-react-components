@@ -1,12 +1,11 @@
-package demo
-package components
-package reactinfinite
+package demo.components
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
+
 import scalacss.Defaults._
 
-object ReactInfiniteInfo {
+object ReactGeomIconInfo {
 
   object Style extends StyleSheet.Inline {
 
@@ -17,21 +16,21 @@ object ReactInfiniteInfo {
       paddingTop(40.px))
   }
 
-  val component = ReactComponentB[Unit]("ReactInfiniteInfo")
+  val component = ReactComponentB[Unit]("ReactGeomIconInfo")
     .render(P => {
-    InfoTemplate(componentFilePath = "listviews/ReactInfinite.scala")(
+    InfoTemplate(componentFilePath = "icons/ReactGeomIcon.scala")(
       <.div(
-        <.h3("React Infinite "),
+        <.h3("React GeomIcon "),
         <.p("scalajs-react wrapper for ",
-          RedLink("react infinite", "https://github.com/seatgeek/react-infinite")
+          RedLink("react geom icons", "https://github.com/jxnblk/react-geomicons")
         ),
         <.div(
           <.h4("Supported Version :"),
-          <.span("0.7.1")
+          <.span("2.0.4")
         ),
         <.div(
           <.h4("How To Use :"),
-          <.p("Follow the installation guide from :", RedLink("here", "https://github.com/seatgeek/react-infinite#installation")
+          <.p("Follow the installation guide from :", RedLink("here", "https://github.com/jxnblk/react-geomicons#getting-started")
           )
         )
       )

@@ -1,9 +1,7 @@
-package demo
-package components
-package reacttagsinput
+package demo.components
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.{ReactTagsInputM, ReactTagsInput, RefHolder}
+import chandu0101.scalajs.react.components.{ReactTagsInput, ReactTagsInputM, RefHolder}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
@@ -30,9 +28,9 @@ object ReactTagsInputDemo {
             ReactTagsInput(
               value         = S.tags,
               onChange      = onChange,
-              onBlur        = DummyEvents.f0("onBlur"),
-              onKeyDown     = DummyEvents.f1("onKeyDown"),
-              onKeyUp       = DummyEvents.f1("onKeyUp")
+              onBlur        = CallbackDebug.f0("onBlur"),
+              onKeyDown     = CallbackDebug.f1("onKeyDown"),
+              onKeyUp       = CallbackDebug.f1("onKeyUp")
             )()
           )
         )

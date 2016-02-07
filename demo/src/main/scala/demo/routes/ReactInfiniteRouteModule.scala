@@ -1,7 +1,7 @@
 package demo
 package routes
 
-import demo.components.reactinfinite.{ReactInfiniteDemo, ReactInfiniteInfo}
+import demo.components.{ReactInfiniteInfo, ReactInfiniteDemo}
 import demo.pages.ReactInfinitePage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 

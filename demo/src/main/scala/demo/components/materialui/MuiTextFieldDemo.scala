@@ -4,7 +4,7 @@ package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
-import japgolly.scalajs.react.{ReactNode, ReactComponentB}
+import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 object MuiTextFieldDemo {
@@ -19,11 +19,11 @@ object MuiTextFieldDemo {
           <.div(^.display.flex, ^.flexDirection.column,
             MuiTextField(
               hintText       = "Hint Text",
-              onEnterKeyDown = DummyEvents.f1("onEnterKeyDown"),
-              onBlur         = DummyEvents.f1("onBlur"),
-              onChange       = DummyEvents.f1("onChange"),
-              onFocus        = DummyEvents.f1("onFocus"),
-              onKeyDown      = DummyEvents.f1("onKeyDown"))(),
+              onEnterKeyDown = CallbackDebug.f1("onEnterKeyDown"),
+              onBlur         = CallbackDebug.f1("onBlur"),
+              onChange       = CallbackDebug.f1("onChange"),
+              onFocus        = CallbackDebug.f1("onFocus"),
+              onKeyDown      = CallbackDebug.f1("onKeyDown"))(),
             MuiTextField(hintText = "Hint Text", floatingLabelText = "Floating Label Text")(),
             MuiTextField(hintText = "Multi Line Text", multiLine = true)(),
             MuiTextField(hintText = "Multi Line Text", multiLine = true, floatingLabelText = "Multi Line Floating Label Text")(),

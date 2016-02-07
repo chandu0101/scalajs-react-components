@@ -1,4 +1,4 @@
-# 0.4.0 (Unreleased)
+# 0.4.0
 * Material-ui bumped from 0.13 to 0.14.4
 * Bumped Scala-js to 0.6.6 to avoid some implicit resolution issues
 * Bumped scalacss dependency

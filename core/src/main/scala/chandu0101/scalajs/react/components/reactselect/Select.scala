@@ -94,7 +94,7 @@ case class Select[T](
   /* optional tab index of the control */
   tabIndex: js.UndefOr[String] = js.undefined,
   /* initial field value */
-  value: JsCol[T] = js.undefined,
+  value: JsCollection[T] = js.undefined,
   /* value component to render */
   valueComponent: js.UndefOr[JsComponent[ValueProps[T]]] = js.undefined,
   /* path of the label value in option objects */

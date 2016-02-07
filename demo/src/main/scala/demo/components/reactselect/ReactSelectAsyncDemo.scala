@@ -1,7 +1,7 @@
 package demo.components.reactselect
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.JsCol
+import chandu0101.scalajs.react.components.JsCollection
 import chandu0101.scalajs.react.components.reactselect._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
@@ -16,7 +16,7 @@ object ReactSelectAsyncDemo {
   // EXAMPLE:START
 
   case class State(
-    value: JsCol[ValueOption[MyValue]] = js.undefined
+    value: JsCollection[ValueOption[MyValue]] = js.undefined
   )
 
   case class MyValue(value: String, anotherValue: Int)
@@ -31,7 +31,7 @@ object ReactSelectAsyncDemo {
         ))
       )
 
-    val onChangeValue: JsCol[ValueOption[MyValue]] => Callback =
+    val onChangeValue: JsCollection[ValueOption[MyValue]] => Callback =
       chosen =>
         t.modState(_.copy(value = chosen)) >>
         Callback.info(s"Chose ${chosen.toJsArray.map(_.value)}")

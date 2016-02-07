@@ -11,19 +11,19 @@ import scala.scalajs.js
   *  - an instance of T
   *  - an array of T
   *
-  *  BEWARE: `JsCol[js.Array[T]]` wont work
+  *  BEWARE: `JsCollection[js.Array[T]]` wont work
   */
 @js.native
-trait JsCol[T] extends js.Any
+trait JsCollection[T] extends js.Any
 
-object JsCol extends lower {
-  @inline implicit final def toJsColArray[T <: js.Any](t: js.Array[T]): JsCol[T] =
-    t.asInstanceOf[JsCol[T]]
+object JsCollection extends JsCollectionLower {
+  @inline implicit final def toJsCollectionArray[T <: js.Any](t: js.Array[T]): JsCollection[T] =
+    t.asInstanceOf[JsCollection[T]]
 
-  @inline implicit final def toJsColUndefOr[T <: js.Any](t: js.UndefOr[T]): JsCol[T] =
-    t.asInstanceOf[JsCol[T]]
+  @inline implicit final def toJsCollectionUndefOr[T <: js.Any](t: js.UndefOr[T]): JsCollection[T] =
+    t.asInstanceOf[JsCollection[T]]
 
-  @inline final implicit class JsColX[T <: js.Any](private val c: JsCol[T]){
+  @inline final implicit class JsCollectionX[T <: js.Any](private val c: JsCollection[T]){
     @inline def isArray: Boolean =
       js.Array.isArray(c)
 
@@ -38,12 +38,12 @@ object JsCol extends lower {
     @inline def headOption: js.UndefOr[T] =
       fold[js.UndefOr[T]](js.undefined)(identity[T])(a => if (a.nonEmpty) a.head else js.undefined)
 
-    @inline def map[U <: js.Any](f: T => U): JsCol[U] =
-      fold[JsCol[U]](js.undefined)(t => f(t))(_ map f)
+    @inline def map[U <: js.Any](f: T => U): JsCollection[U] =
+      fold[JsCollection[U]](js.undefined)(f(_))(_ map f)
   }
 }
 
-trait lower {
-  @inline implicit final def toJsColId[T <: js.Any](t: T): JsCol[T] =
-    t.asInstanceOf[JsCol[T]]
+trait JsCollectionLower {
+  @inline implicit final def toJsCollectionId[T <: js.Any](t: T): JsCollection[T] =
+    t.asInstanceOf[JsCollection[T]]
 }

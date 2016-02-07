@@ -97,7 +97,7 @@ case class Async[T] (
   /* onBlur handler: function (event) {} */
   onBlur: js.UndefOr[ReactEvent => Callback] = js.undefined,
   /* onChange handler: function (newValue) {} */
-  onChange: js.UndefOr[JsCol[ValueOption[T]] => Callback] = js.undefined,
+  onChange: js.UndefOr[JsCollection[ValueOption[T]] => Callback] = js.undefined,
   /* onFocus handler: function (event) {} */
   onFocus: js.UndefOr[ReactEvent => Callback] = js.undefined,
   /* onInputChange handler: function (inputValue) {} */
@@ -119,7 +119,7 @@ case class Async[T] (
   /* optional tab index of the control */
   tabIndex: js.UndefOr[String] = js.undefined,
   /* initial field value */
-  value: js.UndefOr[JsCol[ValueOption[T]]] = js.undefined,
+  value: js.UndefOr[JsCollection[ValueOption[T]]] = js.undefined,
   /* value component to render */
   valueComponent: js.UndefOr[JsComponent[ValueProps[T]]] = js.undefined,
   /* path of the label value in option objects */

@@ -8,7 +8,7 @@ object Build extends Build {
 
   val Scala211 = "2.11.7"
 
-  val scalajsReactVersion = "0.10.3"
+  val scalajsReactVersion = "0.10.4"
   val scalaCSSVersion = "0.3.2"
 
   type PE = Project => Project
@@ -17,7 +17,7 @@ object Build extends Build {
     _.enablePlugins(ScalaJSPlugin)
       .settings(
         organization         := "com.github.chandu0101.scalajs-react-components",
-        version              := "0.3.0",
+        version              := "0.4.0",
         homepage             := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses             += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion         := Scala211,

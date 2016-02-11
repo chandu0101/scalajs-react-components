@@ -68,6 +68,11 @@ object MuiButtonsDemo {
               MuiFloatingActionButton(secondary = true)(ActionGrade()()),
               MuiFloatingActionButton(secondary = true, mini = true)(ActionGrade()())
             )
+          ),
+          MuiTab(label = "Icon Buttons")(
+            <.div(Style.content,
+              MuiIconButton(onTouchTap = DummyEvents.f1("onTouchTap"))(ActionGrade()())
+            )
           )
         )
       )

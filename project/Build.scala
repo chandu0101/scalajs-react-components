@@ -26,7 +26,7 @@ object Build extends Build {
                                   "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions        := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
-          "org.scala-js"   %% "scalajs-test-interface" % "0.6.6"
+          "org.scala-js"   %% "scalajs-test-interface" % "0.6.7"
         )
       )
 

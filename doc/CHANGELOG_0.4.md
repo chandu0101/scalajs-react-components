@@ -1,3 +1,7 @@
+# 0.4.1
+* Upgraded to Scala-js 0.6.7 since it has important fixes
+* Added a bunch of props to MuiIconButton
+
 # 0.4.0
 * Material-ui bumped from 0.13 to 0.14.4
 * Bumped Scala-js to 0.6.6 to avoid some implicit resolution issues

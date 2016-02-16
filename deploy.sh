@@ -7,6 +7,7 @@
 comment="$1"
 
 rm -rf demo/assets
+rm -rf demo/node_modules
 
 sbt clean
 

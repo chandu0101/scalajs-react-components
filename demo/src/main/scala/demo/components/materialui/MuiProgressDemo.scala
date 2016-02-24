@@ -16,9 +16,10 @@ object MuiProgressDemo {
     .render(P => {
       <.div(
         CodeExample(code, "Progress Bars")(
-          MuiCircularProgress(mode = DeterminateIndeterminate.determinate, value = 50)(),
+          MuiCircularProgress(mode = DeterminateIndeterminate.determinate, value = 50.0)(),
+          MuiCircularProgress(mode = DeterminateIndeterminate.indeterminate, size = 0.5)(),
           MuiCircularProgress(mode = DeterminateIndeterminate.indeterminate)(),
-          MuiCircularProgress(mode = DeterminateIndeterminate.indeterminate, size = 2)(),
+          MuiCircularProgress(mode = DeterminateIndeterminate.indeterminate, size = 2.0)(),
           MuiLinearProgress(mode = DeterminateIndeterminate.indeterminate)()
         )
       )

@@ -9,8 +9,6 @@ object MuiRouteModule {
 
   case object Info extends LeftRoute("Info", "info", () => MuiInfo())
 
-  case object Updates extends LeftRoute("Updating Inputs", "updating", () => MuiUpdatingComponentsDemo())
-
   case object AppBar extends LeftRoute("AppBar", "appbar", () => MuiAppBarDemo())
 
   case object AutoComplete extends LeftRoute("AutoComplete", "autocomplete", () => MuiAutoCompleteDemo())

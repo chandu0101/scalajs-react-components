@@ -62,6 +62,17 @@ or to put them in scope for your whole application:
 ```scala
 package object mypackage extends chandu0101.scalajs.react.components.Implicits
 ```
+
+#### Uncaught TypeError: Cannot read property 'RaisedButton' of undefined
+If you try to use a javascript wrapper like material-ui and
+ you get an error like this, make sure the corresponding javascript library
+ is loaded in the global namespace where the wrapper expects to find it.
+
+Sbt does not by itself understand these module systems, so unless you're prepared
+ to talk it into supporting it, please rather have a look at the
+ [webpack configuration for the demo project](demo/webpack.config.js) to
+ see an example of how this can be solved.
+
 ## Setup
 
 #### SBT

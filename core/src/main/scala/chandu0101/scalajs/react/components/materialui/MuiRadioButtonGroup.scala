@@ -13,26 +13,25 @@ import scala.scalajs.js.`|`
 case class MuiRadioButtonGroup(
   key:             js.UndefOr[String]                            = js.undefined,
   ref:             js.UndefOr[String]                            = js.undefined,
-  /* The css class name of the root element.*/
+  /* The CSS class name of the root element.*/
   className:       js.UndefOr[String]                            = js.undefined,
-  /* Sets the default radio button to be the one whose
-  value matches defaultSelected (case-sensitive).
-  This will override any individual radio button with
-  the defaultChecked or checked property stated.*/
+  /* The `value` property (case-sensitive) of the radio button that will be
+  selected by default. This takes precedence over the `checked` property
+  of the `RadioButton` elements.*/
   defaultSelected: js.UndefOr[String]                            = js.undefined,
-  /* Where the label will be placed for all radio buttons.
-  This will override any labelPosition properties defined
-  for an individual radio button.*/
+  /* Where the label will be placed for all child radio buttons.
+  This takes precedence over the `labelPosition` property of the
+  `RadioButton` elements.*/
   labelPosition:   js.UndefOr[LeftRight]                         = js.undefined,
-  /* The name that will be applied to all radio buttons inside it.*/
+  /* The name that will be applied to all child radio buttons.*/
   name:            String,
   /* Callback function that is fired when a radio button has
-  been clicked. Returns the event and the value of the radio
-  button that has been selected.*/
+  been checked.
+  radio button.*/
   onChange:        js.UndefOr[(ReactEventI, String) => Callback] = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:           js.UndefOr[CssProperties]                     = js.undefined,
-  /* The value of the currently selected radio button.*/
+  /* The `value` of the currently selected radio button.*/
   valueSelected:   js.UndefOr[String]                            = js.undefined){
   /**
    * @param children Should be used to pass `RadioButton` components.

@@ -23,6 +23,8 @@ case class MuiTextField(
   errorStyle:             js.UndefOr[CssProperties]                   = js.undefined,
   /* The error content to display.*/
   errorText:              js.UndefOr[ReactNode]                       = js.undefined,
+  /* If true, the floating label will float even when there is no value.*/
+  floatingLabelFixed:     js.UndefOr[Boolean]                         = js.undefined,
   /* The style object to use to override floating label styles.*/
   floatingLabelStyle:     js.UndefOr[CssProperties]                   = js.undefined,
   /* The content to use for the floating label element.*/

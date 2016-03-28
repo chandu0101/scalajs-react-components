@@ -40,7 +40,8 @@ case class MuiDatePicker(
   The default is `1`, Monday, as per ISO 8601.*/
   firstDayOfWeek:         js.UndefOr[Double]                                     = js.undefined,
   /* This function is called to format the date displayed in the input box, and should return a string.
-  By default if no `locale` and `DateTimeFormat` is provided date objects are formatted to ISO 8601 YYYY-MM-DD.*/
+  By default if no `locale` and `DateTimeFormat` is provided date objects are formatted to ISO 8601 YYYY-MM-DD.
+  @returns {any} The formatted date.*/
   formatDate:             js.UndefOr[js.Date => String]                          = js.undefined,
   /* Locale used for formatting the dialog date strings. If you are not using the default value, you
   have to provide a `DateTimeFormat` that supports it.*/
@@ -55,20 +56,19 @@ case class MuiDatePicker(
   mode:                   js.UndefOr[PortraitLandscape]                          = js.undefined,
   /* Override the default text of the 'OK' button.*/
   okLabel:                js.UndefOr[String]                                     = js.undefined,
-  /* Callback function that is fired when the date value changes. Since there
-  is no particular event associated with the change the first argument
-  will always be null and the second argument will be the new Date instance.*/
+  /* Callback function that is fired when the date value changes.
+  the first argument will always be null.*/
   onChange:               js.UndefOr[(js.UndefOr[Nothing], js.Date) => Callback] = js.undefined,
-  /* Fired when the Date Picker dialog is dismissed.*/
+  /* Callback function that is fired when the Date Picker's dialog is dismissed.*/
   onDismiss:              js.UndefOr[Callback]                                   = js.undefined,
-  /* Fired when the Date Picker field gains focus.*/
+  /* Callback function that is fired when the Date Picker's `TextField` gains focus.*/
   onFocus:                js.UndefOr[ReactFocusEventH => Callback]               = js.undefined,
-  /* Fired when the Date Picker dialog is shown.*/
+  /* Callback function that is fired when the Date Picker's dialog is shown.*/
   onShow:                 js.UndefOr[Callback]                                   = js.undefined,
-  /* Called when touch tap event occurs on text-field.*/
+  /* Callback function that is fired when a touch tap event occurs on the Date Picker's `TextField`.*/
   onTouchTap:             js.UndefOr[ReactTouchEventH => Callback]               = js.undefined,
-  /* Called during render time of a given day. If this method returns
-  false the day is disabled, otherwise it is displayed normally.*/
+  /* Callback function used to determine if a day's entry should be disabled on the calendar.
+  @returns {boolean} Indicates whether the day should be disabled.*/
   shouldDisableDate:      js.UndefOr[js.Date => Boolean]                         = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties]                              = js.undefined,
@@ -93,6 +93,9 @@ case class MuiDatePicker(
   /* The error content to display.
   (Passed on to TextField)*/
   errorText:              js.UndefOr[ReactNode]                                  = js.undefined,
+  /* If true, the floating label will float even when there is no value.
+  (Passed on to TextField)*/
+  floatingLabelFixed:     js.UndefOr[Boolean]                                    = js.undefined,
   /* The style object to use to override floating label styles.
   (Passed on to TextField)*/
   floatingLabelStyle:     js.UndefOr[CssProperties]                              = js.undefined,

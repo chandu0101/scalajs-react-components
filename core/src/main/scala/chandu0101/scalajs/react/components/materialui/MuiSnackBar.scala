@@ -37,7 +37,7 @@ case class MuiSnackbar(
   `open` prop.
   The `reason` parameter can optionally be used to control the response to `onRequestClose`,
   for example ignoring `clickaway`.*/
-  onRequestClose:   String => Callback,
+  onRequestClose:   js.UndefOr[String => Callback]           = js.undefined,
   /* Controls whether the `Snackbar` is opened or not.*/
   open:             Boolean,
   /* Override the inline-styles of the root element.*/

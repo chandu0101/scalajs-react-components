@@ -12,7 +12,9 @@ object CallbackDebug {
     final implicit def PrintAny[T]: Print[T] =
       new Print[T]{
         override def print(t: T): String =
-          if (t == js.undefined) "undefined" else t.toString
+          if (t == js.undefined) "undefined"
+          else if (t == null) "null"
+          else t.toString
       }
   }
 

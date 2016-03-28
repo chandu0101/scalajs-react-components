@@ -61,10 +61,9 @@ case class MuiMenu(
   width will always be a keyline increment
   (64px for desktop, 56px otherwise).*/
   width:                    js.UndefOr[String | Double]                                                         = js.undefined,
-  /* Sets the width of the menu. If not specified,
-  the menu width will be dictated by its children.
-  The rendered width will always be a keyline increment
-  (64px for desktop, 56px otherwise).*/
+  /* Menu no longer supports `zDepth`. Instead, wrap it in `Paper`
+  or another component that provides zDepth.*/
+  @deprecated("Internal API")
   zDepth:                   js.UndefOr[ZDepth]                                                                  = js.undefined){
   /**
    * @param children Children for the Menu. Usually MenuItems.

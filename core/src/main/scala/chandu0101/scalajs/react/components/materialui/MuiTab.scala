@@ -40,14 +40,13 @@ case class MuiTab(
   @deprecated("Internal API")
   width:      js.UndefOr[String]                       = js.undefined){
 
-  def apply(children: ReactNode*) = {
+  /**
+    * @param child Children passed to table.
+    */
+  def apply(child: ReactNode) = {
     val props = JSMacro[MuiTab](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Tab)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Table)
+    f(props, child).asInstanceOf[ReactComponentU_]
   }
 }
+        

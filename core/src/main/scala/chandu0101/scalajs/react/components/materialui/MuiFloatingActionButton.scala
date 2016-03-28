@@ -37,17 +37,17 @@ case class MuiFloatingActionButton(
   linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* If true, the button will be a small floating action button.*/
   mini:                 js.UndefOr[Boolean]                         = js.undefined,
-  /* Called when mouse down event occurs on the button.*/
+  /* Callback function fired when a mouse button is pressed down on the elmeent.*/
   onMouseDown:          js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Called when mouse enter event occurs on the button.*/
+  /* Callback function fired when the mouse enters the element.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Called when mouse leave event occurs on the button.*/
+  /* Callback function fired when the mouse leaves the element.*/
   onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Called when mouse up event occurs on the button.*/
+  /* Callback function fired when a mouse button is released on the element.*/
   onMouseUp:            js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Called when touch end event occurs on the button.*/
+  /* Callback function fired when a touch point is removed from the element.*/
   onTouchEnd:           js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
-  /* Called when touch start event occurs on the button.*/
+  /* Callback function fired when the element is touched.*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* If true, the button will use the secondary button colors.*/
   secondary:            js.UndefOr[Boolean]                         = js.undefined,

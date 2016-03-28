@@ -14,48 +14,48 @@ case class MuiPopover(
   key:                    js.UndefOr[String]        = js.undefined,
   ref:                    js.UndefOr[String]        = js.undefined,
   /* This is the DOM element that will be used to set the position of the
-  component.*/
+  popover.*/
   anchorEl:               js.UndefOr[js.Any]        = js.undefined,
-  /* This is the point on the anchor where the popover
-  targetOrigin will stick to.
+  /* This is the point on the anchor where the popover's
+  `targetOrigin` will attach to.
   Options:
-  vertical: [top, middle, bottom]
-  horizontal: [left, center, right]*/
+  vertical: [top, middle, bottom];
+  horizontal: [left, center, right].*/
   anchorOrigin:           js.UndefOr[Origin]        = js.undefined,
   /* If true, the popover will apply transitions when
-  added it gets added to the DOM.*/
+  it is added to the DOM.*/
   animated:               js.UndefOr[Boolean]       = js.undefined,
   /* Override the default animation component used.*/
   animation:              js.UndefOr[js.Any]        = js.undefined,
-  /* If true, the popover will hide when the anchor scrolls off the screen*/
+  /* If true, the popover will hide when the anchor is scrolled off the screen.*/
   autoCloseWhenOffScreen: js.UndefOr[Boolean]       = js.undefined,
-  /* If true, the popover (potentially) ignores targetOrigin
-  and anchorOrigin to make itself fit on screen,
+  /* If true, the popover (potentially) ignores `targetOrigin`
+  and `anchorOrigin` to make itself fit on screen,
   which is useful for mobile devices.*/
   canAutoPosition:        js.UndefOr[Boolean]       = js.undefined,
-  /* The css class name of the root element.*/
+  /* The CSS class name of the root element.*/
   className:              js.UndefOr[String]        = js.undefined,
-  /* This is a callback that fires when the popover
-  thinks it should close. (e.g. clickAway or offScreen)*/
+  /* Callback function fired when the popover is requested to be closed.
+  are 'clickAway' and 'offScreen'.*/
   onRequestClose:         js.UndefOr[Callback]      = js.undefined,
-  /* Controls the visibility of the popover.*/
+  /* If true, the popover is visible.*/
   open:                   js.UndefOr[Boolean]       = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties] = js.undefined,
-  /* This is the point on the popover which will stick to
-  the anchors origin.
+  /* This is the point on the popover which will attach to
+  the anchor's origin.
   Options:
-  vertical: [top, middle, bottom]
-  horizontal: [left, center, right]*/
+  vertical: [top, middle, bottom];
+  horizontal: [left, center, right].*/
   targetOrigin:           js.UndefOr[Origin]        = js.undefined,
   /* If true, the popover will render on top of an invisible
   layer, which will prevent clicks to the underlying
-  elements, and trigger an onRequestClose(clickAway) event.*/
+  elements, and trigger an `onRequestClose('clickAway')` call.*/
   useLayerForClickAway:   js.UndefOr[Boolean]       = js.undefined,
-  /* This number represents the zDepth of the paper shadow.*/
+  /* The zDepth of the popover.*/
   zDepth:                 js.UndefOr[ZDepth]        = js.undefined){
   /**
-   * @param children Use this property to render your component inside the `Popover`.
+   * @param children The content of the popover.
    */
   def apply(children: js.UndefOr[ReactNode] = js.undefined) = {
     val props = JSMacro[MuiPopover](this)

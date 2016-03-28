@@ -37,7 +37,7 @@ case class MuiHorizontalStep(
   /* Call back function will be called when step header is touched.*/
   @deprecated("Internal API")
   onStepHeaderTouch:      js.UndefOr[(Int, js.Any) => Callback] = js.undefined,
-  /* Override inline style of step header wrapper.*/
+  /* Override inline-style of step header wrapper.*/
   stepHeaderWrapperStyle: js.UndefOr[CssProperties]             = js.undefined,
   /* The index of step in array of Steps.*/
   @deprecated("Internal API")

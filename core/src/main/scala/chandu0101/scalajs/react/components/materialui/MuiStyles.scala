@@ -10,7 +10,7 @@ trait MuiColor extends js.Object
 @js.native
 trait MuiStyles extends js.Object {
   val AutoPrefix:     js.Dynamic     = js.native
-  val Colors:         MuiColors      = js.native
+  val colors:         MuiColors      = js.native
   val Spacing:        MuiSpacings    = js.native
   val ThemeManager:   ThemeManager   = js.native
   val Typography:     js.Dynamic     = js.native

@@ -13,39 +13,41 @@ import scala.scalajs.js.`|`
 case class MuiIconButton(
   key:                  js.UndefOr[String]                          = js.undefined,
   ref:                  js.UndefOr[String]                          = js.undefined,
-  /* The css class name of the root element.*/
+  /* The CSS class name of the root element.*/
   className:            js.UndefOr[String]                          = js.undefined,
-  /* Disables the icon button.*/
+  /* If true, the element's ripple effect will be disabled.*/
+  disableTouchRipple:   js.UndefOr[Boolean]                         = js.undefined,
+  /* If true, the element will be disabled.*/
   disabled:             js.UndefOr[Boolean]                         = js.undefined,
-  /* If you are using a stylesheet for your
-  icons, enter the class name for the icon to be used here.*/
+  /* The CSS class name of the icon. Used for setting the icon with a stylesheet.*/
   iconClassName:        js.UndefOr[String]                          = js.undefined,
-  /* Overrides the inline-styles of the icon element.*/
+  /* Override the inline-styles of the icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                   = js.undefined,
-  /* Callback function for when the component loses focus.*/
+  /* Callback function fired when the element loses focus.*/
   onBlur:               js.UndefOr[ReactEventH => Callback]         = js.undefined,
-  /* Callback function for when the component gains focus.*/
+  /* Callback function fired when the element gains focus.*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
-  /* Callback function for when the component
-  receives keyboard focus.*/
+  /* Callback function fired when the element is focused or blurred by the keyboard.*/
   onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
-  /* Callback function for when mouse enters element.*/
+  /* Callback function fired when the mouse enters the element.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function for when mouse leaves element.*/
+  /* Callback function fired when the mouse leaves the element.*/
   onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function for when mouse goes out of element it works with disabled element.*/
+  /* Callback function fired when the mouse leaves the element. Unlike `onMouseLeave`,
+  this callback will fire on disabled icon buttons.*/
   onMouseOut:           js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                   = js.undefined,
-  /* The tooltip text to show.*/
+  /* The text to supply to the element's tooltip.*/
   tooltip:              js.UndefOr[ReactNode]                       = js.undefined,
-  /* Allows the tooltip to be viewed with different
-  alignments: "bottom-center", "top-center",
-  "bottom-right", "top-right", "bottom-left" and "top-left".*/
+  /* The vertical and horizontal positions, respectively, of the element's tooltip.
+  Possible values are: "bottom-center", "top-center", "bottom-right", "top-right",
+  "bottom-left", and "top-left".*/
   tooltipPosition:      js.UndefOr[CornersAndCenter]                = js.undefined,
-  /* Styles prop passed down to the tooltip.*/
+  /* Override the inline-styles of the tooltip element.*/
   tooltipStyles:        js.UndefOr[CssProperties]                   = js.undefined,
-  /* Prop for tooltip to make it larger for mobile.*/
+  /* If true, increase the tooltip element's size.  Useful for increasing tooltip
+  readability on mobile devices.*/
   touch:                js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   centerRipple:         js.UndefOr[Boolean]                         = js.undefined,
@@ -55,8 +57,6 @@ case class MuiIconButton(
   disableFocusRipple:   js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   disableKeyboardFocus: js.UndefOr[Boolean]                         = js.undefined,
-  /* (Passed on to EnhancedButton)*/
-  disableTouchRipple:   js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   focusRippleColor:     js.UndefOr[MuiColor]                        = js.undefined,
   /* (Passed on to EnhancedButton)*/
@@ -82,7 +82,7 @@ case class MuiIconButton(
   /* (Passed on to EnhancedButton)*/
   `type`:               js.UndefOr[String]                          = js.undefined){
   /**
-   * @param children Can be used to pass a font icon as the icon for the button.
+   * @param children Can be used to pass a `FontIcon` element as the icon for the button.
    */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiIconButton](this)

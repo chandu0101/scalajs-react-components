@@ -13,8 +13,8 @@ import scala.scalajs.js.`|`
 case class MuiDialog(
   key:                       js.UndefOr[String]              = js.undefined,
   ref:                       js.UndefOr[String]              = js.undefined,
-  /* This prop can be either a JSON object containing the actions to render (This is **DEPRECATED**),
-  a react elements, or an array of react elements.*/
+  /* Action buttons to display below the Dialog content (`children`).
+  This property accepts either a React element, or an array of React elements.*/
   actions:                   js.UndefOr[ReactNode]           = js.undefined,
   /* The `className` to add to the actions container's root element.*/
   actionsContainerClassName: js.UndefOr[String]              = js.undefined,

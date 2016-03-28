@@ -31,13 +31,13 @@ case class MuiFlatButton(
   labelStyle:           js.UndefOr[CssProperties]                   = js.undefined,
   /* Enables use of `href` property to provide a URL to link to if set to true.*/
   linkButton:           js.UndefOr[Boolean]                         = js.undefined,
-  /* Called when element is focused by the keyboard.*/
+  /* Callback function fired when the element is focused or blurred by the keyboard.*/
   onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
-  /* Called when the mouse enters the element.*/
+  /* Callback function fired when the mouse enters the element.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Called when the mouse leaves the element.*/
+  /* Callback function fired when the mouse leaves the element.*/
   onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Called when a touch event is started inside the element.*/
+  /* Callback function fired when the element is touched.*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* If true, colors button according to
   primaryTextColor from the Theme.*/

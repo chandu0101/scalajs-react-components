@@ -19,6 +19,8 @@ case class MuiTimePicker(
   cancelLabel:            js.UndefOr[String]                                     = js.undefined,
   /* This is the initial time value of the component.*/
   defaultTime:            js.UndefOr[js.Date]                                    = js.undefined,
+  /* If true, the TimePicker is disabled.*/
+  disabled:               js.UndefOr[Boolean]                                    = js.undefined,
   /* Tells the component to display the picker in
   ampm (12hr) format or 24hr format.*/
   format:                 js.UndefOr[Ampm_24hr]                                  = js.undefined,
@@ -57,15 +59,15 @@ case class MuiTimePicker(
   /* The text string to use for the default value.
   (Passed on to TextField)*/
   defaultValue:           js.UndefOr[String]                                     = js.undefined,
-  /* Disables the text field if set to true.
-  (Passed on to TextField)*/
-  disabled:               js.UndefOr[Boolean]                                    = js.undefined,
   /* The style object to use to override error styles.
   (Passed on to TextField)*/
   errorStyle:             js.UndefOr[CssProperties]                              = js.undefined,
   /* The error content to display.
   (Passed on to TextField)*/
   errorText:              js.UndefOr[ReactNode]                                  = js.undefined,
+  /* If true, the floating label will float even when there is no value.
+  (Passed on to TextField)*/
+  floatingLabelFixed:     js.UndefOr[Boolean]                                    = js.undefined,
   /* The style object to use to override floating label styles.
   (Passed on to TextField)*/
   floatingLabelStyle:     js.UndefOr[CssProperties]                              = js.undefined,

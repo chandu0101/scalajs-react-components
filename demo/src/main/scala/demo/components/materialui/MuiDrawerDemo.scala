@@ -9,7 +9,7 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
-object MuiLeftNavDemo {
+object MuiDrawerDemo {
 
   val code = GhPagesMacros.exampleSource
 
@@ -54,17 +54,17 @@ object MuiLeftNavDemo {
 
     def render(S: State) = {
       <.div(
-        CodeExample(code, "MuiLeftNav")(
+        CodeExample(code, "MuiDrawer")(
           <.div(
-            MuiLeftNav(
+            MuiDrawer(
               onRequestChange = onRequestChange,
-              openRight       = S.isRight,
+              openSecondary   = S.isRight,
               open            = S.isOpen,
               docked          = S.isDocked)(
               /* hack in a cheesy centered avatar */
               MuiAvatar(
                 size            = 112,
-                backgroundColor = Mui.Styles.Colors.red400,
+                backgroundColor = Mui.Styles.colors.red400,
                 style           = js.Dynamic.literal(
                   margin  = "auto",
                   display = "block",
@@ -83,7 +83,7 @@ object MuiLeftNavDemo {
 
             MuiToggle(
               toggled  = S.isOpen,
-              label    = "Show Left Nav",
+              label    = "Show drawer",
               onToggle = toggleOpen
             )(),
             MuiToggle(
@@ -102,7 +102,7 @@ object MuiLeftNavDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("MuiLeftNavDemo")
+  val component = ReactComponentB[Unit]("MuiDrawerDemo")
     .initialState(
       State(
         selected = js.undefined,

@@ -51,15 +51,6 @@ object LeftRight {
 }
 
 
-class LeftRightCenter(val value: String) extends AnyVal
-object LeftRightCenter {
-  val left = new LeftRightCenter("left")
-  val right = new LeftRightCenter("right")
-  val center = new LeftRightCenter("center")
-  val values = List(left, right, center)
-}
-
-
 class NoneFocusedKeyboard_focused(val value: String) extends AnyVal
 object NoneFocusedKeyboard_focused {
   val none = new NoneFocusedKeyboard_focused("none")

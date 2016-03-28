@@ -47,7 +47,7 @@ object MuiRouteModule {
 
   case object Toolbar extends LeftRoute("Toolbar", "toolbar", () => MuiToolbarDemo())
 
-  case object LeftNav extends LeftRoute("LeftNav", "leftnav", () => MuiLeftNavDemo())
+  case object Drawer extends LeftRoute("Drawer", "drawer", () => MuiDrawerDemo())
 
   case object Menu extends LeftRoute("Menus", "menus", () => MuiMenuDemo())
 
@@ -64,7 +64,7 @@ object MuiRouteModule {
     DatePicker,
     Dialog,
     DropDownMenu,
-    LeftNav,
+    Drawer,
     MList,
     Menu,
     Paper,

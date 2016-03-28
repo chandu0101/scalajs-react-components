@@ -11,32 +11,32 @@ import scala.scalajs.js.`|`
  */
     
 case class MuiStepper(
-  key:                         js.UndefOr[String]                       = js.undefined,
-  ref:                         js.UndefOr[String]                       = js.undefined,
-  /* The current active step index which passed by parent component.*/
-  activeStepIndex:             js.UndefOr[Double]                       = js.undefined,
-  /* Override inline-style of the content container.*/
-  containerStyle:              js.UndefOr[CssProperties]                = js.undefined,
-  /* Function used to create suitable icon for step base on state of the step.
-  @returns {node} - which will be shown in the left avatar.*/
-  createIcon:                  js.UndefOr[js.Function]                  = js.undefined,
-  /* If true, it will be horizontal stepper.*/
-  horizontal:                  js.UndefOr[Boolean]                      = js.undefined,
-  /* Callback function that is fired when the header of step is touched.*/
-  onStepHeaderTouch:           js.UndefOr[(Int, js.Any) => Callback]    = js.undefined,
-  /* Overrie inline-style of the step header wrapper.*/
-  stepHeadersWrapperStyle:     js.UndefOr[CssProperties]                = js.undefined,
-  /* Override the inline-styles of the root element.*/
-  style:                       js.UndefOr[CssProperties]                = js.undefined,
-  /* Callback function that is fired when re-render to update the background of left avatar.
-  If not passed, it will use default theme
-  @returns {string} the background color of avatar*/
-  updateAvatarBackgroundColor: js.UndefOr[js.Function]                  = js.undefined,
-  /* Callback function that is fired  when re-render to update complete status of Step.
+  key:                         js.UndefOr[String]                                  = js.undefined,
+  ref:                         js.UndefOr[String]                                  = js.undefined,
+  /* Set the active step.*/
+  activeStep:                  js.UndefOr[Double]                                  = js.undefined,
+  /* Override the inline-style of the content container.*/
+  containerStyle:              js.UndefOr[CssProperties]                           = js.undefined,
+  /* Function used to set a suitable icon for the step, based on the current state of the step.
+  @returns {node} - Icon that will be shown for the step.*/
+  createIcon:                  js.UndefOr[js.Function]                             = js.undefined,
+  /* If true, it will be horizontal stepper. Should match the step type used for `children`.*/
+  horizontal:                  js.UndefOr[Boolean]                                 = js.undefined,
+  /* Callback function fired when the step header is touched.*/
+  onStepHeaderTouch:           js.UndefOr[(Int, js.Any) => Callback]               = js.undefined,
+  /* Override the inline-style of the step header wrapper.*/
+  stepHeadersWrapperStyle:     js.UndefOr[CssProperties]                           = js.undefined,
+  /* Override the inline-style of the root element.*/
+  style:                       js.UndefOr[CssProperties]                           = js.undefined,
+  /* Callback function fired on re-render to set the background color of the icon.
+  If not passed, it will use the default theme.
+  @returns {string} The background color of the icon.*/
+  updateAvatarBackgroundColor: js.UndefOr[js.Function]                             = js.undefined,
+  /* Callback function fired on re-render to update the completed status of the step.
   @returns {boolean} `true` if the step is completed.*/
-  updateCompletedStatusOfStep: js.UndefOr[(Int, ReactNode) => Callback] = js.undefined){
+  updateCompletedStatus:       js.UndefOr[(Int, ReactNode) => CallbackTo[Boolean]] = js.undefined){
   /**
-   * @param children Children should be Step type.
+   * @param children Should be two or more `HorizontalStep` or `VerticalStep`.
    */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiStepper](this)

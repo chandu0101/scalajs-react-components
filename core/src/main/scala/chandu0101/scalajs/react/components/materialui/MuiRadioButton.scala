@@ -17,27 +17,31 @@ case class MuiRadioButton(
   Used internally by `RadioButtonGroup`.*/
   @deprecated("Internal API")
   checked:              js.UndefOr[Boolean]                            = js.undefined,
-  /* The icon element to show when radio button is checked.*/
+  /* The icon element to show when the radio button is checked.*/
   checkedIcon:          js.UndefOr[ReactElement]                       = js.undefined,
-  /* Disabled if true.*/
+  /* If true, the radio button is disabled.*/
   disabled:             js.UndefOr[Boolean]                            = js.undefined,
-  /* Overrides the inline-styles of the icon element.*/
+  /* Override the inline-styles of the icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                      = js.undefined,
-  /* Overrides the inline-styles of the input element.*/
+  /* Override the inline-styles of the input element.*/
   inputStyle:           js.UndefOr[CssProperties]                      = js.undefined,
   /* Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
   Where the label will be placed next to the radio button.*/
   @deprecated("Internal API")
   labelPosition:        js.UndefOr[LeftRight]                          = js.undefined,
-  /* Overrides the inline-styles of the RadioButton element label.*/
+  /* Override the inline-styles of the label element.*/
   labelStyle:           js.UndefOr[CssProperties]                      = js.undefined,
-  /* Callback function for checked event.*/
+  /* Callback function fired when the radio button is checked. Note that this
+  function will not be called if the radio button is part of a
+  radio button group: in this case, use the `onChange` property of
+  `RadioButtonGroup`.*/
+  @deprecated("Internal API")
   onCheck:              js.UndefOr[(ReactEventH, Boolean) => Callback] = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                      = js.undefined,
-  /* The icon element to show when radio button is unchecked.*/
+  /* The icon element to show when the radio button is unchecked.*/
   uncheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
-  /* The value of our radio button component.*/
+  /* The value of the radio button.*/
   value:                js.UndefOr[String]                             = js.undefined,
   /* The css class name of the root element.
   (Passed on to EnhancedSwitch)*/

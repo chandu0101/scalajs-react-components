@@ -21,13 +21,15 @@ case class MuiList(
   /* The subheader string that will be displayed at the top of the list.*/
   @deprecated("Instead, nest the `Subheader` component directly inside the `List`.")
   subheader:      js.UndefOr[ReactNode]     = js.undefined,
-  /* The style object to override subheader styles.*/
+  /* Override the inline-styles of the subheader element.*/
   @deprecated("Refer to the `subheader` property.")
   subheaderStyle: js.UndefOr[CssProperties] = js.undefined,
-  /* The zDepth prop passed to the Paper element inside list.*/
+  /* ** Breaking change ** List no longer supports `zDepth`. Instead, wrap it in `Paper`
+  or another component that provides zDepth.*/
+  @deprecated("Internal API")
   zDepth:         js.UndefOr[ZDepth]        = js.undefined){
   /**
-   * @param children These are usually ListItems that are passed to
+   * @param children These are usually `ListItem`s that are passed to
 be part of the list.
    */
   def apply(children: ReactNode*) = {

@@ -15,7 +15,6 @@ case class MuiCardExpandable(
   ref:         js.UndefOr[String]        = js.undefined,
   expanded:    js.UndefOr[Boolean]       = js.undefined,
   onExpanding: Callback,
-  /* Override the inline-styles of the root element.*/
   style:       js.UndefOr[CssProperties] = js.undefined){
 
   def apply() = {

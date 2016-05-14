@@ -15,28 +15,31 @@ case class MuiMenuItem(
   ref:                         js.UndefOr[String]                          = js.undefined,
   /* If true, a left check mark will be rendered.*/
   checked:                     js.UndefOr[Boolean]                         = js.undefined,
-  /* Indicates if the menu should render with compact desktop styles.*/
+  /* If true, the menu item will render with compact desktop
+  styles.*/
   @deprecated("Internal API")
   desktop:                     js.UndefOr[Boolean]                         = js.undefined,
-  /* Disables a menu item.*/
+  /* If true, the menu item will be disabled.*/
   disabled:                    js.UndefOr[Boolean]                         = js.undefined,
-  /* Prop passed down to ListItem that tells it what kind of focus it has.*/
+  /* The focus state of the menu item. This prop is used to set the focus
+  state of the underlying `ListItem`.*/
   focusState:                  js.UndefOr[NoneFocusedKeyboard_focused]     = js.undefined,
-  /* Style overrides for the inner div.*/
+  /* Override the inline-styles of the inner div.*/
   innerDivStyle:               js.UndefOr[CssProperties]                   = js.undefined,
   /* If true, the children will be indented.
-  Only needed when there is no leftIcon.*/
+  This is only needed when there is no `leftIcon`.*/
   insetChildren:               js.UndefOr[Boolean]                         = js.undefined,
-  /* This is the SvgIcon or FontIcon to be displayed on the left side.*/
+  /* The `SvgIcon` or `FontIcon` to be displayed on the left side.*/
   leftIcon:                    js.UndefOr[ReactElement]                    = js.undefined,
-  /* Nested MenuItems for this MenuItem. Used to make nested menus.*/
+  /* `MenuItem` elements to nest within the menu item.*/
   menuItems:                   js.UndefOr[ReactNode]                       = js.undefined,
-  /* Fired when the element is touchTapped.*/
+  /* Callback function fired when the menu item is touch-tapped.*/
   onTouchTap:                  js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
-  /* This is the SvgIcon or FontIcon to be displayed on the right side.*/
+  /* Can be used to render primary text within the menu item.*/
+  primaryText:                 js.UndefOr[ReactNode]                       = js.undefined,
+  /* The `SvgIcon` or `FontIcon` to be displayed on the right side.*/
   rightIcon:                   js.UndefOr[ReactElement]                    = js.undefined,
-  /* This is the block element that contains the secondary text.
-  If a string is passed in, a div tag will be rendered.*/
+  /* Can be used to render secondary text within the menu item.*/
   secondaryText:               js.UndefOr[ReactNode]                       = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                       js.UndefOr[CssProperties]                   = js.undefined,
@@ -85,10 +88,6 @@ case class MuiMenuItem(
   /* Callback function fired when the `ListItem` is touched.
   (Passed on to ListItem)*/
   onTouchStart:                js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
-  /* This is the block element that contains the primary text.
-  If a string is passed in, a div tag will be rendered.
-  (Passed on to ListItem)*/
-  primaryText:                 js.UndefOr[ReactNode]                       = js.undefined,
   /* If true, clicking or tapping the primary text of the `ListItem`
   toggles the nested list.
   (Passed on to ListItem)*/
@@ -111,7 +110,7 @@ case class MuiMenuItem(
   (Passed on to ListItem)*/
   secondaryTextLines:          js.UndefOr[_1_2]                            = js.undefined){
   /**
-   * @param children Elements passed as children to inner ListItem.
+   * @param children Elements passed as children to the underlying `ListItem`.
    */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiMenuItem](this)

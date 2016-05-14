@@ -18,7 +18,10 @@ case class MuiCheckbox(
   /* The SvgIcon to use for the checked state.
   This is useful to create icon toggles.*/
   checkedIcon:          js.UndefOr[ReactElement]                       = js.undefined,
-  /* The default state of our checkbox component.*/
+  /* The default state of our checkbox component.
+  **Warning:** This cannot be used in conjunction with `checked`.
+  Decide between using a controlled or uncontrolled input element and remove one of these props.
+  More info: https://fb.me/react-controlled-components*/
   defaultChecked:       js.UndefOr[Boolean]                            = js.undefined,
   /* Disabled if true.*/
   disabled:             js.UndefOr[Boolean]                            = js.undefined,
@@ -43,11 +46,8 @@ case class MuiCheckbox(
   uncheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
   /* ValueLink for when using controlled checkbox.*/
   valueLink:            js.UndefOr[js.Any]                             = js.undefined,
-  /* The css class name of the root element.
-  (Passed on to EnhancedSwitch)*/
-  className:            js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  defaultSwitched:      js.UndefOr[Boolean]                            = js.undefined,
+  className:            js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   disableFocusRipple:   js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/

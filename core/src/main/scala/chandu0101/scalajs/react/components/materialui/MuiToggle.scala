@@ -13,7 +13,10 @@ import scala.scalajs.js.`|`
 case class MuiToggle(
   key:                  js.UndefOr[String]                             = js.undefined,
   ref:                  js.UndefOr[String]                             = js.undefined,
-  /* Determines whether the Toggle is initially turned on.*/
+  /* Determines whether the Toggle is initially turned on.
+  **Warning:** This cannot be used in conjunction with `toggled`.
+  Decide between using a controlled or uncontrolled input element and remove one of these props.
+  More info: https://fb.me/react-controlled-components*/
   defaultToggled:       js.UndefOr[Boolean]                            = js.undefined,
   /* Will disable the toggle if true.*/
   disabled:             js.UndefOr[Boolean]                            = js.undefined,
@@ -23,6 +26,8 @@ case class MuiToggle(
   iconStyle:            js.UndefOr[CssProperties]                      = js.undefined,
   /* Overrides the inline-styles of the input element.*/
   inputStyle:           js.UndefOr[CssProperties]                      = js.undefined,
+  /* Label for toggle.*/
+  label:                js.UndefOr[String]                             = js.undefined,
   /* Where the label will be placed next to the toggle.*/
   labelPosition:        js.UndefOr[LeftRight]                          = js.undefined,
   /* Overrides the inline-styles of the Toggle element label.*/
@@ -43,19 +48,16 @@ case class MuiToggle(
   valueLink:            js.UndefOr[js.Any]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   checked:              js.UndefOr[Boolean]                            = js.undefined,
-  /* The css class name of the root element.
-  (Passed on to EnhancedSwitch)*/
+  /* (Passed on to EnhancedSwitch)*/
   className:            js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  defaultSwitched:      js.UndefOr[Boolean]                            = js.undefined,
+  defaultChecked:       js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   disableFocusRipple:   js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   disableTouchRipple:   js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   inputType:            js.UndefOr[String]                             = js.undefined,
-  /* (Passed on to EnhancedSwitch)*/
-  label:                js.UndefOr[ReactNode]                          = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   name:                 js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/

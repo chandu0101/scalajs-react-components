@@ -13,9 +13,9 @@ import scala.scalajs.js.`|`
 case class MuiSelectField(
   key:                    js.UndefOr[String]                                 = js.undefined,
   ref:                    js.UndefOr[String]                                 = js.undefined,
-  /* The width will automatically be set according to the
-  items inside the menu. To control this width in css
-  instead, set this prop to `false`.*/
+  /* If true, the width will automatically be set according to the
+  items inside the menu.
+  To control this width in css instead, leave this prop to `false`.*/
   autoWidth:              js.UndefOr[Boolean]                                = js.undefined,
   /* Disables the select field if set to true.*/
   disabled:               js.UndefOr[Boolean]                                = js.undefined,
@@ -35,6 +35,8 @@ case class MuiSelectField(
   hintText:               js.UndefOr[ReactNode]                              = js.undefined,
   /* Overrides the styles of the icon element.*/
   iconStyle:              js.UndefOr[CssProperties]                          = js.undefined,
+  /* The id prop for the text field.*/
+  id:                     js.UndefOr[String]                                 = js.undefined,
   /* Overrides the styles of label when the `SelectField` is inactive.*/
   labelStyle:             js.UndefOr[CssProperties]                          = js.undefined,
   /* Callback function that is fired when the `SelectField` loses focus.*/

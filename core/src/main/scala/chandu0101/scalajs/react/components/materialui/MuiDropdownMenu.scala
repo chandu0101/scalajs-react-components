@@ -14,7 +14,7 @@ case class MuiDropDownMenu(
   key:             js.UndefOr[String]                                 = js.undefined,
   ref:             js.UndefOr[String]                                 = js.undefined,
   /* The width will automatically be set according to the items inside the menu.
-  To control this width in css instead, set this prop to false.*/
+  To control this width in css instead, set this prop to `false`.*/
   autoWidth:       js.UndefOr[Boolean]                                = js.undefined,
   /* The css class name of the root element.*/
   className:       js.UndefOr[String]                                 = js.undefined,

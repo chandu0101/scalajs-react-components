@@ -43,6 +43,14 @@ object DialogInline {
 }
 
 
+class HorizontalVertical(val value: String) extends AnyVal
+object HorizontalVertical {
+  val horizontal = new HorizontalVertical("horizontal")
+  val vertical = new HorizontalVertical("vertical")
+  val values = List(horizontal, vertical)
+}
+
+
 class LeftRight(val value: String) extends AnyVal
 object LeftRight {
   val left = new LeftRight("left")

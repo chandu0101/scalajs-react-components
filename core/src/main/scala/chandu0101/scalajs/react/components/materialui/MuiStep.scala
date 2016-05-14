@@ -11,49 +11,26 @@ import scala.scalajs.js.`|`
  */
     
 case class MuiStep(
-  key:                       js.UndefOr[String]                    = js.undefined,
-  ref:                       js.UndefOr[String]                    = js.undefined,
-  /* An array of nodes for handling moving or canceling steps.*/
-  actions:                   js.UndefOr[js.Array[ReactNode]]       = js.undefined,
-  /* Override the inline-style of the div which contains the actions.*/
-  actionsWrapperStyle:       js.UndefOr[CssProperties]             = js.undefined,
-  /* Override the inline-style of the div which contains all the children, including control button groups.*/
-  childrenWrapperStyle:      js.UndefOr[CssProperties]             = js.undefined,
-  /* Override the inline-style of the connector line.*/
-  connectorLineStyle:        js.UndefOr[CssProperties]             = js.undefined,
-  /* If true, the step is active.*/
+  key:       js.UndefOr[String]        = js.undefined,
+  ref:       js.UndefOr[String]        = js.undefined,
+  /* Sets the step as active. Is passed to child components.*/
+  active:    js.UndefOr[Boolean]       = js.undefined,
+  /* Mark the step as completed. Is passed to child components.*/
+  completed: js.UndefOr[Boolean]       = js.undefined,
+  /* Mark the step as disabled, will also disable the button if
+  `StepButton` is a child of `Step`. Is passed to child components.*/
+  disabled:  js.UndefOr[Boolean]       = js.undefined,
+  /* Used internally for numbering.*/
   @deprecated("Internal API")
-  isActive:                  js.UndefOr[Boolean]                   = js.undefined,
-  /* If true, the step is completed.*/
+  index:     js.UndefOr[Double]        = js.undefined,
+  /* */
   @deprecated("Internal API")
-  isCompleted:               js.UndefOr[Boolean]                   = js.undefined,
-  /* If true, the step is the last one.*/
-  @deprecated("Internal API")
-  isLastStep:                js.UndefOr[Boolean]                   = js.undefined,
-  /* If true, the header of step is hovered.*/
-  @deprecated("Internal API")
-  isStepHeaderHovered:       js.UndefOr[Boolean]                   = js.undefined,
-  /* Callback function fired when the header of step is hovered.*/
-  @deprecated("Internal API")
-  onStepHeaderHover:         js.UndefOr[Int => Callback]           = js.undefined,
-  /* Callback function fired when the header of step is touched.*/
-  @deprecated("Internal API")
-  onStepHeaderTouch:         js.UndefOr[(Int, js.Any) => Callback] = js.undefined,
-  /* The index of the furthest optional step.*/
-  @deprecated("Internal API")
-  previousStepOptionalIndex: js.UndefOr[Double]                    = js.undefined,
-  /* Override the inline-style of step container, which contains connector line and children.*/
-  stepContainerStyle:        js.UndefOr[CssProperties]             = js.undefined,
-  /* Override the inline-style of step header (not including left avatar).*/
-  stepHeaderStyle:           js.UndefOr[CssProperties]             = js.undefined,
-  /* Override the inline-style of step header wrapper, including left avatar.*/
-  stepHeaderWrapperStyle:    js.UndefOr[CssProperties]             = js.undefined,
-  /* The index of step in array of Steps.*/
-  @deprecated("Internal API")
-  stepIndex:                 js.UndefOr[Double]                    = js.undefined,
-  /* Customize the step label.*/
-  stepLabel:                 js.UndefOr[ReactNode]                 = js.undefined){
-
+  last:      js.UndefOr[Boolean]       = js.undefined,
+  /* Override the inline-style of the root element.*/
+  style:     js.UndefOr[CssProperties] = js.undefined){
+  /**
+   * @param children Should be `Step` sub-components such as `StepLabel`.
+   */
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiStep](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Step)

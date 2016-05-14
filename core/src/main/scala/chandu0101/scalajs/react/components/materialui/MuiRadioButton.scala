@@ -43,11 +43,10 @@ case class MuiRadioButton(
   uncheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
   /* The value of the radio button.*/
   value:                js.UndefOr[String]                             = js.undefined,
-  /* The css class name of the root element.
-  (Passed on to EnhancedSwitch)*/
+  /* (Passed on to EnhancedSwitch)*/
   className:            js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  defaultSwitched:      js.UndefOr[Boolean]                            = js.undefined,
+  defaultChecked:       js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   disableFocusRipple:   js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/

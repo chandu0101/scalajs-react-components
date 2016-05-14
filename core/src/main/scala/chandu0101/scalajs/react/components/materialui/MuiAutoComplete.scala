@@ -24,16 +24,16 @@ case class MuiAutoComplete(
   /* Override style prop for error.*/
   errorStyle:           js.UndefOr[CssProperties]                                         = js.undefined,
   /* The error content to display.*/
-  errorText:            js.UndefOr[String]                                                = js.undefined,
+  errorText:            js.UndefOr[ReactNode]                                             = js.undefined,
   /* Callback function used to filter the auto complete.
   @returns {boolean} `true` indicates the auto complete list will include `key` when the input is `searchText`.*/
   filter:               js.UndefOr[AutoCompleteFilter]                                    = js.undefined,
   /* The content to use for adding floating label element.*/
-  floatingLabelText:    js.UndefOr[String]                                                = js.undefined,
+  floatingLabelText:    js.UndefOr[ReactNode]                                             = js.undefined,
   /* If true, the field receives the property `width: 100%`.*/
   fullWidth:            js.UndefOr[Boolean]                                               = js.undefined,
   /* The hint content to display.*/
-  hintText:             js.UndefOr[String]                                                = js.undefined,
+  hintText:             js.UndefOr[ReactNode]                                             = js.undefined,
   /* Override style for list.*/
   listStyle:            js.UndefOr[CssProperties]                                         = js.undefined,
   /* The max number of search results to be shown.
@@ -49,6 +49,8 @@ case class MuiAutoComplete(
   onBlur:               js.UndefOr[ReactEventH => Callback]                               = js.undefined,
   /* Callback function that is fired when the `TextField` gains focus.*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]                          = js.undefined,
+  /* Callback function that is fired when the `TextField` receives a keydown event.*/
+  onKeyDown:            js.UndefOr[ReactKeyboardEventH => Callback]                       = js.undefined,
   /* Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
   or the text value of the corresponding list item that was selected.
   `TextField`.*/

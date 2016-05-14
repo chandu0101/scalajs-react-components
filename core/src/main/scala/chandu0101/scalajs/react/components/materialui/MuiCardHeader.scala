@@ -15,7 +15,9 @@ case class MuiCardHeader(
   ref:                  js.UndefOr[String]        = js.undefined,
   /* If true, a click on this card component expands the card.*/
   actAsExpander:        js.UndefOr[Boolean]       = js.undefined,
-  /* This is the [Avatar](/#/components/avatar) element to be displayed on the Card Header.*/
+  /* This is the [Avatar](/#/components/avatar) element to be displayed on the Card Header.
+  If `avatar` is an `Avatar` or other element, it will be rendered.
+  If `avatar` is a string, it will be used as the image `src` for an `Avatar`.*/
   avatar:               js.UndefOr[ReactNode]     = js.undefined,
   /* If true, this card component is expandable.*/
   expandable:           js.UndefOr[Boolean]       = js.undefined,

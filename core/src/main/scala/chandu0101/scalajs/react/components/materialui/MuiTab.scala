@@ -39,14 +39,17 @@ case class MuiTab(
   /* This property is overriden by the Tabs component.*/
   @deprecated("Internal API")
   width:      js.UndefOr[String]                       = js.undefined){
-
   /**
-    * @param child Children passed to table.
-    */
-  def apply(child: ReactNode) = {
+   * @param children Should be used to pass `Tab` components.
+   */
+  def apply(children: ReactNode*) = {
     val props = JSMacro[MuiTab](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Table)
-    f(props, child).asInstanceOf[ReactComponentU_]
+    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Tab)
+    if (children.isEmpty)
+      f(props).asInstanceOf[ReactComponentU_]
+    else if (children.size == 1)
+      f(props, children.head).asInstanceOf[ReactComponentU_]
+    else
+      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }
-        

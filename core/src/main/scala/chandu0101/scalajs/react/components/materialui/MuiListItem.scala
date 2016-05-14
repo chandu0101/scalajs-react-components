@@ -82,7 +82,41 @@ case class MuiListItem(
   text lines before ellipsis will show.*/
   secondaryTextLines:          js.UndefOr[_1_2]                            = js.undefined,
   /* Override the inline-styles of the root element.*/
-  style:                       js.UndefOr[CssProperties]                   = js.undefined){
+  style:                       js.UndefOr[CssProperties]                   = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  centerRipple:                js.UndefOr[Boolean]                         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  containerElement:            js.UndefOr[String | ReactElement]           = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  disableFocusRipple:          js.UndefOr[Boolean]                         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  disableTouchRipple:          js.UndefOr[Boolean]                         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  focusRippleColor:            js.UndefOr[MuiColor]                        = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  focusRippleOpacity:          js.UndefOr[Double]                          = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  keyboardFocused:             js.UndefOr[Boolean]                         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  linkButton:                  js.UndefOr[Boolean]                         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onBlur:                      js.UndefOr[ReactEventH => Callback]         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onClick:                     js.UndefOr[ReactEventH => Callback]         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onFocus:                     js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onKeyDown:                   js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onKeyUp:                     js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  tabIndex:                    js.UndefOr[Double]                          = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  touchRippleColor:            js.UndefOr[MuiColor]                        = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  touchRippleOpacity:          js.UndefOr[Double]                          = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  `type`:                      js.UndefOr[String]                          = js.undefined){
   /**
    * @param children Children passed into the `ListItem`.
    */

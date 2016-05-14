@@ -73,7 +73,19 @@ case class MuiMenu(
   /* Menu no longer supports `zDepth`. Instead, wrap it in `Paper`
   or another component that provides zDepth.*/
   @deprecated("Internal API")
-  zDepth:                   js.UndefOr[ZDepth]                                                                  = js.undefined){
+  zDepth:                   js.UndefOr[ZDepth]                                                                  = js.undefined,
+  /* If true, the subheader will be indented by 72px.
+  (Passed on to List)*/
+  @deprecated("Refer to the `subheader` property.")
+  insetSubheader:           js.UndefOr[Boolean]                                                                 = js.undefined,
+  /* The subheader string that will be displayed at the top of the list.
+  (Passed on to List)*/
+  @deprecated("Instead, nest the `Subheader` component directly inside the `List`.")
+  subheader:                js.UndefOr[ReactNode]                                                               = js.undefined,
+  /* Override the inline-styles of the subheader element.
+  (Passed on to List)*/
+  @deprecated("Refer to the `subheader` property.")
+  subheaderStyle:           js.UndefOr[CssProperties]                                                           = js.undefined){
   /**
    * @param children The content of the menu. This is usually used to pass `MenuItem`
 elements.

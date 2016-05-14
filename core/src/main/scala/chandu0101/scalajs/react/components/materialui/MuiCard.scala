@@ -33,7 +33,20 @@ case class MuiCard(
   component supporting it.*/
   showExpandableButton: js.UndefOr[Boolean]             = js.undefined,
   /* Override the inline-styles of the root element.*/
-  style:                js.UndefOr[CssProperties]       = js.undefined){
+  style:                js.UndefOr[CssProperties]       = js.undefined,
+  /* Set to true to generate a circlular paper container.
+  (Passed on to Paper)*/
+  circle:               js.UndefOr[Boolean]             = js.undefined,
+  /* By default, the paper container will have a border radius.
+  Set this to false to generate a container with sharp corners.
+  (Passed on to Paper)*/
+  rounded:              js.UndefOr[Boolean]             = js.undefined,
+  /* Set to false to disable CSS transitions for the paper element.
+  (Passed on to Paper)*/
+  transitionEnabled:    js.UndefOr[Boolean]             = js.undefined,
+  /* This number represents the zDepth of the paper shadow.
+  (Passed on to Paper)*/
+  zDepth:               js.UndefOr[ZDepth]              = js.undefined){
   /**
    * @param children Can be used to render elements inside the Card.
    */

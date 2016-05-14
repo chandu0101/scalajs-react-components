@@ -11,7 +11,9 @@ import scala.scalajs.js
 import scala.scalajs.js.JSON
 
 object WithAsyncScript {
-  case class Props(scripts: Set[String], toRender: ReactElement, loadingScreenOpt: js.UndefOr[Set[String] => ReactElement])
+  class Props(val scripts: Set[String], _toRender: ⇒ ReactElement, val loadingScreenOpt: js.UndefOr[Set[String] => ReactElement]){
+    lazy val toRender = _toRender
+  }
 
   case class Backend($: BackendScope[Props, Set[String]]){
     def render(P: Props, loadedScripts: Set[String]) =
@@ -52,8 +54,8 @@ object WithAsyncScript {
     .componentWillMount($ => $.backend.load($.props, $.state))
     .build
 
-  def apply(scripts: String*)(e: ReactElement, loadingScreenOpt: js.UndefOr[Set[String] => ReactElement] = js.undefined) =
-    component(Props(scripts.toSet, e, loadingScreenOpt))
+  def apply(scripts: String*)(e: ⇒ ReactElement, loadingScreenOpt: js.UndefOr[Set[String] => ReactElement] = js.undefined) =
+    component(new Props(scripts.toSet, e, loadingScreenOpt))
 }
 
 

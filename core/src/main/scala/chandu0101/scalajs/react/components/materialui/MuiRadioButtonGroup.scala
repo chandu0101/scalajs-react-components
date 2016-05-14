@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiRadioButtonGroup(
   key:             js.UndefOr[String]                             = js.undefined,
-  ref:             js.UndefOr[String]                             = js.undefined,
+  ref:             js.UndefOr[RadioButtonGroupM => Unit]          = js.undefined,
   /* The CSS class name of the root element.*/
   className:       js.UndefOr[String]                             = js.undefined,
   /* The `value` property (case-sensitive) of the radio button that will be
@@ -79,4 +79,18 @@ case class MuiRadioButtonGroup(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
+}
+
+
+@js.native
+class RadioButtonGroupM extends js.Object {
+  def clearValue(): Unit = js.native
+
+  def getSelectedValue(): String = js.native
+
+  def hasCheckAttribute(radioButton: js.Any): js.Any = js.native
+
+  def setSelectedValue(newSelectionValue: String): Unit = js.native
+
+  def updateRadioButtons(newSelection: js.Any): js.Any = js.native
 }

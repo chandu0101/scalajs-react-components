@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiEnhancedTextarea(
   key:            js.UndefOr[String]                       = js.undefined,
-  ref:            js.UndefOr[String]                       = js.undefined,
+  ref:            js.UndefOr[EnhancedTextareaM => Unit]    = js.undefined,
   defaultValue:   js.UndefOr[js.Any]                       = js.undefined,
   disabled:       js.UndefOr[Boolean]                      = js.undefined,
   onChange:       js.UndefOr[ReactEventTA => Callback]     = js.undefined,
@@ -33,3 +33,13 @@ case class MuiEnhancedTextarea(
   }
 }
         
+
+
+@js.native
+class EnhancedTextareaM extends js.Object {
+  def getInputNode(): js.Any = js.native
+
+  def setValue(value: js.Any): js.Any = js.native
+
+  def syncHeightWithShadow(newValue: js.Any, event: js.Any): js.Any = js.native
+}

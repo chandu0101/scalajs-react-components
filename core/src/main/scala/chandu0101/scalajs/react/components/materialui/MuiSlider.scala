@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiSlider(
   key:                js.UndefOr[String]                            = js.undefined,
-  ref:                js.UndefOr[String]                            = js.undefined,
+  ref:                js.UndefOr[SliderM => Unit]                   = js.undefined,
   /* The default value of the slider.*/
   defaultValue:       js.UndefOr[Double]                            = js.undefined,
   /* Describe the slider.*/
@@ -58,3 +58,33 @@ case class MuiSlider(
   }
 }
         
+
+
+@js.native
+class SliderM extends js.Object {
+  def alignValue(`val`: js.Any): js.Any = js.native
+
+  def clearValue(): js.Any = js.native
+
+  def dragX(event: js.Any, pos: js.Any): js.Any = js.native
+
+  def getPercent(): js.Any = js.native
+
+  def getTrackLeft(): js.Any = js.native
+
+  def getValue(): js.Any = js.native
+
+  def onDragStart(event: js.Any): js.Any = js.native
+
+  def onDragStop(event: js.Any): js.Any = js.native
+
+  def onDragUpdate(event: js.Any, pos: js.Any): js.Any = js.native
+
+  def percentToValue(percent: js.Any): js.Any = js.native
+
+  def setPercent(percent: js.Any, callback: js.Any): js.Any = js.native
+
+  def setValue(i: js.Any): js.Any = js.native
+
+  def updateWithChangeEvent(event: js.Any, percent: js.Any): js.Any = js.native
+}

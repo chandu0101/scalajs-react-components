@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiTabs(
   key:                       js.UndefOr[String]                                          = js.undefined,
-  ref:                       js.UndefOr[String]                                          = js.undefined,
+  ref:                       js.UndefOr[TabsM => Unit]                                   = js.undefined,
   /* The css class name of the root element.*/
   className:                 js.UndefOr[String]                                          = js.undefined,
   /* The css class name of the content's container.*/
@@ -49,4 +49,20 @@ case class MuiTabs(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
+}
+
+
+@js.native
+class TabsM extends js.Object {
+  def getEvenWidth(): js.Any = js.native
+
+  def getSelected(tab: js.Any, index: js.Any): js.Any = js.native
+
+  def getSelectedIndex(props: js.Any): js.Any = js.native
+
+  def getTabCount(): js.Any = js.native
+
+  def getTabs(): js.Any = js.native
+
+  def getValueLink(props: js.Any): js.Any = js.native
 }

@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiLinearProgress(
   key:   js.UndefOr[String]                   = js.undefined,
-  ref:   js.UndefOr[String]                   = js.undefined,
+  ref:   js.UndefOr[LinearProgressM => Unit]  = js.undefined,
   /* The mode of show your progress, indeterminate for
   when there is no value for progress.*/
   color: js.UndefOr[MuiColor]                 = js.undefined,
@@ -35,3 +35,9 @@ case class MuiLinearProgress(
   }
 }
         
+
+
+@js.native
+class LinearProgressM extends js.Object {
+  def barUpdate(id: js.Any, step: js.Any, barElement: js.Any, stepValues: js.Any): js.Any = js.native
+}

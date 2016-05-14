@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiToggle(
   key:                  js.UndefOr[String]                             = js.undefined,
-  ref:                  js.UndefOr[String]                             = js.undefined,
+  ref:                  js.UndefOr[ToggleM => Unit]                    = js.undefined,
   /* Determines whether the Toggle is initially turned on.
   **Warning:** This cannot be used in conjunction with `toggled`.
   Decide between using a controlled or uncontrolled input element and remove one of these props.
@@ -94,3 +94,11 @@ case class MuiToggle(
   }
 }
         
+
+
+@js.native
+class ToggleM extends js.Object {
+  def isToggled(): Boolean = js.native
+
+  def setToggled(newToggledValue: Boolean): Unit = js.native
+}

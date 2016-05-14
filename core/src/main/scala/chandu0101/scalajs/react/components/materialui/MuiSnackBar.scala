@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiSnackbar(
   key:              js.UndefOr[String]                       = js.undefined,
-  ref:              js.UndefOr[String]                       = js.undefined,
+  ref:              js.UndefOr[SnackbarM => Unit]            = js.undefined,
   /* The label for the action on the snackbar.*/
   action:           js.UndefOr[String]                       = js.undefined,
   /* The number of milliseconds to wait before automatically dismissing.
@@ -50,3 +50,11 @@ case class MuiSnackbar(
   }
 }
         
+
+
+@js.native
+class SnackbarM extends js.Object {
+  def setAutoHideTimer(): js.Any = js.native
+
+  def setTransitionTimer(): js.Any = js.native
+}

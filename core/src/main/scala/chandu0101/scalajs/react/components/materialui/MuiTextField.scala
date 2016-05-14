@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiTextField(
   key:                     js.UndefOr[String]                          = js.undefined,
-  ref:                     js.UndefOr[String]                          = js.undefined,
+  ref:                     js.UndefOr[TextFieldM => Unit]              = js.undefined,
   /* The css class name of the root element.*/
   className:               js.UndefOr[String]                          = js.undefined,
   /* The text string to use for the default value.*/
@@ -102,4 +102,18 @@ case class MuiTextField(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
+}
+
+
+@js.native
+class TextFieldM extends js.Object {
+  def blur(): Unit = js.native
+
+  def focus(): Unit = js.native
+
+  def getInputNode(): js.Any = js.native
+
+  def getValue(): String = js.native
+
+  def select(): js.Any = js.native
 }

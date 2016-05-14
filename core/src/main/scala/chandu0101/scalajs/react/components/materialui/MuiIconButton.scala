@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiIconButton(
   key:                  js.UndefOr[String]                          = js.undefined,
-  ref:                  js.UndefOr[String]                          = js.undefined,
+  ref:                  js.UndefOr[IconButtonM => Unit]             = js.undefined,
   /* The CSS class name of the root element.*/
   className:            js.UndefOr[String]                          = js.undefined,
   /* If true, the element's ripple effect will be disabled.*/
@@ -94,4 +94,14 @@ case class MuiIconButton(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
+}
+
+
+@js.native
+class IconButtonM extends js.Object {
+  def hideTooltip(): js.Any = js.native
+
+  def setKeyboardFocus(): js.Any = js.native
+
+  def showTooltip(): js.Any = js.native
 }

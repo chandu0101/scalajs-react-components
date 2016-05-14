@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiTableBody(
   key:                 js.UndefOr[String]                                    = js.undefined,
-  ref:                 js.UndefOr[String]                                    = js.undefined,
+  ref:                 js.UndefOr[TableBodyM => Unit]                        = js.undefined,
   /* Set to true to indicate that all rows should be selected.*/
   @deprecated("Internal API")
   allRowsSelected:     js.UndefOr[Boolean]                                   = js.undefined,
@@ -87,4 +87,28 @@ case class MuiTableBody(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
+}
+
+
+@js.native
+class TableBodyM extends js.Object {
+  def calculatePreselectedRows(props: js.Any): js.Any = js.native
+
+  def createRowCheckboxColumn(rowProps: js.Any): js.Any = js.native
+
+  def createRows(): js.Any = js.native
+
+  def flattenRanges(selectedRows: js.Any): js.Any = js.native
+
+  def genRangeOfValues(start: js.Any, offset: js.Any): js.Any = js.native
+
+  def getColumnId(columnNumber: js.Any): js.Any = js.native
+
+  def isRowSelected(rowNumber: js.Any): js.Any = js.native
+
+  def isValueInRange(value: js.Any, range: js.Any): js.Any = js.native
+
+  def processRowSelection(event: js.Any, rowNumber: js.Any): js.Any = js.native
+
+  def splitRange(range: js.Any, splitPoint: js.Any): js.Any = js.native
 }

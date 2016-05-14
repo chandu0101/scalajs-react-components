@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiGridTile(
   key:              js.UndefOr[String]                = js.undefined,
-  ref:              js.UndefOr[String]                = js.undefined,
+  ref:              js.UndefOr[GridTileM => Unit]     = js.undefined,
   /* An IconButton element to be used as secondary action target
   (primary action target is the tile itself).*/
   actionIcon:       js.UndefOr[ReactElement]          = js.undefined,
@@ -54,4 +54,10 @@ in whichcase GridTile takes care of making the image "cover" available space
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
+}
+
+
+@js.native
+class GridTileM extends js.Object {
+  def ensureImageCover(): js.Any = js.native
 }

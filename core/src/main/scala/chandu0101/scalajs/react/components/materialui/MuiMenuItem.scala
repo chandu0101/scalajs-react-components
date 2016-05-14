@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiMenuItem(
   key:                         js.UndefOr[String]                          = js.undefined,
-  ref:                         js.UndefOr[String]                          = js.undefined,
+  ref:                         js.UndefOr[MenuItemM => Unit]               = js.undefined,
   /* If true, a left check mark will be rendered.*/
   checked:                     js.UndefOr[Boolean]                         = js.undefined,
   /* If true, the menu item will render with compact desktop
@@ -122,4 +122,10 @@ case class MuiMenuItem(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
+}
+
+
+@js.native
+class MenuItemM extends js.Object {
+  def applyFocusState(): js.Any = js.native
 }

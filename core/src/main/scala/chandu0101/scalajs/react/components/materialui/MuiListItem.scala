@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiListItem(
   key:                         js.UndefOr[String]                          = js.undefined,
-  ref:                         js.UndefOr[String]                          = js.undefined,
+  ref:                         js.UndefOr[ListItemM => Unit]               = js.undefined,
   /* If true, generate a nested-list-indicator icon when nested list
   items are detected. Note that an indicator will not be created
   if a `rightIcon` or `rightIconButton` has been provided to
@@ -130,4 +130,18 @@ case class MuiListItem(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
+}
+
+
+@js.native
+class ListItemM extends js.Object {
+  def applyFocusState(focusState: js.Any): js.Any = js.native
+
+  def createDisabledElement(styles: js.Any, contentChildren: js.Any, additionalProps: js.Any): js.Any = js.native
+
+  def createLabelElement(styles: js.Any, contentChildren: js.Any, additionalProps: js.Any): js.Any = js.native
+
+  def createTextElement(styles: js.Any, data: js.Any, key: js.Any): js.Any = js.native
+
+  def pushElement(children: js.Any, element: js.Any, baseStyles: js.Any, additionalProps: js.Any): js.Any = js.native
 }

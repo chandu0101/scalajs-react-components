@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiMenu(
   key:                      js.UndefOr[String]                                                                  = js.undefined,
-  ref:                      js.UndefOr[String]                                                                  = js.undefined,
+  ref:                      js.UndefOr[MenuM => Unit]                                                           = js.undefined,
   /* If true, the menu will apply transitions when it
   is added to the DOM. In order for transitions to
   work, wrap the menu inside a `ReactTransitionGroup`.*/
@@ -107,3 +107,35 @@ trait MuiMenuItemProps extends js.Object {
 	def value: js.UndefOr[String] = js.native
 }
       
+
+
+@js.native
+class MenuM extends js.Object {
+  def animateOpen(): js.Any = js.native
+
+  def cloneMenuItem(child: js.Any, childIndex: js.Any, styles: js.Any, index: js.Any): js.Any = js.native
+
+  def decrementKeyboardFocusIndex(): js.Any = js.native
+
+  def getCascadeChildrenCount(filteredChildren: js.Any): js.Any = js.native
+
+  def getFilteredChildren(children: js.Any): js.Any = js.native
+
+  def getMenuItemCount(filteredChildren: js.Any): js.Any = js.native
+
+  def getSelectedIndex(props: js.Any, filteredChildren: js.Any): js.Any = js.native
+
+  def getValueLink(props: js.Any): js.Any = js.native
+
+  def incrementKeyboardFocusIndex(filteredChildren: js.Any): js.Any = js.native
+
+  def isChildSelected(child: js.Any, props: js.Any): js.Any = js.native
+
+  def setFocusIndex(newIndex: js.Any, isKeyboardFocused: js.Any): js.Any = js.native
+
+  def setKeyboardFocused(keyboardFocused: js.Any): js.Any = js.native
+
+  def setScollPosition(): js.Any = js.native
+
+  def setWidth(): js.Any = js.native
+}

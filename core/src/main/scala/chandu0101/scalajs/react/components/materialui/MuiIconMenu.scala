@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiIconMenu(
   key:                      js.UndefOr[String]                                               = js.undefined,
-  ref:                      js.UndefOr[String]                                               = js.undefined,
+  ref:                      js.UndefOr[IconMenuM => Unit]                                    = js.undefined,
   /* This is the point on the icon where the menu
   `targetOrigin` will attach.
   Options:
@@ -148,4 +148,14 @@ case class MuiIconMenu(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
+}
+
+
+@js.native
+class IconMenuM extends js.Object {
+  def close(reason: js.Any, isKeyboard: js.Any): js.Any = js.native
+
+  def isOpen(): js.Any = js.native
+
+  def open(reason: js.Any, event: js.Any): js.Any = js.native
 }

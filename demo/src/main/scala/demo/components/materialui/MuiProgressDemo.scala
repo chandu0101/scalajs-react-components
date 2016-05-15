@@ -23,7 +23,7 @@ object MuiProgressDemo {
           MuiLinearProgress(mode = DeterminateIndeterminate.indeterminate)()
         )
       )
-    }).buildU
+    }).build
   // EXAMPLE:END
 
   def apply() = component()

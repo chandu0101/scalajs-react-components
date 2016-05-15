@@ -73,7 +73,7 @@ object EuiGlyphsDemo {
 
   val component = ReactComponentB[Unit]("EuiGlyphsDemo")
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

@@ -105,7 +105,7 @@ object MuiPopoverDemo {
       anchor = Origin(Vertical.bottom, Horizontal.left)
     ))
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

@@ -11,7 +11,7 @@ object ReactTreeViewInfo {
      <.h3("React TreeView :"),
       <.p("Tree View Component with search feature")
     )
-  }).buildU
+  }).build
 
   def apply() = component()
 

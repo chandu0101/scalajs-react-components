@@ -34,7 +34,7 @@ object ReactDraggableDemo {
 
   val component = ReactComponentB[Unit]("ReactDraggableDemo")
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

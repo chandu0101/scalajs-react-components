@@ -39,7 +39,7 @@ object MuiPaperDemo {
           )
         )
       )
-    }).buildU
+    }).build
 
   object Style extends StyleSheet.Inline {
     import dsl._

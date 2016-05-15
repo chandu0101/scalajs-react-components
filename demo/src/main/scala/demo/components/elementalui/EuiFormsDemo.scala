@@ -409,7 +409,7 @@ object EuiFormsDemo {
   val component = ReactComponentB[Unit]("EuiFormsDemo")
     .initialState(State())
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

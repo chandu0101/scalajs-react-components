@@ -41,7 +41,7 @@ object MuiInfo {
         )
       )
 
-    }).buildU
+    }).build
 
   def apply() = component()
 }

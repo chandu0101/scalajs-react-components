@@ -68,7 +68,7 @@ object MuiSwitchesDemo {
           )
         )
       )
-    ).buildU
+    ).build
 
   // EXAMPLE:END
 

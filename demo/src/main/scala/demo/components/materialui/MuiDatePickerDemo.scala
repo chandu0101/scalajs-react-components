@@ -28,7 +28,7 @@ object MuiDatePickerDemo {
           )()
         )
       )
-    }).buildU
+    }).build
 
   // EXAMPLE:END
 

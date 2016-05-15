@@ -53,7 +53,7 @@ object ReactPopoverDemo {
 
   val component = ReactComponentB[Unit]("ReactPopoverDemo")
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

@@ -13,8 +13,8 @@ object AppHeader {
     val headerStyle: Seq[TagMod] = Seq(
       ^.background := "#F2706D",
       ^.fontSize := "1.5em",
-      ^.padding := "0",
-      ^.margin := "0",
+      ^.padding := "0px",
+      ^.margin := "0px",
       ^.position := "fixed",
       ^.width := "100%",
       ^.zIndex := "5"
@@ -79,7 +79,7 @@ object AppHeader {
   val component = ReactComponentB[Unit]("AppHeader")
     .initialState(State())
     .renderBackend[Backend]
-    .buildU
+    .build
 
   def apply() = component()
 

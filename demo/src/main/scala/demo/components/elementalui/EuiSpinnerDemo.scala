@@ -29,7 +29,7 @@ object EuiSpinnerDemo {
           Spinner(size = SpinnerSize.LG)()
         )
       )
-    ).buildU
+    ).build
 
   // EXAMPLE:END
 

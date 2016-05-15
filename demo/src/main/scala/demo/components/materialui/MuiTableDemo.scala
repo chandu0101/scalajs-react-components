@@ -157,7 +157,7 @@ object MuiTableDemo {
       selected = js.Array[Int]()
     ))
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

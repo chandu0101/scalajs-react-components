@@ -44,7 +44,7 @@ object MuiListDemo {
           )
         )
       )
-    }).buildU
+    }).build
 
   // EXAMPLE:END
 

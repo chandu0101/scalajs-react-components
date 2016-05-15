@@ -38,7 +38,7 @@ object MuiTabsDemo {
           )
         )
       )
-    }).buildU
+    }).build
 
   // EXAMPLE:END
 

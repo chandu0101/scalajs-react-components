@@ -93,7 +93,7 @@ object EuiButtonsDemo {
 
   val component = ReactComponentB[Unit]("EuiButtonsDemo")
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

@@ -55,7 +55,7 @@ object MuiDialogDemo {
   val component = ReactComponentB[Unit]("MuiDialogDemo")
     .initialState(State(isOpen = false))
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

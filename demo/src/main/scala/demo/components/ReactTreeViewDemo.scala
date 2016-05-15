@@ -61,7 +61,7 @@ object ReactTreeViewDemo {
   val component = ReactComponentB[Unit]("ReactTreeViewDemo")
     .initialState(State())
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

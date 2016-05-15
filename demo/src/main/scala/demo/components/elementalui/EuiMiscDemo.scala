@@ -185,7 +185,7 @@ object EuiMiscDemo {
   val component = ReactComponentB[Unit]("EuiMiscDemo")
     .initialState(State())
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

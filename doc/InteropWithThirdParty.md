@@ -73,7 +73,7 @@ If you want to use a reactjs component in your scalajs-react project then you mu
      <.div(
       AwesomeJSCmpWrapper(numberOfLines = 3,testID = "id")
      )
-   ).buildU
+   ).build
 
   ```
 
@@ -155,7 +155,7 @@ http://chandu0101.github.io/reactjs-scalajs/
           AwesomeJSCompWrapper(ref = "awesomescalajs",..props)()
         )
       })
-      .buildU
+      .build
 
  ```
 

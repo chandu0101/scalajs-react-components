@@ -34,7 +34,7 @@ object ReactTagsInputInfo {
      )
     )
 
-  }).buildU
+  }).build
 
   def apply() = component()
 }

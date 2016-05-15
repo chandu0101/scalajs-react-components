@@ -25,7 +25,7 @@ object MuiAvatarDemo {
           MuiAvatar(backgroundColor = colors.red400)(SvgIcons.ActionFace()())
         )
       )
-    }).buildU
+    }).build
 
   // EXAMPLE:END
 

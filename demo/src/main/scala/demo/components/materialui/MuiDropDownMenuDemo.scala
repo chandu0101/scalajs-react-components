@@ -42,7 +42,7 @@ object MuiDropDownMenuDemo {
   val component = ReactComponentB[Unit]("MuiDropDownMenuDemo")
     .initialState[js.Any](items.head._1)
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

@@ -36,7 +36,7 @@ object ReactInfiniteInfo {
       )
     )
 
-  }).buildU
+  }).build
 
   def apply() = component()
 }

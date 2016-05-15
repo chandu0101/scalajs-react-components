@@ -31,7 +31,7 @@ object MuiTextFieldDemo {
           )
         )
       )
-    }).buildU
+    }).build
   // EXAMPLE:END
 
   def apply() = component()

@@ -72,7 +72,7 @@ object MuiMenuDemo {
   val component = ReactComponentB[Unit] ("MuiMenuDemo")
     .initialState(State(isOpen = false, Set.empty))
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

@@ -112,7 +112,7 @@ object MuiDrawerDemo {
       )
     )
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

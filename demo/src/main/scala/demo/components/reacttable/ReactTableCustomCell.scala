@@ -48,7 +48,7 @@ object ReactTableCustomCell {
 
   val component = ReactComponentB[Unit]("plain")
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

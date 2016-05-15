@@ -77,7 +77,7 @@ object MuiButtonsDemo {
         )
       )
     )
-  ).buildU
+  ).build
 
   // EXAMPLE:END
 

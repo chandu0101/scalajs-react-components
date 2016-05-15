@@ -36,7 +36,7 @@ object ReactGeomIconInfo {
       )
     )
 
-  }).buildU
+  }).build
 
   def apply() = component()
 }

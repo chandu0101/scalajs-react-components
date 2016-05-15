@@ -64,7 +64,7 @@ object ReactSelectDemo {
   val component = ReactComponentB[Unit]("ReactSelectDemo")
     .initialState(State())
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

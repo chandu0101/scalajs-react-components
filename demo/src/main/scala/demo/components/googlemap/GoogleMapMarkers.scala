@@ -31,7 +31,7 @@ object GoogleMapMarkers {
        GoogleMap(center = latlng ,markers = markers ,zoom = 10)
       )
     )
-  }).buildU
+  }).build
 
   val latlng = LatLng(-33.9 ,151.2)
 

@@ -16,7 +16,7 @@ object ReactDraggableInfo {
           )
         )
       )
-    ).buildU
+    ).build
 
   def apply() = component()
 

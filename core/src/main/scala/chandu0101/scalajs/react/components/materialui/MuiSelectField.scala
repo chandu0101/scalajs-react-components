@@ -90,7 +90,3 @@ item within the field.
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }
-case class MuiSelectItem(payload: String, text: String){
-	val toJS = JSMacro[MuiSelectItem](this)
-}
-

@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiStepper(
   key:         js.UndefOr[String]                 = js.undefined,
-  ref:         js.UndefOr[StepperM => Unit]       = js.undefined,
+  ref:         js.UndefOr[MuiStepperM => Unit]    = js.undefined,
   /* Set the active step (zero based index). This will enable `Step` control helpers.*/
   activeStep:  js.UndefOr[Double]                 = js.undefined,
   /* If set to `true`, the `Stepper` will assist in controlling steps for linear flow*/
@@ -38,6 +38,6 @@ case class MuiStepper(
 
 
 @js.native
-class StepperM extends js.Object {
+class MuiStepperM extends js.Object {
   def getChildContext(): js.Any = js.native
 }

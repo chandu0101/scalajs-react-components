@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiStepLabel(
   key:       js.UndefOr[String]                         = js.undefined,
-  ref:       js.UndefOr[StepLabelM => Unit]             = js.undefined,
+  ref:       js.UndefOr[MuiStepLabelM => Unit]          = js.undefined,
   /* Sets active styling. Overrides disabled coloring.*/
   active:    js.UndefOr[Boolean]                        = js.undefined,
   /* Sets completed styling. Overrides disabled coloring.*/
@@ -40,6 +40,6 @@ case class MuiStepLabel(
 
 
 @js.native
-class StepLabelM extends js.Object {
+class MuiStepLabelM extends js.Object {
   def renderIcon(completed: js.Any, icon: js.Any, styles: js.Any): js.Any = js.native
 }

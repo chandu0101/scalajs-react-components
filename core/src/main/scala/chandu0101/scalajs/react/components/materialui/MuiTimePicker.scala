@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiTimePicker(
   key:                     js.UndefOr[String]                                     = js.undefined,
-  ref:                     js.UndefOr[TimePickerM => Unit]                        = js.undefined,
+  ref:                     js.UndefOr[MuiTimePickerM => Unit]                     = js.undefined,
   /* If true, automatically accept and close the picker on set minutes.*/
   autoOk:                  js.UndefOr[Boolean]                                    = js.undefined,
   /* Override the label of the 'Cancel' button.*/
@@ -151,7 +151,7 @@ case class MuiTimePicker(
 
 
 @js.native
-class TimePickerM extends js.Object {
+class MuiTimePickerM extends js.Object {
   def focus(): Unit = js.native
 
   def getControlledTime(): js.Any = js.native

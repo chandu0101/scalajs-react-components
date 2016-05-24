@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiTabs(
   key:                       js.UndefOr[String]                                          = js.undefined,
-  ref:                       js.UndefOr[TabsM => Unit]                                   = js.undefined,
+  ref:                       js.UndefOr[MuiTabsM => Unit]                                = js.undefined,
   /* The css class name of the root element.*/
   className:                 js.UndefOr[String]                                          = js.undefined,
   /* The css class name of the content's container.*/
@@ -53,7 +53,7 @@ case class MuiTabs(
 
 
 @js.native
-class TabsM extends js.Object {
+class MuiTabsM extends js.Object {
   def getEvenWidth(): js.Any = js.native
 
   def getSelected(tab: js.Any, index: js.Any): js.Any = js.native

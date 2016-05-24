@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiCheckbox(
   key:                  js.UndefOr[String]                             = js.undefined,
-  ref:                  js.UndefOr[CheckboxM => Unit]                  = js.undefined,
+  ref:                  js.UndefOr[MuiCheckboxM => Unit]               = js.undefined,
   /* Checkbox is checked if true.*/
   checked:              js.UndefOr[Boolean]                            = js.undefined,
   /* The SvgIcon to use for the checked state.
@@ -101,7 +101,7 @@ case class MuiCheckbox(
 
 
 @js.native
-class CheckboxM extends js.Object {
+class MuiCheckboxM extends js.Object {
   def isChecked(): Boolean = js.native
 
   def isChecked(newCheckedValue: Boolean): Unit = js.native

@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiDrawer(
   key:                js.UndefOr[String]                        = js.undefined,
-  ref:                js.UndefOr[DrawerM => Unit]               = js.undefined,
+  ref:                js.UndefOr[MuiDrawerM => Unit]            = js.undefined,
   /* The CSS class name of the root element.*/
   className:          js.UndefOr[String]                        = js.undefined,
   /* The CSS class name of the container element.*/
@@ -65,7 +65,7 @@ case class MuiDrawer(
 
 
 @js.native
-class DrawerM extends js.Object {
+class MuiDrawerM extends js.Object {
   def close(reason: js.Any): js.Any = js.native
 
   def disableSwipeHandling(): js.Any = js.native

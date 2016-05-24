@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiIconMenu(
   key:                      js.UndefOr[String]                                               = js.undefined,
-  ref:                      js.UndefOr[IconMenuM => Unit]                                    = js.undefined,
+  ref:                      js.UndefOr[MuiIconMenuM => Unit]                                 = js.undefined,
   /* This is the point on the icon where the menu
   `targetOrigin` will attach.
   Options:
@@ -152,7 +152,7 @@ case class MuiIconMenu(
 
 
 @js.native
-class IconMenuM extends js.Object {
+class MuiIconMenuM extends js.Object {
   def close(reason: js.Any, isKeyboard: js.Any): js.Any = js.native
 
   def isOpen(): js.Any = js.native

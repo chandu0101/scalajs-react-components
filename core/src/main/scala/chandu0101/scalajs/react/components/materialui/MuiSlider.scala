@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiSlider(
   key:                js.UndefOr[String]                            = js.undefined,
-  ref:                js.UndefOr[SliderM => Unit]                   = js.undefined,
+  ref:                js.UndefOr[MuiSliderM => Unit]                = js.undefined,
   /* The default value of the slider.*/
   defaultValue:       js.UndefOr[Double]                            = js.undefined,
   /* Describe the slider.*/
@@ -61,7 +61,7 @@ case class MuiSlider(
 
 
 @js.native
-class SliderM extends js.Object {
+class MuiSliderM extends js.Object {
   def alignValue(`val`: js.Any): js.Any = js.native
 
   def clearValue(): js.Any = js.native

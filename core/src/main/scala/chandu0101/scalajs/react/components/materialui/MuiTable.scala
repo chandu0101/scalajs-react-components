@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiTable(
   key:             js.UndefOr[String]                                    = js.undefined,
-  ref:             js.UndefOr[TableM => Unit]                            = js.undefined,
+  ref:             js.UndefOr[MuiTableM => Unit]                         = js.undefined,
   /* Set to true to indicate that all rows should be selected.*/
   allRowsSelected: js.UndefOr[Boolean]                                   = js.undefined,
   /* Override the inline-styles of the body's table element.*/
@@ -83,7 +83,7 @@ case class MuiTable(
 
 
 @js.native
-class TableM extends js.Object {
+class MuiTableM extends js.Object {
   def createTableBody(base: js.Any): js.Any = js.native
 
   def createTableFooter(base: js.Any): js.Any = js.native

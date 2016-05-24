@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiTableRow(
   key:             js.UndefOr[String]                             = js.undefined,
-  ref:             js.UndefOr[TableRowM => Unit]                  = js.undefined,
+  ref:             js.UndefOr[MuiTableRowM => Unit]               = js.undefined,
   /* The css class name of the root element.*/
   className:       js.UndefOr[String]                             = js.undefined,
   /* If true, row border will be displayed for the row.
@@ -82,7 +82,7 @@ case class MuiTableRow(
 
 
 @js.native
-class TableRowM extends js.Object {
+class MuiTableRowM extends js.Object {
   def onRowClick(event: js.Any): js.Any = js.native
 
   def onRowHover(event: js.Any): js.Any = js.native

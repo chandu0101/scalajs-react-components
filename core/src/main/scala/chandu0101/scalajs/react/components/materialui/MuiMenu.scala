@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiMenu(
   key:                      js.UndefOr[String]                                                                  = js.undefined,
-  ref:                      js.UndefOr[MenuM => Unit]                                                           = js.undefined,
+  ref:                      js.UndefOr[MuiMenuM => Unit]                                                        = js.undefined,
   /* If true, the menu will apply transitions when it
   is added to the DOM. In order for transitions to
   work, wrap the menu inside a `ReactTransitionGroup`.*/
@@ -110,7 +110,7 @@ trait MuiMenuItemProps extends js.Object {
 
 
 @js.native
-class MenuM extends js.Object {
+class MuiMenuM extends js.Object {
   def animateOpen(): js.Any = js.native
 
   def cloneMenuItem(child: js.Any, childIndex: js.Any, styles: js.Any, index: js.Any): js.Any = js.native

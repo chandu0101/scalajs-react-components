@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiAutoComplete(
   key:                     js.UndefOr[String]                                                = js.undefined,
-  ref:                     js.UndefOr[AutoCompleteM => Unit]                                 = js.undefined,
+  ref:                     js.UndefOr[MuiAutoCompleteM => Unit]                              = js.undefined,
   /* Location of the anchor for the auto complete.*/
   anchorOrigin:            js.UndefOr[Origin]                                                = js.undefined,
   /* If true, the auto complete is animated as it is toggled.*/
@@ -161,7 +161,7 @@ case class MuiAutoComplete(
 
 
 @js.native
-class AutoCompleteM extends js.Object {
+class MuiAutoCompleteM extends js.Object {
   def blur(): js.Any = js.native
 
   def close(): js.Any = js.native

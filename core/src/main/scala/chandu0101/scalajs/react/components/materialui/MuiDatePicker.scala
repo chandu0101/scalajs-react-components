@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiDatePicker(
   key:                     js.UndefOr[String]                                     = js.undefined,
-  ref:                     js.UndefOr[DatePickerM => Unit]                        = js.undefined,
+  ref:                     js.UndefOr[MuiDatePickerM => Unit]                     = js.undefined,
   /* Constructor for date formatting for the specified `locale`.
   The constructor must follow this specification: ECMAScript Internationalization API 1.0 (ECMA-402).
   `Intl.DateTimeFormat` is supported by most modern browsers, see http://caniuse.com/#search=intl,
@@ -189,7 +189,7 @@ case class Wordings(ok: String, cancel: String){
 
 
 @js.native
-class DatePickerM extends js.Object {
+class MuiDatePickerM extends js.Object {
   def focus(): Unit = js.native
 
   def getControlledDate(): js.Any = js.native

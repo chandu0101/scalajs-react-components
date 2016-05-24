@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiTableBody(
   key:                 js.UndefOr[String]                                    = js.undefined,
-  ref:                 js.UndefOr[TableBodyM => Unit]                        = js.undefined,
+  ref:                 js.UndefOr[MuiTableBodyM => Unit]                     = js.undefined,
   /* Set to true to indicate that all rows should be selected.*/
   @deprecated("Internal API")
   allRowsSelected:     js.UndefOr[Boolean]                                   = js.undefined,
@@ -91,7 +91,7 @@ case class MuiTableBody(
 
 
 @js.native
-class TableBodyM extends js.Object {
+class MuiTableBodyM extends js.Object {
   def calculatePreselectedRows(props: js.Any): js.Any = js.native
 
   def createRowCheckboxColumn(rowProps: js.Any): js.Any = js.native

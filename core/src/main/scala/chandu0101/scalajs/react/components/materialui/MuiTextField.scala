@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiTextField(
   key:                     js.UndefOr[String]                          = js.undefined,
-  ref:                     js.UndefOr[TextFieldM => Unit]              = js.undefined,
+  ref:                     js.UndefOr[MuiTextFieldM => Unit]           = js.undefined,
   /* The css class name of the root element.*/
   className:               js.UndefOr[String]                          = js.undefined,
   /* The text string to use for the default value.*/
@@ -106,7 +106,7 @@ case class MuiTextField(
 
 
 @js.native
-class TextFieldM extends js.Object {
+class MuiTextFieldM extends js.Object {
   def blur(): Unit = js.native
 
   def focus(): Unit = js.native

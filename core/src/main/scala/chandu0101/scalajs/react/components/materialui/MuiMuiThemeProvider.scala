@@ -11,13 +11,13 @@ import scala.scalajs.js.`|`
  */
     
 case class MuiMuiThemeProvider(
-  key:      js.UndefOr[String]                    = js.undefined,
-  ref:      js.UndefOr[MuiThemeProviderM => Unit] = js.undefined,
+  key:      js.UndefOr[String]                       = js.undefined,
+  ref:      js.UndefOr[MuiMuiThemeProviderM => Unit] = js.undefined,
   muiTheme: MuiTheme){
 
   def apply(children: ReactElement*) = {
     val props = JSMacro[MuiMuiThemeProvider](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Styles.MuiThemeProvider)
+    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.MuiThemeProvider)
     if (children.isEmpty)
       f(props).asInstanceOf[ReactComponentU_]
     else if (children.size == 1)
@@ -29,6 +29,6 @@ case class MuiMuiThemeProvider(
 
 
 @js.native
-class MuiThemeProviderM extends js.Object {
+class MuiMuiThemeProviderM extends js.Object {
   def getChildContext(): js.Any = js.native
 }

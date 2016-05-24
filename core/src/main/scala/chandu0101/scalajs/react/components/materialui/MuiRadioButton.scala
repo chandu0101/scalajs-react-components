@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiRadioButton(
   key:                  js.UndefOr[String]                             = js.undefined,
-  ref:                  js.UndefOr[RadioButtonM => Unit]               = js.undefined,
+  ref:                  js.UndefOr[MuiRadioButtonM => Unit]            = js.undefined,
   /* checked if true
   Used internally by `RadioButtonGroup`.*/
   @deprecated("Internal API")
@@ -98,7 +98,7 @@ case class MuiRadioButton(
 
 
 @js.native
-class RadioButtonM extends js.Object {
+class MuiRadioButtonM extends js.Object {
   def getValue(): js.Any = js.native
 
   def isChecked(): js.Any = js.native

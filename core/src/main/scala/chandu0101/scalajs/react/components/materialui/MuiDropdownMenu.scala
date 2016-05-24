@@ -12,7 +12,7 @@ import scala.scalajs.js.`|`
     
 case class MuiDropDownMenu(
   key:             js.UndefOr[String]                                 = js.undefined,
-  ref:             js.UndefOr[DropDownMenuM => Unit]                  = js.undefined,
+  ref:             js.UndefOr[MuiDropDownMenuM => Unit]               = js.undefined,
   /* The width will automatically be set according to the items inside the menu.
   To control this width in css instead, set this prop to `false`.*/
   autoWidth:       js.UndefOr[Boolean]                                = js.undefined,
@@ -59,7 +59,7 @@ item within the field.
 
 
 @js.native
-class DropDownMenuM extends js.Object {
+class MuiDropDownMenuM extends js.Object {
   def getInputNode(): js.Any = js.native
 
   def setWidth(): js.Any = js.native

@@ -13,11 +13,8 @@ package object components {
    * (see https://github.com/scala-js/scala-js/pull/2070 )
    */
   @deprecated("We need to find a better solution here")
-  private[components] implicit def UnionEvidence[A: ClassTag, B: ClassTag](ab: A | B)(implicit eva: A => js.Any, evb: B => js.Any): js.Any =
-    ab match {
-      case a: A => eva(a)
-      case b: B => evb(b)
-    }
+  private[components] implicit def UnionEvidence[A, B](ab: A | B)(implicit eva: A => js.Any, evb: B => js.Any): js.Any =
+    ab.asInstanceOf[js.Any]
 
   private[components] implicit final class UCB[R](private val uc: js.UndefOr[CallbackTo[R]]) extends AnyVal {
     @inline def asCbo: CallbackOption[R] =

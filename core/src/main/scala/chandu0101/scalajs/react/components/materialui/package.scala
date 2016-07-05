@@ -8,4 +8,9 @@ package object materialui {
   type SearchText         = String
   type Value              = String
   type AutoCompleteFilter = js.Function3[SearchText, Value, Value, Boolean]
+
+  /* todo: need generate script to become more clever */
+  private [materialui] implicit class A(m: Mui.type){
+    def MuiThemeProvider = m.Styles.MuiThemeProvider
+  }
 }

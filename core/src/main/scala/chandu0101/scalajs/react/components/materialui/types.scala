@@ -2,6 +2,8 @@ package chandu0101.scalajs.react.components.materialui
 
 import chandu0101.macros.tojs.JSMacro
 
+import scala.scalajs.js
+
 class Vertical(val value: String) extends AnyVal
 object Vertical{
 	val top    = new Vertical("top")
@@ -50,4 +52,9 @@ object CornersAndCenter{
 	val top_left      = new CornersAndCenter("top-left")
 	val top_right     = new CornersAndCenter("top-right")
  val values = List(bottom_center, bottom_left, bottom_right, top_center, top_left, top_right)
+}
+
+@js.native
+trait HasValue[T] extends js.Object {
+	def value: js.UndefOr[T] = js.native
 }

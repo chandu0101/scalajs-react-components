@@ -1,15 +1,12 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
 case class MuiRefreshIndicator(
   key:          js.UndefOr[String]                       = js.undefined,
   ref:          js.UndefOr[MuiRefreshIndicatorM => Unit] = js.undefined,
@@ -35,14 +32,12 @@ case class MuiRefreshIndicator(
   style:        js.UndefOr[CssProperties]                = js.undefined,
   /* The absolute top position of the indicator in pixels.*/
   top:          Int){
-
   def apply() = {
     val props = JSMacro[MuiRefreshIndicator](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.RefreshIndicator)
     f(props).asInstanceOf[ReactComponentU_]
   }
 }
-        
 
 
 @js.native

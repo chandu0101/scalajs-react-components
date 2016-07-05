@@ -1,15 +1,12 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
 case class MuiTextField(
   key:                     js.UndefOr[String]                          = js.undefined,
   ref:                     js.UndefOr[MuiTextFieldM => Unit]           = js.undefined,
@@ -91,7 +88,6 @@ case class MuiTextField(
   shadowStyle:             js.UndefOr[CssProperties]                   = js.undefined,
   /* (Passed on to EnhancedTextarea)*/
   valueLink:               js.UndefOr[js.Any]                          = js.undefined){
-
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiTextField](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.TextField)

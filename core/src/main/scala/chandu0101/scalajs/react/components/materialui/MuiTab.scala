@@ -1,16 +1,13 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
-case class MuiTab(
+case class MuiTab[T](
   key:                  js.UndefOr[String]                          = js.undefined,
   ref:                  js.UndefOr[String]                          = js.undefined,
   /* The css class name of the root element.*/
@@ -35,7 +32,7 @@ case class MuiTab(
   style:                js.UndefOr[CssProperties]                   = js.undefined,
   /* If value prop passed to Tabs component, this value prop is also required.
   It assigns a value to the tab so that it can be selected by the Tabs.*/
-  value:                js.UndefOr[js.Any]                          = js.undefined,
+  value:                js.UndefOr[T]                               = js.undefined,
   /* This property is overriden by the Tabs component.*/
   @deprecated("Internal API")
   width:                js.UndefOr[String]                          = js.undefined,
@@ -83,7 +80,8 @@ case class MuiTab(
    * @param children Should be used to pass `Tab` components.
    */
   def apply(children: ReactNode*) = {
-    val props = JSMacro[MuiTab](this)
+    implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
+    val props = JSMacro[MuiTab[T]](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Tab)
     if (children.isEmpty)
       f(props).asInstanceOf[ReactComponentU_]

@@ -1,15 +1,12 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
 case class MuiPopover(
   key:                    js.UndefOr[String]              = js.undefined,
   ref:                    js.UndefOr[MuiPopoverM => Unit] = js.undefined,
@@ -57,10 +54,15 @@ case class MuiPopover(
   /**
    * @param children The content of the popover.
    */
-  def apply(children: js.UndefOr[ReactNode] = js.undefined) = {
+  def apply(children: ReactNode*) = {
     val props = JSMacro[MuiPopover](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Popover)
-    f(props, children).asInstanceOf[ReactComponentU_]
+    if (children.isEmpty)
+      f(props).asInstanceOf[ReactComponentU_]
+    else if (children.size == 1)
+      f(props, children.head).asInstanceOf[ReactComponentU_]
+    else
+      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }
 

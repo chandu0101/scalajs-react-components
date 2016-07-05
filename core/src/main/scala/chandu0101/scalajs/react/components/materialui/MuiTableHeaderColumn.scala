@@ -1,15 +1,12 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
 case class MuiTableHeaderColumn(
   key:          js.UndefOr[String]                             = js.undefined,
   ref:          js.UndefOr[String]                             = js.undefined,
@@ -28,7 +25,6 @@ case class MuiTableHeaderColumn(
   tooltip:      js.UndefOr[String]                             = js.undefined,
   /* Additional styling that can be applied to the tooltip.*/
   tooltipStyle: js.UndefOr[CssProperties]                      = js.undefined){
-
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiTableHeaderColumn](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.TableHeaderColumn)

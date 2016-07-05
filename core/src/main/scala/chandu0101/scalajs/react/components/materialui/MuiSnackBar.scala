@@ -1,15 +1,12 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
 case class MuiSnackbar(
   key:              js.UndefOr[String]                       = js.undefined,
   ref:              js.UndefOr[MuiSnackbarM => Unit]         = js.undefined,
@@ -42,14 +39,12 @@ case class MuiSnackbar(
   open:             Boolean,
   /* Override the inline-styles of the root element.*/
   style:            js.UndefOr[CssProperties]                = js.undefined){
-
   def apply() = {
     val props = JSMacro[MuiSnackbar](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Snackbar)
     f(props).asInstanceOf[ReactComponentU_]
   }
 }
-        
 
 
 @js.native

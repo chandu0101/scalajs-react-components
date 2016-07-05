@@ -1,15 +1,12 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
 case class MuiSlider(
   key:                js.UndefOr[String]                            = js.undefined,
   ref:                js.UndefOr[MuiSliderM => Unit]                = js.undefined,
@@ -50,14 +47,12 @@ case class MuiSlider(
   style:              js.UndefOr[CssProperties]                     = js.undefined,
   /* The value of the slider.*/
   value:              js.UndefOr[Double]                            = js.undefined){
-
   def apply() = {
     val props = JSMacro[MuiSlider](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Slider)
     f(props).asInstanceOf[ReactComponentU_]
   }
 }
-        
 
 
 @js.native

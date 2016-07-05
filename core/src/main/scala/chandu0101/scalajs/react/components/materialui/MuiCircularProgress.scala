@@ -1,15 +1,12 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
 case class MuiCircularProgress(
   key:        js.UndefOr[String]                       = js.undefined,
   ref:        js.UndefOr[MuiCircularProgressM => Unit] = js.undefined,
@@ -30,14 +27,12 @@ case class MuiCircularProgress(
   style:      js.UndefOr[CssProperties]                = js.undefined,
   /* The value of progress, only works in determinate mode.*/
   value:      js.UndefOr[Double]                       = js.undefined){
-
   def apply() = {
     val props = JSMacro[MuiCircularProgress](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.CircularProgress)
     f(props).asInstanceOf[ReactComponentU_]
   }
 }
-        
 
 
 @js.native

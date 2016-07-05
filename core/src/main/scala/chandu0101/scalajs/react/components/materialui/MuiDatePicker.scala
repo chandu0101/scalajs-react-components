@@ -1,15 +1,12 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
 case class MuiDatePicker(
   key:                     js.UndefOr[String]                                     = js.undefined,
   ref:                     js.UndefOr[MuiDatePickerM => Unit]                     = js.undefined,
@@ -79,7 +76,7 @@ case class MuiDatePicker(
   value:                   js.UndefOr[js.Date]                                    = js.undefined,
   /* Wordings used inside the button of the dialog.*/
   @deprecated("Instead, use `cancelLabel` and `okLabel`.")
-  wordings:                js.UndefOr[Wordings]                                   = js.undefined,
+  wordings:                js.UndefOr[js.Object]                                  = js.undefined,
   /* The css class name of the root element.
   (Passed on to TextField)*/
   className:               js.UndefOr[String]                                     = js.undefined,
@@ -168,7 +165,6 @@ case class MuiDatePicker(
   /* Override the inline-styles of the TextField's underline element.
   (Passed on to TextField)*/
   underlineStyle:          js.UndefOr[CssProperties]                              = js.undefined){
-
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiDatePicker](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.DatePicker)
@@ -180,12 +176,6 @@ case class MuiDatePicker(
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }
-
-case class Wordings(ok: String, cancel: String){
-  val toJS = JSMacro[Wordings](this)
-}
-
-      
 
 
 @js.native

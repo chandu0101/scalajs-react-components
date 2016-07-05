@@ -1,52 +1,50 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
-case class MuiDropDownMenu(
-  key:             js.UndefOr[String]                                 = js.undefined,
-  ref:             js.UndefOr[MuiDropDownMenuM => Unit]               = js.undefined,
+case class MuiDropDownMenu[T](
+  key:             js.UndefOr[String]                            = js.undefined,
+  ref:             js.UndefOr[MuiDropDownMenuM => Unit]          = js.undefined,
   /* The width will automatically be set according to the items inside the menu.
   To control this width in css instead, set this prop to `false`.*/
-  autoWidth:       js.UndefOr[Boolean]                                = js.undefined,
+  autoWidth:       js.UndefOr[Boolean]                           = js.undefined,
   /* The css class name of the root element.*/
-  className:       js.UndefOr[String]                                 = js.undefined,
+  className:       js.UndefOr[String]                            = js.undefined,
   /* Disables the menu.*/
-  disabled:        js.UndefOr[Boolean]                                = js.undefined,
+  disabled:        js.UndefOr[Boolean]                           = js.undefined,
   /* Overrides the styles of icon element.*/
-  iconStyle:       js.UndefOr[CssProperties]                          = js.undefined,
+  iconStyle:       js.UndefOr[CssProperties]                     = js.undefined,
   /* Overrides the styles of label when the `DropDownMenu` is inactive.*/
-  labelStyle:      js.UndefOr[CssProperties]                          = js.undefined,
+  labelStyle:      js.UndefOr[CssProperties]                     = js.undefined,
   /* The style object to use to override underlying list style.*/
-  listStyle:       js.UndefOr[CssProperties]                          = js.undefined,
+  listStyle:       js.UndefOr[CssProperties]                     = js.undefined,
   /* The maximum height of the `Menu` when it is displayed.*/
-  maxHeight:       js.UndefOr[Int]                                    = js.undefined,
+  maxHeight:       js.UndefOr[Int]                               = js.undefined,
   /* Overrides the styles of `Menu` when the `DropDownMenu` is displayed.*/
-  menuStyle:       js.UndefOr[CssProperties]                          = js.undefined,
+  menuStyle:       js.UndefOr[CssProperties]                     = js.undefined,
   /* Callback function fired when a menu item is clicked, other than the one currently selected.*/
-  onChange:        js.UndefOr[(ReactEventI, Int, js.Any) => Callback] = js.undefined,
+  onChange:        js.UndefOr[(ReactEventI, Int, T) => Callback] = js.undefined,
   /* Set to true to have the `DropDownMenu` automatically open on mount.*/
-  openImmediately: js.UndefOr[Boolean]                                = js.undefined,
+  openImmediately: js.UndefOr[Boolean]                           = js.undefined,
   /* Override the inline-styles of the root element.*/
-  style:           js.UndefOr[CssProperties]                          = js.undefined,
+  style:           js.UndefOr[CssProperties]                     = js.undefined,
   /* Overrides the inline-styles of the underline.*/
-  underlineStyle:  js.UndefOr[CssProperties]                          = js.undefined,
+  underlineStyle:  js.UndefOr[CssProperties]                     = js.undefined,
   /* The value that is currently selected.*/
-  value:           js.UndefOr[js.Any]                                 = js.undefined){
+  value:           js.UndefOr[T]                                 = js.undefined){
   /**
    * @param children The `MenuItem`s to populate the `Menu` with. If the `MenuItems` have the
 prop `label` that value will be used to render the representation of that
 item within the field.
    */
   def apply(children: ReactNode*) = {
-    val props = JSMacro[MuiDropDownMenu](this)
+    implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
+    val props = JSMacro[MuiDropDownMenu[T]](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.DropDownMenu)
     if (children.isEmpty)
       f(props).asInstanceOf[ReactComponentU_]

@@ -73,6 +73,7 @@ case class MuiStepButton(
    * @param children Can be a `StepLabel` or a node to place inside `StepLabel` as children.
    */
   def apply(children: ReactNode*) = {
+    
     val props = JSMacro[MuiStepButton](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.StepButton)
     if (children.isEmpty)

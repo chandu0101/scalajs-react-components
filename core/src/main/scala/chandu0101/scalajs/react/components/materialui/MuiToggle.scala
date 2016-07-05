@@ -1,15 +1,12 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
 case class MuiToggle(
   key:                  js.UndefOr[String]                             = js.undefined,
   ref:                  js.UndefOr[MuiToggleM => Unit]                 = js.undefined,
@@ -86,14 +83,12 @@ case class MuiToggle(
   switched:             js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   value:                js.UndefOr[String]                             = js.undefined){
-
   def apply() = {
     val props = JSMacro[MuiToggle](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Toggle)
     f(props).asInstanceOf[ReactComponentU_]
   }
 }
-        
 
 
 @js.native

@@ -1,16 +1,13 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
-case class MuiMenuItem(
+case class MuiMenuItem[T](
   key:                         js.UndefOr[String]                          = js.undefined,
   ref:                         js.UndefOr[MuiMenuItemM => Unit]            = js.undefined,
   /* If true, a left check mark will be rendered.*/
@@ -44,7 +41,7 @@ case class MuiMenuItem(
   /* Override the inline-styles of the root element.*/
   style:                       js.UndefOr[CssProperties]                   = js.undefined,
   /* The value of the menu item.*/
-  value:                       js.UndefOr[js.Any]                          = js.undefined,
+  value:                       js.UndefOr[T]                               = js.undefined,
   /* If true, generate a nested-list-indicator icon when nested list
   items are detected. Note that an indicator will not be created
   if a `rightIcon` or `rightIconButton` has been provided to
@@ -113,7 +110,8 @@ case class MuiMenuItem(
    * @param children Elements passed as children to the underlying `ListItem`.
    */
   def apply(children: ReactNode*) = {
-    val props = JSMacro[MuiMenuItem](this)
+    implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
+    val props = JSMacro[MuiMenuItem[T]](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.MenuItem)
     if (children.isEmpty)
       f(props).asInstanceOf[ReactComponentU_]

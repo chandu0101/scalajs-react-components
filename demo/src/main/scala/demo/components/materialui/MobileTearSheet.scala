@@ -50,5 +50,5 @@ object MobileTearSheet {
     .renderBackend[Backend]
     .build
 
-  def apply(children: ReactNode*) = component(children)
+  def apply(children: ReactNode*) = component(children :_*)
 }

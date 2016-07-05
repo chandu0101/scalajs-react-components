@@ -12,7 +12,7 @@ object EuiPage {
   case class Backend($: BackendScope[Props, _]) {
     def render(P: Props) =
       <.div(
-        WithAsyncScript(("assets/elemental_ui-bundle.js"))(
+        WithAsyncScript("assets/elemental_ui-bundle.js")(
           LeftNavPage(EuiRouteModule.menu, P.selectedPage, P.ctrl)
         )
       )

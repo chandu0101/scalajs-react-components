@@ -18,10 +18,10 @@ object MuiToolbarDemo {
       <.div(
         CodeExample(code, "MuiToolbar")(
           MuiToolbar()(
-            MuiToolbarGroup(key = "1", float = LeftRight.left)(
+            MuiToolbarGroup(key = "1")(
               MuiRaisedButton(label = "Tool Left", secondary = true)()
             ),
-            MuiToolbarGroup(key = "2", float = LeftRight.right)(
+            MuiToolbarGroup(key = "2")(
               MuiToolbarTitle(text = "options")(),
               MuiToolbarSeparator()(),
               MuiRaisedButton(label = "Create Broadcast", primary = true)()

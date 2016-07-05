@@ -50,6 +50,5 @@ object CodeExample {
             ref:      js.UndefOr[String] = "",
             key:      js.Any = {})
            (children: ReactNode*) =
-    component.set(key, ref)(Props(code,title), if (children.size == 1) children.head else children)
-
+    component.set(key, ref)(Props(code,title), children :_*)
 }

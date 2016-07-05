@@ -3,7 +3,6 @@ package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
-import demo.components.CodeExample
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
 
@@ -14,7 +13,7 @@ object MuiPopoverDemo {
 
   // EXAMPLE:START
 
-  case class OriginChoice[T](ts: Seq[T], label: String)(set: T => Callback, fromState: State => T, str: T => String) {
+  private case class OriginChoice[T](ts: Seq[T], label: String)(set: T => Callback, fromState: State => T, str: T => String) {
     val action: (ReactEvent, Int, js.Any) => Callback =
       (e, idx, any) => set(ts(idx))
 
@@ -23,8 +22,9 @@ object MuiPopoverDemo {
         t => MuiMenuItem(value = str(t), primaryText = str(t))()
       ).toJsArray
 
-    def menu(S: State) =
+    def menu(S: State): ReactElement =
       <.div(
+        ^.key := label,
         <.label(
           label,
           ^.width := "400px"
@@ -38,7 +38,7 @@ object MuiPopoverDemo {
 
   case class State(open: Boolean, target: Origin, anchor: Origin)
 
-  case class Backend($: BackendScope[Unit, State]) {
+  private case class Backend($: BackendScope[Unit, State]) {
 
     val ref = Ref[TopNode]("theRef")
 
@@ -98,7 +98,7 @@ object MuiPopoverDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("MuiPopoverDemo")
+  private val component = ReactComponentB[Unit]("MuiPopoverDemo")
     .initialState(State(
       open = false,
       target = Origin(Vertical.top,    Horizontal.left),
@@ -109,5 +109,6 @@ object MuiPopoverDemo {
 
   // EXAMPLE:END
 
-  def apply() = component()
+  def apply(): ReactElement =
+    component()
 }

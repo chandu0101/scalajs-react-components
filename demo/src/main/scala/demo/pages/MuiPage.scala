@@ -13,7 +13,7 @@ object MuiPage {
   import Mui.Styles.colors
 
   case class Backend($: BackendScope[Props, _]) {
-    def render(P: Props) = {
+    def render(P: Props) =
       WithAsyncScript("assets/material_ui-bundle.js"){
         val theme: MuiTheme =
           Mui.Styles.getMuiTheme(
@@ -27,16 +27,14 @@ object MuiPage {
           MuiPaper()(LeftNavPage(MuiRouteModule.menu, P.selectedPage, P.ctrl))
         )
       }
-
-    }
   }
 
-  val component = ReactComponentB[Props]("MuiPage")
+  private val component = ReactComponentB[Props]("MuiPage")
     .renderBackend[Backend]
     .build
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
-
+  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]): ReactElement =
+    component(Props(selectedPage, ctrl))
 }

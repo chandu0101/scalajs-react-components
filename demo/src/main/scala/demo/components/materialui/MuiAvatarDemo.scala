@@ -18,11 +18,11 @@ object MuiAvatarDemo {
     .render(P => {
       <.div(
         CodeExample(code, "MuiAvatar")(
-          MuiAvatar(backgroundColor = colors.grey700, color = colors.deepPurple200, icon = SvgIcons.ActionGrade()())(),
-          MuiAvatar(size = 120, backgroundColor = colors.lime600)("Ø"),
-          MuiAvatar()("one"),
-          MuiAvatar()("two"),
-          MuiAvatar(backgroundColor = colors.red400)(SvgIcons.ActionFace()())
+          MuiAvatar(key = "1", backgroundColor = colors.grey700, color = colors.deepPurple200, icon = SvgIcons.ActionGrade()())(),
+          MuiAvatar(key = "2", size = 120, backgroundColor = colors.lime600)("Ø"),
+          MuiAvatar(key = "3")("one"),
+          MuiAvatar(key = "4")("two"),
+          MuiAvatar(key = "5", backgroundColor = colors.red400)(SvgIcons.ActionFace()())
         )
       )
     }).build

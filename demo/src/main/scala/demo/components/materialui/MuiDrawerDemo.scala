@@ -63,17 +63,17 @@ object MuiDrawerDemo {
               docked          = S.isDocked)(
               /* hack in a cheesy centered avatar */
               MuiAvatar(
+                key             = "avatar",
                 size            = 112,
                 backgroundColor = Mui.Styles.colors.red400,
                 style           = js.Dynamic.literal(
                   margin  = "auto",
                   display = "block",
                   padding = "10px"
-                ))(
-                ":D"
-              ),
+                ))(":D"),
               choices map (c =>
                 MuiMenuItem(
+                  key         = c.id,
                   primaryText = c.text,
                   checked     = S.selected == c.id,
                   onTouchTap  = selectItem(c.id)
@@ -82,16 +82,19 @@ object MuiDrawerDemo {
             ),
 
             MuiToggle(
+              key      = "toggle1",
               toggled  = S.isOpen,
               label    = "Show drawer",
               onToggle = toggleOpen
             )(),
             MuiToggle(
+              key      = "toggle2",
               toggled  = S.isDocked,
               label    = "Show docked",
               onToggle = toggleDocked
             )(),
             MuiToggle(
+              key      = "toggle3",
               toggled  = S.isRight,
               label    = "Show on right side",
               onToggle = toggleRight

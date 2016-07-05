@@ -15,32 +15,36 @@ object MuiDropDownMenuDemo {
 
   // EXAMPLE:START
 
-  val items = Seq(
-    ("1", "Never"),
-    ("2", "Every Night"),
-    ("3", "Weeknights"),
-    ("4", "Weekends"),
-    ("5", "Weekly")
-  )
+  case class Item(val id: String, val name: String)
 
-  case class Backend($: BackendScope[Unit, js.Any]){
-    val choose: (ReactEventI, Int, js.Any) => Callback =
+  val items: Seq[Item] =
+    Seq(
+      new Item("1", "Never"),
+      new Item("2", "Every Night"),
+      new Item("3", "Weeknights"),
+      new Item("4", "Weekends"),
+      new Item("5", "Weekly")
+    )
+
+  case class Backend($: BackendScope[Unit, Item]){
+    val onChange: (ReactEventI, Int, Item) => Callback =
       (e, idx, value) => $.setState(value) >> Callback.info(s"idx: $idx, value: $value")
 
-    def render(chosen: js.Any) =
+    def render(chosen: Item) =
       <.div(
         CodeExample(code, "MuiDropDownMenu")(
           MuiDropDownMenu(
-            onChange = choose, value = chosen)(
+            onChange = onChange,
+            value    = chosen)(
             items map {
-              case (value, text) => MuiMenuItem(value = value, primaryText = text)()
+              case item => MuiMenuItem(key = item.id, value = item, primaryText = item.name)()
             } :_*
           )
         )
       )
   }
   val component = ReactComponentB[Unit]("MuiDropDownMenuDemo")
-    .initialState[js.Any](items.head._1)
+    .initialState(items.head)
     .renderBackend[Backend]
     .build
 

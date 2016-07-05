@@ -19,8 +19,9 @@ object MuiListDemo {
       <.div(
         CodeExample(code, "MuiList")(
           MobileTearSheet(
-            MuiList()(
+            MuiList(key = "list1")(
               MuiListItem(
+                key                = "item1",
                 leftIcon           = ContentInbox()(),
                 onKeyboardFocus    = CallbackDebug.f1("onKeyboardFocus"),
                 onMouseLeave       = CallbackDebug.f1("onMouseLeave"),
@@ -28,18 +29,17 @@ object MuiListDemo {
                 onNestedListToggle = CallbackDebug.f1("onNestedListToggle"),
                 onTouchStart       = CallbackDebug.f1("onTouchStart"),
                 onTouchTap         = CallbackDebug.f1("onTouchTap")
-
               )("Inbox"),
-              MuiListItem(primaryText = "Starred",   leftIcon = ActionGrade()())(),
-              MuiListItem(primaryText = "Sent Mail", leftIcon = ContentSend()())(),
-              MuiListItem(primaryText = "Drafts",    leftIcon = ContentDrafts()())()
+              MuiListItem(key = "item2", primaryText = "Starred",   leftIcon = ActionGrade()())(),
+              MuiListItem(key = "item3", primaryText = "Sent Mail", leftIcon = ContentSend()())(),
+              MuiListItem(key = "item4", primaryText = "Drafts",    leftIcon = ContentDrafts()())()
             ),
-            MuiDivider()(),
-            MuiList()(
-              MuiListItem(primaryText = "All mail",  rightIcon = ActionInfo()())(),
-              MuiListItem(primaryText = "Trash",     rightIcon = ActionInfo()())(),
-              MuiListItem(primaryText = "Spam",      rightIcon = ActionInfo()())(),
-              MuiListItem(primaryText = "Follow up", rightIcon = ActionInfo()())()
+            MuiDivider(key = "div")(),
+            MuiList(key = "list2")(
+              MuiListItem(key = "item1", primaryText = "All mail",  rightIcon = ActionInfo()())(),
+              MuiListItem(key = "item2", primaryText = "Trash",     rightIcon = ActionInfo()())(),
+              MuiListItem(key = "item3", primaryText = "Spam",      rightIcon = ActionInfo()())(),
+              MuiListItem(key = "item4", primaryText = "Follow up", rightIcon = ActionInfo()())()
             )
           )
         )

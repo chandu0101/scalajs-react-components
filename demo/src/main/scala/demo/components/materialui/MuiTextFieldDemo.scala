@@ -16,10 +16,11 @@ object MuiTextFieldDemo {
     .render(P => {
       <.div(
         CodeExample(code, "MuiTextField")(
-          <.div(^.display.flex, ^.flexDirection.column,
+          <.div(
+            ^.display.flex,
+            ^.flexDirection.column,
             MuiTextField(
               hintText       = "Hint Text",
-              onEnterKeyDown = CallbackDebug.f1("onEnterKeyDown"),
               onBlur         = CallbackDebug.f1("onBlur"),
               onChange       = CallbackDebug.f1("onChange"),
               onFocus        = CallbackDebug.f1("onFocus"),

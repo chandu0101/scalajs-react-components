@@ -55,6 +55,6 @@ object InfoTemplate {
 
     component.set(key, ref)(
       Props(browsersTested,componentFilePath,scalacss),
-      children
+      children :_*
     )
 }

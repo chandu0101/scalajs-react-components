@@ -21,7 +21,7 @@ case class MuiIconButton(
   /* Override the inline-styles of the icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                   = js.undefined,
   /* Callback function fired when the element loses focus.*/
-  onBlur:               js.UndefOr[ReactEventH => Callback]         = js.undefined,
+  onBlur:               js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* Callback function fired when the element gains focus.*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* Callback function fired when the element is focused or blurred by the keyboard.*/
@@ -68,6 +68,14 @@ case class MuiIconButton(
   onKeyDown:            js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onKeyUp:              js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onMouseDown:          js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onMouseUp:            js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onTouchEnd:           js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onTouchTap:           js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/

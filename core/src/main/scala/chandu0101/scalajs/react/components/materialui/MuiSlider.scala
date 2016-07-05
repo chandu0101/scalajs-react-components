@@ -30,7 +30,7 @@ case class MuiSlider(
   of an input element.*/
   name:               js.UndefOr[String]                            = js.undefined,
   /* Callback function that is fired when the focus has left the slider.*/
-  onBlur:             js.UndefOr[ReactEventH => Callback]           = js.undefined,
+  onBlur:             js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
   /* Callback function that is fired when the user changes the slider's value.*/
   onChange:           js.UndefOr[(ReactEventH, Double) => Callback] = js.undefined,
   /* Callback function that is fired when the slider has begun to move.*/

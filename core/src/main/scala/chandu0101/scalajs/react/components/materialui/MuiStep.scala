@@ -18,10 +18,7 @@ case class MuiStep(
   `StepButton` is a child of `Step`. Is passed to child components.*/
   disabled:  js.UndefOr[Boolean]       = js.undefined,
   /* Used internally for numbering.*/
-  @deprecated("Internal API")
   index:     js.UndefOr[Double]        = js.undefined,
-  /* */
-  @deprecated("Internal API")
   last:      js.UndefOr[Boolean]       = js.undefined,
   /* Override the inline-style of the root element.*/
   style:     js.UndefOr[CssProperties] = js.undefined){

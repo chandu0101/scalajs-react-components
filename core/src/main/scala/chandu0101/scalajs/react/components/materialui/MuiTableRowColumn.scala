@@ -14,19 +14,14 @@ case class MuiTableRowColumn(
   className:    js.UndefOr[String]                              = js.undefined,
   /* Number to identify the header row. This property
   is automatically populated when used with TableHeader.*/
-  @deprecated("Internal API")
   columnNumber: js.UndefOr[Int]                                 = js.undefined,
   /* If true, this column responds to hover events.*/
-  @deprecated("Internal API")
   hoverable:    js.UndefOr[Boolean]                             = js.undefined,
   /* Callback function for click event.*/
-  @deprecated("Internal API")
   onClick:      js.UndefOr[(ReactEvent, ColumnId) => Callback]  = js.undefined,
   /* Callback function for hover event.*/
-  @deprecated("Internal API")
   onHover:      js.UndefOr[(ReactEventH, ColumnId) => Callback] = js.undefined,
   /* Callback function for hover exit event.*/
-  @deprecated("Internal API")
   onHoverExit:  js.UndefOr[(ReactEventH, ColumnId) => Callback] = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:        js.UndefOr[CssProperties]                       = js.undefined){

@@ -83,7 +83,7 @@ case class MuiRaisedButton(
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:         js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
-  onBlur:                  js.UndefOr[ReactEventH => Callback]         = js.undefined,
+  onBlur:                  js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onClick:                 js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/

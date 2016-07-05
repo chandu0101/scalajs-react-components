@@ -58,7 +58,7 @@ case class MuiToggle(
   /* (Passed on to EnhancedSwitch)*/
   name:                 js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  onBlur:               js.UndefOr[ReactEventH => Callback]            = js.undefined,
+  onBlur:               js.UndefOr[ReactFocusEventH => Callback]       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/

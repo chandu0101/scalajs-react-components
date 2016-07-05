@@ -23,6 +23,8 @@ case class MuiAppBar(
   iconElementLeft:           js.UndefOr[ReactElement]                 = js.undefined,
   /* Similiar to the iconElementLeft prop except that this element is displayed on the right of the app bar.*/
   iconElementRight:          js.UndefOr[ReactElement]                 = js.undefined,
+  /* Override the inline-styles of the element displayed on the left side of the app bar.*/
+  iconStyleLeft:             js.UndefOr[CssProperties]                = js.undefined,
   /* Override the inline-styles of the element displayed on the right side of the app bar.*/
   iconStyleRight:            js.UndefOr[CssProperties]                = js.undefined,
   /* Callback function for when the left icon is selected via a touch tap.*/

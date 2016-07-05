@@ -33,7 +33,6 @@ case class MuiRadioButtonGroup(
   /* checked if true
   Used internally by `RadioButtonGroup`.
   (Passed on to RadioButton)*/
-  @deprecated("Internal API")
   checked:         js.UndefOr[Boolean]                            = js.undefined,
   /* The icon element to show when the radio button is checked.
   (Passed on to RadioButton)*/
@@ -55,7 +54,6 @@ case class MuiRadioButtonGroup(
   radio button group: in this case, use the `onChange` property of
   `RadioButtonGroup`.
   (Passed on to RadioButton)*/
-  @deprecated("Internal API")
   onCheck:         js.UndefOr[(ReactEventH, Boolean) => Callback] = js.undefined,
   /* The icon element to show when the radio button is unchecked.
   (Passed on to RadioButton)*/

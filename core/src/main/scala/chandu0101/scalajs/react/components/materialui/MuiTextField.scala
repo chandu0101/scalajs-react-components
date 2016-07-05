@@ -53,9 +53,9 @@ case class MuiTextField(
   @deprecated("Use onKeyDown and check for keycode instead.")
   onEnterKeyDown:          js.UndefOr[ReactKeyboardEventI => Callback] = js.undefined,
   /* Callback function that is fired when the textfield gains focus.*/
-  onFocus:                 js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
+  onFocus:                 js.UndefOr[ReactFocusEventI => Callback]    = js.undefined,
   /* Callback function fired when key is pressed down.*/
-  onKeyDown:               js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
+  onKeyDown:               js.UndefOr[ReactKeyboardEventI => Callback] = js.undefined,
   /* Number of rows to display when multiLine option is set to true.*/
   rows:                    js.UndefOr[Int]                             = js.undefined,
   /* Maximum number of rows to display when

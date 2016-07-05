@@ -16,6 +16,10 @@ case class MuiTimePicker(
   cancelLabel:             js.UndefOr[ReactNode]                                  = js.undefined,
   /* The initial time value of the TimePicker.*/
   defaultTime:             js.UndefOr[js.Date]                                    = js.undefined,
+  /* Override the inline-styles of TimePickerDialog's body element.*/
+  dialogBodyStyle:         js.UndefOr[CssProperties]                              = js.undefined,
+  /* Override the inline-styles of TimePickerDialog's root element.*/
+  dialogStyle:             js.UndefOr[CssProperties]                              = js.undefined,
   /* If true, the TimePicker is disabled.*/
   disabled:                js.UndefOr[Boolean]                                    = js.undefined,
   /* Tells the component to display the picker in `ampm` (12hr) format or `24hr` format.*/
@@ -102,7 +106,7 @@ case class MuiTimePicker(
   onEnterKeyDown:          js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
   /* Callback function fired when key is pressed down.
   (Passed on to TextField)*/
-  onKeyDown:               js.UndefOr[ReactKeyboardEventH => Callback]            = js.undefined,
+  onKeyDown:               js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
   /* Number of rows to display when multiLine option is set to true.
   (Passed on to TextField)*/
   rows:                    js.UndefOr[Int]                                        = js.undefined,

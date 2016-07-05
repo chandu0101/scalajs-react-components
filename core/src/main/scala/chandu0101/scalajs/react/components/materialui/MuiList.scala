@@ -23,7 +23,6 @@ case class MuiList(
   subheaderStyle: js.UndefOr[CssProperties] = js.undefined,
   /* ** Breaking change ** List no longer supports `zDepth`. Instead, wrap it in `Paper`
   or another component that provides zDepth.*/
-  @deprecated("Internal API")
   zDepth:         js.UndefOr[ZDepth]        = js.undefined){
   /**
    * @param children These are usually `ListItem`s that are passed to

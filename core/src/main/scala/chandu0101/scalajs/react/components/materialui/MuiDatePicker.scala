@@ -20,6 +20,8 @@ case class MuiDatePicker(
   autoOk:                  js.UndefOr[Boolean]                                    = js.undefined,
   /* Override the default text of the 'Cancel' button.*/
   cancelLabel:             js.UndefOr[ReactNode]                                  = js.undefined,
+  /* The css class name of the root element.*/
+  className:               js.UndefOr[String]                                     = js.undefined,
   /* Used to control how the Date Picker will be displayed when the input field is focused.
   `dialog` (default) displays the DatePicker as a dialog with a modal.
   `inline` displays the DatePicker below the input field (similar to auto complete).*/
@@ -77,9 +79,6 @@ case class MuiDatePicker(
   /* Wordings used inside the button of the dialog.*/
   @deprecated("Instead, use `cancelLabel` and `okLabel`.")
   wordings:                js.UndefOr[js.Object]                                  = js.undefined,
-  /* The css class name of the root element.
-  (Passed on to TextField)*/
-  className:               js.UndefOr[String]                                     = js.undefined,
   /* The text string to use for the default value.
   (Passed on to TextField)*/
   defaultValue:            js.UndefOr[String]                                     = js.undefined,
@@ -134,7 +133,7 @@ case class MuiDatePicker(
   onEnterKeyDown:          js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
   /* Callback function fired when key is pressed down.
   (Passed on to TextField)*/
-  onKeyDown:               js.UndefOr[ReactKeyboardEventH => Callback]            = js.undefined,
+  onKeyDown:               js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
   /* Number of rows to display when multiLine option is set to true.
   (Passed on to TextField)*/
   rows:                    js.UndefOr[Int]                                        = js.undefined,

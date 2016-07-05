@@ -14,7 +14,6 @@ case class MuiMenuItem[T](
   checked:                     js.UndefOr[Boolean]                         = js.undefined,
   /* If true, the menu item will render with compact desktop
   styles.*/
-  @deprecated("Internal API")
   desktop:                     js.UndefOr[Boolean]                         = js.undefined,
   /* If true, the menu item will be disabled.*/
   disabled:                    js.UndefOr[Boolean]                         = js.undefined,

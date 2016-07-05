@@ -16,6 +16,9 @@ case class MuiIconMenu[T](
   vertical: [top, middle, bottom]
   horizontal: [left, center, right].*/
   anchorOrigin:             js.UndefOr[Origin]                                       = js.undefined,
+  /* If true, the popover will apply transitions when
+  it gets added to the DOM.*/
+  animated:                 js.UndefOr[Boolean]                                      = js.undefined,
   /* The CSS class name of the root element.*/
   className:                js.UndefOr[String]                                       = js.undefined,
   /* This is the `IconButton` to render. This button will open the menu.*/
@@ -62,12 +65,6 @@ case class MuiIconMenu[T](
   /* If true, the popover will render on top of an invisible
   layer, which will prevent clicks to the underlying elements.*/
   useLayerForClickAway:     js.UndefOr[Boolean]                                      = js.undefined,
-  /* If true, the menu will apply transitions when it
-  is added to the DOM. In order for transitions to
-  work, wrap the menu inside a `ReactTransitionGroup`.
-  (Passed on to Menu)*/
-  @deprecated("Instead, use a [Popover](/#/components/popover).")
-  animated:                 js.UndefOr[Boolean]                                      = js.undefined,
   /* If true, the width of the menu will be set automatically
   according to the widths of its children,
   using proper keyline increments (64px for desktop,
@@ -130,7 +127,6 @@ case class MuiIconMenu[T](
   /* Menu no longer supports `zDepth`. Instead, wrap it in `Paper`
   or another component that provides zDepth.
   (Passed on to Menu)*/
-  @deprecated("Internal API")
   zDepth:                   js.UndefOr[ZDepth]                                       = js.undefined){
   /**
    * @param children Should be used to pass `MenuItem` components.

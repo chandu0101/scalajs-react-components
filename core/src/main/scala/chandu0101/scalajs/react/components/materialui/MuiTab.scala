@@ -22,11 +22,9 @@ case class MuiTab[T](
   This function will always recieve the active tab as it\'s first argument.*/
   onActive:             js.UndefOr[ReactElement => Callback]        = js.undefined,
   /* This property is overriden by the Tabs component.*/
-  @deprecated("Internal API")
   onTouchTap:           js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* Defines if the current tab is selected or not.
   The Tabs component is responsible for setting this property.*/
-  @deprecated("Internal API")
   selected:             js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                   = js.undefined,
@@ -34,7 +32,6 @@ case class MuiTab[T](
   It assigns a value to the tab so that it can be selected by the Tabs.*/
   value:                js.UndefOr[T]                               = js.undefined,
   /* This property is overriden by the Tabs component.*/
-  @deprecated("Internal API")
   width:                js.UndefOr[String]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   centerRipple:         js.UndefOr[Boolean]                         = js.undefined,
@@ -57,7 +54,7 @@ case class MuiTab[T](
   /* (Passed on to EnhancedButton)*/
   linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
-  onBlur:               js.UndefOr[ReactEventH => Callback]         = js.undefined,
+  onBlur:               js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onClick:              js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/
@@ -68,6 +65,18 @@ case class MuiTab[T](
   onKeyUp:              js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onMouseDown:          js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onMouseUp:            js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onTouchEnd:           js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   tabIndex:             js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/

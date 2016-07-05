@@ -16,7 +16,6 @@ case class MuiTableHeaderColumn(
   is automatically populated when used with TableHeader.*/
   columnNumber: js.UndefOr[Int]                                = js.undefined,
   /* Callback function for click event.*/
-  @deprecated("Internal API")
   onClick:      js.UndefOr[(ReactEvent, ColumnId) => Callback] = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:        js.UndefOr[CssProperties]                      = js.undefined,

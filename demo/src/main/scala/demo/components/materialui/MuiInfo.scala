@@ -28,7 +28,7 @@ object MuiInfo {
           ),
           <.div(
             <.h4("Supported Version :"),
-            <.span("0.14.4")
+            <.span("0.15.1")
           ),
           <.div(
             <.h4("How To Use :"),

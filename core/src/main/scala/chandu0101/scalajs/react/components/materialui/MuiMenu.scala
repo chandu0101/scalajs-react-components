@@ -69,7 +69,6 @@ case class MuiMenu[T](
   width:                    js.UndefOr[String | Double]                                                    = js.undefined,
   /* Menu no longer supports `zDepth`. Instead, wrap it in `Paper`
   or another component that provides zDepth.*/
-  @deprecated("Internal API")
   zDepth:                   js.UndefOr[ZDepth]                                                             = js.undefined,
   /* If true, the subheader will be indented by 72px.
   (Passed on to List)*/
@@ -124,6 +123,8 @@ class MuiMenuM extends js.Object {
   def isChildSelected(child: js.Any, props: js.Any): js.Any = js.native
 
   def setFocusIndex(newIndex: js.Any, isKeyboardFocused: js.Any): js.Any = js.native
+
+  def setFocusIndexStartsWith(keys: js.Any): js.Any = js.native
 
   def setKeyboardFocused(keyboardFocused: js.Any): js.Any = js.native
 

@@ -12,7 +12,6 @@ case class MuiRadioButton(
   ref:                  js.UndefOr[MuiRadioButtonM => Unit]            = js.undefined,
   /* checked if true
   Used internally by `RadioButtonGroup`.*/
-  @deprecated("Internal API")
   checked:              js.UndefOr[Boolean]                            = js.undefined,
   /* The icon element to show when the radio button is checked.*/
   checkedIcon:          js.UndefOr[ReactElement]                       = js.undefined,
@@ -24,7 +23,6 @@ case class MuiRadioButton(
   inputStyle:           js.UndefOr[CssProperties]                      = js.undefined,
   /* Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
   Where the label will be placed next to the radio button.*/
-  @deprecated("Internal API")
   labelPosition:        js.UndefOr[LeftRight]                          = js.undefined,
   /* Override the inline-styles of the label element.*/
   labelStyle:           js.UndefOr[CssProperties]                      = js.undefined,
@@ -32,7 +30,6 @@ case class MuiRadioButton(
   function will not be called if the radio button is part of a
   radio button group: in this case, use the `onChange` property of
   `RadioButtonGroup`.*/
-  @deprecated("Internal API")
   onCheck:              js.UndefOr[(ReactEventH, Boolean) => Callback] = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                      = js.undefined,
@@ -55,7 +52,7 @@ case class MuiRadioButton(
   /* (Passed on to EnhancedSwitch)*/
   name:                 js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  onBlur:               js.UndefOr[ReactEventH => Callback]            = js.undefined,
+  onBlur:               js.UndefOr[ReactFocusEventH => Callback]       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/

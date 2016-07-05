@@ -16,6 +16,12 @@ case class MuiAutoComplete(
   animated:                js.UndefOr[Boolean]                                               = js.undefined,
   /* Array of strings or nodes used to populate the list.*/
   dataSource:              js.Array[Value],
+  /* Config for objects list dataSource.
+  @typedef {Object} dataSourceConfig
+  @property {string} text `dataSource` element key used to find a string to be matched for search
+  and shown as a `TextField` input value after choosing the result.
+  @property {string} value `dataSource` element key used to find a string to be shown in search results.*/
+  dataSourceConfig:        js.UndefOr[js.Object]                                             = js.undefined,
   /* Disables focus ripple when true.*/
   disableFocusRipple:      js.UndefOr[Boolean]                                               = js.undefined,
   /* Override style prop for error.*/
@@ -43,7 +49,7 @@ case class MuiAutoComplete(
   /* Override style for menu.*/
   menuStyle:               js.UndefOr[CssProperties]                                         = js.undefined,
   /* Callback function that is fired when the `TextField` loses focus.*/
-  onBlur:                  js.UndefOr[ReactEventH => Callback]                               = js.undefined,
+  onBlur:                  js.UndefOr[ReactFocusEventH => Callback]                          = js.undefined,
   /* Callback function that is fired when the `TextField` gains focus.*/
   onFocus:                 js.UndefOr[ReactFocusEventH => Callback]                          = js.undefined,
   /* Callback function that is fired when the `TextField` receives a keydown event.*/

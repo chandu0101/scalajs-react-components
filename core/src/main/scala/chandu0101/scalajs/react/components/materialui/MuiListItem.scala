@@ -97,7 +97,7 @@ case class MuiListItem(
   /* (Passed on to EnhancedButton)*/
   linkButton:                  js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
-  onBlur:                      js.UndefOr[ReactEventH => Callback]         = js.undefined,
+  onBlur:                      js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onClick:                     js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/
@@ -106,6 +106,12 @@ case class MuiListItem(
   onKeyDown:                   js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onKeyUp:                     js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onMouseDown:                 js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onMouseUp:                   js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onTouchEnd:                  js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   tabIndex:                    js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/

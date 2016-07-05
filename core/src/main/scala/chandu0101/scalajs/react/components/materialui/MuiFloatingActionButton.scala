@@ -34,7 +34,7 @@ case class MuiFloatingActionButton(
   linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* If true, the button will be a small floating action button.*/
   mini:                 js.UndefOr[Boolean]                         = js.undefined,
-  /* Callback function fired when a mouse button is pressed down on the elmeent.*/
+  /* Callback function fired when a mouse button is pressed down on the element.*/
   onMouseDown:          js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   /* Callback function fired when the mouse enters the element.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
@@ -69,7 +69,7 @@ case class MuiFloatingActionButton(
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
-  onBlur:               js.UndefOr[ReactEventH => Callback]         = js.undefined,
+  onBlur:               js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onClick:              js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/

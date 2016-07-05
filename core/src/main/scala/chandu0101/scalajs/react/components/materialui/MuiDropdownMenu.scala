@@ -10,6 +10,9 @@ import scala.scalajs.js.`|`
 case class MuiDropDownMenu[T](
   key:             js.UndefOr[String]                            = js.undefined,
   ref:             js.UndefOr[MuiDropDownMenuM => Unit]          = js.undefined,
+  /* If true, the popover will apply transitions when
+  it gets added to the DOM.*/
+  animated:        js.UndefOr[Boolean]                           = js.undefined,
   /* The width will automatically be set according to the items inside the menu.
   To control this width in css instead, set this prop to `false`.*/
   autoWidth:       js.UndefOr[Boolean]                           = js.undefined,

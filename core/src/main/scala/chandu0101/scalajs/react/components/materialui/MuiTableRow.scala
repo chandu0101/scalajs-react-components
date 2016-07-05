@@ -25,28 +25,22 @@ case class MuiTableRow(
   /* Called when a row cell is clicked.
   rowNumber is the row number and columnId is
   the column number or the column key.*/
-  @deprecated("Internal API")
   onCellClick:     js.UndefOr[(ReactEvent, ColumnId) => Callback] = js.undefined,
   /* Called when a table cell is hovered.
   rowNumber is the row number of the hovered row
   and columnId is the column number or the column key of the cell.*/
-  @deprecated("Internal API")
   onCellHover:     js.UndefOr[(ReactEvent, ColumnId) => Callback] = js.undefined,
   /* Called when a table cell is no longer hovered.
   rowNumber is the row number of the row and columnId
   is the column number or the column key of the cell.*/
-  @deprecated("Internal API")
   onCellHoverExit: js.UndefOr[(ReactEvent, ColumnId) => Callback] = js.undefined,
   /* Called when row is clicked.*/
-  @deprecated("Internal API")
   onRowClick:      js.UndefOr[(ReactEventH, RowId) => Callback]   = js.undefined,
   /* Called when a table row is hovered.
   rowNumber is the row number of the hovered row.*/
-  @deprecated("Internal API")
   onRowHover:      js.UndefOr[ReactEvent => Callback]             = js.undefined,
   /* Called when a table row is no longer hovered.
   rowNumber is the row number of the row that is no longer hovered.*/
-  @deprecated("Internal API")
   onRowHoverExit:  js.UndefOr[(ReactEvent, RowId) => Callback]    = js.undefined,
   /* Number to identify the row. This property is
   automatically populated when used with the TableBody component.*/

@@ -10,7 +10,7 @@ import scala.scalajs.js.`|`
 case class MuiMuiThemeProvider(
   key:      js.UndefOr[String]                       = js.undefined,
   ref:      js.UndefOr[MuiMuiThemeProviderM => Unit] = js.undefined,
-  muiTheme: MuiTheme){
+  muiTheme: js.UndefOr[MuiTheme]                     = js.undefined){
   def apply(children: ReactElement*) = {
     val props = JSMacro[MuiMuiThemeProvider](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.MuiThemeProvider)

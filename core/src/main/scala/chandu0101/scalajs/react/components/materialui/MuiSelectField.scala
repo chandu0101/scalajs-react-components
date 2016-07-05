@@ -12,49 +12,60 @@ case class MuiSelectField[T](
   ref:                    js.UndefOr[String]                            = js.undefined,
   /* If true, the width will automatically be set according to the
   items inside the menu.
-  To control this width in css instead, leave this prop to `false`.*/
+  To control the width in CSS instead, leave this prop set to `false`.*/
   autoWidth:              js.UndefOr[Boolean]                           = js.undefined,
-  /* Disables the select field if set to true.*/
+  /* If true, the select field will be disabled.*/
   disabled:               js.UndefOr[Boolean]                           = js.undefined,
-  /* The style object to use to override error styles.*/
+  /* Override the inline-styles of the error element.*/
   errorStyle:             js.UndefOr[CssProperties]                     = js.undefined,
   /* The error content to display.*/
   errorText:              js.UndefOr[ReactNode]                         = js.undefined,
-  /* The style object to use to override floating label styles.*/
+  /* If true, the floating label will float even when no value is selected.*/
+  floatingLabelFixed:     js.UndefOr[Boolean]                           = js.undefined,
+  /* Override the inline-styles of the floating label.*/
   floatingLabelStyle:     js.UndefOr[CssProperties]                     = js.undefined,
-  /* The content to use for the floating label element.*/
+  /* The content of the floating label.*/
   floatingLabelText:      js.UndefOr[ReactNode]                         = js.undefined,
-  /* If true, the field receives the property width 100%.*/
+  /* If true, the select field will take up the full width of its container.*/
   fullWidth:              js.UndefOr[Boolean]                           = js.undefined,
-  /* The style object to use to override hint styles.*/
+  /* Override the inline-styles of the hint element.*/
   hintStyle:              js.UndefOr[CssProperties]                     = js.undefined,
   /* The hint content to display.*/
   hintText:               js.UndefOr[ReactNode]                         = js.undefined,
-  /* Overrides the styles of the icon element.*/
+  /* Override the inline-styles of the icon element.*/
   iconStyle:              js.UndefOr[CssProperties]                     = js.undefined,
   /* The id prop for the text field.*/
   id:                     js.UndefOr[String]                            = js.undefined,
-  /* Overrides the styles of label when the `SelectField` is inactive.*/
+  /* Override the label style when the select field is inactive.*/
   labelStyle:             js.UndefOr[CssProperties]                     = js.undefined,
-  /* Callback function that is fired when the `SelectField` loses focus.*/
-  onBlur:                 js.UndefOr[ReactEventH => Callback]           = js.undefined,
-  /* Callback function that is fired when the value changes.*/
+  /* Override the inline-styles of the underlying `DropDownMenu` element.*/
+  menuStyle:              js.UndefOr[CssProperties]                     = js.undefined,
+  /* Callback function fired when the select field loses focus.*/
+  onBlur:                 js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
+  /* Callback function fired when a menu item is selected.
+  that was selected.*/
   onChange:               js.UndefOr[(ReactEventI, Int, T) => Callback] = js.undefined,
-  /* Callback function that is fired when the `SelectField` gains focus.*/
+  /* Callback function fired when the select field gains focus.*/
   onFocus:                js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
-  /* The style object to use to override the `DropDownMenu`.*/
+  /* Override the inline-styles of the underlying `DropDownMenu` element.*/
+  @deprecated("Instead, use `menuStyle`.")
   selectFieldRoot:        js.UndefOr[CssProperties]                     = js.undefined,
-  /* Must be changed!
-  Override the inline-styles of the root element.*/
+  /* Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties]                     = js.undefined,
-  /* Override the inline-styles of the underline element when disabled.*/
+  /* Override the inline-styles of the underline element when the select
+  field is disabled.*/
   underlineDisabledStyle: js.UndefOr[CssProperties]                     = js.undefined,
-  /* Override the inline-styles of the underline element when focused.*/
+  /* Override the inline-styles of the underline element when the select field
+  is focused.*/
   underlineFocusStyle:    js.UndefOr[CssProperties]                     = js.undefined,
-  /* Overrides the styles of the underline element.*/
+  /* Override the inline-styles of the underline element.*/
   underlineStyle:         js.UndefOr[CssProperties]                     = js.undefined,
   /* The value that is currently selected.*/
   value:                  js.UndefOr[T]                                 = js.undefined,
+  /* If true, the popover will apply transitions when
+  it gets added to the DOM.
+  (Passed on to DropDownMenu)*/
+  animated:               js.UndefOr[Boolean]                           = js.undefined,
   /* The css class name of the root element.
   (Passed on to DropDownMenu)*/
   className:              js.UndefOr[String]                            = js.undefined,
@@ -64,17 +75,13 @@ case class MuiSelectField[T](
   /* The maximum height of the `Menu` when it is displayed.
   (Passed on to DropDownMenu)*/
   maxHeight:              js.UndefOr[Int]                               = js.undefined,
-  /* Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
-  (Passed on to DropDownMenu)*/
-  menuStyle:              js.UndefOr[CssProperties]                     = js.undefined,
   /* Set to true to have the `DropDownMenu` automatically open on mount.
   (Passed on to DropDownMenu)*/
   openImmediately:        js.UndefOr[Boolean]                           = js.undefined){
   /**
-   * @param children The `MenuItem` elements to populate the `Menu` with.
-If the MenuItems have the prop `label` that value will
-be used to render the representation of that
-item within the field.
+   * @param children The `MenuItem` elements to populate the select field with.
+If the menu items have a `label` prop, that value will
+represent the selected menu item in the rendered select field.
    */
   def apply(children: ReactNode*) = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]

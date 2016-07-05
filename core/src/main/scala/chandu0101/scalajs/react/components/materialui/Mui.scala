@@ -17,6 +17,7 @@ object Mui extends js.Object {
   val CardText:                 js.Dynamic  = js.native
   val CardTitle:                js.Dynamic  = js.native
   val Checkbox:                 js.Dynamic  = js.native
+  val Chip:                     js.Dynamic  = js.native
   val CircularProgress:         js.Dynamic  = js.native
   val DatePicker:               js.Dynamic  = js.native
   val Dialog:                   js.Dynamic  = js.native

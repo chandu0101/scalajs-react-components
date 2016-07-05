@@ -27,10 +27,8 @@ case class MuiTableHeader(
   To hide the checkbox, set displaySelectAll to false.*/
   enableSelectAll:   js.UndefOr[Boolean]                 = js.undefined,
   /* Callback when select all has been checked.*/
-  @deprecated("Internal API")
   onSelectAll:       js.UndefOr[Boolean => Callback]     = js.undefined,
   /* True when select all has been checked.*/
-  @deprecated("Internal API")
   selectAllSelected: js.UndefOr[Boolean]                 = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:             js.UndefOr[CssProperties]           = js.undefined){

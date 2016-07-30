@@ -31,6 +31,8 @@ object MuiRouteModule {
 
   case object TextField extends LeftRoute("Text Field", "textfield", () => MuiTextFieldDemo())
 
+  case object ThemeProvider extends LeftRoute("Themes", "themes", () => MuiThemeProviderDemo())
+
   case object Progress extends LeftRoute("Progress Bars", "progress", () => MuiProgressDemo())
 
   case object SelectField extends LeftRoute("Select Field", "selectfield", () => MuiSelectFieldDemo())
@@ -76,6 +78,7 @@ object MuiRouteModule {
     SvgIcon,
     SnackBar,
     TextField,
+    ThemeProvider,
     TimePicker,
     Table,
     Tabs,

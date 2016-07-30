@@ -9,21 +9,10 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
 
 object MuiPage {
-  import Mui.Styles.{LightRawTheme ⇒ base}
-  import Mui.Styles.colors
-
   case class Backend($: BackendScope[Props, _]) {
     def render(P: Props) =
       WithAsyncScript("assets/material_ui-bundle.js"){
-        val theme: MuiTheme =
-          Mui.Styles.getMuiTheme(
-            base.copy(
-              palette = base.palette.copy(
-                canvasColor = colors.lime50
-              )
-            )
-          )
-        MuiMuiThemeProvider(muiTheme = theme)(
+        MuiMuiThemeProvider()(
           MuiPaper()(LeftNavPage(MuiRouteModule.menu, P.selectedPage, P.ctrl))
         )
       }

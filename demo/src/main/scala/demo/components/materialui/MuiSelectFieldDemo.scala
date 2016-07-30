@@ -14,31 +14,31 @@ object MuiSelectFieldDemo {
   case class ChoiceId(value: String)
   case class Choice(id: ChoiceId, text: String)
 
-  case class Backend($: BackendScope[Seq[Choice], js.UndefOr[js.Any]]) {
-    val onChange: (ReactEventI, Int, js.Any) => Callback =
+  case class Backend($: BackendScope[Seq[Choice], Choice]) {
+    val onChange: (ReactEventI, Int, Choice) => Callback =
       (e, idx, a) => $.setState(a) >> Callback.info(s"selected $a")
 
-    def render(choices: Seq[Choice], selected: js.UndefOr[js.Any]) =
+    def render(choices: Seq[Choice], selected: Choice): ReactElement =
       CodeExample(code, "MuiSelectField")(
-        MuiSelectField(
+        MuiSelectField[Choice](
           value    = selected,
           onBlur   = CallbackDebug.f1("onBlur"),
           onFocus  = CallbackDebug.f1("onFocus"),
           onChange = onChange)(
           choices map (
-            c => MuiMenuItem(key = c.id.value, value = c.id.value, primaryText = c.text)()
+            c => MuiMenuItem[Choice](key = c.id.value, value = c, primaryText = c.text)()
           )
         )
       )
   }
 
-  val component =
+  private val component =
     ReactComponentB[Seq[Choice]]("MuiSelectFieldDemo")
-      .initialState[js.UndefOr[js.Any]](js.undefined)
+      .initialState_P(_.head)
       .renderBackend[Backend]
       .build
 
-  def apply() =
+  def apply(): ReactElement =
     component(
       Seq(
         Choice(ChoiceId("1"), "Never"),

@@ -14,7 +14,7 @@ object GoogleMapInfo {
        <.p("Map component based on " ,<.a(^.href := "https://developers.google.com/maps/documentation/javascript/") ("google map javascript api"))
      )
 
-  }).buildU
+  }).build
 
   def apply() = component()
 

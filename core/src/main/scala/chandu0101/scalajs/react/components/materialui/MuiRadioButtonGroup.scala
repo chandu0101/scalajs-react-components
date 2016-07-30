@@ -1,44 +1,72 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
-case class MuiRadioButtonGroup(
-  key:             js.UndefOr[String]                            = js.undefined,
-  ref:             js.UndefOr[MuiRadioButtonGroupM => Unit]      = js.undefined,
-  /* The css class name of the root element.*/
-  className:       js.UndefOr[String]                            = js.undefined,
-  /* Sets the default radio button to be the one whose
-value matches defaultSelected (case-sensitive).
-This will override any individual radio button with
-the defaultChecked or checked property stated.*/
-  defaultSelected: js.UndefOr[String]                            = js.undefined,
-  /* Where the label will be placed for all radio buttons.
-This will override any labelPosition properties defined
-for an individual radio button.*/
-  labelPosition:   js.UndefOr[LeftRight]                         = js.undefined,
-  /* The name that will be applied to all radio buttons inside it.*/
+case class MuiRadioButtonGroup[T](
+  key:             js.UndefOr[String]                             = js.undefined,
+  ref:             js.UndefOr[MuiRadioButtonGroupM => Unit]       = js.undefined,
+  /* The CSS class name of the root element.*/
+  className:       js.UndefOr[String]                             = js.undefined,
+  /* The `value` property (case-sensitive) of the radio button that will be
+  selected by default. This takes precedence over the `checked` property
+  of the `RadioButton` elements.*/
+  defaultSelected: js.UndefOr[String]                             = js.undefined,
+  /* Where the label will be placed for all child radio buttons.
+  This takes precedence over the `labelPosition` property of the
+  `RadioButton` elements.*/
+  labelPosition:   js.UndefOr[LeftRight]                          = js.undefined,
+  /* The name that will be applied to all child radio buttons.*/
   name:            String,
   /* Callback function that is fired when a radio button has
-been clicked. Returns the event and the value of the radio
-button that has been selected.*/
-  onChange:        js.UndefOr[(ReactEventI, String) => Callback] = js.undefined,
+  been checked.
+  radio button.*/
+  onChange:        js.UndefOr[(ReactEventI, String) => Callback]  = js.undefined,
   /* Override the inline-styles of the root element.*/
-  style:           js.UndefOr[CssProperties]                     = js.undefined,
-  /* The value of the currently selected radio button.*/
-  valueSelected:   js.UndefOr[String]                            = js.undefined){
+  style:           js.UndefOr[CssProperties]                      = js.undefined,
+  /* The `value` of the currently selected radio button.*/
+  valueSelected:   js.UndefOr[String]                             = js.undefined,
+  /* checked if true
+  Used internally by `RadioButtonGroup`.
+  (Passed on to RadioButton)*/
+  checked:         js.UndefOr[Boolean]                            = js.undefined,
+  /* The icon element to show when the radio button is checked.
+  (Passed on to RadioButton)*/
+  checkedIcon:     js.UndefOr[ReactElement]                       = js.undefined,
+  /* If true, the radio button is disabled.
+  (Passed on to RadioButton)*/
+  disabled:        js.UndefOr[Boolean]                            = js.undefined,
+  /* Override the inline-styles of the icon element.
+  (Passed on to RadioButton)*/
+  iconStyle:       js.UndefOr[CssProperties]                      = js.undefined,
+  /* Override the inline-styles of the input element.
+  (Passed on to RadioButton)*/
+  inputStyle:      js.UndefOr[CssProperties]                      = js.undefined,
+  /* Override the inline-styles of the label element.
+  (Passed on to RadioButton)*/
+  labelStyle:      js.UndefOr[CssProperties]                      = js.undefined,
+  /* Callback function fired when the radio button is checked. Note that this
+  function will not be called if the radio button is part of a
+  radio button group: in this case, use the `onChange` property of
+  `RadioButtonGroup`.
+  (Passed on to RadioButton)*/
+  onCheck:         js.UndefOr[(ReactEventH, Boolean) => Callback] = js.undefined,
+  /* The icon element to show when the radio button is unchecked.
+  (Passed on to RadioButton)*/
+  uncheckedIcon:   js.UndefOr[ReactElement]                       = js.undefined,
+  /* The value of the radio button.
+  (Passed on to RadioButton)*/
+  value:           js.UndefOr[T]                                  = js.undefined){
   /**
    * @param children Should be used to pass `RadioButton` components.
    */
   def apply(children: ReactNode*) = {
-    val props = JSMacro[MuiRadioButtonGroup](this)
+    implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
+    val props = JSMacro[MuiRadioButtonGroup[T]](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.RadioButtonGroup)
     if (children.isEmpty)
       f(props).asInstanceOf[ReactComponentU_]
@@ -52,12 +80,13 @@ button that has been selected.*/
 
 @js.native
 class MuiRadioButtonGroupM extends js.Object {
-  /* Returns the string value of the radio button that is currently selected. If nothing has been selected, an empty string is returned.*/
+  def clearValue(): Unit = js.native
+
   def getSelectedValue(): String = js.native
 
-  /* Sets the selected radio button to the radio button whose value matches newSelectionValue*/
+  def hasCheckAttribute(radioButton: js.Any): js.Any = js.native
+
   def setSelectedValue(newSelectionValue: String): Unit = js.native
 
-  /* Clears the selected value for the radio button group.*/
-  def clearValue(): Unit = js.native
+  def updateRadioButtons(newSelection: js.Any): js.Any = js.native
 }

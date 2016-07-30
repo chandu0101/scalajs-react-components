@@ -48,7 +48,7 @@ object MutableGoogleMapMarkers {
   val component = ReactComponentB[Unit]("mapmarkers")
     .initialState(State(52.2, 21, markers))
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

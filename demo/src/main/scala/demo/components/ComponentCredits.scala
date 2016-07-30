@@ -27,11 +27,13 @@ object ComponentCredits {
     }
   }
 
-  val component = ReactComponentB[Props]("ComponentCredits")
+  val component =
+    ReactComponentB[Props]("ComponentCredits")
     .initialState(State(List()))
-    .renderBackend[Backend].componentDidMount(
-    scope => Callback{
-      val url = s"https://api.github.com/repos/chandu0101/scalajs-react-components/commits?path=${scope.props.filePath}"
+    .renderBackend[Backend]
+    .componentDidMount(
+    $ => Callback{
+      val url = s"https://api.github.com/repos/chandu0101/scalajs-react-components/commits?path=${$.props.filePath}"
       Ajax.get(url).onSuccess {
         case xhr =>
           if (xhr.status == 200) {
@@ -46,7 +48,10 @@ object ComponentCredits {
             ).toList.groupBy(_.login).map {
               case (id, objlist) => objlist.minBy(_.time)
             }.toSet.toList
-            scope.modState(_.copy(users = users.sortBy(_.time))).runNow()
+
+            $.modState(_.copy(users = users.sortBy(_.time)))
+              .when($.isMounted())
+              .runNow()
           }
       }
     }

@@ -53,7 +53,7 @@ object MuiSvgIconDemo {
               lookupIcon(name).apply(
                 key          = idx.toString,
                 style        = js.Dynamic.literal(width = "30px", height = "30px"),
-                hoverColor   = Mui.Styles.Colors.amber500,
+                hoverColor   = Mui.Styles.colors.amber500,
                 onMouseEnter = select(name),
                 onMouseLeave = unselect,
                 viewBox      = "0 0 30 30"

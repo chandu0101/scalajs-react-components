@@ -31,6 +31,8 @@ object MuiRouteModule {
 
   case object TextField extends LeftRoute("Text Field", "textfield", () => MuiTextFieldDemo())
 
+  case object ThemeProvider extends LeftRoute("Themes", "themes", () => MuiThemeProviderDemo())
+
   case object Progress extends LeftRoute("Progress Bars", "progress", () => MuiProgressDemo())
 
   case object SelectField extends LeftRoute("Select Field", "selectfield", () => MuiSelectFieldDemo())
@@ -47,7 +49,7 @@ object MuiRouteModule {
 
   case object Toolbar extends LeftRoute("Toolbar", "toolbar", () => MuiToolbarDemo())
 
-  case object LeftNav extends LeftRoute("LeftNav", "leftnav", () => MuiLeftNavDemo())
+  case object Drawer extends LeftRoute("Drawer", "drawer", () => MuiDrawerDemo())
 
   case object Menu extends LeftRoute("Menus", "menus", () => MuiMenuDemo())
 
@@ -64,7 +66,7 @@ object MuiRouteModule {
     DatePicker,
     Dialog,
     DropDownMenu,
-    LeftNav,
+    Drawer,
     MList,
     Menu,
     Paper,
@@ -76,6 +78,7 @@ object MuiRouteModule {
     SvgIcon,
     SnackBar,
     TextField,
+    ThemeProvider,
     TimePicker,
     Table,
     Tabs,

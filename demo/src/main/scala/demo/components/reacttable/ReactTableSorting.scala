@@ -39,7 +39,7 @@ object ReactTableSorting {
 
   val component = ReactComponentB[Unit]("ReactTableSorting")
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

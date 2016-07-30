@@ -31,7 +31,7 @@ object ReactGeomIconDemo {
   val component = ReactComponentB[Unit]("ReactGeomIconDemo")
     .initialState(State())
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

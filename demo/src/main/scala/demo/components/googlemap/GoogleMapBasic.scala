@@ -23,7 +23,7 @@ object GoogleMapBasic {
           GoogleMap(width = "600px", height = "500px", center = latlng, zoom = 8)
         )
       )
-    ).buildU
+    ).build
 
 
   // EXAMPLE:END

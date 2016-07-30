@@ -6,10 +6,10 @@ import sbt._
 
 object Build extends Build {
 
-  val Scala211 = "2.11.7"
+  val Scala211 = "2.11.8"
 
-  val scalajsReactVersion = "0.10.4"
-  val scalaCSSVersion = "0.3.2"
+  val scalajsReactVersion = "0.11.1"
+  val scalaCSSVersion = "0.4.1"
 
   type PE = Project => Project
 
@@ -17,7 +17,7 @@ object Build extends Build {
     _.enablePlugins(ScalaJSPlugin)
       .settings(
         organization         := "com.github.chandu0101.scalajs-react-components",
-        version              := "0.4.2-SNAPSHOT",
+        version              := "0.5.0-SNAPSHOT",
         homepage             := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses             += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion         := Scala211,
@@ -26,7 +26,7 @@ object Build extends Build {
                                   "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions        := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
-          "org.scala-js"   %% "scalajs-test-interface" % "0.6.7"
+          "org.scala-js"   %% "scalajs-test-interface" % "0.6.11"
         )
       )
 

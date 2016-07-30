@@ -38,7 +38,7 @@ object ReactTableCustomColumnSize {
 
   val component = ReactComponentB[Unit]("ReactTableCustomColumnSize")
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

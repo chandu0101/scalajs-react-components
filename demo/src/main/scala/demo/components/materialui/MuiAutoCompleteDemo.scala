@@ -46,7 +46,7 @@ object MuiAutoCompleteDemo {
           )()
         )
       )
-    ).buildU
+    ).build
 
   // EXAMPLE:END
 

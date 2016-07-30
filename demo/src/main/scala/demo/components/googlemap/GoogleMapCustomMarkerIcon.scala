@@ -56,7 +56,7 @@ object GoogleMapCustomMarkerIcon {
         GoogleMap(center = latlng, markers = markers, zoom = 10)
       )
     )
-  }).buildU
+  }).build
 
 
   // EXAMPLE:END

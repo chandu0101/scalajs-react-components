@@ -31,7 +31,7 @@ object ReactTableInfo {
 
   val component = ReactComponentB[Unit]("ReactTableInfo")
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

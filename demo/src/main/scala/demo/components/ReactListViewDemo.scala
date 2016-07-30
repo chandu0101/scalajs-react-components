@@ -54,7 +54,7 @@ object ReactListViewDemo {
   val component = ReactComponentB[Unit]("ReactListViewDemo")
     .initialState(State())
     .renderBackend[Backend]
-    .buildU
+    .build
   // EXAMPLE:END
 
   def apply() = component()

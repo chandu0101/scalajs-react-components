@@ -9,7 +9,7 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scala.scalajs.js
 
-object MuiLeftNavDemo {
+object MuiDrawerDemo {
 
   val code = GhPagesMacros.exampleSource
 
@@ -54,26 +54,26 @@ object MuiLeftNavDemo {
 
     def render(S: State) = {
       <.div(
-        CodeExample(code, "MuiLeftNav")(
+        CodeExample(code, "MuiDrawer")(
           <.div(
-            MuiLeftNav(
+            MuiDrawer(
               onRequestChange = onRequestChange,
-              openRight       = S.isRight,
+              openSecondary   = S.isRight,
               open            = S.isOpen,
               docked          = S.isDocked)(
               /* hack in a cheesy centered avatar */
               MuiAvatar(
+                key             = "avatar",
                 size            = 112,
-                backgroundColor = Mui.Styles.Colors.red400,
+                backgroundColor = Mui.Styles.colors.red400,
                 style           = js.Dynamic.literal(
                   margin  = "auto",
                   display = "block",
                   padding = "10px"
-                ))(
-                ":D"
-              ),
+                ))(":D"),
               choices map (c =>
                 MuiMenuItem(
+                  key         = c.id,
                   primaryText = c.text,
                   checked     = S.selected == c.id,
                   onTouchTap  = selectItem(c.id)
@@ -82,16 +82,19 @@ object MuiLeftNavDemo {
             ),
 
             MuiToggle(
+              key      = "toggle1",
               toggled  = S.isOpen,
-              label    = "Show Left Nav",
+              label    = "Show drawer",
               onToggle = toggleOpen
             )(),
             MuiToggle(
+              key      = "toggle2",
               toggled  = S.isDocked,
               label    = "Show docked",
               onToggle = toggleDocked
             )(),
             MuiToggle(
+              key      = "toggle3",
               toggled  = S.isRight,
               label    = "Show on right side",
               onToggle = toggleRight
@@ -102,7 +105,7 @@ object MuiLeftNavDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("MuiLeftNavDemo")
+  val component = ReactComponentB[Unit]("MuiDrawerDemo")
     .initialState(
       State(
         selected = js.undefined,
@@ -112,7 +115,7 @@ object MuiLeftNavDemo {
       )
     )
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

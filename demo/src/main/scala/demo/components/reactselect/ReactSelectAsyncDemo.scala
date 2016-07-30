@@ -74,7 +74,7 @@ object ReactSelectAsyncDemo {
   val component = ReactComponentB[Unit]("ReactSelectAsyncDemo")
     .initialState(State())
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

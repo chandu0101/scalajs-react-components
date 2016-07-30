@@ -25,7 +25,7 @@ object MuiAppBarDemo {
           )()
         )
       )
-    ).buildU
+    ).build
 
   // EXAMPLE:END
 

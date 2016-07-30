@@ -17,7 +17,7 @@ object ReactSlickInfo {
     .render(P => {
     InfoTemplate(componentFilePath = "reactslick/ReactSlick.scala")()
 
-    }).buildU
+    }).build
 
   def apply() = component()
 }

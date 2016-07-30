@@ -22,10 +22,10 @@ object ComponentGridItem {
       ^.color := "rgba(0, 0, 0, 0.87)",
       ^.fontSize := "18px",
       ^.fontWeight := "500",
-      ^.letterSpacing := "0",
+      ^.letterSpacing := "0px",
       ^.lineHeight := "54px",
-      ^.margin := "0",
-      ^.padding := "0",
+      ^.margin := "0px",
+      ^.padding := "0px",
       ^.textAlign := "center")
 
     val itemImage = Seq(^.maxHeight := "250px",

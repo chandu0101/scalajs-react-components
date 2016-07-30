@@ -1,15 +1,12 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
 case class MuiFlatButton(
   key:                  js.UndefOr[String]                          = js.undefined,
   ref:                  js.UndefOr[String]                          = js.undefined,
@@ -19,7 +16,7 @@ case class MuiFlatButton(
   disabled:             js.UndefOr[Boolean]                         = js.undefined,
   /* Color of button when mouse hovers over.*/
   hoverColor:           js.UndefOr[MuiColor]                        = js.undefined,
-  /* URL to link to when button clicked if `linkButton` is set to true.*/
+  /* The URL to link to when the button is clicked.*/
   href:                 js.UndefOr[String]                          = js.undefined,
   /* Use this property to display an icon.*/
   icon:                 js.UndefOr[ReactNode]                       = js.undefined,
@@ -29,30 +26,24 @@ case class MuiFlatButton(
   labelPosition:        js.UndefOr[BeforeAfter]                     = js.undefined,
   /* Override the inline-styles of the button's label element.*/
   labelStyle:           js.UndefOr[CssProperties]                   = js.undefined,
-  /* Enables use of `href` property to provide a URL to link to if set to true.*/
-  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
-  /* Called when element is focused by the keyboard.*/
+  /* Callback function fired when the element is focused or blurred by the keyboard.*/
   onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
-  /* Called when the mouse enters the element.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Called when the mouse leaves the element.*/
   onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Called when a touch event is started inside the element.*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* If true, colors button according to
-primaryTextColor from the Theme.*/
+  primaryTextColor from the Theme.*/
   primary:              js.UndefOr[Boolean]                         = js.undefined,
   /* Color for the ripple after button is clicked.*/
   rippleColor:          js.UndefOr[MuiColor]                        = js.undefined,
   /* If true, colors button according to secondaryTextColor from the theme.
-The primary prop has precendent if set to true.*/
+  The primary prop has precendent if set to true.*/
   secondary:            js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                   = js.undefined,
   /* (Passed on to EnhancedButton)*/
   centerRipple:         js.UndefOr[Boolean]                         = js.undefined,
-  /* default: button: This component will render a button element by default and an anchor element if linkButton is set to true. However, you can override this behavior by passing in a string or another react element into this prop. This is useful for generating link buttons with the react router link element.
-  (Passed on to EnhancedButton)*/
+  /* (Passed on to EnhancedButton)*/
   containerElement:     js.UndefOr[String | ReactElement]           = js.undefined,
   /* (Passed on to EnhancedButton)*/
   disableFocusRipple:   js.UndefOr[Boolean]                         = js.undefined,
@@ -67,13 +58,24 @@ The primary prop has precendent if set to true.*/
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
-  onBlur:               js.UndefOr[ReactEventH => Callback]         = js.undefined,
+  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
+  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onBlur:               js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onClick:              js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onKeyDown:            js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onKeyUp:              js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onMouseDown:          js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onMouseUp:            js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  onTouchEnd:           js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onTouchTap:           js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/

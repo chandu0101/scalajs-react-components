@@ -52,7 +52,7 @@ object MuiSnackbarDemo {
   val component = ReactComponentB[Unit]("MuiSnackBar")
     .initialState(false)
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

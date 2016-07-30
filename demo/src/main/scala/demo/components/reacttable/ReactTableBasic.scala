@@ -30,7 +30,7 @@ object ReactTableBasic {
 
   val component = ReactComponentB[Unit]("plain")
     .renderBackend[Backend]
-    .buildU
+    .build
   // EXAMPLE:END
 
   def apply() = component()

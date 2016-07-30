@@ -38,7 +38,7 @@ object ReactSelectInfo {
       )
     )
 
-  }).buildU
+  }).build
 
   def apply() = component()
 }

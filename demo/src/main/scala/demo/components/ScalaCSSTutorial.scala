@@ -83,7 +83,7 @@ object ScalaCSSTutorial {
        )
      )
     )
-  ).buildU
+  ).build
 
   def apply() = component()
 

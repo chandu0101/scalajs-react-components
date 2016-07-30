@@ -37,7 +37,7 @@ object MuiSwitchesDemo {
             MuiTab(label = "Checkbox")(
               <.div(Style.content,
                 MuiCheckbox(name = "checkboxName1",
-                  value = "checkboxValue1",
+                  value = 1,
                   label = "went for a run today")(),
                 MuiCheckbox(name = "checkboxName2",
                   value = "checkboxValue2",
@@ -68,7 +68,7 @@ object MuiSwitchesDemo {
           )
         )
       )
-    ).buildU
+    ).build
 
   // EXAMPLE:END
 

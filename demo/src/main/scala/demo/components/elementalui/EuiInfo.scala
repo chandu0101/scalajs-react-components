@@ -33,7 +33,7 @@ object EuiInfo {
               <.br(),
               "Configure elemental-ui context in your top level component :", RedLink("example", "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/demo/pages/EuiPage.scala")))))
 
-    }).buildU
+    }).build
 
   def apply() = component()
 }

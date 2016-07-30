@@ -17,7 +17,7 @@ object ReactPopoverInfo {
            <.li("bottom")
          )
        )
-    }).buildU
+    }).build
 
   def apply() = component()
 }

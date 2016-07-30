@@ -22,7 +22,7 @@ object SpinnerDemo {
           )
         )
       )
-    ).buildU
+    ).build
 
   // EXAMPLE:END
 

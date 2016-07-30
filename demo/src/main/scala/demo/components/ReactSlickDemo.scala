@@ -46,7 +46,7 @@ object ReactSlickDemo {
           )
         )
       )
-    ).buildU
+    ).build
 
   // EXAMPLE:END
 

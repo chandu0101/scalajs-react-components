@@ -1,56 +1,58 @@
 package chandu0101.scalajs.react.components
 package materialui
-
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
-case class MuiRadioButton(
+case class MuiRadioButton[T](
   key:                  js.UndefOr[String]                             = js.undefined,
-  ref:                  js.UndefOr[String]                             = js.undefined,
-  /* Used internally by `RadioButtonGroup`.
-Checked if true.*/
+  ref:                  js.UndefOr[MuiRadioButtonM => Unit]            = js.undefined,
+  /* checked if true
+  Used internally by `RadioButtonGroup`.*/
   checked:              js.UndefOr[Boolean]                            = js.undefined,
-  /* Disabled if true.*/
+  /* The icon element to show when the radio button is checked.*/
+  checkedIcon:          js.UndefOr[ReactElement]                       = js.undefined,
+  /* If true, the radio button is disabled.*/
   disabled:             js.UndefOr[Boolean]                            = js.undefined,
-  /* Overrides the inline-styles of the icon element.*/
+  /* Override the inline-styles of the icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                      = js.undefined,
+  /* Override the inline-styles of the input element.*/
+  inputStyle:           js.UndefOr[CssProperties]                      = js.undefined,
   /* Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
-Where the label will be placed next to the radio button.*/
+  Where the label will be placed next to the radio button.*/
   labelPosition:        js.UndefOr[LeftRight]                          = js.undefined,
-  /* Overrides the inline-styles of the RadioButton element label.*/
+  /* Override the inline-styles of the label element.*/
   labelStyle:           js.UndefOr[CssProperties]                      = js.undefined,
-  /* Callback function for checked event.*/
+  /* Callback function fired when the radio button is checked. Note that this
+  function will not be called if the radio button is part of a
+  radio button group: in this case, use the `onChange` property of
+  `RadioButtonGroup`.*/
   onCheck:              js.UndefOr[(ReactEventH, Boolean) => Callback] = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                      = js.undefined,
-  /* The value of our radio button component.*/
-  value:                js.UndefOr[String]                             = js.undefined,
-  /* The css class name of the root element.
-  (Passed on to EnhancedSwitch)*/
+  /* The icon element to show when the radio button is unchecked.*/
+  uncheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
+  /* The value of the radio button.*/
+  value:                js.UndefOr[T]                                  = js.undefined,
+  /* (Passed on to EnhancedSwitch)*/
   className:            js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  defaultSwitched:      js.UndefOr[Boolean]                            = js.undefined,
+  defaultChecked:       js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   disableFocusRipple:   js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   disableTouchRipple:   js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  id:                   js.UndefOr[String]                             = js.undefined,
-  /* (Passed on to EnhancedSwitch)*/
   inputType:            js.UndefOr[String]                             = js.undefined,
-  /* The text that is displayed beside the radio button.
-  (Passed on to EnhancedSwitch)*/
+  /* (Passed on to EnhancedSwitch)*/
   label:                js.UndefOr[ReactNode]                          = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   name:                 js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  onBlur:               js.UndefOr[ReactEventH => Callback]            = js.undefined,
+  onBlur:               js.UndefOr[ReactFocusEventH => Callback]       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
@@ -68,8 +70,6 @@ Where the label will be placed next to the radio button.*/
   /* (Passed on to EnhancedSwitch)*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]       = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  required:             js.UndefOr[Boolean]                            = js.undefined,
-  /* (Passed on to EnhancedSwitch)*/
   rippleColor:          js.UndefOr[MuiColor]                           = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   rippleStyle:          js.UndefOr[CssProperties]                      = js.undefined,
@@ -81,11 +81,20 @@ Where the label will be placed next to the radio button.*/
   thumbStyle:           js.UndefOr[CssProperties]                      = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   trackStyle:           js.UndefOr[CssProperties]                      = js.undefined){
-
   def apply() = {
-    val props = JSMacro[MuiRadioButton](this)
+    implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
+    val props = JSMacro[MuiRadioButton[T]](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.RadioButton)
     f(props).asInstanceOf[ReactComponentU_]
   }
 }
-        
+
+
+@js.native
+class MuiRadioButtonM extends js.Object {
+  def getValue(): js.Any = js.native
+
+  def isChecked(): js.Any = js.native
+
+  def setChecked(newCheckedValue: js.Any): js.Any = js.native
+}

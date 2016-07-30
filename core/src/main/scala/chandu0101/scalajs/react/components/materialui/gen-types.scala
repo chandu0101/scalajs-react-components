@@ -43,20 +43,19 @@ object DialogInline {
 }
 
 
+class HorizontalVertical(val value: String) extends AnyVal
+object HorizontalVertical {
+  val horizontal = new HorizontalVertical("horizontal")
+  val vertical = new HorizontalVertical("vertical")
+  val values = List(horizontal, vertical)
+}
+
+
 class LeftRight(val value: String) extends AnyVal
 object LeftRight {
   val left = new LeftRight("left")
   val right = new LeftRight("right")
   val values = List(left, right)
-}
-
-
-class LeftRightCenter(val value: String) extends AnyVal
-object LeftRightCenter {
-  val left = new LeftRightCenter("left")
-  val right = new LeftRightCenter("right")
-  val center = new LeftRightCenter("center")
-  val values = List(left, right, center)
 }
 
 
@@ -91,6 +90,16 @@ object TopBottom {
   val top = new TopBottom("top")
   val bottom = new TopBottom("bottom")
   val values = List(top, bottom)
+}
+
+
+class XX_reverseYY_reverse(val value: String) extends AnyVal
+object XX_reverseYY_reverse {
+  val x = new XX_reverseYY_reverse("x")
+  val x_reverse = new XX_reverseYY_reverse("x-reverse")
+  val y = new XX_reverseYY_reverse("y")
+  val y_reverse = new XX_reverseYY_reverse("y-reverse")
+  val values = List(x, x_reverse, y, y_reverse)
 }
 
 

@@ -35,10 +35,9 @@ object MuiButtonsDemo {
         <.div(Style.container,
           <.h3("Buttons"),
           MuiTabs()(
-            MuiTab(label = "Flat Buttons")(
+            MuiTab(key = "tab1", label = "Flat Buttons")(
               <.div(Style.content,
-                MuiFlatButton(
-                  label = "Default",
+                MuiFlatButton(key = "flat1", label = "Default",
                   onBlur          = CallbackDebug.f1("onBlur"),
                   onFocus         = CallbackDebug.f1("onFocus"),
                   onKeyboardFocus = CallbackDebug.f1("onKeyboardFocus"),
@@ -48,28 +47,28 @@ object MuiButtonsDemo {
                   onMouseLeave    = CallbackDebug.f1("onMouseLeave"),
                   onTouchStart    = CallbackDebug.f1("onTouchStart"),
                   onMouseEnter    = CallbackDebug.f1("onMouseEnter"))(),
-                MuiFlatButton(label = "Primary", primary = true)(),
-                MuiFlatButton(label = "Secondary", secondary = true)(),
-                MuiFlatButton(label = "Disabled", disabled = true)()
+                MuiFlatButton(key = "flat2", label = "Primary", primary = true)(),
+                MuiFlatButton(key = "flat3", label = "Secondary", secondary = true)(),
+                MuiFlatButton(key = "flat4", label = "Disabled", disabled = true)()
               )
             ),
-            MuiTab(label = "Raised Buttons")(
+            MuiTab(key = "tab2", label = "Raised Buttons")(
               <.div(Style.content,
-                MuiRaisedButton(label = "Default")(),
-                MuiRaisedButton(label = "Primary", primary = true)(),
-                MuiRaisedButton(label = "Secondary", secondary = true)(),
-                MuiRaisedButton(label = "Disabled", disabled = true)()
+                MuiRaisedButton(key = "raised1", label = "Default")(),
+                MuiRaisedButton(key = "raised2", label = "Primary", primary = true)(),
+                MuiRaisedButton(key = "raised3", label = "Secondary", secondary = true)(),
+                MuiRaisedButton(key = "raised4", label = "Disabled", disabled = true)()
               )
             ),
-          MuiTab(label = "Floating Action Buttons")(
+          MuiTab(key = "tab3", label = "Floating Action Buttons")(
             <.div(Style.content,
-              MuiFloatingActionButton()(ActionGrade()()),
-              MuiFloatingActionButton(mini = true)(ActionGrade()()),
-              MuiFloatingActionButton(secondary = true)(ActionGrade()()),
-              MuiFloatingActionButton(secondary = true, mini = true)(ActionGrade()())
+              MuiFloatingActionButton(key = "floating1")(ActionGrade()()),
+              MuiFloatingActionButton(key = "floating2", mini = true)(ActionGrade()()),
+              MuiFloatingActionButton(key = "floating3", secondary = true)(ActionGrade()()),
+              MuiFloatingActionButton(key = "floating4", secondary = true, mini = true)(ActionGrade()())
             )
           ),
-          MuiTab(label = "Icon Buttons")(
+          MuiTab(key = "tab4", label = "Icon Buttons")(
             <.div(Style.content,
               MuiIconButton(onTouchTap = CallbackDebug.f1("onTouchTap"))(ActionGrade()())
             )
@@ -77,7 +76,7 @@ object MuiButtonsDemo {
         )
       )
     )
-  ).buildU
+  ).build
 
   // EXAMPLE:END
 

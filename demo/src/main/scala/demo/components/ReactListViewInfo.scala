@@ -11,7 +11,7 @@ object ReactListViewInfo {
      <.h3("React ListView :"),
       <.p("List View Component with search feature")
     )
-  }).buildU
+  }).build
 
   def apply() = component()
 

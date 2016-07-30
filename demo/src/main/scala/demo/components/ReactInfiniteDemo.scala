@@ -64,7 +64,7 @@ object ReactInfiniteDemo {
     .initialState(State())
     .renderBackend[Backend]
     .componentDidMount(scope => scope.backend.loadData())
-    .buildU
+    .build
 
   // EXAMPLE:END
 

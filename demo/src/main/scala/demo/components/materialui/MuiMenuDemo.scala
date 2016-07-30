@@ -27,7 +27,7 @@ object MuiMenuDemo {
     val toggleOpen: ReactEvent => Callback =
       e => $.modState(s => s.copy(isOpen = !s.isOpen))
 
-    val onTouchTap: (ReactUIEventH, JsComponentM[MuiMenuItemProps, _, TopNode]) => Callback =
+    val onTouchTap: (ReactUIEventH, JsComponentM[HasValue[String], _, TopNode]) => Callback =
       (e, elem) => $.modState(_.touched(elem.props.value))
 
     def renderOpen(S: State) =
@@ -36,7 +36,7 @@ object MuiMenuDemo {
           label      = "Close menu",
           onTouchTap = toggleOpen
         )(),
-        MuiMenu(
+        MuiMenu[String](
           desktop        = true,
           width          = 320,
           value          = S.multiple.toJsArray,
@@ -72,7 +72,7 @@ object MuiMenuDemo {
   val component = ReactComponentB[Unit] ("MuiMenuDemo")
     .initialState(State(isOpen = false, Set.empty))
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

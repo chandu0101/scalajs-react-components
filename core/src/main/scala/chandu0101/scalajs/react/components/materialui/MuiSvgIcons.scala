@@ -97,6 +97,7 @@ trait MuiSvgIcons extends js.Object {
   def ActionCreditCard: MuiSvgIcon
   def ActionDashboard: MuiSvgIcon
   def ActionDateRange: MuiSvgIcon
+  def ActionDeleteForever: MuiSvgIcon
   def ActionDelete: MuiSvgIcon
   def ActionDescription: MuiSvgIcon
   def ActionDns: MuiSvgIcon
@@ -105,6 +106,7 @@ trait MuiSvgIcons extends js.Object {
   def ActionDonutLarge: MuiSvgIcon
   def ActionDonutSmall: MuiSvgIcon
   def ActionEject: MuiSvgIcon
+  def ActionEuroSymbol: MuiSvgIcon
   def ActionEventSeat: MuiSvgIcon
   def ActionEvent: MuiSvgIcon
   def ActionExitToApp: MuiSvgIcon
@@ -121,6 +123,7 @@ trait MuiSvgIcons extends js.Object {
   def ActionFlightTakeoff: MuiSvgIcon
   def ActionFlipToBack: MuiSvgIcon
   def ActionFlipToFront: MuiSvgIcon
+  def ActionGTranslate: MuiSvgIcon
   def ActionGavel: MuiSvgIcon
   def ActionGetApp: MuiSvgIcon
   def ActionGif: MuiSvgIcon
@@ -184,8 +187,10 @@ trait MuiSvgIcons extends js.Object {
   def ActionReceipt: MuiSvgIcon
   def ActionRecordVoiceOver: MuiSvgIcon
   def ActionRedeem: MuiSvgIcon
+  def ActionRemoveShoppingCart: MuiSvgIcon
   def ActionReorder: MuiSvgIcon
   def ActionReportProblem: MuiSvgIcon
+  def ActionRestorePage: MuiSvgIcon
   def ActionRestore: MuiSvgIcon
   def ActionRoom: MuiSvgIcon
   def ActionRoundedCorner: MuiSvgIcon
@@ -213,6 +218,7 @@ trait MuiSvgIcons extends js.Object {
   def ActionShop: MuiSvgIcon
   def ActionShoppingBasket: MuiSvgIcon
   def ActionShoppingCart: MuiSvgIcon
+  def ActionSpeakerNotesOff: MuiSvgIcon
   def ActionSpeakerNotes: MuiSvgIcon
   def ActionSpellcheck: MuiSvgIcon
   def ActionStars: MuiSvgIcon
@@ -271,11 +277,15 @@ trait MuiSvgIcons extends js.Object {
   def AvAlbum: MuiSvgIcon
   def AvArtTrack: MuiSvgIcon
   def AvAvTimer: MuiSvgIcon
+  def AvBrandingWatermark: MuiSvgIcon
+  def AvCallToAction: MuiSvgIcon
   def AvClosedCaption: MuiSvgIcon
   def AvEqualizer: MuiSvgIcon
   def AvExplicit: MuiSvgIcon
   def AvFastForward: MuiSvgIcon
   def AvFastRewind: MuiSvgIcon
+  def AvFeaturedPlayList: MuiSvgIcon
+  def AvFeaturedVideo: MuiSvgIcon
   def AvFiberDvr: MuiSvgIcon
   def AvFiberManualRecord: MuiSvgIcon
   def AvFiberNew: MuiSvgIcon
@@ -299,6 +309,7 @@ trait MuiSvgIcons extends js.Object {
   def AvMusicVideo: MuiSvgIcon
   def AvNewReleases: MuiSvgIcon
   def AvNotInterested: MuiSvgIcon
+  def AvNote: MuiSvgIcon
   def AvPauseCircleFilled: MuiSvgIcon
   def AvPauseCircleOutline: MuiSvgIcon
   def AvPause: MuiSvgIcon
@@ -330,6 +341,8 @@ trait MuiSvgIcons extends js.Object {
   def AvSubscriptions: MuiSvgIcon
   def AvSubtitles: MuiSvgIcon
   def AvSurroundSound: MuiSvgIcon
+  def AvVideoCall: MuiSvgIcon
+  def AvVideoLabel: MuiSvgIcon
   def AvVideoLibrary: MuiSvgIcon
   def AvVideocamOff: MuiSvgIcon
   def AvVideocam: MuiSvgIcon
@@ -361,7 +374,7 @@ trait MuiSvgIcons extends js.Object {
   def CommunicationEmail: MuiSvgIcon
   def CommunicationForum: MuiSvgIcon
   def CommunicationImportContacts: MuiSvgIcon
-  def CommunicationImportExport: MuiSvgIcon
+  def CommunicationImportval: MuiSvgIcon
   def CommunicationInvertColorsOff: MuiSvgIcon
   def CommunicationLiveHelp: MuiSvgIcon
   def CommunicationLocationOff: MuiSvgIcon
@@ -377,6 +390,7 @@ trait MuiSvgIcons extends js.Object {
   def CommunicationPortableWifiOff: MuiSvgIcon
   def CommunicationPresentToAll: MuiSvgIcon
   def CommunicationRingVolume: MuiSvgIcon
+  def CommunicationRssFeed: MuiSvgIcon
   def CommunicationScreenShare: MuiSvgIcon
   def CommunicationSpeakerPhone: MuiSvgIcon
   def CommunicationStayCurrentLandscape: MuiSvgIcon
@@ -385,7 +399,6 @@ trait MuiSvgIcons extends js.Object {
   def CommunicationStayPrimaryPortrait: MuiSvgIcon
   def CommunicationStopScreenShare: MuiSvgIcon
   def CommunicationSwapCalls: MuiSvgIcon
-  def CommunicationTactMail: MuiSvgIcon
   def CommunicationTextsms: MuiSvgIcon
   def CommunicationVoicemail: MuiSvgIcon
   def CommunicationVpnKey: MuiSvgIcon
@@ -401,6 +414,7 @@ trait MuiSvgIcons extends js.Object {
   def ContentContentCut: MuiSvgIcon
   def ContentContentPaste: MuiSvgIcon
   def ContentCreate: MuiSvgIcon
+  def ContentDeleteSweep: MuiSvgIcon
   def ContentDrafts: MuiSvgIcon
   def ContentFilterList: MuiSvgIcon
   def ContentFlag: MuiSvgIcon
@@ -409,6 +423,7 @@ trait MuiSvgIcons extends js.Object {
   def ContentGesture: MuiSvgIcon
   def ContentInbox: MuiSvgIcon
   def ContentLink: MuiSvgIcon
+  def ContentLowPriority: MuiSvgIcon
   def ContentMail: MuiSvgIcon
   def ContentMarkunread: MuiSvgIcon
   def ContentMoveToInbox: MuiSvgIcon
@@ -521,6 +536,7 @@ trait MuiSvgIcons extends js.Object {
   def EditorBorderStyle: MuiSvgIcon
   def EditorBorderTop: MuiSvgIcon
   def EditorBorderVertical: MuiSvgIcon
+  def EditorBubbleChart: MuiSvgIcon
   def EditorDragHandle: MuiSvgIcon
   def EditorFormatAlignCenter: MuiSvgIcon
   def EditorFormatAlignJustify: MuiSvgIcon
@@ -558,12 +574,18 @@ trait MuiSvgIcons extends js.Object {
   def EditorMergeType: MuiSvgIcon
   def EditorModeComment: MuiSvgIcon
   def EditorModeEdit: MuiSvgIcon
+  def EditorMonetizationOn: MuiSvgIcon
   def EditorMoneyOff: MuiSvgIcon
+  def EditorMultilineChart: MuiSvgIcon
+  def EditorPieChartOutlined: MuiSvgIcon
+  def EditorPieChart: MuiSvgIcon
   def EditorPublish: MuiSvgIcon
   def EditorShortText: MuiSvgIcon
+  def EditorShowChart: MuiSvgIcon
   def EditorSpaceBar: MuiSvgIcon
   def EditorStrikethroughS: MuiSvgIcon
   def EditorTextFields: MuiSvgIcon
+  def EditorTitle: MuiSvgIcon
   def EditorVerticalAlignBottom: MuiSvgIcon
   def EditorVerticalAlignCenter: MuiSvgIcon
   def EditorVerticalAlignTop: MuiSvgIcon
@@ -649,6 +671,7 @@ trait MuiSvgIcons extends js.Object {
   def ImageBrightness7: MuiSvgIcon
   def ImageBrokenImage: MuiSvgIcon
   def ImageBrush: MuiSvgIcon
+  def ImageBurstMode: MuiSvgIcon
   def ImageCameraAlt: MuiSvgIcon
   def ImageCameraFront: MuiSvgIcon
   def ImageCameraRear: MuiSvgIcon
@@ -797,6 +820,7 @@ trait MuiSvgIcons extends js.Object {
   def MapsDirectionsWalk: MuiSvgIcon
   def MapsDirections: MuiSvgIcon
   def MapsEditLocation: MuiSvgIcon
+  def MapsEvStation: MuiSvgIcon
   def MapsFlight: MuiSvgIcon
   def MapsHotel: MuiSvgIcon
   def MapsLayersClear: MuiSvgIcon
@@ -840,10 +864,16 @@ trait MuiSvgIcons extends js.Object {
   def MapsPlace: MuiSvgIcon
   def MapsRateReview: MuiSvgIcon
   def MapsRestaurantMenu: MuiSvgIcon
+  def MapsRestaurant: MuiSvgIcon
   def MapsSatellite: MuiSvgIcon
   def MapsStoreMallDirectory: MuiSvgIcon
+  def MapsStreetview: MuiSvgIcon
+  def MapsSubway: MuiSvgIcon
   def MapsTerrain: MuiSvgIcon
   def MapsTraffic: MuiSvgIcon
+  def MapsTrain: MuiSvgIcon
+  def MapsTram: MuiSvgIcon
+  def MapsTransferWithinAStation: MuiSvgIcon
   def MapsZoomOutMap: MuiSvgIcon
   def NavigationApps: MuiSvgIcon
   def NavigationArrowBack: MuiSvgIcon
@@ -860,8 +890,10 @@ trait MuiSvgIcons extends js.Object {
   def NavigationClose: MuiSvgIcon
   def NavigationExpandLess: MuiSvgIcon
   def NavigationExpandMore: MuiSvgIcon
+  def NavigationFirstPage: MuiSvgIcon
   def NavigationFullscreenExit: MuiSvgIcon
   def NavigationFullscreen: MuiSvgIcon
+  def NavigationLastPage: MuiSvgIcon
   def NavigationMenu: MuiSvgIcon
   def NavigationMoreHoriz: MuiSvgIcon
   def NavigationMoreVert: MuiSvgIcon
@@ -884,6 +916,8 @@ trait MuiSvgIcons extends js.Object {
   def NotificationConfirmationNumber: MuiSvgIcon
   def NotificationDiscFull: MuiSvgIcon
   def NotificationDoNotDisturbAlt: MuiSvgIcon
+  def NotificationDoNotDisturbOff: MuiSvgIcon
+  def NotificationDoNotDisturbOn: MuiSvgIcon
   def NotificationDoNotDisturb: MuiSvgIcon
   def NotificationDriveEta: MuiSvgIcon
   def NotificationEnhancedEncryption: MuiSvgIcon
@@ -906,6 +940,7 @@ trait MuiSvgIcons extends js.Object {
   def NotificationPhoneMissed: MuiSvgIcon
   def NotificationPhonePaused: MuiSvgIcon
   def NotificationPower: MuiSvgIcon
+  def NotificationPriorityHigh: MuiSvgIcon
   def NotificationRvHookup: MuiSvgIcon
   def NotificationSdCard: MuiSvgIcon
   def NotificationSimCardAlert: MuiSvgIcon
@@ -937,6 +972,7 @@ trait MuiSvgIcons extends js.Object {
   def PlacesKitchen: MuiSvgIcon
   def PlacesPool: MuiSvgIcon
   def PlacesRoomService: MuiSvgIcon
+  def PlacesRvHookup: MuiSvgIcon
   def PlacesSmokeFree: MuiSvgIcon
   def PlacesSmokingRooms: MuiSvgIcon
   def PlacesSpa: MuiSvgIcon
@@ -963,6 +999,11 @@ trait MuiSvgIcons extends js.Object {
   def SocialPoll: MuiSvgIcon
   def SocialPublic: MuiSvgIcon
   def SocialSchool: MuiSvgIcon
+  def SocialSentimentDissatisfied: MuiSvgIcon
+  def SocialSentimentNeutral: MuiSvgIcon
+  def SocialSentimentSatisfied: MuiSvgIcon
+  def SocialSentimentVeryDissatisfied: MuiSvgIcon
+  def SocialSentimentVerySatisfied: MuiSvgIcon
   def SocialShare: MuiSvgIcon
   def SocialWhatshot: MuiSvgIcon
   def ToggleCheckBoxOutlineBlank: MuiSvgIcon

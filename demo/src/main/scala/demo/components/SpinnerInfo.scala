@@ -34,7 +34,7 @@ object SpinnerInfo {
      )
     )
 
-  }).buildU
+  }).build
 
   def apply() = component()
 }

@@ -48,7 +48,7 @@ object MobileTearSheet {
 
   val component = ReactComponentB[Unit]("MobileTearSheet")
     .renderBackend[Backend]
-    .buildU
+    .build
 
-  def apply(children: ReactNode*) = component(children)
+  def apply(children: ReactNode*) = component(children :_*)
 }

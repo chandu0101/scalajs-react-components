@@ -15,7 +15,7 @@ Adding types to javascript is a lot of guesswork, and we're certain to have gott
 ### Wrappers for javascript components:
 These components require you to provide javascript yourself.
 
-- Material-ui 0.14.4
+- Material-ui 0.15.2
 - Elemental-ui 0.5.4
 - Google maps (downloads js directly from google)
 - React GeomIcon (react-geomicons: 2.0.4)
@@ -79,9 +79,9 @@ Sbt does not by itself understand these module systems, so unless you're prepare
 Add these dependencies to you sbt build file
 ```scala
 libraryDependencies ++= Seq(
-  "com.github.japgolly.scalajs-react" %%% "core" % "0.10.4",
-  "com.github.japgolly.scalajs-react" %%% "extra" % "0.10.4",
-  "com.github.chandu0101.scalajs-react-components" %%% "core" % "0.4.1"
+  "com.github.japgolly.scalajs-react" %%% "core" % "0.11.1",
+  "com.github.japgolly.scalajs-react" %%% "extra" % "0.11.1",
+  "com.github.chandu0101.scalajs-react-components" %%% "core" % "0.5.0"
 )
 ```
 

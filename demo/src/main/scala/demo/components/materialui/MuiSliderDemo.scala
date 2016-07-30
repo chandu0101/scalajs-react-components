@@ -21,7 +21,7 @@ object MuiSliderDemo {
           MuiSlider(name = "slider1", value = 0.3, disabled = true)()
         )
       )
-    }).buildU
+    }).build
 
   // EXAMPLE:END
 

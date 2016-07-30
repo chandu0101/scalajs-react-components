@@ -41,7 +41,7 @@ object ReactTagsInputDemo {
   val component = ReactComponentB[Unit]("ReactTagsInputDemo")
     .initialState(State())
     .renderBackend[Backend]
-    .buildU
+    .build
 
   // EXAMPLE:END
 

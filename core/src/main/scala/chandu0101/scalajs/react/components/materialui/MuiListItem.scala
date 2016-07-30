@@ -44,15 +44,11 @@ case class MuiListItem(
   nestedListStyle:             js.UndefOr[CssProperties]                   = js.undefined,
   /* Callback function fired when the `ListItem` is focused or blurred by the keyboard.*/
   onKeyboardFocus:             js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
-  /* Callback function fired when the mouse enters the `ListItem`.*/
   onMouseEnter:                js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when the mouse leaves the `ListItem`.*/
   onMouseLeave:                js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   /* Callbak function fired when the `ListItem` toggles its nested list.*/
   onNestedListToggle:          js.UndefOr[js.Any => Callback]              = js.undefined,
-  /* Callback function fired when the `ListItem` is touched.*/
   onTouchStart:                js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
-  /* Callback function fired when the `ListItem` is touch-tapped.*/
   onTouchTap:                  js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* This is the block element that contains the primary text.
   If a string is passed in, a div tag will be rendered.*/
@@ -93,8 +89,11 @@ case class MuiListItem(
   /* (Passed on to EnhancedButton)*/
   focusRippleOpacity:          js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
+  href:                        js.UndefOr[String]                          = js.undefined,
+  /* (Passed on to EnhancedButton)*/
   keyboardFocused:             js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
+  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
   linkButton:                  js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:                      js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,

@@ -7,7 +7,7 @@ import scala.scalajs.js.`|`
 /**
  * This file is generated - submit issues instead of PR against it
  */
-case class MuiToggle(
+case class MuiToggle[T](
   key:                  js.UndefOr[String]                             = js.undefined,
   ref:                  js.UndefOr[MuiToggleM => Unit]                 = js.undefined,
   /* Determines whether the Toggle is initially turned on.
@@ -82,9 +82,10 @@ case class MuiToggle(
   /* (Passed on to EnhancedSwitch)*/
   switched:             js.UndefOr[Boolean]                            = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  value:                js.UndefOr[String]                             = js.undefined){
+  value:                js.UndefOr[T]                                  = js.undefined){
   def apply() = {
-    val props = JSMacro[MuiToggle](this)
+    implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
+    val props = JSMacro[MuiToggle[T]](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Toggle)
     f(props).asInstanceOf[ReactComponentU_]
   }

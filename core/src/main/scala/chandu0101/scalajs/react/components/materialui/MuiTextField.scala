@@ -45,16 +45,13 @@ case class MuiTextField(
   multiLine:               js.UndefOr[Boolean]                         = js.undefined,
   /* Name applied to the input.*/
   name:                    js.UndefOr[String]                          = js.undefined,
-  /* Callback function that is fired when the textfield loses focus.*/
   onBlur:                  js.UndefOr[ReactEventI => Callback]         = js.undefined,
   /* Callback function that is fired when the textfield's value changes.*/
   onChange:                js.UndefOr[ReactEventI => Callback]         = js.undefined,
   /* The function to call when the user presses the Enter key.*/
-  @deprecated("Use onKeyDown and check for keycode instead.")
+  @deprecated("Use onKeyDown and check for keycode instead. It will be removed with v0.16.0.")
   onEnterKeyDown:          js.UndefOr[ReactKeyboardEventI => Callback] = js.undefined,
-  /* Callback function that is fired when the textfield gains focus.*/
   onFocus:                 js.UndefOr[ReactFocusEventI => Callback]    = js.undefined,
-  /* Callback function fired when key is pressed down.*/
   onKeyDown:               js.UndefOr[ReactKeyboardEventI => Callback] = js.undefined,
   /* Number of rows to display when multiLine option is set to true.*/
   rows:                    js.UndefOr[Int]                             = js.undefined,

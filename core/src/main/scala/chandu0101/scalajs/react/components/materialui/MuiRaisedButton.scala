@@ -25,8 +25,7 @@ case class MuiRaisedButton(
   disabledLabelColor:      js.UndefOr[MuiColor]                        = js.undefined,
   /* If true, the button will take up the full width of its container.*/
   fullWidth:               js.UndefOr[Boolean]                         = js.undefined,
-  /* If `linkButton` is true, the URL to link to when the button
-  is clicked.*/
+  /* The URL to link to when the button is clicked.*/
   href:                    js.UndefOr[String]                          = js.undefined,
   /* An icon to be displayed within the button.*/
   icon:                    js.UndefOr[ReactNode]                       = js.undefined,
@@ -40,21 +39,11 @@ case class MuiRaisedButton(
   labelPosition:           js.UndefOr[BeforeAfter]                     = js.undefined,
   /* Override the inline-styles of the button's label element.*/
   labelStyle:              js.UndefOr[CssProperties]                   = js.undefined,
-  /* If true, enable the use of the `href` property to provide
-  a URL to link to.*/
-  linkButton:              js.UndefOr[Boolean]                         = js.undefined,
-  /* Callback function fired when a mouse button is pressed down on
-  the element.*/
   onMouseDown:             js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when the mouse enters the element.*/
   onMouseEnter:            js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when the mouse leaves the element.*/
   onMouseLeave:            js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when a mouse button is released on the element.*/
   onMouseUp:               js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when a touch point is removed from the element.*/
   onTouchEnd:              js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
-  /* Callback function fired when the element is touched.*/
   onTouchStart:            js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* If true, the button will use the theme's primary color.*/
   primary:                 js.UndefOr[Boolean]                         = js.undefined,
@@ -82,6 +71,9 @@ case class MuiRaisedButton(
   focusRippleOpacity:      js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:         js.UndefOr[Boolean]                         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
+  linkButton:              js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:                  js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/

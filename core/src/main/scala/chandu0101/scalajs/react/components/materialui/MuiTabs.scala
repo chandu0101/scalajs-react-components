@@ -17,9 +17,9 @@ case class MuiTabs[T](
   /* Override the inline-styles of the content's container.*/
   contentContainerStyle:     js.UndefOr[CssProperties]                              = js.undefined,
   /* Specify initial visible tab index.
-  Initial selected index is set by default to 0.
-  If initialSelectedIndex is set but larger than the total amount of specified tabs,
-  initialSelectedIndex will revert back to default.*/
+  If `initialSelectedIndex` is set but larger than the total amount of specified tabs,
+  `initialSelectedIndex` will revert back to default.
+  If `initialSlectedIndex` is set to any negative value, no tab will be selected intially.*/
   initialSelectedIndex:      js.UndefOr[Int]                                        = js.undefined,
   /* Override the inline-styles of the InkBar.*/
   inkBarStyle:               js.UndefOr[CssProperties]                              = js.undefined,

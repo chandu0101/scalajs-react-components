@@ -93,6 +93,16 @@ object TopBottom {
 }
 
 
+class XX_reverseYY_reverse(val value: String) extends AnyVal
+object XX_reverseYY_reverse {
+  val x = new XX_reverseYY_reverse("x")
+  val x_reverse = new XX_reverseYY_reverse("x-reverse")
+  val y = new XX_reverseYY_reverse("y")
+  val y_reverse = new XX_reverseYY_reverse("y-reverse")
+  val values = List(x, x_reverse, y, y_reverse)
+}
+
+
 class _1_2(val value: String) extends AnyVal
 object _1_2 {
   val _1 = new _1_2("1")

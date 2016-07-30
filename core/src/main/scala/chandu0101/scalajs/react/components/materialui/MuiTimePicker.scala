@@ -97,14 +97,14 @@ case class MuiTimePicker(
   /* Name applied to the input.
   (Passed on to TextField)*/
   name:                    js.UndefOr[String]                                     = js.undefined,
-  /* Callback function that is fired when the textfield loses focus.
+  /* 
   (Passed on to TextField)*/
   onBlur:                  js.UndefOr[ReactEventI => Callback]                    = js.undefined,
   /* The function to call when the user presses the Enter key.
   (Passed on to TextField)*/
-  @deprecated("Use onKeyDown and check for keycode instead.")
+  @deprecated("Use onKeyDown and check for keycode instead. It will be removed with v0.16.0.")
   onEnterKeyDown:          js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
-  /* Callback function fired when key is pressed down.
+  /* 
   (Passed on to TextField)*/
   onKeyDown:               js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
   /* Number of rows to display when multiLine option is set to true.

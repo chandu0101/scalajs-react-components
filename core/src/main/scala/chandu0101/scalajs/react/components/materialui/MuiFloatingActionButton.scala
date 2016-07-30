@@ -20,7 +20,7 @@ case class MuiFloatingActionButton(
   disabled:             js.UndefOr[Boolean]                         = js.undefined,
   /* This value will override the default background color for the button when it is disabled.*/
   disabledColor:        js.UndefOr[MuiColor]                        = js.undefined,
-  /* URL to link to when button clicked if `linkButton` is set to true.*/
+  /* The URL to link to when the button is clicked.*/
   href:                 js.UndefOr[String]                          = js.undefined,
   /* The icon within the FloatingActionButton is a FontIcon component.
   This property is the classname of the icon to be displayed inside the button.
@@ -30,21 +30,13 @@ case class MuiFloatingActionButton(
   /* This is the equivalent to iconClassName except that it is used for
   overriding the inline-styles of the FontIcon component.*/
   iconStyle:            js.UndefOr[CssProperties]                   = js.undefined,
-  /* Enables use of `href` property to provide a URL to link to if set to true.*/
-  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* If true, the button will be a small floating action button.*/
   mini:                 js.UndefOr[Boolean]                         = js.undefined,
-  /* Callback function fired when a mouse button is pressed down on the element.*/
   onMouseDown:          js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when the mouse enters the element.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when the mouse leaves the element.*/
   onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when a mouse button is released on the element.*/
   onMouseUp:            js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when a touch point is removed from the element.*/
   onTouchEnd:           js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
-  /* Callback function fired when the element is touched.*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* If true, the button will use the secondary button colors.*/
   secondary:            js.UndefOr[Boolean]                         = js.undefined,
@@ -68,6 +60,9 @@ case class MuiFloatingActionButton(
   focusRippleOpacity:   js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
+  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:               js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/

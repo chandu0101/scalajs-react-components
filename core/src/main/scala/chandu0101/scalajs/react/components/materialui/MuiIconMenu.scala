@@ -33,13 +33,9 @@ case class MuiIconMenu[T](
   onItemTouchTap:           js.UndefOr[(ReactTouchEventH, ReactElement) => Callback] = js.undefined,
   /* Callback function fired when the `IconButton` element is focused or blurred by the keyboard.*/
   onKeyboardFocus:          js.UndefOr[ReactKeyboardEventH => Callback]              = js.undefined,
-  /* Callback function fired when a mouse button is pressed down on the `IconButton` element.*/
   onMouseDown:              js.UndefOr[ReactMouseEventH => Callback]                 = js.undefined,
-  /* Callback function fired when the mouse enters the `IconButton` element.*/
   onMouseEnter:             js.UndefOr[ReactMouseEventH => Callback]                 = js.undefined,
-  /* Callback function fired when the mouse leaves the `IconButton` element.*/
   onMouseLeave:             js.UndefOr[ReactMouseEventH => Callback]                 = js.undefined,
-  /* Callback function fired when a mouse button is released on the `IconButton` element.*/
   onMouseUp:                js.UndefOr[ReactMouseEventH => Callback]                 = js.undefined,
   /* Callback function fired when the `open` state of the menu is requested to be changed.
   'keyboard' and 'iconTap' for open requests; 'enter', 'escape', 'itemTap', and 'clickAway'
@@ -99,13 +95,12 @@ case class MuiIconMenu[T](
   is pressed.
   (Passed on to Menu)*/
   onEscKeyDown:             js.UndefOr[ReactKeyboardEventH => Callback]              = js.undefined,
-  /* Callback function fired when the menu is focused and a key
-  is pressed.
+  /* 
   (Passed on to Menu)*/
   onKeyDown:                js.UndefOr[ReactKeyboardEventH => Callback]              = js.undefined,
   /* This is the placement of the menu relative to the `IconButton`.
   (Passed on to Menu)*/
-  @deprecated("Instead, use a [Popover](/#/components/popover).")
+  @deprecated("Instead, use a [Popover](/#/components/popover).\n      It will be removed with v0.16.0.")
   openDirection:            js.UndefOr[Corners]                                      = js.undefined,
   /* Override the inline-styles of selected menu items.
   (Passed on to Menu)*/

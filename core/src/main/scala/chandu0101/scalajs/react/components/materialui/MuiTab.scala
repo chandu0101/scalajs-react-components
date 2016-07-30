@@ -14,6 +14,7 @@ case class MuiTab[T](
   className:            js.UndefOr[String]                          = js.undefined,
   /* Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.*/
   icon:                 js.UndefOr[ReactNode]                       = js.undefined,
+  index:                js.UndefOr[js.Any]                          = js.undefined,
   /* Sets the text value of the tab item to the string specified.*/
   label:                js.UndefOr[ReactNode]                       = js.undefined,
   /* Fired when the active tab changes by touch or tap.
@@ -50,8 +51,11 @@ case class MuiTab[T](
   /* (Passed on to EnhancedButton)*/
   focusRippleOpacity:   js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
+  href:                 js.UndefOr[String]                          = js.undefined,
+  /* (Passed on to EnhancedButton)*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
+  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
   linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:               js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,

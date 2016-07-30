@@ -15,9 +15,7 @@ case class MuiFontIcon(
   color:        js.UndefOr[MuiColor]                     = js.undefined,
   /* This is the icon color when the mouse hovers over the icon.*/
   hoverColor:   js.UndefOr[MuiColor]                     = js.undefined,
-  /* Callback function fired when the mouse enters the element.*/
   onMouseEnter: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-  /* Callback function fired when the mouse leaves the element.*/
   onMouseLeave: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:        js.UndefOr[CssProperties]                = js.undefined){

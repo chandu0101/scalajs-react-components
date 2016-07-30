@@ -12,6 +12,7 @@ case class MuiStepContent(
   ref:                js.UndefOr[String]        = js.undefined,
   /* Expands the content*/
   active:             js.UndefOr[Boolean]       = js.undefined,
+  completed:          js.UndefOr[Boolean]       = js.undefined,
   last:               js.UndefOr[Boolean]       = js.undefined,
   /* Override the inline-style of the root element.*/
   style:              js.UndefOr[CssProperties] = js.undefined,

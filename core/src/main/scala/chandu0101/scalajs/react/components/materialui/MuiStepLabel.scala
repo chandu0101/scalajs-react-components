@@ -18,6 +18,7 @@ case class MuiStepLabel(
   disabled:  js.UndefOr[Boolean]                        = js.undefined,
   /* The icon displayed by the step label.*/
   icon:      js.UndefOr[ReactElement | String | Double] = js.undefined,
+  last:      js.UndefOr[Boolean]                        = js.undefined,
   /* Override the inline-style of the root element.*/
   style:     js.UndefOr[CssProperties]                  = js.undefined){
   /**

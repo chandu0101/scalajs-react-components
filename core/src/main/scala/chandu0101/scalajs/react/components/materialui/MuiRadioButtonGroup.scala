@@ -7,7 +7,7 @@ import scala.scalajs.js.`|`
 /**
  * This file is generated - submit issues instead of PR against it
  */
-case class MuiRadioButtonGroup(
+case class MuiRadioButtonGroup[T](
   key:             js.UndefOr[String]                             = js.undefined,
   ref:             js.UndefOr[MuiRadioButtonGroupM => Unit]       = js.undefined,
   /* The CSS class name of the root element.*/
@@ -60,12 +60,13 @@ case class MuiRadioButtonGroup(
   uncheckedIcon:   js.UndefOr[ReactElement]                       = js.undefined,
   /* The value of the radio button.
   (Passed on to RadioButton)*/
-  value:           js.UndefOr[String]                             = js.undefined){
+  value:           js.UndefOr[T]                                  = js.undefined){
   /**
    * @param children Should be used to pass `RadioButton` components.
    */
   def apply(children: ReactNode*) = {
-    val props = JSMacro[MuiRadioButtonGroup](this)
+    implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
+    val props = JSMacro[MuiRadioButtonGroup[T]](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.RadioButtonGroup)
     if (children.isEmpty)
       f(props).asInstanceOf[ReactComponentU_]

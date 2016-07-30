@@ -16,22 +16,18 @@ case class MuiIconButton(
   disableTouchRipple:   js.UndefOr[Boolean]                         = js.undefined,
   /* If true, the element will be disabled.*/
   disabled:             js.UndefOr[Boolean]                         = js.undefined,
+  /* The URL to link to when the button is clicked.*/
+  href:                 js.UndefOr[String]                          = js.undefined,
   /* The CSS class name of the icon. Used for setting the icon with a stylesheet.*/
   iconClassName:        js.UndefOr[String]                          = js.undefined,
   /* Override the inline-styles of the icon element.*/
   iconStyle:            js.UndefOr[CssProperties]                   = js.undefined,
-  /* Callback function fired when the element loses focus.*/
   onBlur:               js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
-  /* Callback function fired when the element gains focus.*/
   onFocus:              js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* Callback function fired when the element is focused or blurred by the keyboard.*/
   onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
-  /* Callback function fired when the mouse enters the element.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when the mouse leaves the element.*/
   onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when the mouse leaves the element. Unlike `onMouseLeave`,
-  this callback will fire on disabled icon buttons.*/
   onMouseOut:           js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                   = js.undefined,
@@ -61,6 +57,7 @@ case class MuiIconButton(
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
+  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
   linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onClick:              js.UndefOr[ReactEventH => Callback]         = js.undefined,

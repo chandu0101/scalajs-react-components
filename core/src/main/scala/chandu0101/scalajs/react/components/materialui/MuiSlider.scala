@@ -10,6 +10,8 @@ import scala.scalajs.js.`|`
 case class MuiSlider(
   key:                js.UndefOr[String]                            = js.undefined,
   ref:                js.UndefOr[MuiSliderM => Unit]                = js.undefined,
+  /* The axis on which the slider will slide.*/
+  axis:               js.UndefOr[XX_reverseYY_reverse]              = js.undefined,
   /* The default value of the slider.*/
   defaultValue:       js.UndefOr[Double]                            = js.undefined,
   /* Describe the slider.*/
@@ -29,7 +31,6 @@ case class MuiSlider(
   /* The name of the slider. Behaves like the name attribute
   of an input element.*/
   name:               js.UndefOr[String]                            = js.undefined,
-  /* Callback function that is fired when the focus has left the slider.*/
   onBlur:             js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
   /* Callback function that is fired when the user changes the slider's value.*/
   onChange:           js.UndefOr[(ReactEventH, Double) => Callback] = js.undefined,
@@ -37,10 +38,11 @@ case class MuiSlider(
   onDragStart:        js.UndefOr[ReactDragEventH => Callback]       = js.undefined,
   /* Callback function that is fried when the slide has stopped moving.*/
   onDragStop:         js.UndefOr[ReactDragEventH => Callback]       = js.undefined,
-  /* Callback fired when the user has focused on the slider.*/
   onFocus:            js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
   /* Whether or not the slider is required in a form.*/
   required:           js.UndefOr[Boolean]                           = js.undefined,
+  /* Override the inline-styles of the inner slider element.*/
+  sliderStyle:        js.UndefOr[CssProperties]                     = js.undefined,
   /* The granularity the slider can step through values.*/
   step:               js.UndefOr[Double]                            = js.undefined,
   /* Override the inline-styles of the root element.*/
@@ -61,11 +63,11 @@ class MuiSliderM extends js.Object {
 
   def clearValue(): js.Any = js.native
 
-  def dragX(event: js.Any, pos: js.Any): js.Any = js.native
+  def dragTo(event: js.Any, pos: js.Any): js.Any = js.native
 
   def getPercent(): js.Any = js.native
 
-  def getTrackLeft(): js.Any = js.native
+  def getTrackOffset(): js.Any = js.native
 
   def getValue(): js.Any = js.native
 
@@ -79,7 +81,7 @@ class MuiSliderM extends js.Object {
 
   def setPercent(percent: js.Any, callback: js.Any): js.Any = js.native
 
-  def setValue(i: js.Any): js.Any = js.native
+  def setValue(value: js.Any): js.Any = js.native
 
   def updateWithChangeEvent(event: js.Any, percent: js.Any): js.Any = js.native
 }

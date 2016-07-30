@@ -16,7 +16,7 @@ case class MuiFlatButton(
   disabled:             js.UndefOr[Boolean]                         = js.undefined,
   /* Color of button when mouse hovers over.*/
   hoverColor:           js.UndefOr[MuiColor]                        = js.undefined,
-  /* URL to link to when button clicked if `linkButton` is set to true.*/
+  /* The URL to link to when the button is clicked.*/
   href:                 js.UndefOr[String]                          = js.undefined,
   /* Use this property to display an icon.*/
   icon:                 js.UndefOr[ReactNode]                       = js.undefined,
@@ -26,15 +26,10 @@ case class MuiFlatButton(
   labelPosition:        js.UndefOr[BeforeAfter]                     = js.undefined,
   /* Override the inline-styles of the button's label element.*/
   labelStyle:           js.UndefOr[CssProperties]                   = js.undefined,
-  /* Enables use of `href` property to provide a URL to link to if set to true.*/
-  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* Callback function fired when the element is focused or blurred by the keyboard.*/
   onKeyboardFocus:      js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
-  /* Callback function fired when the mouse enters the element.*/
   onMouseEnter:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when the mouse leaves the element.*/
   onMouseLeave:         js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when the element is touched.*/
   onTouchStart:         js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* If true, colors button according to
   primaryTextColor from the Theme.*/
@@ -62,6 +57,9 @@ case class MuiFlatButton(
   focusRippleOpacity:   js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
+  /* (Passed on to EnhancedButton)*/
+  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
+  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:               js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/

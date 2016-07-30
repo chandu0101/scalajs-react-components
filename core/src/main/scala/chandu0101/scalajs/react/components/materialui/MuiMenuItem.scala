@@ -72,16 +72,16 @@ case class MuiMenuItem[T](
   /* Callback function fired when the `ListItem` is focused or blurred by the keyboard.
   (Passed on to ListItem)*/
   onKeyboardFocus:             js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
-  /* Callback function fired when the mouse enters the `ListItem`.
+  /* 
   (Passed on to ListItem)*/
   onMouseEnter:                js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* Callback function fired when the mouse leaves the `ListItem`.
+  /* 
   (Passed on to ListItem)*/
   onMouseLeave:                js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   /* Callbak function fired when the `ListItem` toggles its nested list.
   (Passed on to ListItem)*/
   onNestedListToggle:          js.UndefOr[js.Any => Callback]              = js.undefined,
-  /* Callback function fired when the `ListItem` is touched.
+  /* 
   (Passed on to ListItem)*/
   onTouchStart:                js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* If true, clicking or tapping the primary text of the `ListItem`

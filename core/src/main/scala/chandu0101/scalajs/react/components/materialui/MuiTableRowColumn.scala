@@ -17,9 +17,7 @@ case class MuiTableRowColumn(
   columnNumber: js.UndefOr[Int]                                 = js.undefined,
   /* If true, this column responds to hover events.*/
   hoverable:    js.UndefOr[Boolean]                             = js.undefined,
-  /* Callback function for click event.*/
   onClick:      js.UndefOr[(ReactEvent, ColumnId) => Callback]  = js.undefined,
-  /* Callback function for hover event.*/
   onHover:      js.UndefOr[(ReactEventH, ColumnId) => Callback] = js.undefined,
   /* Callback function for hover exit event.*/
   onHoverExit:  js.UndefOr[(ReactEventH, ColumnId) => Callback] = js.undefined,

@@ -48,11 +48,8 @@ case class MuiAutoComplete(
   menuProps:               js.UndefOr[js.Object]                                             = js.undefined,
   /* Override style for menu.*/
   menuStyle:               js.UndefOr[CssProperties]                                         = js.undefined,
-  /* Callback function that is fired when the `TextField` loses focus.*/
   onBlur:                  js.UndefOr[ReactFocusEventH => Callback]                          = js.undefined,
-  /* Callback function that is fired when the `TextField` gains focus.*/
   onFocus:                 js.UndefOr[ReactFocusEventH => Callback]                          = js.undefined,
-  /* Callback function that is fired when the `TextField` receives a keydown event.*/
   onKeyDown:               js.UndefOr[ReactKeyboardEventH => Callback]                       = js.undefined,
   /* Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
   or the text value of the corresponding list item that was selected.
@@ -71,7 +68,7 @@ case class MuiAutoComplete(
   /* Origin for location of target.*/
   targetOrigin:            js.UndefOr[Origin]                                                = js.undefined,
   /* If true, will update when focus event triggers.*/
-  @deprecated("Instead, use openOnFocus")
+  @deprecated("Instead, use openOnFocus. It will be removed with v0.16.0.")
   triggerUpdateOnFocus:    js.UndefOr[Boolean]                                               = js.undefined,
   /* The css class name of the root element.
   (Passed on to TextField)*/
@@ -114,7 +111,7 @@ case class MuiAutoComplete(
   onChange:                js.UndefOr[ReactEventI => Callback]                               = js.undefined,
   /* The function to call when the user presses the Enter key.
   (Passed on to TextField)*/
-  @deprecated("Use onKeyDown and check for keycode instead.")
+  @deprecated("Use onKeyDown and check for keycode instead. It will be removed with v0.16.0.")
   onEnterKeyDown:          js.UndefOr[ReactKeyboardEventI => Callback]                       = js.undefined,
   /* Number of rows to display when multiLine option is set to true.
   (Passed on to TextField)*/

@@ -7,7 +7,7 @@ import scala.scalajs.js.`|`
 /**
  * This file is generated - submit issues instead of PR against it
  */
-case class MuiRadioButton(
+case class MuiRadioButton[T](
   key:                  js.UndefOr[String]                             = js.undefined,
   ref:                  js.UndefOr[MuiRadioButtonM => Unit]            = js.undefined,
   /* checked if true
@@ -36,7 +36,7 @@ case class MuiRadioButton(
   /* The icon element to show when the radio button is unchecked.*/
   uncheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
   /* The value of the radio button.*/
-  value:                js.UndefOr[String]                             = js.undefined,
+  value:                js.UndefOr[T]                                  = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
   className:            js.UndefOr[String]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
@@ -82,7 +82,8 @@ case class MuiRadioButton(
   /* (Passed on to EnhancedSwitch)*/
   trackStyle:           js.UndefOr[CssProperties]                      = js.undefined){
   def apply() = {
-    val props = JSMacro[MuiRadioButton](this)
+    implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
+    val props = JSMacro[MuiRadioButton[T]](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.RadioButton)
     f(props).asInstanceOf[ReactComponentU_]
   }

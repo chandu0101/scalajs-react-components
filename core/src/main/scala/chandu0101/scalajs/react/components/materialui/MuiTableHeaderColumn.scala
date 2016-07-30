@@ -15,8 +15,13 @@ case class MuiTableHeaderColumn(
   /* Number to identify the header row. This property
   is automatically populated when used with TableHeader.*/
   columnNumber: js.UndefOr[Int]                                = js.undefined,
-  /* Callback function for click event.*/
+  /* Not used here but we need to remove it from the root element.*/
+  hoverable:    js.UndefOr[Boolean]                            = js.undefined,
   onClick:      js.UndefOr[(ReactEvent, ColumnId) => Callback] = js.undefined,
+  /* Not used here but we need to remove it from the root element.*/
+  onHover:      js.UndefOr[Callback]                           = js.undefined,
+  /* Not used here but we need to remove it from the root element.*/
+  onHoverExit:  js.UndefOr[Callback]                           = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:        js.UndefOr[CssProperties]                      = js.undefined,
   /* The string to supply to the tooltip. If not

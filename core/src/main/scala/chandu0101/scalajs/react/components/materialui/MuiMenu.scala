@@ -13,7 +13,7 @@ case class MuiMenu[T](
   /* If true, the menu will apply transitions when it
   is added to the DOM. In order for transitions to
   work, wrap the menu inside a `ReactTransitionGroup`.*/
-  @deprecated("Instead, use a [Popover](/#/components/popover).")
+  @deprecated("Instead, use a [Popover](/#/components/popover).\n      It will be removed with v0.16.0.")
   animated:                 js.UndefOr[Boolean]                                                            = js.undefined,
   /* If true, the width of the menu will be set automatically
   according to the widths of its children,
@@ -46,11 +46,9 @@ case class MuiMenu[T](
   onEscKeyDown:             js.UndefOr[ReactKeyboardEventH => Callback]                                    = js.undefined,
   /* Callback function fired when a menu item is touch-tapped.*/
   onItemTouchTap:           js.UndefOr[(ReactUIEventH, JsComponentM[HasValue[T], _, TopNode]) => Callback] = js.undefined,
-  /* Callback function fired when the menu is focused and a key
-  is pressed.*/
   onKeyDown:                js.UndefOr[ReactKeyboardEventH => Callback]                                    = js.undefined,
   /* This is the placement of the menu relative to the `IconButton`.*/
-  @deprecated("Instead, use a [Popover](/#/components/popover).")
+  @deprecated("Instead, use a [Popover](/#/components/popover).\n      It will be removed with v0.16.0.")
   openDirection:            js.UndefOr[Corners]                                                            = js.undefined,
   /* Override the inline-styles of selected menu items.*/
   selectedMenuItemStyle:    js.UndefOr[CssProperties]                                                      = js.undefined,
@@ -72,15 +70,15 @@ case class MuiMenu[T](
   zDepth:                   js.UndefOr[ZDepth]                                                             = js.undefined,
   /* If true, the subheader will be indented by 72px.
   (Passed on to List)*/
-  @deprecated("Refer to the `subheader` property.")
+  @deprecated("Refer to the `subheader` property. It will be removed with v0.16.0.")
   insetSubheader:           js.UndefOr[Boolean]                                                            = js.undefined,
   /* The subheader string that will be displayed at the top of the list.
   (Passed on to List)*/
-  @deprecated("Instead, nest the `Subheader` component directly inside the `List`.")
+  @deprecated("Instead, nest the `Subheader` component directly inside the `List`. It will be removed with v0.16.0.")
   subheader:                js.UndefOr[ReactNode]                                                          = js.undefined,
   /* Override the inline-styles of the subheader element.
   (Passed on to List)*/
-  @deprecated("Refer to the `subheader` property.")
+  @deprecated("Refer to the `subheader` property. It will be removed with v0.16.0.")
   subheaderStyle:           js.UndefOr[CssProperties]                                                      = js.undefined){
   /**
    * @param children The content of the menu. This is usually used to pass `MenuItem`

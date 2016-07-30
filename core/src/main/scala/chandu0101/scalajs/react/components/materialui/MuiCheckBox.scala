@@ -7,7 +7,7 @@ import scala.scalajs.js.`|`
 /**
  * This file is generated - submit issues instead of PR against it
  */
-case class MuiCheckbox(
+case class MuiCheckbox[T](
   key:                  js.UndefOr[String]                             = js.undefined,
   ref:                  js.UndefOr[MuiCheckboxM => Unit]               = js.undefined,
   /* Checkbox is checked if true.*/
@@ -36,7 +36,7 @@ case class MuiCheckbox(
   style:                js.UndefOr[CssProperties]                      = js.undefined,
   /* The SvgIcon to use for the unchecked state.
   This is useful to create icon toggles.*/
-  @deprecated("Use uncheckedIcon instead.")
+  @deprecated("Use uncheckedIcon instead. It will be removed with v0.16.0.")
   unCheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
   /* The SvgIcon to use for the unchecked state.
   This is useful to create icon toggles.*/
@@ -86,9 +86,10 @@ case class MuiCheckbox(
   /* (Passed on to EnhancedSwitch)*/
   trackStyle:           js.UndefOr[CssProperties]                      = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
-  value:                js.UndefOr[String]                             = js.undefined){
+  value:                js.UndefOr[T]                                  = js.undefined){
   def apply() = {
-    val props = JSMacro[MuiCheckbox](this)
+    implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
+    val props = JSMacro[MuiCheckbox[T]](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Checkbox)
     f(props).asInstanceOf[ReactComponentU_]
   }

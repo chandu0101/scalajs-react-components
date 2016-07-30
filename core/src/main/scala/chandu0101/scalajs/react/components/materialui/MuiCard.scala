@@ -10,8 +10,6 @@ import scala.scalajs.js.`|`
 case class MuiCard(
   key:                  js.UndefOr[String]              = js.undefined,
   ref:                  js.UndefOr[String]              = js.undefined,
-  /* If true, a click on this card component expands the card. Can be set on any child of the `Card` component.*/
-  actAsExpander:        js.UndefOr[Boolean]             = js.undefined,
   /* Override the inline-styles of the container element.*/
   containerStyle:       js.UndefOr[CssProperties]       = js.undefined,
   /* If true, this card component is expandable. Can be set on any child of the `Card` component.*/

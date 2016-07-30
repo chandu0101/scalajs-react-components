@@ -38,17 +38,17 @@ case class MuiSelectField[T](
   id:                     js.UndefOr[String]                            = js.undefined,
   /* Override the label style when the select field is inactive.*/
   labelStyle:             js.UndefOr[CssProperties]                     = js.undefined,
+  /* Override the default max-height of the underlying `DropDownMenu` element.*/
+  maxHeight:              js.UndefOr[Int]                               = js.undefined,
   /* Override the inline-styles of the underlying `DropDownMenu` element.*/
   menuStyle:              js.UndefOr[CssProperties]                     = js.undefined,
-  /* Callback function fired when the select field loses focus.*/
   onBlur:                 js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
   /* Callback function fired when a menu item is selected.
   that was selected.*/
   onChange:               js.UndefOr[(ReactEventI, Int, T) => Callback] = js.undefined,
-  /* Callback function fired when the select field gains focus.*/
   onFocus:                js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
   /* Override the inline-styles of the underlying `DropDownMenu` element.*/
-  @deprecated("Instead, use `menuStyle`.")
+  @deprecated("Instead, use `menuStyle`. It will be removed with v0.16.0.")
   selectFieldRoot:        js.UndefOr[CssProperties]                     = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties]                     = js.undefined,
@@ -72,9 +72,6 @@ case class MuiSelectField[T](
   /* The style object to use to override underlying list style.
   (Passed on to DropDownMenu)*/
   listStyle:              js.UndefOr[CssProperties]                     = js.undefined,
-  /* The maximum height of the `Menu` when it is displayed.
-  (Passed on to DropDownMenu)*/
-  maxHeight:              js.UndefOr[Int]                               = js.undefined,
   /* Set to true to have the `DropDownMenu` automatically open on mount.
   (Passed on to DropDownMenu)*/
   openImmediately:        js.UndefOr[Boolean]                           = js.undefined){

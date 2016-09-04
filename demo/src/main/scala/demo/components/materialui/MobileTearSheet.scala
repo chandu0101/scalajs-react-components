@@ -8,11 +8,10 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 import scala.scalajs.js
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
-import scalacss.mutable.StyleSheet.Inline
 
 object MobileTearSheet {
 
-  object Style extends Inline {
+  object Style extends StyleSheet.Inline {
 
     import dsl._
 

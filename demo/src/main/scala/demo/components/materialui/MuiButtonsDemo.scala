@@ -9,13 +9,12 @@ import japgolly.scalajs.react.vdom.prefix_<^._
 
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
-import scalacss.mutable.StyleSheet.Inline
 
 object MuiButtonsDemo {
 
   val code = GhPagesMacros.exampleSource
 
-  object Style extends Inline {
+  object Style extends StyleSheet.Inline {
 
     import dsl._
 

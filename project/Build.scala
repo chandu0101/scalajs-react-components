@@ -9,7 +9,7 @@ object Build extends Build {
   val Scala211 = "2.11.8"
 
   val scalajsReactVersion = "0.11.1"
-  val scalaCSSVersion = "0.4.1"
+  val scalaCSSVersion = "0.5.0"
 
   type PE = Project => Project
 
@@ -129,8 +129,8 @@ object Build extends Build {
     .settings(
       name := "core",
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalacss"      %%% "core"      % scalaCSSVersion,
-        "com.github.japgolly.scalacss"      %%% "ext-react" % scalaCSSVersion
+        "com.github.japgolly.scalacss"      %%% "core"     % scalaCSSVersion,
+        "com.github.japgolly.scalacss"      %%% "extreact" % scalaCSSVersion
       ),
       target in Compile in doc := baseDirectory.value / "docs"
     )

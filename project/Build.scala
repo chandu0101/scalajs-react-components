@@ -6,7 +6,8 @@ import sbt._
 
 object Build extends Build {
 
-  val Scala211 = "2.12.0"
+  val Scala211 = "2.11.8"
+  val Scala212 = "2.12.0"
 
   val scalajsReactVersion = "0.11.3"
   val scalaCSSVersion = "0.5.1"
@@ -16,11 +17,12 @@ object Build extends Build {
   def commonSettings: PE =
     _.enablePlugins(ScalaJSPlugin)
       .settings(
+	crossScalaVersions   := Seq(Scala211, Scala212),
         organization         := "com.github.chandu0101.scalajs-react-components",
         version              := "0.5.0",
         homepage             := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses             += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
-        scalaVersion         := Scala211,
+        scalaVersion         := Scala212,
         scalacOptions       ++= Seq("-deprecation", "-unchecked", "-feature",
                                   "-language:postfixOps", "-language:implicitConversions",
                                   "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
@@ -34,8 +36,8 @@ object Build extends Build {
     _.settings(
       scalacOptions += "-language:experimental.macros",
       libraryDependencies ++= Seq(
-        "org.scala-lang" % "scala-reflect" % Scala211,
-        "org.scala-lang" % "scala-compiler" % Scala211 % Provided))
+        "org.scala-lang" % "scala-reflect" % Scala212,
+        "org.scala-lang" % "scala-compiler" % Scala212 % Provided))
 
   def preventPublication: PE =
     _.settings(

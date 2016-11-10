@@ -7,26 +7,28 @@ import sbt._
 object Build extends Build {
 
   val Scala211 = "2.11.8"
+  val Scala212 = "2.12.0"
 
-  val scalajsReactVersion = "0.11.1"
-  val scalaCSSVersion = "0.5.0"
+  val scalajsReactVersion = "0.11.3"
+  val scalaCSSVersion = "0.5.1"
 
   type PE = Project => Project
 
   def commonSettings: PE =
     _.enablePlugins(ScalaJSPlugin)
       .settings(
+	crossScalaVersions   := Seq(Scala211, Scala212),
         organization         := "com.github.chandu0101.scalajs-react-components",
         version              := "0.5.0",
         homepage             := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses             += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
-        scalaVersion         := Scala211,
+        scalaVersion         := Scala212,
         scalacOptions       ++= Seq("-deprecation", "-unchecked", "-feature",
                                   "-language:postfixOps", "-language:implicitConversions",
                                   "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions        := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
-          "org.scala-js"   %% "scalajs-test-interface" % "0.6.11"
+          "org.scala-js"   %% "scalajs-test-interface" % "0.6.13"
         )
       )
 
@@ -34,8 +36,8 @@ object Build extends Build {
     _.settings(
       scalacOptions += "-language:experimental.macros",
       libraryDependencies ++= Seq(
-        "org.scala-lang" % "scala-reflect" % Scala211,
-        "org.scala-lang" % "scala-compiler" % Scala211 % Provided))
+        "org.scala-lang" % "scala-reflect" % Scala212,
+        "org.scala-lang" % "scala-compiler" % Scala212 % Provided))
 
   def preventPublication: PE =
     _.settings(
@@ -83,7 +85,7 @@ object Build extends Build {
 
   def utestSettings: PE =
       _.settings(
-      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.3.1" % Test,
+      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.4.4" % Test,
       testFrameworks       += new TestFramework("utest.runner.Framework"),
       scalaJSStage in Test := FastOptStage,
       requiresDOM          := true,
@@ -118,7 +120,7 @@ object Build extends Build {
     .settings(
       name := "macros",
       libraryDependencies ++= Seq(
-        "org.scalatest" %%% "scalatest" % "3.0.0-M12" % Test
+        "org.scalatest" %%% "scalatest" % "3.0.1" % Test
       )
     )
 
@@ -130,7 +132,7 @@ object Build extends Build {
       name := "core",
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalacss"      %%% "core"     % scalaCSSVersion,
-        "com.github.japgolly.scalacss"      %%% "extreact" % scalaCSSVersion
+        "com.github.japgolly.scalacss"      %%% "ext-react" % scalaCSSVersion
       ),
       target in Compile in doc := baseDirectory.value / "docs"
     )

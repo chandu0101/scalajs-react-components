@@ -6,10 +6,10 @@ import sbt._
 
 object Build extends Build {
 
-  val Scala211 = "2.11.8"
+  val Scala211 = "2.12.0"
 
-  val scalajsReactVersion = "0.11.1"
-  val scalaCSSVersion = "0.5.0"
+  val scalajsReactVersion = "0.11.3"
+  val scalaCSSVersion = "0.5.1"
 
   type PE = Project => Project
 
@@ -26,7 +26,7 @@ object Build extends Build {
                                   "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions        := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
-          "org.scala-js"   %% "scalajs-test-interface" % "0.6.11"
+          "org.scala-js"   %% "scalajs-test-interface" % "0.6.13"
         )
       )
 
@@ -83,7 +83,7 @@ object Build extends Build {
 
   def utestSettings: PE =
       _.settings(
-      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.3.1" % Test,
+      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.4.4" % Test,
       testFrameworks       += new TestFramework("utest.runner.Framework"),
       scalaJSStage in Test := FastOptStage,
       requiresDOM          := true,
@@ -118,7 +118,7 @@ object Build extends Build {
     .settings(
       name := "macros",
       libraryDependencies ++= Seq(
-        "org.scalatest" %%% "scalatest" % "3.0.0-M12" % Test
+        "org.scalatest" %%% "scalatest" % "3.0.1" % Test
       )
     )
 
@@ -130,7 +130,7 @@ object Build extends Build {
       name := "core",
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalacss"      %%% "core"     % scalaCSSVersion,
-        "com.github.japgolly.scalacss"      %%% "extreact" % scalaCSSVersion
+        "com.github.japgolly.scalacss"      %%% "ext-react" % scalaCSSVersion
       ),
       target in Compile in doc := baseDirectory.value / "docs"
     )

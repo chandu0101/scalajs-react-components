@@ -136,7 +136,81 @@ case class MuiTimePicker(
   underlineShow:           js.UndefOr[Boolean]                                    = js.undefined,
   /* Override the inline-styles of the TextField's underline element.
   (Passed on to TextField)*/
-  underlineStyle:          js.UndefOr[CssProperties]                              = js.undefined){
+  underlineStyle:          js.UndefOr[CssProperties]                              = js.undefined,
+  /* (Passed on to DOM)*/
+  onAnimationEnd:          js.UndefOr[ReactEventI => Callback]                    = js.undefined,
+  /* (Passed on to DOM)*/
+  onAnimationIteration:    js.UndefOr[ReactEventI => Callback]                    = js.undefined,
+  /* (Passed on to DOM)*/
+  onAnimationStart:        js.UndefOr[ReactEventI => Callback]                    = js.undefined,
+  /* (Passed on to DOM)*/
+  onClick:                 js.UndefOr[ReactMouseEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onCompositionEnd:        js.UndefOr[ReactCompositionEventI => Callback]         = js.undefined,
+  /* (Passed on to DOM)*/
+  onCompositionStart:      js.UndefOr[ReactCompositionEventI => Callback]         = js.undefined,
+  /* (Passed on to DOM)*/
+  onCompositionUpdate:     js.UndefOr[ReactCompositionEventI => Callback]         = js.undefined,
+  /* (Passed on to DOM)*/
+  onContextMenu:           js.UndefOr[ReactEventI => Callback]                    = js.undefined,
+  /* (Passed on to DOM)*/
+  onCopy:                  js.UndefOr[ReactClipboardEventI => Callback]           = js.undefined,
+  /* (Passed on to DOM)*/
+  onCut:                   js.UndefOr[ReactClipboardEventI => Callback]           = js.undefined,
+  /* (Passed on to DOM)*/
+  onDoubleClick:           js.UndefOr[ReactMouseEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onDrag:                  js.UndefOr[ReactDragEventI => Callback]                = js.undefined,
+  /* (Passed on to DOM)*/
+  onDragEnd:               js.UndefOr[ReactDragEventI => Callback]                = js.undefined,
+  /* (Passed on to DOM)*/
+  onDragEnter:             js.UndefOr[ReactDragEventI => Callback]                = js.undefined,
+  /* (Passed on to DOM)*/
+  onDragExit:              js.UndefOr[ReactDragEventI => Callback]                = js.undefined,
+  /* (Passed on to DOM)*/
+  onDragLeave:             js.UndefOr[ReactDragEventI => Callback]                = js.undefined,
+  /* (Passed on to DOM)*/
+  onDragOver:              js.UndefOr[ReactDragEventI => Callback]                = js.undefined,
+  /* (Passed on to DOM)*/
+  onDragStart:             js.UndefOr[ReactDragEventI => Callback]                = js.undefined,
+  /* (Passed on to DOM)*/
+  onDrop:                  js.UndefOr[ReactDragEventI => Callback]                = js.undefined,
+  /* (Passed on to DOM)*/
+  onInput:                 js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
+  /* (Passed on to DOM)*/
+  onKeyPress:              js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
+  /* (Passed on to DOM)*/
+  onKeyUp:                 js.UndefOr[ReactKeyboardEventI => Callback]            = js.undefined,
+  /* (Passed on to DOM)*/
+  onMouseDown:             js.UndefOr[ReactMouseEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onMouseEnter:            js.UndefOr[ReactMouseEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onMouseLeave:            js.UndefOr[ReactMouseEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onMouseMove:             js.UndefOr[ReactMouseEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onMouseUp:               js.UndefOr[ReactMouseEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onPaste:                 js.UndefOr[ReactClipboardEventI => Callback]           = js.undefined,
+  /* (Passed on to DOM)*/
+  onScroll:                js.UndefOr[ReactUIEventI => Callback]                  = js.undefined,
+  /* (Passed on to DOM)*/
+  onSelect:                js.UndefOr[ReactUIEventI => Callback]                  = js.undefined,
+  /* (Passed on to DOM)*/
+  onSubmit:                js.UndefOr[ReactEventI => Callback]                    = js.undefined,
+  /* (Passed on to DOM)*/
+  onTouchCancel:           js.UndefOr[ReactTouchEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onTouchEnd:              js.UndefOr[ReactTouchEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onTouchMove:             js.UndefOr[ReactTouchEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onTouchStart:            js.UndefOr[ReactTouchEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onTransitionEnd:         js.UndefOr[ReactTouchEventI => Callback]               = js.undefined,
+  /* (Passed on to DOM)*/
+  onWheel:                 js.UndefOr[ReactWheelEventI => Callback]               = js.undefined){
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiTimePicker](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.TimePicker)

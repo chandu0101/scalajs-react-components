@@ -8,16 +8,17 @@ import scala.scalajs.js.`|`
  * This file is generated - submit issues instead of PR against it
  */
 case class MuiGridList(
-  key:        js.UndefOr[String]        = js.undefined,
-  ref:        js.UndefOr[String]        = js.undefined,
-  /* Number of px for one cell height.*/
-  cellHeight: js.UndefOr[Int]           = js.undefined,
+  key:        js.UndefOr[String]          = js.undefined,
+  ref:        js.UndefOr[String]          = js.undefined,
+  /* Number of px for one cell height.
+  You can set `'auto'` if you want to let the children determine the height.*/
+  cellHeight: js.UndefOr[Int | js.Any] = js.undefined,
   /* Number of columns.*/
-  cols:       js.UndefOr[Int]           = js.undefined,
+  cols:       js.UndefOr[Int]             = js.undefined,
   /* Number of px for the padding/spacing between items.*/
-  padding:    js.UndefOr[Int]           = js.undefined,
+  padding:    js.UndefOr[Int]             = js.undefined,
   /* Override the inline-styles of the root element.*/
-  style:      js.UndefOr[CssProperties] = js.undefined){
+  style:      js.UndefOr[CssProperties]   = js.undefined){
   /**
    * @param children Grid Tiles that will be in Grid List.
    */

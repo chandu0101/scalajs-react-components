@@ -9,7 +9,9 @@ import scala.scalajs.js.`|`
  */
 case class MuiMenuItem[T](
   key:                         js.UndefOr[String]                          = js.undefined,
-  ref:                         js.UndefOr[MuiMenuItemM => Unit]            = js.undefined,
+  ref:                         js.UndefOr[String]                          = js.undefined,
+  /* Override the default animation component used.*/
+  animation:                   js.UndefOr[js.Function]                     = js.undefined,
   /* If true, a left check mark will be rendered.*/
   checked:                     js.UndefOr[Boolean]                         = js.undefined,
   /* If true, the menu item will render with compact desktop
@@ -50,6 +52,9 @@ case class MuiMenuItem[T](
   /* If true, the element will not be able to be focused by the keyboard.
   (Passed on to ListItem)*/
   disableKeyboardFocus:        js.UndefOr[Boolean]                         = js.undefined,
+  /* Override the hover background color.
+  (Passed on to ListItem)*/
+  hoverColor:                  js.UndefOr[MuiColor]                        = js.undefined,
   /* If true, the nested `ListItem`s are initially displayed.
   (Passed on to ListItem)*/
   initiallyOpen:               js.UndefOr[Boolean]                         = js.undefined,
@@ -83,7 +88,13 @@ case class MuiMenuItem[T](
   onNestedListToggle:          js.UndefOr[js.Any => Callback]              = js.undefined,
   /* 
   (Passed on to ListItem)*/
+  onTouchEnd:                  js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
+  /* 
+  (Passed on to ListItem)*/
   onTouchStart:                js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
+  /* Control toggle state of nested list.
+  (Passed on to ListItem)*/
+  open:                        js.UndefOr[Boolean]                         = js.undefined,
   /* If true, clicking or tapping the primary text of the `ListItem`
   toggles the nested list.
   (Passed on to ListItem)*/
@@ -119,10 +130,4 @@ case class MuiMenuItem[T](
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiMenuItemM extends js.Object {
-  def applyFocusState(): js.Any = js.native
 }

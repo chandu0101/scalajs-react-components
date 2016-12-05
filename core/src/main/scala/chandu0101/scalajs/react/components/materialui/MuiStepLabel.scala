@@ -8,19 +8,21 @@ import scala.scalajs.js.`|`
  * This file is generated - submit issues instead of PR against it
  */
 case class MuiStepLabel(
-  key:       js.UndefOr[String]                         = js.undefined,
-  ref:       js.UndefOr[MuiStepLabelM => Unit]          = js.undefined,
+  key:                js.UndefOr[String]                         = js.undefined,
+  ref:                js.UndefOr[String]                         = js.undefined,
   /* Sets active styling. Overrides disabled coloring.*/
-  active:    js.UndefOr[Boolean]                        = js.undefined,
+  active:             js.UndefOr[Boolean]                        = js.undefined,
   /* Sets completed styling. Overrides disabled coloring.*/
-  completed: js.UndefOr[Boolean]                        = js.undefined,
+  completed:          js.UndefOr[Boolean]                        = js.undefined,
   /* Sets disabled styling.*/
-  disabled:  js.UndefOr[Boolean]                        = js.undefined,
+  disabled:           js.UndefOr[Boolean]                        = js.undefined,
   /* The icon displayed by the step label.*/
-  icon:      js.UndefOr[ReactElement | String | Double] = js.undefined,
-  last:      js.UndefOr[Boolean]                        = js.undefined,
+  icon:               js.UndefOr[ReactElement | String | Double] = js.undefined,
+  /* Override the inline-styles of the icon container element.*/
+  iconContainerStyle: js.UndefOr[CssProperties]                  = js.undefined,
+  last:               js.UndefOr[Boolean]                        = js.undefined,
   /* Override the inline-style of the root element.*/
-  style:     js.UndefOr[CssProperties]                  = js.undefined){
+  style:              js.UndefOr[CssProperties]                  = js.undefined){
   /**
    * @param children The label text node
    */
@@ -34,10 +36,4 @@ case class MuiStepLabel(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiStepLabelM extends js.Object {
-  def renderIcon(completed: js.Any, icon: js.Any, styles: js.Any): js.Any = js.native
 }

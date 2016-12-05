@@ -9,7 +9,7 @@ import scala.scalajs.js.`|`
  */
 case class MuiGridTile(
   key:              js.UndefOr[String]                = js.undefined,
-  ref:              js.UndefOr[MuiGridTileM => Unit]  = js.undefined,
+  ref:              js.UndefOr[String]                = js.undefined,
   /* An IconButton element to be used as secondary action target
   (primary action target is the tile itself).*/
   actionIcon:       js.UndefOr[ReactElement]          = js.undefined,
@@ -35,7 +35,9 @@ case class MuiGridTile(
   Useful for setting custom gradients for example*/
   titleBackground:  js.UndefOr[String]                = js.undefined,
   /* Position of the title bar (container of title, subtitle and action icon).*/
-  titlePosition:    js.UndefOr[TopBottom]             = js.undefined){
+  titlePosition:    js.UndefOr[TopBottom]             = js.undefined,
+  /* Override the inline-styles of the title element.*/
+  titleStyle:       js.UndefOr[CssProperties]         = js.undefined){
   /**
    * @param children Theoretically you can pass any node as children, but the main use case is to pass an img,
 in whichcase GridTile takes care of making the image "cover" available space
@@ -51,10 +53,4 @@ in whichcase GridTile takes care of making the image "cover" available space
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiGridTileM extends js.Object {
-  def ensureImageCover(): js.Any = js.native
 }

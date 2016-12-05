@@ -9,10 +9,12 @@ import scala.scalajs.js.`|`
  */
 case class MuiDropDownMenu[T](
   key:             js.UndefOr[String]                            = js.undefined,
-  ref:             js.UndefOr[MuiDropDownMenuM => Unit]          = js.undefined,
+  ref:             js.UndefOr[String]                            = js.undefined,
   /* If true, the popover will apply transitions when
   it gets added to the DOM.*/
   animated:        js.UndefOr[Boolean]                           = js.undefined,
+  /* Override the default animation component used.*/
+  animation:       js.UndefOr[js.Function]                       = js.undefined,
   /* The width will automatically be set according to the items inside the menu.
   To control this width in css instead, set this prop to `false`.*/
   autoWidth:       js.UndefOr[Boolean]                           = js.undefined,
@@ -32,6 +34,8 @@ case class MuiDropDownMenu[T](
   menuStyle:       js.UndefOr[CssProperties]                     = js.undefined,
   /* Callback function fired when a menu item is clicked, other than the one currently selected.*/
   onChange:        js.UndefOr[(ReactEventI, Int, T) => Callback] = js.undefined,
+  /* Callback function fired when the menu is closed.*/
+  onClose:         js.UndefOr[Callback]                          = js.undefined,
   /* Set to true to have the `DropDownMenu` automatically open on mount.*/
   openImmediately: js.UndefOr[Boolean]                           = js.undefined,
   /* Override the inline-styles of the root element.*/
@@ -56,12 +60,4 @@ item within the field.
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiDropDownMenuM extends js.Object {
-  def getInputNode(): js.Any = js.native
-
-  def setWidth(): js.Any = js.native
 }

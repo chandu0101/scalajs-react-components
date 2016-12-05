@@ -10,7 +10,7 @@ import scala.scalajs.js.`|`
 case class MuiSubheader(
   key:      js.UndefOr[String]        = js.undefined,
   ref:      js.UndefOr[String]        = js.undefined,
-  /* If true, the `Subheader` will be indented by `72px`.*/
+  /* If true, the `Subheader` will be indented.*/
   inset:    js.UndefOr[Boolean]       = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:    js.UndefOr[CssProperties] = js.undefined){

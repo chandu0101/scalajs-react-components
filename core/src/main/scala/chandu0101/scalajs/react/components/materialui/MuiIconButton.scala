@@ -9,7 +9,7 @@ import scala.scalajs.js.`|`
  */
 case class MuiIconButton(
   key:                  js.UndefOr[String]                          = js.undefined,
-  ref:                  js.UndefOr[MuiIconButtonM => Unit]          = js.undefined,
+  ref:                  js.UndefOr[String]                          = js.undefined,
   /* The CSS class name of the root element.*/
   className:            js.UndefOr[String]                          = js.undefined,
   /* If true, the element's ripple effect will be disabled.*/
@@ -57,9 +57,6 @@ case class MuiIconButton(
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
-  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
-  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
-  /* (Passed on to EnhancedButton)*/
   onClick:              js.UndefOr[ReactEventH => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onKeyDown:            js.UndefOr[ReactKeyboardEventH => Callback] = js.undefined,
@@ -96,14 +93,4 @@ case class MuiIconButton(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiIconButtonM extends js.Object {
-  def hideTooltip(): js.Any = js.native
-
-  def setKeyboardFocus(): js.Any = js.native
-
-  def showTooltip(): js.Any = js.native
 }

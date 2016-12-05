@@ -16,8 +16,12 @@ case class MuiCardHeader(
   If `avatar` is an `Avatar` or other element, it will be rendered.
   If `avatar` is a string, it will be used as the image `src` for an `Avatar`.*/
   avatar:               js.UndefOr[ReactNode]     = js.undefined,
+  /* Can be used to pass a closeIcon if you don't like the default expandable close Icon.*/
+  closeIcon:            js.UndefOr[ReactNode]     = js.undefined,
   /* If true, this card component is expandable.*/
   expandable:           js.UndefOr[Boolean]       = js.undefined,
+  /* Can be used to pass a openIcon if you don't like the default expandable open Icon.*/
+  openIcon:             js.UndefOr[ReactNode]     = js.undefined,
   /* If true, this card component will include a button to expand the card.*/
   showExpandableButton: js.UndefOr[Boolean]       = js.undefined,
   /* Override the inline-styles of the root element.*/

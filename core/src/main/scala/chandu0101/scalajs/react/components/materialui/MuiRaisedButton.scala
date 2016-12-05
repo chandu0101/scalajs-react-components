@@ -14,6 +14,8 @@ case class MuiRaisedButton(
   but not the default disabled background color
   (use `disabledBackgroundColor` for this).*/
   backgroundColor:         js.UndefOr[MuiColor]                        = js.undefined,
+  /* Override the inline-styles of the button element.*/
+  buttonStyle:             js.UndefOr[CssProperties]                   = js.undefined,
   /* The CSS class name of the root element.*/
   className:               js.UndefOr[String]                          = js.undefined,
   /* If true, the button will be disabled.*/
@@ -45,6 +47,8 @@ case class MuiRaisedButton(
   onMouseUp:               js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   onTouchEnd:              js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   onTouchStart:            js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
+  /* Override the inline style of the button overlay.*/
+  overlayStyle:            js.UndefOr[CssProperties]                   = js.undefined,
   /* If true, the button will use the theme's primary color.*/
   primary:                 js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline style of the ripple element.*/
@@ -71,9 +75,6 @@ case class MuiRaisedButton(
   focusRippleOpacity:      js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:         js.UndefOr[Boolean]                         = js.undefined,
-  /* (Passed on to EnhancedButton)*/
-  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
-  linkButton:              js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onBlur:                  js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/

@@ -9,7 +9,7 @@ import scala.scalajs.js.`|`
  */
 case class MuiRadioButton[T](
   key:                  js.UndefOr[String]                             = js.undefined,
-  ref:                  js.UndefOr[MuiRadioButtonM => Unit]            = js.undefined,
+  ref:                  js.UndefOr[String]                             = js.undefined,
   /* checked if true
   Used internally by `RadioButtonGroup`.*/
   checked:              js.UndefOr[Boolean]                            = js.undefined,
@@ -87,14 +87,4 @@ case class MuiRadioButton[T](
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.RadioButton)
     f(props).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiRadioButtonM extends js.Object {
-  def getValue(): js.Any = js.native
-
-  def isChecked(): js.Any = js.native
-
-  def setChecked(newCheckedValue: js.Any): js.Any = js.native
 }

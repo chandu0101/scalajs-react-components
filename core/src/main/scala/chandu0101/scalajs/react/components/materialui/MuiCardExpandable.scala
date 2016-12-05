@@ -10,8 +10,10 @@ import scala.scalajs.js.`|`
 case class MuiCardExpandable(
   key:         js.UndefOr[String]        = js.undefined,
   ref:         js.UndefOr[String]        = js.undefined,
+  closeIcon:   js.UndefOr[ReactNode]     = js.undefined,
   expanded:    js.UndefOr[Boolean]       = js.undefined,
   onExpanding: Callback,
+  openIcon:    js.UndefOr[ReactNode]     = js.undefined,
   style:       js.UndefOr[CssProperties] = js.undefined){
   def apply() = {
     val props = JSMacro[MuiCardExpandable](this)

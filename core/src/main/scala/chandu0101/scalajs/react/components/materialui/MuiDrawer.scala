@@ -9,7 +9,7 @@ import scala.scalajs.js.`|`
  */
 case class MuiDrawer(
   key:                js.UndefOr[String]                        = js.undefined,
-  ref:                js.UndefOr[MuiDrawerM => Unit]            = js.undefined,
+  ref:                js.UndefOr[String]                        = js.undefined,
   /* The CSS class name of the root element.*/
   className:          js.UndefOr[String]                        = js.undefined,
   /* The CSS class name of the container element.*/
@@ -58,28 +58,4 @@ case class MuiDrawer(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiDrawerM extends js.Object {
-  def close(reason: js.Any): js.Any = js.native
-
-  def disableSwipeHandling(): js.Any = js.native
-
-  def enableSwipeHandling(): js.Any = js.native
-
-  def getMaxTranslateX(): js.Any = js.native
-
-  def getStyles(): js.Any = js.native
-
-  def getTranslateMultiplier(): js.Any = js.native
-
-  def getTranslateX(currentX: js.Any): js.Any = js.native
-
-  def open(reason: js.Any): js.Any = js.native
-
-  def setPosition(translateX: js.Any): js.Any = js.native
-
-  def shouldShow(): js.Any = js.native
 }

@@ -8,9 +8,9 @@ import scala.scalajs.js.`|`
  * This file is generated - submit issues instead of PR against it
  */
 case class MuiMuiThemeProvider(
-  key:      js.UndefOr[String]                       = js.undefined,
-  ref:      js.UndefOr[MuiMuiThemeProviderM => Unit] = js.undefined,
-  muiTheme: js.UndefOr[MuiTheme]                     = js.undefined){
+  key:      js.UndefOr[String]       = js.undefined,
+  ref:      js.UndefOr[String]       = js.undefined,
+  muiTheme: js.UndefOr[MuiTheme]     = js.undefined){
   def apply(children: ReactElement*) = {
     val props = JSMacro[MuiMuiThemeProvider](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.MuiThemeProvider)
@@ -21,10 +21,4 @@ case class MuiMuiThemeProvider(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiMuiThemeProviderM extends js.Object {
-  def getChildContext(): js.Any = js.native
 }

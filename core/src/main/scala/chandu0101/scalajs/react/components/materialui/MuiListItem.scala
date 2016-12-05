@@ -9,7 +9,7 @@ import scala.scalajs.js.`|`
  */
 case class MuiListItem(
   key:                         js.UndefOr[String]                          = js.undefined,
-  ref:                         js.UndefOr[MuiListItemM => Unit]            = js.undefined,
+  ref:                         js.UndefOr[String]                          = js.undefined,
   /* If true, generate a nested-list-indicator icon when nested list
   items are detected. Note that an indicator will not be created
   if a `rightIcon` or `rightIconButton` has been provided to
@@ -22,6 +22,8 @@ case class MuiListItem(
   This is automatically disabled if either `leftCheckbox`
   or `rightToggle` is set.*/
   disabled:                    js.UndefOr[Boolean]                         = js.undefined,
+  /* Override the hover background color.*/
+  hoverColor:                  js.UndefOr[MuiColor]                        = js.undefined,
   /* If true, the nested `ListItem`s are initially displayed.*/
   initiallyOpen:               js.UndefOr[Boolean]                         = js.undefined,
   /* Override the inline-styles of the inner div element.*/
@@ -48,8 +50,11 @@ case class MuiListItem(
   onMouseLeave:                js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   /* Callbak function fired when the `ListItem` toggles its nested list.*/
   onNestedListToggle:          js.UndefOr[js.Any => Callback]              = js.undefined,
+  onTouchEnd:                  js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   onTouchStart:                js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   onTouchTap:                  js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
+  /* Control toggle state of nested list.*/
+  open:                        js.UndefOr[Boolean]                         = js.undefined,
   /* This is the block element that contains the primary text.
   If a string is passed in, a div tag will be rendered.*/
   primaryText:                 js.UndefOr[ReactNode]                       = js.undefined,
@@ -93,9 +98,6 @@ case class MuiListItem(
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:             js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
-  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
-  linkButton:                  js.UndefOr[Boolean]                         = js.undefined,
-  /* (Passed on to EnhancedButton)*/
   onBlur:                      js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onClick:                     js.UndefOr[ReactEventH => Callback]         = js.undefined,
@@ -109,8 +111,6 @@ case class MuiListItem(
   onMouseDown:                 js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onMouseUp:                   js.UndefOr[ReactMouseEventH => Callback]    = js.undefined,
-  /* (Passed on to EnhancedButton)*/
-  onTouchEnd:                  js.UndefOr[ReactTouchEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   tabIndex:                    js.UndefOr[Double]                          = js.undefined,
   /* (Passed on to EnhancedButton)*/
@@ -132,18 +132,4 @@ case class MuiListItem(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiListItemM extends js.Object {
-  def applyFocusState(focusState: js.Any): js.Any = js.native
-
-  def createDisabledElement(styles: js.Any, contentChildren: js.Any, additionalProps: js.Any): js.Any = js.native
-
-  def createLabelElement(styles: js.Any, contentChildren: js.Any, additionalProps: js.Any): js.Any = js.native
-
-  def createTextElement(styles: js.Any, data: js.Any, key: js.Any): js.Any = js.native
-
-  def pushElement(children: js.Any, element: js.Any, baseStyles: js.Any, additionalProps: js.Any): js.Any = js.native
 }

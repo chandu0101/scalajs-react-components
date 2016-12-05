@@ -9,7 +9,7 @@ import scala.scalajs.js.`|`
  */
 case class MuiToggle[T](
   key:                  js.UndefOr[String]                             = js.undefined,
-  ref:                  js.UndefOr[MuiToggleM => Unit]                 = js.undefined,
+  ref:                  js.UndefOr[String]                             = js.undefined,
   /* Determines whether the Toggle is initially turned on.
   **Warning:** This cannot be used in conjunction with `toggled`.
   Decide between using a controlled or uncontrolled input element and remove one of these props.
@@ -24,7 +24,7 @@ case class MuiToggle[T](
   /* Overrides the inline-styles of the input element.*/
   inputStyle:           js.UndefOr[CssProperties]                      = js.undefined,
   /* Label for toggle.*/
-  label:                js.UndefOr[String]                             = js.undefined,
+  label:                js.UndefOr[ReactNode]                          = js.undefined,
   /* Where the label will be placed next to the toggle.*/
   labelPosition:        js.UndefOr[LeftRight]                          = js.undefined,
   /* Overrides the inline-styles of the Toggle element label.*/
@@ -37,10 +37,14 @@ case class MuiToggle[T](
   style:                js.UndefOr[CssProperties]                      = js.undefined,
   /* Override style for thumb.*/
   thumbStyle:           js.UndefOr[CssProperties]                      = js.undefined,
+  /* Override the inline styles for thumb when the toggle switch is toggled on.*/
+  thumbSwitchedStyle:   js.UndefOr[CssProperties]                      = js.undefined,
   /* Toggled if set to true.*/
   toggled:              js.UndefOr[Boolean]                            = js.undefined,
   /* Override style for track.*/
   trackStyle:           js.UndefOr[CssProperties]                      = js.undefined,
+  /* Override the inline styles for track when the toggle switch is toggled on.*/
+  trackSwitchedStyle:   js.UndefOr[CssProperties]                      = js.undefined,
   /* ValueLink prop for when using controlled toggle.*/
   valueLink:            js.UndefOr[js.Any]                             = js.undefined,
   /* (Passed on to EnhancedSwitch)*/
@@ -89,12 +93,4 @@ case class MuiToggle[T](
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Toggle)
     f(props).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiToggleM extends js.Object {
-  def isToggled(): Boolean = js.native
-
-  def setToggled(newToggledValue: Boolean): Unit = js.native
 }

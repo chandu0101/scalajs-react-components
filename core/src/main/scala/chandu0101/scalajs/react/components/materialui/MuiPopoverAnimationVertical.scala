@@ -14,7 +14,7 @@ case class MuiPopoverAnimationVertical(
   open:         Boolean,
   /* Override the inline-styles of the root element.*/
   style:        js.UndefOr[CssProperties] = js.undefined,
-  targetOrigin: js.UndefOr[Origin]        = js.undefined,
+  targetOrigin: Origin,
   zDepth:       js.UndefOr[ZDepth]        = js.undefined){
   def apply(children: ReactNode*) = {
     val props = JSMacro[MuiPopoverAnimationVertical](this)

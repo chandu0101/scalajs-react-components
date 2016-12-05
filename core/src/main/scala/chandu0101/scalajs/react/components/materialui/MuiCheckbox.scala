@@ -9,7 +9,7 @@ import scala.scalajs.js.`|`
  */
 case class MuiCheckbox[T](
   key:                  js.UndefOr[String]                             = js.undefined,
-  ref:                  js.UndefOr[MuiCheckboxM => Unit]               = js.undefined,
+  ref:                  js.UndefOr[String]                             = js.undefined,
   /* Checkbox is checked if true.*/
   checked:              js.UndefOr[Boolean]                            = js.undefined,
   /* The SvgIcon to use for the checked state.
@@ -34,10 +34,6 @@ case class MuiCheckbox[T](
   onCheck:              js.UndefOr[(ReactEventH, Boolean) => Callback] = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                js.UndefOr[CssProperties]                      = js.undefined,
-  /* The SvgIcon to use for the unchecked state.
-  This is useful to create icon toggles.*/
-  @deprecated("Use uncheckedIcon instead. It will be removed with v0.16.0.")
-  unCheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
   /* The SvgIcon to use for the unchecked state.
   This is useful to create icon toggles.*/
   uncheckedIcon:        js.UndefOr[ReactElement]                       = js.undefined,
@@ -93,12 +89,4 @@ case class MuiCheckbox[T](
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Checkbox)
     f(props).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiCheckboxM extends js.Object {
-  def isChecked(): Boolean = js.native
-
-  def isChecked(newCheckedValue: Boolean): Unit = js.native
 }

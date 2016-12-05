@@ -9,12 +9,7 @@ import scala.scalajs.js.`|`
  */
 case class MuiMenu[T](
   key:                      js.UndefOr[String]                                                             = js.undefined,
-  ref:                      js.UndefOr[MuiMenuM => Unit]                                                   = js.undefined,
-  /* If true, the menu will apply transitions when it
-  is added to the DOM. In order for transitions to
-  work, wrap the menu inside a `ReactTransitionGroup`.*/
-  @deprecated("Instead, use a [Popover](/#/components/popover).\n      It will be removed with v0.16.0.")
-  animated:                 js.UndefOr[Boolean]                                                            = js.undefined,
+  ref:                      js.UndefOr[String]                                                             = js.undefined,
   /* If true, the width of the menu will be set automatically
   according to the widths of its children,
   using proper keyline increments (64px for desktop,
@@ -47,9 +42,6 @@ case class MuiMenu[T](
   /* Callback function fired when a menu item is touch-tapped.*/
   onItemTouchTap:           js.UndefOr[(ReactUIEventH, JsComponentM[HasValue[T], _, TopNode]) => Callback] = js.undefined,
   onKeyDown:                js.UndefOr[ReactKeyboardEventH => Callback]                                    = js.undefined,
-  /* This is the placement of the menu relative to the `IconButton`.*/
-  @deprecated("Instead, use a [Popover](/#/components/popover).\n      It will be removed with v0.16.0.")
-  openDirection:            js.UndefOr[Corners]                                                            = js.undefined,
   /* Override the inline-styles of selected menu items.*/
   selectedMenuItemStyle:    js.UndefOr[CssProperties]                                                      = js.undefined,
   /* Override the inline-styles of the root element.*/
@@ -64,22 +56,7 @@ case class MuiMenu[T](
   /* The width of the menu. If not specified, the menu's width
   will be set according to the widths of its children, using
   proper keyline increments (64px for desktop, 56px otherwise).*/
-  width:                    js.UndefOr[String | Double]                                                    = js.undefined,
-  /* Menu no longer supports `zDepth`. Instead, wrap it in `Paper`
-  or another component that provides zDepth.*/
-  zDepth:                   js.UndefOr[ZDepth]                                                             = js.undefined,
-  /* If true, the subheader will be indented by 72px.
-  (Passed on to List)*/
-  @deprecated("Refer to the `subheader` property. It will be removed with v0.16.0.")
-  insetSubheader:           js.UndefOr[Boolean]                                                            = js.undefined,
-  /* The subheader string that will be displayed at the top of the list.
-  (Passed on to List)*/
-  @deprecated("Instead, nest the `Subheader` component directly inside the `List`. It will be removed with v0.16.0.")
-  subheader:                js.UndefOr[ReactNode]                                                          = js.undefined,
-  /* Override the inline-styles of the subheader element.
-  (Passed on to List)*/
-  @deprecated("Refer to the `subheader` property. It will be removed with v0.16.0.")
-  subheaderStyle:           js.UndefOr[CssProperties]                                                      = js.undefined){
+  width:                    js.UndefOr[String | Double]                                                    = js.undefined){
   /**
    * @param children The content of the menu. This is usually used to pass `MenuItem`
 elements.
@@ -95,38 +72,4 @@ elements.
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiMenuM extends js.Object {
-  def animateOpen(): js.Any = js.native
-
-  def cloneMenuItem(child: js.Any, childIndex: js.Any, styles: js.Any, index: js.Any): js.Any = js.native
-
-  def decrementKeyboardFocusIndex(): js.Any = js.native
-
-  def getCascadeChildrenCount(filteredChildren: js.Any): js.Any = js.native
-
-  def getFilteredChildren(children: js.Any): js.Any = js.native
-
-  def getMenuItemCount(filteredChildren: js.Any): js.Any = js.native
-
-  def getSelectedIndex(props: js.Any, filteredChildren: js.Any): js.Any = js.native
-
-  def getValueLink(props: js.Any): js.Any = js.native
-
-  def incrementKeyboardFocusIndex(filteredChildren: js.Any): js.Any = js.native
-
-  def isChildSelected(child: js.Any, props: js.Any): js.Any = js.native
-
-  def setFocusIndex(newIndex: js.Any, isKeyboardFocused: js.Any): js.Any = js.native
-
-  def setFocusIndexStartsWith(keys: js.Any): js.Any = js.native
-
-  def setKeyboardFocused(keyboardFocused: js.Any): js.Any = js.native
-
-  def setScollPosition(): js.Any = js.native
-
-  def setWidth(): js.Any = js.native
 }

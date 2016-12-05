@@ -9,7 +9,7 @@ import scala.scalajs.js.`|`
  */
 case class MuiTable(
   key:             js.UndefOr[String]                                    = js.undefined,
-  ref:             js.UndefOr[MuiTableM => Unit]                         = js.undefined,
+  ref:             js.UndefOr[String]                                    = js.undefined,
   /* Set to true to indicate that all rows should be selected.*/
   allRowsSelected: js.UndefOr[Boolean]                                   = js.undefined,
   /* Override the inline-styles of the body's table element.*/
@@ -76,16 +76,4 @@ case class MuiTable(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiTableM extends js.Object {
-  def createTableBody(base: js.Any): js.Any = js.native
-
-  def createTableFooter(base: js.Any): js.Any = js.native
-
-  def createTableHeader(base: js.Any): js.Any = js.native
-
-  def isScrollbarVisible(): js.Any = js.native
 }

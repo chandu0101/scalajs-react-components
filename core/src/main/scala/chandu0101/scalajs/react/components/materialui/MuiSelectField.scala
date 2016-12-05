@@ -38,6 +38,8 @@ case class MuiSelectField[T](
   id:                     js.UndefOr[String]                            = js.undefined,
   /* Override the label style when the select field is inactive.*/
   labelStyle:             js.UndefOr[CssProperties]                     = js.undefined,
+  /* Override the inline-styles of the underlying `List` element.*/
+  listStyle:              js.UndefOr[CssProperties]                     = js.undefined,
   /* Override the default max-height of the underlying `DropDownMenu` element.*/
   maxHeight:              js.UndefOr[Int]                               = js.undefined,
   /* Override the inline-styles of the underlying `DropDownMenu` element.*/
@@ -47,9 +49,6 @@ case class MuiSelectField[T](
   that was selected.*/
   onChange:               js.UndefOr[(ReactEventI, Int, T) => Callback] = js.undefined,
   onFocus:                js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
-  /* Override the inline-styles of the underlying `DropDownMenu` element.*/
-  @deprecated("Instead, use `menuStyle`. It will be removed with v0.16.0.")
-  selectFieldRoot:        js.UndefOr[CssProperties]                     = js.undefined,
   /* Override the inline-styles of the root element.*/
   style:                  js.UndefOr[CssProperties]                     = js.undefined,
   /* Override the inline-styles of the underline element when the select
@@ -66,12 +65,15 @@ case class MuiSelectField[T](
   it gets added to the DOM.
   (Passed on to DropDownMenu)*/
   animated:               js.UndefOr[Boolean]                           = js.undefined,
+  /* Override the default animation component used.
+  (Passed on to DropDownMenu)*/
+  animation:              js.UndefOr[js.Function]                       = js.undefined,
   /* The css class name of the root element.
   (Passed on to DropDownMenu)*/
   className:              js.UndefOr[String]                            = js.undefined,
-  /* The style object to use to override underlying list style.
+  /* Callback function fired when the menu is closed.
   (Passed on to DropDownMenu)*/
-  listStyle:              js.UndefOr[CssProperties]                     = js.undefined,
+  onClose:                js.UndefOr[Callback]                          = js.undefined,
   /* Set to true to have the `DropDownMenu` automatically open on mount.
   (Passed on to DropDownMenu)*/
   openImmediately:        js.UndefOr[Boolean]                           = js.undefined){

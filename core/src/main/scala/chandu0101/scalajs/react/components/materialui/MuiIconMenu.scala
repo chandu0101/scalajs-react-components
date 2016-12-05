@@ -9,22 +9,26 @@ import scala.scalajs.js.`|`
  */
 case class MuiIconMenu[T](
   key:                      js.UndefOr[String]                                       = js.undefined,
-  ref:                      js.UndefOr[MuiIconMenuM => Unit]                         = js.undefined,
+  ref:                      js.UndefOr[String]                                       = js.undefined,
   /* This is the point on the icon where the menu
   `targetOrigin` will attach.
   Options:
-  vertical: [top, middle, bottom]
-  horizontal: [left, center, right].*/
+  vertical: [top, center, bottom]
+  horizontal: [left, middle, right].*/
   anchorOrigin:             js.UndefOr[Origin]                                       = js.undefined,
   /* If true, the popover will apply transitions when
   it gets added to the DOM.*/
   animated:                 js.UndefOr[Boolean]                                      = js.undefined,
+  /* Override the default animation component used.*/
+  animation:                js.UndefOr[js.Function]                                  = js.undefined,
   /* The CSS class name of the root element.*/
   className:                js.UndefOr[String]                                       = js.undefined,
   /* This is the `IconButton` to render. This button will open the menu.*/
   iconButtonElement:        ReactElement,
   /* Override the inline-styles of the underlying icon element.*/
   iconStyle:                js.UndefOr[CssProperties]                                = js.undefined,
+  /* Override the inline-styles of the underlying `List` element.*/
+  listStyle:                js.UndefOr[CssProperties]                                = js.undefined,
   /* Override the inline-styles of the menu element.*/
   menuStyle:                js.UndefOr[CssProperties]                                = js.undefined,
   /* If true, the value can an be array and allow the menu to be a multi-select.*/
@@ -50,8 +54,8 @@ case class MuiIconMenu[T](
   /* This is the point on the menu which will stick to the menu
   origin.
   Options:
-  vertical: [top, middle, bottom]
-  horizontal: [left, center, right].*/
+  vertical: [top, center, bottom]
+  horizontal: [left, middle, right].*/
   targetOrigin:             js.UndefOr[Origin]                                       = js.undefined,
   /* Sets the delay in milliseconds before closing the
   menu when an item is clicked.
@@ -76,9 +80,6 @@ case class MuiIconMenu[T](
   /* If true, the menu will be keyboard-focused initially.
   (Passed on to Menu)*/
   initiallyKeyboardFocused: js.UndefOr[Boolean]                                      = js.undefined,
-  /* Override the inline-styles of the underlying `List` element.
-  (Passed on to Menu)*/
-  listStyle:                js.UndefOr[CssProperties]                                = js.undefined,
   /* The maximum height of the menu in pixels. If specified,
   the menu will be scrollable if it is taller than the provided
   height.
@@ -98,10 +99,6 @@ case class MuiIconMenu[T](
   /* 
   (Passed on to Menu)*/
   onKeyDown:                js.UndefOr[ReactKeyboardEventH => Callback]              = js.undefined,
-  /* This is the placement of the menu relative to the `IconButton`.
-  (Passed on to Menu)*/
-  @deprecated("Instead, use a [Popover](/#/components/popover).\n      It will be removed with v0.16.0.")
-  openDirection:            js.UndefOr[Corners]                                      = js.undefined,
   /* Override the inline-styles of selected menu items.
   (Passed on to Menu)*/
   selectedMenuItemStyle:    js.UndefOr[CssProperties]                                = js.undefined,
@@ -118,11 +115,7 @@ case class MuiIconMenu[T](
   will be set according to the widths of its children, using
   proper keyline increments (64px for desktop, 56px otherwise).
   (Passed on to Menu)*/
-  width:                    js.UndefOr[String | Double]                              = js.undefined,
-  /* Menu no longer supports `zDepth`. Instead, wrap it in `Paper`
-  or another component that provides zDepth.
-  (Passed on to Menu)*/
-  zDepth:                   js.UndefOr[ZDepth]                                       = js.undefined){
+  width:                    js.UndefOr[String | Double]                              = js.undefined){
   /**
    * @param children Should be used to pass `MenuItem` components.
    */
@@ -137,14 +130,4 @@ case class MuiIconMenu[T](
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiIconMenuM extends js.Object {
-  def close(reason: js.Any, isKeyboard: js.Any): js.Any = js.native
-
-  def isOpen(): js.Any = js.native
-
-  def open(reason: js.Any, event: js.Any): js.Any = js.native
 }

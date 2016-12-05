@@ -17,9 +17,9 @@ object Build extends Build {
   def commonSettings: PE =
     _.enablePlugins(ScalaJSPlugin)
       .settings(
-	crossScalaVersions   := Seq(Scala211, Scala212),
+	      crossScalaVersions   := Seq(Scala211, Scala212),
         organization         := "com.github.chandu0101.scalajs-react-components",
-        version              := "0.5.0",
+        version              := "0.6.0-SNAPSHOT",
         homepage             := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses             += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion         := Scala212,
@@ -36,8 +36,8 @@ object Build extends Build {
     _.settings(
       scalacOptions += "-language:experimental.macros",
       libraryDependencies ++= Seq(
-        "org.scala-lang" % "scala-reflect" % Scala212,
-        "org.scala-lang" % "scala-compiler" % Scala212 % Provided))
+        "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+        "org.scala-lang" % "scala-compiler" % scalaVersion.value % Provided))
 
   def preventPublication: PE =
     _.settings(

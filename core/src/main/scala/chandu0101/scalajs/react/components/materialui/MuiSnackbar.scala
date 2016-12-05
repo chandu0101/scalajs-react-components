@@ -9,9 +9,9 @@ import scala.scalajs.js.`|`
  */
 case class MuiSnackbar(
   key:              js.UndefOr[String]                       = js.undefined,
-  ref:              js.UndefOr[MuiSnackbarM => Unit]         = js.undefined,
+  ref:              js.UndefOr[String]                       = js.undefined,
   /* The label for the action on the snackbar.*/
-  action:           js.UndefOr[String]                       = js.undefined,
+  action:           js.UndefOr[ReactNode]                    = js.undefined,
   /* The number of milliseconds to wait before automatically dismissing.
   If no value is specified the snackbar will dismiss normally.
   If a value is provided the snackbar can still be dismissed normally.
@@ -21,6 +21,8 @@ case class MuiSnackbar(
   bodyStyle:        js.UndefOr[CssProperties]                = js.undefined,
   /* The css class name of the root element.*/
   className:        js.UndefOr[String]                       = js.undefined,
+  /* Override the inline-styles of the content element.*/
+  contentStyle:     js.UndefOr[CssProperties]                = js.undefined,
   /* The message to be displayed.
   (Note: If the message is an element or array, and the `Snackbar` may re-render while it is still open,
   ensure that the same object remains as the `message` property if you want to avoid the `Snackbar` hiding and
@@ -44,12 +46,4 @@ case class MuiSnackbar(
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Snackbar)
     f(props).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiSnackbarM extends js.Object {
-  def setAutoHideTimer(): js.Any = js.native
-
-  def setTransitionTimer(): js.Any = js.native
 }

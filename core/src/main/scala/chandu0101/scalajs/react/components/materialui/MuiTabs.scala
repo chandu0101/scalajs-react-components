@@ -9,7 +9,7 @@ import scala.scalajs.js.`|`
  */
 case class MuiTabs[T](
   key:                       js.UndefOr[String]                                     = js.undefined,
-  ref:                       js.UndefOr[MuiTabsM => Unit]                           = js.undefined,
+  ref:                       js.UndefOr[String]                                     = js.undefined,
   /* The css class name of the root element.*/
   className:                 js.UndefOr[String]                                     = js.undefined,
   /* The css class name of the content's container.*/
@@ -31,6 +31,8 @@ case class MuiTabs[T](
   tabItemContainerStyle:     js.UndefOr[CssProperties]                              = js.undefined,
   /* Override the default tab template used to wrap the content of each tab element.*/
   tabTemplate:               js.UndefOr[js.Any]                                     = js.undefined,
+  /* Override the inline-styles of the tab template.*/
+  tabTemplateStyle:          js.UndefOr[CssProperties]                              = js.undefined,
   /* Makes Tabs controllable and selects the tab whose value prop matches this prop.*/
   value:                     js.UndefOr[T]                                          = js.undefined){
   /**
@@ -47,20 +49,4 @@ case class MuiTabs[T](
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiTabsM extends js.Object {
-  def getEvenWidth(): js.Any = js.native
-
-  def getSelected(tab: js.Any, index: js.Any): js.Any = js.native
-
-  def getSelectedIndex(props: js.Any): js.Any = js.native
-
-  def getTabCount(): js.Any = js.native
-
-  def getTabs(): js.Any = js.native
-
-  def getValueLink(props: js.Any): js.Any = js.native
 }

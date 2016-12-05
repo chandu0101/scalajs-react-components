@@ -8,8 +8,8 @@ import scala.scalajs.js.`|`
  * This file is generated - submit issues instead of PR against it
  */
 case class MuiTableHeader(
-  key:               js.UndefOr[String]                  = js.undefined,
-  ref:               js.UndefOr[MuiTableHeaderM => Unit] = js.undefined,
+  key:               js.UndefOr[String]              = js.undefined,
+  ref:               js.UndefOr[String]              = js.undefined,
   /* Controls whether or not header rows should be
   adjusted for a checkbox column. If the select all
   checkbox is true, this property will not influence
@@ -17,21 +17,21 @@ case class MuiTableHeader(
   "super header" rows so that the checkbox column
   does not create an offset that needs to be accounted
   for manually.*/
-  adjustForCheckbox: js.UndefOr[Boolean]                 = js.undefined,
+  adjustForCheckbox: js.UndefOr[Boolean]             = js.undefined,
   /* The css class name of the root element.*/
-  className:         js.UndefOr[String]                  = js.undefined,
+  className:         js.UndefOr[String]              = js.undefined,
   /* Controls whether or not the select all checkbox is displayed.*/
-  displaySelectAll:  js.UndefOr[Boolean]                 = js.undefined,
+  displaySelectAll:  js.UndefOr[Boolean]             = js.undefined,
   /* If set to true, the select all button will be interactable.
   If set to false, the button will not be interactable.
   To hide the checkbox, set displaySelectAll to false.*/
-  enableSelectAll:   js.UndefOr[Boolean]                 = js.undefined,
+  enableSelectAll:   js.UndefOr[Boolean]             = js.undefined,
   /* Callback when select all has been checked.*/
-  onSelectAll:       js.UndefOr[Boolean => Callback]     = js.undefined,
+  onSelectAll:       js.UndefOr[Boolean => Callback] = js.undefined,
   /* True when select all has been checked.*/
-  selectAllSelected: js.UndefOr[Boolean]                 = js.undefined,
+  selectAllSelected: js.UndefOr[Boolean]             = js.undefined,
   /* Override the inline-styles of the root element.*/
-  style:             js.UndefOr[CssProperties]           = js.undefined){
+  style:             js.UndefOr[CssProperties]       = js.undefined){
   /**
    * @param children Children passed to table header.
    */
@@ -45,18 +45,4 @@ case class MuiTableHeader(
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiTableHeaderM extends js.Object {
-  def createBaseHeaderRow(): js.Any = js.native
-
-  def createSuperHeaderRow(child: js.Any, props: js.Any): js.Any = js.native
-
-  def createSuperHeaderRows(): js.Any = js.native
-
-  def getCheckboxPlaceholder(props: js.Any): js.Any = js.native
-
-  def getSelectAllCheckboxColumn(props: js.Any): js.Any = js.native
 }

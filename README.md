@@ -15,7 +15,7 @@ Adding types to javascript is a lot of guesswork, and we're certain to have gott
 ### Wrappers for javascript components:
 These components require you to provide javascript yourself.
 
-- Material-ui 0.15.2
+- Material-ui 0.16.4
 - Elemental-ui 0.5.4
 - Google maps (downloads js directly from google)
 - React GeomIcon (react-geomicons: 2.0.4)
@@ -79,9 +79,9 @@ Sbt does not by itself understand these module systems, so unless you're prepare
 Add these dependencies to you sbt build file
 ```scala
 libraryDependencies ++= Seq(
-  "com.github.japgolly.scalajs-react" %%% "core" % "0.11.1",
-  "com.github.japgolly.scalajs-react" %%% "extra" % "0.11.1",
-  "com.github.chandu0101.scalajs-react-components" %%% "core" % "0.5.0"
+  "com.github.japgolly.scalajs-react" %%% "core" % "0.11.3",
+  "com.github.japgolly.scalajs-react" %%% "extra" % "0.11.3",
+  "com.github.chandu0101.scalajs-react-components" %%% "core" % "0.6.0"
 )
 ```
 
@@ -111,7 +111,7 @@ http://chandu0101.github.io/sjrc/
 sbt demo/fastOptJS
 cd demo
 //open a new terminal tab/window
-npm install
+yarn install
 npm start
 //open in browser
 http://localhost:8090/

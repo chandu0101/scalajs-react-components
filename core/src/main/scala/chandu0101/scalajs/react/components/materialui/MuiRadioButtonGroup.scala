@@ -9,13 +9,13 @@ import scala.scalajs.js.`|`
  */
 case class MuiRadioButtonGroup[T](
   key:             js.UndefOr[String]                             = js.undefined,
-  ref:             js.UndefOr[MuiRadioButtonGroupM => Unit]       = js.undefined,
+  ref:             js.UndefOr[String]                             = js.undefined,
   /* The CSS class name of the root element.*/
   className:       js.UndefOr[String]                             = js.undefined,
-  /* The `value` property (case-sensitive) of the radio button that will be
+  /* The `value` property of the radio button that will be
   selected by default. This takes precedence over the `checked` property
   of the `RadioButton` elements.*/
-  defaultSelected: js.UndefOr[String]                             = js.undefined,
+  defaultSelected: js.UndefOr[js.Any]                             = js.undefined,
   /* Where the label will be placed for all child radio buttons.
   This takes precedence over the `labelPosition` property of the
   `RadioButton` elements.*/
@@ -29,7 +29,7 @@ case class MuiRadioButtonGroup[T](
   /* Override the inline-styles of the root element.*/
   style:           js.UndefOr[CssProperties]                      = js.undefined,
   /* The `value` of the currently selected radio button.*/
-  valueSelected:   js.UndefOr[String]                             = js.undefined,
+  valueSelected:   js.UndefOr[js.Any]                             = js.undefined,
   /* checked if true
   Used internally by `RadioButtonGroup`.
   (Passed on to RadioButton)*/
@@ -75,18 +75,4 @@ case class MuiRadioButtonGroup[T](
     else
       f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiRadioButtonGroupM extends js.Object {
-  def clearValue(): Unit = js.native
-
-  def getSelectedValue(): String = js.native
-
-  def hasCheckAttribute(radioButton: js.Any): js.Any = js.native
-
-  def setSelectedValue(newSelectionValue: String): Unit = js.native
-
-  def updateRadioButtons(newSelection: js.Any): js.Any = js.native
 }

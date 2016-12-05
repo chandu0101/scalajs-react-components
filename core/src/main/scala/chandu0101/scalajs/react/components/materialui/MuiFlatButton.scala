@@ -58,9 +58,6 @@ case class MuiFlatButton(
   /* (Passed on to EnhancedButton)*/
   keyboardFocused:      js.UndefOr[Boolean]                         = js.undefined,
   /* (Passed on to EnhancedButton)*/
-  @deprecated("LinkButton is no longer required when the `href` property is provided.\n      It will be removed with v0.16.0.")
-  linkButton:           js.UndefOr[Boolean]                         = js.undefined,
-  /* (Passed on to EnhancedButton)*/
   onBlur:               js.UndefOr[ReactFocusEventH => Callback]    = js.undefined,
   /* (Passed on to EnhancedButton)*/
   onClick:              js.UndefOr[ReactEventH => Callback]         = js.undefined,

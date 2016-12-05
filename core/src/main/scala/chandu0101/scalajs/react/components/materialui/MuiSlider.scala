@@ -9,19 +9,21 @@ import scala.scalajs.js.`|`
  */
 case class MuiSlider(
   key:                js.UndefOr[String]                            = js.undefined,
-  ref:                js.UndefOr[MuiSliderM => Unit]                = js.undefined,
+  ref:                js.UndefOr[String]                            = js.undefined,
   /* The axis on which the slider will slide.*/
   axis:               js.UndefOr[XX_reverseYY_reverse]              = js.undefined,
   /* The default value of the slider.*/
   defaultValue:       js.UndefOr[Double]                            = js.undefined,
   /* Describe the slider.*/
-  description:        js.UndefOr[String]                            = js.undefined,
+  @deprecated("Use a sibling node element instead. It will be removed with v0.17.0.")
+  description:        js.UndefOr[ReactNode]                         = js.undefined,
   /* Disables focus ripple if set to true.*/
   disableFocusRipple: js.UndefOr[Boolean]                           = js.undefined,
   /* If true, the slider will not be interactable.*/
   disabled:           js.UndefOr[Boolean]                           = js.undefined,
   /* An error message for the slider.*/
-  error:              js.UndefOr[String]                            = js.undefined,
+  @deprecated("Use a sibling node element instead. It will be removed with v0.17.0.")
+  error:              js.UndefOr[ReactNode]                         = js.undefined,
   /* The maximum value the slider can slide to on
   a scale from 0 to 1 inclusive. Cannot be equal to min.*/
   max:                js.UndefOr[Double]                            = js.undefined,
@@ -36,7 +38,7 @@ case class MuiSlider(
   onChange:           js.UndefOr[(ReactEventH, Double) => Callback] = js.undefined,
   /* Callback function that is fired when the slider has begun to move.*/
   onDragStart:        js.UndefOr[ReactDragEventH => Callback]       = js.undefined,
-  /* Callback function that is fried when the slide has stopped moving.*/
+  /* Callback function that is fired when the slide has stopped moving.*/
   onDragStop:         js.UndefOr[ReactDragEventH => Callback]       = js.undefined,
   onFocus:            js.UndefOr[ReactFocusEventH => Callback]      = js.undefined,
   /* Whether or not the slider is required in a form.*/
@@ -54,34 +56,4 @@ case class MuiSlider(
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Slider)
     f(props).asInstanceOf[ReactComponentU_]
   }
-}
-
-
-@js.native
-class MuiSliderM extends js.Object {
-  def alignValue(`val`: js.Any): js.Any = js.native
-
-  def clearValue(): js.Any = js.native
-
-  def dragTo(event: js.Any, pos: js.Any): js.Any = js.native
-
-  def getPercent(): js.Any = js.native
-
-  def getTrackOffset(): js.Any = js.native
-
-  def getValue(): js.Any = js.native
-
-  def onDragStart(event: js.Any): js.Any = js.native
-
-  def onDragStop(event: js.Any): js.Any = js.native
-
-  def onDragUpdate(event: js.Any, pos: js.Any): js.Any = js.native
-
-  def percentToValue(percent: js.Any): js.Any = js.native
-
-  def setPercent(percent: js.Any, callback: js.Any): js.Any = js.native
-
-  def setValue(value: js.Any): js.Any = js.native
-
-  def updateWithChangeEvent(event: js.Any, percent: js.Any): js.Any = js.native
 }

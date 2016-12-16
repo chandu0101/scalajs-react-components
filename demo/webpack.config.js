@@ -9,6 +9,7 @@ module.exports = {
         index: './bundles/index.js',
         elemental_ui: './bundles/elemental-ui.js',
         material_ui: './bundles/material-ui.js',
+        semantic_ui: './bundles/semantic-ui.js',
         react_tags_input: './bundles/react-tags-input.js',
         react_select: './bundles/react-select.js',
         react_geom_icons: './bundles/react-geom-icons.js',

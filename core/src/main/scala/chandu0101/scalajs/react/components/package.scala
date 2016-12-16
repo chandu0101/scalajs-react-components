@@ -1,13 +1,30 @@
 package chandu0101.scalajs.react
 
 import japgolly.scalajs.react._
+import org.scalajs.dom.html
 
 import scala.reflect.ClassTag
 import scala.scalajs.js
 import scala.scalajs.js.`|`
+import scala.scalajs.js.annotation.JSName
 
 package object components {
   type CssProperties = js.Any
+
+
+  type ReactEventB = SyntheticEvent[html.Button]
+  type ReactClipboardEventB = SyntheticClipboardEvent[html.Button]
+  type ReactCompositionEventB = SyntheticCompositionEvent[html.Button]
+  type ReactDragEventB = SyntheticDragEvent[html.Button]
+  type ReactFocusEventB = SyntheticFocusEvent[html.Button]
+  type ReactMouseEventB = SyntheticMouseEvent[html.Button]
+
+  type ReactEventS = SyntheticEvent[html.Select]
+  type ReactClipboardEventS = SyntheticClipboardEvent[html.Select]
+  type ReactCompositionEventS = SyntheticCompositionEvent[html.Select]
+  type ReactDragEventS = SyntheticDragEvent[html.Select]
+  type ReactFocusEventS = SyntheticFocusEvent[html.Select]
+  type ReactMouseEventS = SyntheticMouseEvent[html.Select]
 
   /* this works here, but not in the general case!
    * (see https://github.com/scala-js/scala-js/pull/2070 )
@@ -35,4 +52,12 @@ package object components {
     @inline def asCbo(t1: T1, t2: T2, t3: T3): CallbackOption[R] =
       CallbackOption.liftOptionLike(uc).flatMap(_.apply(t1, t2, t3).toCBO)
   }
+
+  @js.native
+  @JSName("React")
+  object ReactJS extends js.Object {
+
+    def createElement(ctor: js.Any, props: js.Object, children: ReactNode*): ReactElement = js.native
+  }
+
 }

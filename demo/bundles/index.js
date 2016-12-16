@@ -13,6 +13,7 @@ window.reactListViewImage  = require("../images/reactListView.png");
 window.reactTreeViewImage  = require("../images/reactTreeView.png");
 window.elementaluiImage    = require("../images/elementalui.png");
 window.materialuiImage     = require("../images/mui.png");
+window.semanticuiImage     = require("../images/semanticui.png");
 window.reactTableImage     = require("../images/reactTable.png");
 window.bottomTearImage     = require("../images/bottom-tear.svg");
 window.reactTagsInputImage = require("../images/reactTagsInput.png");

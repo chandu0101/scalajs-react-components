@@ -15,7 +15,7 @@ sbt fullOptJS
 
 cd demo
 
-npm install
+yarn install
 
 npm run build
 

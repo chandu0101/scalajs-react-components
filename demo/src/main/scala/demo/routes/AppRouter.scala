@@ -18,6 +18,7 @@ object AppRouter {
   case class EuiPages(p: LeftRoute) extends Page
   case class GoogleMapPages(p: LeftRoute) extends Page
   case class MuiPages(p: LeftRoute) extends Page
+  case class SuiPages(p: LeftRoute) extends Page
   case class ReactDraggablePages(p: LeftRoute) extends Page
   case class ReactGeomIconPages(p: LeftRoute) extends Page
   case class ReactInfinitePages(p: LeftRoute) extends Page
@@ -85,6 +86,10 @@ object AppRouter {
       EuiRouteModule.routes.prefixPath_/("#elementalui")
         .pmap[Page](EuiPages) { case EuiPages(p) => p }
 
+    val suiRoutes: Rule =
+      SuiRouteModule.routes.prefixPath_/("#semanticui")
+        .pmap[Page](SuiPages) { case SuiPages(p) => p }
+
     val spinnerRoutes: Rule =
       SpinnerRouteModule.routes.prefixPath_/("#spinner")
         .pmap[Page](SpinnerPages) { case SpinnerPages(p) => p }
@@ -94,6 +99,7 @@ object AppRouter {
       | staticRoute(root, Home) ~> renderR(ctrl => HomePage(ctrl))
       | staticRoute("#scalacss", ScalaCSSDoc) ~> render(ScalaCSSTutorial())
       | euiRoutes
+      | suiRoutes
       | googleMapRoutes
       | muiRoutes
       | reactDraggableRoutes
@@ -131,7 +137,13 @@ object AppRouter {
       name = "Elemental UI",
       imagePath = g.elementaluiImage.toString,
       route = EuiPages(EuiRouteModule.Info),
-      tags = Stream("materialui", "material", "framework")
+      tags = Stream("elementalui", "elemental", "framework")
+    ),
+    HomePage.ComponentInfo(
+      name = "Semantic UI",
+      imagePath = g.semanticuiImage.toString,
+      route = SuiPages(SuiRouteModule.Info),
+      tags = Stream("semanticui", "semantic", "framework")
     ),
     HomePage.ComponentInfo(
       name = "React ListView",

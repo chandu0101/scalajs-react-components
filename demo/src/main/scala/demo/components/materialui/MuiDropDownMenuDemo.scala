@@ -27,7 +27,7 @@ object MuiDropDownMenuDemo {
     )
 
   case class Backend($: BackendScope[Unit, Item]){
-    val onChange: (ReactEventI, Int, Item) => Callback =
+    val onChange: (TouchTapEvent, Int, Item) => Callback =
       (e, idx, value) => $.setState(value) >> Callback.info(s"idx: $idx, value: $value")
 
     def render(chosen: Item) =

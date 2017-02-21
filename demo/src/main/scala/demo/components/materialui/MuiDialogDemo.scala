@@ -20,13 +20,13 @@ object MuiDialogDemo {
     val open = $.setState(State(true))
     val close = $.setState(State(false))
 
-    def handleDialogCancel: ReactEventH => Callback =
+    def handleDialogCancel: TouchTapEvent => Callback =
       e => close >> Callback.info("Cancel Clicked")
 
-    def handleDialogSubmit: ReactEventH => Callback =
+    def handleDialogSubmit: TouchTapEvent => Callback =
       e => close >> Callback.info("Submit Clicked")
 
-    val openDialog: ReactEventH => Callback =
+    val openDialog: TouchTapEvent => Callback =
       e => open >> Callback.info("Opened")
 
     def render(S: State) = {

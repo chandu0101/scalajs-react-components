@@ -22,7 +22,7 @@ object MuiSnackbarDemo {
     val closeRequested: String => Callback =
       reason => close >> Callback.info(s"onRequestClose: $reason")
 
-    val toggleSnack: ReactEventH => Callback =
+    val toggleSnack: TouchTapEvent => Callback =
       e => $.modState(!_)
 
     def render(isOpen: Boolean) = {

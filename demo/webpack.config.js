@@ -34,7 +34,6 @@ module.exports = {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader'
             },
-
             {
                 test: /\.(png|jpg|svg)$/,
                 loaders: [
@@ -43,6 +42,4 @@ module.exports = {
             } // inline base64 URLs for <=8k images, direct URLs for the rest
         ]
     }
-
-
 };

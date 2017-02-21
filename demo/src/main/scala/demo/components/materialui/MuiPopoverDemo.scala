@@ -67,7 +67,7 @@ object MuiPopoverDemo {
             <.div(
               ^.ref := ref,
               MuiRaisedButton(
-                onTouchTap = (e: ReactEvent) => toggle,
+                onTouchTap = (e: TouchTapEvent) => toggle,
                 label = "Click on me to show a popover"
               )()
             ),
@@ -79,7 +79,7 @@ object MuiPopoverDemo {
               anchorEl = ref($),
               anchorOrigin = S.anchor,
               targetOrigin = S.target,
-              onRequestClose = toggle
+              onRequestClose = (s: String) => toggle
             )(
               <.div(
                 ^.padding := "20px",
@@ -88,7 +88,7 @@ object MuiPopoverDemo {
                 MuiRaisedButton(
                   primary = true,
                   label = "here is a button",
-                  onTouchTap = (e: ReactEvent) => toggle
+                  onTouchTap = (e: TouchTapEvent) => toggle
                 )()
               )
             )

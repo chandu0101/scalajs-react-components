@@ -7,7 +7,7 @@ import sbt._
 object Build extends Build {
 
   val Scala211 = "2.11.8"
-  val Scala212 = "2.12.0"
+  val Scala212 = "2.12.1"
 
   val scalajsReactVersion = "0.11.3"
   val scalaCSSVersion = "0.5.1"
@@ -28,7 +28,7 @@ object Build extends Build {
                                   "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions        := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
-          "org.scala-js"   %% "scalajs-test-interface" % "0.6.13"
+          "org.scala-js"   %% "scalajs-test-interface" % "0.6.14"
         )
       )
 
@@ -85,7 +85,7 @@ object Build extends Build {
 
   def utestSettings: PE =
       _.settings(
-      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.4.4" % Test,
+      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.4.5" % Test,
       testFrameworks       += new TestFramework("utest.runner.Framework"),
       scalaJSStage in Test := FastOptStage,
       requiresDOM          := true,

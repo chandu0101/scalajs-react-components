@@ -22,7 +22,7 @@ object MuiTextFieldDemo {
             MuiTextField(
               hintText       = "Hint Text",
               onBlur         = CallbackDebug.f1("onBlur"),
-              onChange       = CallbackDebug.f1("onChange"),
+              onChange       = CallbackDebug.f2("onChange"),
               onFocus        = CallbackDebug.f1("onFocus"))(),
             MuiTextField(hintText = "Hint Text", floatingLabelText = "Floating Label Text")(),
             MuiTextField(hintText = "Multi Line Text", multiLine = true)(),

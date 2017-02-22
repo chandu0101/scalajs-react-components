@@ -11,16 +11,16 @@
     "build": "webpack --config webpack.config.prod.js"
   },
   "devDependencies": {
-    "compression-webpack-plugin": "^0.2.0",
-    "css-loader": "^0.23.0",
-    "file-loader": "^0.8.4",
-    "gulp-decompress": "^1.1.0",
-    "image-webpack-loader": "^1.6.1",
-    "imagemin": "^4.0.0",
+    "compression-webpack-plugin": "^0.3.2",
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.9.0",
+    "gulp-decompress": "^2.0.1",
+    "image-webpack-loader": "^3.0.0",
+    "imagemin": "^5.2.2",
     "less": "^2.3.1",
     "less-loader": "^2.2.2",
     "lodash": "^4.14.1",
-    "node-libs-browser": "^0.5.2",
+    "node-libs-browser": "^2.0.0",
     "react-hot-loader": "^1.2.7",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "elemental": "v0.5.14",
-    "highlight.js": "8.9.1",
+    "highlight.js": "^9.8.0",
     "material-ui": "v0.15.2",
     "react": "15.3.1",
     "react-addons-create-fragment": "15.3.1",
@@ -45,7 +45,7 @@
     "react-spinner": "^0.2.3",
     "react-tagsinput": "^3.0.3",
     "react-tap-event-plugin": "1.0.0",
-    "semantic-ui-react": "0.62.1",
+    "semantic-ui-react": "^0.65.0",
     "svg-loader": "0.0.2"
   }
 }

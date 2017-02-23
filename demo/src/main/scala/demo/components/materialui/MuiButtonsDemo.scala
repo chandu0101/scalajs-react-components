@@ -39,7 +39,7 @@ object MuiButtonsDemo {
                 MuiFlatButton(key = "flat1", label = "Default",
                   onBlur          = CallbackDebug.f1("onBlur"),
                   onFocus         = CallbackDebug.f1("onFocus"),
-                  onKeyboardFocus = CallbackDebug.f1("onKeyboardFocus"),
+                  onKeyboardFocus = CallbackDebug.f2("onKeyboardFocus"),
                   onKeyDown       = CallbackDebug.f1("onKeyDown"),
                   onKeyUp         = CallbackDebug.f1("onKeyUp"),
                   onTouchTap      = CallbackDebug.f1("onTouchTap"),

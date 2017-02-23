@@ -35,13 +35,13 @@ object MuiDrawerDemo {
     val toggleOpenCb: Callback =
       $.modState(s => s.copy(isOpen = !s.isOpen))
 
-    val toggleOpen: (ReactEventI, Boolean) => Callback =
+    val toggleOpen: (ReactMouseEvent, Boolean) => Callback =
       (e, b) => toggleOpenCb
 
-    val toggleDocked: (ReactEventI, Boolean) => Callback =
+    val toggleDocked: (ReactMouseEvent, Boolean) => Callback =
       (e, b) => $.modState(s => s.copy(isDocked = !s.isDocked))
 
-    val toggleRight: (ReactEventI, Boolean) => Callback =
+    val toggleRight: (ReactMouseEvent, Boolean) => Callback =
       (e, b) => $.modState(s => s.copy(isRight = !s.isRight))
 
     val onRequestChange: (Boolean, String) => Callback =
@@ -49,7 +49,7 @@ object MuiDrawerDemo {
         Callback.info(s"onRequestChange: open: $open, reason: $reason") >>
         toggleOpenCb
 
-    val selectItem: String => ReactTouchEventH => Callback =
+    val selectItem: String => TouchTapEvent => Callback =
       id => e => $.modState(s => s.copy(selected = id))
 
     def render(S: State) = {
@@ -75,7 +75,7 @@ object MuiDrawerDemo {
                 MuiMenuItem(
                   key         = c.id,
                   primaryText = c.text,
-                  checked     = S.selected == c.id,
+                  checked     = S.selected == js.defined(c.id),
                   onTouchTap  = selectItem(c.id)
                 )()
               )

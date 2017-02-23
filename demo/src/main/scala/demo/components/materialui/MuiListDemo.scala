@@ -23,7 +23,7 @@ object MuiListDemo {
               MuiListItem(
                 key                = "item1",
                 leftIcon           = ContentInbox()(),
-                onKeyboardFocus    = CallbackDebug.f1("onKeyboardFocus"),
+                onKeyboardFocus    = CallbackDebug.f2("onKeyboardFocus"),
                 onMouseLeave       = CallbackDebug.f1("onMouseLeave"),
                 onMouseEnter       = CallbackDebug.f1("onMouseEnter"),
                 onNestedListToggle = CallbackDebug.f1("onNestedListToggle"),

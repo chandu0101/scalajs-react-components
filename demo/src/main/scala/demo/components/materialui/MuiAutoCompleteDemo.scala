@@ -17,11 +17,11 @@ object MuiAutoCompleteDemo {
   val fruit  = js.Array("Apple", "Apricot", "Avocado", "Banana", "Bilberry", "Blackberry", "Blackcurrant", "Blueberry", "Boysenberry", "Blood Orange", "Cantaloupe", "Currant", "Cherry", "Cherimoya", "Cloudberry", "Coconut", "Cranberry", "Clementine", "Damson", "Date", "Dragonfruit", "Durian", "Elderberry", "Feijoa", "Fig", "Goji berry", "Gooseberry", "Grape", "Grapefruit", "Guava", "Honeydew", "Huckleberry", "Jabouticaba", "Jackfruit", "Jambul", "Jujube", "Juniper berry", "Kiwi fruit", "Kumquat", "Lemon", "Lime", "Loquat", "Lychee", "Nectarine", "Mango", "Marion berry", "Melon", "Miracle fruit", "Mulberry", "Mandarine", "Olive", "Orange", "Papaya", "Passionfruit", "Peach", "Pear", "Persimmon", "Physalis", "Plum", "Pineapple", "Pumpkin", "Pomegranate", "Pomelo", "Purple Mangosteen", "Quince", "Raspberry", "Raisin", "Rambutan", "Redcurrant", "Salal berry", "Satsuma", "Star fruit", "Strawberry", "Squash", "Salmonberry", "Tamarillo", "Tamarind", "Tomato", "Tangerine", "Ugli fruit", "Watermelon")
   val colors = js.Array("Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black", "White")
 
-  val onNewRequest: (Value, js.UndefOr[Int], js.Array[String]) => Callback =
-    (chosen, idx, ds) => Callback.info(s"onNewRequest: chosen: $chosen, idx: $idx")
+  val onNewRequest: (String, Int) => Callback =
+    (chosen, idx) => Callback.info(s"onNewRequest: chosen: $chosen, idx: $idx")
 
-  val onUpdateInput: (SearchText, js.Array[Value]) => Callback =
-    (search, ds) => Callback.info(s"onUpdateInput: search $search")
+  val onUpdateInput: (String, js.Array[String], js.Object) => Callback =
+    (search, ds, params) => Callback.info(s"onUpdateInput: search $search")
 
   val component = ReactComponentB[Unit]("MuiAutoCompleteDemo")
     .render(P =>
@@ -29,7 +29,7 @@ object MuiAutoCompleteDemo {
         <.div(
           MuiAutoComplete(
             floatingLabelText = "Type t, fuzzy search",
-            filter            = MuiAutoCompleteFilters.fuzzyFilter,
+            filter            = js.defined(MuiAutoCompleteFilters.fuzzyFilter),
             dataSource        = fruit,
             anchorOrigin      = Origin(Vertical.bottom, Horizontal.middle),
             onNewRequest      = onNewRequest,
@@ -39,7 +39,7 @@ object MuiAutoCompleteDemo {
         <.div(
           MuiAutoComplete(
             floatingLabelText = "Type r, case insensitive",
-            filter            = MuiAutoCompleteFilters.caseInsensitiveFilter,
+            filter            = js.defined(MuiAutoCompleteFilters.caseInsensitiveFilter),
             dataSource        = colors,
             onNewRequest      = onNewRequest,
             onUpdateInput     = onUpdateInput

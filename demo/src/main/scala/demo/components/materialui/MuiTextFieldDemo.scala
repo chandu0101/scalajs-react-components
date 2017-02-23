@@ -22,9 +22,8 @@ object MuiTextFieldDemo {
             MuiTextField(
               hintText       = "Hint Text",
               onBlur         = CallbackDebug.f1("onBlur"),
-              onChange       = CallbackDebug.f1("onChange"),
-              onFocus        = CallbackDebug.f1("onFocus"),
-              onKeyDown      = CallbackDebug.f1("onKeyDown"))(),
+              onChange       = CallbackDebug.f2("onChange"),
+              onFocus        = CallbackDebug.f1("onFocus"))(),
             MuiTextField(hintText = "Hint Text", floatingLabelText = "Floating Label Text")(),
             MuiTextField(hintText = "Multi Line Text", multiLine = true)(),
             MuiTextField(hintText = "Multi Line Text", multiLine = true, floatingLabelText = "Multi Line Floating Label Text")(),

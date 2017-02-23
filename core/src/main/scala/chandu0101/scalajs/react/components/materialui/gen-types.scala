@@ -3,6 +3,7 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 

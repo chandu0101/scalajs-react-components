@@ -15,7 +15,7 @@ object MuiSelectFieldDemo {
   case class Choice(id: ChoiceId, text: String)
 
   case class Backend($: BackendScope[Seq[Choice], Choice]) {
-    val onChange: (ReactEventI, Int, Choice) => Callback =
+    val onChange: (TouchTapEvent, Int, Choice) => Callback =
       (e, idx, a) => $.setState(a) >> Callback.info(s"selected $a")
 
     def render(choices: Seq[Choice], selected: Choice): ReactElement =

@@ -7,7 +7,7 @@ import sbt._
 object Build extends Build {
 
   val Scala211 = "2.11.8"
-  val Scala212 = "2.12.0"
+  val Scala212 = "2.12.1"
 
   val scalajsReactVersion = "0.11.3"
   val scalaCSSVersion = "0.5.1"
@@ -17,9 +17,9 @@ object Build extends Build {
   def commonSettings: PE =
     _.enablePlugins(ScalaJSPlugin)
       .settings(
-	crossScalaVersions   := Seq(Scala211, Scala212),
+	      crossScalaVersions   := Seq(Scala211, Scala212),
         organization         := "com.github.chandu0101.scalajs-react-components",
-        version              := "0.5.0",
+        version              := "0.6.0-SNAPSHOT",
         homepage             := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses             += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion         := Scala212,
@@ -28,7 +28,7 @@ object Build extends Build {
                                   "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions        := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
-          "org.scala-js"   %% "scalajs-test-interface" % "0.6.13"
+          "org.scala-js"   %% "scalajs-test-interface" % "0.6.14"
         )
       )
 
@@ -36,8 +36,8 @@ object Build extends Build {
     _.settings(
       scalacOptions += "-language:experimental.macros",
       libraryDependencies ++= Seq(
-        "org.scala-lang" % "scala-reflect" % Scala212,
-        "org.scala-lang" % "scala-compiler" % Scala212 % Provided))
+        "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+        "org.scala-lang" % "scala-compiler" % scalaVersion.value % Provided))
 
   def preventPublication: PE =
     _.settings(
@@ -85,7 +85,7 @@ object Build extends Build {
 
   def utestSettings: PE =
       _.settings(
-      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.4.4" % Test,
+      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.4.5" % Test,
       testFrameworks       += new TestFramework("utest.runner.Framework"),
       scalaJSStage in Test := FastOptStage,
       requiresDOM          := true,

@@ -11,60 +11,50 @@ import scala.scalajs.js.`|`
  * This file is generated - submit issues instead of PR against it
  */
     
-case class MuiToggle[T](
+case class MuiCheckbox[T](
   key:                  js.UndefOr[String]                                 = js.undefined,
-  ref:                  js.UndefOr[MuiToggleM => Unit]                     = js.undefined,
-  /* Determines whether the Toggle is initially turned on.
-     **Warning:** This cannot be used in conjunction with `toggled`.
+  ref:                  js.UndefOr[MuiCheckboxM => Unit]                   = js.undefined,
+  /* Checkbox is checked if true. */
+  checked:              js.UndefOr[Boolean]                                = js.undefined,
+  /* The SvgIcon to use for the checked state.
+     This is useful to create icon toggles. */
+  checkedIcon:          js.UndefOr[ReactElement]                           = js.undefined,
+  /* The default state of our checkbox component.
+     **Warning:** This cannot be used in conjunction with `checked`.
      Decide between using a controlled or uncontrolled input element and remove one of these props.
      More info: https://fb.me/react-controlled-components */
-  defaultToggled:       js.UndefOr[Boolean]                                = js.undefined,
-  /* Will disable the toggle if true. */
+  defaultChecked:       js.UndefOr[Boolean]                                = js.undefined,
+  /* Disabled if true. */
   disabled:             js.UndefOr[Boolean]                                = js.undefined,
-  /* Overrides the inline-styles of the Toggle element. */
-  elementStyle:         js.UndefOr[CssProperties]                          = js.undefined,
-  /* Overrides the inline-styles of the Icon element. */
+  /* Overrides the inline-styles of the icon element. */
   iconStyle:            js.UndefOr[CssProperties]                          = js.undefined,
   /* Overrides the inline-styles of the input element. */
   inputStyle:           js.UndefOr[CssProperties]                          = js.undefined,
-  /* Label for toggle. */
-  label:                js.UndefOr[ReactNode]                              = js.undefined,
-  /* Where the label will be placed next to the toggle. */
+  /* Where the label will be placed next to the checkbox. */
   labelPosition:        js.UndefOr[LeftRight]                              = js.undefined,
-  /* Overrides the inline-styles of the Toggle element label. */
+  /* Overrides the inline-styles of the Checkbox element label. */
   labelStyle:           js.UndefOr[CssProperties]                          = js.undefined,
-  /* Callback function that is fired when the toggle switch is toggled.
-     @param {object} event Change event targeting the toggle.
-     @param {bool} isInputChecked The new value of the toggle. */
-  onToggle:             js.UndefOr[(ReactMouseEvent, Boolean) => Callback] = js.undefined,
-  /* Override style of ripple. */
-  rippleStyle:          js.UndefOr[CssProperties]                          = js.undefined,
+  /* Callback function that is fired when the checkbox is checked.
+     @param {object} event `change` event targeting the underlying checkbox `input`.
+     @param {boolean} isInputChecked The `checked` value of the underlying checkbox `input`. */
+  onCheck:              js.UndefOr[(ReactMouseEvent, Boolean) => Callback] = js.undefined,
   /* Override the inline-styles of the root element. */
   style:                js.UndefOr[CssProperties]                          = js.undefined,
-  /* Override style for thumb. */
-  thumbStyle:           js.UndefOr[CssProperties]                          = js.undefined,
-  /* Override the inline styles for thumb when the toggle switch is toggled on. */
-  thumbSwitchedStyle:   js.UndefOr[CssProperties]                          = js.undefined,
-  /* Toggled if set to true. */
-  toggled:              js.UndefOr[Boolean]                                = js.undefined,
-  /* Override style for track. */
-  trackStyle:           js.UndefOr[CssProperties]                          = js.undefined,
-  /* Override the inline styles for track when the toggle switch is toggled on. */
-  trackSwitchedStyle:   js.UndefOr[CssProperties]                          = js.undefined,
-  /* ValueLink prop for when using controlled toggle. */
+  /* The SvgIcon to use for the unchecked state.
+     This is useful to create icon toggles. */
+  uncheckedIcon:        js.UndefOr[ReactElement]                           = js.undefined,
+  /* ValueLink for when using controlled checkbox. */
   valueLink:            js.UndefOr[js.Any]                                 = js.undefined,
   /* (Passed on to EnhancedSwitch) */
-  checked:              js.UndefOr[Boolean]                                = js.undefined,
-  /* (Passed on to EnhancedSwitch) */
   className:            js.UndefOr[String]                                 = js.undefined,
-  /* (Passed on to EnhancedSwitch) */
-  defaultChecked:       js.UndefOr[Boolean]                                = js.undefined,
   /* (Passed on to EnhancedSwitch) */
   disableFocusRipple:   js.UndefOr[Boolean]                                = js.undefined,
   /* (Passed on to EnhancedSwitch) */
   disableTouchRipple:   js.UndefOr[Boolean]                                = js.undefined,
   /* (Passed on to EnhancedSwitch) */
   inputType:            js.UndefOr[String]                                 = js.undefined,
+  /* (Passed on to EnhancedSwitch) */
+  label:                js.UndefOr[ReactNode]                              = js.undefined,
   /* (Passed on to EnhancedSwitch) */
   name:                 js.UndefOr[String]                                 = js.undefined,
   /* (Passed on to EnhancedSwitch) */
@@ -88,16 +78,22 @@ case class MuiToggle[T](
   /* (Passed on to EnhancedSwitch) */
   rippleColor:          js.UndefOr[MuiColor]                               = js.undefined,
   /* (Passed on to EnhancedSwitch) */
+  rippleStyle:          js.UndefOr[CssProperties]                          = js.undefined,
+  /* (Passed on to EnhancedSwitch) */
   switchElement:        js.UndefOr[ReactElement]                           = js.undefined,
   /* (Passed on to EnhancedSwitch) */
   switched:             js.UndefOr[Boolean]                                = js.undefined,
+  /* (Passed on to EnhancedSwitch) */
+  thumbStyle:           js.UndefOr[CssProperties]                          = js.undefined,
+  /* (Passed on to EnhancedSwitch) */
+  trackStyle:           js.UndefOr[CssProperties]                          = js.undefined,
   /* (Passed on to EnhancedSwitch) */
   value:                js.UndefOr[T]                                      = js.undefined){
 
   def apply() = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
-    val props = JSMacro[MuiToggle[T]](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Toggle)
+    val props = JSMacro[MuiCheckbox[T]](this)
+    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Checkbox)
     f(props).asInstanceOf[ReactComponentU_]
   }
 }
@@ -105,8 +101,8 @@ case class MuiToggle[T](
 
 
 @js.native
-class MuiToggleM extends js.Object {
-  def isToggled(): Boolean = js.native
+class MuiCheckboxM extends js.Object {
+  def isChecked(): Boolean = js.native
 
-  def setToggled(newToggledValue: Boolean): Unit = js.native
+  def isChecked(newCheckedValue: Boolean): Unit = js.native
 }

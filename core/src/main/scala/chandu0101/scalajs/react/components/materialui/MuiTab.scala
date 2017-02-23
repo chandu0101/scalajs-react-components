@@ -81,9 +81,7 @@ case class MuiTab[T](
   /* (Passed on to EnhancedButton) */
   `type`:               js.UndefOr[String]                                 = js.undefined){
 
-  /**
-    * @param children Should be used to pass `Tab` components.
-   */
+
   def apply(children: ReactNode*) = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props = JSMacro[MuiTab[T]](this)

@@ -14,9 +14,6 @@ import scala.scalajs.js.`|`
 case class MuiMenuItem[T](
   key:                         js.UndefOr[String]                                 = js.undefined,
   ref:                         js.UndefOr[MuiMenuItemM => Unit]                   = js.undefined,
-  /* Location of the anchor for the popover of nested `MenuItem`
-     elements. */
-  anchorOrigin:                js.UndefOr[Origin]                                 = js.undefined,
   /* Override the default animation component used. */
   animation:                   js.UndefOr[js.Function]                            = js.undefined,
   /* If true, a left check mark will be rendered. */

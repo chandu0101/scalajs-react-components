@@ -51,9 +51,6 @@ case class MuiRaisedButton(
   onMouseUp:               js.UndefOr[ReactMouseEvent => Callback]            = js.undefined,
   onTouchEnd:              js.UndefOr[ReactTouchEvent => Callback]            = js.undefined,
   onTouchStart:            js.UndefOr[ReactTouchEvent => Callback]            = js.undefined,
-  /* Callback function fired when the button is touch-tapped.
-     @param {object} event TouchTap event targeting the button. */
-  onTouchTap:              js.UndefOr[TouchTapEvent => Callback]              = js.undefined,
   /* Override the inline style of the button overlay. */
   overlayStyle:            js.UndefOr[CssProperties]                          = js.undefined,
   /* If true, the button will use the theme's primary color. */
@@ -94,6 +91,8 @@ case class MuiRaisedButton(
   onKeyUp:                 js.UndefOr[ReactKeyboardEvent => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton) */
   onKeyboardFocus:         js.UndefOr[(ReactFocusEvent, Boolean) => Callback] = js.undefined,
+  /* (Passed on to EnhancedButton) */
+  onTouchTap:              js.UndefOr[TouchTapEvent => Callback]              = js.undefined,
   /* (Passed on to EnhancedButton) */
   tabIndex:                js.UndefOr[Double]                                 = js.undefined,
   /* (Passed on to EnhancedButton) */

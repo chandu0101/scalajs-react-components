@@ -39,9 +39,6 @@ case class MuiIconButton(
   onMouseLeave:         js.UndefOr[ReactMouseEvent => Callback]            = js.undefined,
   onMouseOut:           js.UndefOr[ReactMouseEvent => Callback]            = js.undefined,
   onTouchStart:         js.UndefOr[ReactTouchEvent => Callback]            = js.undefined,
-  /* Callback function fired when the button is touch-tapped.
-     @param {object} event TouchTap event targeting the button. */
-  onTouchTap:           js.UndefOr[TouchTapEvent => Callback]              = js.undefined,
   /* Override the inline-styles of the root element. */
   style:                js.UndefOr[CssProperties]                          = js.undefined,
   /* The text to supply to the element's tooltip. */
@@ -75,6 +72,8 @@ case class MuiIconButton(
   onKeyDown:            js.UndefOr[ReactKeyboardEvent => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton) */
   onKeyUp:              js.UndefOr[ReactKeyboardEvent => Callback]         = js.undefined,
+  /* (Passed on to EnhancedButton) */
+  onTouchTap:           js.UndefOr[TouchTapEvent => Callback]              = js.undefined,
   /* (Passed on to EnhancedButton) */
   tabIndex:             js.UndefOr[Double]                                 = js.undefined,
   /* (Passed on to EnhancedButton) */

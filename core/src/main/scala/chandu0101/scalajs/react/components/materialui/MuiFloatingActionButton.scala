@@ -42,9 +42,6 @@ case class MuiFloatingActionButton(
   onMouseUp:            js.UndefOr[ReactMouseEvent => Callback]            = js.undefined,
   onTouchEnd:           js.UndefOr[ReactTouchEvent => Callback]            = js.undefined,
   onTouchStart:         js.UndefOr[ReactTouchEvent => Callback]            = js.undefined,
-  /* Callback function fired when the button is touch-tapped.
-     @param {object} event TouchTap event targeting the button. */
-  onTouchTap:           js.UndefOr[TouchTapEvent => Callback]              = js.undefined,
   /* If true, the button will use the secondary button colors. */
   secondary:            js.UndefOr[Boolean]                                = js.undefined,
   /* Override the inline-styles of the root element. */
@@ -79,6 +76,8 @@ case class MuiFloatingActionButton(
   onKeyUp:              js.UndefOr[ReactKeyboardEvent => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton) */
   onKeyboardFocus:      js.UndefOr[(ReactFocusEvent, Boolean) => Callback] = js.undefined,
+  /* (Passed on to EnhancedButton) */
+  onTouchTap:           js.UndefOr[TouchTapEvent => Callback]              = js.undefined,
   /* (Passed on to EnhancedButton) */
   tabIndex:             js.UndefOr[Double]                                 = js.undefined,
   /* (Passed on to EnhancedButton) */

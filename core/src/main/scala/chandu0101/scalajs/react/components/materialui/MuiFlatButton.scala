@@ -16,12 +16,8 @@ case class MuiFlatButton(
   ref:                  js.UndefOr[String]                                 = js.undefined,
   /* Color of button when mouse is not hovering over it. */
   backgroundColor:      js.UndefOr[MuiColor]                               = js.undefined,
-  /* The CSS class name of the root element. */
-  className:            js.UndefOr[String]                                 = js.undefined,
   /* Disables the button if set to true. */
   disabled:             js.UndefOr[Boolean]                                = js.undefined,
-  /* If true, the button will take up the full width of its container. */
-  fullWidth:            js.UndefOr[Boolean]                                = js.undefined,
   /* Color of button when mouse hovers over. */
   hoverColor:           js.UndefOr[MuiColor]                               = js.undefined,
   /* The URL to link to when the button is clicked. */
@@ -41,9 +37,6 @@ case class MuiFlatButton(
   onMouseEnter:         js.UndefOr[ReactMouseEvent => Callback]            = js.undefined,
   onMouseLeave:         js.UndefOr[ReactMouseEvent => Callback]            = js.undefined,
   onTouchStart:         js.UndefOr[ReactTouchEvent => Callback]            = js.undefined,
-  /* Callback function fired when the button is touch-tapped.
-     @param {object} event TouchTap event targeting the button. */
-  onTouchTap:           js.UndefOr[TouchTapEvent => Callback]              = js.undefined,
   /* If true, colors button according to
      primaryTextColor from the Theme. */
   primary:              js.UndefOr[Boolean]                                = js.undefined,
@@ -80,6 +73,8 @@ case class MuiFlatButton(
   onKeyDown:            js.UndefOr[ReactKeyboardEvent => Callback]         = js.undefined,
   /* (Passed on to EnhancedButton) */
   onKeyUp:              js.UndefOr[ReactKeyboardEvent => Callback]         = js.undefined,
+  /* (Passed on to EnhancedButton) */
+  onTouchTap:           js.UndefOr[TouchTapEvent => Callback]              = js.undefined,
   /* (Passed on to EnhancedButton) */
   tabIndex:             js.UndefOr[Double]                                 = js.undefined,
   /* (Passed on to EnhancedButton) */

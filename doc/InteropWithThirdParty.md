@@ -71,7 +71,7 @@ If you want to use a reactjs component in your scalajs-react project then you mu
 
   val component = ReactComponentB.static("Demo",
      <.div(
-      AwesomeJSCmpWrapper(numberOfLines = 3,testID = "id")
+      AwesomeJSCmpWrapper(numberOfLines = 3,testID = "id")()
      )
    ).build
 

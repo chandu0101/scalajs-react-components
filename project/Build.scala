@@ -17,15 +17,15 @@ object Build extends Build {
   def commonSettings: PE =
     _.enablePlugins(ScalaJSPlugin)
       .settings(
-	      crossScalaVersions   := Seq(Scala211, Scala212),
-        organization         := "com.github.chandu0101.scalajs-react-components",
-        version              := "0.6.0-SNAPSHOT",
+        crossScalaVersions   := Seq(Scala211, Scala212),
+        organization         := "com.olvind",
+        version              := "0.6.0",
         homepage             := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses             += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion         := Scala212,
         scalacOptions       ++= Seq("-deprecation", "-unchecked", "-feature",
-                                  "-language:postfixOps", "-language:implicitConversions",
-                                  "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
+          "-language:postfixOps", "-language:implicitConversions",
+          "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions        := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
           "org.scala-js"   %% "scalajs-test-interface" % "0.6.14"
@@ -62,17 +62,17 @@ object Build extends Build {
           <developerConnection>scm:git:git@github.com:chandu0101/scalajs-react-components.git</developerConnection>
           <url>github.com:chandu0101/scalajs-react-components.git</url>
         </scm>
-        <developers>
-          <developer>
-            <id>chandu0101</id>
-            <name>Chandra Sekhar Kode</name>
-          </developer>
-          <developer>
-            <id>elacin</id>
-            <name>Øyvind Raddum Berg</name>
-          </developer>
-        </developers>)
-    .configure(sourceMapsToGithub)
+          <developers>
+            <developer>
+              <id>chandu0101</id>
+              <name>Chandra Sekhar Kode</name>
+            </developer>
+            <developer>
+              <id>elacin</id>
+              <name>Øyvind Raddum Berg</name>
+            </developer>
+          </developers>)
+      .configure(sourceMapsToGithub)
 
   def sourceMapsToGithub: PE =
     p => p.settings(
@@ -84,7 +84,7 @@ object Build extends Build {
     )
 
   def utestSettings: PE =
-      _.settings(
+    _.settings(
       libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.4.5" % Test,
       testFrameworks       += new TestFramework("utest.runner.Framework"),
       scalaJSStage in Test := FastOptStage,
@@ -96,14 +96,14 @@ object Build extends Build {
       libraryDependencies += "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion % scope
     )
 
-    val jsDir = "demo/assets"
+  val jsDir = "demo/assets"
 
-    def createLauncher(scope: String = "compile"): PE =
+  def createLauncher(scope: String = "compile"): PE =
     _.settings(persistLauncher := true,
       persistLauncher in Test := false,
       crossTarget in (Compile, fullOptJS) := file(jsDir),
       crossTarget in (Compile, fastOptJS) := file(jsDir),
-//      crossTarget in (Compile, packageLauncher) := file(jsDir),
+      //      crossTarget in (Compile, packageLauncher) := file(jsDir),
       artifactPath in (Compile, fastOptJS) := ((crossTarget in (Compile, fastOptJS)).value /
         ((moduleName in fastOptJS).value + "-opt.js"))
     )
@@ -118,7 +118,7 @@ object Build extends Build {
   lazy val macros = project
     .configure(commonSettings, utestSettings, publicationSettings, definesMacros, useReact())
     .settings(
-      name := "macros",
+      name := "scalajs-react-components-macros",
       libraryDependencies ++= Seq(
         "org.scalatest" %%% "scalatest" % "3.0.1" % Test
       )
@@ -129,7 +129,7 @@ object Build extends Build {
     .configure(commonSettings, publicationSettings, useReact())
     .dependsOn(macros)
     .settings(
-      name := "core",
+      name := "scalajs-react-components",
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalacss"      %%% "core"     % scalaCSSVersion,
         "com.github.japgolly.scalacss"      %%% "ext-react" % scalaCSSVersion

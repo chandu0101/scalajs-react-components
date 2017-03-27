@@ -3,7 +3,7 @@ scalajs-react-components
 
 [![Join the chat at https://gitter.im/chandu0101/scalajs-react-components](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/chandu0101/scalajs-react-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Reusable [scalajs-react] (https://github.com/japgolly/scalajs-react) components.
+Reusable [scalajs-react](https://github.com/japgolly/scalajs-react) components.
 
 We are trying to make the experience of using javascript components in scala.js
  as good as possible by adding typed wrappers.

@@ -6,7 +6,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{JsonUtil, ReactTable}
 import demo.util.SampleData
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactTableBasic {
   val code = GhPagesMacros.exampleSource
@@ -18,7 +18,7 @@ object ReactTableBasic {
   val columns: List[String] =
     List("fname", "lname", "email", "country")
 
-  case class Backend($ : BackendScope[_, _]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
     def render =
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Basic Table"),
@@ -28,7 +28,8 @@ object ReactTableBasic {
       )
   }
 
-  val component = ReactComponentB[Unit]("plain")
+  val component = ScalaComponent
+    .builder[Unit]("plain")
     .renderBackend[Backend]
     .build
   // EXAMPLE:END

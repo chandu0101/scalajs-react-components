@@ -1,11 +1,12 @@
 package demo.components
 
-import japgolly.scalajs.react.ReactComponentB
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactPopoverInfo {
 
-  val component = ReactComponentB[Unit]("ReactPopoverInfo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactPopoverInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "popovers/ReactPopOver.scala")(
         <.h3("React Popover :"),

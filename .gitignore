@@ -17,10 +17,10 @@ project/plugins/project/
 .worksheet/
 .cache-main/
 .cache-tests/
-.classpath/
-.metadata/
-.project/
-.settings/
+*/.classpath/
+*/.metadata/
+*/.project/
+*/.settings/
 
 #intellij
 
@@ -32,3 +32,18 @@ assets/
 node_modules/
 /core/docs
 .DS_Store
+
+core/.cache-main
+core/.classpath
+core/.project
+demo/.classpath
+demo/.project
+gen/.cache-main
+gen/.cache-tests
+gen/.classpath
+gen/.project
+macros/.cache-main
+macros/.classpath
+macros/.project
+
+*/.gitignore

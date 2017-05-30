@@ -1,9 +1,10 @@
 package demo
 package routes
 
-import demo.components.{ReactInfiniteInfo, ReactInfiniteDemo}
+import demo.components.{ReactInfiniteDemo, ReactInfiniteInfo}
 import demo.pages.ReactInfinitePage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactInfiniteRouteModule {
 
@@ -15,9 +16,7 @@ object ReactInfiniteRouteModule {
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._
-    menu
-      .map(i => staticRoute(i.route, i) ~> renderR(r => ReactInfinitePage(i, r)))
-      .reduce(_ | _)
+    menu.map(i => staticRoute(i.route, i) ~> renderR(r => ReactInfinitePage(i, r))).reduce(_ | _)
 
   }
 }

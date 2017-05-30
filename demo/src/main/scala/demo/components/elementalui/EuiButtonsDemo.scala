@@ -3,9 +3,9 @@ package components
 package elementalui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.elementalui.{DropdownMenuItem, DropdownMenuItemType, _}
+import chandu0101.scalajs.react.components.elementalui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -14,21 +14,21 @@ object EuiButtonsDemo {
 
   // EXAMPLE:START
 
-  case class Backend($ : BackendScope[_, _]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
     val renderButtonSizes =
       <.div(
-        Button(size = ButtonSize.LG)("Large"),
-        Button()("Default"),
-        Button(size = ButtonSize.SM)("Small"),
-        Button(size = ButtonSize.XS)("Extra Small")
+        EuiButton(size = ButtonSize.lg)("Large"),
+        EuiButton()("Default"),
+        EuiButton(size = ButtonSize.sm)("Small"),
+        EuiButton(size = ButtonSize.xs)("Extra Small")
       )
 
     def renderButtonVariants(list: (ButtonType, String)*) =
       <.div(
-        list.map(t => Button(`type` = t._1)(t._2))
+        list.map(t => EuiButton(`type` = t._1)(t._2)).toTagMod
       )
 
-    def render: ReactElement =
+    def render =
       CodeExample(code, "EuiButtons")(
         <.div(
           <.h1("Buttons"),
@@ -36,63 +36,65 @@ object EuiButtonsDemo {
           renderButtonSizes,
           <.h2("Fill Buttons"),
           renderButtonVariants(
-            (ButtonType.PRIMARY, "Primary"),
-            (ButtonType.SUCCESS, "Success"),
-            (ButtonType.WARNING, "Warning"),
-            (ButtonType.DANGER, "Danger")
+            (ButtonType.primary, "Primary"),
+            (ButtonType.success, "Success"),
+            (ButtonType.warning, "Warning"),
+            (ButtonType.danger, "Danger")
           ),
           <.h2("Default Button Alternatives"),
           renderButtonVariants(
-            (ButtonType.DEFAULT_PRIMARY, "Primary"),
-            (ButtonType.DEFAULT_SUCCESS, "Success"),
-            (ButtonType.DEFAULT_WARNING, "Warning"),
-            (ButtonType.DEFAULT_DANGER, "Danger")
+            (ButtonType.default_primary, "Primary"),
+            (ButtonType.default_success, "Success"),
+            (ButtonType.default_warning, "Warning"),
+            (ButtonType.default_danger, "Danger")
           ),
           <.h2("Hollow Button Alternatives"),
           renderButtonVariants(
-            (ButtonType.HOLLOW_PRIMARY, "Primary"),
-            (ButtonType.HOLLOW_SUCCESS, "Success"),
-            (ButtonType.HOLLOW_WARNING, "Warning"),
-            (ButtonType.HOLLOW_DANGER, "Danger")
+            (ButtonType.hollow_primary, "Primary"),
+            (ButtonType.hollow_success, "Success"),
+            (ButtonType.hollow_warning, "Warning"),
+            (ButtonType.hollow_danger, "Danger")
           ),
           <.h2("Link Style Buttons"),
           renderButtonVariants(
-            (ButtonType.LINK, "Link"),
-            (ButtonType.LINK_CANCEL, "Cancel"),
-            (ButtonType.LINK_DELETE, "Delete"),
-            (ButtonType.LINK_TEXT, "Text")
+            (ButtonType.link, "Link"),
+            (ButtonType.link_cancel, "Cancel"),
+            (ButtonType.link_delete, "Delete"),
+            (ButtonType.link_text, "Text")
           ),
           <.h2("Button Groups"),
-          ButtonGroup()(
-            Button()("Left"),
-            Button()("Middle"),
-            Button()("Right")
+          EuiButtonGroup()(
+            EuiButton()("Left"),
+            EuiButton()("Middle"),
+            EuiButton()("Right")
           ),
           <.h2("Dropdown"),
-          Dropdown(
+          EuiDropdown(
             buttonLabel = "Default Trigger",
             items = js.Array(
-              DropdownMenuItem(label = "Action"),
-              DropdownMenuItem(label = "Another Action"),
-              DropdownMenuItem(`type` = DropdownMenuItemType.DIVIDER),
-              DropdownMenuItem(label = "Header", `type` = DropdownMenuItemType.HEADER),
-              DropdownMenuItem(label = "Action")
+              EuiDropdownMenuItem(label = "Action"),
+              EuiDropdownMenuItem(label = "Another Action"),
+              EuiDropdownMenuItem(`type` = EuiDropdownMenuItemType.DIVIDER),
+              EuiDropdownMenuItem(label = "Header", `type` = EuiDropdownMenuItemType.HEADER),
+              EuiDropdownMenuItem(label = "Action")
             )
           )(),
           <.h3("Custom Trigger"),
-          Dropdown(
+          EuiDropdown(
             items = js.Array(
-              DropdownMenuItem(label = "Action"),
-              DropdownMenuItem(label = "Another Action"),
-              DropdownMenuItem(`type` = DropdownMenuItemType.DIVIDER),
-              DropdownMenuItem(label = "Header", `type` = DropdownMenuItemType.HEADER),
-              DropdownMenuItem(label = "Action")
-            ))(<.h3("I am an H3!!!"))
+              EuiDropdownMenuItem(label = "Action"),
+              EuiDropdownMenuItem(label = "Another Action"),
+              EuiDropdownMenuItem(`type` = EuiDropdownMenuItemType.DIVIDER),
+              EuiDropdownMenuItem(label = "Header", `type` = EuiDropdownMenuItemType.HEADER),
+              EuiDropdownMenuItem(label = "Action")
+            )
+          )(<.h3("I am an H3!!!"))
         )
       )
   }
 
-  val component = ReactComponentB[Unit]("EuiButtonsDemo")
+  val component = ScalaComponent
+    .builder[Unit]("EuiButtonsDemo")
     .renderBackend[Backend]
     .build
 

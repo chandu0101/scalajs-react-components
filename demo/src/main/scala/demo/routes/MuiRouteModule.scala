@@ -4,6 +4,7 @@ package routes
 import demo.components.materialui._
 import demo.pages.MuiPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object MuiRouteModule {
 
@@ -62,7 +63,7 @@ object MuiRouteModule {
 
   val menu: List[LeftRoute] = List(
     Info,
-//    Updates,
+    //    Updates,
     AppBar,
     AutoComplete,
     Avatar,
@@ -92,9 +93,7 @@ object MuiRouteModule {
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._
 
-    menu
-      .map(i => staticRoute(i.route, i) ~> renderR(r => MuiPage(i, r)))
-      .reduce(_ | _)
+    menu.map(i => staticRoute(i.route, i) ~> renderR(r => MuiPage(i, r))).reduce(_ | _)
 
   }
 }

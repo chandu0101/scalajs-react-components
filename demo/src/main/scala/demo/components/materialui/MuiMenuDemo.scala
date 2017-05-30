@@ -5,9 +5,11 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
+import scala.scalajs.js.JSConverters._
+import scala.scalajs.js.JSON
 
 object MuiMenuDemo {
   val code = GhPagesMacros.exampleSource
@@ -27,8 +29,8 @@ object MuiMenuDemo {
     val toggleOpen: ReactEvent => Callback =
       e => $.modState(s => s.copy(isOpen = !s.isOpen))
 
-    val onTouchTap: (TouchTapEvent, JsComponentM[HasValue[String], _, TopNode]) => Callback =
-      (e, elem) => $.modState(_.touched(elem.props.value))
+    val onTouchTap: (TouchTapEvent, js.Object) => Callback =
+      (e, elem) => $.modState(_.touched(JSON.stringify(elem)))
 
     def renderOpen(S: State) =
       <.div(
@@ -39,20 +41,22 @@ object MuiMenuDemo {
         MuiMenu[String](
           desktop = true,
           width = 320,
-          value = S.multiple.toJsArray,
+          value = S.multiple.toJSArray,
           multiple = true,
           onItemTouchTap = onTouchTap,
           onKeyDown = CallbackDebug.f1("onKeyDown"),
           onEscKeyDown = toggleOpen
         )(
-          MuiMenuItem(value = "bold", secondaryText = "⌘B", checked = true)("Bold"),
-          MuiMenuItem(value = "italic", secondaryText = "⌘I")("Italic"),
-          MuiMenuItem(value = "under", secondaryText = "⌘U")("Underline"),
-          MuiMenuItem(value = "strike", secondaryText = "Alt+Shift+5")("Strikethrough"),
-          MuiMenuItem(value = "super", secondaryText = "⌘.")("Superscript"),
-          MuiMenuItem(value = "sub", secondaryText = "⌘,")("Subscript"),
+          MuiMenuItem[String](value = "bold", secondaryText = js.defined("⌘B"), checked = true)(
+            "Bold"),
+          MuiMenuItem[String](value = "italic", secondaryText = js.defined("⌘I"))("Italic"),
+          MuiMenuItem[String](value = "under", secondaryText = js.defined("⌘U"))("Underline"),
+          MuiMenuItem[String](value = "strike", secondaryText = js.defined("Alt+Shift+5"))(
+            "Strikethrough"),
+          MuiMenuItem[String](value = "super", secondaryText = js.defined("⌘."))("Superscript"),
+          MuiMenuItem[String](value = "sub", secondaryText = js.defined("⌘,"))("Subscript"),
           MuiDivider()(),
-          MuiMenuItem(value = "align")("Align")
+          MuiMenuItem[String](value = "align")("Align")
         )
       )
 
@@ -68,7 +72,8 @@ object MuiMenuDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("MuiMenuDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiMenuDemo")
     .initialState(State(isOpen = false, Set.empty))
     .renderBackend[Backend]
     .build

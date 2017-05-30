@@ -1,11 +1,12 @@
 package demo.components
 
-import japgolly.scalajs.react.ReactComponentB
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.ScalaComponent
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactDraggableInfo {
 
-  val component = ReactComponentB[Unit]("ReactDraggableInfo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactDraggableInfo")
     .render(
       P =>
         InfoTemplate(componentFilePath = "ReactDraggable.scala")(

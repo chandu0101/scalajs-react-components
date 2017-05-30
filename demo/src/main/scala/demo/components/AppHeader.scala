@@ -1,16 +1,17 @@
 package demo
 package components
 
-import chandu0101.scalajs.react.components.RCustomStyles
-import chandu0101.scalajs.react.components.RCustomStyles._
+import chandu0101.scalajs.react.components._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.component.Generic.toComponentCtor
+import japgolly.scalajs.react.vdom.html_<^._
 
 object AppHeader {
+  import RCustomStyles._
 
   object Style {
 
-    val headerStyle: Seq[TagMod] = Seq(
+    val headerStyle = TagMod(
       ^.background := "#F2706D",
       ^.fontSize := "1.5em",
       ^.padding := "0px",
@@ -20,7 +21,7 @@ object AppHeader {
       ^.zIndex := "5"
     )
 
-    val menuNav = Seq(
+    val menuNav = TagMod(
       MsFlexAlign := "center",
       WebkitAlignItems := "center",
       WebkitBoxAlign := "center",
@@ -34,16 +35,19 @@ object AppHeader {
       ^.margin := "0 3rem"
     )
 
-    val logo = Seq(
+    val logo = TagMod(
       ^.color := "rgb(244, 233, 233)",
       ^.textDecoration := "none",
       ^.width := "150px"
     )
 
-    val menuItem =
-      Seq(^.padding := "20px", ^.color := "rgb(244, 233, 233)", ^.textDecoration := "none")
+    val menuItem = TagMod(
+      ^.padding := "20px",
+      ^.color := "rgb(244, 233, 233)",
+      ^.textDecoration := "none"
+    )
 
-    val menuItemHover = Seq(^.background := "#f1453e")
+    val menuItemHover = TagMod(^.background := "#f1453e")
 
   }
 
@@ -63,7 +67,7 @@ object AppHeader {
           <.div(^.marginLeft := "auto")(
             <.a(
               ^.target := "_blank",
-              (S.menuHover == github) ?= Style.menuItemHover,
+              Style.menuItemHover.when(S.menuHover == github),
               Style.menuItem,
               ^.href := "https://github.com/chandu0101/scalajs-react-components",
               ^.onMouseEnter --> onMouseEnter(github),
@@ -75,7 +79,8 @@ object AppHeader {
     }
   }
 
-  val component = ReactComponentB[Unit]("AppHeader")
+  val component = ScalaComponent
+    .builder[Unit]("AppHeader")
     .initialState(State())
     .renderBackend[Backend]
     .build

@@ -4,20 +4,23 @@ package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
-import japgolly.scalajs.react.ReactComponentB
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.ScalaComponent
+import japgolly.scalajs.react.vdom.html_<^._
+
+import scala.scalajs.js
 
 object MuiDatePickerDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
-  val component = ReactComponentB[Unit]("MuiDatePickerDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiDatePickerDemo")
     .render(P => {
       <.div(
         CodeExample(code, "MuiDatePicker")(
           MuiDatePicker(
-            hintText = "Portrait Dialog",
+            hintText = js.defined("Portrait Dialog"),
             onChange = CallbackDebug.f2("onChange"),
             onDismiss = CallbackDebug.f0("onDismiss"),
             onFocus = CallbackDebug.f1("onFocus"),
@@ -25,7 +28,7 @@ object MuiDatePickerDemo {
             onTouchTap = CallbackDebug.f1("onTouchTap")
           )(),
           MuiDatePicker(
-            hintText = "Landscape Dialog",
+            hintText = js.defined("Landscape Dialog"),
             mode = PortraitLandscape.landscape
           )()
         )

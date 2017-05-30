@@ -6,7 +6,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{JsonUtil, ReactTable}
 import demo.util.SampleData
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactTableSorting {
 
@@ -14,14 +14,14 @@ object ReactTableSorting {
 
   // EXAMPLE:START
 
-  case class Backend($ : BackendScope[_, _]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
     val data: Vector[Map[String, Any]] =
       JsonUtil.jsonArrayToMap(SampleData.personJson)
 
     val columns: List[String] =
       List("fname", "lname", "email", "country")
 
-    //config is a List of touple4 (String, Option[(Any) => ReactElement], Option[(Model, Model) => Boolean],Option[Double])
+    //config is a List of touple4 (String, Option[(Any) => VdomElement], Option[(Model, Model) => Boolean],Option[Double])
     // ._1: columnname you want to config
     // ._2: custom render function (custom cell factory)
     // ._3: Sorting function
@@ -37,7 +37,8 @@ object ReactTableSorting {
       )
   }
 
-  val component = ReactComponentB[Unit]("ReactTableSorting")
+  val component = ScalaComponent
+    .builder[Unit]("ReactTableSorting")
     .renderBackend[Backend]
     .build
 

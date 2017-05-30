@@ -3,18 +3,18 @@ package demo.components
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.ReactListView
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 
 object ReactListViewDemo {
 
   object Style {
 
-    def listViewComponent = Seq(^.float := "left", ^.marginBottom := "2em")
+    def listViewComponent = TagMod(^.float := "left", ^.marginBottom := "2em")
 
-    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px")
+    def selectedContent = TagMod(^.alignSelf := "center", ^.margin := "0 40px")
 
-    def listViewDemo = Seq(^.display := "flex")
+    def listViewDemo = TagMod(^.display := "flex")
   }
 
   val code = GhPagesMacros.exampleSource
@@ -25,7 +25,7 @@ object ReactListViewDemo {
 
   case class State(content: String = "")
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Unit, State]) {
 
     def onItemSelect(item: String) = Callback {
       val content = s"Selected Item: $item <br>"
@@ -52,7 +52,8 @@ object ReactListViewDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("ReactListViewDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactListViewDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

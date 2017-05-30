@@ -1,9 +1,9 @@
 package demo.components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.Defaults._
+import scalacss.ProdDefaults._
 
 object ReactGeomIconInfo {
 
@@ -11,16 +11,23 @@ object ReactGeomIconInfo {
 
     import dsl._
 
-    val content = style(textAlign.center, fontSize(30.px), paddingTop(40.px))
+    val content = style(
+      textAlign.center,
+      fontSize(30.px),
+      paddingTop(40.px)
+    )
   }
 
-  val component = ReactComponentB[Unit]("ReactGeomIconInfo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactGeomIconInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "icons/ReactGeomIcon.scala")(
         <.div(
           <.h3("React GeomIcon "),
-          <.p("scalajs-react wrapper for ",
-              RedLink("react geom icons", "https://github.com/jxnblk/react-geomicons")),
+          <.p(
+            "scalajs-react wrapper for ",
+            RedLink("react geom icons", "https://github.com/jxnblk/react-geomicons")
+          ),
           <.div(
             <.h4("Supported Version :"),
             <.span("2.0.4")

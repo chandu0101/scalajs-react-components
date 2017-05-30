@@ -1,25 +1,27 @@
-window.ReactDOM = require('react-dom');
-window.React    = require('react');
+var React = require("react");
+var ReactDOM = require("react-dom");
 
-var injectTapEventPlugin = require('react-tap-event-plugin');
-injectTapEventPlugin();
+//var injectTapEventPlugin = require('react-tap-event-plugin');
+//injectTapEventPlugin();
 
 window.hljs = require("highlight.js");
 require("highlight.js/styles/github.css");
 
+
 //images
-window.googleMapImage      = require("../images/googleMap.png");
-window.reactListViewImage  = require("../images/reactListView.png");
-window.reactTreeViewImage  = require("../images/reactTreeView.png");
-window.elementaluiImage    = require("../images/elementalui.png");
-window.materialuiImage     = require("../images/mui.png");
-window.semanticuiImage     = require("../images/semanticui.png");
-window.reactTableImage     = require("../images/reactTable.png");
-window.bottomTearImage     = require("../images/bottom-tear.svg");
-window.reactTagsInputImage = require("../images/reactTagsInput.png");
-window.reactSelectImage    = require("../images/reactSelect.png");
-window.reactInfiniteImage  = require("../images/reactInfinite.png");
-window.reactGeomIconImage  = require("../images/reactGeomIcon.png");
-window.spinnerImage        = require("../images/spinner.png");
-window.reactPopoverImage   = require("../images/reactPopover.png");
-window.reactDraggableImage = require("../images/reactDraggable.png");
+window.googleMapImage      = require("./googleMap.png");
+window.reactListViewImage  = require("./reactListView.png");
+window.reactTreeViewImage  = require("./reactTreeView.png");
+window.elementaluiImage    = require("./elementalui.png");
+window.materialuiImage     = require("./mui.png");
+window.semanticuiImage     = require("./semanticui.png");
+window.reactTableImage     = require("./reactTable.png");
+window.bottomTearImage     = require("./bottom-tear.svg");
+window.reactTagsInputImage = require("./reactTagsInput.png");
+window.reactSelectImage    = require("./reactSelect.png");
+window.reactInfiniteImage  = require("./reactInfinite.png");
+window.reactGeomIconImage  = require("./reactGeomIcon.png");
+window.spinnerImage        = require("./spinner.png");
+window.reactPopoverImage   = require("./reactPopover.png");
+window.reactDraggableImage = require("./reactDraggable.png");
+

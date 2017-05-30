@@ -5,9 +5,10 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.Defaults._
+import scala.scalajs.js
+import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
 
 object MuiButtonsDemo {
@@ -20,12 +21,18 @@ object MuiButtonsDemo {
 
     val container = style(maxWidth(1024 px))
 
-    val content = style(display.flex, padding(30.px), flexDirection.column, alignItems.center)
+    val content = style(
+      display.flex,
+      padding(30.px),
+      flexDirection.column,
+      alignItems.center
+    )
   }
 
   // EXAMPLE:START
   import Mui.SvgIcons.ActionGrade
-  val component = ReactComponentB[Unit]("MuiButtonsDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiButtonsDemo")
     .render(
       P =>
         CodeExample(code, "MuiButtons")(
@@ -33,7 +40,7 @@ object MuiButtonsDemo {
             Style.container,
             <.h3("Buttons"),
             MuiTabs()(
-              MuiTab(key = "tab1", label = "Flat Buttons")(
+              MuiTab(key = "tab1", label = js.defined("Flat Buttons"))(
                 <.div(
                   Style.content,
                   MuiFlatButton(
@@ -54,7 +61,7 @@ object MuiButtonsDemo {
                   MuiFlatButton(key = "flat4", label = "Disabled", disabled = true)()
                 )
               ),
-              MuiTab(key = "tab2", label = "Raised Buttons")(
+              MuiTab(key = "tab2", label = js.defined("Raised Buttons"))(
                 <.div(
                   Style.content,
                   MuiRaisedButton(key = "raised1", label = "Default")(),
@@ -63,7 +70,7 @@ object MuiButtonsDemo {
                   MuiRaisedButton(key = "raised4", label = "Disabled", disabled = true)()
                 )
               ),
-              MuiTab(key = "tab3", label = "Floating Action Buttons")(
+              MuiTab(key = "tab3", label = js.defined("Floating Action Buttons"))(
                 <.div(
                   Style.content,
                   MuiFloatingActionButton(key = "floating1")(ActionGrade()()),
@@ -73,9 +80,11 @@ object MuiButtonsDemo {
                     ActionGrade()())
                 )
               ),
-              MuiTab(key = "tab4", label = "Icon Buttons")(
-                <.div(Style.content,
-                      MuiIconButton(onTouchTap = CallbackDebug.f1("onTouchTap"))(ActionGrade()()))
+              MuiTab(key = "tab4", label = js.defined("Icon Buttons"))(
+                <.div(
+                  Style.content,
+                  MuiIconButton(onTouchTap = CallbackDebug.f1("onTouchTap"))(ActionGrade()())
+                )
               )
             )
           )

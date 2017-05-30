@@ -5,7 +5,10 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
+
+import scala.scalajs.js
 
 object MuiSnackbarDemo {
   val code = GhPagesMacros.exampleSource
@@ -25,31 +28,27 @@ object MuiSnackbarDemo {
     val toggleSnack: TouchTapEvent => Callback =
       e => $.modState(!_)
 
-    def render(isOpen: Boolean) = {
+    def render(isOpen: Boolean) =
       CodeExample(code, "MuiSnackBar")(
-        MuiSnackbar(
-          autoHideDuration = 5000,
-          message = "Event added to your calendar",
-          action = "undo",
-          onActionTouchTap = undoAdd,
-          onRequestClose = closeRequested,
-          open = isOpen
-        )(),
-        !isOpen ?
+        <.div(
+          MuiSnackbar(
+            autoHideDuration = js.defined(5000),
+            message = "Event added to your calendar",
+            action = js.defined("undo"),
+            onActionTouchTap = undoAdd,
+            onRequestClose = closeRequested,
+            open = isOpen
+          )(),
           MuiRaisedButton(
             label = "Add event to calendar",
             onTouchTap = toggleSnack
-          )()
+          )().unless(isOpen)
+        )
       )
-    }
   }
 
-  implicit class BooleanNodeX[T](b: Boolean) {
-    def ?(n: => ReactNode): ReactNode =
-      if (b) n else null
-  }
-
-  val component = ReactComponentB[Unit]("MuiSnackBar")
+  val component = ScalaComponent
+    .builder[Unit]("MuiSnackBar")
     .initialState(false)
     .renderBackend[Backend]
     .build

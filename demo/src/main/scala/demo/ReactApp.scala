@@ -1,7 +1,9 @@
 package demo
 
+import chandu0101.scalajs.react.components.ReactTapEventPlugin
 import demo.routes.AppRouter
 import org.scalajs.dom
+
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.JSApp
@@ -16,7 +18,13 @@ object ReactApp extends JSApp {
       dom.document.body.className.replace("pg-loading", "")
       dom.document.body.className += " pg-loaded"
     }
+
+    //TODO: dev-server complains that we load several times?
+    ReactTapEventPlugin(js.undefined)
+
     AppCSS.load()
-    AppRouter.router().render(dom.document.getElementById("container"))
+    val router = AppRouter.router()
+    router.renderIntoDOM(dom.document.getElementById("container"))
+    ()
   }
 }

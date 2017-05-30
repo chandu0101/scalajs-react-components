@@ -1,8 +1,9 @@
 package demo.routes
 
-import demo.pages.SuiPage
 import demo.components.semanticui._
+import demo.pages.SuiPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object SuiRouteModule {
   case object Info extends LeftRoute("Info", "info", () => SuiInfo())

@@ -1,40 +1,41 @@
 package chandu0101.scalajs.react.components
 package fascades
 
-import japgolly.scalajs.react.TopNode
+import japgolly.scalajs.react.vdom.TopNode
 import org.scalajs.dom.Event
+
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{literal => json}
 import scala.scalajs.js.JSConverters.genTravConvertible2JSRichGenTrav
-import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.annotation._
 
-@js.native @JSName("google.maps.LatLng")
+@js.native @JSGlobal("google.maps.LatLng")
 class GLatLng(lat: Double, lng: Double) extends js.Object
 
-@js.native @JSName("google.maps.Map")
+@js.native @JSGlobal("google.maps.Map")
 class GMap(node: TopNode, options: js.Dynamic) extends js.Object {
   def setCenter(latLng: GLatLng): Unit = js.native
 }
 
-@js.native @JSName("google.maps.Point")
+@js.native @JSGlobal("google.maps.Point")
 class GPoint(x: Int, y: Int) extends js.Object
 
-@js.native @JSName("google.maps.Size")
+@js.native @JSGlobal("google.maps.Size")
 class GSize(width: Int, height: Int) extends js.Object
 
-@js.native @JSName("google.maps.Marker")
+@js.native @JSGlobal("google.maps.Marker")
 class GMarker(ops: js.Dynamic) extends js.Object {
   def setMap(map: GMap): Unit = js.native
 }
 
-@js.native @JSName("google.maps.InfoWindow")
+@js.native @JSGlobal("google.maps.InfoWindow")
 class GInfoWindow extends js.Object {
   def setContent(content: String): Unit = js.native
 
   def open(map: GMap, marker: GMarker): Unit = js.native
 }
 
-@js.native @JSName("google.maps.event")
+@js.native @JSGlobal("google.maps.event")
 class GEvent extends js.Object {
   def addListener(marker: GMarker, tpe: String, callback: js.Function0[Unit]): Unit = js.native
 
@@ -42,13 +43,13 @@ class GEvent extends js.Object {
     js.native
 }
 
-@js.native @JSName("google.maps.event.addListener")
+@js.native @JSGlobal("google.maps.event.addListener")
 class GAddListener(marker: GMarker, tpe: String, callback: js.Function) extends js.Object
 
-@js.native @JSName("google.maps.event.clearInstanceListeners")
+@js.native @JSGlobal("google.maps.event.clearInstanceListeners")
 class GClearInstanceListeners(marker: GMarker) extends js.Object
 
-@js.native @JSName("google.maps.event.clearListeners")
+@js.native @JSGlobal("google.maps.event.clearListeners")
 class GClearListeners(marker: GMarker, `type`: String) extends js.Object
 
 case class Point(x: Int, y: Int) {

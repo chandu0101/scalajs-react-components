@@ -3,7 +3,7 @@ package demo.components
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{ReactTagsInput, ReactTagsInputM, RefHolder}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -28,9 +28,9 @@ object ReactTagsInputDemo {
             ReactTagsInput(
               value = S.tags,
               onChange = onChange,
-              onBlur = CallbackDebug.f0("onBlur"),
-              onKeyDown = CallbackDebug.f1("onKeyDown"),
-              onKeyUp = CallbackDebug.f1("onKeyUp")
+              onBlur = demo.CallbackDebug.f0("onBlur"),
+              onKeyDown = demo.CallbackDebug.f1("onKeyDown"),
+              onKeyUp = demo.CallbackDebug.f1("onKeyUp")
             )()
           )
         )
@@ -38,7 +38,8 @@ object ReactTagsInputDemo {
 
   }
 
-  val component = ReactComponentB[Unit]("ReactTagsInputDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactTagsInputDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

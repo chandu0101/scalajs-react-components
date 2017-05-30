@@ -1,21 +1,20 @@
 package demo.pages
 
-import chandu0101.scalajs.react.components.WithAsyncScript
 import demo.components.LeftNavPage
 import demo.routes.{LeftRoute, ReactSlickRouteModule}
+import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
-import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 
 object SlickPage {
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
     def render(P: Props) =
-      WithAsyncScript("assets/react_slick-bundle.js")(
-        LeftNavPage(ReactSlickRouteModule.menu, P.selectedPage, P.ctrl)
-      )
+      LeftNavPage(ReactSlickRouteModule.menu, P.selectedPage, P.ctrl)
   }
 
-  val component = ReactComponentB[Props]("SlickPage").stateless
+  val component = ScalaComponent
+    .builder[Props]("SlickPage")
+    .stateless
     .renderBackend[Backend]
     .build
 

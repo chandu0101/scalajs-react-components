@@ -3,17 +3,18 @@ package pages
 
 import demo.components.LeftNavPage
 import demo.routes.{GoogleMapRouteModule, LeftRoute}
+import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
-import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 
 object GoogleMapPage {
-  case class Backend($ : BackendScope[Props, _]) {
+  case class Backend($ : BackendScope[Props, Unit]) {
     def render(P: Props) = {
       LeftNavPage(GoogleMapRouteModule.menu, P.selectedPage, P.ctrl)
     }
   }
 
-  val component = ReactComponentB[Props]("GoogleMapPage")
+  val component = ScalaComponent
+    .builder[Props]("GoogleMapPage")
     .renderBackend[Backend]
     .build
 

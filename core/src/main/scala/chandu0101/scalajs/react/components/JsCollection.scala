@@ -20,7 +20,8 @@ object JsCollection extends JsCollectionLower {
   @inline implicit final def toJsCollectionArray[T <: js.Any](t: js.Array[T]): JsCollection[T] =
     t.asInstanceOf[JsCollection[T]]
 
-  @inline implicit final def toJsCollectionUndefOr[T <: js.Any](t: js.UndefOr[T]): JsCollection[T] =
+  @inline implicit final def toJsCollectionUndefOr[T <: js.Any](
+      t: js.UndefOr[T]): JsCollection[T] =
     t.asInstanceOf[JsCollection[T]]
 
   @inline final implicit class JsCollectionX[T <: js.Any](private val c: JsCollection[T]) {

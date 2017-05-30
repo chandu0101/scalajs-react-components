@@ -1,11 +1,11 @@
 package chandu0101.scalajs.react.components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.collection.immutable
 import scala.scalajs.js.Date
-import scalacss.Defaults._
+import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
 
 object ReactTable {
@@ -14,12 +14,12 @@ object ReactTable {
 
   /**
     *  ._1: String = column name
-    *  ._2: Option[Any => ReactElement] = custom cell
+    *  ._2: Option[Any => VdomElement] = custom cell
     *  ._3: Option[(Model,Model) => Boolean] = sorting function
     *  ._4: Option[Double] = column width interms of flex property
     */
   type Config =
-    (String, Option[Any => ReactElement], Option[(Model, Model) => Boolean], Option[Double])
+    (String, Option[Any => VdomElement], Option[(Model, Model) => Boolean], Option[Double])
 
   val ASC: String = "asc"
   val DSC: String = "dsc"
@@ -28,7 +28,10 @@ object ReactTable {
 
     import dsl._
 
-    val reactTableContainer = style(display.flex, flexDirection.column)
+    val reactTableContainer = style(
+      display.flex,
+      flexDirection.column
+    )
 
     val table = style(
       display.flex,
@@ -57,11 +60,17 @@ object ReactTable {
       )
     )
 
-    val tableHeader =
-      style(fontWeight.bold, borderBottom :=! "1px solid #e0e0e0", tableRow)
+    val tableHeader = style(
+      fontWeight.bold,
+      borderBottom :=! "1px solid #e0e0e0",
+      tableRow
+    )
 
-    val settingsBar =
-      style(display.flex, margin :=! "15px 0", justifyContent.spaceBetween)
+    val settingsBar = style(
+      display.flex,
+      margin :=! "15px 0",
+      justifyContent.spaceBetween
+    )
 
     val sortIcon = styleF.bool(
       ascending =>
@@ -99,8 +108,7 @@ object ReactTable {
 
     def getFilteredModels(text: String, models: Vector[Model]): Vector[Model] =
       if (text.isEmpty) models
-      else
-        models.filter(_.values.mkString.toLowerCase.contains(text.toLowerCase))
+      else models.filter(_.values.mkString.toLowerCase.contains(text.toLowerCase))
 
     def sort(f: (Map[String, Any], Map[String, Any]) => Boolean, item: String): Callback =
       t.modState { S =>
@@ -121,8 +129,10 @@ object ReactTable {
     def render(P: Props, S: State) =
       <.div(
         P.style.reactTableContainer,
-        P.enableSearch ?= ReactSearchBox(onTextChange = onTextChange(P) _,
-                                         style = P.searchBoxStyle),
+        ReactSearchBox(
+          onTextChange = onTextChange(P) _,
+          style = P.searchBoxStyle
+        ).when(P.enableSearch),
         settingsBar((P, this, S)),
         tableC((P, S, this)),
         Pager(
@@ -144,14 +154,11 @@ object ReactTable {
   def getLongSort(key: String) =
     (m1: Model, m2: Model) => m1(key).asInstanceOf[Long] < m2(key).asInstanceOf[Long]
 
-  def getStringSort(key: String) =
-    (m1: Model, m2: Model) => m1(key).toString < m2(key).toString
+  def getStringSort(key: String) = (m1: Model, m2: Model) => m1(key).toString < m2(key).toString
 
   def getDateSort(key: String) =
     (m1: Model, m2: Model) =>
-      m1(key).asInstanceOf[Date].getTime() < m2(key)
-        .asInstanceOf[Date]
-        .getTime()
+      m1(key).asInstanceOf[Date].getTime() < m2(key).asInstanceOf[Date].getTime()
 
   def getRenderFunction(key: String, config: List[Config]) = {
     val group = config.groupBy(_._1).getOrElse(key, Nil)
@@ -165,88 +172,103 @@ object ReactTable {
 
   def getColumnDiv(key: String, config: List[Config]) = {
     val group = config.groupBy(_._1).getOrElse(key, Nil)
-    if (group.nonEmpty && group.head._4.isDefined)
-      <.div(^.flex := group.head._4.get)
+    if (group.nonEmpty && group.head._4.isDefined) <.div(^.flex := group.head._4.get.toString)
     else <.div()
   }
 
   def arrowUp: TagMod =
-    Seq(
-      ^.width := 0,
-      ^.height := 0,
+    TagMod(
+      ^.width := 0.px,
+      ^.height := 0.px,
       ^.borderLeft := "5px solid transparent",
       ^.borderRight := "5px solid transparent",
       ^.borderBottom := "5px solid black"
     )
 
   def arrowDown: TagMod =
-    Seq(
-      ^.width := 0,
-      ^.height := 0,
+    TagMod(
+      ^.width := 0.px,
+      ^.height := 0.px,
       ^.borderLeft := "5px solid transparent",
       ^.borderRight := "5px solid transparent",
       ^.borderTop := "5px solid black"
     )
 
   def emptyClass: TagMod =
-    Seq(^.padding := "1px")
+    TagMod(^.padding := 1.px)
 
-  val tableHeader =
-    ReactComponentB[(Props, Backend, State)]("reactTableHeader").render { $ =>
+  val tableHeader = ScalaComponent
+    .builder[(Props, Backend, State)]("reactTableHeader")
+    .render { $ =>
       val (props, b, state) = $.props
       <.div(
-        props.style.tableHeader,
-        if (props.config.nonEmpty) {
-          props.columns.map { item =>
-            {
-              val cell = getColumnDiv(item, props.config)
-              val f    = getSortFunction(item, props.config)
-              if (f.isDefined) {
-                cell(
-                  ^.cursor := "pointer",
-                  ^.onClick --> b.sort(f.get, item),
-                  item.capitalize,
-                  state.sortedState.isDefinedAt(item) ?= props.style.sortIcon(
-                    state.sortedState(item) == ASC)
-                )
-              } else cell(item.capitalize)
+        props.style.tableHeader, {
+          if (props.config.nonEmpty) {
+            props.columns.map { item =>
+              {
+                val cell = getColumnDiv(item, props.config)
+                val f    = getSortFunction(item, props.config)
+                if (f.isDefined) {
+                  cell(
+                    ^.cursor := "pointer",
+                    ^.onClick --> b.sort(f.get, item),
+                    item.capitalize,
+                    props.style
+                      .sortIcon(state.sortedState(item) == ASC)
+                      .when(state.sortedState.isDefinedAt(item))
+                  )
+                } else cell(item.capitalize)
+              }
             }
-          }
-        } else props.columns.map(s => <.div(s.capitalize))
+          } else props.columns.map(s => <.div(s.capitalize))
+        }.toTagMod
       )
-    }.build
+    }
+    .build
 
-  val tableRow = ReactComponentB[(Model, Props)]("TableRow").render { $ =>
-    val (row, props) = $.props
-    <.div(
-      props.style.tableRow,
-      if (props.config.nonEmpty) {
-        props.columns.map { item =>
-          val cell = getColumnDiv(item, props.config)
-          val f    = getRenderFunction(item, props.config)
-          if (f.isDefined) cell(f.get(row(item)))
-          else cell(row(item).toString)
+  val tableRow = ScalaComponent
+    .builder[(Model, Props)]("TableRow")
+    .render { $ =>
+      val (row, props) = $.props
+      <.div(
+        props.style.tableRow, {
+          if (props.config.nonEmpty) {
+            props.columns.map { item =>
+              val cell = getColumnDiv(item, props.config)
+              val f    = getRenderFunction(item, props.config)
+              if (f.isDefined) cell(f.get(row(item)))
+              else cell(row(item).toString)
+            }
+          } else
+            props.columns.map { item =>
+              <.div(row(item).toString)
+            }
+        }.toTagMod
+      )
+    }
+    .build
+
+  val tableC = ScalaComponent
+    .builder[(Props, State, Backend)]("table")
+    .render { $ =>
+      val (props, state, b) = $.props
+      val rows = state.filteredModels
+        .slice(state.offset, state.offset + state.rowsPerPage)
+        .zipWithIndex
+        .map {
+          case (row, i) => tableRow.withKey(i)((row, props))
         }
-      } else
-        props.columns.map { item =>
-          <.div(row(item).toString)
-        }
-    )
-  }.build
+      <.div(
+        props.style.table,
+        tableHeader((props, b, state)),
+        rows.toTagMod
+      )
+    }
+    .build
 
-  val tableC = ReactComponentB[(Props, State, Backend)]("table").render { $ =>
-    val (props, state, b) = $.props
-    val rows = state.filteredModels
-      .slice(state.offset, state.offset + state.rowsPerPage)
-      .zipWithIndex
-      .map {
-        case (row, i) => tableRow.withKey(i)((row, props))
-      }
-    <.div(props.style.table, tableHeader((props, b, state)), rows)
-  }.build
-
-  val settingsBar =
-    ReactComponentB[(Props, Backend, State)]("settingbar").render { $ =>
+  val settingsBar = ScalaComponent
+    .builder[(Props, Backend, State)]("settingbar")
+    .render { $ =>
       val (p, b, s)             = $.props
       var value                 = ""
       var options: List[String] = Nil
@@ -261,28 +283,34 @@ object ReactTable {
       }
       <.div(p.style.settingsBar)(
         <.div(<.strong("Total: " + s.filteredModels.size)),
-        DefaultSelect(label = "Page Size: ",
-                      options = options,
-                      value = value,
-                      onChange = b.onPageSizeChange)
+        DefaultSelect(
+          label = "Page Size: ",
+          options = options,
+          value = value,
+          onChange = b.onPageSizeChange
+        )
       )
-    }.build
-
-  val component = ReactComponentB[Props]("ReactTable")
-    .initialState_P(p => State(filterText = "", offset = 0, p.rowsPerPage, p.data, Map()))
-    .renderBackend[Backend]
-    .componentWillReceiveProps(e =>
-      Callback.ifTrue(e.$.props.data != e.nextProps.data,
-                      e.$.backend.onTextChange(e.nextProps)(e.$.state.filterText)))
+    }
     .build
 
-  case class Props(data: Vector[Model],
-                   columns: List[String],
-                   config: List[Config],
-                   rowsPerPage: Int,
-                   style: Style,
-                   enableSearch: Boolean,
-                   searchBoxStyle: ReactSearchBox.Style)
+  val component = ScalaComponent
+    .builder[Props]("ReactTable")
+    .initialStateFromProps(p => State(filterText = "", offset = 0, p.rowsPerPage, p.data, Map()))
+    .renderBackend[Backend]
+    .componentWillReceiveProps(e =>
+      Callback.when(e.currentProps.data != e.nextProps.data)(
+        e.backend.onTextChange(e.nextProps)(e.state.filterText)))
+    .build
+
+  case class Props(
+      data: Vector[Model],
+      columns: List[String],
+      config: List[Config],
+      rowsPerPage: Int,
+      style: Style,
+      enableSearch: Boolean,
+      searchBoxStyle: ReactSearchBox.Style
+  )
 
   def apply(data: Vector[Model],
             columns: List[String],

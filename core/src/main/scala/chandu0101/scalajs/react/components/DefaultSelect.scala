@@ -1,15 +1,15 @@
 package chandu0101.scalajs.react.components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
 object DefaultSelect {
 
-  class Backend(t: BackendScope[Props, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
 
-    def onChange(P: Props)(e: ReactEventI) =
+    def onChange(P: Props)(e: ReactEventFromInput) =
       P.onChange(e.target.value)
 
     def render(P: Props) = {
@@ -19,13 +19,15 @@ object DefaultSelect {
                  ^.id := "reactselect",
                  ^.value := P.value,
                  ^.onChange ==> onChange(P))(
-          P.options.map(item => <.option(item))
+          P.options.map(item => <.option(item)).toTagMod
         )
       )
     }
   }
 
-  val component = ReactComponentB[Props]("DefaultSelect").stateless
+  val component = ScalaComponent
+    .builder[Props]("DefaultSelect")
+    .stateless
     .renderBackend[Backend]
     .build
 
@@ -40,5 +42,5 @@ object DefaultSelect {
             options: List[String],
             value: String,
             onChange: String => Callback) =
-    component.set(key, ref)(Props(label, options, value, onChange))
+    component /*.set(key, ref)*/ (Props(label, options, value, onChange))
 }

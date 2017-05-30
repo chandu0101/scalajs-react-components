@@ -54,7 +54,36 @@ object CornersAndCenter {
   val values        = List(bottom_center, bottom_left, bottom_right, top_center, top_left, top_right)
 }
 
+class MuiFocusedState(val value: String) extends AnyVal
+object MuiFocusedState {
+  val none            = new MuiFocusedState("none")
+  val focused         = new MuiFocusedState("focused")
+  val keyboardfocused = new MuiFocusedState("keyboardfocused")
+  val value           = List(none, focused, keyboardfocused)
+}
+
 @js.native
 trait HasValue[T] extends js.Object {
   def value: js.UndefOr[T] = js.native
+}
+
+@js.native
+trait DropDownMenuProps extends js.Object {
+  //TODO
+}
+@js.native
+trait Wrapper extends js.Object {
+  //TODO
+}
+@js.native
+trait CircularProgressPath extends js.Object {
+  //TODO
+}
+@js.native
+trait Position extends js.Object {
+  //TODO
+}
+@js.native
+trait DatePickerUtils extends js.Object {
+  //TODO
 }

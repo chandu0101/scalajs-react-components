@@ -1,25 +1,21 @@
 package chandu0101.scalajs.react.components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 import org.scalajs.dom.html
-
-import scala.scalajs.js
 
 object ReactPopOver {
   import RCustomStyles._
 
-  case class ClientRect(top: Double, left: Double)
-
   object DomUtil {
-    def offset(element: TopNode) = {
+    def offset(element: html.Element) = {
       val rect       = element.getBoundingClientRect()
       var scrollTop  = 0.0
       var scrollLeft = 0.0
       if (dom.document.body.scrollTop > 0) {
-        scrollTop = dom.document.body.scrollTop.toInt
-        scrollLeft = dom.document.body.scrollLeft.toInt
+        scrollTop = dom.document.body.scrollTop
+        scrollLeft = dom.document.body.scrollLeft
       } else if (dom.document.documentElement.scrollTop > 0) { // for firefox
         scrollTop = dom.document.documentElement.scrollTop
         scrollLeft = dom.document.documentElement.scrollLeft
@@ -29,132 +25,132 @@ object ReactPopOver {
   }
 
   trait Style {
-    def popover: TagMod =
-      Seq(
-        ^.position := "absolute",
-        ^.top := 0,
-        ^.left := "-100%",
-        ^.zIndex := 1060,
-        ^.maxWidth := "500px",
-        ^.padding := "1px",
-        ^.fontSize := "15px",
-        ^.fontWeight := "normal",
-        ^.lineHeight := 1.42857143,
-        ^.textAlign := "left",
-        ^.backgroundColor := "white",
-        ^.borderRadius := "6px",
-        ^.border := "1px solid #cccccc",
-        ^.whiteSpace := "normal"
-      ).++(backgroundClipPreFixer("padding-box"))
-        .++(boxShadowPreFixer("0 5px 10px rgba(0, 0, 0, 0.2)"))
+    def popover: TagMod = TagMod(
+      ^.position := "absolute",
+      ^.top := "0",
+      ^.left := "-100%",
+      ^.zIndex := "1060",
+      ^.maxWidth := "500px",
+      ^.padding := "1px",
+      ^.fontSize := "15px",
+      ^.fontWeight := "normal",
+      ^.lineHeight := "1.42857143",
+      ^.textAlign := "left",
+      ^.backgroundColor := "white",
+      ^.borderRadius := "6px",
+      ^.border := "1px solid #cccccc",
+      ^.whiteSpace := "normal",
+      backgroundClipPreFixer("padding-box"),
+      boxShadowPreFixer("0 5px 10px rgba(0, 0, 0, 0.2)")
+    )
 
     def backgroundClipPreFixer(value: String) =
-      Seq(
+      TagMod(
         ^.backgroundClip := value,
         WebkitBackgroundClip := value
       )
 
     def boxShadowPreFixer(value: String) =
-      Seq(
+      TagMod(
         ^.boxShadow := value,
         WebkitBoxShadow := value
       )
 
-    def popoverTop = Seq(^.marginTop := "-10px")
+    def popoverTop = TagMod(^.marginTop := "-10px")
 
-    def popoverLeft = Seq(^.marginLeft := "-10px")
+    def popoverLeft = TagMod(^.marginLeft := "-10px")
 
-    def popoverRight = Seq(^.marginLeft := "10px")
+    def popoverRight = TagMod(^.marginLeft := "10px")
 
-    def popoverBottom = Seq(^.marginTop := "10px")
+    def popoverBottom = TagMod(^.marginTop := "10px")
 
     def popoverTitle =
-      Seq(^.margin := 0,
-          ^.padding := "8px 14px",
-          ^.fontSize := "15px",
-          ^.backgroundColor := "#f7f7f7",
-          ^.borderBottom := "1px solid #ebebeb",
-          ^.borderRadius := "5px 5px 0 0")
+      TagMod(^.margin := "0",
+             ^.padding := "8px 14px",
+             ^.fontSize := "15px",
+             ^.backgroundColor := "#f7f7f7",
+             ^.borderBottom := "1px solid #ebebeb",
+             ^.borderRadius := "5px 5px 0 0")
 
-    def popoverContent = Seq(^.padding := "9px 14px")
+    def popoverContent = TagMod(^.padding := "9px 14px")
 
     val displayBlock = ^.display := "block"
 
-    def popoverArrow = Seq(
+    def popoverArrow = TagMod(
       ^.position := "absolute",
       displayBlock,
-      ^.width := 0,
-      ^.height := 0,
+      ^.width := "0",
+      ^.height := "0",
       ^.border := "solid transparent",
       ^.borderWidth := "11px"
     )
 
-    def popoverArrowAfter = Seq(
+    def popoverArrowAfter = TagMod(
       ^.position := "absolute",
       displayBlock,
-      ^.width := 0,
-      ^.height := 0,
+      ^.width := "0",
+      ^.height := "0",
       ^.border := "solid transparent",
       ^.borderWidth := "10px"
     )
 
-    def popoverTopArrow = Seq(
+    def popoverTopArrow = TagMod(
       ^.left := "50%",
       ^.marginLeft := "-11px",
-      ^.borderBottomWidth := 0,
+      ^.borderBottomWidth := "0",
       ^.borderTopColor := "#999999",
       ^.bottom := "-11px"
     )
 
-    def popoverTopArrowAfter = Seq(
+    def popoverTopArrowAfter = TagMod(
       ^.marginLeft := "-10px",
-      ^.borderBottomWidth := 0,
+      ^.borderBottomWidth := "0",
       ^.borderTopColor := "#ffffff",
       ^.bottom := "1px"
     )
 
-    def popoverRightArrow = Seq(
+    def popoverRightArrow = TagMod(
       ^.top := "50%",
       ^.left := "-11px",
       ^.marginTop := "-11px",
-      ^.borderLeftWidth := 0,
+      ^.borderLeftWidth := "0",
       ^.borderRightColor := "#999999",
       ^.bottom := "-11px"
     )
 
-    def popoverRightArrowAfter = Seq(
+    def popoverRightArrowAfter = TagMod(
       ^.left := "1px",
-      ^.borderLeftWidth := 0,
+      ^.borderLeftWidth := "0",
       ^.borderRightColor := "#ffffff",
       ^.bottom := "-10px"
     )
 
-    def popoverBottomArrow = Seq(
+    def popoverBottomArrow = TagMod(
       ^.left := "50%",
       ^.marginLeft := "-11px",
-      ^.borderTopWidth := 0,
+      ^.borderTopWidth := "0",
       ^.borderBottomColor := "#999999",
       ^.top := "-11px"
     )
 
-    def popoverBottomArrowAfter = Seq(
+    def popoverBottomArrowAfter = TagMod(
       ^.top := "1px",
       ^.marginLeft := "-10px",
-      ^.borderTopWidth := 0,
+      ^.borderTopWidth := "0",
       ^.borderBottomColor := "#ffffff"
     )
 
-    def popoverLeftArrow = Seq(
+    def popoverLeftArrow = TagMod(
       ^.top := "50%",
       ^.right := "-11px",
       ^.marginTop := "-11px",
-      ^.borderRightWidth := 0,
+      ^.borderRightWidth := "0",
       ^.borderLeftColor := "#999999"
     )
 
-    def popoverLeftArrowAfter = Seq(
+    def popoverLeftArrowAfter = TagMod(
       ^.right := "1px",
-      ^.borderRightWidth := 0,
+      ^.borderRightWidth := "0",
       ^.borderLeftColor := "#ffffff",
       ^.bottom := "-10px"
     )
@@ -175,11 +171,12 @@ object ReactPopOver {
     private val hide = $.modState(_.copy(open = false))
 
     def getPosition(P: Props)(node: html.Element): ClientRect = {
-      val offset        = DomUtil.offset(node)
-      val height        = node.offsetHeight
-      val width         = node.offsetWidth
-      val popoverHeight = $.getDOMNode().asInstanceOf[html.Element].offsetHeight
-      val popoverWidth  = $.getDOMNode().asInstanceOf[html.Element].offsetWidth
+      val offset = DomUtil.offset(node)
+      val height = node.offsetHeight
+      val width  = node.offsetWidth
+
+      val popoverHeight = $.getDOMNode.asInstanceOf[html.Element].offsetHeight
+      val popoverWidth  = $.getDOMNode.asInstanceOf[html.Element].offsetWidth
       P.placement match {
         case "right" =>
           val top  = offset.top + height / 2 - popoverHeight / 2
@@ -216,22 +213,22 @@ object ReactPopOver {
     def render(P: Props, S: State, C: PropsChildren) = {
       <.div(
         P.style.popover,
-        (P.placement == "top") ?= P.style.popoverTop,
-        (P.placement == "left") ?= P.style.popoverLeft,
-        (P.placement == "right") ?= P.style.popoverRight,
-        (P.placement == "bottom") ?= P.style.popoverBottom,
-        ^.top := S.top,
-        S.open ?= (^.left := S.left)
+        P.style.popoverTop.when(P.placement == "top"),
+        P.style.popoverLeft.when(P.placement == "left"),
+        P.style.popoverRight.when(P.placement == "right"),
+        P.style.popoverBottom.when(P.placement == "bottom"),
+        ^.top := S.top.toString(),
+        (^.left := S.left.toString).when(S.open)
       )(
         <.div(
           P.style.popoverArrow,
-          (P.placement == "top") ?= P.style.popoverTopArrow,
-          (P.placement == "left") ?= P.style.popoverLeftArrow,
-          (P.placement == "right") ?= P.style.popoverRightArrow,
-          (P.placement == "bottom") ?= P.style.popoverBottomArrow,
+          P.style.popoverTopArrow.when(P.placement == "top"),
+          P.style.popoverLeftArrow.when(P.placement == "left"),
+          P.style.popoverRightArrow.when(P.placement == "right"),
+          P.style.popoverBottomArrow.when(P.placement == "bottom"),
           arrowAfter(P)
         ),
-        !P.title.isEmpty ?= <.h3(P.style.popoverTitle)(P.title),
+        (<.h3(P.style.popoverTitle)(P.title)).unless(P.title.isEmpty),
         <.div(P.style.popoverContent)(
           C
         )
@@ -239,20 +236,22 @@ object ReactPopOver {
     }
   }
 
-  val component = ReactComponentB[Props]("ReactPopover")
+  val component = ScalaComponent
+    .builder[Props]("ReactPopover")
     .initialState(State(open = false))
-    .renderBackend[Backend]
+    .renderBackendWithChildren[Backend]
     .build
 
-  case class Props(title: String, placement: String, style: Style)
+  case class Props(title: String = "", placement: String = "", style: Style = new Style {})
 
-  def apply(title: String = "",
-            placement: String = "right",
-            ref: js.UndefOr[String] = js.undefined,
-            key: js.Any = {},
-            style: Style = new Style {})(children: ReactNode*) =
-    component.set(key = key, ref = ref)(
-      Props(title, placement, style),
-      children
-    )
+  def apply(
+      title: String = "",
+      placement: String = "right",
+      style: Style = new Style {}
+  )(children: VdomNode*) =
+    //    component.set(key = key, ref = ref)(
+    //      Props(title, placement, style),
+    //      children
+    //    )
+    component(Props(title, placement, style))(children: _*)
 }

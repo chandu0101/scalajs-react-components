@@ -1,10 +1,10 @@
 package demo.components.semanticui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.semanticui.{SuiContainer, SuiDivider}
+import chandu0101.scalajs.react.components.semanticui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object SuiDividerDemo {
 
@@ -26,7 +26,8 @@ object SuiDividerDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("SuiDividerDemo")
+  val component = ScalaComponent
+    .builder[Unit]("SuiDividerDemo")
     .renderBackend[Backend]
     .build
 

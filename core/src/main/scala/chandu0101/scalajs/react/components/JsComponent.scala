@@ -4,12 +4,9 @@ import japgolly.scalajs.react._
 
 import scala.scalajs.js
 
-@js.native
-trait JsComponent[P <: js.Any] extends JsComponentType[P, js.Any, TopNode]
-
 object TODO {
-  @deprecated
+  @deprecated("Used as marker to signify that you really should be more specific", "")
   type ANY = js.Any
-  @deprecated
+  @deprecated("Used as marker to signify that you really should be more specific", "")
   type FUNC = Callback
 }

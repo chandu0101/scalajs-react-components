@@ -1,12 +1,12 @@
 package demo
 package routes
 
-import demo.components.{AppHeader, ScalaCSSTutorial}
+import demo.components._
 import demo.pages._
-import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
+
 import scala.scalajs.js.Dynamic.{global => g}
 
 object AppRouter {
@@ -132,10 +132,15 @@ object AppRouter {
   }
 
   def layout(c: RouterCtl[Page], r: Resolution[Page]) = {
+    assert(c != null)
     <.div(
       AppHeader(),
       r.render(),
-      <.div(^.textAlign := "center", ^.key := "footer")(<.hr(), <.p("Built using scalajs-react")))
+      <.div(^.textAlign := "center", ^.key := "footer")(
+        <.hr(),
+        <.p("Built using scalajs-react")
+      )
+    )
   }
 
   val homePageMenu = Vector(
@@ -222,12 +227,6 @@ object AppRouter {
       imagePath = g.reactPopoverImage.toString,
       route = ReactPopoverPages(ReactPopoverRouteModule.Info),
       tags = Stream("modal", "popover")
-    ),
-    HomePage.ComponentInfo(
-      name = "React Draggable",
-      imagePath = g.reactDraggableImage.toString,
-      route = ReactDraggablePages(ReactJSDraggableRouteModule.Info),
-      tags = Stream("modal", "popover")
     )
   )
 
@@ -238,5 +237,4 @@ object AppRouter {
       BaseUrl.fromWindowOrigin / "sjrc/"
 
   val router = Router(baseUrl, config)
-
 }

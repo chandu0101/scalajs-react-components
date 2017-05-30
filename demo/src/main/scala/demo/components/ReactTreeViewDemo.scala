@@ -3,30 +3,41 @@ package demo.components
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{ReactTreeView, TreeItem}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 
 object ReactTreeViewDemo {
 
   object Style {
-    def treeViewDemo = Seq(^.display := "flex")
+    def treeViewDemo = TagMod(^.display := "flex")
 
-    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px")
+    def selectedContent = TagMod(^.alignSelf := "center", ^.margin := "0 40px")
   }
 
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
-  val data = TreeItem("root",
-                      TreeItem("dude1", TreeItem("dude1c")),
-                      TreeItem("dude2"),
-                      TreeItem("dude3"),
-                      TreeItem("dude4", TreeItem("dude4c", TreeItem("dude4cc"))))
+  val data = TreeItem(
+    "root",
+    TreeItem(
+      "dude1",
+      TreeItem("dude1c")
+    ),
+    TreeItem("dude2"),
+    TreeItem("dude3"),
+    TreeItem(
+      "dude4",
+      TreeItem(
+        "dude4c",
+        TreeItem("dude4cc")
+      )
+    )
+  )
 
   case class State(content: String = "")
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Unit, State]) {
 
     def onItemSelect(item: String, parent: String, depth: Int): Callback = {
       val content =
@@ -55,7 +66,8 @@ object ReactTreeViewDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("ReactTreeViewDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactTreeViewDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

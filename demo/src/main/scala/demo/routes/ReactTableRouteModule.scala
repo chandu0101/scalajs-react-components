@@ -4,6 +4,7 @@ package routes
 import demo.components.reacttable._
 import demo.pages.ReactTablePage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactTableRouteModule {
 
@@ -19,14 +20,11 @@ object ReactTableRouteModule {
   case object CustomColumn
       extends LeftRoute("Custom Colum Size", "customcolumsize", () => ReactTableCustomColumnSize())
 
-  val menu: List[LeftRoute] =
-    List(Info, Basic, Sorting, CustomCell, CustomColumn)
+  val menu: List[LeftRoute] = List(Info, Basic, Sorting, CustomCell, CustomColumn)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._
-    menu
-      .map(i => staticRoute(i.route, i) ~> renderR(r => ReactTablePage(i, r)))
-      .reduce(_ | _)
+    menu.map(i => staticRoute(i.route, i) ~> renderR(r => ReactTablePage(i, r))).reduce(_ | _)
 
   }
 }

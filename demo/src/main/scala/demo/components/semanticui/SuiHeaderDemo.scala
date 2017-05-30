@@ -1,15 +1,10 @@
 package demo.components.semanticui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.semanticui.{
-  SemanticCOUNTRY,
-  SuiFlag,
-  SuiHeader,
-  SuiSegment
-}
+import chandu0101.scalajs.react.components.semanticui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object SuiHeaderDemo {
 
@@ -32,7 +27,8 @@ object SuiHeaderDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("SuiHeaderDemo")
+  val component = ScalaComponent
+    .builder[Unit]("SuiHeaderDemo")
     .renderBackend[Backend]
     .build
 

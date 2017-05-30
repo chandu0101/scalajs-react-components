@@ -2,7 +2,7 @@ package demo.components
 
 import chandu0101.scalajs.react.components._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -12,7 +12,7 @@ object LocalDemoButton {
 
   trait Style {
 
-    val button = Seq(
+    val button = TagMod(
       ^.backgroundColor := "#F2706D",
       ^.border := "1px solid transparent",
       ^.boxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)",
@@ -25,8 +25,10 @@ object LocalDemoButton {
       WebkitBoxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)"
     )
 
-    val buttonHover: TagMod =
-      Seq(^.backgroundColor := "#DA423E", ^.textDecoration := "none")
+    val buttonHover = TagMod(
+      ^.backgroundColor := "#DA423E",
+      ^.textDecoration := "none"
+    )
 
   }
 
@@ -34,7 +36,7 @@ object LocalDemoButton {
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def onButtonClick(P: Props)(e: ReactEventI): Callback =
+    def onButtonClick(P: Props)(e: ReactEventFromInput): Callback =
       CallbackOption.liftOptionLike(P.onButtonClick).map(f => f(e)) >>
         e.preventDefaultCB
 
@@ -44,8 +46,9 @@ object LocalDemoButton {
     val onMouseLeave: Callback =
       t.modState(_.copy(buttonHover = false))
 
-    def styleSet1(st1: TagMod, more: (TagMod, Boolean)*): TagMod =
-      st1 + more.filter(_._2).map(_._1)
+    def styleSet1(st1: TagMod, more: (TagMod, Boolean)*): TagMod = {
+      TagMod(st1, more.filter(_._2).map(_._1).toTagMod)
+    }
 
     def render(P: Props, S: State) = {
       val buttonStyle = styleSet1(
@@ -72,26 +75,29 @@ object LocalDemoButton {
     }
   }
 
-  val component = ReactComponentB[Props]("LocalDemoButton")
+  val component = ScalaComponent
+    .builder[Props]("LocalDemoButton")
     .initialState(State())
     .renderBackend[Backend]
     .build
 
   case class Props(
       name: String,
-      onButtonClick: js.UndefOr[ReactEventH => Callback],
+      onButtonClick: js.UndefOr[ReactEventFromHtml => Callback],
       linkButton: Boolean,
       href: String,
       style: Style
   )
 
-  def apply(name: String,
-            onButtonClick: js.UndefOr[ReactEventH => Callback] = js.undefined,
-            linkButton: Boolean = false,
-            href: String = "",
-            style: Style = new Style {},
-            ref: js.UndefOr[String] = "",
-            key: js.Any = {}) =
-    component.set(key, ref)(Props(name, onButtonClick, linkButton, href, style))
+  def apply(
+      name: String,
+      onButtonClick: js.UndefOr[ReactEventFromHtml => Callback] = js.undefined,
+      linkButton: Boolean = false,
+      href: String = "",
+      style: Style = new Style {}
+  ) = {
+    //    component.set(key, ref)(Props(name, onButtonClick, linkButton, href, style))
+    component(Props(name, onButtonClick, linkButton, href, style))
+  }
 
 }

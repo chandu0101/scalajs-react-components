@@ -53,7 +53,7 @@ If you want to use a reactjs component in your scalajs-react project then you mu
     }
 
     def apply(children : ReactNode*) = {
-     val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.Global.AwesomeJSComp) // access real js component , make sure you wrap with createFactory (this is needed from 0.13 onwards)
+     val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.AwesomeJSComp) // access real js component , make sure you wrap with createFactory (this is needed from 0.13 onwards)
      f(toJS, children.toJsArray).asInstanceOf[ReactComponentU_]
     }
 
@@ -89,7 +89,7 @@ http://chandu0101.github.io/reactjs-scalajs/
     Enter you scala wrapper name(Example : AwesomeJSCmpWrapper)
 
  2) Js component text field :
-    Enter full access path to js component (Example :  js.Dynamic.Global.AwesomeJSComp)
+    Enter full access path to js component (Example :  js.Dynamic.global.AwesomeJSComp)
 
  3) WithChildren check box :
     By default it is checked ,uncheck this if your js component doesn't allow children

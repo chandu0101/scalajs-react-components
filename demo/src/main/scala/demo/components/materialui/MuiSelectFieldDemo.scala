@@ -4,8 +4,7 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-
-import scala.scalajs.js
+import japgolly.scalajs.react.vdom.html_<^._
 
 object MuiSelectFieldDemo {
   val code = GhPagesMacros.exampleSource
@@ -18,27 +17,27 @@ object MuiSelectFieldDemo {
     val onChange: (TouchTapEvent, Int, Choice) => Callback =
       (e, idx, a) => $.setState(a) >> Callback.info(s"selected $a")
 
-    def render(choices: Seq[Choice], selected: Choice): ReactElement =
+    def render(choices: Seq[Choice], selected: Choice): VdomElement =
       CodeExample(code, "MuiSelectField")(
         MuiSelectField[Choice](
           value    = selected,
           onBlur   = CallbackDebug.f1("onBlur"),
           onFocus  = CallbackDebug.f1("onFocus"),
           onChange = onChange)(
-          choices map (
+          choices.map(
             c => MuiMenuItem[Choice](key = c.id.value, value = c, primaryText = c.text)()
-          )
+          ).toVdomArray
         )
       )
   }
 
   private val component =
-    ReactComponentB[Seq[Choice]]("MuiSelectFieldDemo")
-      .initialState_P(_.head)
+    ScalaComponent.builder[Seq[Choice]]("MuiSelectFieldDemo")
+      .initialStateFromProps(_.head)
       .renderBackend[Backend]
       .build
 
-  def apply(): ReactElement =
+  def apply(): VdomElement =
     component(
       Seq(
         Choice(ChoiceId("1"), "Never"),

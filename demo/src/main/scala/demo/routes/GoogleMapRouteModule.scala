@@ -4,6 +4,7 @@ package routes
 import demo.components.googlemap._
 import demo.pages.GoogleMapPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object GoogleMapRouteModule {
 

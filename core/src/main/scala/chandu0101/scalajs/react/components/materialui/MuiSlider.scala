@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
  * This file is generated - submit issues instead of PR against it
@@ -20,14 +21,14 @@ case class MuiSlider(
   defaultValue:       js.UndefOr[Double]                                = js.undefined,
   /* Describe the slider. */
   @deprecated("Use a sibling node element instead. It will be removed with v0.17.0.")
-  description:        js.UndefOr[ReactNode]                             = js.undefined,
+  description:        js.UndefOr[VdomNode]                             = js.undefined,
   /* Disables focus ripple if set to true. */
   disableFocusRipple: js.UndefOr[Boolean]                               = js.undefined,
   /* If true, the slider will not be interactable. */
   disabled:           js.UndefOr[Boolean]                               = js.undefined,
   /* An error message for the slider. */
   @deprecated("Use a sibling node element instead. It will be removed with v0.17.0.")
-  error:              js.UndefOr[ReactNode]                             = js.undefined,
+  error:              js.UndefOr[VdomNode]                             = js.undefined,
   /* The maximum value the slider can slide to on
      a scale from 0 to 1 inclusive. Cannot be equal to min. */
   max:                js.UndefOr[Double]                                = js.undefined,
@@ -63,8 +64,8 @@ case class MuiSlider(
   def apply() = {
     
     val props = JSMacro[MuiSlider](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Slider)
-    f(props).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.None, Null](Mui.Slider)
+    component(props)
   }
 }
         

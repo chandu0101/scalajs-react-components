@@ -7,7 +7,7 @@ import demo.routes.AppRouter
 import demo.routes.AppRouter.Page
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object HomePage {
   import RCustomStyles._
@@ -34,14 +34,14 @@ object HomePage {
       ^.fontSize := "18px" ,
       ^.fontWeight := "500" ,
       ^.paddingBottom := "45px" ,
-      ^.paddingTop := "85px")
+      ^.paddingTop := "85px").toTagMod
 
-    val infoContent = Seq(^.fontWeight := 500, ^.fontSize := "18px")
+    val infoContent = Seq(^.fontWeight := "500", ^.fontSize := "18px").toTagMod
 
     val infoLink = Seq(
       ^.color := "#ff4081" ,
       ^.padding := "0 5px" ,
-      ^.textDecoration := "none")
+      ^.textDecoration := "none").toTagMod
 
     val searchSection = Seq(
       ^.display := "-ms-flexbox" ,
@@ -49,7 +49,7 @@ object HomePage {
       ^.display := "-webkit-flex" ,
       ^.display := "flex" ,
       ^.margin := "50px" ,
-      ^.marginBottom := "15px")
+      ^.marginBottom := "15px").toTagMod
 
     val componentsGrid = Seq(
       MsFlexWrap := "wrap" ,
@@ -59,7 +59,7 @@ object HomePage {
       ^.display := "-webkit-flex" ,
       ^.display := "flex" ,
       ^.flexWrap := "wrap" ,
-      ^.margin := "30px" )
+      ^.margin := "30px" ).toTagMod
 
   }
 
@@ -79,16 +79,16 @@ object HomePage {
         ),
         <.div(Style.searchSection)(
          ReactSearchBox(onTextChange = onTextChange),
-          !S.filterText.isEmpty ?= <.strong(^.alignSelf := "center" ,^.paddingLeft := "30px")(s"Results: ${S.results.length}")
+          <.strong(^.alignSelf := "center" ,^.paddingLeft := "30px")(s"Results: ${S.results.length}").unless(S.filterText.isEmpty)
         ),
         <.div(Style.componentsGrid)(
-            S.results.map(c => ComponentGridItem(c.name, c.route, c.imagePath,P))
+            S.results.map(c => ComponentGridItem(c.name, c.route, c.imagePath,P)).toTagMod
         )
       )
     }
   }
 
-  val component = ReactComponentB[RouterCtl[Page]]("homepage")
+  val component = ScalaComponent.builder[RouterCtl[Page]]("homepage")
     .initialState(State("", AppRouter.homePageMenu))
     .renderBackend[Backend]
     .build

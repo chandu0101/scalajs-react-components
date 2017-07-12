@@ -2,7 +2,7 @@ package chandu0101.scalajs.react.components
 
 import chandu0101.scalajs.react.components.fascades._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom.{Event, document, html}
 
 import scala.scalajs.js
@@ -34,9 +34,11 @@ object GoogleMap {
         } else initialize(P)
 
     def initialize(P: Props): Callback =
-      t.modState(
-        _.copy(mapObjects = Some((new GMap(t.getDOMNode(), MapOptions(P.center, P.zoom).toGMapOptions), new GInfoWindow))),
-        cb = updateMap(P)
+      t.getDOMNode flatMap (e =>
+        t.modState(
+          _.copy(mapObjects = Some((new GMap(e, MapOptions(P.center, P.zoom).toGMapOptions), new GInfoWindow))),
+          callback = updateMap(P)
+        )
       )
 
     def updateMap(P: Props): Callback =
@@ -69,11 +71,11 @@ object GoogleMap {
 
   case class Props(width: String, height: String, center: LatLng, zoom: Int, markers: Seq[Marker], url: String)
 
-  val component = ReactComponentB[Props]("googleMap")
+  val component = ScalaComponent.builder[Props]("googleMap")
     .initialState(State(None, Nil))
     .renderBackend[Backend]
-    .componentWillReceiveProps{
-      case ComponentWillReceiveProps(_$, nextProps) => _$.backend.updateMap(nextProps)
+    .componentWillReceiveProps { c =>
+      c.backend.updateMap(c.nextProps)
     }
     .componentDidMount($ => $.backend.loadScript($.props))
     .componentWillUnmount($ => Callback($.state.markers.foreach(new GClearInstanceListeners(_))))

@@ -4,7 +4,8 @@ import chandu0101.scalajs.react.components.WithAsyncScript
 import demo.components.LeftNavPage
 import demo.routes.LeftRoute
 import demo.routes.SuiRouteModule
-import japgolly.scalajs.react.{BackendScope, ReactComponentB}
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
 import japgolly.scalajs.react.extra.router.RouterCtl
 
 object SuiPage {
@@ -18,7 +19,7 @@ object SuiPage {
       }
   }
 
-  val component = ReactComponentB[Props]("SuiPage")
+  val component = ScalaComponent.builder[Props]("SuiPage")
     .renderBackend[Backend]
     .build
 

@@ -1,12 +1,14 @@
 package chandu0101.scalajs.react.components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 
 object Pager {
+
+  val cssSettings = scalacss.devOrProdDefaults
+  import cssSettings._
 
   class Style extends StyleSheet.Inline {
     import dsl._
@@ -22,11 +24,11 @@ object Pager {
         color :=! "#ffffff",
         fontWeight.bold,
         boxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)",
-        &.hover(
+        &.hover.apply(
           textDecoration := "none",
           backgroundColor :=! "#ff1034"
         ),
-        &.focus(
+        &.focus.apply(
           textDecoration := "none",
           backgroundColor :=! "#ff1034"
         )
@@ -36,22 +38,22 @@ object Pager {
   case class Backend(t: BackendScope[Props, _]){
     def render(P: Props) = {
       <.div(P.style.pager)(
-        P.offset > 0 ?= <.a(
+        <.a(
           ^.onClick --> P.previousClick,
           ^.float := "left",
           "← Previous"
-        ),
-        P.offset + P.itemsPerPage < P.totalItems ?= <.a(
+        ).when(P.offset > 0),
+        <.a(
           ^.onClick --> P.nextClick,
           ^.float := "right",
           "Next →"
-        )
+        ).when(P.offset + P.itemsPerPage < P.totalItems)
       )
     }
   }
   object DefaultStyle extends Style
 
-  val component = ReactComponentB[Props]("Pager")
+  val component = ScalaComponent.builder[Props]("Pager")
     .renderBackend[Backend]
     .build
 

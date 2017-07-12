@@ -1,9 +1,9 @@
 package demo.routes
 
-import demo.components.elementalui._
 import demo.pages.EuiPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 import demo.components.elementalui._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object EuiRouteModule {
   case object Info extends LeftRoute("Info", "info", () => EuiInfo())

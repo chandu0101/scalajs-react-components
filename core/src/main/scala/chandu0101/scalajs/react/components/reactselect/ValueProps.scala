@@ -5,7 +5,7 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 
 @js.native
-trait ValueProps[T] extends js.Any {
+trait ValueProps[T] extends js.Object {
   /* disabled prop passed to ReactSelect */
   def disabled: js.UndefOr[Boolean]
   /* method to handle click on value label */

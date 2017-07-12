@@ -4,7 +4,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.elementalui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js.`|`
 
@@ -28,7 +28,7 @@ object EuiMiscDemo {
     def handlePageSelect(page: Int) =
       $.modState(_.copy(currentPage = page))
 
-    def handleCurrentPageChange(event: ReactEventI) = {
+    def handleCurrentPageChange(event: ReactEventFromInput) = {
       val value = event.target.value.toInt match {
         case x if x < 0 => 0
         case x => x
@@ -36,7 +36,7 @@ object EuiMiscDemo {
       $.modState(_.copy(currentPage = value))
     }
 
-    def handlePageSizeChange(event: ReactEventI) = {
+    def handlePageSizeChange(event: ReactEventFromInput) = {
       val value = event.target.value.toInt match {
         case x if x > 100 => 100
         case x if x < 1 => 1
@@ -45,7 +45,7 @@ object EuiMiscDemo {
       $.modState(_.copy(pageSize = value))
     }
 
-    def handleTotalChange(event: ReactEventI) = {
+    def handleTotalChange(event: ReactEventFromInput) = {
       val value = event.target.value.toInt match {
         case x if x > 1000 => 1000
         case x if x < 1 => 1
@@ -54,7 +54,7 @@ object EuiMiscDemo {
       $.modState(_.copy(total = value))
     }
 
-    def handleLimitChange(event: ReactEventI) = {
+    def handleLimitChange(event: ReactEventFromInput) = {
       val value = event.target.value.toInt match {
         case x if x < 1 => 1
         case x => x
@@ -62,12 +62,15 @@ object EuiMiscDemo {
       $.modState(_.copy(limit = value))
     }
 
-    def handlePluralChange(event: ReactEventI) = {
-      $.modState(_.copy(plural = event.target.value))
+    def handlePluralChange(event: ReactEventFromInput) = {
+      val newValue = event.target.value
+      $.modState(_.copy(plural = newValue))
     }
 
-    def handleSingularChange(event: ReactEventI) = 
-      $.modState(_.copy(singular = event.target.value))
+    def handleSingularChange(event: ReactEventFromInput) = {
+      val newValue = event.target.value
+      $.modState(_.copy(singular = newValue))
+    }
     
     def renderAlerts = 
       <.div(
@@ -122,7 +125,7 @@ object EuiMiscDemo {
             FormField(label = "Plural")(
               FormInput(
                 name = "plural", 
-                `type` = "number", 
+                `type` = "text",
                 value = S.plural: String | Int,
                 onChange = handlePluralChange _,
                 placeholder = "Plural")()))
@@ -131,7 +134,7 @@ object EuiMiscDemo {
             FormField(label = "Singular")(
               FormInput(
                 name = "singular", 
-                `type` = "number", 
+                `type` = "text",
                 value = S.singular: String | Int,
                 onChange = handleSingularChange _, 
                 placeholder = "Singular")()))
@@ -182,7 +185,7 @@ object EuiMiscDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("EuiMiscDemo")
+  val component = ScalaComponent.builder[Unit]("EuiMiscDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

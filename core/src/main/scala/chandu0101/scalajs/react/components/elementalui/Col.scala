@@ -3,6 +3,9 @@ package elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -17,15 +20,15 @@ case class Col(
     sm: js.UndefOr[String] = js.undefined,
     xs: js.UndefOr[String] = js.undefined) {
 
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     val props = JSMacro[Col](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.Col)
-    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Eui.Col)
+    component(props)(children: _*)
   }
 
 }
 
-case class ColBasis private (val value: String) extends AnyVal
+case class ColBasis private (value: String) extends AnyVal
 
 object ColBasis {
   val number = ColBasis("number")

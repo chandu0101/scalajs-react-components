@@ -6,7 +6,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components._
 import chandu0101.scalajs.react.components.fascades._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object GoogleMapCustomMarkerIcon {
 
@@ -48,7 +48,7 @@ object GoogleMapCustomMarkerIcon {
     Marker( position = LatLng(-33.80010128657071,151.28747820854187) ,title = "Manly Beach",icon = image)
   )
 
-  val component = ReactComponentB[Unit]("plain")
+  val component = ScalaComponent.builder[Unit]("plain")
     .render(P => {
    <.div(
      <.h2(^.cls := "mui-font-style-headline")("Custom Marker Icon"),

@@ -4,14 +4,14 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.elementalui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object EuiSpinnerDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
-  val component = ReactComponentB[Unit]("EuiSpinnerDemo")
+  val component = ScalaComponent.builder[Unit]("EuiSpinnerDemo")
     .render(P =>
       CodeExample(code, "EuiSpinner")(
         <.div(

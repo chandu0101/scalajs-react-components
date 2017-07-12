@@ -4,15 +4,15 @@ package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
-import japgolly.scalajs.react.ReactComponentB
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.ScalaComponent
+import japgolly.scalajs.react.vdom.html_<^._
 
 object MuiTextFieldDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
-  val component = ReactComponentB[Unit]("MuiTextFieldDemo")
+  val component = ScalaComponent.builder[Unit]("MuiTextFieldDemo")
     .render(P => {
       <.div(
         CodeExample(code, "MuiTextField")(

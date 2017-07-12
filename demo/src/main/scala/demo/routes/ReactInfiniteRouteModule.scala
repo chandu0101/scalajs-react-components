@@ -4,6 +4,7 @@ package routes
 import demo.components.{ReactInfiniteInfo, ReactInfiniteDemo}
 import demo.pages.ReactInfinitePage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactInfiniteRouteModule {
 

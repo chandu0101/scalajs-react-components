@@ -4,7 +4,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.elementalui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.concurrent.duration._
 import scala.scalajs.js
@@ -42,17 +42,17 @@ object EuiFormsDemo {
     def updateSelect(value: String) =
       $.modState(_.copy(inputSelect = value))
 
-    def updateEmail(e: ReactEventI) = {
+    def updateEmail(e: ReactEventFromInput) = {
       val value = e.target.value
       $.modState(_.copy(inputEmail = value))
     }
 
-    def updatePassword(e: ReactEventI) = {
+    def updatePassword(e: ReactEventFromInput) = {
       val value = e.target.value
       $.modState(_.copy(inputPassword = value))
     }
 
-    def updateConfirmPassword(e: ReactEventI) = {
+    def updateConfirmPassword(e: ReactEventFromInput) = {
       val value = e.target.value
       $.modState(_.copy(inputConfirmPassword = value))
     }
@@ -61,7 +61,7 @@ object EuiFormsDemo {
       $.state.map(_.inputPassword == password).runNow()
     }
 
-    def handleSearch(e: ReactEventH) = {
+    def handleSearch(e: ReactEventFromHtml) = {
       val result = $.modState(_.copy(searching = true))
       scala.scalajs.js.timers.setTimeout(2 seconds) {
         $.modState(_.copy(searching = false)).runNow()
@@ -72,9 +72,9 @@ object EuiFormsDemo {
       <.div(^.className := "code-example__example",
         Form()(
           FormField(label = "Email address", htmlFor = "basic-form-input-email")(
-            FormInput(autofocus = true, `type` = "email", placeholder = "Enter email", name = "basic-form-input-email")()),
+            FormInput(autoFocus = true, `type` = "email", placeholder = "Enter email", name = "basic-form-input-email")()),
           FormField(label = "Password", htmlFor = "basic-form-input-password")(
-            FormInput(autofocus = true, `type` = "password", placeholder = "Enter Password", name = "basic-form-input-password")()),
+            FormInput(autoFocus = true, `type` = "password", placeholder = "Enter Password", name = "basic-form-input-password")()),
           FormField()(
             CheckBox(label = "Check It")()),
           Button()("Submit")))
@@ -83,10 +83,10 @@ object EuiFormsDemo {
       <.div(^.className := "code-example__example",
         Form(`type` = FormType.HORIZONTAL)(
           FormField(label = "Email address", htmlFor = "horizontal-input-email")(
-            FormInput(autofocus = true, `type` = "email", placeholder = "Enter email", name = "horizontal-input-email")()
+            FormInput(autoFocus = true, `type` = "email", placeholder = "Enter email", name = "horizontal-input-email")()
           ),
           FormField(label = "Password", htmlFor = "horizontal-input-password")(
-            FormInput(autofocus = true, `type` = "password", placeholder = "Enter Password", name = "horizontal-input-password")()
+            FormInput(autoFocus = true, `type` = "password", placeholder = "Enter Password", name = "horizontal-input-password")()
           ),
           FormField(offsetAbsentLabel = true)(
             CheckBox(label = "Check It")()
@@ -101,10 +101,10 @@ object EuiFormsDemo {
       <.div(^.className := "code-example__example",
         Form(`type` = FormType.INLINE)(
           FormField(label = "Email address", htmlFor = "inline-input-email")(
-            FormInput(autofocus = true, `type` = "email", placeholder = "Enter email", name = "inline-input-email")()
+            FormInput(autoFocus = true, `type` = "email", placeholder = "Enter email", name = "inline-input-email")()
           ),
           FormField(label = "Password", htmlFor = "inline-input-password")(
-            FormInput(autofocus = true, `type` = "password", placeholder = "Enter Password", name = "inline-input-password")()
+            FormInput(autoFocus = true, `type` = "password", placeholder = "Enter Password", name = "inline-input-password")()
           ),
           FormField()(
             CheckBox(label = "Check It")()
@@ -406,7 +406,7 @@ object EuiFormsDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("EuiFormsDemo")
+  val component = ScalaComponent.builder[Unit]("EuiFormsDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

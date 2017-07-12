@@ -4,6 +4,7 @@ package routes
 import demo.components.reacttable._
 import demo.pages.ReactTablePage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactTableRouteModule {
 

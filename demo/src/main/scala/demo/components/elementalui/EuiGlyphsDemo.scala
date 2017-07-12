@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.elementalui.{Glyph, Octicons, _}
 import demo.components.CodeExample
 import demo.components.CodeExample.Props
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object EuiGlyphsDemo {
   val code = GhPagesMacros.exampleSource
@@ -42,7 +42,7 @@ object EuiGlyphsDemo {
                 )
               )
             )
-          })
+          }.toVdomArray)
       }
 
     def renderGlyphColors(icon: Octicons) =
@@ -53,16 +53,16 @@ object EuiGlyphsDemo {
           Glyph(icon = icon, `type` = glyphType)(), glyphType.value)
       )
 
-    def render: ReactComponentU[Props, Unit, CodeExample.Backend, TopNode] =
+    def render: ScalaComponent.Unmounted[Props, Unit, CodeExample.Backend] =
       CodeExample(code, "EuiGlyphs")(
         <.div(
           <.h1("Glyphs"),
           <.h2("Basic Example"),
-          Glyph(icon = Octicons.thumbsup)(),
+          Glyph(icon = Octicons.thumbsup)().vdomElement,
           <.h2("Icons"),
-          renderGlyphGrid,
+          renderGlyphGrid.toVdomArray,
           <.h2("Colors"),
-          renderGlyphColors(Octicons.heart),
+          renderGlyphColors(Octicons.heart).toVdomArray,
           <.h2("Buttons"),
           renderButtons,
           <.h2("Link Buttons"),
@@ -71,7 +71,7 @@ object EuiGlyphsDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("EuiGlyphsDemo")
+  val component = ScalaComponent.builder[Unit]("EuiGlyphsDemo")
     .renderBackend[Backend]
     .build
 

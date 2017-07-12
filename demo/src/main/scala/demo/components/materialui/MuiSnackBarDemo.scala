@@ -5,6 +5,8 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.VdomNode
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 
 object MuiSnackbarDemo {
@@ -35,21 +37,17 @@ object MuiSnackbarDemo {
           onRequestClose   = closeRequested,
           open             = isOpen
         )(),
-      !isOpen ?
-        MuiRaisedButton(
-          label      = "Add event to calendar",
-          onTouchTap = toggleSnack
-        )()
+        <.div(
+          MuiRaisedButton(
+            label      = "Add event to calendar",
+            onTouchTap = toggleSnack
+          )().unless(isOpen)
+        )
       )
     }
   }
 
-  implicit class BooleanNodeX[T](b: Boolean){
-    def ?(n: => ReactNode): ReactNode =
-      if (b) n else null
-  }
-
-  val component = ReactComponentB[Unit]("MuiSnackBar")
+  val component = ScalaComponent.builder[Unit]("MuiSnackBar")
     .initialState(false)
     .renderBackend[Backend]
     .build

@@ -3,7 +3,7 @@ package demo.components
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.reactslick._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -21,8 +21,9 @@ object ReactSlickDemo {
   )
 
   // EXAMPLE:START
-  val component = ReactComponentB[Unit]("SlickDemo")
-    .render(P =>
+
+  val component = ScalaComponent.builder[Unit]("SlickDemo")
+    .render { P =>
       <.div(
         CodeExample(code, "Demo")(
           <.div(
@@ -41,12 +42,12 @@ object ReactSlickDemo {
               infinite     = false,
               draggable    = true
             )(
-              cats map { c => <.img(^.src := c, ^.height := "200px", ^.width := "200px") }: _*
+              cats.map{ c => <.img(^.src := c, ^.height := "200px", ^.width := "200px", ^.key := c): VdomElement }: _*
             )
           )
         )
       )
-    ).build
+    }.build
 
   // EXAMPLE:END
 

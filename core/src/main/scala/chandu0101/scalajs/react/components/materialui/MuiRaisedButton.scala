@@ -3,7 +3,9 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -34,7 +36,7 @@ case class MuiRaisedButton(
   /* The URL to link to when the button is clicked. */
   href:                    js.UndefOr[String]                                 = js.undefined,
   /* An icon to be displayed within the button. */
-  icon:                    js.UndefOr[ReactNode]                              = js.undefined,
+  icon:                    js.UndefOr[VdomNode]                              = js.undefined,
   /* The label to be displayed within the button.
      If content is provided via the `children` prop, that content will be
      displayed in addition to the label provided here. */
@@ -66,7 +68,7 @@ case class MuiRaisedButton(
   /* (Passed on to EnhancedButton) */
   centerRipple:            js.UndefOr[Boolean]                                = js.undefined,
   /* (Passed on to EnhancedButton) */
-  containerElement:        js.UndefOr[String | ReactElement]                  = js.undefined,
+  containerElement:        js.UndefOr[String | VdomElement]                  = js.undefined,
   /* (Passed on to EnhancedButton) */
   disableFocusRipple:      js.UndefOr[Boolean]                                = js.undefined,
   /* (Passed on to EnhancedButton) */
@@ -107,15 +109,10 @@ case class MuiRaisedButton(
     If a label is provided via the `label` prop, the text within the label
     will be displayed in addition to the content provided here.
    */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     
     val props = JSMacro[MuiRaisedButton](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.RaisedButton)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.RaisedButton)
+    component(props)(children: _*)
   }
 }

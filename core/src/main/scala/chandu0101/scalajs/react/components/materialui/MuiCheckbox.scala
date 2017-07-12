@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
  * This file is generated - submit issues instead of PR against it
@@ -18,7 +19,7 @@ case class MuiCheckbox[T](
   checked:              js.UndefOr[Boolean]                                = js.undefined,
   /* The SvgIcon to use for the checked state.
      This is useful to create icon toggles. */
-  checkedIcon:          js.UndefOr[ReactElement]                           = js.undefined,
+  checkedIcon:          js.UndefOr[VdomElement]                           = js.undefined,
   /* The default state of our checkbox component.
      **Warning:** This cannot be used in conjunction with `checked`.
      Decide between using a controlled or uncontrolled input element and remove one of these props.
@@ -42,7 +43,7 @@ case class MuiCheckbox[T](
   style:                js.UndefOr[CssProperties]                          = js.undefined,
   /* The SvgIcon to use for the unchecked state.
      This is useful to create icon toggles. */
-  uncheckedIcon:        js.UndefOr[ReactElement]                           = js.undefined,
+  uncheckedIcon:        js.UndefOr[VdomElement]                           = js.undefined,
   /* ValueLink for when using controlled checkbox. */
   valueLink:            js.UndefOr[js.Any]                                 = js.undefined,
   /* (Passed on to EnhancedSwitch) */
@@ -54,7 +55,7 @@ case class MuiCheckbox[T](
   /* (Passed on to EnhancedSwitch) */
   inputType:            js.UndefOr[String]                                 = js.undefined,
   /* (Passed on to EnhancedSwitch) */
-  label:                js.UndefOr[ReactNode]                              = js.undefined,
+  label:                js.UndefOr[VdomNode]                              = js.undefined,
   /* (Passed on to EnhancedSwitch) */
   name:                 js.UndefOr[String]                                 = js.undefined,
   /* (Passed on to EnhancedSwitch) */
@@ -80,7 +81,7 @@ case class MuiCheckbox[T](
   /* (Passed on to EnhancedSwitch) */
   rippleStyle:          js.UndefOr[CssProperties]                          = js.undefined,
   /* (Passed on to EnhancedSwitch) */
-  switchElement:        js.UndefOr[ReactElement]                           = js.undefined,
+  switchElement:        js.UndefOr[VdomElement]                           = js.undefined,
   /* (Passed on to EnhancedSwitch) */
   switched:             js.UndefOr[Boolean]                                = js.undefined,
   /* (Passed on to EnhancedSwitch) */
@@ -93,11 +94,11 @@ case class MuiCheckbox[T](
   def apply() = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props = JSMacro[MuiCheckbox[T]](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Checkbox)
-    f(props).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.None, Null](Mui.Checkbox)
+    component(props)
   }
 }
-        
+
 
 
 @js.native

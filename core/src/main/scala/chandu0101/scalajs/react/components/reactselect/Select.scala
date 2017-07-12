@@ -5,8 +5,8 @@ import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
 
 import scala.scalajs.js
-
-import TODO._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
 
 case class Select[T](
   /* placeholder displayed when you want to add a label on a multi-value input */
@@ -20,9 +20,9 @@ case class Select[T](
   /* className for the outer element */
   className: js.UndefOr[String] = js.undefined,
   /* title for the "clear" control when multi: true */
-  clearAllText: js.UndefOr[ReactNode] = js.undefined,
+  clearAllText: js.UndefOr[VdomNode] = js.undefined,
   /* title for the "clear" control */
-  clearValueText: js.UndefOr[ReactNode] = js.undefined,
+  clearValueText: js.UndefOr[VdomNode] = js.undefined,
   /* should it be possible to reset value */
   clearable: js.UndefOr[Boolean] = js.undefined,
   /* delimiter to use to join multiple values for the hidden field value */
@@ -32,15 +32,15 @@ case class Select[T](
   /* whether escape clears the value when the menu is closed */
   escapeClearsValue: js.UndefOr[Boolean] = js.undefined,
   /* method to filter a single option (option, filterString) */
-  filterOption: js.UndefOr[FUNC] = js.undefined,
+  filterOption: js.UndefOr[Callback] = js.undefined,
   /* boolean to enable default filtering or function to filter the options array ([options], filterString, [values]) */
-  filterOptions: js.UndefOr[ANY] = js.undefined,
+  filterOptions: js.UndefOr[js.Any] = js.undefined,
   /* whether to strip diacritics when filtering */
   ignoreAccents: js.UndefOr[Boolean] = js.undefined,
   /* whether to perform case-insensitive filtering */
   ignoreCase: js.UndefOr[Boolean] = js.undefined,
   /* custom attributes for the Input */
-  inputProps: js.UndefOr[ANY] = js.undefined,
+  inputProps: js.UndefOr[js.Any] = js.undefined,
   /* whether the Select is loading externally or not (such as options being loaded) */
   isLoading: js.UndefOr[Boolean] = js.undefined,
   /* path of the label value in option objects */
@@ -62,9 +62,9 @@ case class Select[T](
   /* generates a hidden <input /> tag with this field name for html forms */
   name: js.UndefOr[String] = js.undefined,
   /* factory to create new options when allowCreate set */
-  newOptionCreator: js.UndefOr[FUNC] = js.undefined,
+  newOptionCreator: js.UndefOr[Callback] = js.undefined,
   /* placeholder displayed when there are no matching search results */
-  noResultsText: js.UndefOr[ReactNode] = js.undefined,
+  noResultsText: js.UndefOr[VdomNode] = js.undefined,
   /* onBlur handler: function (event) {} */
   onBlur: js.UndefOr[ReactEvent => Callback] = js.undefined,
   /* onChange handler: function (newValue) {} */
@@ -78,13 +78,13 @@ case class Select[T](
   /* fires when the menu is scrolled to the bottom; can be used to paginate options */
   onMenuScrollToBottom: js.UndefOr[Callback] = js.undefined,
   /* option component to render in dropdown */
-  optionComponent: js.UndefOr[JsComponent[OptionProps[T]]] = js.undefined,
+  optionComponent: js.UndefOr[JsFnComponent.Unmounted[OptionProps[T]]] = js.undefined,
   /* optionRenderer: function (option) {} */
-  optionRenderer: js.UndefOr[ValueProps[T] => ReactNode] = js.undefined,
+  optionRenderer: js.UndefOr[ValueProps[T] => VdomNode] = js.undefined,
   /* array of options */
   options: js.Array[ValueOption[T]],
   /* field placeholder, displayed when there's no value */
-  placeholder: js.UndefOr[ReactNode] = js.undefined,
+  placeholder: js.UndefOr[VdomNode] = js.undefined,
   /* whether to enable searching feature or not */
   searchable: js.UndefOr[Boolean] = js.undefined,
   /* pass the value to onChange as a simple value (legacy pre 1.0 mode), defaults to false */
@@ -94,21 +94,21 @@ case class Select[T](
   /* optional tab index of the control */
   tabIndex: js.UndefOr[String] = js.undefined,
   /* initial field value */
-  value: JsCollection[T] = js.undefined,
+  value: JsCollection[T] = js.undefined.asInstanceOf[JsCollection[T]],
   /* value component to render */
-  valueComponent: js.UndefOr[JsComponent[ValueProps[T]]] = js.undefined,
+  valueComponent: js.UndefOr[JsFnComponent.Unmounted[ValueProps[T]]] = js.undefined,
   /* path of the label value in option objects */
   valueKey: js.UndefOr[String] = js.undefined,
   /* valueRenderer: function (option) {} */
-  valueRenderer: js.UndefOr[ValueOption[T] => ReactNode] = js.undefined,
+  valueRenderer: js.UndefOr[ValueOption[T] => VdomNode] = js.undefined,
   /* optional style to apply to the component wrapper */
   wrapperStyle: js.UndefOr[CssProperties] = js.undefined) {
 
-  def apply(): ReactComponentU_ = {
+  def apply(): JsComponent.Unmounted[_, _] = {
 //    implicit val hackEvidence: T => js.Any = _.asInstanceOf[js.Any]
 
     val props = JSMacro[Select[T]](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactSelect)
-    f(props).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.None, Null](js.Dynamic.global.ReactSelect)
+    component(props)
   }
 }

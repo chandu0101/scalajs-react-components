@@ -5,9 +5,12 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.component.Js
+import japgolly.scalajs.react.component.Js.RawMounted
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
+import scala.scalajs.js.|
 
 object MuiMenuDemo {
   val code = GhPagesMacros.exampleSource
@@ -27,34 +30,39 @@ object MuiMenuDemo {
     val toggleOpen: ReactEvent => Callback =
       e => $.modState(s => s.copy(isOpen = !s.isOpen))
 
-    val onTouchTap: (TouchTapEvent, JsComponentM[HasValue[String], _, TopNode]) => Callback =
-      (e, elem) => $.modState(_.touched(elem.props.value))
+    val onTouchTap: (TouchTapEvent, RawMounted) => Callback =
+      (e, elem) => {
+        val mounted = Js.mounted[HasValue[String], js.Object](elem)
+        $.modState(_.touched(mounted.props.value))
+      }
 
-    def renderOpen(S: State) =
+    def renderOpen(S: State) = {
+      val menuValue: String | js.Array[String] = js.Array[String](S.multiple.toSeq: _*)
       <.div(
         MuiFlatButton(
-          label      = "Close menu",
+          label = "Close menu",
           onTouchTap = toggleOpen
         )(),
         MuiMenu[String](
-          desktop        = true,
-          width          = 320,
-          value          = S.multiple.toJsArray,
-          multiple       = true,
+          desktop = true,
+          width = 320,
+          value = menuValue,
+          multiple = true,
           onItemTouchTap = onTouchTap,
-          onKeyDown      = CallbackDebug.f1("onKeyDown"),
-          onEscKeyDown   = toggleOpen
+          onKeyDown = CallbackDebug.f1("onKeyDown"),
+          onEscKeyDown = toggleOpen
         )(
-          MuiMenuItem(value = "bold",   secondaryText = "⌘B", checked = true)("Bold"),
-          MuiMenuItem(value = "italic", secondaryText = "⌘I")("Italic"),
-          MuiMenuItem(value = "under",  secondaryText = "⌘U")("Underline"),
-          MuiMenuItem(value = "strike", secondaryText = "Alt+Shift+5")("Strikethrough"),
-          MuiMenuItem(value = "super",  secondaryText = "⌘.")("Superscript"),
-          MuiMenuItem(value = "sub",    secondaryText = "⌘,")("Subscript"),
+          MuiMenuItem[String](value = "bold", secondaryText = "⌘B", checked = true)("Bold"),
+          MuiMenuItem[String](value = "italic", secondaryText = "⌘I")("Italic"),
+          MuiMenuItem[String](value = "under", secondaryText = "⌘U")("Underline"),
+          MuiMenuItem[String](value = "strike", secondaryText = "Alt+Shift+5")("Strikethrough"),
+          MuiMenuItem[String](value = "super", secondaryText = "⌘.")("Superscript"),
+          MuiMenuItem[String](value = "sub", secondaryText = "⌘,")("Subscript"),
           MuiDivider()(),
-          MuiMenuItem(value = "align")("Align")
+          MuiMenuItem[String](value = "align")("Align")
         )
       )
+    }
 
     def renderClosed(S: State) =
       MuiFlatButton(
@@ -68,7 +76,7 @@ object MuiMenuDemo {
     )
   }
 
-  val component = ReactComponentB[Unit] ("MuiMenuDemo")
+  val component = ScalaComponent.builder[Unit] ("MuiMenuDemo")
     .initialState(State(isOpen = false, Set.empty))
     .renderBackend[Backend]
     .build

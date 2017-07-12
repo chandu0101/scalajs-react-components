@@ -1,11 +1,11 @@
 package demo.components
 
-import japgolly.scalajs.react.ReactComponentB
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.ScalaComponent
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactTreeViewInfo {
 
-  val component = ReactComponentB[Unit]("ReactTreeViewInfo")
+  val component = ScalaComponent.builder[Unit]("ReactTreeViewInfo")
     .render(P => {
     InfoTemplate(componentFilePath = "treeviews/ReactTreeView.scala")(
      <.h3("React TreeView :"),

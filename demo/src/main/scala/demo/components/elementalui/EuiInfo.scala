@@ -3,7 +3,7 @@ package components
 package elementalui
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.Defaults._
 
@@ -16,7 +16,7 @@ object EuiInfo {
       paddingTop(40.px))
   }
 
-  val component = ReactComponentB[Unit]("EuiInfo")
+  val component = ScalaComponent.builder[Unit]("EuiInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "elementalui/")(
         <.div(

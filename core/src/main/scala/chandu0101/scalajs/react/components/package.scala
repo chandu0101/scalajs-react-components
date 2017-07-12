@@ -1,9 +1,9 @@
 package chandu0101.scalajs.react
 
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
 import org.scalajs.dom.html
 
-import scala.reflect.ClassTag
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 import scala.scalajs.js.annotation.JSName
@@ -12,19 +12,19 @@ package object components {
   type CssProperties = js.Any
 
 
-  type ReactEventB = SyntheticEvent[html.Button]
-  type ReactClipboardEventB = SyntheticClipboardEvent[html.Button]
-  type ReactCompositionEventB = SyntheticCompositionEvent[html.Button]
-  type ReactDragEventB = SyntheticDragEvent[html.Button]
-  type ReactFocusEventB = SyntheticFocusEvent[html.Button]
-  type ReactMouseEventB = SyntheticMouseEvent[html.Button]
+  type ReactEventB = ReactEventFrom[html.Button]
+  type ReactClipboardEventB = ReactClipboardEventFrom[html.Button]
+  type ReactCompositionEventB = ReactCompositionEventFrom[html.Button]
+  type ReactDragEventB = ReactDragEventFrom[html.Button]
+  type ReactFocusEventB = ReactFocusEventFrom[html.Button]
+  type ReactMouseEventB = ReactMouseEventFrom[html.Button]
 
-  type ReactEventS = SyntheticEvent[html.Select]
-  type ReactClipboardEventS = SyntheticClipboardEvent[html.Select]
-  type ReactCompositionEventS = SyntheticCompositionEvent[html.Select]
-  type ReactDragEventS = SyntheticDragEvent[html.Select]
-  type ReactFocusEventS = SyntheticFocusEvent[html.Select]
-  type ReactMouseEventS = SyntheticMouseEvent[html.Select]
+  type ReactEventS = ReactEventFrom[html.Select]
+  type ReactClipboardEventS = ReactClipboardEventFrom[html.Select]
+  type ReactCompositionEventS = ReactCompositionEventFrom[html.Select]
+  type ReactDragEventS = ReactDragEventFrom[html.Select]
+  type ReactFocusEventS = ReactFocusEventFrom[html.Select]
+  type ReactMouseEventS = ReactMouseEventFrom[html.Select]
 
   /* this works here, but not in the general case!
    * (see https://github.com/scala-js/scala-js/pull/2070 )
@@ -57,7 +57,7 @@ package object components {
   @JSName("React")
   object ReactJS extends js.Object {
 
-    def createElement(ctor: js.Any, props: js.Object, children: ReactNode*): ReactElement = js.native
+    def createElement(ctor: js.Any, props: js.Object, children: VdomNode*): VdomElement = js.native
   }
 
 }

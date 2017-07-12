@@ -3,7 +3,9 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -36,13 +38,13 @@ case class MuiListItem(
      This is useful if there is no left avatar or left icon. */
   insetChildren:               js.UndefOr[Boolean]                                = js.undefined,
   /* This is the `Avatar` element to be displayed on the left side. */
-  leftAvatar:                  js.UndefOr[ReactElement]                           = js.undefined,
+  leftAvatar:                  js.UndefOr[VdomElement]                           = js.undefined,
   /* This is the `Checkbox` element to be displayed on the left side. */
-  leftCheckbox:                js.UndefOr[ReactElement]                           = js.undefined,
+  leftCheckbox:                js.UndefOr[VdomElement]                           = js.undefined,
   /* This is the `SvgIcon` or `FontIcon` to be displayed on the left side. */
-  leftIcon:                    js.UndefOr[ReactElement]                           = js.undefined,
+  leftIcon:                    js.UndefOr[VdomElement]                           = js.undefined,
   /* An array of `ListItem`s to nest underneath the current `ListItem`. */
-  nestedItems:                 js.UndefOr[js.Array[ReactElement]]                 = js.undefined,
+  nestedItems:                 js.UndefOr[js.Array[VdomElement]]                 = js.undefined,
   /* Controls how deep a `ListItem` appears.
      This property is automatically managed, so modify at your own risk. */
   nestedLevel:                 js.UndefOr[Int]                                    = js.undefined,
@@ -64,25 +66,25 @@ case class MuiListItem(
   open:                        js.UndefOr[Boolean]                                = js.undefined,
   /* This is the block element that contains the primary text.
      If a string is passed in, a div tag will be rendered. */
-  primaryText:                 js.UndefOr[ReactNode]                              = js.undefined,
+  primaryText:                 js.UndefOr[VdomNode]                              = js.undefined,
   /* If true, clicking or tapping the primary text of the `ListItem`
      toggles the nested list. */
   primaryTogglesNestedList:    js.UndefOr[Boolean]                                = js.undefined,
   /* This is the `Avatar` element to be displayed on the right side. */
-  rightAvatar:                 js.UndefOr[ReactElement]                           = js.undefined,
+  rightAvatar:                 js.UndefOr[VdomElement]                           = js.undefined,
   /* This is the `SvgIcon` or `FontIcon` to be displayed on the right side. */
-  rightIcon:                   js.UndefOr[ReactElement]                           = js.undefined,
+  rightIcon:                   js.UndefOr[VdomElement]                           = js.undefined,
   /* This is the `IconButton` to be displayed on the right side.
      Hovering over this button will remove the `ListItem` hover.
      Also, clicking on this button will not trigger a
      ripple on the `ListItem`; the event will be stopped and prevented
      from bubbling up to cause a `ListItem` click. */
-  rightIconButton:             js.UndefOr[ReactElement]                           = js.undefined,
+  rightIconButton:             js.UndefOr[VdomElement]                           = js.undefined,
   /* This is the `Toggle` element to display on the right side. */
-  rightToggle:                 js.UndefOr[ReactElement]                           = js.undefined,
+  rightToggle:                 js.UndefOr[VdomElement]                           = js.undefined,
   /* This is the block element that contains the secondary text.
      If a string is passed in, a div tag will be rendered. */
-  secondaryText:               js.UndefOr[ReactNode]                              = js.undefined,
+  secondaryText:               js.UndefOr[VdomNode]                              = js.undefined,
   /* Can be 1 or 2. This is the number of secondary
      text lines before ellipsis will show. */
   secondaryTextLines:          js.UndefOr[_1_2]                                   = js.undefined,
@@ -91,7 +93,7 @@ case class MuiListItem(
   /* (Passed on to EnhancedButton) */
   centerRipple:                js.UndefOr[Boolean]                                = js.undefined,
   /* (Passed on to EnhancedButton) */
-  containerElement:            js.UndefOr[String | ReactElement]                  = js.undefined,
+  containerElement:            js.UndefOr[String | VdomElement]                  = js.undefined,
   /* (Passed on to EnhancedButton) */
   disableFocusRipple:          js.UndefOr[Boolean]                                = js.undefined,
   /* (Passed on to EnhancedButton) */
@@ -126,16 +128,11 @@ case class MuiListItem(
   /**
     * @param children Children passed into the `ListItem`.
    */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     
     val props = JSMacro[MuiListItem](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.ListItem)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.ListItem)
+    component(props)(children: _*)
   }
 }
 

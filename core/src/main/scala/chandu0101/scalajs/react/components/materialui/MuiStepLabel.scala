@@ -3,7 +3,9 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -21,7 +23,7 @@ case class MuiStepLabel(
   /* Sets disabled styling. */
   disabled:           js.UndefOr[Boolean]                        = js.undefined,
   /* The icon displayed by the step label. */
-  icon:               js.UndefOr[ReactElement | String | Double] = js.undefined,
+  icon:               js.UndefOr[String | Double | VdomElement] = js.undefined,
   /* Override the inline-styles of the icon container element. */
   iconContainerStyle: js.UndefOr[CssProperties]                  = js.undefined,
   last:               js.UndefOr[Boolean]                        = js.undefined,
@@ -31,15 +33,10 @@ case class MuiStepLabel(
   /**
     * @param children The label text node
    */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     
     val props = JSMacro[MuiStepLabel](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.StepLabel)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.StepLabel)
+    component(props)(children: _*)
   }
 }

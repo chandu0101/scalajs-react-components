@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
  * This file is generated - submit issues instead of PR against it
@@ -18,7 +19,7 @@ case class MuiRadioButton[T](
      Used internally by `RadioButtonGroup`. */
   checked:              js.UndefOr[Boolean]                                = js.undefined,
   /* The icon element to show when the radio button is checked. */
-  checkedIcon:          js.UndefOr[ReactElement]                           = js.undefined,
+  checkedIcon:          js.UndefOr[VdomElement]                           = js.undefined,
   /* If true, the radio button is disabled. */
   disabled:             js.UndefOr[Boolean]                                = js.undefined,
   /* Override the inline-styles of the icon element. */
@@ -40,7 +41,7 @@ case class MuiRadioButton[T](
   /* Override the inline-styles of the root element. */
   style:                js.UndefOr[CssProperties]                          = js.undefined,
   /* The icon element to show when the radio button is unchecked. */
-  uncheckedIcon:        js.UndefOr[ReactElement]                           = js.undefined,
+  uncheckedIcon:        js.UndefOr[VdomElement]                           = js.undefined,
   /* The value of the radio button. */
   value:                js.UndefOr[T]                                      = js.undefined,
   /* (Passed on to EnhancedSwitch) */
@@ -54,7 +55,7 @@ case class MuiRadioButton[T](
   /* (Passed on to EnhancedSwitch) */
   inputType:            js.UndefOr[String]                                 = js.undefined,
   /* (Passed on to EnhancedSwitch) */
-  label:                js.UndefOr[ReactNode]                              = js.undefined,
+  label:                js.UndefOr[VdomNode]                              = js.undefined,
   /* (Passed on to EnhancedSwitch) */
   name:                 js.UndefOr[String]                                 = js.undefined,
   /* (Passed on to EnhancedSwitch) */
@@ -80,7 +81,7 @@ case class MuiRadioButton[T](
   /* (Passed on to EnhancedSwitch) */
   rippleStyle:          js.UndefOr[CssProperties]                          = js.undefined,
   /* (Passed on to EnhancedSwitch) */
-  switchElement:        js.UndefOr[ReactElement]                           = js.undefined,
+  switchElement:        js.UndefOr[VdomElement]                           = js.undefined,
   /* (Passed on to EnhancedSwitch) */
   switched:             js.UndefOr[Boolean]                                = js.undefined,
   /* (Passed on to EnhancedSwitch) */
@@ -91,11 +92,11 @@ case class MuiRadioButton[T](
   def apply() = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props = JSMacro[MuiRadioButton[T]](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.RadioButton)
-    f(props).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.None, Null](Mui.RadioButton)
+    component(props)
   }
 }
-        
+
 
 
 @js.native

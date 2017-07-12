@@ -3,13 +3,13 @@ package components
 package semanticui
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 
 object SuiInfo {
 
 
-  val component = ReactComponentB[Unit]("SuiInfo")
+  val component = ScalaComponent.builder[Unit]("SuiInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "semanticui/package.scala")(
         <.div(

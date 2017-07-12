@@ -3,7 +3,7 @@ package demo.components
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{IconName, ReactGeomIcon}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactGeomIconDemo {
 
@@ -28,7 +28,7 @@ object ReactGeomIconDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("ReactGeomIconDemo")
+  val component = ScalaComponent.builder[Unit]("ReactGeomIconDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

@@ -5,12 +5,16 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.Defaults._
+import scala.scalajs.js
+import scala.scalajs.js._
 import scalacss.ScalaCssReact._
 
 object MuiSwitchesDemo {
+
+  val cssSettings = scalacss.devOrProdDefaults
+  import cssSettings._
 
   object Style extends StyleSheet.Inline {
 
@@ -27,8 +31,8 @@ object MuiSwitchesDemo {
 
   // EXAMPLE:START
 
-  val component = ReactComponentB[Unit]("MuiSwitchesDemo")
-    .render(P =>
+  val component = ScalaComponent.builder[Unit]("MuiSwitchesDemo")
+    .render { P =>
       CodeExample(code, "MuiSwitches")(
         <.div(Style.container,
           <.h3("Switches"),
@@ -50,7 +54,7 @@ object MuiSwitchesDemo {
             ),
             MuiTab(label = "RadioButton")(
               <.div(Style.content,
-                MuiRadioButtonGroup(name = "shipspeed", defaultSelected = "not_light")(
+                MuiRadioButtonGroup(name = "shipspeed", defaultSelected = js.use("not_light").as[js.Any])(
                   MuiRadioButton(value = "light", label = "prepare for light speed")(),
                   MuiRadioButton(value = "no_light", label = "light speed too slow")(),
                   MuiRadioButton(value = "ludicrous", label = "go to ludicrous speed", disabled = true)()
@@ -67,7 +71,7 @@ object MuiSwitchesDemo {
           )
         )
       )
-    ).build
+    }.build
 
   // EXAMPLE:END
 

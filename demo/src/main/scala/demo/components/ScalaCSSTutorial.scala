@@ -2,7 +2,7 @@ package demo
 package components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
@@ -57,7 +57,7 @@ object ScalaCSSTutorial {
       |
     """.stripMargin
 
-  val component = ReactComponentB.static("ScalaCSSTutorial",
+  val component = ScalaComponent.static("ScalaCSSTutorial")(
     <.div(Style.content,
      <.div(
       <.h4("Basic Usage :"),
@@ -83,7 +83,7 @@ object ScalaCSSTutorial {
        )
      )
     )
-  ).build
+  )
 
   def apply() = component()
 

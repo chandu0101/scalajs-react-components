@@ -3,22 +3,24 @@ package elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 case class Glyph(
     icon: js.UndefOr[Octicons],
     key: js.UndefOr[String] = js.undefined,
     className: js.UndefOr[String] = js.undefined,
     `type`: js.UndefOr[GlyphType] = js.undefined) {
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     val props = JSMacro[Glyph](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.Glyph)
-    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Eui.Glyph)
+    component(props)(children: _*)
   }
 }
 
-case class GlyphType private (val value: String) extends AnyVal
+case class GlyphType private (value: String) extends AnyVal
 
 object GlyphType {
   val DEFAULT = GlyphType("default")

@@ -3,11 +3,12 @@ package components
 package materialui
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
-
-import scalacss.Defaults._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object MuiInfo {
+
+  val cssSettings = scalacss.devOrProdDefaults
+  import cssSettings._
 
   object Style extends StyleSheet.Inline {
 
@@ -18,7 +19,7 @@ object MuiInfo {
       paddingTop(40.px))
   }
 
-  val component = ReactComponentB[Unit]("MuiInfo")
+  val component = ScalaComponent.builder[Unit]("MuiInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "materialui/package.scala")(
         <.div(

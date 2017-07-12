@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
  * This file is generated - submit issues instead of PR against it
@@ -42,7 +43,7 @@ case class MuiRadioButtonGroup[T](
   checked:         js.UndefOr[Boolean]                          = js.undefined,
   /* The icon element to show when the radio button is checked.
      (Passed on to RadioButton) */
-  checkedIcon:     js.UndefOr[ReactElement]                     = js.undefined,
+  checkedIcon:     js.UndefOr[VdomElement]                     = js.undefined,
   /* If true, the radio button is disabled.
      (Passed on to RadioButton) */
   disabled:        js.UndefOr[Boolean]                          = js.undefined,
@@ -65,7 +66,7 @@ case class MuiRadioButtonGroup[T](
   onCheck:         js.UndefOr[(ReactEvent, String) => Callback] = js.undefined,
   /* The icon element to show when the radio button is unchecked.
      (Passed on to RadioButton) */
-  uncheckedIcon:   js.UndefOr[ReactElement]                     = js.undefined,
+  uncheckedIcon:   js.UndefOr[VdomElement]                     = js.undefined,
   /* The value of the radio button.
      (Passed on to RadioButton) */
   value:           js.UndefOr[T]                                = js.undefined){
@@ -73,16 +74,11 @@ case class MuiRadioButtonGroup[T](
   /**
     * @param children Should be used to pass `RadioButton` components.
    */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props = JSMacro[MuiRadioButtonGroup[T]](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.RadioButtonGroup)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.RadioButtonGroup)
+    component(props)(children: _*)
   }
 }
 

@@ -4,6 +4,7 @@ package routes
 import demo.components.{ReactListViewInfo, ReactListViewDemo}
 import demo.pages.ReactListViewPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactListViewRouteModule {
 

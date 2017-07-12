@@ -5,12 +5,14 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 
 object MuiButtonsDemo {
+
+  val cssSettings = scalacss.devOrProdDefaults
+  import cssSettings._
 
   val code = GhPagesMacros.exampleSource
 
@@ -28,8 +30,9 @@ object MuiButtonsDemo {
 
   // EXAMPLE:START
   import Mui.SvgIcons.ActionGrade
-  val component = ReactComponentB[Unit]("MuiButtonsDemo")
-    .render(P =>
+  import MuiSvgIcon.SvgIconApply
+  val component = ScalaComponent.builder[Unit]("MuiButtonsDemo")
+    .render { _ =>
       CodeExample(code, "MuiButtons")(
         <.div(Style.container,
           <.h3("Buttons"),
@@ -75,7 +78,7 @@ object MuiButtonsDemo {
         )
       )
     )
-  ).build
+  }.build
 
   // EXAMPLE:END
 

@@ -5,7 +5,7 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -30,10 +30,10 @@ object MuiDialogDemo {
       e => open >> Callback.info("Opened")
 
     def render(S: State) = {
-      val actions: ReactNode = js.Array(
+      val actions: VdomNode = js.Array(
         MuiFlatButton(key = "1", label = "Cancel", secondary = true, onTouchTap = handleDialogCancel)(),
         MuiFlatButton(key = "2", label = "Submit", secondary = true, onTouchTap = handleDialogSubmit)()
-      )
+      ).toVdomArray
       <.div(
         CodeExample(code, "MuiDialog")(
           <.div(
@@ -52,7 +52,7 @@ object MuiDialogDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("MuiDialogDemo")
+  val component = ScalaComponent.builder[Unit]("MuiDialogDemo")
     .initialState(State(isOpen = false))
     .renderBackend[Backend]
     .build

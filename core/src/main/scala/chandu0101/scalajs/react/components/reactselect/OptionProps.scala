@@ -5,7 +5,7 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 
 @js.native
-trait OptionProps[T] extends js.Any {
+trait OptionProps[T] extends js.Object {
   /* className (based on mouse position) */
   def className: js.UndefOr[String]
   /* the option is disabled */

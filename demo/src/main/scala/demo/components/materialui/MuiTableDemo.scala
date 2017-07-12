@@ -4,7 +4,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 import scala.scalajs.js.`|`
@@ -61,19 +61,19 @@ object MuiTableDemo {
       Person("7", "Adam Moore", "Employed")
     )
 
-    def renderPersons(selecteds: String | js.Array[Int]): List[ReactComponentU_] =
+    def renderPersons(selecteds: String | js.Array[Int]) =
       persons.zipWithIndex.map {
         case (p, idx) =>
           val selected = selecteds match {
             case a: js.Array[_] => a.contains(idx)
             case all => true
           }
-          MuiTableRow(selected = selected)(
+          MuiTableRow(key = idx.toString, selected = selected)(
             MuiTableRowColumn()(p.id),
             MuiTableRowColumn()(p.name),
             MuiTableRowColumn()(p.status)
           )
-      }
+      }.toVdomArray
 
     def render(S: State) =
       CodeExample(code, "MuiTable")(
@@ -100,14 +100,14 @@ object MuiTableDemo {
               showRowHover = S.showRowHover,
               stripedRows = S.stripedRows
             )(
-              renderPersons(S.selected) :_*
+              renderPersons(S.selected)
             ),
             MuiTableFooter()(
               colNames,
               MuiTableRow(style = js.Dynamic.literal("textAlign" -> "center"))()
             )
           ),
-          MuiPaper(rounded = true, style = js.Dynamic.literal("width" -> "300", "padding" -> "20px"))(
+          MuiPaper(rounded = true, style = js.Dynamic.literal("width" -> "300px", "padding" -> "20px"))(
             MuiToggle(
               label = "selectable",
               defaultToggled = S.selectable,
@@ -143,7 +143,7 @@ object MuiTableDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("MuiTableDemo")
+  val component = ScalaComponent.builder[Unit]("MuiTableDemo")
     .initialState(State(
       fixedHeader = false,
       fixedFooter = false,

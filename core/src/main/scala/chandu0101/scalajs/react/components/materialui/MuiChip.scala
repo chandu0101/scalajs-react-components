@@ -3,7 +3,9 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -15,7 +17,7 @@ case class MuiChip(key: js.UndefOr[String] = js.undefined,
                    /* Override the background color of the chip. */
                    backgroundColor: js.UndefOr[MuiColor] = js.undefined,
                    /* CSS `className` of the root element. */
-                   className: js.UndefOr[ReactNode] = js.undefined,
+                   className: js.UndefOr[VdomNode] = js.undefined,
                    /* Override the label color. */
                    labelColor: js.UndefOr[MuiColor] = js.undefined,
                    /* Override the inline-styles of the label. */
@@ -42,7 +44,7 @@ case class MuiChip(key: js.UndefOr[String] = js.undefined,
                    /* (Passed on to EnhancedButton) */
                    centerRipple: js.UndefOr[Boolean] = js.undefined,
                    /* (Passed on to EnhancedButton) */
-                   containerElement: js.UndefOr[String | ReactElement] = js.undefined,
+                   containerElement: js.UndefOr[String | VdomElement] = js.undefined,
                    /* (Passed on to EnhancedButton) */
                    disableFocusRipple: js.UndefOr[Boolean] = js.undefined,
                    /* (Passed on to EnhancedButton) */
@@ -75,15 +77,10 @@ case class MuiChip(key: js.UndefOr[String] = js.undefined,
   /**
     * @param children Used to render elements inside the Chip.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
 
-    val props = JSMacro[MuiChip](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.Chip)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiChip](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.Chip)
+    component(props)(children: _*)
   }
 }

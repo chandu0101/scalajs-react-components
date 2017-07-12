@@ -6,7 +6,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{JsonUtil, ReactTable}
 import demo.util.SampleData
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactTableCustomCell {
 
@@ -20,16 +20,16 @@ object ReactTableCustomCell {
     val columns: List[String] =
       List("fname", "lname", "email", "country")
 
-    //config is a List of touple4 (String, Option[(Any) => ReactElement], Option[(Model, Model) => Boolean],Option[Double])
+    //config is a List of touple4 (String, Option[(Any) => VdomElement], Option[(Model, Model) => Boolean],Option[Double])
     // ._1: columnname you want to config
     // ._2: custom render function (custom cell factory)
     // ._3: Sorting function
     // ._4: column width (flex := width)
-    // let say if i want to turn all fnames to grey that starts with J (you can return any ReactElement(buttons,well another ReactTable if you want!)
+    // let say if i want to turn all fnames to grey that starts with J (you can return any VdomElement(buttons,well another ReactTable if you want!)
 
     val config = List(("fname", Some(customFname), None, None))
 
-    def customFname: Any => ReactElement =
+    def customFname: Any => VdomElement =
       fname => {
         val name = fname.toString
         if (name.startsWith("J"))
@@ -46,7 +46,8 @@ object ReactTableCustomCell {
       )
   }
 
-  val component = ReactComponentB[Unit]("plain")
+  val component = ScalaComponent
+    .builder[Unit]("plain")
     .renderBackend[Backend]
     .build
 

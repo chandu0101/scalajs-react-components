@@ -3,7 +3,7 @@ package demo.components
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.reactslick._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -21,33 +21,35 @@ object ReactSlickDemo {
   )
 
   // EXAMPLE:START
-  val component = ReactComponentB[Unit]("SlickDemo")
-    .render(
-      P =>
-        <.div(
-          CodeExample(code, "Demo")(
-            <.div(
-              ReactSlick(
-                responsive = js.Array(
-                  ResponsiveSetting(600, Unslick),
-                  ResponsiveSetting(800, SlidesToShow(2)),
-                  ResponsiveSetting(1000, SlidesToShow(3)),
-                  ResponsiveSetting(9999, SlidesToShow(4))
-                ),
-                arrows = true,
-                dots = true,
-                afterChange = (num: Int) => Callback.info(s"afterChange: $num"),
-                beforeChange = (from: Int, to: Int) => Callback.info(s"beforeChange: $from -> $to"),
-                infinite = false,
-                draggable = true
-              )(
-                cats map { c =>
-                  <.img(^.src := c, ^.height := "200px", ^.width := "200px")
-                }: _*
-              )
+
+  val component = ScalaComponent
+    .builder[Unit]("SlickDemo")
+    .render { P =>
+      <.div(
+        CodeExample(code, "Demo")(
+          <.div(
+            ReactSlick(
+              responsive = js.Array(
+                ResponsiveSetting(600, Unslick),
+                ResponsiveSetting(800, SlidesToShow(2)),
+                ResponsiveSetting(1000, SlidesToShow(3)),
+                ResponsiveSetting(9999, SlidesToShow(4))
+              ),
+              arrows = true,
+              dots = true,
+              afterChange = (num: Int) => Callback.info(s"afterChange: $num"),
+              beforeChange = (from: Int, to: Int) => Callback.info(s"beforeChange: $from -> $to"),
+              infinite = false,
+              draggable = true
+            )(
+              cats.map { c =>
+                <.img(^.src := c, ^.height := "200px", ^.width := "200px", ^.key := c): VdomElement
+              }: _*
             )
           )
-      ))
+        )
+      )
+    }
     .build
 
   // EXAMPLE:END

@@ -1,7 +1,7 @@
 package demo.components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.Defaults._
 
@@ -14,7 +14,8 @@ object ReactInfiniteInfo {
     val content = style(textAlign.center, fontSize(30.px), paddingTop(40.px))
   }
 
-  val component = ReactComponentB[Unit]("ReactInfiniteInfo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactInfiniteInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "listviews/ReactInfinite.scala")(
         <.div(

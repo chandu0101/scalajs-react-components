@@ -1,6 +1,6 @@
 package chandu0101.scalajs.react.components.elementalui
 
-case class Octicons private (val value: String) extends AnyVal
+case class Octicons private (value: String) extends AnyVal
 
 object Octicons {
   val alert             = Octicons("alert")

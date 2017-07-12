@@ -3,8 +3,10 @@ package elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 case class Dropdown(alignRight: js.UndefOr[Boolean] = js.undefined,
                     buttonHasDisclosureArrow: js.UndefOr[Boolean] = js.undefined,
@@ -14,12 +16,12 @@ case class Dropdown(alignRight: js.UndefOr[Boolean] = js.undefined,
                     isOpen: js.UndefOr[Boolean] = js.undefined,
                     children: js.UndefOr[Boolean] = js.undefined,
                     items: js.Array[DropdownMenuItem],
-                    onSelect: js.UndefOr[ReactEventH => Callback] = js.undefined) {
+                    onSelect: js.UndefOr[ReactEventFromHtml => Callback] = js.undefined) {
 
-  def apply(children: ReactNode*) = {
-    val props = JSMacro[Dropdown](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.Dropdown)
-    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+  def apply(children: VdomNode*) = {
+    val props     = JSMacro[Dropdown](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Eui.Dropdown)
+    component(props)(children: _*)
   }
 
 }

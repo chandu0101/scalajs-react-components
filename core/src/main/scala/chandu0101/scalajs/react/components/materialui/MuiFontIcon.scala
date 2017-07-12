@@ -3,9 +3,8 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -23,9 +22,8 @@ case class MuiFontIcon(key: js.UndefOr[String] = js.undefined,
                        style: js.UndefOr[CssProperties] = js.undefined) {
 
   def apply() = {
-
-    val props = JSMacro[MuiFontIcon](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.FontIcon)
-    f(props).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiFontIcon](this)
+    val component = JsComponent[js.Object, Children.None, Null](Mui.FontIcon)
+    component(props)
   }
 }

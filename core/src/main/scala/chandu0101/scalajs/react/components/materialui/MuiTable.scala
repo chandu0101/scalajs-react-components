@@ -3,7 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
 import org.scalajs.dom
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -69,16 +72,11 @@ case class MuiTable(key: js.UndefOr[String] = js.undefined,
   /**
     * @param children Children passed to table.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
 
-    val props = JSMacro[MuiTable](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.Table)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiTable](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.Table)
+    component(props)(children: _*)
   }
 }
 @js.native

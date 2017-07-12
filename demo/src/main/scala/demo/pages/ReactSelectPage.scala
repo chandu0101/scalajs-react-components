@@ -4,8 +4,9 @@ package pages
 import chandu0101.scalajs.react.components.WithAsyncScript
 import demo.components.LeftNavPage
 import demo.routes.{LeftRoute, ReactSelectRouteModule}
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
 import japgolly.scalajs.react.extra.router.RouterCtl
-import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 
 object ReactSelectPage {
 
@@ -16,7 +17,9 @@ object ReactSelectPage {
       )
   }
 
-  val component = ReactComponentB[Props]("ReactSelectPage").stateless
+  val component = ScalaComponent
+    .builder[Props]("ReactSelectPage")
+    .stateless
     .renderBackend[Backend]
     .build
 

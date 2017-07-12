@@ -2,6 +2,7 @@ package chandu0101.scalajs.react.components
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -50,15 +51,13 @@ case class ReactTagsInput(key: js.UndefOr[String] = js.undefined,
     } */
                           renderLayout: js.UndefOr[js.Any] = js.undefined,
                           onBlur: js.UndefOr[Callback] = js.undefined,
-                          onKeyDown: js.UndefOr[ReactEventI => Callback] = js.undefined,
-                          onKeyUp: js.UndefOr[ReactEventI => Callback] = js.undefined) {
+                          onKeyDown: js.UndefOr[ReactEventFromInput => Callback] = js.undefined,
+                          onKeyUp: js.UndefOr[ReactEventFromInput => Callback] = js.undefined) {
 
   def apply() = {
-    val props = JSMacro[ReactTagsInput](this)
-    val f = React
-      .asInstanceOf[js.Dynamic]
-      .createFactory(js.Dynamic.global.ReactTagsInput)
-    f(props).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[ReactTagsInput](this)
+    val component = JsComponent[js.Object, Children.None, Null](js.Dynamic.global.ReactTagsInput)
+    component(props)
   }
 
 }

@@ -5,7 +5,7 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic
@@ -25,10 +25,7 @@ object MuiThemeProviderDemo {
   case class Backend($ : BackendScope[Unit, State]) {
 
     def pickColor(s: String): MuiColor =
-      Mui.Styles.colors
-        .asInstanceOf[Dynamic]
-        .selectDynamic(s)
-        .asInstanceOf[MuiColor]
+      Mui.Styles.colors.asInstanceOf[Dynamic].selectDynamic(s).asInstanceOf[MuiColor]
 
     val colors: Seq[(String, MuiColor)] =
       js.Object.keys(Mui.Styles.colors).map { key ⇒
@@ -41,7 +38,7 @@ object MuiThemeProviderDemo {
     val onColorChanged: (ReactEvent, Int, MuiColor) ⇒ Callback =
       (e, idx, color) ⇒ $.modState(_.copy(backgroundColor = color))
 
-    def render(S: State): ReactElement = {
+    def render(S: State): VdomElement = {
       <.div(
         CodeExample(code, "MuiThemeProvider")(
           MuiMuiThemeProvider(muiTheme = S.theme)(
@@ -67,7 +64,7 @@ object MuiThemeProviderDemo {
                                           primaryText = name,
                                           value = color,
                                           style = js.Dynamic.literal(backgroundColor = color))()
-                }: _*
+                }.toVdomArray
               )
             )
           )
@@ -77,13 +74,14 @@ object MuiThemeProviderDemo {
   }
 
   private val component =
-    ReactComponentB[Unit]("MuiThemeProviderDemo")
+    ScalaComponent
+      .builder[Unit]("MuiThemeProviderDemo")
       .initialState(State(Mui.Styles.LightRawTheme, js.undefined))
       .renderBackend[Backend]
       .build
 
   // EXAMPLE:END
 
-  def apply(): ReactElement =
+  def apply(): VdomElement =
     component()
 }

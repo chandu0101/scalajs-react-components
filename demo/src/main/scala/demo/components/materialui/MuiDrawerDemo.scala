@@ -5,7 +5,7 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -69,7 +69,8 @@ object MuiDrawerDemo {
                           display = "block",
                           padding = "10px"
                         ))(":D"),
-              choices map (
+              choices
+                .map(
                   c =>
                     MuiMenuItem(
                       key = c.id,
@@ -77,6 +78,7 @@ object MuiDrawerDemo {
                       checked = S.selected == js.defined(c.id),
                       onTouchTap = selectItem(c.id)
                     )())
+                .toVdomArray
             ),
             MuiToggle(
               key = "toggle1",
@@ -102,7 +104,8 @@ object MuiDrawerDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("MuiDrawerDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiDrawerDemo")
     .initialState(
       State(
         selected = js.undefined,

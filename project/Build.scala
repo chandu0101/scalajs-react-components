@@ -9,8 +9,8 @@ object Build extends Build {
   val Scala211 = "2.11.8"
   val Scala212 = "2.12.1"
 
-  val scalajsReactVersion = "0.11.3"
-  val scalaCSSVersion     = "0.5.1"
+  val scalajsReactVersion = "1.0.1"
+  val scalaCSSVersion     = "0.5.3"
 
   type PE = Project => Project
 
@@ -19,7 +19,7 @@ object Build extends Build {
       .settings(
         crossScalaVersions := Seq(Scala211, Scala212),
         organization := "com.olvind",
-        version := "0.6.0",
+        version := "0.7.0",
         homepage := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion := Scala212,
@@ -32,7 +32,7 @@ object Build extends Build {
                               "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
-          "org.scala-js" %% "scalajs-test-interface" % "0.6.14"
+          "org.scala-js" %% "scalajs-test-interface" % "0.6.17"
         )
       )
 
@@ -85,8 +85,7 @@ object Build extends Build {
         scalacOptions ++= (if (isSnapshot.value) Seq.empty
                            else
                              Seq({
-                               val a = p.base.toURI.toString
-                                 .replaceFirst("[^/]+/?$", "")
+                               val a = p.base.toURI.toString.replaceFirst("[^/]+/?$", "")
                                val g =
                                  "https://raw.githubusercontent.com/chandu0101/scalajs-react-components"
                                s"-P:scalajs:mapSourceURI:$a->$g/v${version.value}/"
@@ -111,8 +110,8 @@ object Build extends Build {
 
   def createLauncher(scope: String = "compile"): PE =
     _.settings(
-      persistLauncher := true,
-      persistLauncher in Test := false,
+      scalaJSUseMainModuleInitializer := true,
+      scalaJSUseMainModuleInitializer in Test := false,
       crossTarget in (Compile, fullOptJS) := file(jsDir),
       crossTarget in (Compile, fastOptJS) := file(jsDir),
       //      crossTarget in (Compile, packageLauncher) := file(jsDir),

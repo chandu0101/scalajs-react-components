@@ -4,7 +4,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.semanticui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object SuiListDemo {
 
@@ -39,7 +39,8 @@ object SuiListDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("SuiListDemo")
+  val component = ScalaComponent
+    .builder[Unit]("SuiListDemo")
     .renderBackend[Backend]
     .build
 

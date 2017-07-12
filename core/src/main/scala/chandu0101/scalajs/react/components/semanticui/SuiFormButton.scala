@@ -2,9 +2,10 @@ package chandu0101.scalajs.react.components
 package semanticui
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-import scala.scalajs.js.annotation.JSName
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -29,7 +30,7 @@ case class SuiFormButton(
     attached: js.UndefOr[SemanticButtonATTACHED] = js.undefined,
     active: js.UndefOr[Boolean] = js.undefined,
     floated: js.UndefOr[SemanticFLOATS] = js.undefined,
-    content: js.UndefOr[ReactNode] = js.undefined,
+    content: js.UndefOr[VdomNode] = js.undefined,
     onDoubleClick: js.UndefOr[ReactMouseEventB => Callback] = js.undefined,
     onMouseEnter: js.UndefOr[ReactMouseEventB => Callback] = js.undefined,
     key: js.UndefOr[String] = js.undefined,
@@ -48,17 +49,18 @@ case class SuiFormButton(
     onMouseLeave: js.UndefOr[ReactMouseEventB => Callback] = js.undefined,
     positive: js.UndefOr[Boolean] = js.undefined,
     circular: js.UndefOr[Boolean] = js.undefined,
-    icon: js.UndefOr[String | js.Object | ReactElement] = js.undefined,
+    icon: js.UndefOr[String | js.Object | VdomElement] = js.undefined,
     onDragExit: js.UndefOr[ReactDragEventB => Callback] = js.undefined,
-    label: js.UndefOr[String | js.Object | ReactElement] = js.undefined,
+    label: js.UndefOr[String | js.Object | VdomElement] = js.undefined,
     onDragEnd: js.UndefOr[ReactDragEventB => Callback] = js.undefined,
     onDrop: js.UndefOr[ReactDragEventB => Callback] = js.undefined,
     onDragOver: js.UndefOr[ReactDragEventB => Callback] = js.undefined,
     onDrag: js.UndefOr[ReactDragEventB => Callback] = js.undefined,
     as: js.UndefOr[String | js.Function] = js.undefined
 ) {
-  def apply(children: ReactNode*) = {
-    val props = JSMacro[SuiFormButton](this)
-    ReactJS.createElement(Sui.FormButton, props, children: _*)
+  def apply(children: VdomNode*) = {
+    val props     = JSMacro[SuiFormButton](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Sui.FormButton)
+    component(props)(children: _*)
   }
 }

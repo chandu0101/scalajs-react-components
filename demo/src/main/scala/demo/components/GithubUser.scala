@@ -2,7 +2,7 @@ package demo
 package components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -22,15 +22,15 @@ object GithubUser {
     val userGroup = Seq(^.display := "inline-block",
                         ^.textAlign := "center",
                         ^.textDecoration := "none",
-                        ^.color := "black")
+                        ^.color := "black").toTagMod
 
     val userIcon = Seq(^.margin := "10px",
                        ^.display := "block",
                        ^.width := "100px",
                        ^.height := "100px",
-                       ^.borderRadius := "50%")
+                       ^.borderRadius := "50%").toTagMod
 
-    val userName = Seq(^.fontSize := "18px", ^.fontWeight := 500)
+    val userName = Seq(^.fontSize := "18px", ^.fontWeight := "500").toTagMod
   }
   case class Backend($ : BackendScope[Props, _]) {
     def render(P: Props) = {
@@ -41,12 +41,12 @@ object GithubUser {
     }
   }
 
-  val component = ReactComponentB[Props]("GithubUser")
+  val component = ScalaComponent
+    .builder[Props]("GithubUser")
     .renderBackend[Backend]
     .build
 
   case class Props(user: Github)
 
-  def apply(user: Github, ref: js.UndefOr[String] = "", key: js.Any = {}) =
-    component.set(key, ref)(Props(user))
+  def apply(user: Github) = component(Props(user))()
 }

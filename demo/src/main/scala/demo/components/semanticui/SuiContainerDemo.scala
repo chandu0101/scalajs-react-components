@@ -9,7 +9,7 @@ import chandu0101.scalajs.react.components.semanticui.{
 }
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object SuiContainerDemo {
 
@@ -30,7 +30,8 @@ object SuiContainerDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("SuiContainerDemo")
+  val component = ScalaComponent
+    .builder[Unit]("SuiContainerDemo")
     .renderBackend[Backend]
     .build
 

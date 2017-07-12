@@ -3,7 +3,9 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -41,7 +43,7 @@ case class MuiIconButton(key: js.UndefOr[String] = js.undefined,
                          /* Override the inline-styles of the root element. */
                          style: js.UndefOr[CssProperties] = js.undefined,
                          /* The text to supply to the element's tooltip. */
-                         tooltip: js.UndefOr[ReactNode] = js.undefined,
+                         tooltip: js.UndefOr[VdomNode] = js.undefined,
                          /* The vertical and horizontal positions, respectively, of the element's tooltip.
      Possible values are: "bottom-center", "top-center", "bottom-right", "top-right",
      "bottom-left", and "top-left". */
@@ -54,7 +56,7 @@ case class MuiIconButton(key: js.UndefOr[String] = js.undefined,
                          /* (Passed on to EnhancedButton) */
                          centerRipple: js.UndefOr[Boolean] = js.undefined,
                          /* (Passed on to EnhancedButton) */
-                         containerElement: js.UndefOr[String | ReactElement] = js.undefined,
+                         containerElement: js.UndefOr[String | VdomElement] = js.undefined,
                          /* (Passed on to EnhancedButton) */
                          disableFocusRipple: js.UndefOr[Boolean] = js.undefined,
                          /* (Passed on to EnhancedButton) */
@@ -85,16 +87,11 @@ case class MuiIconButton(key: js.UndefOr[String] = js.undefined,
   /**
     * @param children Can be used to pass a `FontIcon` element as the icon for the button.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
 
-    val props = JSMacro[MuiIconButton](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.IconButton)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiIconButton](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.IconButton)
+    component(props)(children: _*)
   }
 }
 @js.native

@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -15,7 +16,7 @@ case class MuiTimePicker(key: js.UndefOr[String] = js.undefined,
                          /* If true, automatically accept and close the picker on set minutes. */
                          autoOk: js.UndefOr[Boolean] = js.undefined,
                          /* Override the label of the 'Cancel' button. */
-                         cancelLabel: js.UndefOr[ReactNode] = js.undefined,
+                         cancelLabel: js.UndefOr[VdomNode] = js.undefined,
                          /* The initial time value of the TimePicker. */
                          defaultTime: js.UndefOr[js.Date] = js.undefined,
                          /* Override the inline-styles of TimePickerDialog's body element. */
@@ -27,7 +28,7 @@ case class MuiTimePicker(key: js.UndefOr[String] = js.undefined,
                          /* Tells the component to display the picker in `ampm` (12hr) format or `24hr` format. */
                          format: js.UndefOr[Ampm_24hr] = js.undefined,
                          /* Override the label of the 'OK' button. */
-                         okLabel: js.UndefOr[ReactNode] = js.undefined,
+                         okLabel: js.UndefOr[VdomNode] = js.undefined,
                          /* Callback function that is fired when the time value changes. The time value is passed in a Date Object.
      Since there is no particular event associated with the change the first argument will always be null
      and the second argument will be the new Date instance. */
@@ -63,7 +64,7 @@ case class MuiTimePicker(key: js.UndefOr[String] = js.undefined,
                          errorStyle: js.UndefOr[CssProperties] = js.undefined,
                          /* The error content to display.
      (Passed on to TextField) */
-                         errorText: js.UndefOr[ReactNode] = js.undefined,
+                         errorText: js.UndefOr[VdomNode] = js.undefined,
                          /* If true, the floating label will float even when there is no value.
      (Passed on to TextField) */
                          floatingLabelFixed: js.UndefOr[Boolean] = js.undefined,
@@ -78,7 +79,7 @@ case class MuiTimePicker(key: js.UndefOr[String] = js.undefined,
                          floatingLabelStyle: js.UndefOr[CssProperties] = js.undefined,
                          /* The content to use for the floating label element.
      (Passed on to TextField) */
-                         floatingLabelText: js.UndefOr[ReactNode] = js.undefined,
+                         floatingLabelText: js.UndefOr[VdomNode] = js.undefined,
                          /* If true, the field receives the property width 100%.
      (Passed on to TextField) */
                          fullWidth: js.UndefOr[Boolean] = js.undefined,
@@ -87,7 +88,7 @@ case class MuiTimePicker(key: js.UndefOr[String] = js.undefined,
                          hintStyle: js.UndefOr[CssProperties] = js.undefined,
                          /* The hint content to display.
      (Passed on to TextField) */
-                         hintText: js.UndefOr[ReactNode] = js.undefined,
+                         hintText: js.UndefOr[VdomNode] = js.undefined,
                          /* The id prop for the text field.
      (Passed on to TextField) */
                          id: js.UndefOr[String] = js.undefined,
@@ -104,7 +105,7 @@ case class MuiTimePicker(key: js.UndefOr[String] = js.undefined,
      (Passed on to TextField) */
                          name: js.UndefOr[String] = js.undefined,
                          /* (Passed on to TextField) */
-                         onBlur: js.UndefOr[ReactFocusEventI => Callback] = js.undefined,
+                         onBlur: js.UndefOr[ReactFocusEventFromInput => Callback] = js.undefined,
                          /* Number of rows to display when multiLine option is set to true.
      (Passed on to TextField) */
                          rows: js.UndefOr[Int] = js.undefined,
@@ -136,16 +137,11 @@ case class MuiTimePicker(key: js.UndefOr[String] = js.undefined,
      (Passed on to TextField) */
                          underlineStyle: js.UndefOr[CssProperties] = js.undefined) {
 
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
 
-    val props = JSMacro[MuiTimePicker](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.TimePicker)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiTimePicker](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.TimePicker)
+    component(props)(children: _*)
   }
 }
 @js.native

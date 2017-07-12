@@ -2,6 +2,8 @@ package chandu0101.scalajs.react.components.reactslick
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomElement
 
 import scala.scalajs.js
 
@@ -49,17 +51,9 @@ case class ReactSlick(
                       /* go to the specified slide number */
                       slickGoTo: js.UndefOr[Int] = js.undefined) {
 
-  def apply(children: ReactElement*) = {
-    val f =
-      React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactSlick)
-    val props = JSMacro[ReactSlick](this)
-
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
-
+  def apply(children: VdomElement*) = {
+    val component = JsComponent[js.Object, Children.Varargs, Null](js.Dynamic.global.ReactSlick)
+    val props     = JSMacro[ReactSlick](this)
+    component(props)(children: _*)
   }
 }

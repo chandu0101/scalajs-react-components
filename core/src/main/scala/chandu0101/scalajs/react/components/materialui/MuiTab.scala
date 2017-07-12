@@ -3,7 +3,9 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -17,15 +19,15 @@ case class MuiTab[T](key: js.UndefOr[String] = js.undefined,
                      /* The css class name of the root element. */
                      className: js.UndefOr[String] = js.undefined,
                      /* Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements. */
-                     icon: js.UndefOr[ReactNode] = js.undefined,
+                     icon: js.UndefOr[VdomNode] = js.undefined,
                      index: js.UndefOr[js.Any] = js.undefined,
                      /* Sets the text value of the tab item to the string specified. */
-                     label: js.UndefOr[ReactNode] = js.undefined,
+                     label: js.UndefOr[VdomNode] = js.undefined,
                      /* Fired when the active tab changes by touch or tap.
      Use this event to specify any functionality when an active tab changes.
      For example - we are using this to route to home when the third tab becomes active.
      This function will always recieve the active tab as it\'s first argument. */
-                     onActive: js.UndefOr[ReactElement => Callback] = js.undefined,
+                     onActive: js.UndefOr[VdomElement => Callback] = js.undefined,
                      /* This property is overriden by the Tabs component. */
                      onTouchTap: js.UndefOr[TouchTapEvent => Callback] = js.undefined,
                      /* Defines if the current tab is selected or not.
@@ -41,7 +43,7 @@ case class MuiTab[T](key: js.UndefOr[String] = js.undefined,
                      /* (Passed on to EnhancedButton) */
                      centerRipple: js.UndefOr[Boolean] = js.undefined,
                      /* (Passed on to EnhancedButton) */
-                     containerElement: js.UndefOr[String | ReactElement] = js.undefined,
+                     containerElement: js.UndefOr[String | VdomElement] = js.undefined,
                      /* (Passed on to EnhancedButton) */
                      disableFocusRipple: js.UndefOr[Boolean] = js.undefined,
                      /* (Passed on to EnhancedButton) */
@@ -80,15 +82,10 @@ case class MuiTab[T](key: js.UndefOr[String] = js.undefined,
                      /* (Passed on to EnhancedButton) */
                      `type`: js.UndefOr[String] = js.undefined) {
 
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props                      = JSMacro[MuiTab[T]](this)
-    val f                          = React.asInstanceOf[js.Dynamic].createFactory(Mui.Tab)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component                  = JsComponent[js.Object, Children.Varargs, Null](Mui.Tab)
+    component(props)(children: _*)
   }
 }

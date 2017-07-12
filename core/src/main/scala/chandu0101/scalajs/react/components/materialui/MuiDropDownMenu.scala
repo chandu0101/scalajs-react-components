@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -25,7 +26,7 @@ case class MuiDropDownMenu[T](key: js.UndefOr[String] = js.undefined,
                               /* Disables the menu. */
                               disabled: js.UndefOr[Boolean] = js.undefined,
                               /* Overrides default `SvgIcon` dropdown arrow component. */
-                              iconButton: js.UndefOr[ReactNode] = js.undefined,
+                              iconButton: js.UndefOr[VdomNode] = js.undefined,
                               /* Overrides the styles of icon element. */
                               iconStyle: js.UndefOr[CssProperties] = js.undefined,
                               /* Overrides the styles of label when the `DropDownMenu` is inactive. */
@@ -62,16 +63,11 @@ case class MuiDropDownMenu[T](key: js.UndefOr[String] = js.undefined,
     prop `label` that value will be used to render the representation of that
     item within the field.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props                      = JSMacro[MuiDropDownMenu[T]](this)
-    val f                          = React.asInstanceOf[js.Dynamic].createFactory(Mui.DropDownMenu)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component                  = JsComponent[js.Object, Children.Varargs, Null](Mui.DropDownMenu)
+    component(props)(children: _*)
   }
 }
 @js.native

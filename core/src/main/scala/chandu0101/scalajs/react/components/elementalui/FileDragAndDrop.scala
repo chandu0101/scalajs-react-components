@@ -3,6 +3,8 @@ package elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -17,8 +19,8 @@ case class FileDragAndDrop(className: js.UndefOr[String] = js.undefined,
                            onDrop: js.UndefOr[js.Array[File] => Callback] = js.undefined) {
 
   def apply() = {
-    val props = JSMacro[FileDragAndDrop](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.FileDragAndDrop)
-    f(props).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[FileDragAndDrop](this)
+    val component = JsComponent[js.Object, Children.None, Null](Eui.FileDragAndDrop)
+    component(props)
   }
 }

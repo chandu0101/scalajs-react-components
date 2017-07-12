@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -26,7 +27,7 @@ case class MuiToggle[T](key: js.UndefOr[String] = js.undefined,
                         /* Overrides the inline-styles of the input element. */
                         inputStyle: js.UndefOr[CssProperties] = js.undefined,
                         /* Label for toggle. */
-                        label: js.UndefOr[ReactNode] = js.undefined,
+                        label: js.UndefOr[VdomNode] = js.undefined,
                         /* Where the label will be placed next to the toggle. */
                         labelPosition: js.UndefOr[LeftRight] = js.undefined,
                         /* Overrides the inline-styles of the Toggle element label. */
@@ -86,7 +87,7 @@ case class MuiToggle[T](key: js.UndefOr[String] = js.undefined,
                         /* (Passed on to EnhancedSwitch) */
                         rippleColor: js.UndefOr[MuiColor] = js.undefined,
                         /* (Passed on to EnhancedSwitch) */
-                        switchElement: js.UndefOr[ReactElement] = js.undefined,
+                        switchElement: js.UndefOr[VdomElement] = js.undefined,
                         /* (Passed on to EnhancedSwitch) */
                         switched: js.UndefOr[Boolean] = js.undefined,
                         /* (Passed on to EnhancedSwitch) */
@@ -95,8 +96,8 @@ case class MuiToggle[T](key: js.UndefOr[String] = js.undefined,
   def apply() = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props                      = JSMacro[MuiToggle[T]](this)
-    val f                          = React.asInstanceOf[js.Dynamic].createFactory(Mui.Toggle)
-    f(props).asInstanceOf[ReactComponentU_]
+    val component                  = JsComponent[js.Object, Children.None, Null](Mui.Toggle)
+    component(props)
   }
 }
 @js.native

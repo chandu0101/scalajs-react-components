@@ -3,11 +3,12 @@ package components
 package googlemap
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object GoogleMapInfo {
 
-  val component = ReactComponentB[Unit]("googleMapInfo")
+  val component = ScalaComponent
+    .builder[Unit]("googleMapInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "maps/GoogleMap.scala")(
         <.h3("Google Map :"),

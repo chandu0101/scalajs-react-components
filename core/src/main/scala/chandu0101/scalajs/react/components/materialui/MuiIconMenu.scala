@@ -3,7 +3,8 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -27,7 +28,7 @@ case class MuiIconMenu[T](
     /* The CSS class name of the root element. */
     className: js.UndefOr[String] = js.undefined,
     /* This is the `IconButton` to render. This button will open the menu. */
-    iconButtonElement: ReactElement,
+    iconButtonElement: VdomElement,
     /* Override the inline-styles of the underlying icon element. */
     iconStyle: js.UndefOr[CssProperties] = js.undefined,
     /* Override the inline-styles of the underlying `List` element. */
@@ -39,7 +40,7 @@ case class MuiIconMenu[T](
     /* Callback function fired when a menu item is selected with a touch-tap.
      @param {object} event TouchTap event targeting the selected menu item element.
      @param {object} child The selected element. */
-    onItemTouchTap: js.UndefOr[(ReactTouchEvent, ReactElement) => Callback] = js.undefined,
+    onItemTouchTap: js.UndefOr[(ReactTouchEvent, VdomElement) => Callback] = js.undefined,
     /* Callback function fired when the `IconButton` element is focused or blurred by the keyboard.
      @param {object} event `focus` or `blur` event targeting the `IconButton` element.
      @param {boolean} keyboardFocused If true, the `IconButton` element is focused. */
@@ -146,16 +147,11 @@ case class MuiIconMenu[T](
   /**
     * @param children Should be used to pass `MenuItem` components.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props                      = JSMacro[MuiIconMenu[T]](this)
-    val f                          = React.asInstanceOf[js.Dynamic].createFactory(Mui.IconMenu)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component                  = JsComponent[js.Object, Children.Varargs, Null](Mui.IconMenu)
+    component(props)(children: _*)
   }
 }
 @js.native

@@ -3,11 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
-import japgolly.scalajs.react.{Callback, ReactComponentB}
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 object MuiAutoCompleteDemo {
   val code = GhPagesMacros.exampleSource
@@ -105,30 +104,30 @@ object MuiAutoCompleteDemo {
   val onUpdateInput: (String, js.Array[String], js.Object) => Callback =
     (search, ds, params) => Callback.info(s"onUpdateInput: search $search")
 
-  val component = ReactComponentB[Unit]("MuiAutoCompleteDemo")
-    .render(
-      P =>
-        CodeExample(code, "MuiAutoComplete")(
-          <.div(
-            MuiAutoComplete(
-              floatingLabelText = "Type t, fuzzy search",
-              filter = js.defined(MuiAutoCompleteFilters.fuzzyFilter),
-              dataSource = fruit,
-              anchorOrigin = Origin(Vertical.bottom, Horizontal.middle),
-              onNewRequest = onNewRequest,
-              onUpdateInput = onUpdateInput
-            )()
-          ),
-          <.div(
-            MuiAutoComplete(
-              floatingLabelText = "Type r, case insensitive",
-              filter = js.defined(MuiAutoCompleteFilters.caseInsensitiveFilter),
-              dataSource = colors,
-              onNewRequest = onNewRequest,
-              onUpdateInput = onUpdateInput
-            )()
-          )
-      ))
+  val component = ScalaComponent
+    .builder[Unit]("MuiAutoCompleteDemo")
+    .render(P =>
+      CodeExample(code, "MuiAutoComplete")(
+        <.div(
+          MuiAutoComplete(
+            floatingLabelText = "Type t, fuzzy search": VdomNode,
+            filter = js.defined(MuiAutoCompleteFilters.fuzzyFilter),
+            dataSource = fruit,
+            anchorOrigin = Origin(Vertical.bottom, Horizontal.middle),
+            onNewRequest = onNewRequest,
+            onUpdateInput = onUpdateInput
+          )()
+        ),
+        <.div(
+          MuiAutoComplete(
+            floatingLabelText = "Type r, case insensitive": VdomNode,
+            filter = js.defined(MuiAutoCompleteFilters.caseInsensitiveFilter),
+            dataSource = colors,
+            onNewRequest = onNewRequest,
+            onUpdateInput = onUpdateInput
+          )()
+        )
+    ))
     .build
 
   // EXAMPLE:END

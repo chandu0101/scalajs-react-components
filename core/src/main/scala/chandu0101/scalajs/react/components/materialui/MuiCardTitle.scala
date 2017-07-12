@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -21,13 +22,13 @@ case class MuiCardTitle(key: js.UndefOr[String] = js.undefined,
                         /* Override the inline-styles of the root element. */
                         style: js.UndefOr[CssProperties] = js.undefined,
                         /* Can be used to render a subtitle in the Card Title. */
-                        subtitle: js.UndefOr[ReactNode] = js.undefined,
+                        subtitle: js.UndefOr[VdomNode] = js.undefined,
                         /* Override the subtitle color. */
                         subtitleColor: js.UndefOr[MuiColor] = js.undefined,
                         /* Override the inline-styles of the subtitle. */
                         subtitleStyle: js.UndefOr[CssProperties] = js.undefined,
                         /* Can be used to render a title in the Card Title. */
-                        title: js.UndefOr[ReactNode] = js.undefined,
+                        title: js.UndefOr[VdomNode] = js.undefined,
                         /* Override the title color. */
                         titleColor: js.UndefOr[MuiColor] = js.undefined,
                         /* Override the inline-styles of the title. */
@@ -36,15 +37,10 @@ case class MuiCardTitle(key: js.UndefOr[String] = js.undefined,
   /**
     * @param children Can be used to render elements inside the Card Title.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
 
-    val props = JSMacro[MuiCardTitle](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.CardTitle)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiCardTitle](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.CardTitle)
+    component(props)(children: _*)
   }
 }

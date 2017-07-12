@@ -1,33 +1,38 @@
 package chandu0101.scalajs.react.components
 package materialui
 
+import chandu0101.scalajs.react.components.materialui.MuiSvgIcon.MuiSvgIcon
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
 
 @js.native
-trait MuiSvgIconProps extends js.Any {
+trait MuiSvgIconProps extends js.Object {
   def key: js.UndefOr[String]
   def ref: js.UndefOr[String]
   def color: js.UndefOr[MuiColor]
   def hoverColor: js.UndefOr[MuiColor]
-  def onMouseEnter: js.UndefOr[ReactMouseEventH => Callback]
-  def onMouseLeave: js.UndefOr[ReactMouseEventH => Callback]
+  def onMouseEnter: js.UndefOr[ReactMouseEventFromHtml => Callback]
+  def onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback]
   def style: js.UndefOr[CssProperties]
   def viewBox: js.UndefOr[String]
 }
 
 object MuiSvgIcon {
+  type MuiSvgIcon = js.Any
+
   implicit class SvgIconApply(icon: MuiSvgIcon) {
     def apply(
         key: js.UndefOr[String] = js.undefined,
         ref: js.UndefOr[String] = js.undefined,
         color: js.UndefOr[MuiColor] = js.undefined,
         hoverColor: js.UndefOr[MuiColor] = js.undefined,
-        onMouseEnter: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-        onMouseLeave: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
+        onMouseEnter: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+        onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
         style: js.UndefOr[CssProperties] = js.undefined,
-        viewBox: js.UndefOr[String] = js.undefined)(childOpt: js.UndefOr[ReactNode] = js.undefined)
-      : JsComponentU[MuiSvgIconProps, js.Any, TopNode] = {
+        viewBox: js.UndefOr[String] = js.undefined)(childOpt: js.UndefOr[VdomNode] = js.undefined)
+      : JsComponent.Unmounted[MuiSvgIconProps, Null] = {
 
       val props = js.Dynamic.literal()
       key.foreach(v => props.updateDynamic("key")(v))
@@ -39,18 +44,13 @@ object MuiSvgIcon {
       style.foreach(v => props.updateDynamic("style")(v))
       viewBox.foreach(v => props.updateDynamic("viewBox")(v))
 
-      val f: JsComponentC[MuiSvgIconProps, js.Any, TopNode] =
-        React.createFactory(icon)
-      val svgProps: MuiSvgIconProps =
-        props.asInstanceOf[MuiSvgIconProps]
+      val component                 = JsComponent[MuiSvgIconProps, Children.Varargs, Null](icon)
+      val svgProps: MuiSvgIconProps = props.asInstanceOf[MuiSvgIconProps]
 
-      childOpt.fold(f(svgProps))(c => f(svgProps, c))
+      component(svgProps)(childOpt.toList: _*)
     }
   }
 }
-
-@js.native
-trait MuiSvgIcon extends JsComponentType[MuiSvgIconProps, js.Any, TopNode]
 
 @js.native
 trait MuiSvgIcons extends js.Object {

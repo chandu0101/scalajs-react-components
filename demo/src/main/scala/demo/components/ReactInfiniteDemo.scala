@@ -3,12 +3,14 @@ package demo.components
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.ReactInfinite
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 
 object ReactInfiniteDemo {
+
+  val cssSettings = scalacss.devOrProdDefaults
+  import cssSettings._
 
   object styles extends StyleSheet.Inline {
 
@@ -22,8 +24,7 @@ object ReactInfiniteDemo {
       height(70 px),
       padding(20 px)
     )
-    val border =
-      style(borderBottom :=! "2px solid rgba(0, 0, 0, 0.1)", marginLeft(4 px))
+    val border = style(borderBottom :=! "2px solid rgba(0, 0, 0, 0.1)", marginLeft(4 px))
   }
 
   val code = GhPagesMacros.exampleSource
@@ -34,7 +35,7 @@ object ReactInfiniteDemo {
 
   class Backend(t: BackendScope[_, State]) {
 
-    def renderRow(s: String): ReactElement = {
+    def renderRow(s: String): VdomElement = {
       <.div(styles.item, s, ^.key := s, <.div(styles.border))
     }
 
@@ -54,7 +55,8 @@ object ReactInfiniteDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("ReactSelectDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactSelectDemo")
     .initialState(State())
     .renderBackend[Backend]
     .componentDidMount(scope => scope.backend.loadData())

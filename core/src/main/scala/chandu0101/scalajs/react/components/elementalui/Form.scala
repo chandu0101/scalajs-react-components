@@ -3,23 +3,25 @@ package elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 case class Form(key: js.UndefOr[String] = js.undefined,
                 className: js.UndefOr[String] = js.undefined,
                 style: js.UndefOr[String] = js.undefined,
                 `type`: js.UndefOr[FormType] = js.undefined) {
 
-  def apply(children: ReactNode*) = {
-    val props = JSMacro[Form](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.Form)
-    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+  def apply(children: VdomNode*) = {
+    val props     = JSMacro[Form](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Eui.Form)
+    component(props)(children: _*)
   }
 
 }
 
-case class FormType private (val value: String) extends AnyVal
+case class FormType private (value: String) extends AnyVal
 
 object FormType {
   val BASIC      = FormType("basic")

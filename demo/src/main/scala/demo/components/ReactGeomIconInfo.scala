@@ -1,7 +1,7 @@
 package demo.components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.Defaults._
 
@@ -14,7 +14,8 @@ object ReactGeomIconInfo {
     val content = style(textAlign.center, fontSize(30.px), paddingTop(40.px))
   }
 
-  val component = ReactComponentB[Unit]("ReactGeomIconInfo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactGeomIconInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "icons/ReactGeomIcon.scala")(
         <.div(

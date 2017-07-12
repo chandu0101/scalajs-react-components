@@ -4,13 +4,13 @@ package components
 import chandu0101.scalajs.react.components.RCustomStyles
 import chandu0101.scalajs.react.components.RCustomStyles._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object AppHeader {
 
   object Style {
 
-    val headerStyle: Seq[TagMod] = Seq(
+    val headerStyle = Seq(
       ^.background := "#F2706D",
       ^.fontSize := "1.5em",
       ^.padding := "0px",
@@ -18,7 +18,7 @@ object AppHeader {
       ^.position := "fixed",
       ^.width := "100%",
       ^.zIndex := "5"
-    )
+    ).toTagMod
 
     val menuNav = Seq(
       MsFlexAlign := "center",
@@ -32,18 +32,18 @@ object AppHeader {
       ^.height := "64px",
       ^.lineHeight := "64px",
       ^.margin := "0 3rem"
-    )
+    ).toTagMod
 
     val logo = Seq(
       ^.color := "rgb(244, 233, 233)",
       ^.textDecoration := "none",
       ^.width := "150px"
-    )
+    ).toTagMod
 
     val menuItem =
-      Seq(^.padding := "20px", ^.color := "rgb(244, 233, 233)", ^.textDecoration := "none")
+      Seq(^.padding := "20px", ^.color := "rgb(244, 233, 233)", ^.textDecoration := "none").toTagMod
 
-    val menuItemHover = Seq(^.background := "#f1453e")
+    val menuItemHover = Seq(^.background := "#f1453e").toTagMod
 
   }
 
@@ -63,7 +63,7 @@ object AppHeader {
           <.div(^.marginLeft := "auto")(
             <.a(
               ^.target := "_blank",
-              (S.menuHover == github) ?= Style.menuItemHover,
+              Style.menuItemHover.when(S.menuHover == github),
               Style.menuItem,
               ^.href := "https://github.com/chandu0101/scalajs-react-components",
               ^.onMouseEnter --> onMouseEnter(github),
@@ -75,7 +75,8 @@ object AppHeader {
     }
   }
 
-  val component = ReactComponentB[Unit]("AppHeader")
+  val component = ScalaComponent
+    .builder[Unit]("AppHeader")
     .initialState(State())
     .renderBackend[Backend]
     .build

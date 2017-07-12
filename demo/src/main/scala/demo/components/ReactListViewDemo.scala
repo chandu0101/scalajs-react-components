@@ -3,18 +3,18 @@ package demo.components
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.ReactListView
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 
 object ReactListViewDemo {
 
   object Style {
 
-    def listViewComponent = Seq(^.float := "left", ^.marginBottom := "2em")
+    def listViewComponent = Seq(^.float := "left", ^.marginBottom := "2em").toTagMod
 
-    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px")
+    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px").toTagMod
 
-    def listViewDemo = Seq(^.display := "flex")
+    def listViewDemo = Seq(^.display := "flex").toTagMod
   }
 
   val code = GhPagesMacros.exampleSource
@@ -52,7 +52,8 @@ object ReactListViewDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("ReactListViewDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactListViewDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

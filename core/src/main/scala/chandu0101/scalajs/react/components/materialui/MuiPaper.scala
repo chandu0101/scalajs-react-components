@@ -3,7 +3,8 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.vdom.html_<^._
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -27,15 +28,9 @@ case class MuiPaper(key: js.UndefOr[String] = js.undefined,
   /**
     * @param children Children passed into the paper element.
     */
-  def apply(children: ReactNode*) = {
-
-    val props = JSMacro[MuiPaper](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.Paper)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+  def apply(children: VdomNode*) = {
+    val props     = JSMacro[MuiPaper](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.Paper)
+    component(props)(children: _*)
   }
 }

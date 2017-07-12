@@ -6,7 +6,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{JsonUtil, ReactTable}
 import demo.util.SampleData
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactTableCustomColumnSize {
 
@@ -21,7 +21,7 @@ object ReactTableCustomColumnSize {
     val columns: List[String] =
       List("fname", "lname", "email", "country")
 
-    //config is a List of touple4 (String, Option[(Any) => ReactElement], Option[(Model, Model) => Boolean],Option[Double])
+    //config is a List of touple4 (String, Option[(Any) => VdomElement], Option[(Model, Model) => Boolean],Option[Double])
     // ._1: colum name you want to config
     // ._2: custom render function (custom cell factory)
     // ._3: Sorting function
@@ -36,7 +36,8 @@ object ReactTableCustomColumnSize {
       )
   }
 
-  val component = ReactComponentB[Unit]("ReactTableCustomColumnSize")
+  val component = ScalaComponent
+    .builder[Unit]("ReactTableCustomColumnSize")
     .renderBackend[Backend]
     .build
 

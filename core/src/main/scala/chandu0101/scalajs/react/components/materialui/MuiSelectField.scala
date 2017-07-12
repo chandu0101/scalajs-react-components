@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -21,19 +22,19 @@ case class MuiSelectField[T](key: js.UndefOr[String] = js.undefined,
                              /* Override the inline-styles of the error element. */
                              errorStyle: js.UndefOr[CssProperties] = js.undefined,
                              /* The error content to display. */
-                             errorText: js.UndefOr[ReactNode] = js.undefined,
+                             errorText: js.UndefOr[VdomNode] = js.undefined,
                              /* If true, the floating label will float even when no value is selected. */
                              floatingLabelFixed: js.UndefOr[Boolean] = js.undefined,
                              /* Override the inline-styles of the floating label. */
                              floatingLabelStyle: js.UndefOr[CssProperties] = js.undefined,
                              /* The content of the floating label. */
-                             floatingLabelText: js.UndefOr[ReactNode] = js.undefined,
+                             floatingLabelText: js.UndefOr[VdomNode] = js.undefined,
                              /* If true, the select field will take up the full width of its container. */
                              fullWidth: js.UndefOr[Boolean] = js.undefined,
                              /* Override the inline-styles of the hint element. */
                              hintStyle: js.UndefOr[CssProperties] = js.undefined,
                              /* The hint content to display. */
-                             hintText: js.UndefOr[ReactNode] = js.undefined,
+                             hintText: js.UndefOr[VdomNode] = js.undefined,
                              /* Override the inline-styles of the icon element. */
                              iconStyle: js.UndefOr[CssProperties] = js.undefined,
                              /* The id prop for the text field. */
@@ -83,7 +84,7 @@ case class MuiSelectField[T](key: js.UndefOr[String] = js.undefined,
                              className: js.UndefOr[String] = js.undefined,
                              /* Overrides default `SvgIcon` dropdown arrow component.
      (Passed on to DropDownMenu) */
-                             iconButton: js.UndefOr[ReactNode] = js.undefined,
+                             iconButton: js.UndefOr[VdomNode] = js.undefined,
                              /* Callback function fired when the menu is closed.
      (Passed on to DropDownMenu) */
                              onClose: js.UndefOr[Callback] = js.undefined,
@@ -96,15 +97,10 @@ case class MuiSelectField[T](key: js.UndefOr[String] = js.undefined,
     If the menu items have a `label` prop, that value will
     represent the selected menu item in the rendered select field.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props                      = JSMacro[MuiSelectField[T]](this)
-    val f                          = React.asInstanceOf[js.Dynamic].createFactory(Mui.SelectField)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component                  = JsComponent[js.Object, Children.Varargs, Null](Mui.SelectField)
+    component(props)(children: _*)
   }
 }

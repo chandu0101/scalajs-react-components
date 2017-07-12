@@ -3,7 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.{React, ReactElement}
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
 import org.scalajs.dom
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -26,7 +29,7 @@ case class MuiTabs[T](key: js.UndefOr[String] = js.undefined,
                       /* Override the inline-styles of the InkBar. */
                       inkBarStyle: js.UndefOr[CssProperties] = js.undefined,
                       /* Called when the selected value change. */
-                      onChange: js.UndefOr[(T, ReactEventH, ReactElement) => Callback] =
+                      onChange: js.UndefOr[(T, ReactEventFromHtml, ReactElement) => Callback] =
                         js.undefined,
                       /* Override the inline-styles of the root element. */
                       style: js.UndefOr[CssProperties] = js.undefined,
@@ -42,16 +45,11 @@ case class MuiTabs[T](key: js.UndefOr[String] = js.undefined,
   /**
     * @param children Should be used to pass `Tab` components.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props                      = JSMacro[MuiTabs[T]](this)
-    val f                          = React.asInstanceOf[js.Dynamic].createFactory(Mui.Tabs)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component                  = JsComponent[js.Object, Children.Varargs, Null](Mui.Tabs)
+    component(props)(children: _*)
   }
 }
 @js.native

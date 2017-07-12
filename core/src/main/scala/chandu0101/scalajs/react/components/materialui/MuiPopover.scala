@@ -3,7 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
 import org.scalajs.dom
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -58,16 +61,11 @@ case class MuiPopover(key: js.UndefOr[String] = js.undefined,
   /**
     * @param children The content of the popover.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
 
-    val props = JSMacro[MuiPopover](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.Popover)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiPopover](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.Popover)
+    component(props)(children: _*)
   }
 }
 @js.native

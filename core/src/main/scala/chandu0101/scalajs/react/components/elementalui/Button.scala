@@ -3,10 +3,13 @@ package elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.html_<^._
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
-case class Button(onClick: js.UndefOr[ReactEventH => Callback] = js.undefined,
+case class Button(onClick: js.UndefOr[ReactEventFromHtml => Callback] = js.undefined,
                   `type`: js.UndefOr[ButtonType] = js.undefined,
                   block: js.UndefOr[Boolean] = js.undefined,
                   disabled: js.UndefOr[Boolean] = js.undefined,
@@ -16,12 +19,12 @@ case class Button(onClick: js.UndefOr[ReactEventH => Callback] = js.undefined,
                   isActive: js.UndefOr[Boolean] = js.undefined,
                   size: js.UndefOr[ButtonSize] = js.undefined,
                   submit: js.UndefOr[Boolean] = js.undefined,
-                  ondblclick: js.UndefOr[ReactEventH => Callback] = js.undefined) {
+                  ondblclick: js.UndefOr[ReactEventFromHtml => Callback] = js.undefined) {
 
-  def apply(children: ReactNode*) = {
-    val props = JSMacro[Button](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.Button)
-    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+  def apply(children: VdomNode*) = {
+    val props     = JSMacro[Button](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Eui.Button)
+    component(props)(children: _*)
   }
 
 }
@@ -36,7 +39,7 @@ object ButtonSize {
   val values = List(LG, SM, XS)
 }
 
-case class ButtonType private (val value: String) extends AnyVal
+case class ButtonType private (value: String) extends AnyVal
 
 object ButtonType {
   val DEFAULT         = ButtonType("default")

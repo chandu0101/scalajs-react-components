@@ -2,7 +2,7 @@ package demo
 package components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.Defaults._
 import scalacss.ScalaCssReact._
@@ -57,41 +57,38 @@ object ScalaCSSTutorial {
       |
     """.stripMargin
 
-  val component = ReactComponentB
-    .static(
-      "ScalaCSSTutorial",
+  val component = ScalaComponent.static("ScalaCSSTutorial")(
+    <.div(
+      Style.content,
       <.div(
-        Style.content,
-        <.div(
-          <.h4("Basic Usage :"),
-          <.p(
-            "To use scalacss based components, u just need to register component style",
-            <.br(),
-            "For example if you want to use ReactTable component in ur project "
-          ),
-          <.pre(
-            CodeHighlight(basicCode)
-          ),
-          <.a(
-            ^.href := "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/chandu0101/scalajs/react/components/demo/css/AppCSS.scala",
-            "real world example",
-            ^.target := "_blank"
-          )
+        <.h4("Basic Usage :"),
+        <.p(
+          "To use scalacss based components, u just need to register component style",
+          <.br(),
+          "For example if you want to use ReactTable component in ur project "
         ),
-        <.div(
-          <.h4("Custom Styles:"),
-          <.p(
-            "If you want to customize style of a component then define a new style by extending base style class of component ",
-            <.br(),
-            "For example we want to add custom hover color for ReactTable component"
-          ),
-          <.pre(
-            CodeHighlight(customCode)
-          )
+        <.pre(
+          CodeHighlight(basicCode)
+        ),
+        <.a(
+          ^.href := "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/chandu0101/scalajs/react/components/demo/css/AppCSS.scala",
+          "real world example",
+          ^.target := "_blank"
+        )
+      ),
+      <.div(
+        <.h4("Custom Styles:"),
+        <.p(
+          "If you want to customize style of a component then define a new style by extending base style class of component ",
+          <.br(),
+          "For example we want to add custom hover color for ReactTable component"
+        ),
+        <.pre(
+          CodeHighlight(customCode)
         )
       )
     )
-    .build
+  )
 
   def apply() = component()
 

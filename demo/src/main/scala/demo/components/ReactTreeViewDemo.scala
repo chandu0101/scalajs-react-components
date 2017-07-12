@@ -3,15 +3,15 @@ package demo.components
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.{ReactTreeView, TreeItem}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 
 object ReactTreeViewDemo {
 
   object Style {
-    def treeViewDemo = Seq(^.display := "flex")
+    def treeViewDemo = Seq(^.display := "flex").toTagMod
 
-    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px")
+    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px").toTagMod
   }
 
   val code = GhPagesMacros.exampleSource
@@ -55,7 +55,8 @@ object ReactTreeViewDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("ReactTreeViewDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactTreeViewDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

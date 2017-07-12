@@ -5,7 +5,7 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -15,15 +15,15 @@ object MuiDropDownMenuDemo {
 
   // EXAMPLE:START
 
-  case class Item(val id: String, val name: String)
+  case class Item(id: String, name: String)
 
   val items: Seq[Item] =
     Seq(
-      new Item("1", "Never"),
-      new Item("2", "Every Night"),
-      new Item("3", "Weeknights"),
-      new Item("4", "Weekends"),
-      new Item("5", "Weekly")
+      Item("1", "Never"),
+      Item("2", "Every Night"),
+      Item("3", "Weeknights"),
+      Item("4", "Weekends"),
+      Item("5", "Weekly")
     )
 
   case class Backend($ : BackendScope[Unit, Item]) {
@@ -34,15 +34,15 @@ object MuiDropDownMenuDemo {
       <.div(
         CodeExample(code, "MuiDropDownMenu")(
           MuiDropDownMenu(onChange = onChange, value = chosen)(
-            items map {
-              case item =>
-                MuiMenuItem(key = item.id, value = item, primaryText = item.name)()
-            }: _*
+            items.map { item =>
+              MuiMenuItem(key = item.id, value = item, primaryText = item.name)()
+            }.toVdomArray
           )
         )
       )
   }
-  val component = ReactComponentB[Unit]("MuiDropDownMenuDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiDropDownMenuDemo")
     .initialState(items.head)
     .renderBackend[Backend]
     .build

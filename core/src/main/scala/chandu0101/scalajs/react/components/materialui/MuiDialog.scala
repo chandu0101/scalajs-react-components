@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -14,7 +15,7 @@ case class MuiDialog(key: js.UndefOr[String] = js.undefined,
                      ref: js.UndefOr[String] = js.undefined,
                      /* Action buttons to display below the Dialog content (`children`).
      This property accepts either a React element, or an array of React elements. */
-                     actions: js.UndefOr[ReactNode] = js.undefined,
+                     actions: js.UndefOr[VdomNode] = js.undefined,
                      /* The `className` to add to the actions container's root element. */
                      actionsContainerClassName: js.UndefOr[String] = js.undefined,
                      /* Overrides the inline-styles of the actions container's root element. */
@@ -51,7 +52,7 @@ case class MuiDialog(key: js.UndefOr[String] = js.undefined,
                      /* Override the inline-styles of the root element. */
                      style: js.UndefOr[CssProperties] = js.undefined,
                      /* The title to display on the `Dialog`. Could be number, string, element or an array containing these types. */
-                     title: js.UndefOr[ReactNode] = js.undefined,
+                     title: js.UndefOr[VdomNode] = js.undefined,
                      /* The `className` to add to the title's root container element. */
                      titleClassName: js.UndefOr[String] = js.undefined,
                      /* Overrides the inline-styles of the title's root container element. */
@@ -60,15 +61,10 @@ case class MuiDialog(key: js.UndefOr[String] = js.undefined,
   /**
     * @param children The contents of the `Dialog`.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
 
-    val props = JSMacro[MuiDialog](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.Dialog)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiDialog](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.Dialog)
+    component(props)(children: _*)
   }
 }

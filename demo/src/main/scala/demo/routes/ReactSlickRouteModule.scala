@@ -3,6 +3,7 @@ package demo.routes
 import demo.components.{ReactSlickInfo, ReactSlickDemo}
 import demo.pages.SlickPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactSlickRouteModule {
 
@@ -14,9 +15,7 @@ object ReactSlickRouteModule {
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._
-    menu
-      .map(i => staticRoute(i.route, i) ~> renderR(r => SlickPage(i, r)))
-      .reduce(_ | _)
+    menu.map(i => staticRoute(i.route, i) ~> renderR(r => SlickPage(i, r))).reduce(_ | _)
 
   }
 }

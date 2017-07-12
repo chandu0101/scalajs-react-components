@@ -2,7 +2,7 @@ package demo
 package components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom.ext.Ajax
 
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
@@ -15,20 +15,22 @@ object ComponentCredits {
 
   class Backend(t: BackendScope[Props, State]) {
     def render(S: State) = {
-      if (S.users.isEmpty) <.div("Loading Credits ...")
-      else
-        <.div(
-          <.h4("Author: "),
-          S.users.headOption.map(GithubUser(_)),
-          <.h4("Contributors: "),
-          <.div(^.marginRight := "10px")(S.users.tail.map(u => GithubUser(user = u, key = u.login)))
-        )
-
+      S.users match {
+        case Nil => <.div("Loading Credits ...")
+        case author :: contributors =>
+          <.div(
+            <.h4("Author: "),
+            GithubUser(author),
+            <.h4("Contributors: "),
+            <.div(^.marginRight := "10px")(contributors.map(GithubUser(_)): _*)
+          )
+      }
     }
   }
 
   val component =
-    ReactComponentB[Props]("ComponentCredits")
+    ScalaComponent
+      .builder[Props]("ComponentCredits")
       .initialState(State(List()))
       .renderBackend[Backend]
       .componentDidMount(
@@ -39,9 +41,7 @@ object ComponentCredits {
             Ajax.get(url).onSuccess {
               case xhr =>
                 if (xhr.status == 200) {
-                  val rawUsers = JSON
-                    .parse(xhr.responseText)
-                    .asInstanceOf[js.Array[js.Dynamic]]
+                  val rawUsers = JSON.parse(xhr.responseText).asInstanceOf[js.Array[js.Dynamic]]
                   val users = rawUsers
                     .map(
                       u =>
@@ -60,8 +60,8 @@ object ComponentCredits {
                     .toSet
                     .toList
 
-                  $.modState(_.copy(users = users.sortBy(_.time)))
-                    .when($.isMounted())
+                  $.mountedPure
+                    .modState(_.copy(users = users.sortBy(_.time)))
                     .runNow()
                 }
             }
@@ -71,6 +71,5 @@ object ComponentCredits {
 
   case class Props(filePath: String)
 
-  def apply(filePath: String, ref: js.UndefOr[String] = "", key: js.Any = {}) =
-    component.set(key, ref)(Props(filePath))
+  def apply(filePath: String) = component(Props(filePath))
 }

@@ -3,7 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
 import org.scalajs.dom
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -26,15 +29,10 @@ case class MuiStepContent(key: js.UndefOr[String] = js.undefined,
   /**
     * @param children Step content
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
 
-    val props = JSMacro[MuiStepContent](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.StepContent)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiStepContent](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.StepContent)
+    component(props)(children: _*)
   }
 }

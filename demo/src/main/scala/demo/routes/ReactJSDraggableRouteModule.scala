@@ -4,6 +4,7 @@ package routes
 import demo.components.{ReactDraggableInfo, ReactDraggableDemo}
 import demo.pages.ReactJSDraggablePage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactJSDraggableRouteModule {
 
@@ -16,9 +17,7 @@ object ReactJSDraggableRouteModule {
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._
 
-    menu
-      .map(i => staticRoute(i.route, i) ~> renderR(r => ReactJSDraggablePage(i, r)))
-      .reduce(_ | _)
+    menu.map(i => staticRoute(i.route, i) ~> renderR(r => ReactJSDraggablePage(i, r))).reduce(_ | _)
 
   }
 }

@@ -6,7 +6,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.GoogleMap
 import chandu0101.scalajs.react.components.fascades.{LatLng, Marker}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object GoogleMapMarkerInfoWindow {
 
@@ -31,15 +31,15 @@ object GoogleMapMarkerInfoWindow {
            content = "<h3>This is Manly Beach </h3>")
   )
 
-  val component = ReactComponentB[Unit]("infowindow")
-    .render(
-      P =>
-        <.div(
-          <.h2(^.cls := "mui-font-style-headline")("Marker InfoWindow"),
-          CodeExample(code, "GoogleMapMarkerInfoWindow")(
-            GoogleMap(center = latlng, markers = markers, zoom = 10)
-          )
-      ))
+  val component = ScalaComponent
+    .builder[Unit]("infowindow")
+    .render(P =>
+      <.div(
+        <.h2(^.cls := "mui-font-style-headline")("Marker InfoWindow"),
+        CodeExample(code, "GoogleMapMarkerInfoWindow")(
+          GoogleMap(center = latlng, markers = markers, zoom = 10)
+        )
+    ))
     .build
 
   // EXAMPLE:END

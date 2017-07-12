@@ -2,32 +2,30 @@ package demo.components
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.ReactPopOver
-import chandu0101.scalajs.react.components.ReactPopOver.{Props, State}
+import chandu0101.scalajs.react.components.ReactPopOver.{DomUtil, Props, State}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactPopoverDemo {
 
   object Style {
     val popoverExample =
-      Seq(^.display := "flex", ^.flexDirection := "column", ^.alignItems := "center")
+      Seq(^.display := "flex", ^.flexDirection := "column", ^.alignItems := "center").toTagMod
   }
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
   class Backend(t: BackendScope[_, _]) {
-    val topRef    = Ref.to(ReactPopOver.component, "top")
-    val rightRef  = Ref.to(ReactPopOver.component, "right")
-    val leftRef   = Ref.to(ReactPopOver.component, "left")
-    val bottomRef = Ref.to(ReactPopOver.component, "bottom")
+    private val topRef    = ScalaComponent.mutableRefTo(ReactPopOver.component)
+    private val rightRef  = ScalaComponent.mutableRefTo(ReactPopOver.component)
+    private val leftRef   = ScalaComponent.mutableRefTo(ReactPopOver.component)
+    private val bottomRef = ScalaComponent.mutableRefTo(ReactPopOver.component)
 
-    def toggleCB(
-        ref: RefComp[Props, State, ReactPopOver.Backend, TopNode]): ReactEventH => Callback =
-      e =>
-        CallbackOption
-          .liftOptionLike(ref(t))
-          .flatMap(_.backend.toggle(e.target))
+    def toggleCB(refComp: => ScalaComponent.MountedImpure[Props, State, ReactPopOver.Backend])
+      : ReactMouseEvent => Callback = { e =>
+      CallbackTo(e.currentTarget.domAsHtml) flatMap refComp.backend.toggle
+    }
 
     def render = {
       <.div(
@@ -35,24 +33,20 @@ object ReactPopoverDemo {
         CodeExample(code, "ReactPopover")(
           <.div(Style.popoverExample)(
             <.div(^.padding := "20px")(
-              ReactPopOver(ref = topRef, placement = "top", title = "Top Title")(
-                "I am Top Pop Over"),
-              LocalDemoButton(name = "Top Button", onButtonClick = toggleCB(topRef))
+              topRef.component(Props("Top Title", "top"))("I am Top Pop over"),
+              LocalDemoButton(name = "Top Button", onButtonClick = toggleCB(topRef.value))
             ),
             <.div(^.padding := "20px")(
-              ReactPopOver(ref = leftRef, placement = "left", title = "Left Title")(
-                "I am Left Popover"),
-              LocalDemoButton(name = "Left Button", onButtonClick = toggleCB(leftRef))
+              leftRef.component(Props("Left Title", "left"))("I am left Popover"),
+              LocalDemoButton(name = "Left Button", onButtonClick = toggleCB(leftRef.value))
             ),
             <.div(^.padding := "20px")(
-              ReactPopOver(ref = rightRef, placement = "right", title = "Right Title")(
-                "I am right Popover"),
-              LocalDemoButton(name = "Right Button", onButtonClick = toggleCB(rightRef))
+              rightRef.component(Props("Right Title", "right"))("I am Right Popover"),
+              LocalDemoButton(name = "Right Button", onButtonClick = toggleCB(rightRef.value))
             ),
             <.div(^.padding := "20px")(
-              ReactPopOver(ref = bottomRef, placement = "bottom", title = "Bottom Title")(
-                "I am bottom Popover"),
-              LocalDemoButton(name = "Bottom Button", onButtonClick = toggleCB(bottomRef))
+              bottomRef.component(Props("Bottom Title", "bottom"))("I am bottom Popover"),
+              LocalDemoButton(name = "Bottom Button", onButtonClick = toggleCB(bottomRef.value))
             )
           )
         )
@@ -60,7 +54,8 @@ object ReactPopoverDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("ReactPopoverDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactPopoverDemo")
     .renderBackend[Backend]
     .build
 

@@ -5,7 +5,8 @@ import chandu0101.scalajs.react.components.WithAsyncScript
 import demo.components.LeftNavPage
 import demo.routes.{LeftRoute, SpinnerRouteModule}
 import japgolly.scalajs.react.extra.router.RouterCtl
-import japgolly.scalajs.react.{BackendScope, ReactComponentB}
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object SpinnerPage {
 
@@ -16,7 +17,9 @@ object SpinnerPage {
       )
   }
 
-  val component = ReactComponentB[Props]("SpinnerPage").stateless
+  val component = ScalaComponent
+    .builder[Props]("SpinnerPage")
+    .stateless
     .renderBackend[Backend]
     .build
 

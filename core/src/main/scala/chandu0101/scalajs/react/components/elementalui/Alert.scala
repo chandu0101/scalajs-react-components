@@ -3,20 +3,23 @@ package elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
 case class Alert(className: js.UndefOr[String] = js.undefined,
                  `type`: js.UndefOr[AlertType] = js.undefined) {
 
-  def apply(children: ReactNode*) = {
-    val props = JSMacro[Alert](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.Alert)
-    f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+  def apply(children: VdomNode*) = {
+    val props     = JSMacro[Alert](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Eui.Alert)
+    component(props)(children: _*)
   }
 }
 
-case class AlertType private (val value: String) extends AnyVal
+case class AlertType private (value: String) extends AnyVal
 object AlertType {
   val INFO    = AlertType("info")
   val PRIMARY = AlertType("primary")

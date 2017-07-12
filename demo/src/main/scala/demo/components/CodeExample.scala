@@ -2,9 +2,7 @@ package demo
 package components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
-
-import scala.scalajs.js
+import japgolly.scalajs.react.vdom.html_<^._
 
 object CodeExample {
 
@@ -12,19 +10,21 @@ object CodeExample {
 
     val pageBodyContent = Seq(^.borderRadius := "2px",
                               ^.boxShadow := "0 1px 4px rgba(223, 228, 228, 0.79)",
-                              ^.maxWidth := "1024px")
+                              ^.maxWidth := "1024px").toTagMod
 
-    val contentDemo = Seq(^.padding := "30px")
+    val contentDemo = Seq(^.padding := "30px").toTagMod
 
-    val contentCode = Seq(^.borderTop := "solid 1px #e0e0e0")
+    val contentCode = Seq(^.borderTop := "solid 1px #e0e0e0").toTagMod
 
-    val title = Seq(^.paddingBottom := "15px")
+    val title = Seq(^.paddingBottom := "15px").toTagMod
 
   }
+
   case class Backend($ : BackendScope[Props, _]) {
     def render(P: Props, C: PropsChildren) = {
       <.div(
-        P.title.nonEmpty ?= <.h3(P.title, Style.title),
+        ^.key := "code-example",
+        <.h3(Style.title, P.title).when(P.title.nonEmpty),
         <.div(Style.pageBodyContent)(
           <.div(Style.contentDemo, ^.key := "dan")(
             C
@@ -37,13 +37,13 @@ object CodeExample {
     }
   }
 
-  val component = ReactComponentB[Props]("codeexample")
-    .renderBackend[Backend]
+  val component = ScalaComponent
+    .builder[Props]("codeexample")
+    .renderBackendWithChildren[Backend]
     .build
 
   case class Props(code: String, title: String)
 
-  def apply(code: String, title: String, ref: js.UndefOr[String] = "", key: js.Any = {})(
-      children: ReactNode*) =
-    component.set(key, ref)(Props(code, title), children: _*)
+  def apply(code: String, title: String)(children: VdomNode*) =
+    component(Props(code, title))(children: _*)
 }

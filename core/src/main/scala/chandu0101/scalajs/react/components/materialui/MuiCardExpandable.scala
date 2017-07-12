@@ -3,25 +3,26 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
   */
 case class MuiCardExpandable(key: js.UndefOr[String] = js.undefined,
                              ref: js.UndefOr[String] = js.undefined,
-                             closeIcon: js.UndefOr[ReactNode] = js.undefined,
+                             closeIcon: js.UndefOr[VdomNode] = js.undefined,
                              expanded: js.UndefOr[Boolean] = js.undefined,
                              onExpanding: Callback,
-                             openIcon: js.UndefOr[ReactNode] = js.undefined,
+                             openIcon: js.UndefOr[VdomNode] = js.undefined,
                              style: js.UndefOr[CssProperties] = js.undefined) {
 
   def apply() = {
 
-    val props = JSMacro[MuiCardExpandable](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.CardExpandable)
-    f(props).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiCardExpandable](this)
+    val component = JsComponent[js.Object, Children.None, Null](Mui.CardExpandable)
+    component(props)
   }
 }

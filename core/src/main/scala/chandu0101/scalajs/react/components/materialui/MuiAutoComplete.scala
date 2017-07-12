@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -32,18 +33,18 @@ case class MuiAutoComplete(
     /* Override style prop for error. */
     errorStyle: js.UndefOr[CssProperties] = js.undefined,
     /* The error content to display. */
-    errorText: js.UndefOr[ReactNode] = js.undefined,
+    errorText: js.UndefOr[VdomNode] = js.undefined,
     /* Callback function used to filter the auto complete.
      @param {string} searchText The text to search for within `dataSource`.
      @param {string} key `dataSource` element, or `text` property on that element if it's not a string.
      @returns {boolean} `true` indicates the auto complete list will include `key` when the input is `searchText`. */
     filter: js.UndefOr[(String, String, String) => Boolean] = js.undefined,
     /* The content to use for adding floating label element. */
-    floatingLabelText: js.UndefOr[ReactNode] = js.undefined,
+    floatingLabelText: js.UndefOr[VdomNode] = js.undefined,
     /* If true, the field receives the property `width: 100%`. */
     fullWidth: js.UndefOr[Boolean] = js.undefined,
     /* The hint content to display. */
-    hintText: js.UndefOr[ReactNode] = js.undefined,
+    hintText: js.UndefOr[VdomNode] = js.undefined,
     /* Override style for list. */
     listStyle: js.UndefOr[CssProperties] = js.undefined,
     /* The max number of search results to be shown.
@@ -55,10 +56,10 @@ case class MuiAutoComplete(
     menuProps: js.UndefOr[js.Object] = js.undefined,
     /* Override style for menu. */
     menuStyle: js.UndefOr[CssProperties] = js.undefined,
-    onBlur: js.UndefOr[ReactFocusEventI => Callback] = js.undefined,
+    onBlur: js.UndefOr[ReactFocusEventFromInput => Callback] = js.undefined,
     /* Callback function fired when the menu is closed. */
     onClose: js.UndefOr[Callback] = js.undefined,
-    onFocus: js.UndefOr[ReactFocusEventI => Callback] = js.undefined,
+    onFocus: js.UndefOr[ReactFocusEventFromInput => Callback] = js.undefined,
     onKeyDown: js.UndefOr[ReactKeyboardEvent => Callback] = js.undefined,
     /* Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
      @param {string} chosenRequest Either the `TextField` input value, if enter is pressed in the `TextField`,
@@ -128,7 +129,7 @@ case class MuiAutoComplete(
      (Passed on to TextField)
      @param {object} event Change event targeting the text field.
      @param {string} newValue The new value of the text field. */
-    onChange: js.UndefOr[(ReactEventI, String) => Callback] = js.undefined,
+    onChange: js.UndefOr[(ReactEventFromInput, String) => Callback] = js.undefined,
     /* Number of rows to display when multiLine option is set to true.
      (Passed on to TextField) */
     rows: js.UndefOr[Int] = js.undefined,
@@ -163,16 +164,11 @@ case class MuiAutoComplete(
      (Passed on to TextField) */
     value: js.UndefOr[String] = js.undefined) {
 
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
 
-    val props = JSMacro[MuiAutoComplete](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.AutoComplete)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiAutoComplete](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.AutoComplete)
+    component(props)(children: _*)
   }
 }
 @js.native

@@ -124,36 +124,24 @@ class JSMacroTest[T <: SelectOption] extends FunSuite {
     val result = JSMacro[SeqTest](SeqTest()).asInstanceOf[js.Dynamic]
     println(s"result array ${JSON.stringify(result)}")
     assert(result.s.asInstanceOf[js.Array[String]].head == "dude")
-    assert(
-      result.as
-        .asInstanceOf[js.Array[js.Dictionary[String]]]
-        .head("country") == "India")
+    assert(result.as.asInstanceOf[js.Array[js.Dictionary[String]]].head("country") == "India")
 
     val result2 = JSMacro[SeqUndefTest](SeqUndefTest()).asInstanceOf[js.Dynamic]
     println(s"result2 array ${JSON.stringify(result2)}")
     assert(result2.s.asInstanceOf[js.Array[String]].head == "dude")
-    assert(
-      result2.as
-        .asInstanceOf[js.Array[js.Dictionary[String]]]
-        .head("country") == "India")
+    assert(result2.as.asInstanceOf[js.Array[js.Dictionary[String]]].head("country") == "India")
   }
 
   test("should handle sets") {
     val result = JSMacro[SetTest](SetTest()).asInstanceOf[js.Dynamic]
     assert(result.s.asInstanceOf[js.Array[String]].head == "dude")
-    assert(
-      result.as
-        .asInstanceOf[js.Array[js.Dictionary[String]]]
-        .head("country") == "India")
+    assert(result.as.asInstanceOf[js.Array[js.Dictionary[String]]].head("country") == "India")
   }
 
   test("should handle arrays") {
     val result = JSMacro[ArrayTest](ArrayTest()).asInstanceOf[js.Dynamic]
     assert(result.s.asInstanceOf[js.Array[String]].head == "dude")
-    assert(
-      result.as
-        .asInstanceOf[js.Array[js.Dictionary[String]]]
-        .head("country") == "India")
+    assert(result.as.asInstanceOf[js.Array[js.Dictionary[String]]].head("country") == "India")
   }
 
   test("should handle maps") {

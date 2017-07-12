@@ -4,7 +4,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.elementalui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js.`|`
 
@@ -18,10 +18,10 @@ object EuiModalDemo {
                    modalSize: String | Int = 0)
 
   case class Backend($ : BackendScope[Unit, State]) {
-    def toggleModal(event: ReactEventH) =
+    def toggleModal(event: ReactEventFromHtml) =
       $.modState(state => state.copy(modalIsOpen = !state.modalIsOpen))
 
-    def toggleSizeModal(size: String | Int)(event: ReactEventH) =
+    def toggleSizeModal(size: String | Int)(event: ReactEventFromHtml) =
       $.modState(state => state.copy(sizeModalIsOpen = !state.sizeModalIsOpen, modalSize = size))
 
     def renderLiveDemo(S: State) =
@@ -137,7 +137,8 @@ object EuiModalDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("EuiModalDemo")
+  val component = ScalaComponent
+    .builder[Unit]("EuiModalDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

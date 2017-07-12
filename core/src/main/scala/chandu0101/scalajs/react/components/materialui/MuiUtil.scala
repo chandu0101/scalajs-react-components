@@ -16,11 +16,9 @@ trait MuiUtil extends js.Object {
 
 @js.native
 trait ColorManipulator extends js.Object {
-  def fade(color: MuiColor, amount: Double): MuiColor    = js.native
-  def lighten(color: MuiColor, amount: Double): MuiColor = js.native
-  def darken(color: MuiColor, amount: Double): MuiColor  = js.native
-  def contrastRatio(background: MuiColor, foreground: MuiColor): Double =
-    js.native
-  def contrastRatioLevel(background: MuiColor, foreground: MuiColor): String =
-    js.native
+  def fade(color: MuiColor, amount: Double): MuiColor                        = js.native
+  def lighten(color: MuiColor, amount: Double): MuiColor                     = js.native
+  def darken(color: MuiColor, amount: Double): MuiColor                      = js.native
+  def contrastRatio(background: MuiColor, foreground: MuiColor): Double      = js.native
+  def contrastRatioLevel(background: MuiColor, foreground: MuiColor): String = js.native
 }

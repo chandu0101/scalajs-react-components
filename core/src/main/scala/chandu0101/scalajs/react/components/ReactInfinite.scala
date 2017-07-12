@@ -2,10 +2,10 @@ package chandu0101.scalajs.react.components
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom.raw.HTMLElement
 
 import scala.scalajs.js
-import scala.scalajs.js.JSConverters.JSRichGenTraversableOnce
 
 case class ReactInfinite(handleScroll: js.UndefOr[HTMLElement => Callback] = js.undefined,
                          preloadAdditionalHeight: js.UndefOr[Int] = js.undefined,
@@ -13,7 +13,7 @@ case class ReactInfinite(handleScroll: js.UndefOr[HTMLElement => Callback] = js.
                          preloadBatchSize: js.UndefOr[Int] = js.undefined,
                          containerHeight: Int,
                          ref: js.UndefOr[ReactInfiniteM => Unit] = js.undefined,
-                         loadingSpinnerDelegate: js.UndefOr[ReactElement] = js.undefined,
+                         loadingSpinnerDelegate: js.UndefOr[VdomElement] = js.undefined,
                          timeScrollStateLastsForAfterUserScrolls: js.UndefOr[Int] = js.undefined,
                          elementHeight: Double,
                          key: js.UndefOr[String] = js.undefined,
@@ -21,11 +21,10 @@ case class ReactInfinite(handleScroll: js.UndefOr[HTMLElement => Callback] = js.
                          infiniteLoadBeginBottomOffset: js.UndefOr[Int] = js.undefined,
                          onInfiniteLoad: js.UndefOr[Callback] = js.undefined) {
 
-  def apply(children: Seq[ReactElement]) = {
-    val props = JSMacro[ReactInfinite](this)
-    val f =
-      React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.Infinite)
-    f(props, children.toJSArray).asInstanceOf[ReactComponentU_]
+  def apply(children: Seq[VdomElement]) = {
+    val props     = JSMacro[ReactInfinite](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](js.Dynamic.global.Infinite)
+    component(props)(children: _*)
   }
 }
 

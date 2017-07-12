@@ -4,7 +4,7 @@ package components
 import demo.routes.AppRouter.Page
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -15,7 +15,7 @@ object ComponentGridItem {
     val item = Seq(^.margin := "30px",
                    ^.maxWidth := "250px",
                    ^.cursor := "pointer",
-                   ^.boxShadow := "0 1px 3px rgba(85, 89, 88, 0.24)")
+                   ^.boxShadow := "0 1px 3px rgba(85, 89, 88, 0.24)").toTagMod
 
     val itemTitle = Seq(
       ^.backgroundColor := "#eeeeee",
@@ -27,14 +27,14 @@ object ComponentGridItem {
       ^.margin := "0px",
       ^.padding := "0px",
       ^.textAlign := "center"
-    )
+    ).toTagMod
 
     val itemImage = Seq(^.maxHeight := "250px",
                         ^.maxWidth := "250px",
                         ^.minHeight := "100px",
-                        ^.minWidth := "120px")
+                        ^.minWidth := "120px").toTagMod
 
-    val itemHover = Seq(^.boxShadow := "0 10px 18px rgba(16, 208, 194, 0.24)")
+    val itemHover = Seq(^.boxShadow := "0 10px 18px rgba(16, 208, 194, 0.24)").toTagMod
 
   }
 
@@ -49,7 +49,7 @@ object ComponentGridItem {
     def render(P: Props, S: State) =
       <.div(
         Style.item,
-        S.itemHover ?= Style.itemHover,
+        Style.itemHover.when(S.itemHover),
         P.ctrl setOnClick P.route,
         ^.onMouseEnter --> onMouseOver,
         ^.onMouseLeave --> onMouseOut,
@@ -66,18 +66,14 @@ object ComponentGridItem {
       )
   }
 
-  val component = ReactComponentB[Props]("ComponentGridElement")
+  val component = ScalaComponent
+    .builder[Props]("ComponentGridElement")
     .initialState(State())
     .renderBackend[Backend]
     .build
 
   case class Props(heading: String, route: Page, img: String, ctrl: RouterCtl[Page])
 
-  def apply(heading: String,
-            route: Page,
-            img: String,
-            ctrl: RouterCtl[Page],
-            ref: js.UndefOr[String] = "",
-            key: js.Any = {}) =
-    component.set(key, ref)(Props(heading, route, img, ctrl))
+  def apply(heading: String, route: Page, img: String, ctrl: RouterCtl[Page]) =
+    component(Props(heading, route, img, ctrl))
 }

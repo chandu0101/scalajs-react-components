@@ -2,10 +2,11 @@ package demo.components
 package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
+import chandu0101.scalajs.react.components.materialui.MuiSvgIcon._
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.{Px, Reusability}
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -34,19 +35,19 @@ object MuiSvgIconDemo {
       lookup.selectDynamic(name).asInstanceOf[MuiSvgIcon]
     }
 
-    val select: String => ReactMouseEventH => Callback =
+    val select: String => ReactMouseEventFromHtml => Callback =
       name => e => $.modState(_.copy(hovered = name))
 
-    val unselect: ReactMouseEventH => Callback =
+    val unselect: ReactMouseEventFromHtml => Callback =
       e => $.modState(_.copy(hovered = js.undefined))
 
-    val onSearchChange: (ReactEventI, String) => Callback =
+    val onSearchChange: (ReactEventFromInput, String) => Callback =
       (e, str) => $.modState(_.copy(accepts = Accepts(e.target.value)))
 
     /* rendering all icons turned out to be expensive, so
      *  we cache things based on search string */
-    val renderedIconsPx: Px[js.Array[JsComponentU[MuiSvgIconProps, js.Any, TopNode]]] =
-      Px.cbA($.props zip $.state.map(_.accepts)).map {
+    val renderedIconsPx: Px[js.Array[JsComponent.Unmounted[MuiSvgIconProps, _]]] =
+      Px.callback($.props zip $.state.map(_.accepts)).withReuse.autoRefresh.map {
         case (p, accepts) =>
           p.icons collect {
             case (name, idx) if accepts(name) =>
@@ -72,12 +73,13 @@ object MuiSvgIconDemo {
           <.div(
             ^.height := "300px",
             ^.overflowY := "scroll",
-            renderedIconsPx.value()
+            renderedIconsPx.value().toTagMod
           )
         )
       )
   }
-  val component = ReactComponentB[Props]("MuiSvgIconDemo")
+  val component = ScalaComponent
+    .builder[Props]("MuiSvgIconDemo")
     .initialState(State(Accepts(js.undefined), js.undefined))
     .renderBackend[Backend]
     .build

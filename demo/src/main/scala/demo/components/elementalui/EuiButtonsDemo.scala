@@ -5,7 +5,7 @@ package elementalui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.elementalui.{DropdownMenuItem, DropdownMenuItemType, _}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -25,10 +25,10 @@ object EuiButtonsDemo {
 
     def renderButtonVariants(list: (ButtonType, String)*) =
       <.div(
-        list.map(t => Button(`type` = t._1)(t._2))
+        list.map(t => Button(`type` = t._1)(t._2): TagMod): _*
       )
 
-    def render: ReactElement =
+    def render: VdomElement =
       CodeExample(code, "EuiButtons")(
         <.div(
           <.h1("Buttons"),
@@ -92,7 +92,8 @@ object EuiButtonsDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("EuiButtonsDemo")
+  val component = ScalaComponent
+    .builder[Unit]("EuiButtonsDemo")
     .renderBackend[Backend]
     .build
 

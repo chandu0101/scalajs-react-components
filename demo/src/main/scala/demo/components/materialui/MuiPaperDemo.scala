@@ -4,19 +4,22 @@ package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
-import japgolly.scalajs.react.ReactComponentB
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.ScalaComponent
+import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 
 object MuiPaperDemo {
+
+  val cssSettings = scalacss.devOrProdDefaults
+  import cssSettings._
 
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
-  val component = ReactComponentB[Unit]("MuiPaperDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiPaperDemo")
     .render(P => {
       <.div(
         CodeExample(code, "MuiPaper")(

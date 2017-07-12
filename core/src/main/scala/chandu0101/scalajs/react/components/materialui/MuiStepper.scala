@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -15,7 +16,7 @@ case class MuiStepper(key: js.UndefOr[String] = js.undefined,
                       /* Set the active step (zero based index). This will enable `Step` control helpers. */
                       activeStep: js.UndefOr[Double] = js.undefined,
                       /* A component to be placed between each step. */
-                      connector: js.UndefOr[ReactNode] = js.undefined,
+                      connector: js.UndefOr[VdomNode] = js.undefined,
                       /* If set to `true`, the `Stepper` will assist in controlling steps for linear flow */
                       linear: js.UndefOr[Boolean] = js.undefined,
                       /* The stepper orientation (layout flow direction) */
@@ -26,16 +27,11 @@ case class MuiStepper(key: js.UndefOr[String] = js.undefined,
   /**
     * @param children Should be two or more `<Step />` components
     */
-  def apply(children: js.Any*) = {
+  def apply(children: VdomElement*) = {
 
-    val props = JSMacro[MuiStepper](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.Stepper)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiStepper](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.Stepper)
+    component(props)(children: _*)
   }
 }
 @js.native

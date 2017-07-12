@@ -3,8 +3,9 @@ package elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 case class File(lastModifiedDate: String,
                 name: String,
@@ -34,8 +35,8 @@ case class FileUpload(className: js.UndefOr[String] = js.undefined,
                       onChange: js.UndefOr[ReactEvent => Callback] = js.undefined) {
 
   def apply() = {
-    val props = JSMacro[FileUpload](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.FileUpload)
-    f(props).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[FileUpload](this)
+    val component = JsComponent[js.Object, Children.None, Null](Eui.FileUpload)
+    component(props)
   }
 }

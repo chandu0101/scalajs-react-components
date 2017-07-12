@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * This file is generated - submit issues instead of PR against it
@@ -19,7 +20,7 @@ case class MuiCardMedia(key: js.UndefOr[String] = js.undefined,
                         /* Override the inline-styles of the Card Media. */
                         mediaStyle: js.UndefOr[CssProperties] = js.undefined,
                         /* Can be used to render overlay element in Card Media. */
-                        overlay: js.UndefOr[ReactNode] = js.undefined,
+                        overlay: js.UndefOr[VdomNode] = js.undefined,
                         /* Override the inline-styles of the overlay container. */
                         overlayContainerStyle: js.UndefOr[CssProperties] = js.undefined,
                         /* Override the inline-styles of the overlay content. */
@@ -32,15 +33,10 @@ case class MuiCardMedia(key: js.UndefOr[String] = js.undefined,
   /**
     * @param children Can be used to render elements inside the Card Media.
     */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
 
-    val props = JSMacro[MuiCardMedia](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.CardMedia)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val props     = JSMacro[MuiCardMedia](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.CardMedia)
+    component(props)(children: _*)
   }
 }

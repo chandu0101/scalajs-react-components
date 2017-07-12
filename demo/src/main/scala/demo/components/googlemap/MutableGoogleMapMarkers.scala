@@ -5,7 +5,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.GoogleMap
 import chandu0101.scalajs.react.components.fascades.{LatLng, Marker}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object MutableGoogleMapMarkers {
 
@@ -22,12 +22,14 @@ object MutableGoogleMapMarkers {
 
   class Backend(t: BackendScope[Unit, State]) {
 
-    def changeLat(event: ReactEventI): Callback = {
-      t.modState(_.copy(lat = event.target.value.toDouble))
+    def changeLat(event: ReactEventFromInput): Callback = {
+      val updated = event.target.value.toDouble
+      t.modState(_.copy(lat = updated))
     }
 
-    def changeLng(event: ReactEventI): Callback = {
-      t.modState(_.copy(lng = event.target.value.toDouble))
+    def changeLng(event: ReactEventFromInput): Callback = {
+      val updated = event.target.value.toDouble
+      t.modState(_.copy(lng = updated))
     }
 
     val addMarker: Callback =
@@ -48,7 +50,8 @@ object MutableGoogleMapMarkers {
       )
   }
 
-  val component = ReactComponentB[Unit]("mapmarkers")
+  val component = ScalaComponent
+    .builder[Unit]("mapmarkers")
     .initialState(State(52.2, 21, markers))
     .renderBackend[Backend]
     .build

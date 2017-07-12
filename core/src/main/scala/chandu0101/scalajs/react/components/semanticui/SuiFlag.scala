@@ -14,33 +14,34 @@ import scala.scalajs.js.annotation.JSName
      
 
 case class SuiFlag(
-     onDrag: js.UndefOr[ReactDragEventH => Callback] = js.undefined,
-onDragExit: js.UndefOr[ReactDragEventH => Callback] = js.undefined,
+     onDrag: js.UndefOr[ReactDragEventFromHtml => Callback] = js.undefined,
+onDragExit: js.UndefOr[ReactDragEventFromHtml => Callback] = js.undefined,
 name: SemanticCOUNTRY,
-onContextMenu: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-onDragOver: js.UndefOr[ReactDragEventH => Callback] = js.undefined,
-onMouseUp: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-onMouseDown: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
+onContextMenu: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+onDragOver: js.UndefOr[ReactDragEventFromHtml => Callback] = js.undefined,
+onMouseUp: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+onMouseDown: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
 ref: js.UndefOr[String] = js.undefined,
-onDragEnter: js.UndefOr[ReactDragEventH => Callback] = js.undefined,
-onClick: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-onMouseMove: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-onDragEnd: js.UndefOr[ReactDragEventH => Callback] = js.undefined,
-onDragLeave: js.UndefOr[ReactDragEventH => Callback] = js.undefined,
+onDragEnter: js.UndefOr[ReactDragEventFromHtml => Callback] = js.undefined,
+onClick: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+onMouseMove: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+onDragEnd: js.UndefOr[ReactDragEventFromHtml => Callback] = js.undefined,
+onDragLeave: js.UndefOr[ReactDragEventFromHtml => Callback] = js.undefined,
 key: js.UndefOr[String] = js.undefined,
-onDrop: js.UndefOr[ReactDragEventH => Callback] = js.undefined,
-onDragStart: js.UndefOr[ReactDragEventH => Callback] = js.undefined,
+onDrop: js.UndefOr[ReactDragEventFromHtml => Callback] = js.undefined,
+onDragStart: js.UndefOr[ReactDragEventFromHtml => Callback] = js.undefined,
 className: js.UndefOr[String] = js.undefined,
-onMouseLeave: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-onDoubleClick: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-onMouseOut: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-onMouseEnter: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-onMouseOver: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
+onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+onDoubleClick: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+onMouseOut: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+onMouseEnter: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+onMouseOver: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
 as: js.UndefOr[String | js.Function] = js.undefined
 ){
   def apply() = {
-     val props = JSMacro[SuiFlag](this)
-     ReactJS.createElement(Sui.Flag,props)
-   }
+    val props = JSMacro[SuiFlag](this)
+    val component = JsComponent[js.Object, Children.None, Null](Sui.Flag)
+    component(props)
+  }
 }
      

@@ -2,7 +2,7 @@ package demo
 package components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object RedLink {
   case class Backend($: BackendScope[Props, _]){
@@ -17,7 +17,7 @@ object RedLink {
     }
   }
 
-  val component = ReactComponentB[Props]("RedLink")
+  val component = ScalaComponent.builder[Props]("RedLink")
     .renderBackend[Backend]
     .build
 

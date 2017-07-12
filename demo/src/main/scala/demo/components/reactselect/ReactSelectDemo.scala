@@ -3,9 +3,11 @@ package components
 package reactselect
 
 import chandu0101.macros.tojs.GhPagesMacros
+import chandu0101.scalajs.react.components.JsCollection
 import chandu0101.scalajs.react.components.reactselect._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.raw.ReactNode
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -22,11 +24,11 @@ object ReactSelectDemo {
 
   class Backend(t: BackendScope[_, State]) {
 
-    def onChange(value: ReactNode) =
+    def onChange(value: ReactNode): Callback =
       t.modState(_.copy(value = value)) >>
         Callback.info(s"Chosen $value")
 
-    def onMultiChange(value: ReactNode) =
+    def onMultiChange(value: ReactNode): Callback =
       t.modState(_.copy(multiValue = value)) >> Callback.info(s"Chosen $value")
 
     def render(S: State) = {
@@ -42,17 +44,17 @@ object ReactSelectDemo {
         CodeExample(code, "Demo")(
           <.div(
             <.h3("Single Select"),
-            Select(
+            Select[ReactNode](
               options = options,
-              value = S.value,
+              value = S.value.asInstanceOf[JsCollection[ReactNode]],
               onValueClick = (v: ValueOption[ReactNode], e: ReactEvent) => Callback.info(v.toString),
               onChange = onChange _)()
           ),
           <.div(
             <.h3("Multi Select"),
-            Select(
+            Select[ReactNode](
               options = options,
-              value = S.multiValue,
+              value = S.multiValue.asInstanceOf[JsCollection[ReactNode]],
               multi = true,
               onChange = onMultiChange _)()
           )
@@ -61,7 +63,7 @@ object ReactSelectDemo {
     }
   }
 
-  val component = ReactComponentB[Unit]("ReactSelectDemo")
+  val component = ScalaComponent.builder[Unit]("ReactSelectDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

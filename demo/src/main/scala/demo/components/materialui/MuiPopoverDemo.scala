@@ -4,7 +4,9 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.Attr.Ref
+import japgolly.scalajs.react.vdom.TopNode
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -14,15 +16,15 @@ object MuiPopoverDemo {
   // EXAMPLE:START
 
   private case class OriginChoice[T](ts: Seq[T], label: String)(set: T => Callback, fromState: State => T, str: T => String) {
-    val action: (ReactEvent, Int, js.Any) => Callback =
-      (e, idx, any) => set(ts(idx))
+    val action: (TouchTapEvent, Int, VdomNode) => Callback =
+      (e, idx, _) => set(ts(idx))
 
-    val items: ReactNode =
+    val items: VdomNode =
       ts.map(
         t => MuiMenuItem(value = str(t), primaryText = str(t))()
-      ).toJsArray
+      ).toVdomArray
 
-    def menu(S: State): ReactElement =
+    def menu(S: State): VdomElement =
       <.div(
         ^.key := label,
         <.label(
@@ -40,7 +42,7 @@ object MuiPopoverDemo {
 
   private case class Backend($: BackendScope[Unit, State]) {
 
-    val ref = Ref[TopNode]("theRef")
+    private var ref: TopNode = _
 
     val toggle: Callback =
       $.modState(s => s.copy(open = !s.open))
@@ -64,19 +66,18 @@ object MuiPopoverDemo {
       <.div(
         CodeExample(code, "MuiPopoverDemo")(
           <.div(
-            <.div(
-              ^.ref := ref,
+            <.div.ref(ref = _)(
               MuiRaisedButton(
                 onTouchTap = (e: TouchTapEvent) => toggle,
                 label = "Click on me to show a popover"
               )()
             ),
 
-            originChoices.map(_.menu(S)),
+            originChoices.map(_.menu(S)).toTagMod,
 
             MuiPopover(
               open = S.open,
-              anchorEl = ref($),
+              anchorEl = ref,
               anchorOrigin = S.anchor,
               targetOrigin = S.target,
               onRequestClose = (s: String) => toggle
@@ -98,7 +99,7 @@ object MuiPopoverDemo {
     }
   }
 
-  private val component = ReactComponentB[Unit]("MuiPopoverDemo")
+  private val component = ScalaComponent.builder[Unit]("MuiPopoverDemo")
     .initialState(State(
       open = false,
       target = Origin(Vertical.top,    Horizontal.left),
@@ -109,6 +110,6 @@ object MuiPopoverDemo {
 
   // EXAMPLE:END
 
-  def apply(): ReactElement =
+  def apply(): VdomElement =
     component()
 }

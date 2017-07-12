@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
  * This file is generated - submit issues instead of PR against it
@@ -15,7 +16,7 @@ case class MuiSnackbar(
   key:              js.UndefOr[String]                      = js.undefined,
   ref:              js.UndefOr[MuiSnackbarM => Unit]        = js.undefined,
   /* The label for the action on the snackbar. */
-  action:           js.UndefOr[ReactNode]                   = js.undefined,
+  action:           js.UndefOr[VdomNode]                   = js.undefined,
   /* The number of milliseconds to wait before automatically dismissing.
      If no value is specified the snackbar will dismiss normally.
      If a value is provided the snackbar can still be dismissed normally.
@@ -31,7 +32,7 @@ case class MuiSnackbar(
      (Note: If the message is an element or array, and the `Snackbar` may re-render while it is still open,
      ensure that the same object remains as the `message` property if you want to avoid the `Snackbar` hiding and
      showing again) */
-  message:          ReactNode,
+  message:          VdomNode,
   /* Fired when the action button is touchtapped.
      @param {object} event Action button event. */
   onActionTouchTap: js.UndefOr[ReactTouchEvent => Callback] = js.undefined,
@@ -51,8 +52,8 @@ case class MuiSnackbar(
   def apply() = {
     
     val props = JSMacro[MuiSnackbar](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Snackbar)
-    f(props).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.None, Null](Mui.Snackbar)
+    component(props)
   }
 }
         

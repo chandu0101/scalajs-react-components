@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
  * This file is generated - submit issues instead of PR against it
@@ -21,21 +22,21 @@ case class MuiAvatar(
   /* The icon or letter's color. */
   color:           js.UndefOr[MuiColor]      = js.undefined,
   /* This is the SvgIcon or FontIcon to be used inside the avatar. */
-  icon:            js.UndefOr[ReactElement]  = js.undefined,
+  icon:            js.UndefOr[VdomElement]  = js.undefined,
   /* This is the size of the avatar in pixels. */
   size:            js.UndefOr[Int]           = js.undefined,
   /* If passed in, this component will render an img element. Otherwise, a div will be rendered. */
   src:             js.UndefOr[String]        = js.undefined,
   /* Override the inline-styles of the root element. */
-  style:           js.UndefOr[CssProperties] = js.undefined){
+  style:           js.UndefOr[CssProperties] = js.undefined) {
 
   /**
     * @param children Can be used, for instance, to render a letter inside the avatar.
-   */
-  def apply(children: js.UndefOr[ReactNode] = js.undefined) = {
-    
+    */
+  def apply(children: js.UndefOr[VdomNode] = js.undefined) = {
+
     val props = JSMacro[MuiAvatar](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Avatar)
-    f(props, children).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.Avatar)
+    component(props)(children.toList: _*)
   }
 }

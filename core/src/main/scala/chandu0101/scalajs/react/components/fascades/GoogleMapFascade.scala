@@ -1,8 +1,9 @@
 package chandu0101.scalajs.react.components
 package fascades
 
-import japgolly.scalajs.react.TopNode
+import japgolly.scalajs.react.vdom.TopNode
 import org.scalajs.dom.Event
+
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{literal => json}
 import scala.scalajs.js.JSConverters.genTravConvertible2JSRichGenTrav

@@ -5,7 +5,7 @@ package googlemap
 import chandu0101.scalajs.react.components.GoogleMap
 import chandu0101.scalajs.react.components.fascades.{LatLng, Marker}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object GoogleMapMarkers {
 
@@ -23,7 +23,7 @@ object GoogleMapMarkers {
       |  GoogleMap(center = latlng ,markers = markers ,zoom = 10)
       |
     """.stripMargin
-  val component = ReactComponentB[Unit]("mapmarkers")
+  val component = ScalaComponent.builder[Unit]("mapmarkers")
     .render(P => {
    <.div(
      <.h2(^.cls := "mui-font-style-headline")("Markers"),

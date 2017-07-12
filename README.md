@@ -45,12 +45,12 @@ MuiRaisedButton(label = "label")()
 #### Bad implicit inference for js.UndefOr[T]
 
 Scala will only run one implicit to convert a type to another,
- which means that in order to convert a `String` to `js.UndefOr[ReactNode]`
+ which means that in order to convert a `String` to `js.UndefOr[VdomNode]`
  it needs to be done in two steps:
 
-(1) `String => ReactNode`
+(1) `String => VdomNode`
 
-(2) `ReactNode` => `js.UndefOr[ReactNode]`
+(2) `VdomNode` => `js.UndefOr[VdomNode]`
 
 We provide special versions of a few such implicits in
 `chandu0101.scalajs.react.components.Implicits`.
@@ -79,8 +79,8 @@ Sbt does not by itself understand these module systems, so unless you're prepare
 Add these dependencies to you sbt build file
 ```scala
 libraryDependencies ++= Seq(
-  "com.github.japgolly.scalajs-react" %%% "core" % "0.11.3",
-  "com.github.japgolly.scalajs-react" %%% "extra" % "0.11.3",
+  "com.github.japgolly.scalajs-react" %%% "core" % "1.0.1",
+  "com.github.japgolly.scalajs-react" %%% "extra" % "1.0.1",
   "com.olvind" %%% "scalajs-react-components" % "0.6.0"
 )
 ```
@@ -102,11 +102,11 @@ See the [demo](demo) to see how it can be done.
 
 ## Demo With Code Examples
 
-**Online :** 
+**Online :**
 
 http://chandu0101.github.io/sjrc/
 
-**Local :** 
+**Local :**
 ```
 sbt demo/fastOptJS
 cd demo

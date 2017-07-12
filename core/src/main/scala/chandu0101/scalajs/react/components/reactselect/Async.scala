@@ -2,8 +2,9 @@ package chandu0101.scalajs.react.components
 package reactselect
 
 import chandu0101.macros.tojs.JSMacro
-import chandu0101.scalajs.react.components.TODO._
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.ReactNode
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -17,7 +18,7 @@ object AsyncLoaded{
   def apply[T](complete: Boolean, vs: ValueOption[T]*): AsyncLoaded[T] = {
     val ret = js.Dynamic.literal().asInstanceOf[AsyncLoaded[T]]
     ret.complete = complete
-    ret.options  = vs.toJsArray
+    ret.options  = js.Array(vs: _*)
     ret
   }
 }
@@ -40,7 +41,7 @@ case class Async[T] (
   // placeholder displayed when there are no matching search results (shared with Select)
   noResultsText: js.UndefOr[String] = js.undefined,
   // field placeholder, displayed when there's no value (shared with Select)
-  placeholder: js.UndefOr[ReactNode] = js.undefined,
+  placeholder: js.UndefOr[VdomNode] = js.undefined,
   // message to display while options are loading
   searchingText: js.UndefOr[String] = js.undefined,
   // label to prompt for search input
@@ -71,9 +72,9 @@ case class Async[T] (
   /* whether escape clears the value when the menu is closed */
   escapeClearsValue: js.UndefOr[Boolean] = js.undefined,
   /* method to filter a single option (option, filterString) */
-  filterOption: js.UndefOr[FUNC] = js.undefined,
+  filterOption: js.UndefOr[Callback] = js.undefined,
   /* boolean to enable default filtering or function to filter the options array ([options], filterString, [values]) */
-  filterOptions: js.UndefOr[ANY] = js.undefined,
+  filterOptions: js.UndefOr[js.Any] = js.undefined,
   /* path of the label value in option objects */
   labelKey: js.UndefOr[String] = js.undefined,
   /* (any|start) match the start or entire string when filtering */
@@ -93,7 +94,7 @@ case class Async[T] (
   /* generates a hidden <input /> tag with this field name for html forms */
   name: js.UndefOr[String] = js.undefined,
   /* factory to create new options when allowCreate set */
-  newOptionCreator: js.UndefOr[FUNC] = js.undefined,
+  newOptionCreator: js.UndefOr[Callback] = js.undefined,
   /* onBlur handler: function (event) {} */
   onBlur: js.UndefOr[ReactEvent => Callback] = js.undefined,
   /* onChange handler: function (newValue) {} */
@@ -107,7 +108,7 @@ case class Async[T] (
   /* fires when the menu is scrolled to the bottom; can be used to paginate options */
   onMenuScrollToBottom: js.UndefOr[Callback] = js.undefined,
   /* option component to render in dropdown */
-  optionComponent: js.UndefOr[JsComponent[OptionProps[T]]] = js.undefined,
+  optionComponent: js.UndefOr[JsFnComponent.Unmounted[OptionProps[T]]] = js.undefined,
   /* optionRenderer: function (option) {} */
   optionRenderer: js.UndefOr[ValueOption[T] => ReactNode] = js.undefined,
   /* whether to enable searching feature or not */
@@ -121,7 +122,7 @@ case class Async[T] (
   /* initial field value */
   value: js.UndefOr[JsCollection[ValueOption[T]]] = js.undefined,
   /* value component to render */
-  valueComponent: js.UndefOr[JsComponent[ValueProps[T]]] = js.undefined,
+  valueComponent: js.UndefOr[JsFnComponent.Unmounted[ValueProps[T]]] = js.undefined,
   /* path of the label value in option objects */
   valueKey: js.UndefOr[String] = js.undefined,
   /* valueRenderer: function (option) {} */
@@ -129,9 +130,9 @@ case class Async[T] (
   /* optional style to apply to the component wrapper */
   wrapperStyle: js.UndefOr[CssProperties] = js.undefined) {
 
-  def apply(): ReactComponentU_ = {
+  def apply(): JsComponent.Unmounted[_, _] = {
     val props = JSMacro[Async[T]](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactSelect.Async)
-    f(props).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.None, Null](js.Dynamic.global.ReactSelect.Async)
+    component(props)
   }
 }

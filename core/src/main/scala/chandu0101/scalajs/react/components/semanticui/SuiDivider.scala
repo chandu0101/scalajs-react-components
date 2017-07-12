@@ -4,6 +4,8 @@ package chandu0101.scalajs.react.components
 package semanticui
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 import scala.scalajs.js.annotation.JSName
@@ -26,9 +28,10 @@ inverted: js.UndefOr[Boolean] = js.undefined,
 clearing: js.UndefOr[Boolean] = js.undefined,
 as: js.UndefOr[String | js.Function] = js.undefined
 ){
-  def apply(children: ReactNode*) = {
-     val props = JSMacro[SuiDivider](this)
-     ReactJS.createElement(Sui.Divider,props,children: _*)
-   }
+  def apply(children: VdomNode*) = {
+    val props = JSMacro[SuiDivider](this)
+    val component = JsComponent[js.Object, Children.Varargs, Null](Sui.Divider)
+    component(props)(children: _*)
+  }
 }
      

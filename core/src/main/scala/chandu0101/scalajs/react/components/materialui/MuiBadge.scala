@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
  * This file is generated - submit issues instead of PR against it
@@ -15,7 +16,7 @@ case class MuiBadge(
   key:          js.UndefOr[String]        = js.undefined,
   ref:          js.UndefOr[String]        = js.undefined,
   /* This is the content rendered within the badge. */
-  badgeContent: ReactNode,
+  badgeContent: VdomNode,
   /* Override the inline-styles of the badge element. */
   badgeStyle:   js.UndefOr[CssProperties] = js.undefined,
   /* The css class name of the root element. */
@@ -30,15 +31,10 @@ case class MuiBadge(
   /**
     * @param children The badge will be added relativelty to this node.
    */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     
     val props = JSMacro[MuiBadge](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Badge)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.Badge)
+    component(props)(children: _*)
   }
 }

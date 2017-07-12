@@ -4,9 +4,10 @@ package chandu0101.scalajs.react.components
 package semanticui
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.VdomElement
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-import scala.scalajs.js.annotation.JSName
 
 /**
  * This file is generated - submit issues instead of PR against it
@@ -15,17 +16,18 @@ import scala.scalajs.js.annotation.JSName
 
 case class SuiFormCheckbox(
      ref: js.UndefOr[String] = js.undefined,
-control: js.UndefOr[String | ReactElement] = js.undefined,
+control: js.UndefOr[String | VdomElement] = js.undefined,
 value: js.UndefOr[String|Double|js.Array[String]|js.Array[Double]] = js.undefined,
 name: js.UndefOr[String] = js.undefined,
 key: js.UndefOr[String] = js.undefined,
 placeholder: js.UndefOr[String] = js.undefined,
-label: js.UndefOr[String | js.Object | ReactElement] = js.undefined,
+label: js.UndefOr[String | js.Object | VdomElement] = js.undefined,
 as: js.UndefOr[String | js.Function] = js.undefined
 ){
   def apply() = {
-     val props = JSMacro[SuiFormCheckbox](this)
-     ReactJS.createElement(Sui.FormCheckbox,props)
+    val props = JSMacro[SuiFormCheckbox](this)
+    val component = JsComponent[js.Object, Children.None, Null](Sui.FormCheckbox)
+    component(props)
    }
 }
      

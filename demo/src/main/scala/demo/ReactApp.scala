@@ -17,6 +17,6 @@ object ReactApp extends JSApp {
       dom.document.body.className += " pg-loaded"
     }
     AppCSS.load()
-    AppRouter.router().render(dom.document.getElementById("container"))
+    AppRouter.router().renderIntoDOM(dom.document.getElementById("container"))
   }
 }

@@ -1,20 +1,22 @@
 package chandu0101.scalajs.react.components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
-import scalacss.Defaults._
 import scalacss.ScalaCssReact._
 
 object ReactListView {
+
+  val cssSettings = scalacss.devOrProdDefaults
+  import cssSettings._
 
   class Style extends StyleSheet.Inline {
     import dsl._
 
     val listGroup = style(marginBottom(20.px),
       paddingLeft.`0`,
-      &.firstChild.lastChild(borderBottomLeftRadius(4 px),
+      &.firstChild.lastChild.apply(borderBottomLeftRadius(4 px),
         borderBottomRightRadius(4 px))
     )
 
@@ -27,7 +29,7 @@ object ReactListView {
         fontWeight._500,
         backgroundColor :=! "#146699")(
           backgroundColor.white,
-          &.hover(color :=! "#555555",
+          &.hover.apply(color :=! "#555555",
             backgroundColor :=! "#ecf0f1"))
     ))
 
@@ -52,7 +54,7 @@ object ReactListView {
     def render(P: Props, S: State) = {
       val fItems = P.items.filter(item => item.toString.toLowerCase.contains(S.filterText.toLowerCase))
       <.div(
-        P.showSearchBox ?= ReactSearchBox(onTextChange = onTextChange),
+        ReactSearchBox(onTextChange = onTextChange).when(P.showSearchBox),
         <.ul(
           P.style.listGroup,
           fItems.map{item =>
@@ -60,13 +62,13 @@ object ReactListView {
             <.li(
               P.style.listItem(selected),
               ^.onClick --> onItemSelect(P.onItemSelect)(item.toString), item)
-          }
+          }.toTagMod
         )
       )
     }
   }
 
-  val component = ReactComponentB[Props]("ReactListView")
+  val component = ScalaComponent.builder[Props]("ReactListView")
     .initialState(State(filterText = "", selectedItem = ""))
     .renderBackend[Backend]
     .build
@@ -79,9 +81,7 @@ object ReactListView {
   def apply(items: List[String],
             onItemSelect: js.UndefOr[String => Callback] = js.undefined,
             showSearchBox: Boolean = false,
-            style: Style = DefaultStyle,
-            ref: js.UndefOr[String] = js.undefined,
-            key: js.Any = {}) =
-    component.set(key, ref)(Props(items, onItemSelect, showSearchBox, style))
+            style: Style = DefaultStyle) =
+    component(Props(items, onItemSelect, showSearchBox, style))
 
 }

@@ -3,7 +3,7 @@ package components
 package materialui
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 import scalacss.Defaults._
@@ -45,9 +45,9 @@ object MobileTearSheet {
     }
   }
 
-  val component = ReactComponentB[Unit]("MobileTearSheet")
-    .renderBackend[Backend]
+  val component = ScalaComponent.builder[Unit]("MobileTearSheet")
+    .renderBackendWithChildren[Backend]
     .build
 
-  def apply(children: ReactNode*) = component(children :_*)
+  def apply(children: VdomNode*) = component(children :_*)
 }

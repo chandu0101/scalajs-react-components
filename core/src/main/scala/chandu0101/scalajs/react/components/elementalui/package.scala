@@ -1,10 +1,7 @@
 package chandu0101.scalajs.react.components
 
-import japgolly.scalajs.react.{ Callback, React, ReactComponentSpec, TopNode, ReactNode }
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSName
-import scala.scalajs.js.`|`
-import scala.reflect.ClassTag
 
 package object elementalui {
   @js.native @JSName("elemental")

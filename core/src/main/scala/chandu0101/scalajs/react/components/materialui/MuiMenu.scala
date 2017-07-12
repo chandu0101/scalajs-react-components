@@ -3,7 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.{TopNode, VdomNode}
 import org.scalajs.dom
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
@@ -52,7 +55,7 @@ case class MuiMenu[T](
      @param {object} event TouchTap event targeting the menu item.
      @param {object} menuItem The menu item.
      @param {number} index The index of the menu item. */
-  onItemTouchTap:           js.UndefOr[(TouchTapEvent, JsComponentM[HasValue[T], _, TopNode]) => Callback] = js.undefined,
+  onItemTouchTap:           js.UndefOr[(TouchTapEvent, JsComponent.RawMounted) => Callback]   = js.undefined,
   onKeyDown:                js.UndefOr[ReactKeyboardEvent => Callback]                                     = js.undefined,
   /* Callback function fired when the focus on a `MenuItem` is changed.
      There will be some "duplicate" changes reported if two different
@@ -84,16 +87,11 @@ case class MuiMenu[T](
     * @param children The content of the menu. This is usually used to pass `MenuItem`
     elements.
    */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     implicit def evT(t: T): js.Any = t.asInstanceOf[js.Any]
     val props = JSMacro[MuiMenu[T]](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Menu)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.Menu)
+    component(props)(children: _*)
   }
 }
 

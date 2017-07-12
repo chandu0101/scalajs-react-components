@@ -3,11 +3,13 @@ package elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw.React
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
 case class FormInput(
-    autofocus: js.UndefOr[Boolean] = js.undefined,
+    autoFocus: js.UndefOr[Boolean] = js.undefined,
     className: js.UndefOr[String] = js.undefined,
     label: js.UndefOr[String] = js.undefined,
     ref: js.UndefOr[String] = js.undefined,
@@ -20,19 +22,19 @@ case class FormInput(
     name: js.UndefOr[String] = js.undefined,
     pattern: js.UndefOr[String] = js.undefined,
     noedit: js.UndefOr[Boolean] = js.undefined,
-    onChange: js.UndefOr[ReactEventI => Callback] = js.undefined,
+    onChange: js.UndefOr[ReactEventFromInput => Callback] = js.undefined,
     size: js.UndefOr[FormInputSize] = js.undefined,
     `type`: js.UndefOr[String] = js.undefined,
     value: js.UndefOr[String | Int] = js.undefined) {
 
   def apply() = {
     val props = JSMacro[FormInput](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.FormInput)
-    f(props).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.None, Null](Eui.FormInput)
+    component(props)
   }
 }
 
-case class FormInputSize private (val value: String) extends AnyVal
+case class FormInputSize private (value: String) extends AnyVal
 
 object FormInputSize {
   val LG = FormInputSize("lg")

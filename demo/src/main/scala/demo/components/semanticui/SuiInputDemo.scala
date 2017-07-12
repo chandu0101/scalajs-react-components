@@ -4,7 +4,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.semanticui.{SuiHeader, SuiInput}
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 object SuiInputDemo {
 
@@ -37,7 +37,7 @@ object SuiInputDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("SuiInputDemo")
+  val component = ScalaComponent.builder[Unit]("SuiInputDemo")
     .renderBackend[Backend]
     .build
 

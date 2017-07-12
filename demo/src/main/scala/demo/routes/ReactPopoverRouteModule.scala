@@ -4,6 +4,7 @@ package routes
 import demo.components.{ReactPopoverInfo, ReactPopoverDemo}
 import demo.pages.ReactPopoverPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactPopoverRouteModule {
 

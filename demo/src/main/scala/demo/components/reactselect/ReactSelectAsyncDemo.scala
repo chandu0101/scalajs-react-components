@@ -5,7 +5,8 @@ import chandu0101.scalajs.react.components.JsCollection
 import chandu0101.scalajs.react.components.reactselect._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.raw.ReactNode
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 
@@ -39,18 +40,19 @@ object ReactSelectAsyncDemo {
     val valueRenderer: ValueOption[MyValue] => ReactNode =
       vo =>
         <.div(
-          <.h3(vo.title),
+          vo.title.fold(EmptyVdom)(<.h3(_)),
           <.p(vo.label),
           <.small(vo.value.toString)
-        )
+        ).rawNode
 
     val optionRenderer: ValueOption[MyValue] => ReactNode =
       vo =>
         <.div("Option: ",
-          <.h3(vo.title),
+          vo.title.fold(EmptyVdom)(<.h3(_)),
           <.p(vo.label),
           <.small(vo.value.toString)
-        )
+        ).rawNode
+
     val onValueClick: (ValueOption[MyValue], ReactEvent) => Callback =
       (vo, e) => Callback.info(s"Clicked on ${vo.value.value}")
 
@@ -71,7 +73,7 @@ object ReactSelectAsyncDemo {
       )
   }
 
-  val component = ReactComponentB[Unit]("ReactSelectAsyncDemo")
+  val component = ScalaComponent.builder[Unit]("ReactSelectAsyncDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

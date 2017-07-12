@@ -4,6 +4,7 @@ package routes
 import demo.components.materialui._
 import demo.pages.MuiPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object MuiRouteModule {
 

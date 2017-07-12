@@ -3,9 +3,9 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.vdom.html_<^._
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
  * This file is generated - submit issues instead of PR against it
@@ -24,9 +24,9 @@ case class MuiAppBar(
   iconClassNameRight:        js.UndefOr[String]                    = js.undefined,
   /* The custom element to be displayed on the left side of the
      app bar such as an SvgIcon. */
-  iconElementLeft:           js.UndefOr[ReactElement]              = js.undefined,
+  iconElementLeft:           js.UndefOr[VdomElement]              = js.undefined,
   /* Similiar to the iconElementLeft prop except that this element is displayed on the right of the app bar. */
-  iconElementRight:          js.UndefOr[ReactElement]              = js.undefined,
+  iconElementRight:          js.UndefOr[VdomElement]              = js.undefined,
   /* Override the inline-styles of the element displayed on the left side of the app bar. */
   iconStyleLeft:             js.UndefOr[CssProperties]             = js.undefined,
   /* Override the inline-styles of the element displayed on the right side of the app bar. */
@@ -46,7 +46,7 @@ case class MuiAppBar(
   /* Override the inline-styles of the root element. */
   style:                     js.UndefOr[CssProperties]             = js.undefined,
   /* The title to display on the app bar. */
-  title:                     js.UndefOr[ReactNode]                 = js.undefined,
+  title:                     js.UndefOr[VdomNode]                 = js.undefined,
   /* Override the inline-styles of the app bar's title element. */
   titleStyle:                js.UndefOr[CssProperties]             = js.undefined,
   /* The zDepth of the component.
@@ -66,15 +66,10 @@ case class MuiAppBar(
   /**
     * @param children Can be used to render a tab inside an app bar for instance.
    */
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     
     val props = JSMacro[MuiAppBar](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.AppBar)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.AppBar)
+    component(props)(children: _*)
   }
 }

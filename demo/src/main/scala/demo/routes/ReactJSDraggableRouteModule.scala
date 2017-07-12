@@ -4,6 +4,7 @@ package routes
 import demo.components.{ReactDraggableInfo, ReactDraggableDemo}
 import demo.pages.ReactJSDraggablePage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactJSDraggableRouteModule {
 

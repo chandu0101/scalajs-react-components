@@ -3,9 +3,10 @@ package materialui
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
  * This file is generated - submit issues instead of PR against it
@@ -23,7 +24,7 @@ case class MuiTextField(
   /* The style object to use to override error styles. */
   errorStyle:               js.UndefOr[CssProperties]                     = js.undefined,
   /* The error content to display. */
-  errorText:                js.UndefOr[ReactNode]                         = js.undefined,
+  errorText:                js.UndefOr[VdomNode]                         = js.undefined,
   /* If true, the floating label will float even when there is no value. */
   floatingLabelFixed:       js.UndefOr[Boolean]                           = js.undefined,
   /* The style object to use to override floating label styles when focused. */
@@ -33,13 +34,13 @@ case class MuiTextField(
   /* The style object to use to override floating label styles. */
   floatingLabelStyle:       js.UndefOr[CssProperties]                     = js.undefined,
   /* The content to use for the floating label element. */
-  floatingLabelText:        js.UndefOr[ReactNode]                         = js.undefined,
+  floatingLabelText:        js.UndefOr[VdomNode]                         = js.undefined,
   /* If true, the field receives the property width 100%. */
   fullWidth:                js.UndefOr[Boolean]                           = js.undefined,
   /* Override the inline-styles of the TextField's hint text element. */
   hintStyle:                js.UndefOr[CssProperties]                     = js.undefined,
   /* The hint content to display. */
-  hintText:                 js.UndefOr[ReactNode]                         = js.undefined,
+  hintText:                 js.UndefOr[VdomNode]                         = js.undefined,
   /* The id prop for the text field. */
   id:                       js.UndefOr[String]                            = js.undefined,
   /* Override the inline-styles of the TextField's input element.
@@ -51,12 +52,12 @@ case class MuiTextField(
   multiLine:                js.UndefOr[Boolean]                           = js.undefined,
   /* Name applied to the input. */
   name:                     js.UndefOr[String]                            = js.undefined,
-  onBlur:                   js.UndefOr[ReactFocusEventI => Callback]      = js.undefined,
+  onBlur:                   js.UndefOr[ReactFocusEventFromInput => Callback]      = js.undefined,
   /* Callback function that is fired when the textfield's value changes.
      @param {object} event Change event targeting the text field.
      @param {string} newValue The new value of the text field. */
-  onChange:                 js.UndefOr[(ReactEventI, String) => Callback] = js.undefined,
-  onFocus:                  js.UndefOr[ReactFocusEventI => Callback]      = js.undefined,
+  onChange:                 js.UndefOr[(ReactEventFromInput, String) => Callback] = js.undefined,
+  onFocus:                  js.UndefOr[ReactFocusEventFromInput => Callback]      = js.undefined,
   /* Number of rows to display when multiLine option is set to true. */
   rows:                     js.UndefOr[Int]                               = js.undefined,
   /* Maximum number of rows to display when
@@ -91,16 +92,11 @@ case class MuiTextField(
   valueLink:                js.UndefOr[js.Any]                            = js.undefined){
 
 
-  def apply(children: ReactNode*) = {
+  def apply(children: VdomNode*) = {
     
     val props = JSMacro[MuiTextField](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.TextField)
-    if (children.isEmpty)
-      f(props).asInstanceOf[ReactComponentU_]
-    else if (children.size == 1)
-      f(props, children.head).asInstanceOf[ReactComponentU_]
-    else
-      f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
+    val component = JsComponent[js.Object, Children.Varargs, Null](Mui.TextField)
+    component(props)(children: _*)
   }
 }
 

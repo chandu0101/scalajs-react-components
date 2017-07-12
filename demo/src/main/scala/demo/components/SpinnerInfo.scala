@@ -1,7 +1,7 @@
 package demo.components
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.prefix_<^._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.Defaults._
 
@@ -14,8 +14,7 @@ object SpinnerInfo {
          paddingTop(40.px))
      }
 
-  val component = ReactComponentB[Unit]("SpinnerInfo")
-    .render(P => {
+  val component = ScalaComponent.static("SpinnerInfo")(
     InfoTemplate(componentFilePath = "spinners/Spinner.scala")(
      <.div(
        <.h3("Spinner "),
@@ -33,8 +32,7 @@ object SpinnerInfo {
        )
      )
     )
-
-  }).build
+  )
 
   def apply() = component()
 }

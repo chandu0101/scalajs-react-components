@@ -59,11 +59,6 @@ object AppRouter {
         .prefixPath_/("#reacttagsinput")
         .pmap[Page](ReactTagsInputPages) { case ReactTagsInputPages(p) => p }
 
-    val reactSelectRoutes: Rule =
-      ReactSelectRouteModule.routes
-        .prefixPath_/("#reactselect")
-        .pmap[Page](ReactSelectPages) { case ReactSelectPages(p) => p }
-
     val reactGeomIconRoutes: Rule =
       ReactGeomIcontRouteModule.routes
         .prefixPath_/("#reactgeomicon")
@@ -78,11 +73,6 @@ object AppRouter {
       ReactJSDraggableRouteModule.routes
         .prefixPath_/("#reactdraggable")
         .pmap[Page](ReactDraggablePages) { case ReactDraggablePages(p) => p }
-
-    val reactSlickRoutes: Rule =
-      ReactSlickRouteModule.routes
-        .prefixPath_/("#reactslick")
-        .pmap[Page](ReactSlickPages) { case ReactSlickPages(p) => p }
 
     val googleMapRoutes: Rule =
       GoogleMapRouteModule.routes
@@ -121,8 +111,6 @@ object AppRouter {
       | reactInfiniteRoutes
       | reactListViewRoutes
       | reactPopoverRoutes
-      | reactSelectRoutes
-      | reactSlickRoutes
       | reactTableRoutes
       | reactTagsInputRoutes
       | reactTreeViewRoutes
@@ -193,12 +181,6 @@ object AppRouter {
       tags = Stream("tags", "input")
     ),
     HomePage.ComponentInfo(
-      name = "React Select",
-      imagePath = g.reactSelectImage.toString,
-      route = ReactSelectPages(ReactSelectRouteModule.Info),
-      tags = Stream("select", "multi", "search", "filter", "multi select")
-    ),
-    HomePage.ComponentInfo(
       name = "React GeomIcons",
       imagePath = g.reactGeomIconImage.toString,
       route = ReactGeomIconPages(ReactGeomIcontRouteModule.Info),
@@ -209,12 +191,6 @@ object AppRouter {
       imagePath = g.reactInfiniteImage.toString,
       route = ReactInfinitePages(ReactInfiniteRouteModule.Info),
       tags = Stream("infinite scroll", "listview")
-    ),
-    HomePage.ComponentInfo(
-      name = "React Slick",
-      imagePath = g.reactInfiniteImage.toString,
-      route = ReactSlickPages(ReactSlickRouteModule.Info),
-      tags = Stream("slick", "slick")
     ),
     HomePage.ComponentInfo(
       name = "Spinner",

@@ -1,11 +1,3 @@
-import java.io.FileReader
-
-import org.scalajs.core.tools.json
-
-import scala.util.Try
-import scalajsbundler.NpmPackage
-import scalajsbundler.util.JS
-
 // *****************************************************************************
 // Projects
 // *****************************************************************************

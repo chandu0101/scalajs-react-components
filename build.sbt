@@ -17,8 +17,8 @@ lazy val macros =
     .settings(
       name := "scalajs-react-components-macros",
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core"      % "1.0.1" withSources (),
-        "com.github.japgolly.scalajs-react" %%% "extra"     % "1.0.1" withSources (),
+        "com.github.japgolly.scalajs-react" %%% "core"      % "1.1.0" withSources (),
+        "com.github.japgolly.scalajs-react" %%% "extra"     % "1.1.0" withSources (),
         "org.scalatest"                     %%% "scalatest" % "3.0.3" % Test
       )
     )
@@ -34,7 +34,7 @@ lazy val gen =
       version in webpack := "2.6.1",
       version in installWebpackDevServer := "2.6.1",
       libraryDependencies ++= Seq(
-        "com.lihaoyi"   %% "ammonite-ops" % "0.9.5",
+        "com.lihaoyi"   %% "ammonite-ops" % "1.0.1",
         "org.scalatest" %% "scalatest"    % "3.0.3" % Test
       )
     )
@@ -102,8 +102,8 @@ lazy val core =
       sourceGenerators in Compile += generateEui,
       sourceGenerators in Compile += generateSui,
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core"        % "1.0.1" withSources (),
-        "com.github.japgolly.scalajs-react" %%% "extra"       % "1.0.1" withSources (),
+        "com.github.japgolly.scalajs-react" %%% "core"        % "1.1.0" withSources (),
+        "com.github.japgolly.scalajs-react" %%% "extra"       % "1.1.0" withSources (),
         "com.github.japgolly.scalacss"      %%% "core"        % "0.5.3" withSources (),
         "com.github.japgolly.scalacss"      %%% "ext-react"   % "0.5.3" withSources (),
         "org.scala-js"                      %%% "scalajs-dom" % "0.9.2" withSources (),
@@ -158,7 +158,7 @@ lazy val root =
 
 lazy val commonSettings =
   Seq(
-    scalaVersion := "2.12.2",
+    scalaVersion := "2.12.3",
     version := "1.0.0",
     name := "scalajs-react-components",
     organization := "com.olvind",

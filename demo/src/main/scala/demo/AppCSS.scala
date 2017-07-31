@@ -1,12 +1,6 @@
 package demo
 
-import chandu0101.scalajs.react.components.{
-  Pager,
-  ReactDraggable,
-  ReactListView,
-  ReactSearchBox,
-  ReactTable
-}
+import chandu0101.scalajs.react.components.{hljs, Pager, ReactDraggable, ReactListView, ReactSearchBox, ReactTable, ReactTagsInputCss, SpinnerCss}
 import demo.components._
 import demo.components.materialui._
 
@@ -33,6 +27,11 @@ object AppCSS {
       ReactInfiniteDemo.styles,
       ReactDraggable.Style
     )
+
+    /* touch objects to force namespace import */
+    hljs.Css.Github
+    ReactTagsInputCss
+    SpinnerCss
 
     GlobalRegistry.addToDocumentOnRegistration()
   }

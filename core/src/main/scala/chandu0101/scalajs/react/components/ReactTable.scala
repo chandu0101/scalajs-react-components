@@ -214,7 +214,7 @@ object ReactTable {
                     ^.onClick --> b.sort(f.get, item),
                     item.capitalize,
                     props.style
-                      .sortIcon(state.sortedState(item) == ASC)
+                      .sortIcon(state.sortedState.get(item).contains(ASC))
                       .when(state.sortedState.isDefinedAt(item))
                   )
                 } else cell(item.capitalize)

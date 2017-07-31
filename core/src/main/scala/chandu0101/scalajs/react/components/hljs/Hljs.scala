@@ -6,6 +6,11 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation._
 import scala.scalajs.js.{RegExp, `|`}
 
+object Css {
+  @JSImport("highlight.js/styles/github.css", JSImport.Namespace)
+  object Github extends js.Any
+}
+
 @JSImport("highlight.js", "default")
 @js.native
 object Hljs extends js.Any {

@@ -2,9 +2,15 @@ package chandu0101.scalajs.react.components
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.raw._
 
 import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
+
+@JSImport("react-tagsinput", JSImport.Default)
+object ReactTagsInputRequire extends js.Any
+
+@JSImport("react-tagsinput/react-tagsinput.css", JSImport.Namespace)
+object ReactTagsInputCss extends js.Any
 
 case class ReactTagsInput(
     key: js.UndefOr[String] = js.undefined,
@@ -58,8 +64,8 @@ case class ReactTagsInput(
 
   def apply() = {
     val props = JSMacro[ReactTagsInput](this)
-    val f     = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactTagsInput)
-    f(props).asInstanceOf[ScalaComponent.Unmounted[_, _, _]]
+    val f = JsComponent[js.Object, Children.None, Null](ReactTagsInputRequire)
+    f(props)
   }
 
 }

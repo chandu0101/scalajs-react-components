@@ -1,13 +1,3 @@
-var React = require("react");
-var ReactDOM = require("react-dom");
-
-//var injectTapEventPlugin = require('react-tap-event-plugin');
-//injectTapEventPlugin();
-
-window.hljs = require("highlight.js");
-require("highlight.js/styles/github.css");
-
-
 //images
 window.googleMapImage      = require("./googleMap.png");
 window.reactListViewImage  = require("./reactListView.png");
@@ -18,10 +8,8 @@ window.semanticuiImage     = require("./semanticui.png");
 window.reactTableImage     = require("./reactTable.png");
 window.bottomTearImage     = require("./bottom-tear.svg");
 window.reactTagsInputImage = require("./reactTagsInput.png");
-window.reactSelectImage    = require("./reactSelect.png");
 window.reactInfiniteImage  = require("./reactInfinite.png");
 window.reactGeomIconImage  = require("./reactGeomIcon.png");
 window.spinnerImage        = require("./spinner.png");
 window.reactPopoverImage   = require("./reactPopover.png");
 window.reactDraggableImage = require("./reactDraggable.png");
-

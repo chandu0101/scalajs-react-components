@@ -25,7 +25,7 @@ object GhPagesMacroImpls {
       ls
 
   val exampleStart = "EXAMPLE:START"
-  val exampleEnd = "EXAMPLE:END"
+  val exampleEnd   = "EXAMPLE:END"
 }
 
 class GhPagesMacroImpls(val c: Context) extends ReactMacroUtils {
@@ -49,13 +49,17 @@ class GhPagesMacroImpls(val c: Context) extends ReactMacroUtils {
 
   def exampleSource: c.Expr[String] = {
     val fileContent = String valueOf c.enclosingPosition.source.content
-    val egContent = betweenMarkers(fileContent, exampleStart, exampleEnd)
+    val egContent   = betweenMarkers(fileContent, exampleStart, exampleEnd)
 
     val lines =
-      egContent.split('\n').toStream
+      egContent
+        .split('\n')
+        .toStream
         .map(trimRight.replaceFirstIn(_, ""))
         .dropWhile(blankLine)
-        .reverse.dropWhile(blankLine).reverse
+        .reverse
+        .dropWhile(blankLine)
+        .reverse
 
     val output = trimLeftAll(lines) mkString "\n"
 

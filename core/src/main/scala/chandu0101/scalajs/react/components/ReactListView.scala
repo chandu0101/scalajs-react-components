@@ -12,24 +12,23 @@ object ReactListView {
   class Style extends StyleSheet.Inline {
     import dsl._
 
-    val listGroup = style(marginBottom(20.px),
+    val listGroup = style(
+      marginBottom(20.px),
       paddingLeft.`0`,
-      &.firstChild.lastChild(borderBottomLeftRadius(4 px),
-        borderBottomRightRadius(4 px))
-    )
+      &.firstChild.lastChild(borderBottomLeftRadius(4 px), borderBottomRightRadius(4 px)))
 
-    val listItem = styleF.bool(selected => styleS(position.relative,
-      display.block,
-      padding(v = 10.px, h = 15.px),
-      border :=! "1px solid #ecf0f1",
-      cursor.pointer,
-      mixinIfElse(selected)(color.white,
-        fontWeight._500,
-        backgroundColor :=! "#146699")(
-          backgroundColor.white,
-          &.hover(color :=! "#555555",
-            backgroundColor :=! "#ecf0f1"))
-    ))
+    val listItem = styleF.bool(
+      selected =>
+        styleS(
+          position.relative,
+          display.block,
+          padding(v = 10.px, h = 15.px),
+          border :=! "1px solid #ecf0f1",
+          cursor.pointer,
+          mixinIfElse(selected)(color.white, fontWeight._500, backgroundColor :=! "#146699")(
+            backgroundColor.white,
+            &.hover(color :=! "#555555", backgroundColor :=! "#ecf0f1"))
+      ))
 
   }
 
@@ -50,16 +49,17 @@ object ReactListView {
     }
 
     def render(P: Props, S: State) = {
-      val fItems = P.items.filter(item => item.toString.toLowerCase.contains(S.filterText.toLowerCase))
+      val fItems =
+        P.items.filter(item => item.toString.toLowerCase.contains(S.filterText.toLowerCase))
       <.div(
         P.showSearchBox ?= ReactSearchBox(onTextChange = onTextChange),
         <.ul(
           P.style.listGroup,
-          fItems.map{item =>
+          fItems.map { item =>
             val selected = item.toString == S.selectedItem
-            <.li(
-              P.style.listItem(selected),
-              ^.onClick --> onItemSelect(P.onItemSelect)(item.toString), item)
+            <.li(P.style.listItem(selected),
+                 ^.onClick --> onItemSelect(P.onItemSelect)(item.toString),
+                 item)
           }
         )
       )

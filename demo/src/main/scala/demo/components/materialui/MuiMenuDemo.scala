@@ -14,8 +14,8 @@ object MuiMenuDemo {
 
   // EXAMPLE:START
 
-  case class State(isOpen: Boolean, multiple: Set[String]){
-    def touched(us: js.UndefOr[String]) = us.fold(this){
+  case class State(isOpen: Boolean, multiple: Set[String]) {
+    def touched(us: js.UndefOr[String]) = us.fold(this) {
       case s if multiple contains s =>
         copy(multiple = multiple - s)
       case s =>
@@ -23,7 +23,7 @@ object MuiMenuDemo {
     }
   }
 
-  class Backend($: BackendScope[Unit, State]) {
+  class Backend($ : BackendScope[Unit, State]) {
     val toggleOpen: ReactEvent => Callback =
       e => $.modState(s => s.copy(isOpen = !s.isOpen))
 
@@ -33,24 +33,24 @@ object MuiMenuDemo {
     def renderOpen(S: State) =
       <.div(
         MuiFlatButton(
-          label      = "Close menu",
+          label = "Close menu",
           onTouchTap = toggleOpen
         )(),
         MuiMenu[String](
-          desktop        = true,
-          width          = 320,
-          value          = S.multiple.toJsArray,
-          multiple       = true,
+          desktop = true,
+          width = 320,
+          value = S.multiple.toJsArray,
+          multiple = true,
           onItemTouchTap = onTouchTap,
-          onKeyDown      = CallbackDebug.f1("onKeyDown"),
-          onEscKeyDown   = toggleOpen
+          onKeyDown = CallbackDebug.f1("onKeyDown"),
+          onEscKeyDown = toggleOpen
         )(
-          MuiMenuItem(value = "bold",   secondaryText = "⌘B", checked = true)("Bold"),
+          MuiMenuItem(value = "bold", secondaryText = "⌘B", checked = true)("Bold"),
           MuiMenuItem(value = "italic", secondaryText = "⌘I")("Italic"),
-          MuiMenuItem(value = "under",  secondaryText = "⌘U")("Underline"),
+          MuiMenuItem(value = "under", secondaryText = "⌘U")("Underline"),
           MuiMenuItem(value = "strike", secondaryText = "Alt+Shift+5")("Strikethrough"),
-          MuiMenuItem(value = "super",  secondaryText = "⌘.")("Superscript"),
-          MuiMenuItem(value = "sub",    secondaryText = "⌘,")("Subscript"),
+          MuiMenuItem(value = "super", secondaryText = "⌘.")("Superscript"),
+          MuiMenuItem(value = "sub", secondaryText = "⌘,")("Subscript"),
           MuiDivider()(),
           MuiMenuItem(value = "align")("Align")
         )
@@ -65,10 +65,10 @@ object MuiMenuDemo {
     def render(S: State) =
       CodeExample(code, "MuiMenu")(
         if (S.isOpen) renderOpen(S) else renderClosed(S)
-    )
+      )
   }
 
-  val component = ReactComponentB[Unit] ("MuiMenuDemo")
+  val component = ReactComponentB[Unit]("MuiMenuDemo")
     .initialState(State(isOpen = false, Set.empty))
     .renderBackend[Backend]
     .build

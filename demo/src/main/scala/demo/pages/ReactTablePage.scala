@@ -7,7 +7,7 @@ import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 import japgolly.scalajs.react.extra.router.RouterCtl
 
 object ReactTablePage {
-  case class Backend($: BackendScope[Props, _]){
+  case class Backend($ : BackendScope[Props, _]) {
     def render(P: Props) =
       LeftNavPage(ReactTableRouteModule.menu, P.selectedPage, P.ctrl)
   }
@@ -18,6 +18,7 @@ object ReactTablePage {
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
+  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) =
+    component(Props(selectedPage, ctrl))
 
 }

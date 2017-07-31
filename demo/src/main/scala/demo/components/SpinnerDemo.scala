@@ -14,15 +14,14 @@ object SpinnerDemo {
   // EXAMPLE:START
 
   val component = ReactComponentB[Unit]("SpinnerDemo")
-    .render(P =>
-      <.div(
-        CodeExample(code, "Demo")(
-          <.div(^.width := "100px", ^.height := "100px", ^.backgroundColor := "grey",
-            Spinner()()
+    .render(
+      P =>
+        <.div(
+          CodeExample(code, "Demo")(
+            <.div(^.width := "100px", ^.height := "100px", ^.backgroundColor := "grey", Spinner()())
           )
-        )
-      )
-    ).build
+      ))
+    .build
 
   // EXAMPLE:END
 

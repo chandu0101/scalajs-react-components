@@ -14,7 +14,7 @@ object EuiButtonsDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]){
+  case class Backend($ : BackendScope[_, _]) {
     val renderButtonSizes =
       <.div(
         Button(size = ButtonSize.LG)("Large"),
@@ -69,7 +69,8 @@ object EuiButtonsDemo {
             Button()("Right")
           ),
           <.h2("Dropdown"),
-          Dropdown(buttonLabel = "Default Trigger",
+          Dropdown(
+            buttonLabel = "Default Trigger",
             items = js.Array(
               DropdownMenuItem(label = "Action"),
               DropdownMenuItem(label = "Another Action"),
@@ -85,10 +86,10 @@ object EuiButtonsDemo {
               DropdownMenuItem(label = "Another Action"),
               DropdownMenuItem(`type` = DropdownMenuItemType.DIVIDER),
               DropdownMenuItem(label = "Header", `type` = DropdownMenuItemType.HEADER),
-              DropdownMenuItem(label = "Action")))(<.h3("I am an H3!!!")
-          )
+              DropdownMenuItem(label = "Action")
+            ))(<.h3("I am an H3!!!"))
         )
-    )
+      )
   }
 
   val component = ReactComponentB[Unit]("EuiButtonsDemo")

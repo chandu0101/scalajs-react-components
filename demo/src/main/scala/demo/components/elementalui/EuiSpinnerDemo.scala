@@ -12,24 +12,26 @@ object EuiSpinnerDemo {
   // EXAMPLE:START
 
   val component = ReactComponentB[Unit]("EuiSpinnerDemo")
-    .render(P =>
-      CodeExample(code, "EuiSpinner")(
-        <.div(
-          <.h1("Spinner"),
-          <.h2("Common Use Cases"),
-          <.h3("Page Element"),
-          Spinner(size = SpinnerSize.MD)(),
-          Spinner(size = SpinnerSize.MD, `type` = SpinnerType.PRIMARY)(),
-          Spinner(size = SpinnerSize.MD, `type` = SpinnerType.INVERTED)(),
-          <.h3("Inside Buttons"),
-          Button()(Spinner()()),
-          Button(disabled = true)(Spinner(`type` = SpinnerType.PRIMARY)(), "Saving"),
-          Button(`type` = ButtonType.PRIMARY)(Spinner(`type` = SpinnerType.INVERTED)(), ("Submitting")),
-          <.h3("Full Page Load"),
-          Spinner(size = SpinnerSize.LG)()
-        )
-      )
-    ).build
+    .render(
+      P =>
+        CodeExample(code, "EuiSpinner")(
+          <.div(
+            <.h1("Spinner"),
+            <.h2("Common Use Cases"),
+            <.h3("Page Element"),
+            Spinner(size = SpinnerSize.MD)(),
+            Spinner(size = SpinnerSize.MD, `type` = SpinnerType.PRIMARY)(),
+            Spinner(size = SpinnerSize.MD, `type` = SpinnerType.INVERTED)(),
+            <.h3("Inside Buttons"),
+            Button()(Spinner()()),
+            Button(disabled = true)(Spinner(`type` = SpinnerType.PRIMARY)(), "Saving"),
+            Button(`type` = ButtonType.PRIMARY)(Spinner(`type` = SpinnerType.INVERTED)(),
+                                                ("Submitting")),
+            <.h3("Full Page Load"),
+            Spinner(size = SpinnerSize.LG)()
+          )
+      ))
+    .build
 
   // EXAMPLE:END
 

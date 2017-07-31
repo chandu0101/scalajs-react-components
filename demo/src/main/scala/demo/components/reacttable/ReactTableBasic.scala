@@ -18,7 +18,7 @@ object ReactTableBasic {
   val columns: List[String] =
     List("fname", "lname", "email", "country")
 
-  case class Backend($: BackendScope[_, _]) {
+  case class Backend($ : BackendScope[_, _]) {
     def render =
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Basic Table"),

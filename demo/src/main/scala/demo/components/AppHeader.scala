@@ -21,16 +21,16 @@ object AppHeader {
     )
 
     val menuNav = Seq(
-      MsFlexAlign := "center" ,
-      WebkitAlignItems := "center" ,
-      WebkitBoxAlign := "center" ,
-      ^.alignItems := "center" ,
-      ^.display := "-ms-flexbox" ,
-      ^.display := "-webkit-box" ,
-      ^.display := "-webkit-flex" ,
-      ^.display := "flex" ,
-      ^.height := "64px" ,
-      ^.lineHeight := "64px" ,
+      MsFlexAlign := "center",
+      WebkitAlignItems := "center",
+      WebkitBoxAlign := "center",
+      ^.alignItems := "center",
+      ^.display := "-ms-flexbox",
+      ^.display := "-webkit-box",
+      ^.display := "-webkit-flex",
+      ^.display := "flex",
+      ^.height := "64px",
+      ^.lineHeight := "64px",
       ^.margin := "0 3rem"
     )
 
@@ -40,10 +40,8 @@ object AppHeader {
       ^.width := "150px"
     )
 
-    val menuItem = Seq(
-      ^.padding := "20px",
-      ^.color := "rgb(244, 233, 233)",
-      ^.textDecoration := "none")
+    val menuItem =
+      Seq(^.padding := "20px", ^.color := "rgb(244, 233, 233)", ^.textDecoration := "none")
 
     val menuItemHover = Seq(^.background := "#f1453e")
 
@@ -64,12 +62,13 @@ object AppHeader {
           <.a(Style.logo, ^.href := "#")("S J R C"),
           <.div(^.marginLeft := "auto")(
             <.a(
-              ^.target :="_blank" ,
+              ^.target := "_blank",
               (S.menuHover == github) ?= Style.menuItemHover,
               Style.menuItem,
               ^.href := "https://github.com/chandu0101/scalajs-react-components",
               ^.onMouseEnter --> onMouseEnter(github),
-              ^.onMouseLeave --> onMouseLeave)(github)
+              ^.onMouseLeave --> onMouseLeave
+            )(github)
           )
         )
       )

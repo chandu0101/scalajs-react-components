@@ -23,7 +23,8 @@ case class ReactInfinite(handleScroll: js.UndefOr[HTMLElement => Callback] = js.
 
   def apply(children: Seq[ReactElement]) = {
     val props = JSMacro[ReactInfinite](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.Infinite)
+    val f =
+      React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.Infinite)
     f(props, children.toJSArray).asInstanceOf[ReactComponentU_]
   }
 }

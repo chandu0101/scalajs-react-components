@@ -6,37 +6,38 @@ import scala.scalajs.js
 
 @js.native
 trait MuiSvgIconProps extends js.Any {
-  def key:          js.UndefOr[String]
-  def ref:          js.UndefOr[String]
-  def color:        js.UndefOr[MuiColor]
-  def hoverColor:   js.UndefOr[MuiColor]
+  def key: js.UndefOr[String]
+  def ref: js.UndefOr[String]
+  def color: js.UndefOr[MuiColor]
+  def hoverColor: js.UndefOr[MuiColor]
   def onMouseEnter: js.UndefOr[ReactMouseEventH => Callback]
   def onMouseLeave: js.UndefOr[ReactMouseEventH => Callback]
-  def style:        js.UndefOr[CssProperties]
-  def viewBox:      js.UndefOr[String]
+  def style: js.UndefOr[CssProperties]
+  def viewBox: js.UndefOr[String]
 }
 
 object MuiSvgIcon {
   implicit class SvgIconApply(icon: MuiSvgIcon) {
-    def apply(key:          js.UndefOr[String]                       = js.undefined,
-              ref:          js.UndefOr[String]                       = js.undefined,
-              color:        js.UndefOr[MuiColor]                     = js.undefined,
-              hoverColor:   js.UndefOr[MuiColor]                     = js.undefined,
-              onMouseEnter: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-              onMouseLeave: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-              style:        js.UndefOr[CssProperties]                = js.undefined,
-              viewBox:      js.UndefOr[String]                       = js.undefined)
-             (childOpt:     js.UndefOr[ReactNode]                    = js.undefined): JsComponentU[MuiSvgIconProps, js.Any, TopNode] = {
+    def apply(
+        key: js.UndefOr[String] = js.undefined,
+        ref: js.UndefOr[String] = js.undefined,
+        color: js.UndefOr[MuiColor] = js.undefined,
+        hoverColor: js.UndefOr[MuiColor] = js.undefined,
+        onMouseEnter: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
+        onMouseLeave: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
+        style: js.UndefOr[CssProperties] = js.undefined,
+        viewBox: js.UndefOr[String] = js.undefined)(childOpt: js.UndefOr[ReactNode] = js.undefined)
+      : JsComponentU[MuiSvgIconProps, js.Any, TopNode] = {
 
       val props = js.Dynamic.literal()
-      key.         foreach(v => props.updateDynamic("key")(v))
-      ref.         foreach(v => props.updateDynamic("ref")(v))
-      color.       foreach(v => props.updateDynamic("color")(v))
-      hoverColor.  foreach(v => props.updateDynamic("hoverColor")(v))
+      key.foreach(v => props.updateDynamic("key")(v))
+      ref.foreach(v => props.updateDynamic("ref")(v))
+      color.foreach(v => props.updateDynamic("color")(v))
+      hoverColor.foreach(v => props.updateDynamic("hoverColor")(v))
       onMouseEnter.foreach(v => props.updateDynamic("onMouseEnter")(v andThen (_.runNow())))
       onMouseLeave.foreach(v => props.updateDynamic("onMouseLeave")(v andThen (_.runNow())))
-      style.       foreach(v => props.updateDynamic("style")(v))
-      viewBox.     foreach(v => props.updateDynamic("viewBox")(v))
+      style.foreach(v => props.updateDynamic("style")(v))
+      viewBox.foreach(v => props.updateDynamic("viewBox")(v))
 
       val f: JsComponentC[MuiSvgIconProps, js.Any, TopNode] =
         React.createFactory(icon)
@@ -1015,4 +1016,3 @@ trait MuiSvgIcons extends js.Object {
   def ToggleStarHalf: MuiSvgIcon
   def ToggleStar: MuiSvgIcon
 }
-

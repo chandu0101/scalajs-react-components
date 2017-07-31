@@ -14,10 +14,7 @@ object ReactInfiniteDemo {
 
     import dsl._
 
-    val container = style(display.flex,
-      justifyContent.center,
-      alignItems.center,
-      width(65 %%))
+    val container = style(display.flex, justifyContent.center, alignItems.center, width(65 %%))
 
     val item = style(
       width(300 px),
@@ -25,8 +22,8 @@ object ReactInfiniteDemo {
       height(70 px),
       padding(20 px)
     )
-    val border = style(borderBottom :=! "2px solid rgba(0, 0, 0, 0.1)",
-      marginLeft(4 px))
+    val border =
+      style(borderBottom :=! "2px solid rgba(0, 0, 0, 0.1)", marginLeft(4 px))
   }
 
   val code = GhPagesMacros.exampleSource
@@ -38,9 +35,7 @@ object ReactInfiniteDemo {
   class Backend(t: BackendScope[_, State]) {
 
     def renderRow(s: String): ReactElement = {
-      <.div(styles.item, s, ^.key := s,
-        <.div(styles.border)
-      )
+      <.div(styles.item, s, ^.key := s, <.div(styles.border))
     }
 
     def loadData() = {
@@ -51,10 +46,9 @@ object ReactInfiniteDemo {
       <.div(
         CodeExample(code, "Demo")(
           <.div(styles.container,
-            if (S.isLoading) <.div("Loading ..")
-            else ReactInfinite(elementHeight = 70,
-              containerHeight = 400)(S.data.map(renderRow))
-          )
+                if (S.isLoading) <.div("Loading ..")
+                else
+                  ReactInfinite(elementHeight = 70, containerHeight = 400)(S.data.map(renderRow)))
         )
       )
     }

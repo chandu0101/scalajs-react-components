@@ -15,19 +15,30 @@ object DefaultSelect {
     def render(P: Props) = {
       <.div(
         <.label(<.strong(P.label)),
-        <.select(^.paddingLeft := "5px", ^.id := "reactselect", ^.value := P.value, ^.onChange ==> onChange(P))(
+        <.select(^.paddingLeft := "5px",
+                 ^.id := "reactselect",
+                 ^.value := P.value,
+                 ^.onChange ==> onChange(P))(
           P.options.map(item => <.option(item))
         )
       )
     }
   }
 
-  val component = ReactComponentB[Props]("DefaultSelect")
-    .stateless
+  val component = ReactComponentB[Props]("DefaultSelect").stateless
     .renderBackend[Backend]
     .build
 
-  case class Props(label: String, options: List[String], value: String, onChange: String => Callback)
+  case class Props(label: String,
+                   options: List[String],
+                   value: String,
+                   onChange: String => Callback)
 
-  def apply(ref: js.UndefOr[String] = "", key: js.Any = {}, label: String, options: List[String], value: String, onChange: String => Callback) = component.set(key, ref)(Props(label, options, value, onChange))
+  def apply(ref: js.UndefOr[String] = "",
+            key: js.Any = {},
+            label: String,
+            options: List[String],
+            value: String,
+            onChange: String => Callback) =
+    component.set(key, ref)(Props(label, options, value, onChange))
 }

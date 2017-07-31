@@ -22,31 +22,33 @@ object ReactSlickDemo {
 
   // EXAMPLE:START
   val component = ReactComponentB[Unit]("SlickDemo")
-    .render(P =>
-      <.div(
-        CodeExample(code, "Demo")(
-          <.div(
-            ReactSlick(
-              responsive =
-                js.Array(
-                  ResponsiveSetting(600,  Unslick),
-                  ResponsiveSetting(800,  SlidesToShow(2)),
+    .render(
+      P =>
+        <.div(
+          CodeExample(code, "Demo")(
+            <.div(
+              ReactSlick(
+                responsive = js.Array(
+                  ResponsiveSetting(600, Unslick),
+                  ResponsiveSetting(800, SlidesToShow(2)),
                   ResponsiveSetting(1000, SlidesToShow(3)),
                   ResponsiveSetting(9999, SlidesToShow(4))
                 ),
-              arrows       = true,
-              dots         = true,
-              afterChange  = (num: Int) => Callback.info(s"afterChange: $num"),
-              beforeChange = (from: Int, to: Int) => Callback.info(s"beforeChange: $from -> $to"),
-              infinite     = false,
-              draggable    = true
-            )(
-              cats map { c => <.img(^.src := c, ^.height := "200px", ^.width := "200px") }: _*
+                arrows = true,
+                dots = true,
+                afterChange = (num: Int) => Callback.info(s"afterChange: $num"),
+                beforeChange = (from: Int, to: Int) => Callback.info(s"beforeChange: $from -> $to"),
+                infinite = false,
+                draggable = true
+              )(
+                cats map { c =>
+                  <.img(^.src := c, ^.height := "200px", ^.width := "200px")
+                }: _*
+              )
             )
           )
-        )
-      )
-    ).build
+      ))
+    .build
 
   // EXAMPLE:END
 

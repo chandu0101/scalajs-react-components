@@ -10,7 +10,8 @@ case class Spinner(key: js.UndefOr[String] = js.undefined,
                    className: js.UndefOr[String] = js.undefined) {
 
   def apply() = {
-    val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.Spinner)
+    val f =
+      React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.Spinner)
     f(JSMacro[Spinner](this)).asInstanceOf[ReactComponentU_]
   }
 }

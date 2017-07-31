@@ -16,20 +16,21 @@ trait ValueOption[T] extends js.Any {
 
 object ValueOption {
   def apply[T](
-    value:     T,
-    label:     String,
-    style:     js.UndefOr[CssProperties] = js.undefined,
-    title:     js.UndefOr[String]        = js.undefined,
-    href:      js.UndefOr[String]        = js.undefined,
-    className: js.UndefOr[String]        = js.undefined
+      value: T,
+      label: String,
+      style: js.UndefOr[CssProperties] = js.undefined,
+      title: js.UndefOr[String] = js.undefined,
+      href: js.UndefOr[String] = js.undefined,
+      className: js.UndefOr[String] = js.undefined
   ): ValueOption[T] =
-
-    js.Dynamic.literal(
-      value     = value.asInstanceOf[js.Any],
-      label     = label,
-      style     = style,
-      title     = title,
-      href      = href,
-      className = className
-    ).asInstanceOf[ValueOption[T]]
+    js.Dynamic
+      .literal(
+        value = value.asInstanceOf[js.Any],
+        label = label,
+        style = style,
+        title = title,
+        href = href,
+        className = className
+      )
+      .asInstanceOf[ValueOption[T]]
 }

@@ -1,7 +1,12 @@
 package demo.components.semanticui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.semanticui.{SemanticCOUNTRY, SuiDivider, SuiFlag, SuiSegment}
+import chandu0101.scalajs.react.components.semanticui.{
+  SemanticCOUNTRY,
+  SuiDivider,
+  SuiFlag,
+  SuiSegment
+}
 import demo.components.CodeExample
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -12,8 +17,7 @@ object SuiFlagDemo {
 
   // EXAMPLE:START
 
-
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
     def render() =
       <.div(

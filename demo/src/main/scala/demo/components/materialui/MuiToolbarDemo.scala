@@ -29,7 +29,8 @@ object MuiToolbarDemo {
           )
         )
       )
-    }).build
+    })
+    .build
 
   // EXAMPLE:END
 

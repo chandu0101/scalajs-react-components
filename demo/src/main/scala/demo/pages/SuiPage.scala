@@ -11,7 +11,7 @@ object SuiPage {
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($ : BackendScope[Props, _]) {
     def render(P: Props) =
       WithAsyncScript("assets/semantic_ui-bundle.js") {
         LeftNavPage(SuiRouteModule.menu, P.selectedPage, P.ctrl)
@@ -22,5 +22,6 @@ object SuiPage {
     .renderBackend[Backend]
     .build
 
-  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
+  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) =
+    component(Props(selectedPage, ctrl))
 }

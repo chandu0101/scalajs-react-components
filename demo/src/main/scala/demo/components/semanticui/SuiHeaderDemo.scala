@@ -1,7 +1,12 @@
 package demo.components.semanticui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.semanticui.{SemanticCOUNTRY, SuiFlag, SuiHeader, SuiSegment}
+import chandu0101.scalajs.react.components.semanticui.{
+  SemanticCOUNTRY,
+  SuiFlag,
+  SuiHeader,
+  SuiSegment
+}
 import demo.components.CodeExample
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.prefix_<^._
@@ -12,18 +17,17 @@ object SuiHeaderDemo {
 
   // EXAMPLE:START
 
-
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
     def render() =
       <.div(
         CodeExample(code, "SuiHeader")(
-          SuiHeader(as="h1")("First Header"),
-          SuiHeader(as="h2")("Second Header"),
-          SuiHeader(as="h3")("Third Header"),
-          SuiHeader(as="h4")("Fourth Header"),
-          SuiHeader(as="h5")("Fifth Header"),
-          SuiHeader(as="h6")("Sixth Header")
+          SuiHeader(as = "h1")("First Header"),
+          SuiHeader(as = "h2")("Second Header"),
+          SuiHeader(as = "h3")("Third Header"),
+          SuiHeader(as = "h4")("Fourth Header"),
+          SuiHeader(as = "h5")("Fifth Header"),
+          SuiHeader(as = "h6")("Sixth Header")
         )
       )
   }

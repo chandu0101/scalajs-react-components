@@ -34,7 +34,8 @@ object ReactListViewDemo {
 
     def render =
       <.div(
-        <.h3("Demo"), CodeExample(code, "ReactListView")(
+        <.h3("Demo"),
+        CodeExample(code, "ReactListView")(
           <.div(Style.listViewDemo)(
             ReactListView(
               items = data,

@@ -6,13 +6,12 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
-case class FormNote(
-    note: js.UndefOr[String] = js.undefined,
-    className: js.UndefOr[String] = js.undefined,
-    `type`: js.UndefOr[NoteType] = js.undefined) {
+case class FormNote(note: js.UndefOr[String] = js.undefined,
+                    className: js.UndefOr[String] = js.undefined,
+                    `type`: js.UndefOr[NoteType] = js.undefined) {
   def apply(children: ReactNode*) = {
     val props = JSMacro[FormNote](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.FormNote)
+    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.FormNote)
     f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }

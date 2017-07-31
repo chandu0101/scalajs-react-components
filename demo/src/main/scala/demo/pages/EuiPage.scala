@@ -9,7 +9,7 @@ import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.prefix_<^._
 
 object EuiPage {
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($ : BackendScope[Props, _]) {
     def render(P: Props) =
       <.div(
         WithAsyncScript("assets/elemental_ui-bundle.js")(
@@ -24,6 +24,7 @@ object EuiPage {
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
+  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) =
+    component(Props(selectedPage, ctrl))
 
 }

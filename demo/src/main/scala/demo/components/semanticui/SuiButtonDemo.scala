@@ -14,8 +14,7 @@ object SuiButtonDemo {
 
   // EXAMPLE:START
 
-
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
     val handleOnClick = (e: ReactMouseEventB) => Callback.info("You clicked me!")
 

@@ -28,7 +28,8 @@ object MuiSliderDemo {
           MuiSlider(name = "slider1", onChange = onChange, value = 0.3, disabled = true)()
         )
       )
-    }).build
+    })
+    .build
 
   // EXAMPLE:END
 

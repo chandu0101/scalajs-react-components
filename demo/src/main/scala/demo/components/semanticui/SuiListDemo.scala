@@ -12,30 +12,29 @@ object SuiListDemo {
 
   // EXAMPLE:START
 
-
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
     def render() =
       <.div(
         CodeExample(code, "SuiList")(
-         SuiList()(
-           SuiListItem()(
-             SuiListIcon(name = "users")(),
-             SuiListContent()("Semantic UI")
-           ),
-           SuiListItem()(
-             SuiListIcon(name = "marker")(),
-             SuiListContent()("New York, NY")
-           ),
-           SuiListItem()(
-             SuiListIcon(name = "mail")(),
-             SuiListContent()(<.a(^.href := "mailto:jack@semantic-ui.com")("jack@semantic-ui.com"))
-           ),
-           SuiListItem()(
-             SuiListIcon(name = "linkify")(),
-             SuiListContent()(<.a(^.href := "http://www.semantic-ui.com")("semantic-ui.com"))
-           )
-         )
+          SuiList()(
+            SuiListItem()(
+              SuiListIcon(name = "users")(),
+              SuiListContent()("Semantic UI")
+            ),
+            SuiListItem()(
+              SuiListIcon(name = "marker")(),
+              SuiListContent()("New York, NY")
+            ),
+            SuiListItem()(
+              SuiListIcon(name = "mail")(),
+              SuiListContent()(<.a(^.href := "mailto:jack@semantic-ui.com")("jack@semantic-ui.com"))
+            ),
+            SuiListItem()(
+              SuiListIcon(name = "linkify")(),
+              SuiListContent()(<.a(^.href := "http://www.semantic-ui.com")("semantic-ui.com"))
+            )
+          )
         )
       )
   }

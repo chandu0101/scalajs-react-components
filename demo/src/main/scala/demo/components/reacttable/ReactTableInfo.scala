@@ -11,9 +11,9 @@ object ReactTableInfo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]){
+  case class Backend($ : BackendScope[_, _]) {
     def render =
-      InfoTemplate(componentFilePath = "/tables/ReactTable.scala",scalacss = true)(
+      InfoTemplate(componentFilePath = "/tables/ReactTable.scala", scalacss = true)(
         <.div(^.cls := "full-width-section")(
           <.h3("React Table :"),
           <.p("Responsive HTML(flexbox) table with the following features"),

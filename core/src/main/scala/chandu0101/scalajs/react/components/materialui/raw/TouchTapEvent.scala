@@ -4,8 +4,6 @@ import japgolly.scalajs.react.SyntheticEvent
 import org.scalajs.dom
 
 import scala.scalajs.js
-
-
 @js.native
 trait TouchTapEvent[+DOMEventTarget <: dom.Node] extends SyntheticEvent[DOMEventTarget] {
   def altKey: Boolean
@@ -14,4 +12,3 @@ trait TouchTapEvent[+DOMEventTarget <: dom.Node] extends SyntheticEvent[DOMEvent
   def metaKey: Boolean
   def shiftKey: Boolean
 }
-

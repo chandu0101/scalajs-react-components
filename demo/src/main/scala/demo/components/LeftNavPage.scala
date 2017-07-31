@@ -30,19 +30,23 @@ object LeftNavPage {
     )
   }
 
-  case class Backend($: BackendScope[Props, _]){
+  case class Backend($ : BackendScope[Props, _]) {
     def render(P: Props) = {
       <.div(Style.container,
-        <.div(Style.nav, LeftNav(P.menu,P.selectedPage,P.ctrl)),
-        <.div(Style.content, P.selectedPage.render())
-      )
+            <.div(Style.nav, LeftNav(P.menu, P.selectedPage, P.ctrl)),
+            <.div(Style.content, P.selectedPage.render()))
     }
   }
   val component = ReactComponentB[Props]("LeftNavPage")
     .renderBackend[Backend]
     .build
 
-  case class Props(menu: List[LeftRoute], selectedPage: LeftRoute,ctrl: RouterCtl[LeftRoute])
+  case class Props(menu: List[LeftRoute], selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(menu: List[LeftRoute], selectedPage: LeftRoute,ctrl: RouterCtl[LeftRoute],ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(menu,selectedPage,ctrl))
+  def apply(menu: List[LeftRoute],
+            selectedPage: LeftRoute,
+            ctrl: RouterCtl[LeftRoute],
+            ref: js.UndefOr[String] = "",
+            key: js.Any = {}) =
+    component.set(key, ref)(Props(menu, selectedPage, ctrl))
 }

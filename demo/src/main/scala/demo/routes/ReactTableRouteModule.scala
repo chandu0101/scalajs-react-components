@@ -13,17 +13,20 @@ object ReactTableRouteModule {
 
   case object Sorting extends LeftRoute("Sorting", "sort", () => ReactTableSorting())
 
-  case object CustomCell extends LeftRoute("Custom Cell", "customcell", () => ReactTableCustomCell())
+  case object CustomCell
+      extends LeftRoute("Custom Cell", "customcell", () => ReactTableCustomCell())
 
-  case object CustomColumn extends LeftRoute("Custom Colum Size", "customcolumsize", () => ReactTableCustomColumnSize())
+  case object CustomColumn
+      extends LeftRoute("Custom Colum Size", "customcolumsize", () => ReactTableCustomColumnSize())
 
-  val menu: List[LeftRoute] = List(Info, Basic, Sorting, CustomCell, CustomColumn)
+  val menu: List[LeftRoute] =
+    List(Info, Basic, Sorting, CustomCell, CustomColumn)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._
-    menu.map(i =>
-      staticRoute(i.route, i) ~> renderR(r => ReactTablePage(i, r))
-    ).reduce(_ | _)
+    menu
+      .map(i => staticRoute(i.route, i) ~> renderR(r => ReactTablePage(i, r)))
+      .reduce(_ | _)
 
   }
 }

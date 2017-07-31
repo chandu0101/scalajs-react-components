@@ -23,14 +23,14 @@ object JsCollection extends JsCollectionLower {
   @inline implicit final def toJsCollectionUndefOr[T <: js.Any](t: js.UndefOr[T]): JsCollection[T] =
     t.asInstanceOf[JsCollection[T]]
 
-  @inline final implicit class JsCollectionX[T <: js.Any](private val c: JsCollection[T]){
+  @inline final implicit class JsCollectionX[T <: js.Any](private val c: JsCollection[T]) {
     @inline def isArray: Boolean =
       js.Array.isArray(c)
 
     @inline def fold[U](u: => U)(f: T => U)(fs: js.Array[T] => U): U =
       if (c == js.undefined) u
-      else if (isArray)      fs(c.asInstanceOf[js.Array[T]])
-      else                   f(c.asInstanceOf[T])
+      else if (isArray) fs(c.asInstanceOf[js.Array[T]])
+      else f(c.asInstanceOf[T])
 
     @inline def toJsArray: js.Array[T] =
       fold[js.Array[T]](js.Array())(js.Array(_))(identity)

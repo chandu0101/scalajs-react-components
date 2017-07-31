@@ -20,9 +20,11 @@ object ReactTreeView {
 
     def treeItem = Seq(^.listStyleType := "none")
 
-    def selectedTreeItemContent = Seq(^.backgroundColor := "#1B8EB0",
-      ^.color := "white", ^.fontWeight := 400,
-      ^.padding := "0 7px")
+    def selectedTreeItemContent =
+      Seq(^.backgroundColor := "#1B8EB0",
+          ^.color := "white",
+          ^.fontWeight := 400,
+          ^.padding := "0 7px")
 
     def treeItemBefore = Seq(
       ^.display := "inline-block",
@@ -41,11 +43,9 @@ object ReactTreeView {
 
   type NodeC = DuringCallbackU[NodeProps, NodeState, NodeBackend]
 
-  case class State(filterText: String,
-                   filterMode: Boolean,
-                   selectedNode: js.UndefOr[NodeC])
+  case class State(filterText: String, filterMode: Boolean, selectedNode: js.UndefOr[NodeC])
 
-  class Backend($: BackendScope[Props, State]) {
+  class Backend($ : BackendScope[Props, State]) {
 
     def onNodeSelect(P: Props)(selected: NodeC): Callback = {
       val removeSelection: Callback =
@@ -61,7 +61,7 @@ object ReactTreeView {
 
       val setSelection: Callback =
         selected.modState(_.copy(selected = true))
-      
+
       val tell: Callback =
         P.onItemSelect.asCbo(
           selected.props.root.item.toString,
@@ -78,18 +78,19 @@ object ReactTreeView {
     def render(P: Props, S: State) =
       <.div(P.style.reactTreeView)(
         P.showSearchBox ?= ReactSearchBox(onTextChange = onTextChange),
-        TreeNode.withKey("root")(NodeProps(
-          root         = P.root,
-          open         = if (S.filterText.nonEmpty) true else P.open,
-          onNodeSelect = onNodeSelect(P),
-          filterText   = S.filterText,
-          style        = P.style,
-          filterMode   = S.filterMode
-        ))
+        TreeNode.withKey("root")(
+          NodeProps(
+            root = P.root,
+            open = if (S.filterText.nonEmpty) true else P.open,
+            onNodeSelect = onNodeSelect(P),
+            filterText = S.filterText,
+            style = P.style,
+            filterMode = S.filterMode
+          ))
       )
   }
 
-  case class NodeBackend($: BackendScope[NodeProps, NodeState]) {
+  case class NodeBackend($ : BackendScope[NodeProps, NodeState]) {
 
     def onItemSelect(P: NodeProps)(e: ReactEventH): Callback =
       P.onNodeSelect($.asInstanceOf[NodeC]) >> e.preventDefaultCB >> e.stopPropagationCB
@@ -114,9 +115,10 @@ object ReactTreeView {
     }
 
     def render(P: NodeProps, S: NodeState): ReactTag = {
-      val depth    = P.depth + 1
-      val parent   = if   (P.parent.isEmpty) P.root.item.toString
-                     else s"${P.parent}<-${P.root.item.toString}"
+      val depth = P.depth + 1
+      val parent =
+        if (P.parent.isEmpty) P.root.item.toString
+        else s"${P.parent}<-${P.root.item.toString}"
 
       val treeMenuToggle: TagMod =
         if (S.children.nonEmpty)
@@ -146,16 +148,17 @@ object ReactTreeView {
           P.root.item.toString
         ),
         <.ul(P.style.treeGroup)(
-          S.children.map(child =>
-            isFilterTextExist(P.filterText, child) ?=
-              TreeNode.withKey(s"$parent$depth${child.item}")(P.copy(
-                root = child,
-                open = !P.filterText.trim.isEmpty,
-                depth = depth,
-                parent = parent,
-                filterText = P.filterText
-              ))
-          ))
+          S.children.map(
+            child =>
+              isFilterTextExist(P.filterText, child) ?=
+                TreeNode.withKey(s"$parent$depth${child.item}")(
+                  P.copy(
+                    root = child,
+                    open = !P.filterText.trim.isEmpty,
+                    depth = depth,
+                    parent = parent,
+                    filterText = P.filterText
+                  ))))
       )
     }
   }

@@ -15,24 +15,24 @@ object MuiThemeProviderDemo {
 
   // EXAMPLE:START
 
-  case class State(
-    baseTheme: MuiRawTheme,
-    backgroundColor: js.UndefOr[MuiColor]){
+  case class State(baseTheme: MuiRawTheme, backgroundColor: js.UndefOr[MuiColor]) {
 
     val theme: MuiTheme =
-      Mui.Styles.getMuiTheme(backgroundColor.fold(baseTheme)(
-        color ⇒ baseTheme.copy(palette = baseTheme.palette.copy(canvasColor = color)))
-      )
+      Mui.Styles.getMuiTheme(backgroundColor.fold(baseTheme)(color ⇒
+        baseTheme.copy(palette = baseTheme.palette.copy(canvasColor = color))))
   }
 
-  case class Backend($: BackendScope[Unit, State]){
+  case class Backend($ : BackendScope[Unit, State]) {
 
     def pickColor(s: String): MuiColor =
-      Mui.Styles.colors.asInstanceOf[Dynamic].selectDynamic(s).asInstanceOf[MuiColor]
+      Mui.Styles.colors
+        .asInstanceOf[Dynamic]
+        .selectDynamic(s)
+        .asInstanceOf[MuiColor]
 
     val colors: Seq[(String, MuiColor)] =
-      js.Object.keys(Mui.Styles.colors).map {
-        key ⇒ key → pickColor(key)
+      js.Object.keys(Mui.Styles.colors).map { key ⇒
+        key → pickColor(key)
       }
 
     val onThemeChanged: (ReactEvent, Int, MuiRawTheme) ⇒ Callback =
@@ -47,19 +47,27 @@ object MuiThemeProviderDemo {
           MuiMuiThemeProvider(muiTheme = S.theme)(
             MuiPaper()(
               <.h3("Pick base theme"),
-              MuiDropDownMenu[MuiRawTheme](key = "themeDropdown", value = S.baseTheme, onChange = onThemeChanged)(
-                MuiMenuItem[MuiRawTheme](key = "LightRawTheme", primaryText = "LightRawTheme", value = Mui.Styles.LightRawTheme)(),
-                MuiMenuItem[MuiRawTheme](key = "DarkRawTheme",  primaryText = "DarkRawTheme",  value = Mui.Styles.DarkRawTheme )()
+              MuiDropDownMenu[MuiRawTheme](key = "themeDropdown",
+                                           value = S.baseTheme,
+                                           onChange = onThemeChanged)(
+                MuiMenuItem[MuiRawTheme](key = "LightRawTheme",
+                                         primaryText = "LightRawTheme",
+                                         value = Mui.Styles.LightRawTheme)(),
+                MuiMenuItem[MuiRawTheme](key = "DarkRawTheme",
+                                         primaryText = "DarkRawTheme",
+                                         value = Mui.Styles.DarkRawTheme)()
               ),
               <.h3("Override theme canvas color"),
-              MuiDropDownMenu[MuiColor](
-                key      = "colorDropdown",
-                onChange = onColorChanged,
-                value    = S.backgroundColor)(
-                colors.map{
+              MuiDropDownMenu[MuiColor](key = "colorDropdown",
+                                        onChange = onColorChanged,
+                                        value = S.backgroundColor)(
+                colors.map {
                   case (name, color) ⇒
-                    MuiMenuItem[MuiColor](key = name, primaryText = name, value = color, style = js.Dynamic.literal(backgroundColor = color))()
-                } :_*
+                    MuiMenuItem[MuiColor](key = name,
+                                          primaryText = name,
+                                          value = color,
+                                          style = js.Dynamic.literal(backgroundColor = color))()
+                }: _*
               )
             )
           )

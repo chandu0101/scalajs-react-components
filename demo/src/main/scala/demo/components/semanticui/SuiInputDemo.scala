@@ -12,8 +12,7 @@ object SuiInputDemo {
 
   // EXAMPLE:START
 
-
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
     def render() =
       <.div(
@@ -24,15 +23,15 @@ object SuiInputDemo {
           <.br(),
           <.b("Focus"),
           <.br(),
-          SuiInput(placeholder = "Search ..",focus = true)(),
+          SuiInput(placeholder = "Search ..", focus = true)(),
           <.br(),
           <.b("Error"),
           <.br(),
-          SuiInput(placeholder = "Search ..",error = true)(),
+          SuiInput(placeholder = "Search ..", error = true)(),
           <.br(),
           <.b("Icon"),
           <.br(),
-          SuiInput(placeholder = "Search ..",icon = "search")()
+          SuiInput(placeholder = "Search ..", icon = "search")()
         )
       )
   }

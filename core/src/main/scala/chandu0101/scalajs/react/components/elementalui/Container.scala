@@ -11,15 +11,14 @@ import scala.scalajs.js.`|`
 //		gutter: _react2['default'].PropTypes.number,
 //		maxWidth: _react2['default'].PropTypes.number,
 //		style: _react2['default'].PropTypes.object
-case class Container(
-    className: js.UndefOr[String] = js.undefined,
-    clearFix: js.UndefOr[Boolean] = js.undefined,
-    guter: js.UndefOr[Int] = js.undefined,
-    maxWidth: js.UndefOr[Int] = js.undefined) {
+case class Container(className: js.UndefOr[String] = js.undefined,
+                     clearFix: js.UndefOr[Boolean] = js.undefined,
+                     guter: js.UndefOr[Int] = js.undefined,
+                     maxWidth: js.UndefOr[Int] = js.undefined) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[Container](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.Container)
+    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.Container)
     f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }

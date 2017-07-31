@@ -26,11 +26,11 @@ object ReactTagsInputDemo {
         CodeExample(code, "Demo")(
           <.div(
             ReactTagsInput(
-              value         = S.tags,
-              onChange      = onChange,
-              onBlur        = CallbackDebug.f0("onBlur"),
-              onKeyDown     = CallbackDebug.f1("onKeyDown"),
-              onKeyUp       = CallbackDebug.f1("onKeyUp")
+              value = S.tags,
+              onChange = onChange,
+              onBlur = CallbackDebug.f0("onBlur"),
+              onKeyDown = CallbackDebug.f1("onKeyDown"),
+              onKeyUp = CallbackDebug.f1("onKeyUp")
             )()
           )
         )

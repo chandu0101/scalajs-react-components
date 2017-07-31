@@ -10,16 +10,15 @@ import scala.scalajs.js.`|`
 //		label: React.PropTypes.string,
 //		labelActive: React.PropTypes.string,
 //		onDrop: React.PropTypes.func.isRequired
-case class FileDragAndDrop(
-    className: js.UndefOr[String] = js.undefined,
-    label: js.UndefOr[String] = js.undefined,
-    labelActive: js.UndefOr[String] = js.undefined,
-    files: js.Array[File] = js.Array(),
-    onDrop: js.UndefOr[js.Array[File] => Callback] = js.undefined) {
+case class FileDragAndDrop(className: js.UndefOr[String] = js.undefined,
+                           label: js.UndefOr[String] = js.undefined,
+                           labelActive: js.UndefOr[String] = js.undefined,
+                           files: js.Array[File] = js.Array(),
+                           onDrop: js.UndefOr[js.Array[File] => Callback] = js.undefined) {
 
   def apply() = {
     val props = JSMacro[FileDragAndDrop](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.FileDragAndDrop)
+    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.FileDragAndDrop)
     f(props).asInstanceOf[ReactComponentU_]
   }
 }

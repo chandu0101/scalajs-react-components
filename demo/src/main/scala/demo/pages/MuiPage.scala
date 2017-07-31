@@ -9,9 +9,9 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
 
 object MuiPage {
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($ : BackendScope[Props, _]) {
     def render(P: Props) =
-      WithAsyncScript("assets/material_ui-bundle.js"){
+      WithAsyncScript("assets/material_ui-bundle.js") {
         MuiMuiThemeProvider()(
           MuiPaper()(LeftNavPage(MuiRouteModule.menu, P.selectedPage, P.ctrl))
         )

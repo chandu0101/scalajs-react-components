@@ -16,13 +16,13 @@ object ReactGeomIconPage {
       )
   }
 
-  val component = ReactComponentB[Props]("ReactGeomIconPage")
-    .stateless
+  val component = ReactComponentB[Props]("ReactGeomIconPage").stateless
     .renderBackend[Backend]
     .build
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
+  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) =
+    component(Props(selectedPage, ctrl))
 
 }

@@ -17,13 +17,13 @@ object ReactTagsInputPage {
     }
   }
 
-  val component = ReactComponentB[Props]("ReactTagsInputPage")
-    .stateless
+  val component = ReactComponentB[Props]("ReactTagsInputPage").stateless
     .renderBackend[Backend]
     .build
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
+  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) =
+    component(Props(selectedPage, ctrl))
 
 }

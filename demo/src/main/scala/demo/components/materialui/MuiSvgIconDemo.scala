@@ -19,13 +19,13 @@ object MuiSvgIconDemo {
 
   case class State(accepts: Accepts, hovered: js.UndefOr[String])
 
-  case class Accepts(search: js.UndefOr[String]){
+  case class Accepts(search: js.UndefOr[String]) {
     private val lower = search map (_.toLowerCase)
     def apply(name: String): Boolean =
       lower forall name.toLowerCase.contains
   }
 
-  case class Backend($: BackendScope[Props, State]){
+  case class Backend($ : BackendScope[Props, State]) {
     implicit val r0 = Reusability.by_==[Props]
     implicit val r1 = Reusability.by_==[Accepts]
 
@@ -46,17 +46,17 @@ object MuiSvgIconDemo {
     /* rendering all icons turned out to be expensive, so
      *  we cache things based on search string */
     val renderedIconsPx: Px[js.Array[JsComponentU[MuiSvgIconProps, js.Any, TopNode]]] =
-      Px.cbA($.props zip $.state.map(_.accepts)).map{
+      Px.cbA($.props zip $.state.map(_.accepts)).map {
         case (p, accepts) =>
           p.icons collect {
             case (name, idx) if accepts(name) =>
               lookupIcon(name).apply(
-                key          = idx.toString,
-                style        = js.Dynamic.literal(width = "30px", height = "30px"),
-                hoverColor   = Mui.Styles.colors.amber500,
+                key = idx.toString,
+                style = js.Dynamic.literal(width = "30px", height = "30px"),
+                hoverColor = Mui.Styles.colors.amber500,
                 onMouseEnter = select(name),
                 onMouseLeave = unselect,
-                viewBox      = "0 0 30 30"
+                viewBox = "0 0 30 30"
               )()
           }
       }

@@ -16,8 +16,8 @@ object MuiDialogDemo {
 
   case class State(isOpen: Boolean)
 
-  class Backend($: BackendScope[_, State]) {
-    val open = $.setState(State(true))
+  class Backend($ : BackendScope[_, State]) {
+    val open  = $.setState(State(true))
     val close = $.setState(State(false))
 
     def handleDialogCancel: TouchTapEvent => Callback =
@@ -31,8 +31,14 @@ object MuiDialogDemo {
 
     def render(S: State) = {
       val actions: ReactNode = js.Array(
-        MuiFlatButton(key = "1", label = "Cancel", secondary = true, onTouchTap = handleDialogCancel)(),
-        MuiFlatButton(key = "2", label = "Submit", secondary = true, onTouchTap = handleDialogSubmit)()
+        MuiFlatButton(key = "1",
+                      label = "Cancel",
+                      secondary = true,
+                      onTouchTap = handleDialogCancel)(),
+        MuiFlatButton(key = "2",
+                      label = "Submit",
+                      secondary = true,
+                      onTouchTap = handleDialogSubmit)()
       )
       <.div(
         CodeExample(code, "MuiDialog")(

@@ -13,19 +13,20 @@ object MuiAppBarDemo {
   // EXAMPLE:START
 
   val component = ReactComponentB[Unit]("MuiAppBarDemo")
-    .render(P =>
-      <.div(
-        CodeExample(code, "MuiAppBar")(
-          MuiAppBar(
-            title = "Title",
-            onLeftIconButtonTouchTap  = CallbackDebug.f1("onLeftIconButtonTouchTap"),
-            onRightIconButtonTouchTap = CallbackDebug.f1("onRightIconButtonTouchTap"),
-            onTitleTouchTap           = CallbackDebug.f1("onTitleTouchTap"),
-            showMenuIconButton = true
-          )()
-        )
-      )
-    ).build
+    .render(
+      P =>
+        <.div(
+          CodeExample(code, "MuiAppBar")(
+            MuiAppBar(
+              title = "Title",
+              onLeftIconButtonTouchTap = CallbackDebug.f1("onLeftIconButtonTouchTap"),
+              onRightIconButtonTouchTap = CallbackDebug.f1("onRightIconButtonTouchTap"),
+              onTitleTouchTap = CallbackDebug.f1("onTitleTouchTap"),
+              showMenuIconButton = true
+            )()
+          )
+      ))
+    .build
 
   // EXAMPLE:END
 

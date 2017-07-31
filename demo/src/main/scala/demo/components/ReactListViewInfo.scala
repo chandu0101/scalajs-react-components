@@ -7,11 +7,12 @@ object ReactListViewInfo {
 
   val component = ReactComponentB[Unit]("ReactListViewInfo")
     .render(P => {
-    InfoTemplate(componentFilePath = "listviews/ReactListView.scala")(
-     <.h3("React ListView :"),
-      <.p("List View Component with search feature")
-    )
-  }).build
+      InfoTemplate(componentFilePath = "listviews/ReactListView.scala")(
+        <.h3("React ListView :"),
+        <.p("List View Component with search feature")
+      )
+    })
+    .build
 
   def apply() = component()
 

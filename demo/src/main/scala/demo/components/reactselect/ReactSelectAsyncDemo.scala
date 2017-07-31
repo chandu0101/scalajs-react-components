@@ -16,25 +16,30 @@ object ReactSelectAsyncDemo {
   // EXAMPLE:START
 
   case class State(
-    value: JsCollection[ValueOption[MyValue]] = js.undefined
+      value: JsCollection[ValueOption[MyValue]] = js.undefined
   )
 
   case class MyValue(value: String, anotherValue: Int)
 
   class Backend(t: BackendScope[_, State]) {
     val loadValues: (String, js.Function2[Null, AsyncLoaded[MyValue], Unit]) => Callback =
-      (search, cb) => Callback(
-        cb(null, AsyncLoaded(complete = true,
-          ValueOption(MyValue("value",   23), "First value"),
-          ValueOption(MyValue("value2",  42), "Second value"),
-          ValueOption(MyValue("value3", 101), "Third value")
-        ))
+      (search, cb) =>
+        Callback(
+          cb(
+            null,
+            AsyncLoaded(
+              complete = true,
+              ValueOption(MyValue("value", 23), "First value"),
+              ValueOption(MyValue("value2", 42), "Second value"),
+              ValueOption(MyValue("value3", 101), "Third value")
+            )
+          )
       )
 
     val onChangeValue: JsCollection[ValueOption[MyValue]] => Callback =
       chosen =>
         t.modState(_.copy(value = chosen)) >>
-        Callback.info(s"Chose ${chosen.toJsArray.map(_.value)}")
+          Callback.info(s"Chose ${chosen.toJsArray.map(_.value)}")
 
     val valueRenderer: ValueOption[MyValue] => ReactNode =
       vo =>
@@ -42,15 +47,10 @@ object ReactSelectAsyncDemo {
           <.h3(vo.title),
           <.p(vo.label),
           <.small(vo.value.toString)
-        )
+      )
 
     val optionRenderer: ValueOption[MyValue] => ReactNode =
-      vo =>
-        <.div("Option: ",
-          <.h3(vo.title),
-          <.p(vo.label),
-          <.small(vo.value.toString)
-        )
+      vo => <.div("Option: ", <.h3(vo.title), <.p(vo.label), <.small(vo.value.toString))
     val onValueClick: (ValueOption[MyValue], ReactEvent) => Callback =
       (vo, e) => Callback.info(s"Clicked on ${vo.value.value}")
 
@@ -58,14 +58,14 @@ object ReactSelectAsyncDemo {
       <.div(
         CodeExample(code, "ReactSelectAsyncDemo")(
           Async(
-            loadOptions    = loadValues,
-            value          = S.value,
-            multi          = true,
-            onChange       = onChangeValue,
-            clearable      = true,
+            loadOptions = loadValues,
+            value = S.value,
+            multi = true,
+            onChange = onChangeValue,
+            clearable = true,
             optionRenderer = optionRenderer,
-            valueRenderer  = valueRenderer,
-            onValueClick   = onValueClick
+            valueRenderer = valueRenderer,
+            onValueClick = onValueClick
           )()
         )
       )

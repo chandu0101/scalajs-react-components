@@ -12,17 +12,16 @@ import scala.scalajs.js.`|`
 //		icon: React.PropTypes.string,
 //		isLoading: React.PropTypes.bool,
 //		type: React.PropTypes.string
-case class FormIcon(
-    className: js.UndefOr[String] = js.undefined,
-    color: js.UndefOr[IconColorVariant] = js.undefined,
-    fill: js.UndefOr[IconColorVariant] = js.undefined,
-    icon: js.UndefOr[Octicons] = js.undefined,
-    isloading: js.UndefOr[Boolean] = js.undefined,
-    `type`: js.UndefOr[String]) {
+case class FormIcon(className: js.UndefOr[String] = js.undefined,
+                    color: js.UndefOr[IconColorVariant] = js.undefined,
+                    fill: js.UndefOr[IconColorVariant] = js.undefined,
+                    icon: js.UndefOr[Octicons] = js.undefined,
+                    isloading: js.UndefOr[Boolean] = js.undefined,
+                    `type`: js.UndefOr[String]) {
 
   def apply() = {
     val props = JSMacro[FormIcon](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.FormIcon)
+    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.FormIcon)
     f(props).asInstanceOf[ReactComponentU_]
   }
 }

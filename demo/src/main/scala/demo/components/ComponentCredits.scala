@@ -15,50 +15,62 @@ object ComponentCredits {
 
   class Backend(t: BackendScope[Props, State]) {
     def render(S: State) = {
-      if(S.users.isEmpty)<.div("Loading Credits ...")
+      if (S.users.isEmpty) <.div("Loading Credits ...")
       else
-      <.div(
-        <.h4("Author: "),
-        S.users.headOption.map(GithubUser(_)),
-        <.h4("Contributors: "),
-       <.div(^.marginRight := "10px")(S.users.tail.map(u => GithubUser(user = u, key = u.login)))
-       )
+        <.div(
+          <.h4("Author: "),
+          S.users.headOption.map(GithubUser(_)),
+          <.h4("Contributors: "),
+          <.div(^.marginRight := "10px")(S.users.tail.map(u => GithubUser(user = u, key = u.login)))
+        )
 
     }
   }
 
   val component =
     ReactComponentB[Props]("ComponentCredits")
-    .initialState(State(List()))
-    .renderBackend[Backend]
-    .componentDidMount(
-    $ => Callback{
-      val url = s"https://api.github.com/repos/chandu0101/scalajs-react-components/commits?path=${$.props.filePath}"
-      Ajax.get(url).onSuccess {
-        case xhr =>
-          if (xhr.status == 200) {
-            val rawUsers = JSON.parse(xhr.responseText).asInstanceOf[js.Array[js.Dynamic]]
-            val users = rawUsers.map(
-              u => Github(
-                login = u.author.login.toString,
-                html_url = u.author.html_url.toString,
-                avatar_url = u.author.avatar_url.toString,
-                time = new Date(u.commit.author.date.toString).getTime()
-              )
-            ).toList.groupBy(_.login).map {
-              case (id, objlist) => objlist.minBy(_.time)
-            }.toSet.toList
+      .initialState(State(List()))
+      .renderBackend[Backend]
+      .componentDidMount(
+        $ =>
+          Callback {
+            val url =
+              s"https://api.github.com/repos/chandu0101/scalajs-react-components/commits?path=${$.props.filePath}"
+            Ajax.get(url).onSuccess {
+              case xhr =>
+                if (xhr.status == 200) {
+                  val rawUsers = JSON
+                    .parse(xhr.responseText)
+                    .asInstanceOf[js.Array[js.Dynamic]]
+                  val users = rawUsers
+                    .map(
+                      u =>
+                        Github(
+                          login = u.author.login.toString,
+                          html_url = u.author.html_url.toString,
+                          avatar_url = u.author.avatar_url.toString,
+                          time = new Date(u.commit.author.date.toString).getTime()
+                      )
+                    )
+                    .toList
+                    .groupBy(_.login)
+                    .map {
+                      case (id, objlist) => objlist.minBy(_.time)
+                    }
+                    .toSet
+                    .toList
 
-            $.modState(_.copy(users = users.sortBy(_.time)))
-              .when($.isMounted())
-              .runNow()
-          }
-      }
-    }
-  )
-    .build
+                  $.modState(_.copy(users = users.sortBy(_.time)))
+                    .when($.isMounted())
+                    .runNow()
+                }
+            }
+        }
+      )
+      .build
 
   case class Props(filePath: String)
 
-  def apply(filePath: String,ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(filePath))
+  def apply(filePath: String, ref: js.UndefOr[String] = "", key: js.Any = {}) =
+    component.set(key, ref)(Props(filePath))
 }

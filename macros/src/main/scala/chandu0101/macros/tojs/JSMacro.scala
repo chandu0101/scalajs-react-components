@@ -7,9 +7,9 @@ import scala.reflect.macros.blackbox
 import scala.scalajs.js
 
 /**
- * modified version of https://github.com/wav/scala-macros/blob/master/src/main/scala/wav/common/scalajs/macros/Macros.scala
- * via https://github.com/chandu0101/macros/blob/master/src/main/scala/chandu0101/macros/tojs/JSMacro.scala
- */
+  * modified version of https://github.com/wav/scala-macros/blob/master/src/main/scala/wav/common/scalajs/macros/Macros.scala
+  * via https://github.com/chandu0101/macros/blob/master/src/main/scala/chandu0101/macros/tojs/JSMacro.scala
+  */
 object JSMacro {
   type TOJS = {
     val toJS: js.Object
@@ -69,27 +69,29 @@ object JSMacro {
         q"""$target"""
     }
 
-
     val tpe    = c.weakTypeOf[T]
     val target = c.freshName[TermName](TermName("t"))
     val props  = c.freshName[TermName](TermName("p"))
 
-    val fieldSymbols: List[Symbol] = tpe.decls.collectFirst {
-      case m: MethodSymbol if m.isPrimaryConstructor => m
-    }.get.paramLists.head
+    val fieldSymbols: List[Symbol] = tpe.decls
+      .collectFirst {
+        case m: MethodSymbol if m.isPrimaryConstructor => m
+      }
+      .get
+      .paramLists
+      .head
 
-    val fieldUpdates = fieldSymbols.map{
-      f =>
-        val name      = f.asTerm.name
-        val decoded   = name.decodedName.toString
+    val fieldUpdates = fieldSymbols.map { f =>
+      val name    = f.asTerm.name
+      val decoded = name.decodedName.toString
 
-        if (isOptional(f.typeSignature)){
-          val valueTree = getJSValueTree(q"v", f.typeSignature.typeArgs.head)
-          q"""$target.$name.foreach(v => $props.updateDynamic($decoded)($valueTree))"""
-        } else {
-          val valueTree = getJSValueTree(q"$target.$name", f.typeSignature)
-          q"""$props.updateDynamic($decoded)($valueTree)"""
-        }
+      if (isOptional(f.typeSignature)) {
+        val valueTree = getJSValueTree(q"v", f.typeSignature.typeArgs.head)
+        q"""$target.$name.foreach(v => $props.updateDynamic($decoded)($valueTree))"""
+      } else {
+        val valueTree = getJSValueTree(q"$target.$name", f.typeSignature)
+        q"""$props.updateDynamic($decoded)($valueTree)"""
+      }
     }
 
     q""" ($target: $tpe) => {

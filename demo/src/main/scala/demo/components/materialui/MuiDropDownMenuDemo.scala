@@ -26,19 +26,18 @@ object MuiDropDownMenuDemo {
       new Item("5", "Weekly")
     )
 
-  case class Backend($: BackendScope[Unit, Item]){
+  case class Backend($ : BackendScope[Unit, Item]) {
     val onChange: (TouchTapEvent, Int, Item) => Callback =
       (e, idx, value) => $.setState(value) >> Callback.info(s"idx: $idx, value: $value")
 
     def render(chosen: Item) =
       <.div(
         CodeExample(code, "MuiDropDownMenu")(
-          MuiDropDownMenu(
-            onChange = onChange,
-            value    = chosen)(
+          MuiDropDownMenu(onChange = onChange, value = chosen)(
             items map {
-              case item => MuiMenuItem(key = item.id, value = item, primaryText = item.name)()
-            } :_*
+              case item =>
+                MuiMenuItem(key = item.id, value = item, primaryText = item.name)()
+            }: _*
           )
         )
       )

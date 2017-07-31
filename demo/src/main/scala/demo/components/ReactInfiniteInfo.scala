@@ -11,32 +11,30 @@ object ReactInfiniteInfo {
 
     import dsl._
 
-    val content = style(textAlign.center,
-      fontSize(30.px),
-      paddingTop(40.px))
+    val content = style(textAlign.center, fontSize(30.px), paddingTop(40.px))
   }
 
   val component = ReactComponentB[Unit]("ReactInfiniteInfo")
     .render(P => {
-    InfoTemplate(componentFilePath = "listviews/ReactInfinite.scala")(
-      <.div(
-        <.h3("React Infinite "),
-        <.p("scalajs-react wrapper for ",
-          RedLink("react infinite", "https://github.com/seatgeek/react-infinite")
-        ),
+      InfoTemplate(componentFilePath = "listviews/ReactInfinite.scala")(
         <.div(
-          <.h4("Supported Version :"),
-          <.span("0.7.1")
-        ),
-        <.div(
-          <.h4("How To Use :"),
-          <.p("Follow the installation guide from :", RedLink("here", "https://github.com/seatgeek/react-infinite#installation")
+          <.h3("React Infinite "),
+          <.p("scalajs-react wrapper for ",
+              RedLink("react infinite", "https://github.com/seatgeek/react-infinite")),
+          <.div(
+            <.h4("Supported Version :"),
+            <.span("0.7.1")
+          ),
+          <.div(
+            <.h4("How To Use :"),
+            <.p("Follow the installation guide from :",
+                RedLink("here", "https://github.com/seatgeek/react-infinite#installation"))
           )
         )
       )
-    )
 
-  }).build
+    })
+    .build
 
   def apply() = component()
 }

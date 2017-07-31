@@ -12,15 +12,16 @@ object ReactDraggableDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
     def render =
-     <.div(^.cls := "react-draggable-demo",
-       <.h2(^.cls := "mui-font-style-headline", "Demo"),
+      <.div(
+        ^.cls := "react-draggable-demo",
+        <.h2(^.cls := "mui-font-style-headline", "Demo"),
         CodeExample(code, "ReactDraggable")(
-          ReactDraggable(
-            zIndex = 100,
-            onStop = (e: Event, pos: RElementPosition) => Callback.info(s"stopped at $pos"))(
+          ReactDraggable(zIndex = 100,
+                         onStop =
+                           (e: Event, pos: RElementPosition) => Callback.info(s"stopped at $pos"))(
             <.div(
               <.h2("Drag me"),
               ^.backgroundColor := "#F2706D",

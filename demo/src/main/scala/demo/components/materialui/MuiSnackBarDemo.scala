@@ -12,7 +12,7 @@ object MuiSnackbarDemo {
 
   // EXAMPLE:START
 
-  class Backend($: BackendScope[_, Boolean]) {
+  class Backend($ : BackendScope[_, Boolean]) {
     val close = $.setState(false)
     val open  = $.setState(true)
 
@@ -29,22 +29,22 @@ object MuiSnackbarDemo {
       CodeExample(code, "MuiSnackBar")(
         MuiSnackbar(
           autoHideDuration = 5000,
-          message          = "Event added to your calendar",
-          action           = "undo",
+          message = "Event added to your calendar",
+          action = "undo",
           onActionTouchTap = undoAdd,
-          onRequestClose   = closeRequested,
-          open             = isOpen
+          onRequestClose = closeRequested,
+          open = isOpen
         )(),
-      !isOpen ?
-        MuiRaisedButton(
-          label      = "Add event to calendar",
-          onTouchTap = toggleSnack
-        )()
+        !isOpen ?
+          MuiRaisedButton(
+            label = "Add event to calendar",
+            onTouchTap = toggleSnack
+          )()
       )
     }
   }
 
-  implicit class BooleanNodeX[T](b: Boolean){
+  implicit class BooleanNodeX[T](b: Boolean) {
     def ?(n: => ReactNode): ReactNode =
       if (b) n else null
   }

@@ -16,10 +16,10 @@ object MuiDrawerDemo {
   // EXAMPLE:START
 
   case class State(
-    selected: js.UndefOr[String],
-    isOpen:   Boolean,
-    isDocked: Boolean,
-    isRight:  Boolean
+      selected: js.UndefOr[String],
+      isOpen: Boolean,
+      isDocked: Boolean,
+      isRight: Boolean
   )
 
   case class Choice(id: String, text: String)
@@ -31,7 +31,7 @@ object MuiDrawerDemo {
     Choice("4", "Fourth option")
   )
 
-  class Backend($: BackendScope[Unit, State]) {
+  class Backend($ : BackendScope[Unit, State]) {
     val toggleOpenCb: Callback =
       $.modState(s => s.copy(isOpen = !s.isOpen))
 
@@ -56,47 +56,44 @@ object MuiDrawerDemo {
       <.div(
         CodeExample(code, "MuiDrawer")(
           <.div(
-            MuiDrawer(
-              onRequestChange = onRequestChange,
-              openSecondary   = S.isRight,
-              open            = S.isOpen,
-              docked          = S.isDocked)(
+            MuiDrawer(onRequestChange = onRequestChange,
+                      openSecondary = S.isRight,
+                      open = S.isOpen,
+                      docked = S.isDocked)(
               /* hack in a cheesy centered avatar */
-              MuiAvatar(
-                key             = "avatar",
-                size            = 112,
-                backgroundColor = Mui.Styles.colors.red400,
-                style           = js.Dynamic.literal(
-                  margin  = "auto",
-                  display = "block",
-                  padding = "10px"
-                ))(":D"),
-              choices map (c =>
-                MuiMenuItem(
-                  key         = c.id,
-                  primaryText = c.text,
-                  checked     = S.selected == js.defined(c.id),
-                  onTouchTap  = selectItem(c.id)
-                )()
-              )
+              MuiAvatar(key = "avatar",
+                        size = 112,
+                        backgroundColor = Mui.Styles.colors.red400,
+                        style = js.Dynamic.literal(
+                          margin = "auto",
+                          display = "block",
+                          padding = "10px"
+                        ))(":D"),
+              choices map (
+                  c =>
+                    MuiMenuItem(
+                      key = c.id,
+                      primaryText = c.text,
+                      checked = S.selected == js.defined(c.id),
+                      onTouchTap = selectItem(c.id)
+                    )())
             ),
-
             MuiToggle(
-              key      = "toggle1",
-              toggled  = S.isOpen,
-              label    = "Show drawer",
+              key = "toggle1",
+              toggled = S.isOpen,
+              label = "Show drawer",
               onToggle = toggleOpen
             )(),
             MuiToggle(
-              key      = "toggle2",
-              toggled  = S.isDocked,
-              label    = "Show docked",
+              key = "toggle2",
+              toggled = S.isDocked,
+              label = "Show docked",
               onToggle = toggleDocked
             )(),
             MuiToggle(
-              key      = "toggle3",
-              toggled  = S.isRight,
-              label    = "Show on right side",
+              key = "toggle3",
+              toggled = S.isRight,
+              label = "Show on right side",
               onToggle = toggleRight
             )()
           )
@@ -109,9 +106,9 @@ object MuiDrawerDemo {
     .initialState(
       State(
         selected = js.undefined,
-        isOpen   = false,
+        isOpen = false,
         isDocked = false,
-        isRight  = false
+        isRight = false
       )
     )
     .renderBackend[Backend]

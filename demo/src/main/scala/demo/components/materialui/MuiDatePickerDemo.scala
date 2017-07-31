@@ -16,19 +16,22 @@ object MuiDatePickerDemo {
     .render(P => {
       <.div(
         CodeExample(code, "MuiDatePicker")(
-          MuiDatePicker(hintText = "Portrait Dialog",
-            onChange   = CallbackDebug.f2("onChange"),
-            onDismiss  = CallbackDebug.f0("onDismiss"),
-            onFocus    = CallbackDebug.f1("onFocus"),
-            onShow     = CallbackDebug.f0("onShow"),
-            onTouchTap = CallbackDebug.f1("onTouchTap"))(),
+          MuiDatePicker(
+            hintText = "Portrait Dialog",
+            onChange = CallbackDebug.f2("onChange"),
+            onDismiss = CallbackDebug.f0("onDismiss"),
+            onFocus = CallbackDebug.f1("onFocus"),
+            onShow = CallbackDebug.f0("onShow"),
+            onTouchTap = CallbackDebug.f1("onTouchTap")
+          )(),
           MuiDatePicker(
             hintText = "Landscape Dialog",
             mode = PortraitLandscape.landscape
           )()
         )
       )
-    }).build
+    })
+    .build
 
   // EXAMPLE:END
 

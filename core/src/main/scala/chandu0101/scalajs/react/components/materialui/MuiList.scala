@@ -8,23 +8,21 @@ import scala.scalajs.js
 import scala.scalajs.js.`|`
 
 /**
- * This file is generated - submit issues instead of PR against it
- */
-    
-case class MuiList(
-  key:      js.UndefOr[String]        = js.undefined,
-  ref:      js.UndefOr[String]        = js.undefined,
-  /* Override the inline-styles of the root element. */
-  style:    js.UndefOr[CssProperties] = js.undefined){
+  * This file is generated - submit issues instead of PR against it
+  */
+case class MuiList(key: js.UndefOr[String] = js.undefined,
+                   ref: js.UndefOr[String] = js.undefined,
+                   /* Override the inline-styles of the root element. */
+                   style: js.UndefOr[CssProperties] = js.undefined) {
 
   /**
     * @param children These are usually `ListItem`s that are passed to
     be part of the list.
-   */
+    */
   def apply(children: ReactNode*) = {
-    
+
     val props = JSMacro[MuiList](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.List)
+    val f     = React.asInstanceOf[js.Dynamic].createFactory(Mui.List)
     if (children.isEmpty)
       f(props).asInstanceOf[ReactComponentU_]
     else if (children.size == 1)

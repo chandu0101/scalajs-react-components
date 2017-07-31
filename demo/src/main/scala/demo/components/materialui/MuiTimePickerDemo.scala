@@ -20,7 +20,8 @@ object MuiTimePickerDemo {
           MuiTimePicker(format = Ampm_24hr._24hr, hintText = "24 hr format")()
         )
       )
-    }).build
+    })
+    .build
 
   // EXAMPLE:END
 

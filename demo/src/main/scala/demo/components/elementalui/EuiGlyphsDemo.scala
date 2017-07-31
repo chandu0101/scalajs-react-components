@@ -12,7 +12,7 @@ object EuiGlyphsDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]){
+  case class Backend($ : BackendScope[_, _]) {
     val renderButtons =
       <.div(
         Button(`type` = ButtonType.PRIMARY)(Glyph(icon = Octicons.beaker)()),
@@ -46,12 +46,12 @@ object EuiGlyphsDemo {
       }
 
     def renderGlyphColors(icon: Octicons) =
-      GlyphType.values.map(glyphType =>
-        <.div(
-          ^.key := s"${glyphType.value}-${icon.value}",
-          ^.className := "code-example__example-element--inline",
-          Glyph(icon = icon, `type` = glyphType)(), glyphType.value)
-      )
+      GlyphType.values.map(
+        glyphType =>
+          <.div(^.key := s"${glyphType.value}-${icon.value}",
+                ^.className := "code-example__example-element--inline",
+                Glyph(icon = icon, `type` = glyphType)(),
+                glyphType.value))
 
     def render: ReactComponentU[Props, Unit, CodeExample.Backend, TopNode] =
       CodeExample(code, "EuiGlyphs")(

@@ -12,14 +12,16 @@ object SuiGridDemo {
 
   // EXAMPLE:START
 
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
-  case class Backend($: BackendScope[Unit, Unit]) {
-
-    val columns = (1 to 16).map(i => SuiGridColumn(key = i.toString)(SuiImage(src = "http://semantic-ui.com/images/wireframe/image.png")()))
+    val columns = (1 to 16).map(
+      i =>
+        SuiGridColumn(key = i.toString)(
+          SuiImage(src = "http://semantic-ui.com/images/wireframe/image.png")()))
     def render() =
       <.div(
         CodeExample(code, "SuiGrid")(
-         SuiGrid()(columns)
+          SuiGrid()(columns)
         )
       )
   }

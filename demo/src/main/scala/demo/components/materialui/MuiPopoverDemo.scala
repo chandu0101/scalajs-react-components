@@ -13,14 +13,17 @@ object MuiPopoverDemo {
 
   // EXAMPLE:START
 
-  private case class OriginChoice[T](ts: Seq[T], label: String)(set: T => Callback, fromState: State => T, str: T => String) {
+  private case class OriginChoice[T](ts: Seq[T], label: String)(set: T => Callback,
+                                                                fromState: State => T,
+                                                                str: T => String) {
     val action: (ReactEvent, Int, js.Any) => Callback =
       (e, idx, any) => set(ts(idx))
 
     val items: ReactNode =
       ts.map(
-        t => MuiMenuItem(value = str(t), primaryText = str(t))()
-      ).toJsArray
+          t => MuiMenuItem(value = str(t), primaryText = str(t))()
+        )
+        .toJsArray
 
     def menu(S: State): ReactElement =
       <.div(
@@ -31,14 +34,14 @@ object MuiPopoverDemo {
         ),
         MuiDropDownMenu(
           onChange = action,
-          value    = str(fromState(S))
+          value = str(fromState(S))
         )(items)
       )
   }
 
   case class State(open: Boolean, target: Origin, anchor: Origin)
 
-  private case class Backend($: BackendScope[Unit, State]) {
+  private case class Backend($ : BackendScope[Unit, State]) {
 
     val ref = Ref[TopNode]("theRef")
 
@@ -46,16 +49,24 @@ object MuiPopoverDemo {
       $.modState(s => s.copy(open = !s.open))
 
     val anchorH = OriginChoice(Horizontal.values, "Change anchor horizontal")(
-      t => $.modState(s => s.copy(anchor = s.anchor.copy(horizontal = t))), _.anchor.horizontal, _.value
+      t => $.modState(s => s.copy(anchor = s.anchor.copy(horizontal = t))),
+      _.anchor.horizontal,
+      _.value
     )
     val anchorV = OriginChoice(Vertical.values, "Change anchor vertical")(
-      t => $.modState(s => s.copy(anchor = s.anchor.copy(vertical = t))), _.anchor.vertical, _.value
+      t => $.modState(s => s.copy(anchor = s.anchor.copy(vertical = t))),
+      _.anchor.vertical,
+      _.value
     )
     val targetH = OriginChoice(Horizontal.values, "Change target horizontal")(
-      t => $.modState(s => s.copy(target = s.target.copy(horizontal = t))), _.target.horizontal, _.value
+      t => $.modState(s => s.copy(target = s.target.copy(horizontal = t))),
+      _.target.horizontal,
+      _.value
     )
     val targetV = OriginChoice(Vertical.values, "Change target vertical")(
-      t => $.modState(s => s.copy(target = s.target.copy(vertical = t))), _.target.vertical, _.value
+      t => $.modState(s => s.copy(target = s.target.copy(vertical = t))),
+      _.target.vertical,
+      _.value
     )
 
     val originChoices = Seq(anchorV, anchorH, targetV, targetH)
@@ -71,9 +82,7 @@ object MuiPopoverDemo {
                 label = "Click on me to show a popover"
               )()
             ),
-
             originChoices.map(_.menu(S)),
-
             MuiPopover(
               open = S.open,
               anchorEl = ref($),
@@ -99,11 +108,12 @@ object MuiPopoverDemo {
   }
 
   private val component = ReactComponentB[Unit]("MuiPopoverDemo")
-    .initialState(State(
-      open = false,
-      target = Origin(Vertical.top,    Horizontal.left),
-      anchor = Origin(Vertical.bottom, Horizontal.left)
-    ))
+    .initialState(
+      State(
+        open = false,
+        target = Origin(Vertical.top, Horizontal.left),
+        anchor = Origin(Vertical.bottom, Horizontal.left)
+      ))
     .renderBackend[Backend]
     .build
 

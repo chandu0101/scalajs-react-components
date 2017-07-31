@@ -11,7 +11,8 @@ object Pager {
   class Style extends StyleSheet.Inline {
     import dsl._
 
-    val pager = style(margin :=! "15px 0",
+    val pager = style(
+      margin :=! "15px 0",
       unsafeChild("a")(
         display.inlineBlock,
         padding :=! "5px 14px",
@@ -33,7 +34,7 @@ object Pager {
       )
     )
   }
-  case class Backend(t: BackendScope[Props, _]){
+  case class Backend(t: BackendScope[Props, _]) {
     def render(P: Props) = {
       <.div(P.style.pager)(
         P.offset > 0 ?= <.a(
@@ -55,9 +56,19 @@ object Pager {
     .renderBackend[Backend]
     .build
 
-  case class Props(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: Callback, previousClick: Callback, style: Style)
+  case class Props(itemsPerPage: Int,
+                   totalItems: Int,
+                   offset: Int,
+                   nextClick: Callback,
+                   previousClick: Callback,
+                   style: Style)
 
-  def apply(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: Callback, previousClick: Callback, style: Style = DefaultStyle) = {
+  def apply(itemsPerPage: Int,
+            totalItems: Int,
+            offset: Int,
+            nextClick: Callback,
+            previousClick: Callback,
+            style: Style = DefaultStyle) = {
     component(Props(itemsPerPage, totalItems, offset, nextClick, previousClick, style))
   }
 

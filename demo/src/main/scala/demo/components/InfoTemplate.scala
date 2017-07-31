@@ -10,27 +10,29 @@ import scalacss.Defaults._
 object InfoTemplate {
 
   case class Props(
-    browsersTested: List[String],
-    componentFilePath: String,
-    scalacss: Boolean
+      browsersTested: List[String],
+      componentFilePath: String,
+      scalacss: Boolean
   )
 
-  case class Backend($: BackendScope[Props, _]){
+  case class Backend($ : BackendScope[Props, _]) {
     def render(P: Props, C: PropsChildren) = {
       <.div(^.cls := "info-template")(
         <.div(^.cls := "component-info")(C),
         P.scalacss ?= <.div(
-         <.h4("Style :"),
-         <.a(^.href := "#scalacss","scalacss")
-        ) ,
+          <.h4("Style :"),
+          <.a(^.href := "#scalacss", "scalacss")
+        ),
         P.browsersTested.nonEmpty ?= <.div(^.marginTop := "10px")(
-           <.h4("Tested Browsers List :"),
-           <.ul(^.marginLeft := "50px")(P.browsersTested.map(s => <.li(s)))
-         ),
+          <.h4("Tested Browsers List :"),
+          <.ul(^.marginLeft := "50px")(P.browsersTested.map(s => <.li(s)))
+        ),
         <.div(^.marginTop := "10px")(
-           ComponentCredits(filePath = s"core/src/main/scala/chandu0101/scalajs/react/components/${P.componentFilePath}")
-         )
-       )
+          ComponentCredits(
+            filePath =
+              s"core/src/main/scala/chandu0101/scalajs/react/components/${P.componentFilePath}")
+        )
+      )
     }
   }
 
@@ -40,21 +42,16 @@ object InfoTemplate {
 
   object Style extends StyleSheet.Inline {
     import dsl._
-    val content = style(
-      textAlign.center,
-      fontSize(30.px),
-      paddingTop(40.px))
+    val content = style(textAlign.center, fontSize(30.px), paddingTop(40.px))
   }
 
   def apply(componentFilePath: String,
-            scalacss:          Boolean            = false,
-            browsersTested:    List[String]       = List(),
-            ref:               js.UndefOr[String] = "",
-            key:               js.Any             = {})
-           (children:          ReactNode*)        =
-
+            scalacss: Boolean = false,
+            browsersTested: List[String] = List(),
+            ref: js.UndefOr[String] = "",
+            key: js.Any = {})(children: ReactNode*) =
     component.set(key, ref)(
-      Props(browsersTested,componentFilePath,scalacss),
-      children :_*
+      Props(browsersTested, componentFilePath, scalacss),
+      children: _*
     )
 }

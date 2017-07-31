@@ -16,8 +16,8 @@ object ReactSelectDemo {
   // EXAMPLE:START
 
   case class State(
-    value:      js.UndefOr[ReactNode] = js.undefined,
-    multiValue: js.UndefOr[ReactNode] = js.undefined
+      value: js.UndefOr[ReactNode] = js.undefined,
+      multiValue: js.UndefOr[ReactNode] = js.undefined
   )
 
   class Backend(t: BackendScope[_, State]) {
@@ -42,19 +42,18 @@ object ReactSelectDemo {
         CodeExample(code, "Demo")(
           <.div(
             <.h3("Single Select"),
-            Select(
-              options = options,
-              value = S.value,
-              onValueClick = (v: ValueOption[ReactNode], e: ReactEvent) => Callback.info(v.toString),
-              onChange = onChange _)()
+            Select(options = options,
+                   value = S.value,
+                   onValueClick =
+                     (v: ValueOption[ReactNode], e: ReactEvent) => Callback.info(v.toString),
+                   onChange = onChange _)()
           ),
           <.div(
             <.h3("Multi Select"),
-            Select(
-              options = options,
-              value = S.multiValue,
-              multi = true,
-              onChange = onMultiChange _)()
+            Select(options = options,
+                   value = S.multiValue,
+                   multi = true,
+                   onChange = onMultiChange _)()
           )
         )
       )

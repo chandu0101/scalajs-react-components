@@ -10,13 +10,13 @@ object ReactSlickRouteModule {
 
   case object Demo extends LeftRoute("Demo", "demo", () => ReactSlickDemo())
 
-  val menu: List[LeftRoute] = List(Info,Demo)
+  val menu: List[LeftRoute] = List(Info, Demo)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._
-    menu.map(i =>
-      staticRoute(i.route, i) ~> renderR(r => SlickPage(i, r))
-    ).reduce(_ | _)
+    menu
+      .map(i => staticRoute(i.route, i) ~> renderR(r => SlickPage(i, r)))
+      .reduce(_ | _)
 
   }
 }

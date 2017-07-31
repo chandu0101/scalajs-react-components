@@ -20,7 +20,8 @@ object MuiPaperDemo {
     .render(P => {
       <.div(
         CodeExample(code, "MuiPaper")(
-          <.div(Style.paperContainer,
+          <.div(
+            Style.paperContainer,
             MuiPaper(zDepth = ZDepth._1)(<.p("zDepth = 1")),
             MuiPaper(zDepth = ZDepth._2)(<.p("zDepth = 2")),
             MuiPaper(zDepth = ZDepth._3)(<.p("zDepth = 3")),
@@ -39,20 +40,20 @@ object MuiPaperDemo {
           )
         )
       )
-    }).build
+    })
+    .build
 
   object Style extends StyleSheet.Inline {
     import dsl._
     val paperContainer = style(display.flex,
-      flexWrap.wrap,
-      paddingTop(20.px),
-      unsafeChild("div")(
-        margin(15 px),
-        unsafeChild("p")(
-          padding(15 px)
-        )
-      )
-    )
+                               flexWrap.wrap,
+                               paddingTop(20.px),
+                               unsafeChild("div")(
+                                 margin(15 px),
+                                 unsafeChild("p")(
+                                   padding(15 px)
+                                 )
+                               ))
   }
 
   // EXAMPLE:END

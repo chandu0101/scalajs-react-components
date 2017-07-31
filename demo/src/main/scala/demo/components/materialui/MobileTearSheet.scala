@@ -27,21 +27,14 @@ object MobileTearSheet {
       overflow.hidden
     )
 
-    val bottomTear = style(display.block,
-      position.relative,
-      marginTop :=! "-10px",
-      width(360 px)
-    )
+    val bottomTear = style(display.block, position.relative, marginTop :=! "-10px", width(360 px))
   }
 
-  case class Backend($: BackendScope[Unit, _]) {
+  case class Backend($ : BackendScope[Unit, _]) {
     def render(C: PropsChildren) = {
       <.div(Style.root,
-        <.div(Style.container,
-          C
-        ),
-        <.img(Style.bottomTear, ^.src := js.Dynamic.global.bottomTearImage.toString)
-      )
+            <.div(Style.container, C),
+            <.img(Style.bottomTear, ^.src := js.Dynamic.global.bottomTearImage.toString))
     }
   }
 
@@ -49,5 +42,5 @@ object MobileTearSheet {
     .renderBackend[Backend]
     .build
 
-  def apply(children: ReactNode*) = component(children :_*)
+  def apply(children: ReactNode*) = component(children: _*)
 }

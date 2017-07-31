@@ -9,12 +9,15 @@ object GoogleMapInfo {
 
   val component = ReactComponentB[Unit]("googleMapInfo")
     .render(P => {
-     InfoTemplate(componentFilePath = "maps/GoogleMap.scala")(
-      <.h3("Google Map :"),
-       <.p("Map component based on " ,<.a(^.href := "https://developers.google.com/maps/documentation/javascript/") ("google map javascript api"))
-     )
+      InfoTemplate(componentFilePath = "maps/GoogleMap.scala")(
+        <.h3("Google Map :"),
+        <.p("Map component based on ",
+            <.a(^.href := "https://developers.google.com/maps/documentation/javascript/")(
+              "google map javascript api"))
+      )
 
-  }).build
+    })
+    .build
 
   def apply() = component()
 

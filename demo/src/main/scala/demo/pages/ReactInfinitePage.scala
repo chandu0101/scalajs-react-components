@@ -16,13 +16,13 @@ object ReactInfinitePage {
       )
   }
 
-  val component = ReactComponentB[Props]("ReactInfinitePage")
-    .stateless
+  val component = ReactComponentB[Props]("ReactInfinitePage").stateless
     .renderBackend[Backend]
     .build
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
+  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) =
+    component(Props(selectedPage, ctrl))
 
 }

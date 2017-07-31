@@ -6,12 +6,11 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
-case class BlankState(
-    className: js.UndefOr[String] = js.undefined) {
+case class BlankState(className: js.UndefOr[String] = js.undefined) {
 
   def apply(children: ReactNode*) = {
     val props = JSMacro[BlankState](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Eui.BlankState)
+    val f     = React.asInstanceOf[js.Dynamic].createFactory(Eui.BlankState)
     f(props, children.toJsArray).asInstanceOf[ReactComponentU_]
   }
 }

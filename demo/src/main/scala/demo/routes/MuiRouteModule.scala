@@ -11,7 +11,8 @@ object MuiRouteModule {
 
   case object AppBar extends LeftRoute("AppBar", "appbar", () => MuiAppBarDemo())
 
-  case object AutoComplete extends LeftRoute("AutoComplete", "autocomplete", () => MuiAutoCompleteDemo())
+  case object AutoComplete
+      extends LeftRoute("AutoComplete", "autocomplete", () => MuiAutoCompleteDemo())
 
   case object Avatar extends LeftRoute("Avatar", "avatar", () => MuiAvatarDemo())
 
@@ -23,7 +24,8 @@ object MuiRouteModule {
 
   case object Dialog extends LeftRoute("Dialog", "dialog", () => MuiDialogDemo())
 
-  case object DropDownMenu extends LeftRoute("DropDown Menu", "dropdownmenu", () => MuiDropDownMenuDemo())
+  case object DropDownMenu
+      extends LeftRoute("DropDown Menu", "dropdownmenu", () => MuiDropDownMenuDemo())
 
   case object Paper extends LeftRoute("Paper", "paper", () => MuiPaperDemo())
 
@@ -35,7 +37,8 @@ object MuiRouteModule {
 
   case object Progress extends LeftRoute("Progress Bars", "progress", () => MuiProgressDemo())
 
-  case object SelectField extends LeftRoute("Select Field", "selectfield", () => MuiSelectFieldDemo())
+  case object SelectField
+      extends LeftRoute("Select Field", "selectfield", () => MuiSelectFieldDemo())
 
   case object SnackBar extends LeftRoute("SnackBar", "snackbar", () => MuiSnackbarDemo())
 
@@ -57,7 +60,8 @@ object MuiRouteModule {
 
   case object Table extends LeftRoute("Table", "table", () => MuiTableDemo())
 
-  val menu: List[LeftRoute] = List(Info,
+  val menu: List[LeftRoute] = List(
+    Info,
 //    Updates,
     AppBar,
     AutoComplete,
@@ -82,15 +86,15 @@ object MuiRouteModule {
     TimePicker,
     Table,
     Tabs,
-    Toolbar)
+    Toolbar
+  )
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
-
     import dsl._
 
-    menu.map(i =>
-      staticRoute(i.route, i) ~> renderR(r => MuiPage(i, r))
-    ).reduce(_ | _)
+    menu
+      .map(i => staticRoute(i.route, i) ~> renderR(r => MuiPage(i, r)))
+      .reduce(_ | _)
 
   }
 }

@@ -19,14 +19,10 @@ object ReactTreeViewDemo {
   // EXAMPLE:START
 
   val data = TreeItem("root",
-    TreeItem("dude1",
-      TreeItem("dude1c")),
-    TreeItem("dude2"),
-    TreeItem("dude3"),
-    TreeItem("dude4",
-      TreeItem("dude4c",
-        TreeItem("dude4cc")))
-  )
+                      TreeItem("dude1", TreeItem("dude1c")),
+                      TreeItem("dude2"),
+                      TreeItem("dude3"),
+                      TreeItem("dude4", TreeItem("dude4c", TreeItem("dude4cc"))))
 
   case class State(content: String = "")
 
@@ -43,7 +39,8 @@ object ReactTreeViewDemo {
 
     def render = {
       <.div(
-        <.h3("Demo"), CodeExample(code, "ReactTreeView")(
+        <.h3("Demo"),
+        CodeExample(code, "ReactTreeView")(
           <.div(Style.treeViewDemo)(
             ReactTreeView(
               root = data,

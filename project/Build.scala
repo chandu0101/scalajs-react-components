@@ -10,25 +10,29 @@ object Build extends Build {
   val Scala212 = "2.12.1"
 
   val scalajsReactVersion = "0.11.3"
-  val scalaCSSVersion = "0.5.1"
+  val scalaCSSVersion     = "0.5.1"
 
   type PE = Project => Project
 
   def commonSettings: PE =
     _.enablePlugins(ScalaJSPlugin)
       .settings(
-        crossScalaVersions   := Seq(Scala211, Scala212),
-        organization         := "com.olvind",
-        version              := "0.6.0",
-        homepage             := Some(url("https://github.com/chandu0101/scalajs-react-components")),
-        licenses             += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
-        scalaVersion         := Scala212,
-        scalacOptions       ++= Seq("-deprecation", "-unchecked", "-feature",
-          "-language:postfixOps", "-language:implicitConversions",
-          "-language:higherKinds", "-language:existentials"), //"-Ymacro-debug-lite"
-        updateOptions        := updateOptions.value.withCachedResolution(true),
+        crossScalaVersions := Seq(Scala211, Scala212),
+        organization := "com.olvind",
+        version := "0.6.0",
+        homepage := Some(url("https://github.com/chandu0101/scalajs-react-components")),
+        licenses += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
+        scalaVersion := Scala212,
+        scalacOptions ++= Seq("-deprecation",
+                              "-unchecked",
+                              "-feature",
+                              "-language:postfixOps",
+                              "-language:implicitConversions",
+                              "-language:higherKinds",
+                              "-language:existentials"), //"-Ymacro-debug-lite"
+        updateOptions := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
-          "org.scala-js"   %% "scalajs-test-interface" % "0.6.14"
+          "org.scala-js" %% "scalajs-test-interface" % "0.6.14"
         )
       )
 
@@ -36,14 +40,15 @@ object Build extends Build {
     _.settings(
       scalacOptions += "-language:experimental.macros",
       libraryDependencies ++= Seq(
-        "org.scala-lang" % "scala-reflect" % scalaVersion.value,
-        "org.scala-lang" % "scala-compiler" % scalaVersion.value % Provided))
+        "org.scala-lang" % "scala-reflect"  % scalaVersion.value,
+        "org.scala-lang" % "scala-compiler" % scalaVersion.value % Provided)
+    )
 
   def preventPublication: PE =
     _.settings(
       publishArtifact := false,
-      publishLocalSigned := (),       // doesn't work
-      publishSigned := (),            // doesn't work
+      publishLocalSigned := (), // doesn't work
+      publishSigned := (), // doesn't work
       publish := (),
       packagedArtifacts := Map.empty) // doesn't work - https://github.com/sbt/sbt-pgp/issues/42
 
@@ -54,7 +59,7 @@ object Build extends Build {
         if (isSnapshot.value)
           Some("snapshots" at nexus + "content/repositories/snapshots")
         else
-          Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+          Some("releases" at nexus + "service/local/staging/deploy/maven2")
       },
       pomExtra :=
         <scm>
@@ -71,25 +76,31 @@ object Build extends Build {
               <id>elacin</id>
               <name>Øyvind Raddum Berg</name>
             </developer>
-          </developers>)
-      .configure(sourceMapsToGithub)
+          </developers>
+    ).configure(sourceMapsToGithub)
 
   def sourceMapsToGithub: PE =
-    p => p.settings(
-      scalacOptions ++= (if (isSnapshot.value) Seq.empty else Seq({
-        val a = p.base.toURI.toString.replaceFirst("[^/]+/?$", "")
-        val g = "https://raw.githubusercontent.com/chandu0101/scalajs-react-components"
-        s"-P:scalajs:mapSourceURI:$a->$g/v${version.value}/"
-      }))
+    p =>
+      p.settings(
+        scalacOptions ++= (if (isSnapshot.value) Seq.empty
+                           else
+                             Seq({
+                               val a = p.base.toURI.toString
+                                 .replaceFirst("[^/]+/?$", "")
+                               val g =
+                                 "https://raw.githubusercontent.com/chandu0101/scalajs-react-components"
+                               s"-P:scalajs:mapSourceURI:$a->$g/v${version.value}/"
+                             }))
     )
 
   def utestSettings: PE =
     _.settings(
-      libraryDependencies  += "com.lihaoyi" %%% "utest" % "0.4.5" % Test,
-      testFrameworks       += new TestFramework("utest.runner.Framework"),
+      libraryDependencies += "com.lihaoyi" %%% "utest" % "0.4.5" % Test,
+      testFrameworks += new TestFramework("utest.runner.Framework"),
       scalaJSStage in Test := FastOptStage,
-      requiresDOM          := true,
-      jsEnv in Test        := PhantomJSEnv().value)
+      requiresDOM := true,
+      jsEnv in Test := PhantomJSEnv().value
+    )
 
   def useReact(scope: Configuration = Compile): PE =
     _.settings(
@@ -99,7 +110,8 @@ object Build extends Build {
   val jsDir = "demo/assets"
 
   def createLauncher(scope: String = "compile"): PE =
-    _.settings(persistLauncher := true,
+    _.settings(
+      persistLauncher := true,
       persistLauncher in Test := false,
       crossTarget in (Compile, fullOptJS) := file(jsDir),
       crossTarget in (Compile, fastOptJS) := file(jsDir),
@@ -131,8 +143,8 @@ object Build extends Build {
     .settings(
       name := "scalajs-react-components",
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalacss"      %%% "core"     % scalaCSSVersion,
-        "com.github.japgolly.scalacss"      %%% "ext-react" % scalaCSSVersion
+        "com.github.japgolly.scalacss" %%% "core"      % scalaCSSVersion,
+        "com.github.japgolly.scalacss" %%% "ext-react" % scalaCSSVersion
       ),
       target in Compile in doc := baseDirectory.value / "docs"
     )
@@ -145,10 +157,12 @@ object Build extends Build {
   // ==============================================================================================
   lazy val root = Project("root", file("."))
     .aggregate(macros, core, demo)
-    .configure(commonSettings, preventPublication, addCommandAliases(
-      "t"  -> "; test:compile ; test/test",
-      "tt" -> ";+test:compile ;+test/test",
-      "T"  -> "; clean ;t",
-      "TT" -> ";+clean ;tt")
+    .configure(
+      commonSettings,
+      preventPublication,
+      addCommandAliases("t"  -> "; test:compile ; test/test",
+                        "tt" -> ";+test:compile ;+test/test",
+                        "T"  -> "; clean ;t",
+                        "TT" -> ";+clean ;tt")
     )
 }

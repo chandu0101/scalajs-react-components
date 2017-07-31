@@ -22,9 +22,7 @@ object ReactSearchBox {
       width(100.%%),
       backgroundColor.transparent,
       borderBottom :=! "1px solid #B2ADAD",
-      &.focus(outline.none,
-        borderBottom :=! "1.5px solid #03a9f4"
-      )
+      &.focus(outline.none, borderBottom :=! "1.5px solid #03a9f4")
     )
   }
 
@@ -40,13 +38,16 @@ object ReactSearchBox {
 
   object DefaultStyle extends Style
 
-  val component = ReactComponentB[Props]("ReactSearchBox")
-    .stateless
+  val component = ReactComponentB[Props]("ReactSearchBox").stateless
     .renderBackend[Backend]
     .build
 
   case class Props(onTextChange: String => Callback, style: Style)
 
-  def apply(onTextChange: String => Callback, style: Style = DefaultStyle, ref: js.UndefOr[String] = "", key: js.Any = {}) = component.set(key, ref)(Props(onTextChange,style))
+  def apply(onTextChange: String => Callback,
+            style: Style = DefaultStyle,
+            ref: js.UndefOr[String] = "",
+            key: js.Any = {}) =
+    component.set(key, ref)(Props(onTextChange, style))
 
 }

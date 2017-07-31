@@ -108,7 +108,7 @@ object SampleData {
     """.stripMargin
 
   val personWithAgeJson =
-   """
+    """
      |[{"_id":1,"fname":"Catherine","lname":"Bennett","age":81,"email":"cbennett0@phoca.cz","country":"Czech Republic"},
      |{"_id":2,"fname":"Johnny","lname":"Fields","age":26,"email":"jfields1@noaa.gov","country":"Indonesia"},
      |{"_id":3,"fname":"Ernest","lname":"Smith","age":65,"email":"esmith2@last.fm","country":"Poland"},

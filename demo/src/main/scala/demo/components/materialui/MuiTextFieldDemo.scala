@@ -19,19 +19,21 @@ object MuiTextFieldDemo {
           <.div(
             ^.display.flex,
             ^.flexDirection.column,
-            MuiTextField(
-              hintText       = "Hint Text",
-              onBlur         = CallbackDebug.f1("onBlur"),
-              onChange       = CallbackDebug.f2("onChange"),
-              onFocus        = CallbackDebug.f1("onFocus"))(),
+            MuiTextField(hintText = "Hint Text",
+                         onBlur = CallbackDebug.f1("onBlur"),
+                         onChange = CallbackDebug.f2("onChange"),
+                         onFocus = CallbackDebug.f1("onFocus"))(),
             MuiTextField(hintText = "Hint Text", floatingLabelText = "Floating Label Text")(),
             MuiTextField(hintText = "Multi Line Text", multiLine = true)(),
-            MuiTextField(hintText = "Multi Line Text", multiLine = true, floatingLabelText = "Multi Line Floating Label Text")(),
+            MuiTextField(hintText = "Multi Line Text",
+                         multiLine = true,
+                         floatingLabelText = "Multi Line Floating Label Text")(),
             MuiTextField(hintText = "Disabled Hint text", disabled = true)()
           )
         )
       )
-    }).build
+    })
+    .build
   // EXAMPLE:END
 
   def apply() = component()

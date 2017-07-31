@@ -16,14 +16,13 @@ object MuiTabsDemo {
 
     import dsl._
 
-    val tabContent = style(textAlign.center,
-      padding(40.px))
+    val tabContent = style(textAlign.center, padding(40.px))
   }
 
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
-  case class Backend($: BackendScope[Unit, Int]){
+  case class Backend($ : BackendScope[Unit, Int]) {
     val onChange: (Int, ReactEventH, ReactElement) => Callback =
       (chosen, _, _) ⇒ $.setState(chosen) >> Callback.info(s"chose $chosen")
 

@@ -64,8 +64,8 @@ abstract class ReactMacroUtils {
   }
 
   /**
-   * Create code for a function that will call .apply() on a given type's type companion object.
-   */
+    * Create code for a function that will call .apply() on a given type's type companion object.
+    */
   final def tcApplyFn(t: Type): Select = {
     val sym = t.typeSymbol
     val tc  = sym.companion
@@ -100,7 +100,7 @@ abstract class ReactMacroUtils {
     c.macroApplication match {
       case TypeApply(Select(r, _), _) => Select(r, TermName(newMethod))
       case Select(r, _)               => Select(r, TermName(newMethod))
-      case x => fail(s"Don't know how to parse macroApplication: ${showRaw(x)}")
+      case x                          => fail(s"Don't know how to parse macroApplication: ${showRaw(x)}")
     }
 
 }

@@ -22,11 +22,11 @@ object LocalDemoButton {
       ^.fontSize := "15px",
       ^.textDecoration := "none",
       ^.padding := "5px 7px",
-      WebkitBoxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)")
+      WebkitBoxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)"
+    )
 
-    val buttonHover: TagMod = Seq(
-      ^.backgroundColor := "#DA423E",
-      ^.textDecoration := "none")
+    val buttonHover: TagMod =
+      Seq(^.backgroundColor := "#DA423E", ^.textDecoration := "none")
 
   }
 
@@ -36,7 +36,7 @@ object LocalDemoButton {
 
     def onButtonClick(P: Props)(e: ReactEventI): Callback =
       CallbackOption.liftOptionLike(P.onButtonClick).map(f => f(e)) >>
-      e.preventDefaultCB
+        e.preventDefaultCB
 
     val onMouseEnter: Callback =
       t.modState(_.copy(buttonHover = true))
@@ -61,13 +61,14 @@ object LocalDemoButton {
           ^.onMouseLeave --> onMouseLeave,
           P.name
         )
-      else <.a(
-        buttonStyle,
-        ^.onClick ==> onButtonClick(P),
-        ^.onMouseEnter --> onMouseEnter,
-        ^.onMouseLeave --> onMouseLeave,
-        P.name
-      )
+      else
+        <.a(
+          buttonStyle,
+          ^.onClick ==> onButtonClick(P),
+          ^.onMouseEnter --> onMouseEnter,
+          ^.onMouseLeave --> onMouseLeave,
+          P.name
+        )
     }
   }
 
@@ -77,22 +78,20 @@ object LocalDemoButton {
     .build
 
   case class Props(
-    name: String,
-    onButtonClick: js.UndefOr[ReactEventH => Callback],
-    linkButton: Boolean,
-    href: String,
-    style: Style
+      name: String,
+      onButtonClick: js.UndefOr[ReactEventH => Callback],
+      linkButton: Boolean,
+      href: String,
+      style: Style
   )
 
-  def apply(
-    name: String,
-    onButtonClick: js.UndefOr[ReactEventH => Callback] = js.undefined,
-    linkButton: Boolean = false,
-    href: String = "",
-    style: Style = new Style {},
-    ref: js.UndefOr[String] = "",
-    key: js.Any = {}) =
-
+  def apply(name: String,
+            onButtonClick: js.UndefOr[ReactEventH => Callback] = js.undefined,
+            linkButton: Boolean = false,
+            href: String = "",
+            style: Style = new Style {},
+            ref: js.UndefOr[String] = "",
+            key: js.Any = {}) =
     component.set(key, ref)(Props(name, onButtonClick, linkButton, href, style))
 
 }

@@ -6,6 +6,8 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scala.scalajs.js
+
 object ComponentGridItem {
 
   object Style {
@@ -61,9 +63,10 @@ object ComponentGridItem {
           P.heading
         ),
         <.img(
-          ^.src := P.img,
+          ^.src := P.img.asInstanceOf[String],
           Style.itemImage,
-          ^.key := "alink"
+          ^.key := "alink",
+          ^.width := 250.px
         )
       )
   }
@@ -74,9 +77,9 @@ object ComponentGridItem {
     .renderBackend[Backend]
     .build
 
-  case class Props(heading: String, route: Page, img: String, ctrl: RouterCtl[Page])
+  case class Props(heading: String, route: Page, img: js.Any, ctrl: RouterCtl[Page])
 
-  def apply(heading: String, route: Page, img: String, ctrl: RouterCtl[Page]) = {
+  def apply(heading: String, route: Page, img: js.Any, ctrl: RouterCtl[Page]) = {
     component(Props(heading, route, img, ctrl))
     //    component.set(key, ref)(Props(heading, route, img, ctrl))
   }

@@ -1,6 +1,7 @@
 package demo
 
 import chandu0101.scalajs.react.components.ReactTapEventPlugin
+import chandu0101.scalajs.react.components.hljs
 import demo.routes.AppRouter
 import org.scalajs.dom
 
@@ -21,7 +22,7 @@ object ReactApp extends JSApp {
 
     //TODO: dev-server complains that we load several times?
     ReactTapEventPlugin(js.undefined)
-
+    hljs.Hljs.registerLanguage("scala", hljs.Languages.Scala)
     AppCSS.load()
     val router = AppRouter.router()
     router.renderIntoDOM(dom.document.getElementById("container"))

@@ -1,6 +1,0 @@
-- There are still tons of compiler errors
-- I gave a first shot at generating semantic-ui, but there's a lot of code in there, who added that in the first place? may they be able to help?
-- There are a few Elemental components being generated, but the parser needs to be modified to get it to properly recognize js components which are written slightly different from the materialui and semanticui cases.
-- The demo comes up, but all the routing seems to be broken, I suspect this happens because I'm trying to run using file:// but I'm not sure.
-- The Semantic UI is totally broken, we need to go and fix the types in the generator one by one.d
-- The code generation needs to be made idempotent, as it is generating the code on every compile even if nothing has changed 

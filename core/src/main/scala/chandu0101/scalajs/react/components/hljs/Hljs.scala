@@ -4,14 +4,21 @@ import org.scalajs.dom.Node
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation._
-import scala.scalajs.js.{RegExp, `|`}
+import scala.scalajs.js.{RegExp, UndefOr, `|`}
 
 object Css {
-  @JSImport("highlight.js/styles/github.css", JSImport.Namespace)
+  @js.native @JSImport("highlight.js/styles/github.css", JSImport.Namespace)
   object Github extends js.Any
 }
 
-@JSImport("highlight.js", "default")
+object Languages {
+  @js.native @JSImport("highlight.js/lib/languages/scala", JSImport.Namespace)
+  object Scala extends js.Function1[ /* hljs */ js.UndefOr[HLJSStatic], IModeBase] {
+    override def apply(arg1: UndefOr[HLJSStatic]): IModeBase = js.native
+  }
+}
+
+@JSImport("highlight.js/lib/highlight.js", JSImport.Default)
 @js.native
 object Hljs extends js.Any {
   var APOS_STRING_MODE: IMode                                                           = js.native

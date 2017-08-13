@@ -7,8 +7,6 @@ import japgolly.scalajs.react.extra.router._
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 
-import scala.scalajs.js.Dynamic.{global => g}
-
 object AppRouter {
 
   sealed trait Page
@@ -70,7 +68,7 @@ object AppRouter {
         .pmap[Page](ReactInfinitePages) { case ReactInfinitePages(p) => p }
 
     val reactDraggableRoutes: Rule =
-      ReactJSDraggableRouteModule.routes
+      ReactDraggableRouteModule.routes
         .prefixPath_/("#reactdraggable")
         .pmap[Page](ReactDraggablePages) { case ReactDraggablePages(p) => p }
 
@@ -134,73 +132,79 @@ object AppRouter {
   val homePageMenu = Vector(
     HomePage.ComponentInfo(
       name = "Material UI",
-      imagePath = g.materialuiImage.toString,
+      imagePath = Images.materialuiImage,
       route = MuiPages(MuiRouteModule.Info),
       tags = Stream("materialui", "material", "framework")
     ),
     HomePage.ComponentInfo(
       name = "Elemental UI",
-      imagePath = g.elementaluiImage.toString,
+      imagePath = Images.elementaluiImage,
       route = EuiPages(EuiRouteModule.Info),
       tags = Stream("elementalui", "elemental", "framework")
     ),
     HomePage.ComponentInfo(
       name = "Semantic UI",
-      imagePath = g.semanticuiImage.toString,
+      imagePath = Images.semanticuiImage,
       route = SuiPages(SuiRouteModule.Info),
       tags = Stream("semanticui", "semantic", "framework")
     ),
     HomePage.ComponentInfo(
       name = "React ListView",
-      imagePath = g.reactListViewImage.toString,
+      imagePath = Images.reactListViewImage,
       route = ReactListViewPages(ReactListViewRouteModule.Info),
       tags = Stream("list view", "search", "listview")
     ),
     HomePage.ComponentInfo(
       name = "Google Map",
-      imagePath = g.googleMapImage.toString,
+      imagePath = Images.googleMapImage,
       route = GoogleMapPages(GoogleMapRouteModule.Info),
       tags = Stream("google", "map", "googlemap")
     ),
     HomePage.ComponentInfo(
+      name = "React Draggable",
+      imagePath = Images.reactDraggableImage,
+      route = ReactDraggablePages(ReactDraggableRouteModule.Info),
+      tags = Stream("react", "drag/drop")
+    ),
+    HomePage.ComponentInfo(
       name = "React TreeView",
-      imagePath = g.reactTreeViewImage.toString,
+      imagePath = Images.reactTreeViewImage,
       route = ReactTreeViewPages(ReactTreeViewRouteModule.Info),
       tags = Stream("tree view", "search", "treeview")
     ),
     HomePage.ComponentInfo(
       name = "React Table",
-      imagePath = g.reactTableImage.toString,
+      imagePath = Images.reactTableImage,
       route = ReactTablePages(ReactTableRouteModule.Info),
       tags = Stream("table", "search", "pagination", "sorting", "cutom cell")
     ),
     HomePage.ComponentInfo(
       name = "React Tags Input",
-      imagePath = g.reactTagsInputImage.toString,
+      imagePath = Images.reactTagsInputImage,
       route = ReactTagsInputPages(ReactTagsInputRouteModule.Info),
       tags = Stream("tags", "input")
     ),
     HomePage.ComponentInfo(
       name = "React GeomIcons",
-      imagePath = g.reactGeomIconImage.toString,
+      imagePath = Images.reactGeomIconImage,
       route = ReactGeomIconPages(ReactGeomIcontRouteModule.Info),
       tags = Stream("icons", "svg")
     ),
     HomePage.ComponentInfo(
       name = "React Infinite",
-      imagePath = g.reactInfiniteImage.toString,
+      imagePath = Images.reactInfiniteImage,
       route = ReactInfinitePages(ReactInfiniteRouteModule.Info),
       tags = Stream("infinite scroll", "listview")
     ),
     HomePage.ComponentInfo(
       name = "Spinner",
-      imagePath = g.spinnerImage.toString,
+      imagePath = Images.spinnerImage,
       route = SpinnerPages(SpinnerRouteModule.Info),
       tags = Stream("spinner")
     ),
     HomePage.ComponentInfo(
       name = "React Popover",
-      imagePath = g.reactPopoverImage.toString,
+      imagePath = Images.reactPopoverImage,
       route = ReactPopoverPages(ReactPopoverRouteModule.Info),
       tags = Stream("modal", "popover")
     )

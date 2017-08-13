@@ -36,9 +36,9 @@ object LocalDemoButton {
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def onButtonClick(P: Props)(e: ReactEventFromInput): Callback =
-      CallbackOption.liftOptionLike(P.onButtonClick).map(f => f(e)) >>
-        e.preventDefaultCB
+    def onButtonClick(P: Props)(e: ReactMouseEvent): Callback =
+        (CallbackOption.liftOptionLike(P.onButtonClick).flatMap(f => f(e)) >>
+          e.preventDefaultCB)
 
     val onMouseEnter: Callback =
       t.modState(_.copy(buttonHover = true))
@@ -83,7 +83,7 @@ object LocalDemoButton {
 
   case class Props(
       name: String,
-      onButtonClick: js.UndefOr[ReactEventFromHtml => Callback],
+      onButtonClick: js.UndefOr[ReactMouseEvent => Callback],
       linkButton: Boolean,
       href: String,
       style: Style
@@ -91,12 +91,11 @@ object LocalDemoButton {
 
   def apply(
       name: String,
-      onButtonClick: js.UndefOr[ReactEventFromHtml => Callback] = js.undefined,
+      onButtonClick: js.UndefOr[ReactMouseEvent => Callback] = js.undefined,
       linkButton: Boolean = false,
       href: String = "",
       style: Style = new Style {}
   ) = {
-    //    component.set(key, ref)(Props(name, onButtonClick, linkButton, href, style))
     component(Props(name, onButtonClick, linkButton, href, style))
   }
 

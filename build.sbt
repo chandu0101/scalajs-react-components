@@ -24,7 +24,7 @@ lazy val gen =
       organization := "com.olvind",
       name := "generator",
       version in webpack := "2.6.1",
-      version in installWebpackDevServer := "2.6.1",
+      version in installWebpackDevServer := "2.7.1",
       libraryDependencies ++= Seq(
         "com.lihaoyi"   %% "ammonite-ops" % "1.0.1",
         "org.scalatest" %% "scalatest"    % "3.0.3" % Test
@@ -120,22 +120,19 @@ lazy val demo =
     .settings(
       name := "scalajs-react-components-demo",
       version in webpack := "2.6.1",
-      version in installWebpackDevServer := "2.4.5",
+      version in installWebpackDevServer := "2.7.1",
       scalaJSUseMainModuleInitializer := true,
       scalaJSUseMainModuleInitializer.in(Test) := false,
       artifactPath.in(Compile, fastOptJS) := ((crossTarget in (Compile, fastOptJS)).value /
         ((moduleName in fastOptJS).value + "-opt.js")),
       webpackResources :=
         webpackResources.value +++
-          PathFinder(
-            Seq(
-              baseDirectory.value / "images",
-              baseDirectory.value / "bundles" / "index.js",
-              baseDirectory.value / "index.html"
-            )) ** "*.*",
-      webpackEmitSourceMaps := false,
-      webpackConfigFile := Some(baseDirectory.value / "bundles" / "custom.webpack.config.js")
-//      enableReloadWorkflow := true
+          PathFinder(Seq(baseDirectory.value / "images", baseDirectory.value / "index.html")) ** "*.*",
+      enableReloadWorkflow in fastOptJS := true,
+      webpackEmitSourceMaps in fastOptJS := true,
+      webpackEmitSourceMaps in fullOptJS := false,
+      webpackConfigFile := Some(baseDirectory.value / "webpack.config.dev.js"),
+      webpackConfigFile in fullOptJS := Some(baseDirectory.value / "webpack.config.prod.js")
     )
 
 lazy val root =
@@ -250,6 +247,7 @@ lazy val npmDevSettings = Seq(
     "url-loader"                 -> "0.5.8",
     "expose-loader"              -> "0.7.3",
     "webpack"                    -> "2.6.1",
-    "webpack-dev-server"         -> "2.4.5"
+    "webpack-dev-server"         -> "2.7.1",
+    "@types/webpack"             -> "3.0.8"
   )
 )

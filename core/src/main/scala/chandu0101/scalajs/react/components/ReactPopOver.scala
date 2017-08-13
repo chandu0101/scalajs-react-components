@@ -175,8 +175,8 @@ object ReactPopOver {
       val height = node.offsetHeight
       val width  = node.offsetWidth
 
-      val popoverHeight = $.getDOMNode.asInstanceOf[html.Element].offsetHeight
-      val popoverWidth  = $.getDOMNode.asInstanceOf[html.Element].offsetWidth
+      val popoverHeight = $.getDOMNode.map(_.domAsHtml.offsetHeight).runNow()
+      val popoverWidth = $.getDOMNode.map(_.domAsHtml.offsetWidth).runNow()
       P.placement match {
         case "right" =>
           val top  = offset.top + height / 2 - popoverHeight / 2

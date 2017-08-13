@@ -44,7 +44,7 @@ object MobileTearSheet {
           Style.container,
           C
         ),
-        <.img(Style.bottomTear, ^.src := js.Dynamic.global.bottomTearImage.toString)
+        <.img(Style.bottomTear, ^.src := Images.bottomTearImage.toString)
       )
     }
   }

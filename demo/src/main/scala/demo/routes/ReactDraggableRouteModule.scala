@@ -2,11 +2,11 @@ package demo
 package routes
 
 import demo.components.{ReactDraggableDemo, ReactDraggableInfo}
-import demo.pages.ReactJSDraggablePage
+import demo.pages.ReactDraggablePage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 import japgolly.scalajs.react.vdom.html_<^._
 
-object ReactJSDraggableRouteModule {
+object ReactDraggableRouteModule {
 
   case object Info extends LeftRoute("Info", "info", () => ReactDraggableInfo())
 
@@ -18,7 +18,7 @@ object ReactJSDraggableRouteModule {
     import dsl._
 
     menu
-      .map(i => staticRoute(i.route, i) ~> renderR(r => ReactJSDraggablePage(i, r)))
+      .map(i => staticRoute(i.route, i) ~> renderR(r => ReactDraggablePage(i, r)))
       .reduce(_ | _)
 
   }

@@ -10,10 +10,12 @@ import japgolly.scalajs.react.component.Generic.toComponentCtor
 import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scala.scalajs.js
+
 object HomePage {
   import RCustomStyles._
 
-  case class ComponentInfo(name: String, imagePath: String, route: Page, tags: Stream[String])
+  case class ComponentInfo(name: String, imagePath: js.Any, route: Page, tags: Stream[String])
 
   object Style {
 

@@ -32,7 +32,7 @@ object Build extends Build {
                               "-language:existentials"), //"-Ymacro-debug-lite"
         updateOptions := updateOptions.value.withCachedResolution(true),
         dependencyOverrides ++= Set(
-          "org.scala-js" %% "scalajs-test-interface" % "0.6.17"
+          "org.scala-js" %% "scalajs-test-interface" % "0.6.19"
         )
       )
 
@@ -73,10 +73,9 @@ object Build extends Build {
               <name>Chandra Sekhar Kode</name>
             </developer>
             <developer>
-              <id>elacin</id>
+              <id>oyvindberg</id>
               <name>Øyvind Raddum Berg</name>
             </developer>
-          </developers>
     ).configure(sourceMapsToGithub)
 
   def sourceMapsToGithub: PE =

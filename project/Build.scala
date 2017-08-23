@@ -76,6 +76,15 @@ object Build extends Build {
               <id>oyvindberg</id>
               <name>Øyvind Raddum Berg</name>
             </developer>
+            <developer>
+              <id>fmcgough</id>
+              <name>Frankie</name>
+            </developer>
+            <developer>
+              <id>roberto@leibman.net</id>
+              <name>Roberto Leibman</name>
+            </developer>
+          </developers>
     ).configure(sourceMapsToGithub)
 
   def sourceMapsToGithub: PE =

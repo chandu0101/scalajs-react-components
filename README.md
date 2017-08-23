@@ -81,7 +81,7 @@ Add these dependencies to you sbt build file
 libraryDependencies ++= Seq(
   "com.github.japgolly.scalajs-react" %%% "core" % "1.0.1",
   "com.github.japgolly.scalajs-react" %%% "extra" % "1.0.1",
-  "com.olvind" %%% "scalajs-react-components" % "0.6.0"
+  "com.olvind" %%% "scalajs-react-components" % "0.7.0"
 )
 ```
 

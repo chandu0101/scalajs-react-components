@@ -20,7 +20,7 @@ object ReactTableCustomColumnSize {
 
     val configs = List(SimpleStringConfig[Person](name = "First Name", _.fname),
       SimpleStringConfig[Person](name = "Last Name", _.lname),
-      ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email), width = Some("10%")),
+      ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email), width = Some("10%"))(DefaultOrdering(_.email)),
       SimpleStringConfig[Person](name = "Country", _.country))
 
     def render =

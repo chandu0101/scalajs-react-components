@@ -28,16 +28,25 @@ object ReactTable {
   /*
    * Pass this to the ColumnConfig to sort using an ordering
    */
-  def Sort[T, B](fn: T => B)(implicit ordering: Ordering[B]): (T, T) => Boolean = {
-    (m1: T, m2: T) =>
-      ordering.compare(fn(m1), fn(m2)) > 0
-  }
-  /*
-   * Pass this to the ColumnConfig to sort a string ignoring case using an ordering
-   */
-  def IgnoreCaseStringSort[T](fn: T => String): (T, T) => Boolean =
-    (m1: T, m2: T) ⇒ fn(m1).compareToIgnoreCase(fn(m2)) > 0
+//  def Sort[T, B](fn: T => B)(implicit ordering: Ordering[B]): (T, T) => Boolean = {
+//    (m1: T, m2: T) =>
+//      ordering.compare(fn(m1), fn(m2)) > 0
+//  }
+//  /*
+//   * Pass this to the ColumnConfig to sort a string ignoring case using an ordering
+//   */
+//  def IgnoreCaseStringSort[T](fn: T => String): (T, T) => Boolean =
+//    (m1: T, m2: T) => fn(m1).compareToIgnoreCase(fn(m2)) > 0
 
+  def DefaultOrdering[T, B](fn: T => B)(implicit ordering: Ordering[B]) = new Ordering[T] {
+    def compare(a:T, b:T) = ordering.compare(fn(a), fn(b))
+  }
+  
+  def ignoreCaseStringOrdering[T](fn: T => String) = new Ordering[T] {
+    def compare(a:T, b:T) = fn(a).compareToIgnoreCase(fn(b))
+  }
+  
+  
   class Style extends StyleSheet.Inline {
 
     import dsl._
@@ -60,7 +69,7 @@ object ReactTable {
     val settingsBar = style(display.flex, margin :=! "15px 0", justifyContent.spaceBetween)
 
     val sortIcon = styleF.bool(
-      ascending ⇒
+      ascending =>
         styleS(
           &.after(fontSize(9 px), marginLeft(5 px), if (ascending) { content := "'\\25B2'" } else {
             content := "'\\25BC'"
@@ -70,7 +79,7 @@ object ReactTable {
 
   object DefaultStyle extends Style
 
-  type CellRenderer[T] = T ⇒ VdomNode
+  type CellRenderer[T] = T => VdomNode
 
   def DefaultCellRenderer[T]: CellRenderer[T] = { model =>
     <.span(model.toString)
@@ -79,14 +88,14 @@ object ReactTable {
     val str = fn(t)
     <.a(^.whiteSpace.nowrap, ^.href := s"mailto:${str}", str)
   }
-  def OptionRenderer[T, B](defaultValue: String = "")(fn: T => Option[B]): CellRenderer[T] =
-    t => fn(t).fold(defaultValue)(_.toString)
+  def OptionRenderer[T, B](defaultValue: VdomNode = "", bRenderer: CellRenderer[B])(fn: T => Option[B]): CellRenderer[T] =
+    t => fn(t).fold(defaultValue)(bRenderer)
 
   case class ColumnConfig[T](name: String,
                              cellRenderer: CellRenderer[T],
-                             sortBy: Option[(T, T) ⇒ Boolean] = None,
+                             //sortBy: Option[(T, T) => Boolean] = None,
                              width: Option[String] = None,
-                             nowrap: Boolean = false)
+                             nowrap: Boolean = false)(implicit val ordering: Ordering[T])
 
   def SimpleStringConfig[T](name: String,
                             stringRetriever: T => String,
@@ -97,7 +106,7 @@ object ReactTable {
     } else { t =>
       stringRetriever(t)
     }
-    ColumnConfig(name, renderer, Some(IgnoreCaseStringSort[T](stringRetriever)), width, nowrap)
+    ColumnConfig(name, renderer, width, nowrap)(ignoreCaseStringOrdering(stringRetriever))
   }
 }
 
@@ -112,7 +121,7 @@ case class ReactTable[T](data: Seq[T],
                          style: ReactTable.Style = ReactTable.DefaultStyle,
                          enableSearch: Boolean = true,
                          searchBoxStyle: ReactSearchBox.Style = ReactSearchBox.DefaultStyle,
-                         onRowClick: (Int) ⇒ Callback = { _ ⇒
+                         onRowClick: (Int) => Callback = { _ =>
                            Callback {}
                          },
                          searchStringRetriever: T => String = { t: T =>
@@ -134,10 +143,10 @@ case class ReactTable[T](data: Seq[T],
       t.modState(_.copy(filteredData = getFilteredData(value, P.data), offset = 0))
 
     def onPreviousClick: Callback =
-      t.modState(s ⇒ s.copy(offset = s.offset - s.rowsPerPage))
+      t.modState(s => s.copy(offset = s.offset - s.rowsPerPage))
 
     def onNextClick: Callback =
-      t.modState(s ⇒ s.copy(offset = s.offset + s.rowsPerPage))
+      t.modState(s => s.copy(offset = s.offset + s.rowsPerPage))
 
     def getFilteredData(text: String, data: Seq[T]): Seq[T] = {
       if (text.isEmpty) {
@@ -147,16 +156,16 @@ case class ReactTable[T](data: Seq[T],
       }
     }
 
-    def sort(f: (T, T) ⇒ Boolean, columnIndex: Int): Callback =
-      t.modState { S ⇒
+    def sort(ordering: Ordering[T], columnIndex: Int): Callback =
+      t.modState { S =>
         val rows = S.filteredData
         S.sortedState.get(columnIndex) match {
-          case Some(asc) ⇒
-            S.copy(filteredData = rows.sortWith((t1, t2) => !f(t1, t2)),
+          case Some(asc) =>
+            S.copy(filteredData = rows.sorted(ordering.reverse),
                    sortedState = Map(columnIndex -> dsc),
                    offset = 0)
-          case _ ⇒
-            S.copy(filteredData = rows.sortWith(f),
+          case _ =>
+            S.copy(filteredData = rows.sorted(ordering),
                    sortedState = Map(columnIndex -> asc),
                    offset = 0)
         }
@@ -199,25 +208,26 @@ case class ReactTable[T](data: Seq[T],
 
   val tableC = ScalaComponent
     .builder[(Props, State, Backend)]("table")
-    .render { $ ⇒
+    .render { $ =>
       val (props, state, b) = $.props
 
       def renderHeader: TagMod =
         <.tr(
           props.style.tableHeader,
           props.configs.zipWithIndex.map {
-            case (config, columnIndex) ⇒
+            case (config, columnIndex) =>
               val cell = getHeaderDiv(config)
-              config.sortBy.fold(cell(config.name.capitalize))(sortByFn =>
+//              config.sortBy.fold(cell(config.name.capitalize))(sortByFn =>
                 cell(
                   ^.cursor := "pointer",
-                  ^.onClick --> b.sort(sortByFn, columnIndex),
+                  ^.onClick --> b.sort(config.ordering, columnIndex),
                   config.name.capitalize,
                   props.style
                     .sortIcon(state.sortedState.isDefinedAt(columnIndex) && state.sortedState(
                       columnIndex) == asc)
                     .when(state.sortedState.isDefinedAt(columnIndex))
-              ))
+              )
+              //)
           }.toTagMod
         )
 
@@ -237,7 +247,7 @@ case class ReactTable[T](data: Seq[T],
         .slice(state.offset, state.offset + state.rowsPerPage)
         .zipWithIndex
         .map {
-          case (row, i) ⇒ renderRow(row) //tableRow.withKey(i)((row, props))
+          case (row, i) => renderRow(row) //tableRow.withKey(i)((row, props))
         }
         .toTagMod
 
@@ -248,7 +258,7 @@ case class ReactTable[T](data: Seq[T],
   val settingsBar =
     ScalaComponent
       .builder[(Props, Backend, State)]("settingbar")
-      .render { $ ⇒
+      .render { $ =>
         val (p, b, s)             = $.props
         var value                 = ""
         var options: List[String] = Nil
@@ -271,7 +281,7 @@ case class ReactTable[T](data: Seq[T],
 
   val component = ScalaComponent
     .builder[Props]("ReactTable")
-    .initialStateFromProps(p ⇒ State(filterText = "", offset = 0, p.rowsPerPage, p.data, Map()))
+    .initialStateFromProps(p => State(filterText = "", offset = 0, p.rowsPerPage, p.data, Map()))
     .renderBackend[Backend]
     .componentWillReceiveProps(e =>
       Callback.when(e.currentProps.data != e.nextProps.data)(

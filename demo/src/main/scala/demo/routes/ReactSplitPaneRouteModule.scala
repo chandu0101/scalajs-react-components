@@ -1,6 +1,6 @@
 package demo.routes
 
-import demo.components.reactsplitpane.{ReactSplitPaneInfo, ReactSplitPaneSimpleVertical}
+import demo.components.reactsplitpane._
 import demo.pages.ReactSplitPanePage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 import japgolly.scalajs.react.vdom.html_<^._
@@ -11,7 +11,11 @@ object ReactSplitPaneRouteModule {
 
   case object SimpleVertical extends LeftRoute("Simple Vertical", "simplevertical", () => ReactSplitPaneSimpleVertical())
 
-  val menu: List[LeftRoute] = List(Info, SimpleVertical)
+  case object SimpleHorizontal extends LeftRoute("Simple Horizontal", "simplehorizontal", () => ReactSplitPaneSimpleHorizontal())
+
+  case object SimpleNested extends LeftRoute("Simple Nested", "simplenested", () => ReactSplitPaneSimpleNested())
+
+  val menu: List[LeftRoute] = List(Info, SimpleVertical, SimpleHorizontal, SimpleNested)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._

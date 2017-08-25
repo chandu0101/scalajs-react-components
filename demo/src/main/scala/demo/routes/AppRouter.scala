@@ -3,10 +3,10 @@ package routes
 
 import demo.components.{AppHeader, ScalaCSSTutorial}
 import demo.pages._
-import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router._
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
+
 import scala.scalajs.js.Dynamic.{global => g}
 
 object AppRouter {
@@ -26,6 +26,7 @@ object AppRouter {
   case class ReactPopoverPages(p: LeftRoute)   extends Page
   case class ReactSelectPages(p: LeftRoute)    extends Page
   case class ReactSlickPages(p: LeftRoute)     extends Page
+  case class ReactSplitPanePages(p: LeftRoute) extends Page
   case class ReactTablePages(p: LeftRoute)     extends Page
   case class ReactTagsInputPages(p: LeftRoute) extends Page
   case class ReactTreeViewPages(p: LeftRoute)  extends Page
@@ -53,6 +54,11 @@ object AppRouter {
       ReactTableRouteModule.routes
         .prefixPath_/("#reacttable")
         .pmap[Page](ReactTablePages) { case ReactTablePages(p) => p }
+
+    val reactSplitPaneRoutes : Rule =
+      ReactSplitPaneRouteModule.routes
+        .prefixPath_/("#reactsplitpane")
+        .pmap[Page](ReactSplitPanePages) { case ReactSplitPanePages(p) => p }
 
     val reactTagsInputRoutes: Rule =
       ReactTagsInputRouteModule.routes
@@ -123,6 +129,7 @@ object AppRouter {
       | reactPopoverRoutes
       | reactSelectRoutes
       | reactSlickRoutes
+      | reactSplitPaneRoutes
       | reactTableRoutes
       | reactTagsInputRoutes
       | reactTreeViewRoutes
@@ -180,6 +187,12 @@ object AppRouter {
       imagePath = g.reactTableImage.toString,
       route = ReactTablePages(ReactTableRouteModule.Info),
       tags = Stream("table", "search", "pagination", "sorting", "cutom cell")
+    ),
+    HomePage.ComponentInfo(
+      name = "React Split Pane",
+      imagePath = g.reactSplitPaneImage.toString,
+      route = ReactSplitPanePages(ReactSplitPaneRouteModule.Info),
+      tags = Stream("split pane")
     ),
     HomePage.ComponentInfo(
       name = "React Tags Input",

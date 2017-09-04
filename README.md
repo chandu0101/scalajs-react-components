@@ -70,7 +70,7 @@ See [here](https://japgolly.github.io/scalacss/book/ext/react.html) for more det
 
 http://chandu0101.github.io/sjrc/
 
-**Local :** This will start a web server on http://localhost/8080
+**Local :** This will start a web server on http://localhost:8080
 ```
 sbt 
 fastOptJS::webpack

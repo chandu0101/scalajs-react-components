@@ -9,8 +9,8 @@ lazy val macros =
     .settings(
       name := "scalajs-react-components-macros",
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core"      % "1.1.0" withSources (),
-        "com.github.japgolly.scalajs-react" %%% "extra"     % "1.1.0" withSources (),
+        "com.github.japgolly.scalajs-react" %%% "core"      % "1.1.0",
+        "com.github.japgolly.scalajs-react" %%% "extra"     % "1.1.0",
         "org.scalatest"                     %%% "scalatest" % "3.0.3" % Test
       )
     )
@@ -98,7 +98,7 @@ lazy val core =
         "com.github.japgolly.scalajs-react" %%% "extra"       % "1.1.0" withSources (),
         "com.github.japgolly.scalacss"      %%% "core"        % "0.5.3" withSources (),
         "com.github.japgolly.scalacss"      %%% "ext-react"   % "0.5.3" withSources (),
-        "org.scala-js"                      %%% "scalajs-dom" % "0.9.2" withSources (),
+        "org.scala-js"                      %%% "scalajs-dom" % "0.9.3" withSources (),
         "org.scalacheck"                    %%% "scalacheck"  % "1.13.5" % Test,
         "org.scalatest"                     %%% "scalatest"   % "3.0.3" % Test
       )
@@ -150,7 +150,7 @@ lazy val root =
 lazy val commonSettings =
   Seq(
     scalaVersion := "2.12.3",
-    version := "1.0.0",
+    version := "1.0.0-M1",
     name := "scalajs-react-components",
     organization := "com.olvind",
     licenses += ("Apache 2.0",
@@ -177,20 +177,28 @@ lazy val publicationSettings = Seq(
   },
   pomExtra :=
     <scm>
-          <connection>scm:git:github.com:chandu0101/scalajs-react-components</connection>
-          <developerConnection>scm:git:git@github.com:chandu0101/scalajs-react-components.git</developerConnection>
-          <url>github.com:chandu0101/scalajs-react-components.git</url>
-        </scm>
-          <developers>
-            <developer>
-              <id>chandu0101</id>
-              <name>Chandra Sekhar Kode</name>
-            </developer>
-            <developer>
-              <id>elacin</id>
-              <name>Øyvind Raddum Berg</name>
-            </developer>
-          </developers>
+      <connection>scm:git:github.com:chandu0101/scalajs-react-components</connection>
+      <developerConnection>scm:git:git@github.com:chandu0101/scalajs-react-components.git</developerConnection>
+      <url>github.com:chandu0101/scalajs-react-components.git</url>
+    </scm>
+      <developers>
+        <developer>
+          <id>chandu0101</id>
+          <name>Chandra Sekhar Kode</name>
+        </developer>
+        <developer>
+          <id>oyvindberg</id>
+          <name>Øyvind Raddum Berg</name>
+        </developer>
+        <developer>
+          <id>fmcgough</id>
+          <name>Frankie</name>
+        </developer>
+        <developer>
+          <id>roberto@leibman.net</id>
+          <name>Roberto Leibman</name>
+        </developer>
+      </developers>
 )
 
 lazy val SuiVersion   = "0.68.5"

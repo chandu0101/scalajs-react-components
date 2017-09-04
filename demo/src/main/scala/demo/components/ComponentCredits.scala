@@ -19,11 +19,9 @@ object ComponentCredits {
       if (S.users.isEmpty) <.div("Loading Credits ...")
       else
         <.div(
-          <.h4("Author: "),
-          S.users.headOption.map(u => GithubUser(user = u, key = u.login)).get,
           <.h4("Contributors: "),
           <.div(^.marginRight := "10px")(
-            S.users.tail.map(u => GithubUser(user = u, key = u.login)).toTagMod)
+            S.users.map(u => GithubUser(user = u, key = u.login)).toTagMod)
         )
 
     }

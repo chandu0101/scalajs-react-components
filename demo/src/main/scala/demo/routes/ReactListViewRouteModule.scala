@@ -1,7 +1,7 @@
 package demo
 package routes
 
-import demo.components.{ReactListViewInfo, ReactListViewDemo}
+import demo.components.{ReactListViewDemo, ReactListViewInfo}
 import demo.pages.ReactListViewPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 import japgolly.scalajs.react.vdom.html_<^._

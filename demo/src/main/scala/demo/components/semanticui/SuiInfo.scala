@@ -13,8 +13,10 @@ object SuiInfo {
       InfoTemplate(componentFilePath = "semanticui/package.scala")(
         <.div(
           <.h3("Semnatic-UI-React "),
-          <.p("scalajs-react wrapper for ",
-              RedLink("semantic-ui-react", "http://react.semantic-ui.com/introduction")),
+          <.p(
+            "scalajs-react wrapper for ",
+            RedLink("semantic-ui-react", "http://react.semantic-ui.com/introduction")
+          ),
           <.div(
             <.h4("Supported Version :"),
             <.span("0.62.0")

@@ -7,6 +7,8 @@ import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scala.scalajs.js
+
 object MuiDatePickerDemo {
   val code = GhPagesMacros.exampleSource
 
@@ -18,7 +20,7 @@ object MuiDatePickerDemo {
       <.div(
         CodeExample(code, "MuiDatePicker")(
           MuiDatePicker(
-            hintText = "Portrait Dialog",
+            hintText = js.defined("Portrait Dialog"),
             onChange = CallbackDebug.f2("onChange"),
             onDismiss = CallbackDebug.f0("onDismiss"),
             onFocus = CallbackDebug.f1("onFocus"),
@@ -26,7 +28,7 @@ object MuiDatePickerDemo {
             onTouchTap = CallbackDebug.f1("onTouchTap")
           )(),
           MuiDatePicker(
-            hintText = "Landscape Dialog",
+            hintText = js.defined("Landscape Dialog"),
             mode = PortraitLandscape.landscape
           )()
         )

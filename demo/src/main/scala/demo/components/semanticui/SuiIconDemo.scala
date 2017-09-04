@@ -1,13 +1,7 @@
 package demo.components.semanticui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.ReactMouseEventB
-import chandu0101.scalajs.react.components.semanticui.{
-  SemanticSIZES,
-  SuiButton,
-  SuiIcon,
-  SuiIconGroup
-}
+import chandu0101.scalajs.react.components.semanticui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
@@ -24,22 +18,22 @@ object SuiIconDemo {
       <.div(
         CodeExample(code, "SuiIcon")(
           <.div(
-            SuiIcon(name = "home", size = SemanticSIZES.MINI)(),
-            SuiIcon(name = "home", size = SemanticSIZES.TINY)(),
-            SuiIcon(name = "home", size = SemanticSIZES.SMALL)(),
+            SuiIcon(name = SuiIconType("home"), size = SuiSize.mini)(),
+            SuiIcon(name = SuiIconType("home"), size = SuiSize.tiny)(),
+            SuiIcon(name = SuiIconType("home"), size = SuiSize.small)(),
             <.br(),
-            SuiIcon(name = "home")(),
+            SuiIcon(name = SuiIconType("home"))(),
             <.br(),
-            SuiIcon(name = "home", size = SemanticSIZES.LARGE)(),
-            SuiIcon(name = "home", size = SemanticSIZES.BIG)(),
-            SuiIcon(name = "home", size = SemanticSIZES.HUGE)()
+            SuiIcon(name = SuiIconType("home"), size = SuiSize.large)(),
+            SuiIcon(name = SuiIconType("home"), size = SuiSize.big)(),
+            SuiIcon(name = SuiIconType("home"), size = SuiSize.huge)()
           ),
           <.br(),
           <.br(),
           <.div(
-            SuiIconGroup(size = SemanticSIZES.HUGE)(
-              SuiIcon(size = SemanticSIZES.BIG, name = "thin circle")(),
-              SuiIcon(name = "user")()
+            SuiIconGroup(size = SuiSize.huge)(
+              SuiIcon(size = SuiSize.big, name = SuiIconType("thin circle"))(),
+              SuiIcon(name = SuiIconType("user"))()
             )
           )
         )

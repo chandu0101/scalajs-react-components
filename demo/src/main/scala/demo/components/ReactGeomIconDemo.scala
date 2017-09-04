@@ -13,7 +13,7 @@ object ReactGeomIconDemo {
 
   case class State(value: String = "", multiValue: String = "")
 
-  class Backend(t: BackendScope[_, State]) {
+  class Backend(t: BackendScope[Unit, State]) {
     def render(S: State) = {
       <.div(
         CodeExample(code, "Demo")(

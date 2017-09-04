@@ -8,6 +8,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
+import scala.scalajs.js.annotation.ScalaJSDefined
 
 object MuiDropDownMenuDemo {
 
@@ -15,15 +16,16 @@ object MuiDropDownMenuDemo {
 
   // EXAMPLE:START
 
-  case class Item(id: String, name: String)
+  @ScalaJSDefined
+  class Item(val id: String, val name: String) extends js.Object
 
   val items: Seq[Item] =
     Seq(
-      Item("1", "Never"),
-      Item("2", "Every Night"),
-      Item("3", "Weeknights"),
-      Item("4", "Weekends"),
-      Item("5", "Weekly")
+      new Item("1", "Never"),
+      new Item("2", "Every Night"),
+      new Item("3", "Weeknights"),
+      new Item("4", "Weekends"),
+      new Item("5", "Weekly")
     )
 
   case class Backend($ : BackendScope[Unit, Item]) {
@@ -33,10 +35,18 @@ object MuiDropDownMenuDemo {
     def render(chosen: Item) =
       <.div(
         CodeExample(code, "MuiDropDownMenu")(
-          MuiDropDownMenu(onChange = onChange, value = chosen)(
-            items.map { item =>
-              MuiMenuItem(key = item.id, value = item, primaryText = item.name)()
-            }.toVdomArray
+          MuiDropDownMenu[Item](
+            onChange = onChange,
+            value = chosen
+          )(
+            items
+              .map(
+                item =>
+                  MuiMenuItem[Item](key = item.id,
+                                    value = item,
+                                    primaryText = js.defined(item.name))()
+              )
+              .toVdomArray
           )
         )
       )

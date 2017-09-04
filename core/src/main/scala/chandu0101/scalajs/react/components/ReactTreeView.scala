@@ -40,7 +40,6 @@ object ReactTreeView {
 
   }
 
-//  type NodeC = GenericComponent.Unmounted[NodeProps, GenericComponent.Mounted[_, NodeProps, NodeState]]
   type NodeC = ScalaComponent.MountedPure[NodeProps, NodeState, NodeBackend] //, _ <: CtorType[_, _]]
 
   case class State(filterText: String, filterMode: Boolean, selectedNode: js.UndefOr[NodeC])

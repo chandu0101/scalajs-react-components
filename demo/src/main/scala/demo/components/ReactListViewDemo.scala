@@ -10,11 +10,11 @@ object ReactListViewDemo {
 
   object Style {
 
-    def listViewComponent = Seq(^.float := "left", ^.marginBottom := "2em").toTagMod
+    def listViewComponent = TagMod(^.float := "left", ^.marginBottom := "2em")
 
-    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px").toTagMod
+    def selectedContent = TagMod(^.alignSelf := "center", ^.margin := "0 40px")
 
-    def listViewDemo = Seq(^.display := "flex").toTagMod
+    def listViewDemo = TagMod(^.display := "flex")
   }
 
   val code = GhPagesMacros.exampleSource
@@ -25,7 +25,7 @@ object ReactListViewDemo {
 
   case class State(content: String = "")
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Unit, State]) {
 
     def onItemSelect(item: String) = Callback {
       val content = s"Selected Item: $item <br>"

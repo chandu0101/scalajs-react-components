@@ -4,14 +4,19 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.component.Scala.Unmounted
 import japgolly.scalajs.react.vdom.html_<^._
+
+import scala.scalajs.js
+import scala.scalajs.js.annotation.ScalaJSDefined
 
 object MuiSelectFieldDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
-  case class ChoiceId(value: String)
-  case class Choice(id: ChoiceId, text: String)
+
+  @ScalaJSDefined class ChoiceId(val value: String)                extends js.Object
+  @ScalaJSDefined class Choice(val id: ChoiceId, val text: String) extends js.Object
 
   case class Backend($ : BackendScope[Seq[Choice], Choice]) {
     val onChange: (TouchTapEvent, Int, Choice) => Callback =
@@ -19,13 +24,16 @@ object MuiSelectFieldDemo {
 
     def render(choices: Seq[Choice], selected: Choice): VdomElement =
       CodeExample(code, "MuiSelectField")(
-        MuiSelectField[Choice](value = selected,
-                               onBlur = CallbackDebug.f1("onBlur"),
-                               onFocus = CallbackDebug.f1("onFocus"),
-                               onChange = onChange)(
+        MuiSelectField[Choice](
+          value = selected,
+          onBlur = CallbackDebug.f1("onBlur"),
+          onFocus = CallbackDebug.f1("onFocus"),
+          onChange = onChange
+        )(
           choices
             .map(
-              c => MuiMenuItem[Choice](key = c.id.value, value = c, primaryText = c.text)()
+              c =>
+                MuiMenuItem[Choice](key = c.id.value, value = c, primaryText = js.defined(c.text))()
             )
             .toVdomArray
         )
@@ -39,14 +47,14 @@ object MuiSelectFieldDemo {
       .renderBackend[Backend]
       .build
 
-  def apply(): VdomElement =
+  def apply(): Unmounted[Seq[Choice], Choice, Backend] =
     component(
       Seq(
-        Choice(ChoiceId("1"), "Never"),
-        Choice(ChoiceId("2"), "Every Night"),
-        Choice(ChoiceId("3"), "Weeknights"),
-        Choice(ChoiceId("4"), "Weekends"),
-        Choice(ChoiceId("5"), "Weekly")
+        new Choice(new ChoiceId("1"), "Never"),
+        new Choice(new ChoiceId("2"), "Every Night"),
+        new Choice(new ChoiceId("3"), "Weeknights"),
+        new Choice(new ChoiceId("4"), "Weekends"),
+        new Choice(new ChoiceId("5"), "Weekly")
       )
     )
 

@@ -3,11 +3,10 @@ package components
 package reacttable
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.{ JsonUtil, ReactTable }
-import demo.util.SampleData
+import chandu0101.scalajs.react.components.ReactTable
+import demo.util.{Person, SampleData}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
-import demo.util.Person
 
 object ReactTableCustomColumnSize {
   import ReactTable._
@@ -16,19 +15,21 @@ object ReactTableCustomColumnSize {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]) {
+  case class Backend($ : BackendScope[_, _]) {
 
-    val configs = List(SimpleStringConfig[Person](name = "First Name", _.fname),
+    val configs = List(
+      SimpleStringConfig[Person](name = "First Name", _.fname),
       SimpleStringConfig[Person](name = "Last Name", _.lname),
-      ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email), width = Some("10%"))(DefaultOrdering(_.email)),
-      SimpleStringConfig[Person](name = "Country", _.country))
+      ColumnConfig[Person](name = "Email",
+                           person => <.a(^.href := s"mailto:${person.email}", person.email),
+                           width = Some("10%"))(DefaultOrdering(_.email)),
+      SimpleStringConfig[Person](name = "Country", _.country)
+    )
 
     def render =
       <.div(
         CodeExample(code, "Custom Column Size")(
-          ReactTable(data = SampleData.people,
-            configs = configs,
-            rowsPerPage = 6)()))
+          ReactTable(data = SampleData.people, configs = configs, rowsPerPage = 6)()))
   }
 
   val component = ScalaComponent

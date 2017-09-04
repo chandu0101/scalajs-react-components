@@ -1,20 +1,17 @@
 package demo
 package pages
 
-import chandu0101.scalajs.react.components.WithAsyncScript
 import demo.components.LeftNavPage
 import demo.routes.{LeftRoute, ReactGeomIcontRouteModule}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.html_<^._
 import japgolly.scalajs.react.extra.router.RouterCtl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactGeomIconPage {
 
-  class Backend(t: BackendScope[_, _]) {
-    def render(P: Props) =
-      WithAsyncScript("assets/react_geom_icons-bundle.js")(
-        LeftNavPage(ReactGeomIcontRouteModule.menu, P.selectedPage, P.ctrl)
-      )
+  class Backend(t: BackendScope[Props, Unit]) {
+    def render(P: Props): VdomElement =
+      LeftNavPage(ReactGeomIcontRouteModule.menu, P.selectedPage, P.ctrl)
   }
 
   val component = ScalaComponent

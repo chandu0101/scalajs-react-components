@@ -8,23 +8,25 @@ object CodeExample {
 
   object Style {
 
-    val pageBodyContent = Seq(^.borderRadius := "2px",
-                              ^.boxShadow := "0 1px 4px rgba(223, 228, 228, 0.79)",
-                              ^.maxWidth := "1024px").toTagMod
+    val pageBodyContent = TagMod(
+      ^.borderRadius := "2px",
+      ^.boxShadow := "0 1px 4px rgba(223, 228, 228, 0.79)",
+      ^.maxWidth := "1024px"
+    )
 
-    val contentDemo = Seq(^.padding := "30px").toTagMod
+    val contentDemo = TagMod(^.padding := "30px")
 
-    val contentCode = Seq(^.borderTop := "solid 1px #e0e0e0").toTagMod
+    val contentCode = TagMod(^.borderTop := "solid 1px #e0e0e0")
 
-    val title = Seq(^.paddingBottom := "15px").toTagMod
+    val title = TagMod(
+      ^.paddingBottom := "15px"
+    )
 
   }
-
-  case class Backend($ : BackendScope[Props, _]) {
+  case class Backend($ : BackendScope[Props, Unit]) {
     def render(P: Props, C: PropsChildren) = {
       <.div(
-        ^.key := "code-example",
-        <.h3(Style.title, P.title).when(P.title.nonEmpty),
+        (<.h3(P.title, Style.title)).when(P.title.nonEmpty),
         <.div(Style.pageBodyContent)(
           <.div(Style.contentDemo, ^.key := "dan")(
             C
@@ -44,6 +46,11 @@ object CodeExample {
 
   case class Props(code: String, title: String)
 
-  def apply(code: String, title: String)(children: VdomNode*) =
+  def apply(
+      code: String,
+      title: String
+  )(children: VdomNode*) = {
+    //    component.set(key, ref)(Props(code, title), children: _*)
     component(Props(code, title))(children: _*)
+  }
 }

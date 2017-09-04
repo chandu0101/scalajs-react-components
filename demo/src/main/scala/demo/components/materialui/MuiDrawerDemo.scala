@@ -56,48 +56,42 @@ object MuiDrawerDemo {
       <.div(
         CodeExample(code, "MuiDrawer")(
           <.div(
-            MuiDrawer(onRequestChange = onRequestChange,
-                      openSecondary = S.isRight,
-                      open = S.isOpen,
-                      docked = S.isDocked)(
+            MuiDrawer(
+              onRequestChange = onRequestChange,
+              openSecondary = S.isRight,
+              open = S.isOpen,
+              docked = S.isDocked
+            )(
               /* hack in a cheesy centered avatar */
-              MuiAvatar(key = "avatar",
-                        size = 112,
-                        backgroundColor = Mui.Styles.colors.red400,
-                        style = js.Dynamic.literal(
-                          margin = "auto",
-                          display = "block",
-                          padding = "10px"
-                        ))(":D"),
+              MuiAvatar(
+                key = "avatar",
+                size = js.defined(112),
+                backgroundColor = Mui.Styles.colors.red400,
+                style = js.Dynamic.literal(margin = "auto", display = "block", padding = "10px")
+              )(js.defined(":D")),
               choices
                 .map(
                   c =>
                     MuiMenuItem(
                       key = c.id,
-                      primaryText = c.text,
+                      primaryText = js.defined(c.text),
                       checked = S.selected == js.defined(c.id),
                       onTouchTap = selectItem(c.id)
                     )())
                 .toVdomArray
             ),
-            MuiToggle(
-              key = "toggle1",
-              toggled = S.isOpen,
-              label = "Show drawer",
-              onToggle = toggleOpen
-            )(),
-            MuiToggle(
-              key = "toggle2",
-              toggled = S.isDocked,
-              label = "Show docked",
-              onToggle = toggleDocked
-            )(),
-            MuiToggle(
-              key = "toggle3",
-              toggled = S.isRight,
-              label = "Show on right side",
-              onToggle = toggleRight
-            )()
+            MuiToggle(key = "toggle1",
+                      toggled = S.isOpen,
+                      label = js.defined("Show drawer"),
+                      onToggle = toggleOpen)(),
+            MuiToggle(key = "toggle2",
+                      toggled = S.isDocked,
+                      label = js.defined("Show docked"),
+                      onToggle = toggleDocked)(),
+            MuiToggle(key = "toggle3",
+                      toggled = S.isRight,
+                      label = js.defined("Show on right side"),
+                      onToggle = toggleRight)()
           )
         )
       )

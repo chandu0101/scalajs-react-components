@@ -1,7 +1,5 @@
 package chandu0101.scalajs.react.components
 
-import scala.scalajs.js
-
 package object materialui {
   type RowId    = Int
   type ColumnId = Int

@@ -1,13 +1,12 @@
 package chandu0101.macros.tojs
 
-import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
-import japgolly.scalajs.react.{CallbackTo, GenericComponent}
+import japgolly.scalajs.react.CallbackTo
+import japgolly.scalajs.react.vdom.{TagOf, VdomElement, VdomNode}
 
 import scala.collection.{GenMap, GenTraversableOnce}
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * modified version of https://github.com/wav/scala-macros/blob/master/src/main/scala/wav/common/scalajs/macros/Macros.scala
@@ -18,15 +17,13 @@ object JSMacro {
     val toJS: js.Object
   }
 
-  implicit def apply[T]: T => js.Object = macro applyImpl[T]
+  def apply[T]: T => js.Object = macro applyImpl[T]
 
   def applyImpl[T: c.WeakTypeTag](c: blackbox.Context): c.Tree = {
     import c.universe._
 
     def isOptional(tpe: Type): Boolean =
       tpe <:< typeOf[Option[_]] || tpe <:< typeOf[js.UndefOr[_]]
-
-    def isUnion(tpe: Type): Boolean = tpe <:< typeOf[_ | _]
 
     def isNotPrimitiveAnyVal(tpe: Type) =
       !tpe.typeSymbol.fullName.startsWith("scala.")
@@ -64,24 +61,14 @@ object JSMacro {
         q"""((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}) => $target(t0, t1).runNow())"""
       else if (rt <:< typeOf[Function3[_, _, _, CallbackTo[_]]])
         q"""((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}, t2: ${rt.typeArgs(2)}) => $target(t0, t1, t2).runNow())"""
-      else if (rt <:< typeOf[GenericComponent.Unmounted[_, _]])
-        q"""$target.raw"""
+
+      /* other scalajs-react things we need to rewrite */
       else if (rt <:< typeOf[VdomElement])
-        q"""$target.rawElement """
+        q"""$target.rawElement"""
       else if (rt <:< typeOf[VdomNode])
-        q"""$target.rawNode """
-      else if (rt <:< typeOf[_ | VdomElement])
-        q"""(($target: scala.Any) match {
-            case e: VdomElement => e.rawElement
-            case other => other.asInstanceOf[js.Any]
-         })
-         """
-      else if (rt <:< typeOf[_ | VdomNode])
-        q"""(($target: scala.Any) match {
-            case n: VdomNode => n.rawNode
-            case other => other.asInstanceOf[js.Any]
-         })
-         """
+        q"""$target.rawNode"""
+      else if (rt <:< typeOf[TagOf[_]])
+        q"""$target.render"""
 
       /* Other values. Keep AnyVal below at least CallbackTo */
       else if (rt <:< typeOf[AnyVal] && isNotPrimitiveAnyVal(rt))
@@ -108,27 +95,19 @@ object JSMacro {
       val name    = f.asTerm.name
       val decoded = name.decodedName.toString
 
-      if (isOptional(f.typeSignature)) {
+      val res = if (isOptional(f.typeSignature)) {
         val valueTree = getJSValueTree(q"v", f.typeSignature.typeArgs.head)
         q"""$target.$name.foreach(v => $props.updateDynamic($decoded)($valueTree))"""
-      } else if (isUnion(f.typeSignature)) {
-        val leftValueTree  = getJSValueTree(q"l", f.typeSignature.typeArgs(0))
-        val rightValueTree = getJSValueTree(q"r", f.typeSignature.typeArgs(1))
-        q"""$target.$name match {
-              case l: ${f.typeSignature.typeArgs(0)} => $props.updateDynamic($decoded)($leftValueTree)
-              case r: ${f.typeSignature.typeArgs(1)} => $props.updateDynamic($decoded)($rightValueTree)
-          }
-           """
       } else {
         val valueTree = getJSValueTree(q"$target.$name", f.typeSignature)
         q"""$props.updateDynamic($decoded)($valueTree)"""
       }
+      res
     }
 
     q""" ($target: $tpe) => {
-      import scala.language.reflectiveCalls
-      import scalajs.js.JSConverters._
-      import scalajs.js.`|`._
+//      import scala.language.reflectiveCalls
+//      import scalajs.js.JSConverters._
       val $props = scala.scalajs.js.Dynamic.literal()
       ..$fieldUpdates
       $props

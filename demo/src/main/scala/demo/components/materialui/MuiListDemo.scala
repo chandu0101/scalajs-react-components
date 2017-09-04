@@ -4,30 +4,28 @@ package materialui
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
-import japgolly.scalajs.react._
+import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^._
+
+import scala.scalajs.js
 
 object MuiListDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
-  import Mui.SvgIcons.{ActionGrade, ActionInfo, ContentDrafts, ContentInbox, ContentSend}
-  import MuiSvgIcon._
+  import Mui.SvgIcons._
 
   val component = ScalaComponent
     .builder[Unit]("MuiListDemo")
     .render(P => {
-      // Compiler has trouble with too many implicit conversions at once
-      def iconElement(svg: MuiSvgIcon): VdomElement = svg()().vdomElement
-
       <.div(
         CodeExample(code, "MuiList")(
           MobileTearSheet(
             MuiList(key = "list1")(
               MuiListItem(
                 key = "item1",
-                leftIcon = iconElement(ContentInbox),
+                leftIcon = js.defined(ContentInbox()()),
                 onKeyboardFocus = CallbackDebug.f2("onKeyboardFocus"),
                 onMouseLeave = CallbackDebug.f1("onMouseLeave"),
                 onMouseEnter = CallbackDebug.f1("onMouseEnter"),
@@ -36,29 +34,29 @@ object MuiListDemo {
                 onTouchTap = CallbackDebug.f1("onTouchTap")
               )("Inbox"),
               MuiListItem(key = "item2",
-                          primaryText = "Starred",
-                          leftIcon = iconElement(ActionGrade))(),
+                          primaryText = js.defined("Starred"),
+                          leftIcon = js.defined(ActionGrade()()))(),
               MuiListItem(key = "item3",
-                          primaryText = "Sent Mail",
-                          leftIcon = iconElement(ContentSend))(),
+                          primaryText = js.defined("Sent Mail"),
+                          leftIcon = js.defined(ContentSend()()))(),
               MuiListItem(key = "item4",
-                          primaryText = "Drafts",
-                          leftIcon = iconElement(ContentDrafts))()
+                          primaryText = js.defined("Drafts"),
+                          leftIcon = js.defined(ContentDrafts()()))()
             ),
             MuiDivider(key = "div")(),
             MuiList(key = "list2")(
               MuiListItem(key = "item1",
-                          primaryText = "All mail",
-                          rightIcon = iconElement(ActionInfo))(),
+                          primaryText = js.defined("All mail"),
+                          rightIcon = js.defined(ActionInfo()()))(),
               MuiListItem(key = "item2",
-                          primaryText = "Trash",
-                          rightIcon = iconElement(ActionInfo))(),
+                          primaryText = js.defined("Trash"),
+                          rightIcon = js.defined(ActionInfo()()))(),
               MuiListItem(key = "item3",
-                          primaryText = "Spam",
-                          rightIcon = iconElement(ActionInfo))(),
+                          primaryText = js.defined("Spam"),
+                          rightIcon = js.defined(ActionInfo()()))(),
               MuiListItem(key = "item4",
-                          primaryText = "Follow up",
-                          rightIcon = iconElement(ActionInfo))()
+                          primaryText = js.defined("Follow up"),
+                          rightIcon = js.defined(ActionInfo()()))()
             )
           )
         )

@@ -7,6 +7,8 @@ import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scala.scalajs.js
+
 object MuiToolbarDemo {
 
   val code = GhPagesMacros.exampleSource
@@ -23,7 +25,7 @@ object MuiToolbarDemo {
               MuiRaisedButton(label = "Tool Left", secondary = true)()
             ),
             MuiToolbarGroup(key = "2")(
-              MuiToolbarTitle(text = "options")(),
+              MuiToolbarTitle(text = js.defined("options"))(),
               MuiToolbarSeparator()(),
               MuiRaisedButton(label = "Create Broadcast", primary = true)()
             )

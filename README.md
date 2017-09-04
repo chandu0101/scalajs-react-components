@@ -79,9 +79,9 @@ Sbt does not by itself understand these module systems, so unless you're prepare
 Add these dependencies to you sbt build file
 ```scala
 libraryDependencies ++= Seq(
-  "com.github.japgolly.scalajs-react" %%% "core" % "1.0.1",
-  "com.github.japgolly.scalajs-react" %%% "extra" % "1.0.1",
-  "com.olvind" %%% "scalajs-react-components" % "0.7.0"
+  "com.github.japgolly.scalajs-react" %%% "core" % "1.1.0",
+  "com.github.japgolly.scalajs-react" %%% "extra" % "1.1.0",
+  "com.olvind" %%% "scalajs-react-components" % "0.8.0"
 )
 ```
 

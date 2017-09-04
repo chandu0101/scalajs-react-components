@@ -6,8 +6,8 @@ import sbt._
 
 object Build extends Build {
 
-  val Scala211 = "2.11.8"
-  val Scala212 = "2.12.1"
+  val Scala211 = "2.11.11"
+  val Scala212 = "2.12.3"
 
   val scalajsReactVersion = "1.1.0"
   val scalaCSSVersion     = "0.5.3"
@@ -19,7 +19,7 @@ object Build extends Build {
       .settings(
         crossScalaVersions := Seq(Scala211, Scala212),
         organization := "com.olvind",
-        version := "0.7.0",
+        version := "0.8.0",
         homepage := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion := Scala212,

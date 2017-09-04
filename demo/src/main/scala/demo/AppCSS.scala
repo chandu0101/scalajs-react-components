@@ -1,6 +1,7 @@
 package demo
 
 import chandu0101.scalajs.react.components._
+import chandu0101.scalajs.react.components.reactsplitpane.ReactSplitPane
 import demo.components._
 import demo.components.materialui._
 import demo.components.{InfoTemplate, LeftNav, LeftNavPage, ScalaCSSTutorial}
@@ -26,7 +27,8 @@ object AppCSS {
       InfoTemplate.Style,
       ReactInfiniteDemo.styles,
       ReactDraggable.Style,
-      MuiTabsDemo.Style
+      MuiTabsDemo.Style,
+      ReactSplitPane.DefaultStyle
     )
 
     GlobalRegistry.addToDocumentOnRegistration()

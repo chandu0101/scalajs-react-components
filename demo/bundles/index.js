@@ -23,3 +23,4 @@ window.reactGeomIconImage  = require("../images/reactGeomIcon.png");
 window.spinnerImage        = require("../images/spinner.png");
 window.reactPopoverImage   = require("../images/reactPopover.png");
 window.reactDraggableImage = require("../images/reactDraggable.png");
+window.reactSplitPaneImage = require("../images/reactSplitPane.png");

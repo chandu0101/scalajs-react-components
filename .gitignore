@@ -32,3 +32,4 @@ assets/
 node_modules/
 /core/docs
 .DS_Store
+yarn.lock

@@ -20,7 +20,7 @@ object ReactTable {
    */
   object SortDirection extends Enumeration {
     type SortDirection = Value
-    val asc, dsc = Value
+    val ASC, DSC = Value
   }
   /*
    * Pass this to the ColumnConfig to sort using an ordering
@@ -175,15 +175,18 @@ case class ReactTable[T](
 
     def sort(ordering: Ordering[T], columnIndex: Int): Callback =
       t.modState { state =>
+        println(s"Current sort state : ${state.sortedState}")
         val rows = state.filteredData
         state.sortedState.get(columnIndex) match {
-          case Some(asc) =>
+          case Some(ASC) =>
+            println(s"New sort is (${columnIndex}-$DSC)")
             state.copy(filteredData = rows.sorted(ordering.reverse),
-              sortedState = Map(columnIndex -> dsc),
+              sortedState = Map(columnIndex -> DSC),
               offset = 0)
           case _ =>
+            println(s"New sort is (${columnIndex}-$ASC)")
             state.copy(filteredData = rows.sorted(ordering),
-              sortedState = Map(columnIndex -> asc),
+              sortedState = Map(columnIndex -> ASC),
               offset = 0)
         }
       }
@@ -223,7 +226,7 @@ case class ReactTable[T](
                 config.name.capitalize,
                 props.style
                   .sortIcon(
-                    state.sortedState.isDefinedAt(columnIndex) && state.sortedState(columnIndex) == asc
+                    state.sortedState.isDefinedAt(columnIndex) && state.sortedState(columnIndex) == ASC
                   )
                   .when(state.sortedState.isDefinedAt(columnIndex))
               )

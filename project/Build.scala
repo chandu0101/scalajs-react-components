@@ -19,7 +19,7 @@ object Build extends Build {
       .settings(
         crossScalaVersions := Seq(Scala211, Scala212),
         organization := "com.olvind",
-        version := "0.8.0",
+        version := "0.8.1",
         homepage := Some(url("https://github.com/chandu0101/scalajs-react-components")),
         licenses += ("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0")),
         scalaVersion := Scala212,

@@ -24,6 +24,7 @@ These components require you to provide javascript yourself.
 - React Select (react-select: 1.0.0-beta)
 - React TagsInput (react-tagsinput, 3.0.3)
 - React Slick (react-slick: 0.9.3)
+- React Split Pane (react-split-pane: 0.1.66)
 
 ### Components written in scala.js
 - DefaultSelect

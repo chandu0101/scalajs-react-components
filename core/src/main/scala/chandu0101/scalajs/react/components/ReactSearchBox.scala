@@ -3,12 +3,10 @@ package chandu0101.scalajs.react.components
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
 
 object ReactSearchBox {
-
-  val cssSettings = scalacss.devOrProdDefaults
-  import cssSettings._
 
   class Style extends StyleSheet.Inline {
 

@@ -8,7 +8,7 @@ import japgolly.scalajs.react.ScalaComponent
 import scala.collection.immutable
 import scalacss.ProdDefaults._
 
-import scalacss.ScalaCssReact.scalacssStyleaToTagMod
+import scalacss.ScalaCssReact._
 
 /**
  * Companion object of ReactTable, with tons of little utilities
@@ -66,10 +66,15 @@ object ReactTable {
     val sortIcon = styleF.bool(
       ascending =>
         styleS(
-          &.after(fontSize(9 px), marginLeft(5 px), if (ascending) { content := "'\\25B2'" } else {
-            content := "'\\25BC'"
-          })))
-
+          &.after(fontSize(9 px), marginLeft(5 px),
+            if (ascending) {
+              content := "'\\25B2'"
+            } else {
+              content := "'\\25BC'"
+            }
+          )
+        )
+    )
   }
 
   object DefaultStyle extends Style
@@ -108,13 +113,30 @@ object ReactTable {
 /**
  * A relatively simple html/react table with a pager.
  * You should pass in the data as a sequence of items of type T
- * But you should also pass a list of Column Configurations, each of which describes how to get to each column for a given item in the data, how to display it, how to sort it, etc.
+ * But you should also pass a list of Column Configurations,
+ * each of which describes how to get to each column for a given item in the data,
+ * how to display it, how to sort it, etc.
  */
-case class ReactTable[T](data: Seq[T],
+case class ReactTable[T](
+    // The table data to be displayed
+    data: Seq[T],
+    // The configuration of the table columns
     configs: List[ReactTable.ColumnConfig[T]] = List(),
+    // Whether paging is enabled for the table, if false, all rows will be displayed with no pager
+    paging : Boolean = true,
+    // The default number of rows per page (only relevant if paging is enabled)
     rowsPerPage: Int = 5,
+    // The table style
     style: ReactTable.Style = ReactTable.DefaultStyle,
+    // Whether search is enabled in the table
     enableSearch: Boolean = true,
+    // Whether rows can be selected in the table
+    selectable: Boolean = false,
+    // Whether multiple rows can be selected (only relevant if selectable is true)
+    multiSelectable : Boolean = true,
+    // Whether a select all box shall be displayed (only relevant if selectable and multiSelectable is true)
+    allSelectable : Boolean = true,
+    // The searchbox style
     searchBoxStyle: ReactSearchBox.Style = ReactSearchBox.DefaultStyle,
     onRowClick: (Int) => Callback = { _ =>
       Callback {}
@@ -188,22 +210,23 @@ case class ReactTable[T](data: Seq[T],
             value = value,
             onChange = onPageSizeChange))
       }
+
       def renderHeader: TagMod =
         <.tr(
           props.style.tableHeader,
           props.configs.zipWithIndex.map {
             case (config, columnIndex) =>
               val cell = getHeaderDiv(config)
-              //              config.sortBy.fold(cell(config.name.capitalize))(sortByFn =>
               cell(
                 ^.cursor := "pointer",
                 ^.onClick --> sort(config.ordering, columnIndex),
                 config.name.capitalize,
                 props.style
-                  .sortIcon(state.sortedState.isDefinedAt(columnIndex) && state.sortedState(
-                    columnIndex) == asc)
-                  .when(state.sortedState.isDefinedAt(columnIndex)))
-            //)
+                  .sortIcon(
+                    state.sortedState.isDefinedAt(columnIndex) && state.sortedState(columnIndex) == asc
+                  )
+                  .when(state.sortedState.isDefinedAt(columnIndex))
+              )
           }.toTagMod)
 
       def renderRow(model: T): TagMod =
@@ -221,56 +244,79 @@ case class ReactTable[T](data: Seq[T],
         .slice(state.offset, state.offset + state.rowsPerPage)
         .zipWithIndex
         .map {
-          case (row, i) => renderRow(row) //tableRow.withKey(i)((row, props))
+          case (row, i) => renderRow(row)
         }
         .toTagMod
 
       <.div(
         props.style.reactTableContainer,
-        ReactSearchBox(onTextChange = onTextChange(props) _, style = props.searchBoxStyle)
-          .when(props.enableSearch),
-        settingsBar,
-        <.div(props.style.table, <.table(<.thead(renderHeader()), <.tbody(rows))),
-        Pager(state.rowsPerPage, state.filteredData.length, state.offset, onNextClick, onPreviousClick))
+        ReactSearchBox(onTextChange = onTextChange(props) _, style = props.searchBoxStyle).when(props.enableSearch),
+        settingsBar.when(props.paging),
+        <.div(
+          props.style.table,
+          <.table(
+            ^.width := "100%",
+            <.thead(renderHeader()),
+            <.tbody(rows)
+          )
+        ),
+        Pager(
+          state.rowsPerPage,
+          state.filteredData.length,
+          state.offset,
+          onNextClick,
+          onPreviousClick
+        ).when(props.paging)
+      )
     }
   }
 
   def getHeaderDiv(config: ColumnConfig[T]): TagMod = {
     config.width.fold(<.th())(width => <.th(^.width := width))
   }
-
-  def arrowUp: TagMod =
-    TagMod(^.width := 0.px,
-      ^.height := 0.px,
-      ^.borderLeft := "5px solid transparent",
-      ^.borderRight := "5px solid transparent",
-      ^.borderBottom := "5px solid black")
-
-  def arrowDown: TagMod =
-    TagMod(^.width := 0.px,
-      ^.height := 0.px,
-      ^.borderLeft := "5px solid transparent",
-      ^.borderRight := "5px solid transparent",
-      ^.borderTop := "5px solid black")
-
-  def emptyClass: TagMod =
-    TagMod(^.padding := "1px")
-
+  
   val component = ScalaComponent
     .builder[Props]("ReactTable")
-    .initialStateFromProps(props => State(filterText = "", offset = 0, props.rowsPerPage, props.data, Map()))
+    .initialStateFromProps(props => State(
+      filterText = "",
+      offset = 0,
+      if (props.paging) props.rowsPerPage else props.data.size,
+      props.data,
+      Map())
+    )
     .renderBackend[Backend]
     .componentWillReceiveProps(e =>
       Callback.when(e.currentProps.data != e.nextProps.data)(
         e.backend.onTextChange(e.nextProps)(e.state.filterText)))
     .build
 
-  case class Props(data: Seq[T],
+  case class Props(
+    data: Seq[T],
     configs: List[ColumnConfig[T]],
+    paging: Boolean,
     rowsPerPage: Int,
     style: Style,
     enableSearch: Boolean,
-    searchBoxStyle: ReactSearchBox.Style)
+    selectable : Boolean,
+    multiSelectable : Boolean,
+    allSelectable: Boolean,
+    searchBoxStyle: ReactSearchBox.Style,
+    onRowClick : Int => Callback,
+    searchStringRetriever : T => String
+  )
 
-  def apply() = component(Props(data, configs, rowsPerPage, style, enableSearch, searchBoxStyle))
+    def apply() = component(Props(
+      data = data,
+      configs = configs,
+      paging = paging,
+      rowsPerPage = rowsPerPage,
+      style = style,
+      enableSearch = enableSearch,
+      selectable = selectable,
+      multiSelectable = multiSelectable,
+      allSelectable = allSelectable,
+      searchBoxStyle = searchBoxStyle,
+      onRowClick = onRowClick,
+      searchStringRetriever = searchStringRetriever
+    ))
 }

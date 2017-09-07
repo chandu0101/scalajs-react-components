@@ -28,6 +28,7 @@ project/plugins/project/
 .idea_modules
 
 #project
+demo/bundles/demo-opt*
 assets/
 node_modules/
 /core/docs

@@ -114,7 +114,7 @@ object Build extends Build {
       libraryDependencies += "com.github.japgolly.scalajs-react" %%% "extra" % scalajsReactVersion % scope
     )
 
-  val jsDir = "demo/assets"
+  val jsDir = "demo/bundles"
 
   def createLauncher(scope: String = "compile"): PE =
     _.settings(

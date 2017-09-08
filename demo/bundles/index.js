@@ -4,8 +4,8 @@ window.React    = require('react');
 var injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 
-window.hljs = require("highlight.js");
-require("highlight.js/styles/github.css");
+window.hljs = require('highlight.js');
+require('highlight.js/styles/github.css');
 
 //images
 window.googleMapImage      = require("../images/googleMap.png");

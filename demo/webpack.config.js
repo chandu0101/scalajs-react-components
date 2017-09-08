@@ -31,19 +31,21 @@ module.exports = {
         port: 8090,
         clientLogLevel: "info"
     },
+
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),
         new CommonsChunkPlugin({
             name: "index"
         })
     ],
+
     module: {
         loaders: [
             {
                 test: /\.css$/,
                 use: [
                   {
-                    loader: 'file-loader'
+                    loader: 'style-loader'
                   },
                   {
                     loader: 'css-loader'
@@ -66,13 +68,13 @@ module.exports = {
                     options: {
                       query: {
                         mozjpeg: {
-                          progressive: true,
+                          progressive: true
                         },
                         gifsicle: {
-                          interlaced: true,
+                          interlaced: true
                         },
                         optipng: {
-                          optimizationLevel: 7,
+                          optimizationLevel: 7
                         }
                       }
                     }

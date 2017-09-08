@@ -6,8 +6,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
-
-import scala.collection.immutable
+import scala.collection.{SortedSet, immutable}
 
 /**
  * Companion object of ReactTable, with tons of little utilities
@@ -56,10 +55,12 @@ object ReactTable {
   def OptionRenderer[T, B](defaultValue: VdomNode = "", bRenderer: CellRenderer[B])(fn: T => Option[B]): CellRenderer[T] =
     t => fn(t).fold(defaultValue)(bRenderer)
 
-  case class ColumnConfig[T](name: String,
+  case class ColumnConfig[T](
+    name: String,
     cellRenderer: CellRenderer[T],
     width: Option[String] = None,
-    nowrap: Boolean = false)(implicit val ordering: Ordering[T])
+    nowrap: Boolean = false
+  )(implicit val ordering: Ordering[T])
 
   def SimpleStringConfig[T](
     name: String,
@@ -86,7 +87,7 @@ case class ReactTable[T](
     // The table data to be displayed
     data: Seq[T],
     // The configuration of the table columns
-    configs: List[ReactTable.ColumnConfig[T]] = List(),
+    configs: Seq[ReactTable.ColumnConfig[T]] = Seq.empty,
     // Whether paging is enabled for the table, if false, all rows will be displayed with no pager
     paging : Boolean = true,
     // The default number of rows per page (only relevant if paging is enabled)
@@ -106,6 +107,9 @@ case class ReactTable[T](
     onRowClick: (Int) => Callback = { _ =>
       Callback {}
     },
+    onSelectionChanged: (Seq[Int]) => Callback = { _ =>
+      Callback {}
+    },
     searchStringRetriever: T => String = { t: T =>
       t.toString
     }) {
@@ -117,14 +121,15 @@ case class ReactTable[T](
     filterText: String,
     offset: Int,
     rowsPerPage: Int,
-    filteredData: Seq[(T, Int)],
-    sortedState: Map[Int, SortDirection]
+    indexedData: Seq[(T, Int)],
+    sortedState: Map[Int, SortDirection],
+    selectedState: SortedSet[Int]
   )
 
   class Backend(t: BackendScope[Props, State]) {
 
     def onTextChange(props: Props)(value: String): Callback =
-      t.modState(_.copy(filteredData = getFilteredData(value, props.data), offset = 0))
+      t.modState(_.copy(filterText = value, offset = 0))
 
     def onPreviousClick: Callback =
       t.modState(s => s.copy(offset = s.offset - s.rowsPerPage))
@@ -132,35 +137,54 @@ case class ReactTable[T](
     def onNextClick: Callback =
       t.modState(s => s.copy(offset = s.offset + s.rowsPerPage))
 
-    def getFilteredData(text: String, data: Seq[(T, Int)]): Seq[(T, Int)] = {
-      if (text.isEmpty) {
-        data
+    def getFilteredAndSortedData(s: State): Seq[(T, Int)] = {
+
+      val rows = if (s.filterText.isEmpty) {
+        s.indexedData
       } else {
-        data.filter(entry =>
-          searchStringRetriever(entry._1).toLowerCase.contains(text.toLowerCase)
+        s.indexedData.filter(entry =>
+          searchStringRetriever(entry._1).toLowerCase.contains(s.filterText.toLowerCase)
         )
+      }
+
+      if (s.sortedState.isEmpty)
+        rows
+      else {
+        val cfg = configs(s.sortedState.head._1)
+        val order: Ordering[(T, Int)] = cfg.ordering.on(_._1)
+
+        s.sortedState.head._2 match {
+          case ASC => rows.sorted(order)
+          case DSC => rows.sorted(order.reverse)
+        }
       }
     }
 
     def sort(ordering: Ordering[T], columnIndex: Int): Callback = {
 
-      val order: Ordering[(T, Int)] = ordering.on(x => x._1)
-
       t.modState { state =>
-        val rows = state.filteredData
         state.sortedState.get(columnIndex) match {
           case Some(ASC) =>
             state.copy(
-              filteredData = rows.sorted(order.reverse),
               sortedState = Map(columnIndex -> DSC),
               offset = 0
             )
           case _ =>
             state.copy(
-              filteredData = rows.sorted(order),
               sortedState = Map(columnIndex -> ASC),
               offset = 0
             )
+        }
+      }
+    }
+
+    def singleSelect(index: Int) : Callback = {
+      t.modState { state =>
+
+        if (state.selectedState.contains(index)) {
+          state.copy(selectedState = state.selectedState - index)
+        } else {
+          state.copy(selectedState = state.selectedState + index)
         }
       }
     }
@@ -169,10 +193,12 @@ case class ReactTable[T](
       t.modState(_.copy(rowsPerPage = value.toInt))
 
     def render(props: Props, state: State): VdomElement = {
-      def settingsBar = {
+
+      // Define how to render the settings bar configuring the rows per page
+      def settingsBar(total : Int) = {
         var value = ""
         var options: List[String] = Nil
-        val total = state.filteredData.length
+
         if (total > props.rowsPerPage) {
           value = state.rowsPerPage.toString
           options = immutable.Range
@@ -181,13 +207,14 @@ case class ReactTable[T](
             .toList
             .map(_.toString)
         }
-        <.div(props.style.settingsBar)(<.div(<.strong("Total: " + state.filteredData.size)),
+        <.div(props.style.settingsBar)(<.div(<.strong("Total: " + state.indexedData.size)),
           DefaultSelect(label = "Page Size: ",
             options = options,
             value = value,
             onChange = onPageSizeChange))
       }
 
+      // Define how to render the table header
       def renderHeader: TagMod =
         <.tr(
           props.style.tableHeader,
@@ -212,11 +239,14 @@ case class ReactTable[T](
           }.toTagMod
         )
 
-      def renderRow(model: T): TagMod =
+      // Define how to render the individual rows
+      def renderRow(model: T, index: Int): TagMod =
         <.tr(
           props.style.tableRow,
           <.input(
-            ^.`type` := "checkbox"
+            ^.`type` := "checkbox",
+            ^.checked := state.selectedState.contains(index),
+            ^.onChange --> singleSelect(index)
           ).when(props.selectable),
           props.configs.map(config =>
             <.td(
@@ -227,26 +257,28 @@ case class ReactTable[T](
           ).toTagMod
         )
 
-      val rows = state.filteredData
+      val rows = getFilteredAndSortedData(state)
+
+      val tableRows = rows
         .slice(state.offset, state.offset + state.rowsPerPage)
-        .map( entry => renderRow(entry._1) )
+        .map( entry => renderRow(entry._1, entry._2) )
         .toTagMod
 
       <.div(
         props.style.reactTableContainer,
         ReactSearchBox(onTextChange = onTextChange(props) _, style = props.searchBoxStyle).when(props.enableSearch),
-        settingsBar.when(props.paging),
+        settingsBar(rows.size).when(props.paging),
         <.div(
           props.style.table,
           <.table(
             ^.width := "100%",
             <.thead(renderHeader()),
-            <.tbody(rows)
+            <.tbody(tableRows)
           )
         ),
         Pager(
           state.rowsPerPage,
-          state.filteredData.length,
+          rows.size,
           state.offset,
           onNextClick,
           onPreviousClick
@@ -264,9 +296,10 @@ case class ReactTable[T](
     .initialStateFromProps(props => State(
       filterText = "",
       offset = 0,
-      if (props.paging) props.rowsPerPage else props.data.size,
-      props.data,
-      Map())
+      rowsPerPage = if (props.paging) props.rowsPerPage else props.data.size,
+      indexedData = props.data,
+      sortedState = Map.empty,
+      selectedState = SortedSet.empty)
     )
     .renderBackend[Backend]
     .componentWillReceiveProps(e =>
@@ -276,7 +309,7 @@ case class ReactTable[T](
 
   case class Props(
     data: Seq[(T, Int)],
-    configs: List[ColumnConfig[T]],
+    configs: Seq[ColumnConfig[T]],
     paging: Boolean,
     rowsPerPage: Int,
     style: ReactTableStyle,

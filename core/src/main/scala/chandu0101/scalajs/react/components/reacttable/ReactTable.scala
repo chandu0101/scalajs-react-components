@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.reacttable
 
-import chandu0101.scalajs.react.components.{DefaultSelect, Pager, ReactSearchBox}
-import japgolly.scalajs.react.{BackendScope, Callback, ScalaComponent}
+import chandu0101.scalajs.react.components._
+import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.ProdDefaults._
@@ -58,11 +58,11 @@ object ReactTable {
 
   case class ColumnConfig[T](name: String,
     cellRenderer: CellRenderer[T],
-    //sortBy: Option[(T, T) => Boolean] = None,
     width: Option[String] = None,
     nowrap: Boolean = false)(implicit val ordering: Ordering[T])
 
-  def SimpleStringConfig[T](name: String,
+  def SimpleStringConfig[T](
+    name: String,
     stringRetriever: T => String,
     width: Option[String] = None,
     nowrap: Boolean = false): ReactTable.ColumnConfig[T] = {
@@ -113,11 +113,13 @@ case class ReactTable[T](
   import ReactTable._
   import SortDirection._
 
-  case class State(filterText: String,
+  case class State(
+    filterText: String,
     offset: Int,
     rowsPerPage: Int,
-    filteredData: Seq[T],
-    sortedState: Map[Int, SortDirection])
+    filteredData: Seq[(T, Int)],
+    sortedState: Map[Int, SortDirection]
+  )
 
   class Backend(t: BackendScope[Props, State]) {
 
@@ -130,28 +132,38 @@ case class ReactTable[T](
     def onNextClick: Callback =
       t.modState(s => s.copy(offset = s.offset + s.rowsPerPage))
 
-    def getFilteredData(text: String, data: Seq[T]): Seq[T] = {
+    def getFilteredData(text: String, data: Seq[(T, Int)]): Seq[(T, Int)] = {
       if (text.isEmpty) {
         data
       } else {
-        data.filter(searchStringRetriever(_).toLowerCase.contains(text.toLowerCase))
+        data.filter(entry =>
+          searchStringRetriever(entry._1).toLowerCase.contains(text.toLowerCase)
+        )
       }
     }
 
-    def sort(ordering: Ordering[T], columnIndex: Int): Callback =
+    def sort(ordering: Ordering[T], columnIndex: Int): Callback = {
+
+      val order: Ordering[(T, Int)] = ordering.on(x => x._1)
+
       t.modState { state =>
         val rows = state.filteredData
         state.sortedState.get(columnIndex) match {
           case Some(ASC) =>
-            state.copy(filteredData = rows.sorted(ordering.reverse),
+            state.copy(
+              filteredData = rows.sorted(order.reverse),
               sortedState = Map(columnIndex -> DSC),
-              offset = 0)
+              offset = 0
+            )
           case _ =>
-            state.copy(filteredData = rows.sorted(ordering),
+            state.copy(
+              filteredData = rows.sorted(order),
               sortedState = Map(columnIndex -> ASC),
-              offset = 0)
+              offset = 0
+            )
         }
       }
+    }
 
     def onPageSizeChange(value: String): Callback =
       t.modState(_.copy(rowsPerPage = value.toInt))
@@ -179,10 +191,15 @@ case class ReactTable[T](
       def renderHeader: TagMod =
         <.tr(
           props.style.tableHeader,
+          <.th(
+            ^.textAlign := "left",
+            <.input(^.`type` := "checkbox").when(props.selectable && props.allSelectable)
+          ).when(props.selectable),
           props.configs.zipWithIndex.map {
             case (config, columnIndex) =>
               val cell = getHeaderDiv(config)
               cell(
+                ^.textAlign := "left",
                 ^.cursor := "pointer",
                 ^.onClick --> sort(config.ordering, columnIndex),
                 config.name.capitalize,
@@ -192,25 +209,27 @@ case class ReactTable[T](
                   )
                   .when(state.sortedState.isDefinedAt(columnIndex))
               )
-          }.toTagMod)
+          }.toTagMod
+        )
 
       def renderRow(model: T): TagMod =
         <.tr(
           props.style.tableRow,
-          props.configs
-            .map(
-              config =>
-                <.td(^.whiteSpace.nowrap.when(config.nowrap),
-                  ^.verticalAlign.middle,
-                  config.cellRenderer(model)))
-            .toTagMod)
+          <.input(
+            ^.`type` := "checkbox"
+          ).when(props.selectable),
+          props.configs.map(config =>
+            <.td(
+              ^.whiteSpace.nowrap.when(config.nowrap),
+              ^.verticalAlign.middle,
+              config.cellRenderer(model)
+            )
+          ).toTagMod
+        )
 
       val rows = state.filteredData
         .slice(state.offset, state.offset + state.rowsPerPage)
-        .zipWithIndex
-        .map {
-          case (row, i) => renderRow(row)
-        }
+        .map( entry => renderRow(entry._1) )
         .toTagMod
 
       <.div(
@@ -256,7 +275,7 @@ case class ReactTable[T](
     .build
 
   case class Props(
-    data: Seq[T],
+    data: Seq[(T, Int)],
     configs: List[ColumnConfig[T]],
     paging: Boolean,
     rowsPerPage: Int,
@@ -271,7 +290,7 @@ case class ReactTable[T](
   )
 
     def apply() = component(Props(
-      data = data,
+      data = data.zipWithIndex,
       configs = configs,
       paging = paging,
       rowsPerPage = rowsPerPage,

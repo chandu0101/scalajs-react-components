@@ -2,6 +2,7 @@ package demo
 
 import chandu0101.scalajs.react.components._
 import chandu0101.scalajs.react.components.reactsplitpane.ReactSplitPane
+import chandu0101.scalajs.react.components.reacttable.ReactTable
 import demo.components._
 import demo.components.materialui._
 import demo.components.{InfoTemplate, LeftNav, LeftNavPage, ScalaCSSTutorial}

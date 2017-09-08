@@ -18,7 +18,10 @@ object ReactTableRouteModule {
   case object CustomColumn
       extends LeftRoute("Custom Colum Size", "customcolumsize", () => ReactTableCustomColumnSize())
 
-  val menu: List[LeftRoute] = List(Info, Basic, CustomCell, CustomColumn)
+  case object SelectableTable
+      extends LeftRoute("Table with Selection", "selectabletable", () => ReactTableSelectable())
+
+  val menu: List[LeftRoute] = List(Info, Basic, CustomCell, CustomColumn, SelectableTable)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._

@@ -1,14 +1,13 @@
-package chandu0101.scalajs.react.components
+package chandu0101.scalajs.react.components.reacttable
 
+import chandu0101.scalajs.react.components.{DefaultSelect, Pager, ReactSearchBox}
+import japgolly.scalajs.react.{BackendScope, Callback, ScalaComponent}
 import japgolly.scalajs.react.vdom.html_<^._
 
-import japgolly.scalajs.react.Callback
-import japgolly.scalajs.react.BackendScope
-import japgolly.scalajs.react.ScalaComponent
-import scala.collection.immutable
 import scalacss.ProdDefaults._
-
 import scalacss.ScalaCssReact._
+
+import scala.collection.immutable
 
 /**
  * Companion object of ReactTable, with tons of little utilities
@@ -43,41 +42,7 @@ object ReactTable {
     def compare(a: T, b: T) = fn(a).compareToIgnoreCase(fn(b))
   }
 
-  class Style extends StyleSheet.Inline {
-
-    import dsl._
-
-    val reactTableContainer = style(display.flex, flexDirection.column)
-
-    val table = style(
-      display.flex,
-      flexDirection.column,
-      boxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)",
-      media.maxWidth(740 px)(boxShadow := "none"))
-
-    val tableRow = style(padding :=! "0.8rem",
-      &.hover(backgroundColor :=! "rgba(244, 244, 244, 0.77)"),
-      media.maxWidth(740 px)(boxShadow := "0 1px 3px grey", margin(5 px)))
-
-    val tableHeader = style(fontWeight.bold, borderBottom :=! "1px solid #e0e0e0", tableRow)
-
-    val settingsBar = style(display.flex, margin :=! "15px 0", justifyContent.spaceBetween)
-
-    val sortIcon = styleF.bool(
-      ascending =>
-        styleS(
-          &.after(fontSize(9 px), marginLeft(5 px),
-            if (ascending) {
-              content := "'\\25B2'"
-            } else {
-              content := "'\\25BC'"
-            }
-          )
-        )
-    )
-  }
-
-  object DefaultStyle extends Style
+  val DefaultStyle = new ReactTableStyle()
 
   type CellRenderer[T] = T => VdomNode
 
@@ -127,7 +92,7 @@ case class ReactTable[T](
     // The default number of rows per page (only relevant if paging is enabled)
     rowsPerPage: Int = 5,
     // The table style
-    style: ReactTable.Style = ReactTable.DefaultStyle,
+    style: ReactTableStyle = ReactTable.DefaultStyle,
     // Whether search is enabled in the table
     enableSearch: Boolean = true,
     // Whether rows can be selected in the table
@@ -175,16 +140,13 @@ case class ReactTable[T](
 
     def sort(ordering: Ordering[T], columnIndex: Int): Callback =
       t.modState { state =>
-        println(s"Current sort state : ${state.sortedState}")
         val rows = state.filteredData
         state.sortedState.get(columnIndex) match {
           case Some(ASC) =>
-            println(s"New sort is (${columnIndex}-$DSC)")
             state.copy(filteredData = rows.sorted(ordering.reverse),
               sortedState = Map(columnIndex -> DSC),
               offset = 0)
           case _ =>
-            println(s"New sort is (${columnIndex}-$ASC)")
             state.copy(filteredData = rows.sorted(ordering),
               sortedState = Map(columnIndex -> ASC),
               offset = 0)
@@ -298,7 +260,7 @@ case class ReactTable[T](
     configs: List[ColumnConfig[T]],
     paging: Boolean,
     rowsPerPage: Int,
-    style: Style,
+    style: ReactTableStyle,
     enableSearch: Boolean,
     selectable : Boolean,
     multiSelectable : Boolean,

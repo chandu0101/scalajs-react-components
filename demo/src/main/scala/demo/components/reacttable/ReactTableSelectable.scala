@@ -4,8 +4,10 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.reacttable.ReactTable
 import demo.components.CodeExample
 import demo.util.{Person, SampleData}
-import japgolly.scalajs.react.{BackendScope, ScalaComponent}
+import japgolly.scalajs.react.{BackendScope, Callback, ScalaComponent}
 import japgolly.scalajs.react.vdom.html_<^._
+
+import scala.collection.SortedSet
 
 object ReactTableSelectable {
 
@@ -21,6 +23,10 @@ object ReactTableSelectable {
       ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email))(DefaultOrdering(_.email)),
       SimpleStringConfig[Person](name = "Country", _.country))
 
+    val selectionChanged : Set[(Person, Int)] => Callback = { selection =>
+      Callback.info(s"Current selection is ${selection.mkString}")
+    }
+
     def render =
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Table with selections"),
@@ -31,7 +37,8 @@ object ReactTableSelectable {
             rowsPerPage = 6,
             selectable = true,
             multiSelectable = true,
-            allSelectable = true
+            allSelectable = true,
+            onSelectionChanged = selectionChanged
           )()))
   }
 

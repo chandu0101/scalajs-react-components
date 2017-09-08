@@ -107,7 +107,7 @@ case class ReactTable[T](
     onRowClick: (Int) => Callback = { _ =>
       Callback {}
     },
-    onSelectionChanged: (Seq[Int]) => Callback = { _ =>
+    onSelectionChanged: Set[(T, Int)] => Callback = { _ : Set[(T, Int)] =>
       Callback {}
     },
     searchStringRetriever: T => String = { t: T =>
@@ -178,14 +178,23 @@ case class ReactTable[T](
       }
     }
 
-    def singleSelect(index: Int) : Callback = {
+    def singleSelect(currentState: SortedSet[Int], index: Int) : Callback = {
+
+      if (currentState.contains(index)) {
+        changeSelection(currentState - index)
+      } else {
+        changeSelection(currentState + index)
+      }
+    }
+
+    def changeSelection(newSelected : SortedSet[Int]) : Callback = {
       t.modState { state =>
 
-        if (state.selectedState.contains(index)) {
-          state.copy(selectedState = state.selectedState - index)
-        } else {
-          state.copy(selectedState = state.selectedState + index)
-        }
+        onSelectionChanged(
+          newSelected.map(state.indexedData).toSet
+        ).runNow()
+
+        state.copy(selectedState = newSelected)
       }
     }
 
@@ -246,7 +255,7 @@ case class ReactTable[T](
           <.input(
             ^.`type` := "checkbox",
             ^.checked := state.selectedState.contains(index),
-            ^.onChange --> singleSelect(index)
+            ^.onChange --> singleSelect(state.selectedState, index)
           ).when(props.selectable),
           props.configs.map(config =>
             <.td(

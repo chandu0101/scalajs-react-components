@@ -15,7 +15,7 @@ object ReactTableSelectable {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]) {
+  case class Backend(b : BackendScope[_, _]) {
     import ReactTable._
     val configs = List(
       ColumnConfig[Person](name = "First Name", _.fname)(DefaultOrdering(_.fname)),
@@ -27,7 +27,8 @@ object ReactTableSelectable {
       Callback.info(s"Current selection is ${selection.mkString}")
     }
 
-    def render =
+    def render = {
+
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Table with selections"),
         CodeExample(code, "ReactTableSelectable")(
@@ -39,7 +40,10 @@ object ReactTableSelectable {
             multiSelectable = true,
             allSelectable = true,
             onSelectionChanged = selectionChanged
-          )()))
+          )()
+        )
+      )
+    }
   }
 
   val component = ScalaComponent

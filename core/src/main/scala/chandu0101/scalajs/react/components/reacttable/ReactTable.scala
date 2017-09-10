@@ -2,6 +2,7 @@ package chandu0101.scalajs.react.components.reacttable
 
 import chandu0101.scalajs.react.components._
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.extra.components.TriStateCheckbox
 import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.ProdDefaults._
@@ -121,15 +122,29 @@ case class ReactTable[T](
     filterText: String,
     offset: Int,
     rowsPerPage: Int,
-    indexedData: Seq[(T, Int)],
     sortedState: Map[Int, SortDirection],
     selectedState: SortedSet[Int]
   )
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def onTextChange(props: Props)(value: String): Callback =
-      t.modState(_.copy(filterText = value, offset = 0))
+    def onTextChange(props: Props)(value: String): Callback = {
+      t.modState{state =>
+
+        val filtered = getFilteredData(props, value)
+        val newSelected = state.selectedState & filtered.map(_._2).toSet
+
+        if (newSelected.size != state.selectedState.size) {
+          onSelectionChanged(newSelected.map(props.data).toSet).runNow()
+        }
+
+        state.copy(
+          filterText = value,
+          offset = 0,
+          selectedState = newSelected
+        )
+      }
+    }
 
     def onPreviousClick: Callback =
       t.modState(s => s.copy(offset = s.offset - s.rowsPerPage))
@@ -137,15 +152,17 @@ case class ReactTable[T](
     def onNextClick: Callback =
       t.modState(s => s.copy(offset = s.offset + s.rowsPerPage))
 
-    def getFilteredAndSortedData(s: State): Seq[(T, Int)] = {
+    def getFilteredData(p: Props, filterText: String) : Seq[(T, Int)] = if (filterText.isEmpty) {
+      p.data
+    } else {
+      p.data.filter(entry =>
+        searchStringRetriever(entry._1).toLowerCase.contains(filterText.toLowerCase)
+      )
+    }
 
-      val rows = if (s.filterText.isEmpty) {
-        s.indexedData
-      } else {
-        s.indexedData.filter(entry =>
-          searchStringRetriever(entry._1).toLowerCase.contains(s.filterText.toLowerCase)
-        )
-      }
+    def getFilteredAndSortedData(p: Props, s: State): Seq[(T, Int)] = {
+
+      val rows = getFilteredData(p, s.filterText)
 
       if (s.sortedState.isEmpty)
         rows
@@ -160,38 +177,11 @@ case class ReactTable[T](
       }
     }
 
-    def sort(ordering: Ordering[T], columnIndex: Int): Callback = {
-
-      t.modState { state =>
-        state.sortedState.get(columnIndex) match {
-          case Some(ASC) =>
-            state.copy(
-              sortedState = Map(columnIndex -> DSC),
-              offset = 0
-            )
-          case _ =>
-            state.copy(
-              sortedState = Map(columnIndex -> ASC),
-              offset = 0
-            )
-        }
-      }
-    }
-
-    def singleSelect(currentState: SortedSet[Int], index: Int) : Callback = {
-
-      if (currentState.contains(index)) {
-        changeSelection(currentState - index)
-      } else {
-        changeSelection(currentState + index)
-      }
-    }
-
-    def changeSelection(newSelected : SortedSet[Int]) : Callback = {
+    def changeSelection(p: Props, newSelected : SortedSet[Int]) : Callback = {
       t.modState { state =>
 
         onSelectionChanged(
-          newSelected.map(state.indexedData).toSet
+          newSelected.map(p.data).toSet
         ).runNow()
 
         state.copy(selectedState = newSelected)
@@ -202,6 +192,37 @@ case class ReactTable[T](
       t.modState(_.copy(rowsPerPage = value.toInt))
 
     def render(props: Props, state: State): VdomElement = {
+
+      def sort(ordering: Ordering[T], columnIndex: Int): Callback = {
+
+        t.modState { state =>
+          state.sortedState.get(columnIndex) match {
+            case Some(ASC) =>
+              state.copy(
+                sortedState = Map(columnIndex -> DSC),
+                offset = 0
+              )
+            case _ =>
+              state.copy(
+                sortedState = Map(columnIndex -> ASC),
+                offset = 0
+              )
+          }
+        }
+      }
+
+      def singleSelect(currentState: SortedSet[Int], index: Int) : Callback = {
+
+        if (props.multiSelectable) {
+          if (currentState.contains(index)) {
+            changeSelection(props, currentState - index)
+          } else {
+            changeSelection(props, currentState + index)
+          }
+        } else {
+          changeSelection(props, SortedSet(index))
+        }
+      }
 
       // Define how to render the settings bar configuring the rows per page
       def settingsBar(total : Int) = {
@@ -216,11 +237,37 @@ case class ReactTable[T](
             .toList
             .map(_.toString)
         }
-        <.div(props.style.settingsBar)(<.div(<.strong("Total: " + state.indexedData.size)),
+        <.div(props.style.settingsBar)(<.div(<.strong("Total: " + props.data.size)),
           DefaultSelect(label = "Page Size: ",
             options = options,
             value = value,
             onChange = onPageSizeChange))
+      }
+
+      def allCheckbox = {
+
+        val triState = state.selectedState.size match {
+          case 0 => TriStateCheckbox.Unchecked
+          case n if n < state.selectedState.size => TriStateCheckbox.Indeterminate
+          case _ => TriStateCheckbox.Checked
+        }
+
+        def setNextState: Callback = t.modState { state =>
+
+          val newSelection : SortedSet[Int] = triState.nextDeterminate match {
+            case TriStateCheckbox.Checked => SortedSet(getFilteredData(props, state.filterText).map(_._2):_*)
+            case TriStateCheckbox.Unchecked => SortedSet.empty
+          }
+
+          onSelectionChanged(newSelection.map(props.data).toSet).runNow()
+          state.copy(selectedState = newSelection)
+        }
+
+        val comp = TriStateCheckbox.Props(triState, setNextState)
+
+
+        comp.render
+
       }
 
       // Define how to render the table header
@@ -229,7 +276,9 @@ case class ReactTable[T](
           props.style.tableHeader,
           <.th(
             ^.textAlign := "left",
-            <.input(^.`type` := "checkbox").when(props.selectable && props.allSelectable)
+            allCheckbox.when(
+              props.selectable && props.multiSelectable && props.allSelectable
+            )
           ).when(props.selectable),
           props.configs.zipWithIndex.map {
             case (config, columnIndex) =>
@@ -253,7 +302,8 @@ case class ReactTable[T](
         <.tr(
           props.style.tableRow,
           <.input(
-            ^.`type` := "checkbox",
+            (^.`type` := "checkbox").when(props.multiSelectable),
+            (^.`type` := "radio").unless(props.multiSelectable),
             ^.checked := state.selectedState.contains(index),
             ^.onChange --> singleSelect(state.selectedState, index)
           ).when(props.selectable),
@@ -266,7 +316,7 @@ case class ReactTable[T](
           ).toTagMod
         )
 
-      val rows = getFilteredAndSortedData(state)
+      val rows : Seq[(T, Int)] = getFilteredAndSortedData(props, state)
 
       val tableRows = rows
         .slice(state.offset, state.offset + state.rowsPerPage)
@@ -306,10 +356,9 @@ case class ReactTable[T](
       filterText = "",
       offset = 0,
       rowsPerPage = if (props.paging) props.rowsPerPage else props.data.size,
-      indexedData = props.data,
       sortedState = Map.empty,
-      selectedState = SortedSet.empty)
-    )
+      selectedState = SortedSet.empty
+    ))
     .renderBackend[Backend]
     .componentWillReceiveProps(e =>
       Callback.when(e.currentProps.data != e.nextProps.data)(

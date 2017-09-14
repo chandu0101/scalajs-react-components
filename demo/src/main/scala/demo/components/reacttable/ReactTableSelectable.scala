@@ -42,7 +42,8 @@ object ReactTableSelectable {
             multiSelectable = true,
             allSelectable = true,
             onSelectionChanged = selectionChanged,
-            keyStringRetriever = personKey
+            keyStringRetriever = personKey,
+            initialSelection = Seq("1", "7")
           )()
         )
       )

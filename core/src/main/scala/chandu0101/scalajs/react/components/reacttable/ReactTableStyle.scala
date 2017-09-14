@@ -19,6 +19,7 @@ class ReactTableStyle extends StyleSheet.Inline {
   val tableRow = style(
     display.flex,
     flexDirection.row,
+    verticalAlign.middle,
     padding :=! "0.8rem",
     &.hover(backgroundColor :=! "rgba(244, 244, 244, 0.77)"),
     media.maxWidth(740 px)(boxShadow := "0 1px 3px grey", margin(5 px))
@@ -39,6 +40,10 @@ class ReactTableStyle extends StyleSheet.Inline {
     display.flex,
     margin :=! "15px 0",
     justifyContent.spaceBetween
+  )
+
+  val selectColumn = style(
+    width(2.rem)
   )
 
   val sortIcon = styleF.bool(

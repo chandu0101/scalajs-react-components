@@ -103,6 +103,8 @@ case class ReactTable[T](
   allSelectable : Boolean = true,
   // The searchbox style
   searchBoxStyle: ReactSearchBox.Style = ReactSearchBox.DefaultStyle,
+  // an initial selection
+  initialSelection : Seq[String] = Seq.empty,
   // This is a call back that will be called when an individual row is clicked
   onRowClick: (Int) => Callback = { _ =>
     Callback {}
@@ -132,6 +134,7 @@ case class ReactTable[T](
 
   class Backend(t: BackendScope[TableProps, TableState]) {
 
+    // handler to react on chenges in the search field
     def onTextChange(props: TableProps)(value: String): Callback = {
       t.modState{state =>
 
@@ -158,6 +161,7 @@ case class ReactTable[T](
     def onNextClick: Callback =
       t.modState(s => s.copy(offset = s.offset + s.rowsPerPage))
 
+    // get the data filtered using the text in the search field
     def getFilteredData(p: TableProps, filterText: String) : Seq[(T, String)] = if (filterText.isEmpty) {
       p.data
     } else {
@@ -166,8 +170,10 @@ case class ReactTable[T](
       )
     }
 
+    // get a single data item using the unique key
     def data(p: TableProps, key: String) : Option[T] = p.data.find(_._2 == key).map(_._1)
 
+    // apply the surrent sort state to the filtered data
     def getFilteredAndSortedData(p: TableProps, s: TableState): Seq[(T, String)] = {
 
       val rows = getFilteredData(p, s.filterText)
@@ -185,58 +191,56 @@ case class ReactTable[T](
       }
     }
 
-    def changeSelection(p: TableProps, newSelected : Set[(T, String)]) : Callback = {
-      t.modState { state =>
-
-        onSelectionChanged(
-          newSelected
-        ).runNow()
-
-        state.copy(selectedState = newSelected)
-      }
-    }
-
+    // handle a page size change
     def onPageSizeChange(value: String): Callback =
       t.modState(_.copy(rowsPerPage = value.toInt))
 
+    // apply a new sort to a given column
+    val toggleSort = { (index: Int, dir : SortDirection) =>
+      t.modState { state => state.copy(sortedState = Map(index -> dir), offset = 0) }
+    }
+
+    val toggleSingleSelect = { (data : T, key : String) =>
+
+      t.modState { state =>
+
+        val item = Set((data, key))
+
+        val newSelection = if (multiSelectable) {
+          state.selectedState.find(_._2 == key) match {
+            case None => state.selectedState ++ item
+            case Some(_) => state.selectedState -- item
+          }
+        } else item
+
+        onSelectionChanged(newSelection).runNow()
+        state.copy(selectedState = newSelection)
+      }
+    }
+
+    def toggleSelectAll(p: TableProps)(selected : Boolean) : Callback =
+      t.modState { state =>
+
+        val newSelection : Set[(T, String)] = if (selected) {
+          getFilteredData(p, state.filterText).toSet
+        } else {
+          Set.empty
+        }
+
+        onSelectionChanged(newSelection).runNow()
+        state.copy(selectedState = newSelection)
+      }
+
+    // define how we render the table
     def render(props: TableProps, state: TableState): VdomElement = {
 
-      def sort(ordering: Ordering[T], columnIndex: Int): Callback = {
-
-        t.modState { state =>
-          state.sortedState.get(columnIndex) match {
-            case Some(ASC) =>
-              state.copy(
-                sortedState = Map(columnIndex -> DSC),
-                offset = 0
-              )
-            case _ =>
-              state.copy(
-                sortedState = Map(columnIndex -> ASC),
-                offset = 0
-              )
-          }
-        }
-      }
-
-      def singleSelect(p: TableProps, state: TableState, key : String) : Callback = {
-
-        val item = data(p, key).map((_, key)).toSet
-
-        if (props.multiSelectable) {
-          state.sortedState.find(_._2 == key) match {
-            case None =>
-              changeSelection(p, state.selectedState ++ item)
-            case Some(d) =>
-              changeSelection(p, state.selectedState.filter(_._2 != key))
-          }
-        } else {
-          changeSelection(props, item)
-        }
-      }
+      val rows = getFilteredAndSortedData(props, state)
 
       // Define how to render the settings bar configuring the rows per page
-      def settingsBar(total : Int) = {
+      val settingsBar = {
+
+        val total = rows.size
+
         var value = ""
         var options: List[String] = Nil
 
@@ -257,38 +261,40 @@ case class ReactTable[T](
         )
       }
 
+
       // Define how to render the table header
       val renderHeader: TagMod = {
 
         val triState = state.selectedState.size match {
           case 0 => TriStateCheckbox.Unchecked
-          case n if n < state.selectedState.size => TriStateCheckbox.Indeterminate
+          case n if n < rows.size => TriStateCheckbox.Indeterminate
           case _ => TriStateCheckbox.Checked
         }
 
         ReactTableHeader[T](
           configs = configs,
-          allSelectable = props.allSelectable,
+          allSelectable = props.selectable && props.multiSelectable && props.allSelectable,
           allSelected =  triState,
           style = style,
-          sortedState = state.sortedState
+          sortedState = state.sortedState,
+          onToggleSort = toggleSort,
+          onToggleSelectAll = toggleSelectAll(props)
         )()
       }
 
       // Define how to render the individual rows
-
-      val rows = getFilteredAndSortedData(props, state)
 
       val tableRows = {
 
         def renderRow(model: T, key: String): TagMod = {
           ReactTableRow(
             configs = configs,
-            data = model,
+            data = (model, key),
             selectable = props.selectable,
             multiSelectable = props.multiSelectable,
             selected = state.selectedState.map(_._2).contains(key),
-            style = props.style
+            style = props.style,
+            onSingleSelect = toggleSingleSelect
           )()
         }
 
@@ -303,7 +309,7 @@ case class ReactTable[T](
         ReactSearchBox(
           onTextChange = onTextChange(props) _, style = props.searchBoxStyle
         ).when(props.enableSearch),
-        settingsBar(rows.size).when(props.paging),
+        settingsBar.when(props.paging),
         <.div(
           props.style.table,
           renderHeader,
@@ -327,7 +333,15 @@ case class ReactTable[T](
       offset = 0,
       rowsPerPage = if (props.paging) props.rowsPerPage else props.data.size,
       sortedState = Map.empty,
-      selectedState = Set.empty
+      selectedState = if (initialSelection.isEmpty) {
+        Set.empty
+      } else {
+        if (props.multiSelectable) {
+          props.data.filter(item => initialSelection.contains(item._2)).toSet
+        } else {
+          props.data.filter(_._2 == initialSelection.head).toSet
+        }
+      }
     ))
     .renderBackend[Backend]
     .componentWillReceiveProps(e =>

@@ -83,35 +83,41 @@ object ReactTable {
  * how to display it, how to sort it, etc.
  */
 case class ReactTable[T](
-    // The table data to be displayed
-    data: Seq[T],
-    // The configuration of the table columns
-    configs: Seq[ReactTable.ColumnConfig[T]] = Seq.empty,
-    // Whether paging is enabled for the table, if false, all rows will be displayed with no pager
-    paging : Boolean = true,
-    // The default number of rows per page (only relevant if paging is enabled)
-    rowsPerPage: Int = 5,
-    // The table style
-    style: ReactTableStyle = ReactTable.DefaultStyle,
-    // Whether search is enabled in the table
-    enableSearch: Boolean = true,
-    // Whether rows can be selected in the table
-    selectable: Boolean = false,
-    // Whether multiple rows can be selected (only relevant if selectable is true)
-    multiSelectable : Boolean = true,
-    // Whether a select all box shall be displayed (only relevant if selectable and multiSelectable is true)
-    allSelectable : Boolean = true,
-    // The searchbox style
-    searchBoxStyle: ReactSearchBox.Style = ReactSearchBox.DefaultStyle,
-    onRowClick: (Int) => Callback = { _ =>
-      Callback {}
-    },
-    onSelectionChanged: Set[(T, Int)] => Callback = { _ : Set[(T, Int)] =>
-      Callback {}
-    },
-    searchStringRetriever: T => String = { t: T =>
-      t.toString
-    }) {
+  // The table data to be displayed
+  data: Seq[T],
+  // The configuration of the table columns
+  configs: Seq[ReactTable.ColumnConfig[T]] = Seq.empty,
+  // Whether paging is enabled for the table, if false, all rows will be displayed with no pager
+  paging : Boolean = true,
+  // The default number of rows per page (only relevant if paging is enabled)
+  rowsPerPage: Int = 5,
+  // The table style
+  style: ReactTableStyle = ReactTable.DefaultStyle,
+  // Whether search is enabled in the table
+  enableSearch: Boolean = true,
+  // Whether rows can be selected in the table
+  selectable: Boolean = false,
+  // Whether multiple rows can be selected (only relevant if selectable is true)
+  multiSelectable : Boolean = true,
+  // Whether a select all box shall be displayed (only relevant if selectable and multiSelectable is true)
+  allSelectable : Boolean = true,
+  // The searchbox style
+  searchBoxStyle: ReactSearchBox.Style = ReactSearchBox.DefaultStyle,
+  // This is a call back that will be called when an individual row is clicked
+  onRowClick: (Int) => Callback = { _ =>
+    Callback {}
+  },
+  // This callback will be called whenever the set of selected rows has changed
+  onSelectionChanged: Set[(T, String)] => Callback = { _ : Set[(T, String)] =>
+    Callback {}
+  },
+  // With this function the fields contributing to the search String can be customised
+  searchStringRetriever: T => String = { t: T =>
+    t.toString
+  },
+  // The key string retriever should return a unique String for each row of data.
+  keyStringRetriever: T => String = { t: T => t.toString() }
+) {
 
   import ReactTable._
   import SortDirection._
@@ -121,7 +127,7 @@ case class ReactTable[T](
     offset: Int,
     rowsPerPage: Int,
     sortedState: Map[Int, SortDirection],
-    selectedState: SortedSet[Int]
+    selectedState: Set[(T, String)]
   )
 
   class Backend(t: BackendScope[TableProps, TableState]) {
@@ -130,10 +136,10 @@ case class ReactTable[T](
       t.modState{state =>
 
         val filtered = getFilteredData(props, value)
-        val newSelected = state.selectedState & filtered.map(_._2).toSet
+        val newSelected = state.selectedState & filtered.toSet
 
         if (newSelected.size != state.selectedState.size) {
-          onSelectionChanged(newSelected.map(props.data).toSet).runNow()
+          onSelectionChanged(newSelected).runNow()
         }
 
         state.copy(
@@ -144,13 +150,15 @@ case class ReactTable[T](
       }
     }
 
+    // Turn to the previous page of table data
     def onPreviousClick: Callback =
       t.modState(s => s.copy(offset = s.offset - s.rowsPerPage))
 
+    // Turn to the next page of table data
     def onNextClick: Callback =
       t.modState(s => s.copy(offset = s.offset + s.rowsPerPage))
 
-    def getFilteredData(p: TableProps, filterText: String) : Seq[(T, Int)] = if (filterText.isEmpty) {
+    def getFilteredData(p: TableProps, filterText: String) : Seq[(T, String)] = if (filterText.isEmpty) {
       p.data
     } else {
       p.data.filter(entry =>
@@ -158,7 +166,9 @@ case class ReactTable[T](
       )
     }
 
-    def getFilteredAndSortedData(p: TableProps, s: TableState): Seq[(T, Int)] = {
+    def data(p: TableProps, key: String) : Option[T] = p.data.find(_._2 == key).map(_._1)
+
+    def getFilteredAndSortedData(p: TableProps, s: TableState): Seq[(T, String)] = {
 
       val rows = getFilteredData(p, s.filterText)
 
@@ -166,7 +176,7 @@ case class ReactTable[T](
         rows
       else {
         val cfg = configs(s.sortedState.head._1)
-        val order: Ordering[(T, Int)] = cfg.ordering.on(_._1)
+        val order: Ordering[(T, String)] = cfg.ordering.on(_._1)
 
         s.sortedState.head._2 match {
           case ASC => rows.sorted(order)
@@ -175,11 +185,11 @@ case class ReactTable[T](
       }
     }
 
-    def changeSelection(p: TableProps, newSelected : SortedSet[Int]) : Callback = {
+    def changeSelection(p: TableProps, newSelected : Set[(T, String)]) : Callback = {
       t.modState { state =>
 
         onSelectionChanged(
-          newSelected.map(p.data).toSet
+          newSelected
         ).runNow()
 
         state.copy(selectedState = newSelected)
@@ -209,16 +219,19 @@ case class ReactTable[T](
         }
       }
 
-      def singleSelect(currentState: SortedSet[Int], index: Int) : Callback = {
+      def singleSelect(p: TableProps, state: TableState, key : String) : Callback = {
+
+        val item = data(p, key).map((_, key)).toSet
 
         if (props.multiSelectable) {
-          if (currentState.contains(index)) {
-            changeSelection(props, currentState - index)
-          } else {
-            changeSelection(props, currentState + index)
+          state.sortedState.find(_._2 == key) match {
+            case None =>
+              changeSelection(p, state.selectedState ++ item)
+            case Some(d) =>
+              changeSelection(p, state.selectedState.filter(_._2 != key))
           }
         } else {
-          changeSelection(props, SortedSet(index))
+          changeSelection(props, item)
         }
       }
 
@@ -235,41 +248,17 @@ case class ReactTable[T](
             .toList
             .map(_.toString)
         }
-        <.div(props.style.settingsBar)(<.div(<.strong("Total: " + props.data.size)),
+        <.div(props.style.settingsBar)(
+          <.div(<.strong("Total: " + props.data.size)),
           DefaultSelect(label = "Page Size: ",
             options = options,
             value = value,
-            onChange = onPageSizeChange))
-      }
-
-      def allCheckbox = {
-
-        val triState = state.selectedState.size match {
-          case 0 => TriStateCheckbox.Unchecked
-          case n if n < state.selectedState.size => TriStateCheckbox.Indeterminate
-          case _ => TriStateCheckbox.Checked
-        }
-
-        def setNextState: Callback = t.modState { state =>
-
-          val newSelection : SortedSet[Int] = triState.nextDeterminate match {
-            case TriStateCheckbox.Checked => SortedSet(getFilteredData(props, state.filterText).map(_._2):_*)
-            case TriStateCheckbox.Unchecked => SortedSet.empty
-          }
-
-          onSelectionChanged(newSelection.map(props.data).toSet).runNow()
-          state.copy(selectedState = newSelection)
-        }
-
-        val comp = TriStateCheckbox.Props(triState, setNextState)
-
-
-        comp.render
-
+            onChange = onPageSizeChange)
+        )
       }
 
       // Define how to render the table header
-      def renderHeader: TagMod = {
+      val renderHeader: TagMod = {
 
         val triState = state.selectedState.size match {
           case 0 => TriStateCheckbox.Unchecked
@@ -292,13 +281,13 @@ case class ReactTable[T](
 
       val tableRows = {
 
-        def renderRow(model: T, index: Int): TagMod = {
+        def renderRow(model: T, key: String): TagMod = {
           ReactTableRow(
             configs = configs,
             data = model,
             selectable = props.selectable,
             multiSelectable = props.multiSelectable,
-            selected = state.selectedState.contains(index),
+            selected = state.selectedState.map(_._2).contains(key),
             style = props.style
           )()
         }
@@ -317,8 +306,7 @@ case class ReactTable[T](
         settingsBar(rows.size).when(props.paging),
         <.div(
           props.style.table,
-          ^.width := "100%",
-          renderHeader(),
+          renderHeader,
           tableRows
         ),
         Pager(
@@ -339,7 +327,7 @@ case class ReactTable[T](
       offset = 0,
       rowsPerPage = if (props.paging) props.rowsPerPage else props.data.size,
       sortedState = Map.empty,
-      selectedState = SortedSet.empty
+      selectedState = Set.empty
     ))
     .renderBackend[Backend]
     .componentWillReceiveProps(e =>
@@ -348,7 +336,7 @@ case class ReactTable[T](
     .build
 
   case class TableProps(
-    data: Seq[(T, Int)],
+    data: Seq[(T, String)],
     configs: Seq[ColumnConfig[T]],
     paging: Boolean,
     rowsPerPage: Int,
@@ -359,11 +347,12 @@ case class ReactTable[T](
     allSelectable: Boolean,
     searchBoxStyle: ReactSearchBox.Style,
     onRowClick : Int => Callback,
-    searchStringRetriever : T => String
+    searchStringRetriever : T => String,
+    keyStringRetriever : T => String
   )
 
     def apply() = component(TableProps(
-      data = data.zipWithIndex,
+      data = data.map( d => (d, keyStringRetriever(d)) ),
       configs = configs,
       paging = paging,
       rowsPerPage = rowsPerPage,
@@ -374,6 +363,7 @@ case class ReactTable[T](
       allSelectable = allSelectable,
       searchBoxStyle = searchBoxStyle,
       onRowClick = onRowClick,
-      searchStringRetriever = searchStringRetriever
+      searchStringRetriever = searchStringRetriever,
+      keyStringRetriever = keyStringRetriever
     ))
 }

@@ -23,9 +23,11 @@ object ReactTableSelectable {
       ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email))(DefaultOrdering(_.email)),
       SimpleStringConfig[Person](name = "Country", _.country))
 
-    val selectionChanged : Set[(Person, Int)] => Callback = { selection =>
+    val selectionChanged : Set[(Person, String)] => Callback = { selection =>
       Callback.info(s"Current selection is ${selection.mkString}")
     }
+
+    val personKey : Person => String = p => s"${p._id}"
 
     def render = {
 
@@ -33,13 +35,14 @@ object ReactTableSelectable {
         <.h2(^.cls := "mui-font-style-headline")("Table with selections"),
         CodeExample(code, "ReactTableSelectable")(
           ReactTable(
-            data = SampleData.people,
+            data = SampleData.peopleWithAge,
             configs = configs,
             rowsPerPage = 6,
             selectable = true,
             multiSelectable = true,
             allSelectable = true,
-            onSelectionChanged = selectionChanged
+            onSelectionChanged = selectionChanged,
+            keyStringRetriever = personKey
           )()
         )
       )

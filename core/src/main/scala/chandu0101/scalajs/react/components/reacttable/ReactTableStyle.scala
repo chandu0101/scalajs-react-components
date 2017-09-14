@@ -12,6 +12,7 @@ class ReactTableStyle extends StyleSheet.Inline {
   val table = style(
     display.flex,
     flexDirection.column,
+    width(100.%%),
     boxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)",
     media.maxWidth(740 px)(boxShadow := "none"))
 

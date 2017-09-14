@@ -55,23 +55,6 @@ case class ReactTableRow[T](
           )
         }.toTagMod
       )
-//      <.tr(
-//        props.style.tableRow,
-//        <.input(
-//          (^.`type` := "checkbox").when(props.multiSelectable),
-//          (^.`type` := "radio").unless(props.multiSelectable),
-//          ^.checked := state.selectedState.contains(index),
-//          ^.onChange --> singleSelect(state.selectedState, index)
-//        ).when(props.selectable),
-//        props.configs.map(config =>
-//          <.td(
-//            ^.whiteSpace.nowrap.when(config.nowrap),
-//            ^.verticalAlign.middle,
-//            config.cellRenderer(model)
-//          )
-//        ).toTagMod
-//      )
-
     }
   }
 

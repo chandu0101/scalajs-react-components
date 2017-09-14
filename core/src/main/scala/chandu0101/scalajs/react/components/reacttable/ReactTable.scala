@@ -17,10 +17,6 @@ object ReactTable {
   /**
    * The direction of the sort
    */
-  object SortDirection extends Enumeration {
-    type SortDirection = Value
-    val ASC, DSC = Value
-  }
   /*
    * Pass this to the ColumnConfig to sort using an ordering
    */
@@ -49,10 +45,12 @@ object ReactTable {
   def DefaultCellRenderer[T]: CellRenderer[T] = { model =>
     <.span(model.toString)
   }
+
   def EmailRenderer[T](fn: T => String): CellRenderer[T] = { t =>
     val str = fn(t)
     <.a(^.whiteSpace.nowrap, ^.href := s"mailto:${str}", str)
   }
+
   def OptionRenderer[T, B](defaultValue: VdomNode = "", bRenderer: CellRenderer[B])(fn: T => Option[B]): CellRenderer[T] =
     t => fn(t).fold(defaultValue)(bRenderer)
 
@@ -118,7 +116,7 @@ case class ReactTable[T](
   import ReactTable._
   import SortDirection._
 
-  case class State(
+  case class TableState(
     filterText: String,
     offset: Int,
     rowsPerPage: Int,
@@ -126,9 +124,9 @@ case class ReactTable[T](
     selectedState: SortedSet[Int]
   )
 
-  class Backend(t: BackendScope[Props, State]) {
+  class Backend(t: BackendScope[TableProps, TableState]) {
 
-    def onTextChange(props: Props)(value: String): Callback = {
+    def onTextChange(props: TableProps)(value: String): Callback = {
       t.modState{state =>
 
         val filtered = getFilteredData(props, value)
@@ -152,7 +150,7 @@ case class ReactTable[T](
     def onNextClick: Callback =
       t.modState(s => s.copy(offset = s.offset + s.rowsPerPage))
 
-    def getFilteredData(p: Props, filterText: String) : Seq[(T, Int)] = if (filterText.isEmpty) {
+    def getFilteredData(p: TableProps, filterText: String) : Seq[(T, Int)] = if (filterText.isEmpty) {
       p.data
     } else {
       p.data.filter(entry =>
@@ -160,7 +158,7 @@ case class ReactTable[T](
       )
     }
 
-    def getFilteredAndSortedData(p: Props, s: State): Seq[(T, Int)] = {
+    def getFilteredAndSortedData(p: TableProps, s: TableState): Seq[(T, Int)] = {
 
       val rows = getFilteredData(p, s.filterText)
 
@@ -177,7 +175,7 @@ case class ReactTable[T](
       }
     }
 
-    def changeSelection(p: Props, newSelected : SortedSet[Int]) : Callback = {
+    def changeSelection(p: TableProps, newSelected : SortedSet[Int]) : Callback = {
       t.modState { state =>
 
         onSelectionChanged(
@@ -191,7 +189,7 @@ case class ReactTable[T](
     def onPageSizeChange(value: String): Callback =
       t.modState(_.copy(rowsPerPage = value.toInt))
 
-    def render(props: Props, state: State): VdomElement = {
+    def render(props: TableProps, state: TableState): VdomElement = {
 
       def sort(ordering: Ordering[T], columnIndex: Int): Callback = {
 
@@ -271,69 +269,57 @@ case class ReactTable[T](
       }
 
       // Define how to render the table header
-      def renderHeader: TagMod =
-        <.tr(
-          props.style.tableHeader,
-          <.th(
-            ^.textAlign := "left",
-            allCheckbox.when(
-              props.selectable && props.multiSelectable && props.allSelectable
-            )
-          ).when(props.selectable),
-          props.configs.zipWithIndex.map {
-            case (config, columnIndex) =>
-              val cell = getHeaderDiv(config)
-              cell(
-                ^.textAlign := "left",
-                ^.cursor := "pointer",
-                ^.onClick --> sort(config.ordering, columnIndex),
-                config.name.capitalize,
-                props.style
-                  .sortIcon(
-                    state.sortedState.isDefinedAt(columnIndex) && state.sortedState(columnIndex) == ASC
-                  )
-                  .when(state.sortedState.isDefinedAt(columnIndex))
-              )
-          }.toTagMod
-        )
+      def renderHeader: TagMod = {
+
+        val triState = state.selectedState.size match {
+          case 0 => TriStateCheckbox.Unchecked
+          case n if n < state.selectedState.size => TriStateCheckbox.Indeterminate
+          case _ => TriStateCheckbox.Checked
+        }
+
+        ReactTableHeader[T](
+          configs = configs,
+          allSelectable = props.allSelectable,
+          allSelected =  triState,
+          style = style,
+          sortedState = state.sortedState
+        )()
+      }
 
       // Define how to render the individual rows
-      def renderRow(model: T, index: Int): TagMod =
-        <.tr(
-          props.style.tableRow,
-          <.input(
-            (^.`type` := "checkbox").when(props.multiSelectable),
-            (^.`type` := "radio").unless(props.multiSelectable),
-            ^.checked := state.selectedState.contains(index),
-            ^.onChange --> singleSelect(state.selectedState, index)
-          ).when(props.selectable),
-          props.configs.map(config =>
-            <.td(
-              ^.whiteSpace.nowrap.when(config.nowrap),
-              ^.verticalAlign.middle,
-              config.cellRenderer(model)
-            )
-          ).toTagMod
-        )
 
-      val rows : Seq[(T, Int)] = getFilteredAndSortedData(props, state)
+      val rows = getFilteredAndSortedData(props, state)
 
-      val tableRows = rows
-        .slice(state.offset, state.offset + state.rowsPerPage)
-        .map( entry => renderRow(entry._1, entry._2) )
-        .toTagMod
+      val tableRows = {
+
+        def renderRow(model: T, index: Int): TagMod = {
+          ReactTableRow(
+            configs = configs,
+            data = model,
+            selectable = props.selectable,
+            multiSelectable = props.multiSelectable,
+            selected = state.selectedState.contains(index),
+            style = props.style
+          )()
+        }
+
+        rows
+          .slice(state.offset, state.offset + state.rowsPerPage)
+          .map(entry => renderRow(entry._1, entry._2))
+          .toTagMod
+      }
 
       <.div(
         props.style.reactTableContainer,
-        ReactSearchBox(onTextChange = onTextChange(props) _, style = props.searchBoxStyle).when(props.enableSearch),
+        ReactSearchBox(
+          onTextChange = onTextChange(props) _, style = props.searchBoxStyle
+        ).when(props.enableSearch),
         settingsBar(rows.size).when(props.paging),
         <.div(
           props.style.table,
-          <.table(
-            ^.width := "100%",
-            <.thead(renderHeader()),
-            <.tbody(tableRows)
-          )
+          ^.width := "100%",
+          renderHeader(),
+          tableRows
         ),
         Pager(
           state.rowsPerPage,
@@ -346,13 +332,9 @@ case class ReactTable[T](
     }
   }
 
-  def getHeaderDiv(config: ColumnConfig[T]): TagMod = {
-    config.width.fold(<.th())(width => <.th(^.width := width))
-  }
-  
   val component = ScalaComponent
-    .builder[Props]("ReactTable")
-    .initialStateFromProps(props => State(
+    .builder[TableProps]("ReactTable")
+    .initialStateFromProps(props => TableState(
       filterText = "",
       offset = 0,
       rowsPerPage = if (props.paging) props.rowsPerPage else props.data.size,
@@ -365,7 +347,7 @@ case class ReactTable[T](
         e.backend.onTextChange(e.nextProps)(e.state.filterText)))
     .build
 
-  case class Props(
+  case class TableProps(
     data: Seq[(T, Int)],
     configs: Seq[ColumnConfig[T]],
     paging: Boolean,
@@ -380,7 +362,7 @@ case class ReactTable[T](
     searchStringRetriever : T => String
   )
 
-    def apply() = component(Props(
+    def apply() = component(TableProps(
       data = data.zipWithIndex,
       configs = configs,
       paging = paging,

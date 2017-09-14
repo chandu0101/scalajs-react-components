@@ -15,13 +15,30 @@ class ReactTableStyle extends StyleSheet.Inline {
     boxShadow := "0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24)",
     media.maxWidth(740 px)(boxShadow := "none"))
 
-  val tableRow = style(padding :=! "0.8rem",
+  val tableRow = style(
+    display.flex,
+    flexDirection.row,
+    padding :=! "0.8rem",
     &.hover(backgroundColor :=! "rgba(244, 244, 244, 0.77)"),
-    media.maxWidth(740 px)(boxShadow := "0 1px 3px grey", margin(5 px)))
+    media.maxWidth(740 px)(boxShadow := "0 1px 3px grey", margin(5 px))
+  )
 
-  val tableHeader = style(fontWeight.bold, borderBottom :=! "1px solid #e0e0e0", tableRow)
+  val tableRowSelected = style(
+    backgroundColor.lightgreen,
+    tableRow
+  )
 
-  val settingsBar = style(display.flex, margin :=! "15px 0", justifyContent.spaceBetween)
+  val tableHeader = style(
+    fontWeight.bold,
+    borderBottom :=! "1px solid #e0e0e0",
+    tableRow
+  )
+
+  val settingsBar = style(
+    display.flex,
+    margin :=! "15px 0",
+    justifyContent.spaceBetween
+  )
 
   val sortIcon = styleF.bool(
     ascending =>

@@ -23,7 +23,8 @@ object ReactTableInfo {
             <.li("Sorting"),
             <.li("Custom Styles"),
             <.li("Custom Custom Column Sizes"),
-            <.li("Custom Cell Factory")
+            <.li("Custom Cell Factory"),
+            <.li("Flexible Selection Mode")
           )
         )
       )

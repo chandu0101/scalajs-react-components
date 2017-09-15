@@ -12,6 +12,7 @@ import chandu0101.scalajs.react.components.reacttable.SortDirection._
 
 case class ReactTableHeader[T](
   configs : Seq[ReactTable.ColumnConfig[T]],
+  selectable : Boolean,
   allSelectable : Boolean,
   style : ReactTableStyle,
   allSelected : TriStateCheckbox.State,
@@ -22,6 +23,7 @@ case class ReactTableHeader[T](
 
   case class HeaderProps(
     configs : Seq[ReactTable.ColumnConfig[T]],
+    selectable : Boolean,
     allSelectable : Boolean,
     style : ReactTableStyle,
     sortedState : Option[(Int, SortDirection)],
@@ -56,8 +58,8 @@ case class ReactTableHeader[T](
           TriStateCheckbox.Props(
             p.allSelected,
             onToggleSelectAll(p.allSelected.nextDeterminate == TriStateCheckbox.Checked)
-          ).render
-        ).when(p.allSelectable),
+          ).render.when(p.allSelectable)
+        ).when(p.selectable),
         p.configs.zipWithIndex.map { case (config, columnIndex) =>
           headerDiv(config)(
             ^.cursor := "pointer",
@@ -82,6 +84,7 @@ case class ReactTableHeader[T](
     HeaderProps(
       configs = configs,
       allSelectable = allSelectable,
+      selectable = selectable,
       allSelected = allSelected,
       style = style,
       sortedState = sortedState

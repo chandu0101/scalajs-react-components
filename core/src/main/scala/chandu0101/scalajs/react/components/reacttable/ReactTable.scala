@@ -273,6 +273,7 @@ case class ReactTable[T](
 
         ReactTableHeader[T](
           configs = configs,
+          selectable = props.selectable,
           allSelectable = props.selectable && props.multiSelectable && props.allSelectable,
           allSelected =  triState,
           style = style,

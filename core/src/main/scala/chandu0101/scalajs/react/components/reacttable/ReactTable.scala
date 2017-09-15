@@ -128,7 +128,7 @@ case class ReactTable[T](
     filterText: String,
     offset: Int,
     rowsPerPage: Int,
-    sortedState: Map[Int, SortDirection],
+    sortedState: Option[(Int, SortDirection)],
     selectedState: Set[(T, String)]
   )
 
@@ -197,7 +197,7 @@ case class ReactTable[T](
 
     // apply a new sort to a given column
     val toggleSort = { (index: Int, dir : SortDirection) =>
-      t.modState { state => state.copy(sortedState = Map(index -> dir), offset = 0) }
+      t.modState { state => state.copy(sortedState = Some((index, dir)), offset = 0) }
     }
 
     val toggleSingleSelect = { (data : T, key : String) =>
@@ -332,7 +332,7 @@ case class ReactTable[T](
       filterText = "",
       offset = 0,
       rowsPerPage = if (props.paging) props.rowsPerPage else props.data.size,
-      sortedState = Map.empty,
+      sortedState = None,
       selectedState = if (initialSelection.isEmpty) {
         Set.empty
       } else {

@@ -15,7 +15,7 @@ case class ReactTableHeader[T](
   allSelectable : Boolean,
   style : ReactTableStyle,
   allSelected : TriStateCheckbox.State,
-  sortedState : Map[Int, SortDirection],
+  sortedState : Option[(Int, SortDirection)],
   onToggleSort : (Int, SortDirection) => Callback,
   onToggleSelectAll : Boolean => Callback
 ) {
@@ -24,7 +24,7 @@ case class ReactTableHeader[T](
     configs : Seq[ReactTable.ColumnConfig[T]],
     allSelectable : Boolean,
     style : ReactTableStyle,
-    sortedState : Map[Int, SortDirection],
+    sortedState : Option[(Int, SortDirection)],
     allSelected : TriStateCheckbox.State
   )
 
@@ -34,8 +34,8 @@ case class ReactTableHeader[T](
 
       val toggleSort : Int => Callback = { index : Int =>
 
-        val dir: SortDirection = p.sortedState.get(index) match {
-          case Some(ASC) => DSC
+        val dir: SortDirection = p.sortedState match {
+          case Some((i, ASC)) if i == index => DSC
           case _ => ASC
         }
 
@@ -64,9 +64,9 @@ case class ReactTableHeader[T](
             ^.onClick --> toggleSort(columnIndex),
             config.name.capitalize,
             p.style.sortIcon(
-              p.sortedState.isDefinedAt(columnIndex) && p.sortedState(columnIndex) == ASC
+              p.sortedState.isDefined && p.sortedState.get._1 == columnIndex && p.sortedState.get._2 == ASC
             )
-            .when(p.sortedState.isDefinedAt(columnIndex))
+            .when(p.sortedState.isDefined && p.sortedState.get._1 == columnIndex)
           )
         }.toTagMod
       )

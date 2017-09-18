@@ -18,7 +18,10 @@ object ReactTableBasic {
 
   val configs = List(SimpleStringConfig[Person](name = "First Name", _.fname),
     SimpleStringConfig[Person](name = "Last Name", _.lname),
-    ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email))(DefaultOrdering(_.email)),
+    ColumnConfig[Person](
+      name = "Email",
+      cellRenderer = person => <.a(^.href := s"mailto:${person.email}", person.email)
+    ),
     SimpleStringConfig[Person](name = "Country", _.country))
 
   case class Backend($: BackendScope[_, _]) {

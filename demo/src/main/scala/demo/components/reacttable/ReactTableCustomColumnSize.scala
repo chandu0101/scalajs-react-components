@@ -19,10 +19,12 @@ object ReactTableCustomColumnSize {
 
   case class Backend($: BackendScope[_, _]) {
 
-    val configs = List(SimpleStringConfig[Person](name = "First Name", _.fname),
+    val configs = List(
+      SimpleStringConfig[Person](name = "First Name", _.fname),
       SimpleStringConfig[Person](name = "Last Name", _.lname),
-      ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email))(DefaultOrdering(_.email)),
-      SimpleStringConfig[Person](name = "Country", _.country, width = Some("10%")))
+      ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email)),
+      SimpleStringConfig[Person](name = "Country", _.country, width = Some("10%"))
+    )
 
     def render =
       <.div(

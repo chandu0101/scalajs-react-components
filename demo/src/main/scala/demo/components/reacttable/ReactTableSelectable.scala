@@ -18,9 +18,9 @@ object ReactTableSelectable {
   case class Backend(b : BackendScope[_, _]) {
     import ReactTable._
     val configs = List(
-      ColumnConfig[Person](name = "First Name", _.fname)(DefaultOrdering(_.fname)),
+      SimpleStringConfig[Person](name = "First Name", _.fname),
       SimpleStringConfig[Person](name = "Last Name", _.lname),
-      ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email))(DefaultOrdering(_.email)),
+      ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email)),
       SimpleStringConfig[Person](name = "Country", _.country))
 
     val selectionChanged : Set[(Person, String)] => Callback = { selection =>

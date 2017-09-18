@@ -19,9 +19,10 @@ object ReactTableCustomCell {
   case class Backend($: BackendScope[_, _]) {
     import ReactTable._
     // let say if i want to turn all fnames to grey that starts with J (you can return any VdomElement(buttons,well another ReactTable if you want!)
-  val configs = List(ColumnConfig[Person](name = "First Name", customFname)(DefaultOrdering(_.fname)),
+  val configs = List(
+    OrderableColumnConfig[Person](name = "First Name", customFname)(DefaultOrdering(_.fname)),
     SimpleStringConfig[Person](name = "Last Name", _.lname),
-    ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email))(DefaultOrdering(_.email)),
+    ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email)),
     SimpleStringConfig[Person](name = "Country", _.country))
 
     def customFname: Person => VdomElement =

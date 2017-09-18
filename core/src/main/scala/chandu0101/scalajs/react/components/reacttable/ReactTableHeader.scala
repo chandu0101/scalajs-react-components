@@ -7,7 +7,6 @@ import japgolly.scalajs.react.extra.components.TriStateCheckbox
 import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
 import japgolly.scalajs.react.vdom.html_<^._
-
 import chandu0101.scalajs.react.components.reacttable.SortDirection._
 
 case class ReactTableHeader[T](
@@ -44,10 +43,23 @@ case class ReactTableHeader[T](
         onToggleSort(index, dir)
       }
 
-      def headerDiv(config : ReactTable.ColumnConfig[T]) : TagMod = {
-        config.width match {
+      def headerDiv(columnIndex : Int, config : ReactTable.ColumnConfig[T]) : TagMod = {
+
+        val hd = config.width match {
           case None => <.div(^.flex := "1" )
           case Some(w) => <.div(^.width := w)
+        }
+
+        config.ordering match {
+          case None => hd
+          case Some(_) => hd (
+            ^.cursor := "pointer",
+            ^.onClick --> toggleSort(columnIndex),
+            p.style.sortIcon(
+              p.sortedState.isDefined && p.sortedState.get._1 == columnIndex && p.sortedState.get._2 == ASC
+            )
+              .when(p.sortedState.isDefined && p.sortedState.get._1 == columnIndex)
+          )
         }
       }
 
@@ -61,14 +73,8 @@ case class ReactTableHeader[T](
           ).render.when(p.allSelectable)
         ).when(p.selectable),
         p.configs.zipWithIndex.map { case (config, columnIndex) =>
-          headerDiv(config)(
-            ^.cursor := "pointer",
-            ^.onClick --> toggleSort(columnIndex),
-            config.name.capitalize,
-            p.style.sortIcon(
-              p.sortedState.isDefined && p.sortedState.get._1 == columnIndex && p.sortedState.get._2 == ASC
-            )
-            .when(p.sortedState.isDefined && p.sortedState.get._1 == columnIndex)
+          headerDiv(columnIndex, config)(
+            config.name.capitalize
           )
         }.toTagMod
       )

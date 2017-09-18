@@ -58,8 +58,19 @@ object ReactTable {
     name: String,
     cellRenderer: CellRenderer[T],
     width: Option[String] = None,
-    nowrap: Boolean = false
-  )(implicit val ordering: Ordering[T])
+    nowrap: Boolean = false,
+    ordering : Option[Ordering[T]] = None
+  ) {
+    def apply(
+    )(implicit ordering : Ordering[T]) = ColumnConfig(name, cellRenderer, width, nowrap, Some(ordering))
+  }
+
+  def OrderableColumnConfig[T](
+    name: String,
+    cellRenderer: CellRenderer[T],
+    width : Option[String] = None,
+    nowrap : Boolean = false
+  )(implicit ordering : Ordering[T]) = ColumnConfig(name, cellRenderer, width, nowrap, Some(ordering))
 
   def SimpleStringConfig[T](
     name: String,
@@ -71,7 +82,7 @@ object ReactTable {
     } else { t =>
       stringRetriever(t)
     }
-    ColumnConfig(name, renderer, width, nowrap)(ignoreCaseStringOrdering(stringRetriever))
+    ColumnConfig(name, renderer, width, nowrap, Some(ignoreCaseStringOrdering(stringRetriever)))
   }
 }
 
@@ -89,6 +100,8 @@ case class ReactTable[T](
   configs: Seq[ReactTable.ColumnConfig[T]] = Seq.empty,
   // Whether paging is enabled for the table, if false, all rows will be displayed with no pager
   paging : Boolean = true,
+  // Whether the total and page size changer will be displayed
+  enableSettings : Boolean = true,
   // The default number of rows per page (only relevant if paging is enabled)
   rowsPerPage: Int = 5,
   // The table style
@@ -182,12 +195,17 @@ case class ReactTable[T](
         rows
       else {
         val cfg = configs(s.sortedState.head._1)
-        val order: Ordering[(T, String)] = cfg.ordering.on(_._1)
 
-        s.sortedState.head._2 match {
-          case ASC => rows.sorted(order)
-          case DSC => rows.sorted(order.reverse)
+        cfg.ordering match {
+          case None => rows
+          case Some(o) =>
+            val order : Ordering[(T, String)] = o.on(_._1)
+            s.sortedState.head._2 match {
+              case ASC => rows.sorted(order)
+              case DSC => rows.sorted(order.reverse)
+            }
         }
+
       }
     }
 
@@ -310,7 +328,7 @@ case class ReactTable[T](
         ReactSearchBox(
           onTextChange = onTextChange(props) _, style = props.searchBoxStyle
         ).when(props.enableSearch),
-        settingsBar.when(props.paging),
+        settingsBar.when(props.enableSettings && props.paging),
         <.div(
           props.style.table,
           renderHeader,
@@ -354,6 +372,7 @@ case class ReactTable[T](
     data: Seq[(T, String)],
     configs: Seq[ColumnConfig[T]],
     paging: Boolean,
+    enableSettings : Boolean,
     rowsPerPage: Int,
     style: ReactTableStyle,
     enableSearch: Boolean,
@@ -370,6 +389,7 @@ case class ReactTable[T](
       data = data.map( d => (d, keyStringRetriever(d)) ),
       configs = configs,
       paging = paging,
+      enableSettings = enableSettings,
       rowsPerPage = rowsPerPage,
       style = style,
       enableSearch = enableSearch,

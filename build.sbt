@@ -126,15 +126,13 @@ lazy val demo =
       webpackResources :=
         webpackResources.value +++
           PathFinder(Seq(baseDirectory.value / "images", baseDirectory.value / "index.html")) ** "*.*",
-      enableReloadWorkflow in fastOptJS := false,
-      webpackEmitSourceMaps in fastOptJS := true,
-      webpackEmitSourceMaps in fullOptJS := false,
       webpackConfigFile in (Test) := Some(baseDirectory.value / "webpack.config.test.js"),
       webpackConfigFile in (Compile, fastOptJS) := Some(
         baseDirectory.value / "webpack.config.dev.js"),
       webpackConfigFile in (Compile, fullOptJS) := Some(
         baseDirectory.value / "webpack.config.prod.js"),
-      requiresDOM in Test := true
+      jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv,
+      webpackBundlingMode := BundlingMode.LibraryOnly()
     )
 
 lazy val root =

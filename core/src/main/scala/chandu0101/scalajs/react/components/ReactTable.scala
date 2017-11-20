@@ -155,7 +155,7 @@ case class ReactTable[T](data: Seq[T],
       t.modState { state =>
         val rows = state.filteredData
         state.sortedState.get(columnIndex) match {
-          case Some(asc) =>
+          case Some(SortDirection.asc) =>
             state.copy(filteredData = rows.sorted(ordering.reverse),
               sortedState = Map(columnIndex -> dsc),
               offset = 0)

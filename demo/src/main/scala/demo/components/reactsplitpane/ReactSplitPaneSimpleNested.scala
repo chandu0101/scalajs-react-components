@@ -5,6 +5,7 @@ import chandu0101.scalajs.react.components.reactsplitpane.ReactSplitPane
 import demo.components.CodeExample
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
+import scala.language.existentials
 
 object ReactSplitPaneSimpleNested {
 

@@ -5,7 +5,6 @@ import chandu0101.macros.tojs.JSMacro
 import scala.scalajs.js
 import scala.scalajs.js.annotation.ScalaJSDefined
 
-@ScalaJSDefined
 class FormSelectOption(val label: String, val value: String) extends js.Object {
   val toJS = JSMacro[FormSelectOption](this)
 }

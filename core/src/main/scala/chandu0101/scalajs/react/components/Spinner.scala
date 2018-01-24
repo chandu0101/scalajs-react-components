@@ -6,9 +6,11 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
+@js.native
 @JSImport("react-spinner", JSImport.Default)
 object SpinnerRequire extends js.Any
 
+@js.native
 @JSImport("react-spinner/react-spinner.css", JSImport.Namespace)
 object SpinnerCss extends js.Any
 

@@ -15,8 +15,8 @@ object MuiSelectFieldDemo {
 
   // EXAMPLE:START
 
-  @ScalaJSDefined class ChoiceId(val value: String)                extends js.Object
-  @ScalaJSDefined class Choice(val id: ChoiceId, val text: String) extends js.Object
+  class ChoiceId(val value: String)                extends js.Object
+  class Choice(val id: ChoiceId, val text: String) extends js.Object
 
   case class Backend($ : BackendScope[Seq[Choice], Choice]) {
     val onChange: (TouchTapEvent, Int, Choice) => Callback =

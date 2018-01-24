@@ -9,9 +9,9 @@ lazy val macros =
     .settings(
       name := "scalajs-react-components-macros",
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core"      % "1.1.0",
-        "com.github.japgolly.scalajs-react" %%% "extra"     % "1.1.0",
-        "org.scalatest"                     %%% "scalatest" % "3.0.3" % Test
+        "com.github.japgolly.scalajs-react" %%% "core"      % "1.1.1",
+        "com.github.japgolly.scalajs-react" %%% "extra"     % "1.1.1",
+        "org.scalatest"                     %%% "scalatest" % "3.0.4" % Test
       )
     )
 
@@ -24,10 +24,10 @@ lazy val gen =
       organization := "com.olvind",
       name := "generator",
       version in webpack := "2.6.1",
-      version in installWebpackDevServer := "2.7.1",
+//      version in installWebpackDevServer := "2.7.1",
       libraryDependencies ++= Seq(
         "com.lihaoyi"   %% "ammonite-ops" % "1.0.1",
-        "org.scalatest" %% "scalatest"    % "3.0.3" % Test
+        "org.scalatest" %% "scalatest"    % "3.0.4" % Test
       )
     )
 
@@ -94,19 +94,19 @@ lazy val core =
       sourceGenerators in Compile += generateEui,
       sourceGenerators in Compile += generateSui,
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core"        % "1.1.0" withSources (),
-        "com.github.japgolly.scalajs-react" %%% "extra"       % "1.1.0" withSources (),
-        "com.github.japgolly.scalacss"      %%% "core"        % "0.5.3" withSources (),
-        "com.github.japgolly.scalacss"      %%% "ext-react"   % "0.5.3" withSources (),
-        "org.scala-js"                      %%% "scalajs-dom" % "0.9.3" withSources (),
+        "com.github.japgolly.scalajs-react" %%% "core"        % "1.1.1" withSources (),
+        "com.github.japgolly.scalajs-react" %%% "extra"       % "1.1.1" withSources (),
+        "com.github.japgolly.scalacss"      %%% "core"        % "0.5.5" withSources (),
+        "com.github.japgolly.scalacss"      %%% "ext-react"   % "0.5.5" withSources (),
+        "org.scala-js"                      %%% "scalajs-dom" % "0.9.4" withSources (),
         "org.scalacheck"                    %%% "scalacheck"  % "1.13.5" % Test,
-        "org.scalatest"                     %%% "scalatest"   % "3.0.3" % Test
+        "org.scalatest"                     %%% "scalatest"   % "3.0.4" % Test
       )
     )
 
 lazy val preventPublication = Seq(
   publishArtifact := false,
-  publish := (),
+  publish := {},
   packagedArtifacts := Map.empty) // doesn't work - https://github.com/sbt/sbt-pgp/issues/42
 
 lazy val demo =
@@ -118,7 +118,7 @@ lazy val demo =
     .settings(
       name := "scalajs-react-components-demo",
       version in webpack := "2.6.1",
-      version in installWebpackDevServer := "2.7.1",
+//      version in installWebpackDevServer := "2.7.1",
       scalaJSUseMainModuleInitializer := true,
       scalaJSUseMainModuleInitializer.in(Test) := false,
       artifactPath.in(Compile, fastOptJS) := ((crossTarget in (Compile, fastOptJS)).value /
@@ -147,8 +147,8 @@ lazy val root =
 
 lazy val commonSettings =
   Seq(
-    scalaVersion := "2.12.3",
-    version := "1.0.0-M1",
+    scalaVersion := "2.12.4",
+    version := "1.0.0-M2",
     name := "scalajs-react-components",
     organization := "com.olvind",
     licenses += ("Apache 2.0",
@@ -159,7 +159,8 @@ lazy val commonSettings =
       "-feature", // Emit warning and location for usages of features that should be imported explicitly.
       "-unchecked", // Enable additional warnings where generated code depends on assumptions.
       "-language:implicitConversions", // Allow definition of implicit functions called views
-      "-language:postfixOps"
+      "-language:postfixOps",
+      "-P:scalajs:sjsDefinedByDefault"
     ),
     unmanagedSourceDirectories.in(Compile) := Seq(scalaSource.in(Compile).value),
     unmanagedSourceDirectories.in(Test) := Seq(scalaSource.in(Test).value)
@@ -201,8 +202,8 @@ lazy val publicationSettings = Seq(
 
 lazy val SuiVersion   = "0.68.5"
 lazy val EuiVersion   = "0.6.1"
-lazy val MuiVersion   = "0.18.1"
-lazy val reactVersion = "15.5.4"
+lazy val MuiVersion   = "0.20.0"
+lazy val reactVersion = "16.2.0"
 
 lazy val npmGenSettings = Seq(
   useYarn := true,
@@ -221,17 +222,17 @@ lazy val npmSettings = Seq(
     "material-ui"                       -> MuiVersion,
     "react"                             -> reactVersion,
     "react-dom"                         -> reactVersion,
-    "react-addons-create-fragment"      -> reactVersion,
-    "react-addons-css-transition-group" -> "15.0.2",
-    "react-addons-pure-render-mixin"    -> "15.5.2",
-    "react-addons-transition-group"     -> "15.0.0",
-    "react-addons-update"               -> "15.5.2",
+    "react-addons-create-fragment"      -> "15.6.2",
+    "react-addons-css-transition-group" -> "15.6.2",
+    "react-addons-pure-render-mixin"    -> "15.6.2",
+    "react-addons-transition-group"     -> "15.6.2",
+    "react-addons-update"               -> "15.6.2",
     "react-geomicons"                   -> "2.1.0",
-    "react-infinite"                    -> "0.11.0",
-    "react-select"                      -> "1.0.0-rc.5",
-    "react-slick"                       -> "0.14.11",
+    "react-infinite"                    -> "0.12.1",
+    "react-select"                      -> "1.2.1",
+    "react-slick"                       -> "0.16.0",
     "react-spinner"                     -> "0.2.7",
-    "react-split-pane"                  -> "0.1.66",
+    "react-split-pane"                  -> "0.1.74",
     "react-tagsinput"                   -> "3.16.1",
     "react-tap-event-plugin"            -> "2.0.1",
     "semantic-ui-react"                 -> SuiVersion,
@@ -241,23 +242,22 @@ lazy val npmSettings = Seq(
 
 lazy val npmDevSettings = {
   val deps = Seq(
-    "compression-webpack-plugin" -> "0.4.0",
-    "css-loader"                 -> "0.28.3",
-    "file-loader"                -> "0.11.1",
+    "css-loader"                 -> "0.28.9",
+    "file-loader"                -> "1.1.6",
     "gulp-decompress"            -> "2.0.1",
-    "image-webpack-loader"       -> "3.3.1",
+    "image-webpack-loader"       -> "4.0.0",
     "imagemin"                   -> "5.3.1",
-    "less"                       -> "2.7.2",
-    "less-loader"                -> "4.0.3",
+    "less"                       -> "2.7.3",
+    "less-loader"                -> "4.0.5",
     "lodash"                     -> "4.17.4",
-    "node-libs-browser"          -> "2.0.0",
-    "react-hot-loader"           -> "1.3.1",
-    "style-loader"               -> "0.18.1",
-    "url-loader"                 -> "0.5.8",
-    "expose-loader"              -> "0.7.3",
-    "webpack"                    -> "2.6.1",
-    "webpack-dev-server"         -> "2.7.1",
-    "@types/webpack"             -> "3.0.8"
+    "node-libs-browser"          -> "2.1.0",
+    "react-hot-loader"           -> "3.1.3",
+    "style-loader"               -> "0.19.0",
+    "url-loader"                 -> "0.6.2",
+    "expose-loader"              -> "0.7.4",
+    "webpack"                    -> "3.10.0",
+    "webpack-dev-server"         -> "2.11.1",
+    "@types/webpack"             -> "3.8.3"
   )
 
   Seq(

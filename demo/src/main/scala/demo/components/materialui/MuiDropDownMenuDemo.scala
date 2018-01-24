@@ -16,7 +16,6 @@ object MuiDropDownMenuDemo {
 
   // EXAMPLE:START
 
-  @ScalaJSDefined
   class Item(val id: String, val name: String) extends js.Object
 
   val items: Seq[Item] =

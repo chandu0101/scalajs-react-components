@@ -11,6 +11,9 @@ object MuiTypeMapperFunction {
 
   def apply(compName: CompName, name: PropName): String =
     (compName.value, name.value) match {
+      case ("AppBar", "onTitleClick")                 => "ReactEvent => Callback"
+      case ("AppBar", "onLeftIconButtonClick")        => "ReactEvent => Callback"
+      case ("AppBar", "onRightIconButtonClick")       => "ReactEvent => Callback"
       case ("AppBar", "onLeftIconButtonTouchTap")     => TouchTapEventHandler
       case ("AppBar", "onRightIconButtonTouchTap")    => TouchTapEventHandler
       case ("AppBar", "onTitleTouchTap")              => TouchTapEventHandler
@@ -24,7 +27,9 @@ object MuiTypeMapperFunction {
       case ("Card", "onExpandChange")                 => "Boolean => Callback"
       case ("CardExpandable", "onExpanding")          => Callback
       case ("Checkbox", "onCheck")                    => "(ReactMouseEvent, Boolean) => Callback"
+      case ("Chip", "onClick")                        => "ReactEvent => Callback"
       case ("Chip", "onRequestDelete")                => TouchEventHandler
+      case ("DatePicker", "onClick")                  => "ReactEvent => Callback"
       case ("DatePicker", "DateTimeFormat")           => "js.Function"
       case ("DatePicker", "formatDate")               => "js.Date => String"
       case ("DatePicker", "onChange")                 => "(js.UndefOr[Nothing], js.Date) => Callback"
@@ -45,12 +50,19 @@ object MuiTypeMapperFunction {
       case ("EnhancedSwitch", "onSwitch")             => "(ReactMouseEvent, Boolean) => Callback"
       case ("EnhancedTextarea", "onChange")           => "ReactEvent => Callback"
       case ("EnhancedTextarea", "onHeightChange")     => "(ReactEvent, Int)=> Callback"
+      case ("FlatButton", "onClick")                  => "ReactEvent => Callback"
+      case ("FloatingActionButton", "onClick")        => "ReactEvent => Callback"
+      case ("IconButton", "onClick")                  => "ReactEvent => Callback"
       case ("IconButton", "onMouseOut")               => MouseEventHandler
+      case ("IconMenu", "onClick")                    => "ReactEvent => Callback"
       case ("IconMenu", "animation")                  => "js.Function"
       case ("IconMenu", "onChange")                   => "(ReactEvent, js.UndefOr[T]) => Callback"
       case ("IconMenu", "onItemTouchTap")             => "(ReactTouchEvent, ReactElement) => Callback"
+      case ("IconMenu", "onItemClick")                => "(ReactEvent, ReactElement) => Callback"
       case ("IconMenu", "onRequestChange")            => "(Boolean, String) => Callback"
       case ("ListItem", "onNestedListToggle")         => "js.Any => Callback"
+      case ("ListItem", "onClick")                    => "ReactEvent => Callback"
+      case ("Menu", "onItemClick")                    => "(ReactEvent, js.Object) => Callback"
       case ("Menu", "onEscKeyDown")                   => KeyboardEventHandler
       case ("Menu", "onChange")                       => "(TouchTapEvent, T | js.Array[T]) => Callback"
       case ("Menu", "onMenuItemFocusChange")          => "(js.UndefOr[ReactEvent], Int) => Callback"
@@ -62,7 +74,9 @@ object MuiTypeMapperFunction {
       case ("RadioButton", "onCheck")                 => "(ReactEvent, T) => Callback"
       case ("RadioButtonGroup", "onCheck")            => "(ReactEvent, T) => Callback"
       case ("RadioButtonGroup", "onChange")           => "(ReactEvent, T) => Callback"
+      case ("RaisedButton", "onClick")                => "ReactEvent => Callback"
       case ("SelectField", "onChange")                => "(TouchTapEvent, Int, T) => Callback"
+      case ("Snackbar", "onActionClick")              => "ReactEvent => Callback"
       case ("Slider", "onChange")                     => "(ReactMouseEvent, Double) => Callback"
       case ("Slider", "onDragStart")                  => "ReactDragEvent => Callback"
       case ("Slider", "onDragStop")                   => "ReactDragEvent => Callback"
@@ -97,6 +111,7 @@ object MuiTypeMapperFunction {
       case ("TableRowColumn", "onHover")              => "(ReactMouseEvent, ColumnId) => Callback"
       case ("TableRowColumn", "onHoverExit")          => "(ReactMouseEvent, ColumnId) => Callback"
       case ("Tab", "onActive")                        => "ReactElement => Callback"
+      case ("Tab", "onClick")                         => "ReactEvent => Callback"
       case ("Tabs", "onChange")                       => "(T, ReactEventFromHtml, ReactElement) => Callback"
       case ("Tabs", "tabTemplate")                    => "js.Any"
       case ("TextField", "onChange")                  => "(ReactEventFromInput, String) => Callback"
@@ -104,6 +119,7 @@ object MuiTypeMapperFunction {
       case ("TextField", "onBlur")                    => "ReactFocusEventFromInput => Callback"
       case ("TextField", "onFocus")                   => "ReactFocusEventFromInput => Callback"
       case ("TimePicker", "onChange")                 => "(js.UndefOr[Nothing], js.Date) => Callback"
+      case ("TimePicker", "onClick")                  => "ReactEvent => Callback"
       case ("TimePicker", "onShow")                   => Callback
       case ("TimePicker", "onDismiss")                => Callback
       case ("Toggle", "onToggle")                     => "(ReactMouseEvent, Boolean) => Callback"

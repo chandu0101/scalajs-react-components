@@ -45,7 +45,7 @@ object MuiTypeMemberMethodMapper extends MemberMapper {
       case ("TimePicker", 0, "openDialog")  => "openDialog(): Unit"
       case ("TimePicker", 0, "focus")       => "focus(): Unit"
 
-      /* Added by roberto@leibman.net for material-ui v 0.18.1*/
+      /* Added by roberto@leibman.net for material-ui */
       case ("AutoComplete", 0, "blur")              => "blur(): Unit"
       case ("AutoComplete", 0, "close")             => "close(): Unit"
       case ("AutoComplete", 0, "focus")             => "focus(): Unit"
@@ -53,6 +53,7 @@ object MuiTypeMemberMethodMapper extends MemberMapper {
       case ("CircularProgress", 1, "scalePath")     => "scalePath(path: CircularProgressPath): Unit"
       case ("DatePicker", 0, "getControlledDate")   => "getControlledDate(): js.Date"
       case ("DatePicker", 0, "isControlled")        => "isControlled(): Unit"
+      case ("Drawer", 0, "removeBodyTouchListeners")=> "removeBodyTouchListeners(): Unit"
       case ("Drawer", 1, "close")                   => "close(reason: String): Unit"
       case ("Drawer", 0, "disableSwipeHandling")    => "disableSwipeHandling(): Unit"
       case ("Drawer", 0, "enableSwipeHandling")     => "enableSwipeHandling(): Unit"
@@ -106,6 +107,7 @@ object MuiTypeMemberMethodMapper extends MemberMapper {
       case ("Menu", 1, "setKeyboardFocused")          => "setKeyboardFocused(value: Boolean): Unit"
       case ("Menu", 0, "setScollPosition")            => "setScollPosition(): Unit"
       case ("Menu", 0, "setWidth")                    => "setWidth(): Unit"
+      case ("Menu", 3, "setFocusIndexStartsWith")     => "setFocusIndexStartsWith(event: js.Any, keys: js.Any, filteredChildren: js.Any): Unit"
       case ("MenuItem", 0, "applyFocusState")         => "applyFocusState(): Unit"
       case ("MuiThemeProvider", 0, "getChildContext") => "getChildContext(): MuiTheme"
       case ("Popover", 5, "applyAutoPositionIfNeeded") =>

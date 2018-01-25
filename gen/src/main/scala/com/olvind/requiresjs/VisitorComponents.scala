@@ -2,12 +2,13 @@ package com.olvind
 package requiresjs
 
 import jdk.nashorn.internal.ir._
+import jdk.nashorn.internal.parser.TokenType
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
 
 case class VisitorComponents(n: FunctionNode)
-    extends VisitorHelperNameStack[FunctionNode, Map[CompName, ObjectNode]](n) {
+  extends VisitorHelperNameStack[FunctionNode, Map[CompName, ObjectNode]](n) {
   private val ret: mutable.Map[CompName, ObjectNode] =
     mutable.Map.empty[CompName, ObjectNode]
 
@@ -46,6 +47,30 @@ case class VisitorComponents(n: FunctionNode)
             }
             foundOpt.foreach(found ⇒
               ret(CompName(a.getBase.asInstanceOf[IdentNode].getName)) = found)
+
+          /* Similar to the above, but we have a ternary node*/
+          case ternary: TernaryNode =>
+            ternary.getTest match {
+              case testNode: BinaryNode =>
+                testNode.rhs match {
+                  case test: LiteralNode[String] =>
+                    if ((test.getValue == "production" && testNode.tokenType() == TokenType.NE_STRICT) ||
+                      (test.getValue == "development" && testNode.tokenType() == TokenType.EQ_STRICT)) {
+                      //Use the true Expression
+                      ternary.getTrueExpression.getExpression match {
+                        case o: ObjectNode ⇒
+                          ret(CompName(a.getBase.asInstanceOf[IdentNode].getName)) = o
+                      }
+                    }
+                    else {
+                      //Use the false Expression
+                      ternary.getFalseExpression.getExpression match {
+                        case o: ObjectNode ⇒
+                          ret(CompName(a.getBase.asInstanceOf[IdentNode].getName)) = o
+                      }
+                    }
+                }
+            }
         }
       case other =>
         ()
@@ -66,7 +91,7 @@ case class VisitorComponents(n: FunctionNode)
             case (i: IdentNode, o: ObjectNode) if i.getName == "propTypes" =>
               nameStack.headOption match {
                 case Some(name) => ret(CompName(name.value)) = o
-                case None       => ()
+                case None => ()
               }
           }
     }

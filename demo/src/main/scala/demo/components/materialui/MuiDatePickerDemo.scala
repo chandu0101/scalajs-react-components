@@ -25,7 +25,7 @@ object MuiDatePickerDemo {
             onDismiss = CallbackDebug.f0("onDismiss"),
             onFocus = CallbackDebug.f1("onFocus"),
             onShow = CallbackDebug.f0("onShow"),
-            onTouchTap = CallbackDebug.f1("onTouchTap")
+            onClick = CallbackDebug.f1("onClick")
           )(),
           MuiDatePicker(
             hintText = js.defined("Landscape Dialog"),

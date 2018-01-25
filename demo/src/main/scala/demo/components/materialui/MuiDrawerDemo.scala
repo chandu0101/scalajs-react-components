@@ -49,7 +49,7 @@ object MuiDrawerDemo {
         Callback.info(s"onRequestChange: open: $open, reason: $reason") >>
         toggleOpenCb
 
-    val selectItem: String => TouchTapEvent => Callback =
+    val selectItem: String => ReactEvent => Callback =
       id => e => $.modState(s => s.copy(selected = id))
 
     def render(S: State) = {
@@ -76,7 +76,7 @@ object MuiDrawerDemo {
                       key = c.id,
                       primaryText = js.defined(c.text),
                       checked = S.selected == js.defined(c.id),
-                      onTouchTap = selectItem(c.id)
+                      onClick = selectItem(c.id)
                     )())
                 .toVdomArray
             ),

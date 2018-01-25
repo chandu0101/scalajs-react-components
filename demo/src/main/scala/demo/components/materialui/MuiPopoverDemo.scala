@@ -18,7 +18,7 @@ object MuiPopoverDemo {
   private case class OriginChoice[T](ts: Seq[T], label: String)(set: T => Callback,
                                                                 fromState: State => T,
                                                                 str: T => String) {
-    val action: (TouchTapEvent, Int, String) => Callback =
+    val action: (ReactEvent, Int, String) => Callback =
       (e, idx, any) => set(ts(idx))
 
     val items: VdomNode =
@@ -70,7 +70,7 @@ object MuiPopoverDemo {
           <.div(
             <.div(
               MuiRaisedButton(
-                onTouchTap = (e: TouchTapEvent) => toggle,
+                onClick = (e: ReactEvent) => toggle,
                 label = "Click on me to show a popover"
               )()
             ).ref(ref = _),
@@ -89,7 +89,7 @@ object MuiPopoverDemo {
                 MuiRaisedButton(
                   primary = true,
                   label = "here is a button",
-                  onTouchTap = (e: TouchTapEvent) => toggle
+                  onClick = (e: ReactEvent) => toggle
                 )()
               )
             )

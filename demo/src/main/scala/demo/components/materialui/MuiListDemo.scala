@@ -31,7 +31,7 @@ object MuiListDemo {
                 onMouseEnter = CallbackDebug.f1("onMouseEnter"),
                 onNestedListToggle = CallbackDebug.f1("onNestedListToggle"),
                 onTouchStart = CallbackDebug.f1("onTouchStart"),
-                onTouchTap = CallbackDebug.f1("onTouchTap")
+                onClick = CallbackDebug.f1("onClick")
               )("Inbox"),
               MuiListItem(key = "item2",
                           primaryText = js.defined("Starred"),

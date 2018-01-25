@@ -22,9 +22,9 @@ object MuiAppBarDemo {
           CodeExample(code, "MuiAppBar")(
             MuiAppBar(
               title = js.defined("Title"),
-              onLeftIconButtonTouchTap = CallbackDebug.f1("onLeftIconButtonTouchTap"),
-              onRightIconButtonTouchTap = CallbackDebug.f1("onRightIconButtonTouchTap"),
-              onTitleTouchTap = CallbackDebug.f1("onTitleTouchTap"),
+              onLeftIconButtonClick = CallbackDebug.f1("onLeftIconButtonClick"),
+              onRightIconButtonClick = CallbackDebug.f1("onRightIconButtonClick"),
+              onTitleClick = CallbackDebug.f1("onTitleClick"),
               showMenuIconButton = true
             )()
           )

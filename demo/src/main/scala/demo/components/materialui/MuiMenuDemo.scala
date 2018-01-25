@@ -29,21 +29,21 @@ object MuiMenuDemo {
     val toggleOpen: ReactEvent => Callback =
       e => $.modState(s => s.copy(isOpen = !s.isOpen))
 
-    val onTouchTap: (TouchTapEvent, js.Object) => Callback =
+    val onClick: (ReactEvent, js.Object) => Callback =
       (e, elem) => $.modState(_.touched(JSON.stringify(elem)))
 
     def renderOpen(S: State) =
       <.div(
         MuiFlatButton(
           label = "Close menu",
-          onTouchTap = toggleOpen
+          onClick = toggleOpen
         )(),
         MuiMenu[String](
           desktop = true,
           width = 320,
           value = S.multiple.toJSArray,
           multiple = true,
-          onItemTouchTap = onTouchTap,
+          onItemClick = onClick,
           onKeyDown = CallbackDebug.f1("onKeyDown"),
           onEscKeyDown = toggleOpen
         )(
@@ -63,7 +63,7 @@ object MuiMenuDemo {
     def renderClosed(S: State) =
       MuiFlatButton(
         label = "open menu",
-        onTouchTap = toggleOpen
+        onClick = toggleOpen
       )()
 
     def render(S: State) =

@@ -51,7 +51,7 @@ object MuiButtonsDemo {
                     onKeyboardFocus = CallbackDebug.f2("onKeyboardFocus"),
                     onKeyDown = CallbackDebug.f1("onKeyDown"),
                     onKeyUp = CallbackDebug.f1("onKeyUp"),
-                    onTouchTap = CallbackDebug.f1("onTouchTap"),
+                    onClick = CallbackDebug.f1("onClick"),
                     onMouseLeave = CallbackDebug.f1("onMouseLeave"),
                     onTouchStart = CallbackDebug.f1("onTouchStart"),
                     onMouseEnter = CallbackDebug.f1("onMouseEnter")
@@ -83,7 +83,7 @@ object MuiButtonsDemo {
               MuiTab(key = "tab4", label = js.defined("Icon Buttons"))(
                 <.div(
                   Style.content,
-                  MuiIconButton(onTouchTap = CallbackDebug.f1("onTouchTap"))(ActionGrade()())
+                  MuiIconButton(onClick = CallbackDebug.f1("onClick"))(ActionGrade()())
                 )
               )
             )

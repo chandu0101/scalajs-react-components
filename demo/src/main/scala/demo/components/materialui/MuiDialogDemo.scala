@@ -20,13 +20,13 @@ object MuiDialogDemo {
     val open  = $.setState(State(true))
     val close = $.setState(State(false))
 
-    def handleDialogCancel: TouchTapEvent => Callback =
+    def handleDialogCancel: ReactEvent => Callback =
       e => close >> Callback.info("Cancel Clicked")
 
-    def handleDialogSubmit: TouchTapEvent => Callback =
+    def handleDialogSubmit: ReactEvent => Callback =
       e => close >> Callback.info("Submit Clicked")
 
-    val openDialog: TouchTapEvent => Callback =
+    val openDialog: ReactEvent => Callback =
       e => open >> Callback.info("Opened")
 
     def render(S: State) = {
@@ -34,11 +34,11 @@ object MuiDialogDemo {
         MuiFlatButton(key = "1",
                       label = "Cancel",
                       secondary = true,
-                      onTouchTap = handleDialogCancel)(),
+                      onClick = handleDialogCancel)(),
         MuiFlatButton(key = "2",
                       label = "Submit",
                       secondary = true,
-                      onTouchTap = handleDialogSubmit)()
+                      onClick = handleDialogSubmit)()
       )
 
       <.div(
@@ -52,7 +52,7 @@ object MuiDialogDemo {
             )(
               "Dialog example with floating buttons"
             ),
-            MuiRaisedButton(label = "Dialog", onTouchTap = openDialog)()
+            MuiRaisedButton(label = "Dialog", onClick = openDialog)()
           )
         )
       )

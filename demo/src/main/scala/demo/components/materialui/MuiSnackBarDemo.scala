@@ -25,7 +25,7 @@ object MuiSnackbarDemo {
     val closeRequested: String => Callback =
       reason => close >> Callback.info(s"onRequestClose: $reason")
 
-    val toggleSnack: TouchTapEvent => Callback =
+    val toggleSnack: ReactEvent => Callback =
       e => $.modState(!_)
 
     def render(isOpen: Boolean) =
@@ -35,13 +35,13 @@ object MuiSnackbarDemo {
             autoHideDuration = js.defined(5000),
             message = "Event added to your calendar",
             action = js.defined("undo"),
-            onActionTouchTap = undoAdd,
+            onActionClick = undoAdd,
             onRequestClose = closeRequested,
             open = isOpen
           )(),
           MuiRaisedButton(
             label = "Add event to calendar",
-            onTouchTap = toggleSnack
+            onClick = toggleSnack
           )().unless(isOpen)
         )
       )

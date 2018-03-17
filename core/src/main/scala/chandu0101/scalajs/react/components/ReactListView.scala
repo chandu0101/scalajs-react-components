@@ -6,6 +6,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 import scala.scalajs.js
 import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
+import Implicits._
 
 object ReactListView {
 

@@ -19,6 +19,7 @@ object JSMacro {
 
   def apply[T]: T => js.Object = macro applyImpl[T]
 
+
   def applyImpl[T: c.WeakTypeTag](c: blackbox.Context): c.Tree = {
     import c.universe._
 
@@ -28,7 +29,12 @@ object JSMacro {
     def isNotPrimitiveAnyVal(tpe: Type) =
       !tpe.typeSymbol.fullName.startsWith("scala.")
 
-    def getJSValueTree(target: Tree, rt: Type) = {
+    def flattenUnion(tpe: Type): List[Type] =
+      if (tpe <:< typeOf[js.|[_, _]])
+        flattenUnion(tpe.typeArgs(0)) ++ flattenUnion(tpe.typeArgs(1))
+      else List(tpe)
+
+    def getJSValueTree(target: Tree, rt: Type): Tree = {
       if (rt <:< typeOf[TOJS])
         q"""if ($target != null) $target.toJS else null"""
 
@@ -56,27 +62,58 @@ object JSMacro {
       else if (rt <:< typeOf[Function0[CallbackTo[_]]])
         q"""$target().toJsFn"""
       else if (rt <:< typeOf[Function1[_, CallbackTo[_]]])
-        q"""((t0: ${rt.typeArgs(0)}) => $target(t0).runNow())"""
+        q"""js.Any.fromFunction1(((t0: ${rt.typeArgs(0)}) => $target(t0).runNow()))"""
       else if (rt <:< typeOf[Function2[_, _, CallbackTo[_]]])
-        q"""((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}) => $target(t0, t1).runNow())"""
+        q"""js.Any.fromFunction2(((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}) => $target(t0, t1).runNow()))"""
       else if (rt <:< typeOf[Function3[_, _, _, CallbackTo[_]]])
-        q"""((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}, t2: ${rt.typeArgs(2)}) => $target(t0, t1, t2).runNow())"""
+        q"""js.Any.fromFunction3(((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}, t2: ${rt.typeArgs(2)}) => $target(t0, t1, t2).runNow()))"""
+      else if (rt <:< typeOf[Function0[_]])
+        q"""js.Any.fromFunction0($target)"""
+      else if (rt <:< typeOf[Function1[_, _]])
+        q"""js.Any.fromFunction1($target)"""
+      else if (rt <:< typeOf[Function2[_, _, _]])
+        q"""js.Any.fromFunction2($target)"""
+      else if (rt <:< typeOf[Function3[_, _, _, _]])
+        q"""js.Any.fromFunction3($target)"""
 
       /* other scalajs-react things we need to rewrite */
       else if (rt <:< typeOf[VdomElement])
-        q"""$target.rawElement"""
+        q"""$target.rawElement.asInstanceOf[js.Any]"""
       else if (rt <:< typeOf[VdomNode])
-        q"""$target.rawNode"""
+        q"""$target.rawNode.asInstanceOf[js.Any]"""
       else if (rt <:< typeOf[TagOf[_]])
-        q"""$target.render"""
+        q"""$target.render.rawElement.asInstanceOf[js.Any]"""
 
       /* Other values. Keep AnyVal below at least CallbackTo */
       else if (rt <:< typeOf[AnyVal] && isNotPrimitiveAnyVal(rt))
-        q"""$target.value"""
+        q"""$target.value.asInstanceOf[js.Any]"""
+      else if (rt <:< typeOf[AnyVal] || rt <:< typeOf[String] || rt <:< typeOf[js.Any])
+        q"""$target.asInstanceOf[js.Any]"""
       else if (rt <:< typeOf[Enumeration#Value])
-        q"""$target.toString()"""
-      else
-        q"""$target"""
+        q"""$target.toString.asInstanceOf[js.Any]"""
+      else if (rt <:< typeOf[js.|[_, _]]) {
+
+        val (jsTypes, scalaTypes) = flattenUnion(rt).distinct.partition(_ <:< typeOf[js.Any])
+
+        val scalaCases = scalaTypes.map(
+          tpe => cq"""x: $tpe => ${getJSValueTree(q"x", tpe)}"""
+        )
+
+        if (jsTypes.size > 1) {
+          c.warning(target.pos, s"Cannot differentiate ${jsTypes.mkString(", ")}")
+        }
+
+        val jsCase = jsTypes.take(1).map(tpe => cq"""x => x.asInstanceOf[js.Any]""")
+
+        q"""($target: scala.Any) match {
+          case ..$scalaCases
+          case ..$jsCase
+        }"""
+      }
+      else {
+        val conversion = c.inferImplicitView(target, rt, typeOf[js.Any], silent = false)
+        q"""$conversion($target)"""
+      }
     }
 
     val tpe    = c.weakTypeOf[T]
@@ -106,8 +143,6 @@ object JSMacro {
     }
 
     q""" ($target: $tpe) => {
-//      import scala.language.reflectiveCalls
-//      import scalajs.js.JSConverters._
       val $props = scala.scalajs.js.Dynamic.literal()
       ..$fieldUpdates
       $props

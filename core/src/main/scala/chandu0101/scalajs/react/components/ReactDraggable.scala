@@ -8,6 +8,7 @@ import org.scalajs.dom._
 
 import scala.scalajs.js
 import scalacss.ScalaCssReact._
+import Implicits._
 
 case class RPoint(x: Int, y: Int)
 case class RGrid(width: Int, height: Int)

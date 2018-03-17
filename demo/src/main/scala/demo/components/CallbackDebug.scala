@@ -44,13 +44,25 @@ object CallbackDebug {
             if (t.value != u) "I"
             else if (t.offsetTop != u) "H"
             else ""
-          s"$event$target: t.value: ${t.value}, t.offsetTop: ${t.offsetTop}"
+
+          val values = js.Object.keys(e).map{
+            key =>
+              val valueU: js.Any = e.asInstanceOf[js.Dictionary[js.Any]](key)
+
+              val valueS = if (js.isUndefined(valueU)) "empty"
+              else if (js.typeOf(valueU) == "function") "function"
+              else util.Try(js.JSON.stringify(valueU)).getOrElse("circular")
+
+              s"$key: $valueS"
+          }
+
+          s"$event$target: ${values.mkString("{", ", ", "}")}"
         }
       }
   }
 
   private def base(name: String, params: String*): Callback =
-    Callback.info(s"Event handler: $name(${params.mkString(", ")})")
+    Callback.warn(s"Event handler: $name(${params.mkString(", ")})")
 
   def f0(name: String): Callback =
     base(name)

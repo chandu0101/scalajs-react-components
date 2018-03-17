@@ -203,7 +203,7 @@ lazy val publicationSettings = Seq(
 lazy val SuiVersion   = "0.68.5"
 lazy val EuiVersion   = "0.6.1"
 lazy val MuiVersion   = "0.20.0"
-lazy val reactVersion = "16.2.0"
+lazy val reactVersion = "15.5.4"
 
 lazy val npmGenSettings = Seq(
   useYarn := true,
@@ -242,22 +242,21 @@ lazy val npmSettings = Seq(
 
 lazy val npmDevSettings = {
   val deps = Seq(
-    "css-loader"                 -> "0.28.9",
-    "file-loader"                -> "1.1.6",
-    "gulp-decompress"            -> "2.0.1",
-    "image-webpack-loader"       -> "4.0.0",
-    "imagemin"                   -> "5.3.1",
-    "less"                       -> "2.7.3",
-    "less-loader"                -> "4.0.5",
-    "lodash" -> "4.17.4",
-    "node-libs-browser" -> "2.1.0",
-    "react-hot-loader"           -> "3.1.3",
-    "style-loader"               -> "0.19.0",
-    "url-loader"                 -> "0.6.2",
-    "expose-loader"              -> "0.7.4",
-    "webpack"                    -> "3.10.0",
-    "webpack-dev-server"         -> "2.11.1",
-    "@types/webpack"             -> "3.8.3"
+    "css-loader"           -> "0.28.9",
+    "expose-loader"        -> "0.7.4",
+    "file-loader"          -> "1.1.6",
+    "gulp-decompress"      -> "2.0.1",
+    "imagemin"             -> "5.3.1",
+    "image-webpack-loader" -> "4.0.0",
+    "less"                 -> "2.7.3",
+    "less-loader"          -> "4.0.5",
+    "lodash"               -> "4.17.4",
+    "node-libs-browser"    -> "2.1.0",
+    "react-hot-loader"     -> "3.1.3",
+    "style-loader"         -> "0.19.0",
+    "url-loader"           -> "0.6.2",
+    "webpack"              -> "2.6.1",
+    "webpack-dev-server"   -> "2.7.1"
   )
 
   Seq(

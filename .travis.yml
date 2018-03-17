@@ -1,21 +1,23 @@
-sudo: required
 language: scala
+
 scala:
-  - 2.12.3
+  - 2.12.4
 jdk:
   - oraclejdk8
 
+sbt_args:
+  -no-colors
+  -J-Xss2m
+
+env:
+  - NODE_VERSION="8.10.0"
+
 before_install:
-  # Repo for newer Node.js versions
-  - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-  # Repo for Yarn
-  - sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
-  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  - sudo apt-get update -qq
-  - sudo apt-get install -y -qq yarn
+  - nvm install $NODE_VERSION
+  - npm install -g yarn
 
 script:
-- sbt ++$TRAVIS_SCALA_VERSION test
+- sbt ++$TRAVIS_SCALA_VERSION test demo/fastOptJS::webpack
 # Tricks to avoid unnecessary cache updates, from
 # http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
 - find $HOME/.sbt -name "*.lock" | xargs rm
@@ -25,8 +27,5 @@ cache:
   yarn: true
   directories:
     - $HOME/.ivy2/cache
-    - $HOME/.sbt/boot/scala*
-    - $HOME/.sbt/launchers
-    - $HOME/.sbt/0.13/dependency
+    - $HOME/.sbt
     - $HOME/.cache/yarn
-    - $HOME/.cache/npm

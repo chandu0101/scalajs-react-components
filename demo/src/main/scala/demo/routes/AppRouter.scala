@@ -225,7 +225,7 @@ object AppRouter {
     if (dom.window.location.hostname == "localhost")
       BaseUrl.fromWindowOrigin_/
     else
-      BaseUrl.fromWindowOrigin / "sjrc/"
+      BaseUrl.fromWindowOrigin
 
   val router = Router(baseUrl, config)
 }

@@ -5,7 +5,7 @@ lazy val macros =
   project
     .in(file("macros"))
     .enablePlugins(ScalaJSPlugin)
-    .settings(commonSettings)
+    .settings(commonSettings, publicationSettings)
     .settings(
       name := "scalajs-react-components-macros",
       libraryDependencies ++= Seq(
@@ -39,7 +39,7 @@ lazy val core =
     .in(file("core"))
     .dependsOn(macros)
     .enablePlugins(ScalaJSPlugin)
-    .settings(commonSettings)
+    .settings(commonSettings, publicationSettings)
     .settings(
       generateEui := {
         val genDir = sourceManaged.value

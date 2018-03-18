@@ -1,13 +1,11 @@
 package demo
 package routes
 
-import demo.components.{AppHeader, ScalaCSSTutorial}
+import demo.components._
 import demo.pages._
 import japgolly.scalajs.react.extra.router._
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
-
-import scala.scalajs.js.Dynamic.{global => g}
 
 object AppRouter {
 
@@ -24,8 +22,6 @@ object AppRouter {
   case class ReactInfinitePages(p: LeftRoute)  extends Page
   case class ReactListViewPages(p: LeftRoute)  extends Page
   case class ReactPopoverPages(p: LeftRoute)   extends Page
-  case class ReactSelectPages(p: LeftRoute)    extends Page
-  case class ReactSlickPages(p: LeftRoute)     extends Page
   case class ReactSplitPanePages(p: LeftRoute) extends Page
   case class ReactTablePages(p: LeftRoute)     extends Page
   case class ReactTagsInputPages(p: LeftRoute) extends Page
@@ -55,7 +51,7 @@ object AppRouter {
         .prefixPath_/("#reacttable")
         .pmap[Page](ReactTablePages) { case ReactTablePages(p) => p }
 
-    val reactSplitPaneRoutes : Rule =
+    val reactSplitPaneRoutes: Rule =
       ReactSplitPaneRouteModule.routes
         .prefixPath_/("#reactsplitpane")
         .pmap[Page](ReactSplitPanePages) { case ReactSplitPanePages(p) => p }
@@ -64,11 +60,6 @@ object AppRouter {
       ReactTagsInputRouteModule.routes
         .prefixPath_/("#reacttagsinput")
         .pmap[Page](ReactTagsInputPages) { case ReactTagsInputPages(p) => p }
-
-    val reactSelectRoutes: Rule =
-      ReactSelectRouteModule.routes
-        .prefixPath_/("#reactselect")
-        .pmap[Page](ReactSelectPages) { case ReactSelectPages(p) => p }
 
     val reactGeomIconRoutes: Rule =
       ReactGeomIcontRouteModule.routes
@@ -81,14 +72,9 @@ object AppRouter {
         .pmap[Page](ReactInfinitePages) { case ReactInfinitePages(p) => p }
 
     val reactDraggableRoutes: Rule =
-      ReactJSDraggableRouteModule.routes
+      ReactDraggableRouteModule.routes
         .prefixPath_/("#reactdraggable")
         .pmap[Page](ReactDraggablePages) { case ReactDraggablePages(p) => p }
-
-    val reactSlickRoutes: Rule =
-      ReactSlickRouteModule.routes
-        .prefixPath_/("#reactslick")
-        .pmap[Page](ReactSlickPages) { case ReactSlickPages(p) => p }
 
     val googleMapRoutes: Rule =
       GoogleMapRouteModule.routes
@@ -127,8 +113,6 @@ object AppRouter {
       | reactInfiniteRoutes
       | reactListViewRoutes
       | reactPopoverRoutes
-      | reactSelectRoutes
-      | reactSlickRoutes
       | reactSplitPaneRoutes
       | reactTableRoutes
       | reactTagsInputRoutes
@@ -139,107 +123,100 @@ object AppRouter {
   }
 
   def layout(c: RouterCtl[Page], r: Resolution[Page]) = {
+    assert(c != null)
     <.div(
       AppHeader(),
       r.render(),
-      <.div(^.textAlign := "center", ^.key := "footer")(<.hr(), <.p("Built using scalajs-react")))
+      <.div(^.textAlign := "center", ^.key := "footer")(
+        <.hr(),
+        <.p("Built using scalajs-react")
+      )
+    )
   }
 
   val homePageMenu = Vector(
     HomePage.ComponentInfo(
       name = "Material UI",
-      imagePath = g.materialuiImage.toString,
+      imagePath = Images.materialuiImage,
       route = MuiPages(MuiRouteModule.Info),
       tags = Stream("materialui", "material", "framework")
     ),
     HomePage.ComponentInfo(
       name = "Elemental UI",
-      imagePath = g.elementaluiImage.toString,
+      imagePath = Images.elementaluiImage,
       route = EuiPages(EuiRouteModule.Info),
       tags = Stream("elementalui", "elemental", "framework")
     ),
     HomePage.ComponentInfo(
       name = "Semantic UI",
-      imagePath = g.semanticuiImage.toString,
+      imagePath = Images.semanticuiImage,
       route = SuiPages(SuiRouteModule.Info),
       tags = Stream("semanticui", "semantic", "framework")
     ),
     HomePage.ComponentInfo(
       name = "React ListView",
-      imagePath = g.reactListViewImage.toString,
+      imagePath = Images.reactListViewImage,
       route = ReactListViewPages(ReactListViewRouteModule.Info),
       tags = Stream("list view", "search", "listview")
     ),
     HomePage.ComponentInfo(
       name = "Google Map",
-      imagePath = g.googleMapImage.toString,
+      imagePath = Images.googleMapImage,
       route = GoogleMapPages(GoogleMapRouteModule.Info),
       tags = Stream("google", "map", "googlemap")
     ),
     HomePage.ComponentInfo(
+      name = "React Draggable",
+      imagePath = Images.reactDraggableImage,
+      route = ReactDraggablePages(ReactDraggableRouteModule.Info),
+      tags = Stream("react", "drag/drop")
+    ),
+    HomePage.ComponentInfo(
       name = "React TreeView",
-      imagePath = g.reactTreeViewImage.toString,
+      imagePath = Images.reactTreeViewImage,
       route = ReactTreeViewPages(ReactTreeViewRouteModule.Info),
       tags = Stream("tree view", "search", "treeview")
     ),
     HomePage.ComponentInfo(
       name = "React Table",
-      imagePath = g.reactTableImage.toString,
+      imagePath = Images.reactTableImage,
       route = ReactTablePages(ReactTableRouteModule.Info),
       tags = Stream("table", "search", "pagination", "sorting", "cutom cell")
     ),
     HomePage.ComponentInfo(
       name = "React Split Pane",
-      imagePath = g.reactSplitPaneImage.toString,
+      imagePath = Images.reactSplitPaneImage,
       route = ReactSplitPanePages(ReactSplitPaneRouteModule.Info),
       tags = Stream("split pane")
     ),
     HomePage.ComponentInfo(
       name = "React Tags Input",
-      imagePath = g.reactTagsInputImage.toString,
+      imagePath = Images.reactTagsInputImage,
       route = ReactTagsInputPages(ReactTagsInputRouteModule.Info),
       tags = Stream("tags", "input")
     ),
     HomePage.ComponentInfo(
-      name = "React Select",
-      imagePath = g.reactSelectImage.toString,
-      route = ReactSelectPages(ReactSelectRouteModule.Info),
-      tags = Stream("select", "multi", "search", "filter", "multi select")
-    ),
-    HomePage.ComponentInfo(
       name = "React GeomIcons",
-      imagePath = g.reactGeomIconImage.toString,
+      imagePath = Images.reactGeomIconImage,
       route = ReactGeomIconPages(ReactGeomIcontRouteModule.Info),
       tags = Stream("icons", "svg")
     ),
     HomePage.ComponentInfo(
       name = "React Infinite",
-      imagePath = g.reactInfiniteImage.toString,
+      imagePath = Images.reactInfiniteImage,
       route = ReactInfinitePages(ReactInfiniteRouteModule.Info),
       tags = Stream("infinite scroll", "listview")
     ),
     HomePage.ComponentInfo(
-      name = "React Slick",
-      imagePath = g.reactInfiniteImage.toString,
-      route = ReactSlickPages(ReactSlickRouteModule.Info),
-      tags = Stream("slick", "slick")
-    ),
-    HomePage.ComponentInfo(
       name = "Spinner",
-      imagePath = g.spinnerImage.toString,
+      imagePath = Images.spinnerImage,
       route = SpinnerPages(SpinnerRouteModule.Info),
       tags = Stream("spinner")
     ),
     HomePage.ComponentInfo(
       name = "React Popover",
-      imagePath = g.reactPopoverImage.toString,
+      imagePath = Images.reactPopoverImage,
       route = ReactPopoverPages(ReactPopoverRouteModule.Info),
-      tags = Stream("modal", "popover")
-    ),
-    HomePage.ComponentInfo(
-      name = "React Draggable",
-      imagePath = g.reactDraggableImage.toString,
-      route = ReactDraggablePages(ReactJSDraggableRouteModule.Info),
       tags = Stream("modal", "popover")
     )
   )
@@ -248,8 +225,7 @@ object AppRouter {
     if (dom.window.location.hostname == "localhost")
       BaseUrl.fromWindowOrigin_/
     else
-      BaseUrl.fromWindowOrigin / "sjrc/"
+      BaseUrl.fromWindowOrigin
 
   val router = Router(baseUrl, config)
-
 }

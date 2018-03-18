@@ -5,16 +5,19 @@ package materialui
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-object MuiInfo {
+import scalacss.ProdDefaults._
 
-  val cssSettings = scalacss.devOrProdDefaults
-  import cssSettings._
+object MuiInfo {
 
   object Style extends StyleSheet.Inline {
 
     import dsl._
 
-    val content = style(textAlign.center, fontSize(30.px), paddingTop(40.px))
+    val content = style(
+      textAlign.center,
+      fontSize(30.px),
+      paddingTop(40.px)
+    )
   }
 
   val component = ScalaComponent
@@ -23,10 +26,13 @@ object MuiInfo {
       InfoTemplate(componentFilePath = "materialui/package.scala")(
         <.div(
           <.h3("Material-ui "),
-          <.p("scalajs-react wrapper for ", RedLink("material-ui", "http://material-ui.com/#/")),
+          <.p(
+            "scalajs-react wrapper for ",
+            RedLink("material-ui", "http://material-ui.com/#/")
+          ),
           <.div(
             <.h4("Supported Version :"),
-            <.span("0.17.0")
+            <.span("0.18.1")
           ),
           <.div(
             <.h4("How To Use :"),

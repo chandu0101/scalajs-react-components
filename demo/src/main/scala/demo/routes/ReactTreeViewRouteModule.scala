@@ -1,7 +1,7 @@
 package demo
 package routes
 
-import demo.components.{ReactTreeViewInfo, ReactTreeViewDemo}
+import demo.components.{ReactTreeViewDemo, ReactTreeViewInfo}
 import demo.pages.ReactTreeViewPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 import japgolly.scalajs.react.vdom.html_<^._

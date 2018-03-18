@@ -2,9 +2,11 @@ package chandu0101.macros.tojs
 
 import japgolly.scalajs.react.{Callback, CallbackTo}
 import org.scalatest.FunSuite
+
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{literal => json}
 import scala.scalajs.js.JSON
+import scala.scalajs.js.JSConverters._
 
 case class Address(country: String) {
   val toJS: js.Object = JSMacro[Address](this)
@@ -67,7 +69,8 @@ case class TPTest[T <: SelectOption](o: js.UndefOr[js.Array[T]])
 
 case class AnyValTest2(st: SeedType2 = SeedType2.RICE)
 
-import js.UndefOr.{any2undefOrA => u}
+import scala.scalajs.js.UndefOr.{any2undefOrA => u}
+
 case class CallbackTest( //<ocd>
     f0: CallbackTo[Int] = CallbackTo(0),
     fu: () => CallbackTo[Int] = () => CallbackTo(0),
@@ -124,24 +127,36 @@ class JSMacroTest[T <: SelectOption] extends FunSuite {
     val result = JSMacro[SeqTest](SeqTest()).asInstanceOf[js.Dynamic]
     println(s"result array ${JSON.stringify(result)}")
     assert(result.s.asInstanceOf[js.Array[String]].head == "dude")
-    assert(result.as.asInstanceOf[js.Array[js.Dictionary[String]]].head("country") == "India")
+    assert(
+      result.as
+        .asInstanceOf[js.Array[js.Dictionary[String]]]
+        .head("country") == "India")
 
     val result2 = JSMacro[SeqUndefTest](SeqUndefTest()).asInstanceOf[js.Dynamic]
     println(s"result2 array ${JSON.stringify(result2)}")
     assert(result2.s.asInstanceOf[js.Array[String]].head == "dude")
-    assert(result2.as.asInstanceOf[js.Array[js.Dictionary[String]]].head("country") == "India")
+    assert(
+      result2.as
+        .asInstanceOf[js.Array[js.Dictionary[String]]]
+        .head("country") == "India")
   }
 
   test("should handle sets") {
     val result = JSMacro[SetTest](SetTest()).asInstanceOf[js.Dynamic]
     assert(result.s.asInstanceOf[js.Array[String]].head == "dude")
-    assert(result.as.asInstanceOf[js.Array[js.Dictionary[String]]].head("country") == "India")
+    assert(
+      result.as
+        .asInstanceOf[js.Array[js.Dictionary[String]]]
+        .head("country") == "India")
   }
 
   test("should handle arrays") {
     val result = JSMacro[ArrayTest](ArrayTest()).asInstanceOf[js.Dynamic]
     assert(result.s.asInstanceOf[js.Array[String]].head == "dude")
-    assert(result.as.asInstanceOf[js.Array[js.Dictionary[String]]].head("country") == "India")
+    assert(
+      result.as
+        .asInstanceOf[js.Array[js.Dictionary[String]]]
+        .head("country") == "India")
   }
 
   test("should handle maps") {

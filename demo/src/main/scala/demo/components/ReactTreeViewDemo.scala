@@ -9,24 +9,35 @@ import org.scalajs.dom
 object ReactTreeViewDemo {
 
   object Style {
-    def treeViewDemo = Seq(^.display := "flex").toTagMod
+    def treeViewDemo = TagMod(^.display := "flex")
 
-    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px").toTagMod
+    def selectedContent = TagMod(^.alignSelf := "center", ^.margin := "0 40px")
   }
 
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
-  val data = TreeItem("root",
-                      TreeItem("dude1", TreeItem("dude1c")),
-                      TreeItem("dude2"),
-                      TreeItem("dude3"),
-                      TreeItem("dude4", TreeItem("dude4c", TreeItem("dude4cc"))))
+  val data = TreeItem(
+    "root",
+    TreeItem(
+      "dude1",
+      TreeItem("dude1c")
+    ),
+    TreeItem("dude2"),
+    TreeItem("dude3"),
+    TreeItem(
+      "dude4",
+      TreeItem(
+        "dude4c",
+        TreeItem("dude4cc")
+      )
+    )
+  )
 
   case class State(content: String = "")
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Unit, State]) {
 
     def onItemSelect(item: String, parent: String, depth: Int): Callback = {
       val content =

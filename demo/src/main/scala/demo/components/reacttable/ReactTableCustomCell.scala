@@ -3,11 +3,10 @@ package components
 package reacttable
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.{ JsonUtil, ReactTable }
-import demo.util.SampleData
+import chandu0101.scalajs.react.components.ReactTable
+import demo.util.{Person, SampleData}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
-import demo.util.Person
 
 object ReactTableCustomCell {
 
@@ -15,13 +14,17 @@ object ReactTableCustomCell {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]) {
+  case class Backend($ : BackendScope[_, _]) {
     import ReactTable._
     // let say if i want to turn all fnames to grey that starts with J (you can return any VdomElement(buttons,well another ReactTable if you want!)
-  val configs = List(ColumnConfig[Person](name = "First Name", customFname)(DefaultOrdering(_.fname)),
-    SimpleStringConfig[Person](name = "Last Name", _.lname),
-    ColumnConfig[Person](name = "Email", person => <.a(^.href := s"mailto:${person.email}", person.email))(DefaultOrdering(_.email)),
-    SimpleStringConfig[Person](name = "Country", _.country))
+    val configs = List(
+      ColumnConfig[Person](name = "First Name", customFname)(DefaultOrdering(_.fname)),
+      SimpleStringConfig[Person](name = "Last Name", _.lname),
+      ColumnConfig[Person](
+        name = "Email",
+        person => <.a(^.href := s"mailto:${person.email}", person.email))(DefaultOrdering(_.email)),
+      SimpleStringConfig[Person](name = "Country", _.country)
+    )
 
     def customFname: Person => VdomElement =
       person => {
@@ -34,9 +37,8 @@ object ReactTableCustomCell {
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Custom Cell Factory"),
         CodeExample(code, "ReactTableCustomCell")(
-          ReactTable(data = SampleData.people,
-            configs = configs,
-            rowsPerPage = 6)()))
+          ReactTable(data = SampleData.people, configs = configs, rowsPerPage = 6)())
+      )
   }
 
   val component = ScalaComponent

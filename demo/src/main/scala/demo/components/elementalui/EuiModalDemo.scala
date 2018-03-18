@@ -4,7 +4,9 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.elementalui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.TagOf
 import japgolly.scalajs.react.vdom.html_<^._
+import org.scalajs.dom.html.Div
 
 import scala.scalajs.js.`|`
 
@@ -13,45 +15,51 @@ object EuiModalDemo {
 
   // EXAMPLE:START
 
-  case class State(modalIsOpen: Boolean = false,
-                   sizeModalIsOpen: Boolean = false,
-                   modalSize: String | Int = 0)
+  case class State(
+      modalIsOpen: Boolean = false,
+      sizeModalIsOpen: Boolean = false,
+      modalSize: ModalSize | Double = 0.0
+  )
 
   case class Backend($ : BackendScope[Unit, State]) {
-    def toggleModal(event: ReactEventFromHtml) =
+    def toggleModal(event: ReactEventFromHtml): Callback =
       $.modState(state => state.copy(modalIsOpen = !state.modalIsOpen))
 
-    def toggleSizeModal(size: String | Int)(event: ReactEventFromHtml) =
+    def toggleSizeModal(size: ModalSize | Double)(event: ReactEventFromHtml): Callback =
       $.modState(state => state.copy(sizeModalIsOpen = !state.sizeModalIsOpen, modalSize = size))
 
-    def renderLiveDemo(S: State) =
+    def renderLiveDemo(state: State): TagOf[Div] = {
       <.div(
-        Button(toggleModal _)("Show it"),
-        Modal(
-          isOpen = S.modalIsOpen,
+        EuiButton(onClick = toggleModal _)("Show it"),
+        EuiModal(
+          isOpen = state.modalIsOpen,
           backdropClosesModal = true,
           onCancel = toggleModal _
         )(
-          ModalHeader(text = "Modal Header")(),
-          ModalBody()(
-            FormField(label = "Email")(
-              FormInput(label = "Email",
-                        `type` = "email",
-                        name = "email",
-                        placeholder = "name@example.com",
-                        required = true)()
+          EuiModalHeader(text = "Modal Header")(),
+          EuiModalBody()(
+            EuiFormField(label = "Email")(
+              EuiFormInput(
+                `type` = "email",
+                name = "email",
+                required = true
+              )()
             ),
-            FormField(label = "Password")(
-              FormInput(label = "Password",
-                        `type` = "password",
-                        name = "password",
-                        placeholder = "Min 8 chars",
-                        required = true)()
+            EuiFormField(label = "Password")(
+              EuiFormInput(
+                `type` = "password",
+                name = "password",
+                required = true
+              )()
             ),
-            <.p("From the Wikipedia article",
-                <.a(^.href := "https://en.wikipedia.org/wiki/Elemental",
-                    ^.target := "_blank",
-                    "https://en.wikipedia.org/wiki/Elemental")),
+            <.p(
+              "From the Wikipedia article",
+              <.a(
+                ^.href := "https://en.wikipedia.org/wiki/Elemental",
+                ^.target := "_blank",
+                "https://en.wikipedia.org/wiki/Elemental"
+              )
+            ),
             <.p(
               "An elemental is a mythic being described in occult and alchemical works from around the time of the European Renaissance and particularly elaborated in the 16th century works of Paracelsus."),
             <.p(
@@ -68,72 +76,78 @@ object EuiModalDemo {
               "In his 16th-century alchemical work Liber de Nymphis, sylphis, pygmaeis et salamandris et de caeteris spiritibus, Paracelsus identified mythological beings as belonging to one of the four elements. Part of the Philosophia Magna, this book was first printed in 1566 after Paracelsus' death. He wrote the book to \"describe the creatures that are outside the cognizance of the light of nature, how they are to be understood, what marvellous works God has created\". He states that there is more bliss in describing these \"divine objects\" than in describing fencing, court etiquette, cavalry, and other worldly pursuits."),
             <.p("The concept of elementals seems to have been conceived by Paracelsus in the 16th century, though he did not in fact use the term \"elemental\" or a German equivalent.[5] He regarded them not so much as spirits but as beings between creatures and spirits, generally being invisible to mankind but having physical and commonly humanoid bodies, as well as eating, sleeping, and wearing clothes like humans. Paracelsus gave common names for the elemental types, as well as correct names, which he seems to have considered somewhat more proper, \"recht namen\". He also referred to them by purely German terms which are roughly equivalent to \"water people,\" \"mountain people,\" and so on, using all the different forms interchangeably.")
           ),
-          ModalFooter()(
-            Button(onClick = toggleModal _, `type` = ButtonType.PRIMARY)("Submit"),
-            Button(onClick = toggleModal _, `type` = ButtonType.LINK_CANCEL)("Cancel")
+          EuiModalFooter()(
+            EuiButton(onClick = toggleModal _, `type` = ButtonType.primary)("Submit"),
+            EuiButton(onClick = toggleModal _, `type` = ButtonType.link_cancel)("Cancel")
           )
         )
       )
+    }
 
-    val renderStaticExample =
+    val renderStaticExample: TagOf[Div] =
       <.div(
         ^.className := "code-example",
         <.div(
           ^.className := "code-example__example",
           <.div(
             ^.className := "Modal-content",
-            ModalHeader(text = "Modal Header")(),
-            ModalBody()(
-              FormField(label = "Email")(
-                FormInput(label = "Email",
-                          `type` = "email",
-                          name = "email",
-                          placeholder = "name@example.com",
-                          required = true)()
+            EuiModalHeader(text = "Modal Header")(),
+            EuiModalBody()(
+              EuiFormField(label = "Email")(
+                EuiFormInput(
+                  `type` = "email",
+                  name = "email",
+                  required = true
+                )()
               ),
-              FormField(label = "Password")(
-                FormInput(
-                  label = "Password",
+              EuiFormField(label = "Password")(
+                EuiFormInput(
                   `type` = "password",
                   name = "password",
-                  placeholder = "Min 8 chars",
                   required = true
                 )()
               )
             ),
-            ModalFooter()(
-              Button()("Submit"),
-              Button()("Cancel")
+            EuiModalFooter()(
+              EuiButton()("Submit"),
+              EuiButton()("Cancel")
             )
           )
         )
       )
 
-    def renderSizes(S: State) =
+    def renderSizes(state: State): TagOf[Div] = {
       <.div(
-        Button(onClick = toggleSizeModal("small") _)("small"),
-        Button(onClick = toggleSizeModal("large") _)("large"),
-        Button(onClick = toggleSizeModal(768) _)("768"),
-        Modal(isOpen = S.sizeModalIsOpen,
-              onCancel = toggleSizeModal("small") _,
-              backdropClosesModal = true,
-              width = S.modalSize)(ModalHeader(
-                                     text = s"${S.modalSize}",
-                                     showCloseButton = true,
-                                     onClose = toggleSizeModal("small") _
-                                   )(),
-                                   ModalBody()(<.p("&hellip;")))
+        EuiButton(onClick = toggleSizeModal(ModalSize.small) _)("small"),
+        EuiButton(onClick = toggleSizeModal(ModalSize.large) _)("large"),
+        EuiButton(onClick = toggleSizeModal(768) _)("768"),
+        EuiModal(
+          isOpen = state.sizeModalIsOpen,
+          onCancel = toggleSizeModal(ModalSize.small) _,
+          backdropClosesModal = true,
+          width = state.modalSize
+        )(
+          EuiModalHeader(
+            text = s"${state.modalSize.toString}",
+            showCloseButton = true,
+            onClose = toggleSizeModal(ModalSize.small) _
+          )(),
+          EuiModalBody()(<.p("&hellip;"))
+        )
       )
+    }
 
-    def render(S: State) =
+    def render(state: State): VdomElement =
       CodeExample(code, "EuiModal")(
-        Container()(<.h1("Modal"),
-                    <.h2("Static Example"),
-                    renderStaticExample,
-                    <.h2("Live Demo"),
-                    renderLiveDemo(S),
-                    <.h2("Sizes"),
-                    renderSizes(S))
+        EuiContainer()(
+          <.h1("Modal"),
+          <.h2("Static Example"),
+          renderStaticExample,
+          <.h2("Live Demo"),
+          renderLiveDemo(state),
+          <.h2("Sizes"),
+          renderSizes(state)
+        )
       )
   }
 

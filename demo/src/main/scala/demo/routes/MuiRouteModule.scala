@@ -63,7 +63,7 @@ object MuiRouteModule {
 
   val menu: List[LeftRoute] = List(
     Info,
-//    Updates,
+    //    Updates,
     AppBar,
     AutoComplete,
     Avatar,

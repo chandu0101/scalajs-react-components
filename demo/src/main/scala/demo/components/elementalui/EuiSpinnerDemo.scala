@@ -20,16 +20,18 @@ object EuiSpinnerDemo {
             <.h1("Spinner"),
             <.h2("Common Use Cases"),
             <.h3("Page Element"),
-            Spinner(size = SpinnerSize.MD)(),
-            Spinner(size = SpinnerSize.MD, `type` = SpinnerType.PRIMARY)(),
-            Spinner(size = SpinnerSize.MD, `type` = SpinnerType.INVERTED)(),
+            EuiSpinner(size = SmMdLg.md)(),
+            EuiSpinner(size = SmMdLg.md, `type` = DefaultPrimaryInverted.primary)(),
+            EuiSpinner(size = SmMdLg.md, `type` = DefaultPrimaryInverted.inverted)(),
             <.h3("Inside Buttons"),
-            Button()(Spinner()()),
-            Button(disabled = true)(Spinner(`type` = SpinnerType.PRIMARY)(), "Saving"),
-            Button(`type` = ButtonType.PRIMARY)(Spinner(`type` = SpinnerType.INVERTED)(),
-                                                ("Submitting")),
+            EuiButton()(EuiSpinner()()),
+            EuiButton(disabled = true)(EuiSpinner(`type` = DefaultPrimaryInverted.primary)(),
+                                       "Saving"),
+            EuiButton(`type` = ButtonType.primary)(
+              EuiSpinner(`type` = DefaultPrimaryInverted.inverted)(),
+              ("Submitting")),
             <.h3("Full Page Load"),
-            Spinner(size = SpinnerSize.LG)()
+            EuiSpinner(size = SmMdLg.lg)()
           )
       ))
     .build

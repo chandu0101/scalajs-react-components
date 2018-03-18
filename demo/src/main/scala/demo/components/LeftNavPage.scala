@@ -6,12 +6,10 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
 
 object LeftNavPage {
-
-  val cssSettings = scalacss.devOrProdDefaults
-  import cssSettings._
 
   object Style extends StyleSheet.Inline {
     import dsl._
@@ -31,11 +29,13 @@ object LeftNavPage {
     )
   }
 
-  case class Backend($ : BackendScope[Props, _]) {
+  case class Backend($ : BackendScope[Props, Unit]) {
     def render(P: Props) = {
-      <.div(Style.container,
-            <.div(Style.nav, LeftNav(P.menu, P.selectedPage, P.ctrl)),
-            <.div(Style.content, P.selectedPage.render()))
+      <.div(
+        Style.container,
+        <.div(Style.nav, LeftNav(P.menu, P.selectedPage, P.ctrl)),
+        <.div(Style.content, P.selectedPage.render())
+      )
     }
   }
   val component = ScalaComponent
@@ -45,6 +45,9 @@ object LeftNavPage {
 
   case class Props(menu: List[LeftRoute], selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(menu: List[LeftRoute], selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) =
+  def apply(menu: List[LeftRoute],
+            selectedPage: LeftRoute,
+            ctrl: RouterCtl[LeftRoute]): VdomElement = {
     component(Props(menu, selectedPage, ctrl))
+  }
 }

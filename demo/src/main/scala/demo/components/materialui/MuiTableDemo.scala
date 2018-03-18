@@ -61,19 +61,19 @@ object MuiTableDemo {
       Person("7", "Adam Moore", "Employed")
     )
 
-    def renderPersons(selecteds: String | js.Array[Int]) =
+    def renderPersons(selecteds: String | js.Array[Int]): Seq[VdomNode] =
       persons.zipWithIndex.map {
         case (p, idx) =>
           val selected = selecteds match {
             case a: js.Array[_] => a.contains(idx)
             case all            => true
           }
-          MuiTableRow(key = idx.toString, selected = selected)(
+          MuiTableRow(selected = selected)(
             MuiTableRowColumn()(p.id),
             MuiTableRowColumn()(p.name),
             MuiTableRowColumn()(p.status)
-          )
-      }.toVdomArray
+          ): VdomNode
+      }
 
     def render(S: State) =
       CodeExample(code, "MuiTable")(
@@ -89,8 +89,10 @@ object MuiTableDemo {
           )(
             MuiTableHeader(enableSelectAll = S.enableSelectAll)(
               MuiTableRow()(
-                MuiTableHeaderColumn(tooltip = "Super Header",
-                                     style = js.Dynamic.literal("textAlign" -> "center"))()
+                MuiTableHeaderColumn(
+                  tooltip = "Super Header",
+                  style = js.Dynamic.literal("textAlign" -> "center")
+                )()
               ),
               colNames
             ),
@@ -99,7 +101,7 @@ object MuiTableDemo {
               showRowHover = S.showRowHover,
               stripedRows = S.stripedRows
             )(
-              renderPersons(S.selected)
+              renderPersons(S.selected): _*
             ),
             MuiTableFooter()(
               colNames,
@@ -107,34 +109,34 @@ object MuiTableDemo {
             )
           ),
           MuiPaper(rounded = true,
-                   style = js.Dynamic.literal("width" -> "300px", "padding" -> "20px"))(
+                   style = js.Dynamic.literal("width" -> "300", "padding" -> "20px"))(
             MuiToggle(
-              label = "selectable",
+              label = js.defined("selectable"),
               defaultToggled = S.selectable,
               onToggle = toggleSelectable
             )(),
             MuiToggle(
-              label = "multiSelectable",
+              label = js.defined("multiSelectable"),
               defaultToggled = S.multiSelectable,
               onToggle = toggleMultiSelectable
             )(),
             MuiToggle(
-              label = "enableSelectAll",
+              label = js.defined("enableSelectAll"),
               defaultToggled = S.enableSelectAll,
               onToggle = toggleEnableSelectAll
             )(),
             MuiToggle(
-              label = "deselectOnClickaway",
+              label = js.defined("deselectOnClickaway"),
               defaultToggled = S.deselectOnClickaway,
               onToggle = toggleDeselectOnClickaway
             )(),
             MuiToggle(
-              label = "fixedHeader",
+              label = js.defined("fixedHeader"),
               defaultToggled = S.fixedHeader,
               onToggle = toggleFixedHeader
             )(),
             MuiToggle(
-              label = "fixedFooter",
+              label = js.defined("fixedFooter"),
               defaultToggled = S.fixedFooter,
               onToggle = toggleFixedFooter
             )()

@@ -4,6 +4,7 @@ import japgolly.scalajs.react.ReactEventFrom
 import org.scalajs.dom
 
 import scala.scalajs.js
+
 @js.native
 trait TouchTapEvent[+DOMEventTarget <: dom.Node] extends ReactEventFrom[DOMEventTarget] {
   def altKey: Boolean

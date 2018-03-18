@@ -1,10 +1,10 @@
 package chandu0101.scalajs.react.components.materialui
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.annotation.JSImport
 
-@js.native @JSName("mui.AutoComplete")
-object MuiAutoCompleteFilters extends js.Object {
+@js.native @JSImport("material-ui/AutoComplete", JSImport.Default)
+object MuiAutoCompleteFilters extends js.Any {
   val noFilter: js.Function3[String, String, String, Boolean]                  = js.native
   val defaultFilter: js.Function3[String, String, String, Boolean]             = js.native
   val caseInsensitiveFilter: js.Function3[String, String, String, Boolean]     = js.native

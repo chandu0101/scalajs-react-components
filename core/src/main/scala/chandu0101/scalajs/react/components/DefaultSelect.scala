@@ -1,11 +1,14 @@
 package chandu0101.scalajs.react.components
 
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.component.Scala.Unmounted
 import japgolly.scalajs.react.vdom.html_<^._
+
+import scala.scalajs.js
 
 object DefaultSelect {
 
-  class Backend(t: BackendScope[Props, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
 
     def onChange(P: Props)(e: ReactEventFromInput) =
       P.onChange(e.target.value)
@@ -34,6 +37,12 @@ object DefaultSelect {
                    value: String,
                    onChange: String => Callback)
 
-  def apply(label: String, options: List[String], value: String, onChange: String => Callback) =
-    component(Props(label, options, value, onChange))
+  def apply(key: js.UndefOr[Key] = js.undefined,
+            label: String,
+            options: List[String],
+            value: String,
+            onChange: String => Callback): Unmounted[Props, Unit, Backend] = {
+    val props = Props(label, options, value, onChange)
+    key.fold(component(props))(key => component.withKey(key)(props))
+  }
 }

@@ -34,12 +34,14 @@ object GoogleMap {
         } else initialize(P)
 
     def initialize(P: Props): Callback =
-      t.getDOMNode flatMap (e =>
-        t.modState(
-          _.copy(mapObjects =
-            Some((new GMap(e, MapOptions(P.center, P.zoom).toGMapOptions), new GInfoWindow))),
-          callback = updateMap(P)
-        ))
+      t.root.getDOMNode
+        .flatMap(
+          node =>
+            t.modState(
+              _.copy(mapObjects = Some(
+                (new GMap(node, MapOptions(P.center, P.zoom).toGMapOptions), new GInfoWindow))),
+              callback = updateMap(P)
+          ))
 
     def updateMap(P: Props): Callback =
       t.modState(
@@ -82,8 +84,8 @@ object GoogleMap {
     .builder[Props]("googleMap")
     .initialState(State(None, Nil))
     .renderBackend[Backend]
-    .componentWillReceiveProps { c =>
-      c.backend.updateMap(c.nextProps)
+    .componentWillReceiveProps { wrp =>
+      wrp.backend.updateMap(wrp.nextProps)
     }
     .componentDidMount($ => $.backend.loadScript($.props))
     .componentWillUnmount($ => Callback($.state.markers.foreach(new GClearInstanceListeners(_))))
@@ -99,12 +101,14 @@ object GoogleMap {
     * @param url url to get googlemap api, by default it uses https://maps.googleapis.com/maps/api/js you can override if you want.
     * @return
     */
-  def apply(width: String = "500px",
-            height: String = "500px",
-            center: LatLng,
-            zoom: Int = 4,
-            markers: List[Marker] = Nil,
-            url: String = "https://maps.googleapis.com/maps/api/js") =
+  def apply(
+      width: String = "500px",
+      height: String = "500px",
+      center: LatLng,
+      zoom: Int = 4,
+      markers: List[Marker] = Nil,
+      url: String = "https://maps.googleapis.com/maps/api/js"
+  ) =
     component(Props(width, height, center, zoom, markers, url))
 
 }

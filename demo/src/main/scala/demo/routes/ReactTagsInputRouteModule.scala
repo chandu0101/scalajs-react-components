@@ -1,7 +1,7 @@
 package demo
 package routes
 
-import demo.components.{ReactTagsInputInfo, ReactTagsInputDemo}
+import demo.components.{ReactTagsInputDemo, ReactTagsInputInfo}
 import demo.pages.ReactTagsInputPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 import japgolly.scalajs.react.vdom.html_<^._

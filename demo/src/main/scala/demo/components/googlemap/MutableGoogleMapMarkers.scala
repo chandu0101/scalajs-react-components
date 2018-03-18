@@ -23,13 +23,11 @@ object MutableGoogleMapMarkers {
   class Backend(t: BackendScope[Unit, State]) {
 
     def changeLat(event: ReactEventFromInput): Callback = {
-      val updated = event.target.value.toDouble
-      t.modState(_.copy(lat = updated))
+      t.modState(_.copy(lat = event.target.value.toDouble))
     }
 
     def changeLng(event: ReactEventFromInput): Callback = {
-      val updated = event.target.value.toDouble
-      t.modState(_.copy(lng = updated))
+      t.modState(_.copy(lng = event.target.value.toDouble))
     }
 
     val addMarker: Callback =

@@ -24,7 +24,6 @@ lazy val gen =
       organization := "com.olvind",
       name := "generator",
       version in webpack := "2.6.1",
-//      version in installWebpackDevServer := "2.7.1",
       libraryDependencies ++= Seq(
         "com.lihaoyi"   %% "ammonite-ops" % "1.0.1",
         "org.scalatest" %% "scalatest"    % "3.0.4" % Test
@@ -256,7 +255,7 @@ lazy val npmDevSettings = {
     "style-loader"         -> "0.19.0",
     "url-loader"           -> "0.6.2",
     "webpack"              -> "2.6.1",
-    "webpack-dev-server"   -> "2.7.1"
+    "webpack-dev-server"   -> "2.11.1"
   )
 
   Seq(

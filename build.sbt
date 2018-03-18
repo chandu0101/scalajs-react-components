@@ -150,8 +150,8 @@ lazy val commonSettings =
     version := "1.0.0-M2",
     name := "scalajs-react-components",
     organization := "com.olvind",
-    licenses += ("Apache 2.0",
-    url("http://www.apache.org/licenses/LICENSE-2.0")),
+    homepage := Some(url("http://chandu0101.github.io/scalajs-react-components")),
+    licenses += ("Apache 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")),
     mappings.in(Compile, packageBin) += baseDirectory.in(ThisBuild).value / "LICENSE" -> "LICENSE",
     scalacOptions ++= Seq(
       "-deprecation", // Emit warning and location for usages of deprecated APIs.

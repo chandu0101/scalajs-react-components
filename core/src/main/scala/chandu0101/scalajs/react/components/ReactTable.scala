@@ -92,7 +92,8 @@ object ReactTable {
                              cellRenderer: CellRenderer[T],
                              //sortBy: Option[(T, T) => Boolean] = None,
                              width: Option[String] = None,
-                             nowrap: Boolean = false)(implicit val ordering: Ordering[T])
+                             nowrap: Boolean = false,
+                             rowSeq: Option[T => List[VdomNode]] = None)(implicit val ordering: Ordering[T])
 
   def SimpleStringConfig[T](name: String,
                             stringRetriever: T => String,
@@ -210,17 +211,42 @@ case class ReactTable[T](data: Seq[T],
           }.toTagMod
         )
 
-      def renderRow(model: T): TagMod =
-        <.tr(
-          props.style.tableRow,
-          props.configs
-            .map(
-              config =>
-                <.td(^.whiteSpace.nowrap.when(config.nowrap),
-                     ^.verticalAlign.middle,
-                     config.cellRenderer(model)))
-            .toTagMod
-        )
+      def renderRow(model: T): TagMod = {
+        val existsRowSeq = configs.exists(_.rowSeq.isDefined)
+        val rowSpan = configs.flatMap(_.rowSeq.map(_ (model).size).toList)
+        val tds = props.configs.map { config =>
+          if (config.rowSeq.isEmpty) {
+            Seq(
+              <.td(^.whiteSpace.nowrap.when(config.nowrap),
+                ^.key := config.name,
+                ^.verticalAlign.middle,
+                (^.rowSpan := rowSpan.max).when(existsRowSeq),
+                config.cellRenderer(model)
+              )
+            ).zipWithIndex
+          } else {
+            config.rowSeq.get(model).map { node =>
+              <.td(^.whiteSpace.nowrap.when(config.nowrap),
+                ^.verticalAlign.middle,
+                ^.key := config.name,
+                node)
+            }
+          }.zipWithIndex
+        }
+
+        val maxIndex = tds.flatMap(_.map(_._2)).max
+        val tdSeq = tds.flatten
+
+        val rows = for (i <- 0 to maxIndex) yield {
+          <.tr(
+            ^.key := i,
+            props.style.tableRow,
+            tdSeq.filter(_._2 == i).map(_._1).toVdomArray
+          )
+        }
+
+        rows.toVdomArray
+      }
 
       val rows = state.filteredData
         .slice(state.offset, state.offset + state.rowsPerPage)

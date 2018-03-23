@@ -56,8 +56,17 @@ final case class Import(
 case class Identifier private (value: String) extends Wrapper[String]
 
 object Identifier {
+  var counter = 0
   def safe(m: String): Identifier = {
-    val memberName = if (m.head.isDigit) "_" + m else m
+    counter = counter + 1
+    val memberName = if(m.isEmpty) {
+      "_" + counter
+    } else if (m.head.isDigit) {
+      "_" + m
+    }
+    else {
+      m
+    }
     Identifier(memberName.replaceAll("[-/]", "_"))
   }
 }

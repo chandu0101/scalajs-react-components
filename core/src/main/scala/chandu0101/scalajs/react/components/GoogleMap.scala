@@ -34,7 +34,7 @@ object GoogleMap {
         } else initialize(P)
 
     def initialize(P: Props): Callback =
-      t.root.getDOMNode
+      t.root.getDOMNode.map(_.asElement)
         .flatMap(
           node =>
             t.modState(

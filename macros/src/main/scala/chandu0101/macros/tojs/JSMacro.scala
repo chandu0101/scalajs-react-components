@@ -7,6 +7,7 @@ import scala.collection.{GenMap, GenTraversableOnce}
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
 import scala.scalajs.js
+import scala.language.existentials
 
 /**
   * modified version of https://github.com/wav/scala-macros/blob/master/src/main/scala/wav/common/scalajs/macros/Macros.scala
@@ -30,9 +31,15 @@ object JSMacro {
       !tpe.typeSymbol.fullName.startsWith("scala.")
 
     def flattenUnion(tpe: Type): List[Type] =
-      if (tpe <:< typeOf[js.|[_, _]])
-        flattenUnion(tpe.typeArgs(0)) ++ flattenUnion(tpe.typeArgs(1))
-      else List(tpe)
+      if (tpe <:< typeOf[js.|[_, _]]) {
+        if(tpe.typeArgs.isEmpty)
+          List(tpe)
+        else
+          flattenUnion(tpe.typeArgs(0)) ++ flattenUnion(tpe.typeArgs(1))
+      }
+      else {
+        List(tpe)
+      }
 
     def getJSValueTree(target: Tree, rt: Type): Tree = {
       if (rt <:< typeOf[TOJS])
@@ -141,6 +148,14 @@ object JSMacro {
       }
       res
     }
+
+    //    Comment this code back in to see what the macro spits out.
+//        println(
+//          s""" ($target: $tpe) => {
+//          val $props = scala.scalajs.js.Dynamic.literal()
+//          ..$fieldUpdates
+//          $props
+//        }""")
 
     q""" ($target: $tpe) => {
       val $props = scala.scalajs.js.Dynamic.literal()

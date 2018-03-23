@@ -17,10 +17,10 @@ object ReactPopoverDemo {
   // EXAMPLE:START
 
   class Backend(t: BackendScope[Unit, Unit]) {
-    private val topRef    = ScalaComponent.mutableRefTo(ReactPopOver.component)
-    private val rightRef  = ScalaComponent.mutableRefTo(ReactPopOver.component)
-    private val leftRef   = ScalaComponent.mutableRefTo(ReactPopOver.component)
-    private val bottomRef = ScalaComponent.mutableRefTo(ReactPopOver.component)
+    private val topRef    = Ref.toScalaComponent(ReactPopOver.component)
+    private val rightRef  = Ref.toScalaComponent(ReactPopOver.component)
+    private val leftRef   = Ref.toScalaComponent(ReactPopOver.component)
+    private val bottomRef = Ref.toScalaComponent(ReactPopOver.component)
 
     def toggleCB(refComp: => ScalaComponent.MountedImpure[Props, State, ReactPopOver.Backend])
       : ReactMouseEvent => Callback = { e =>

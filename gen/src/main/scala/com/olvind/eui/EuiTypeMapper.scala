@@ -36,7 +36,7 @@ object EuiTypeMapper extends TypeMapper {
       case (_, "children", "node")          => Normal("VdomNode")
       case (_, _, "React.node")             => Normal("ReactNode")
       case (_, "children", "React.element") => Normal("VdomNode")
-      case (_, _, "React.element")          => Normal("ReactElement")
+      case (_, _, "React.element")          => Normal("React.Element")
       case (_, _, "number")                 => Normal("Double")
       case (_, _, "React.number")           => Normal("Double")
       case ("Glyph", "icon", _)             => Normal("Octicons")
@@ -95,8 +95,14 @@ object EuiTypeMapper extends TypeMapper {
         Enum(compName,
              Seq("danger", "error", "info", "primary", "success", "warning", "success_inverted"),
              "AlertType")
-      case (_, _, enum) if enum.contains("oneOfType") =>
-        Normal(split(1, enum) map (t => apply(compName, fieldName, t)) map (_.name) mkString " | ")
+      case (_, _, enum) if enum.contains("oneOfType") => {
+        val splitted = split(1, enum)
+        Normal(splitted.map(t => apply(compName, fieldName, t))
+          .filter(_.name.nonEmpty)
+          .map(_.name)
+          .toSet
+          .mkString(" | "))
+      }
       case (_, _, enum) if enum.contains("oneOf")          => Enum(compName, split(1, enum))
       case (_, "children", "React.arrayOf(React.element)") => Normal("js.Array[VdomElement]")
       case (_, _, "React.array")                           => Normal("js.Array[js.Object]")

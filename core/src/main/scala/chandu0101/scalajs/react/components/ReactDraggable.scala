@@ -105,8 +105,8 @@ object ReactDraggable {
     * @param startY Start top of t.getDOmNode()
     * @param offsetX Offset between start left and mouse left
     * @param offsetY Offset between start top and mouse top
-    * @param clientX Current left of this.getDOMNode
-    * @param clientY Current top of this.getDOMNode
+    * @param clientX Current left of this.getDOMNode.map(_.asElement)
+    * @param clientY Current top of this.getDOMNode.map(_.asElement)
     */
   case class State(
       dragging: Boolean,
@@ -125,7 +125,7 @@ object ReactDraggable {
   class Backend(t: BackendScope[Props, State]) {
 
     def pos(S: State) =
-      t.root.getDOMNode.map(node => RElementPosition(node, top = S.clientY, left = S.clientX))
+      t.root.getDOMNode.map(node => RElementPosition(node.asElement, top = S.clientY, left = S.clientX))
 
     def handleDragStart(props: Props)(e: Event): Callback = {
       val moveEventType = DomUtil.dragEventFor(e, "move")

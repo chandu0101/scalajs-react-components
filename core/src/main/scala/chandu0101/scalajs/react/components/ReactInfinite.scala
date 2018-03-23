@@ -19,7 +19,7 @@ case class ReactInfinite(
     preloadBatchSize: js.UndefOr[Int] = js.undefined,
     containerHeight: Int,
     ref: js.UndefOr[ReactInfiniteM => Unit] = js.undefined,
-    loadingSpinnerDelegate: js.UndefOr[ReactElement] = js.undefined,
+    loadingSpinnerDelegate: js.UndefOr[React.Element] = js.undefined,
     timeScrollStateLastsForAfterUserScrolls: js.UndefOr[Int] = js.undefined,
     elementHeight: Double,
     key: js.UndefOr[String] = js.undefined,

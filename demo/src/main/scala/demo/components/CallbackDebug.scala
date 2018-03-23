@@ -62,7 +62,7 @@ object CallbackDebug {
   }
 
   private def base(name: String, params: String*): Callback =
-    Callback.warn(s"Event handler: $name(${params.mkString(", ")})")
+    Callback.info(s"Event handler: $name(${params.mkString(", ")})")
 
   def f0(name: String): Callback =
     base(name)

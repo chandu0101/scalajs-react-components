@@ -31,7 +31,7 @@ object MuiSvgIcon {
         onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
         style: js.UndefOr[CssProperties] = js.undefined,
         viewBox: js.UndefOr[String] = js.undefined
-    )(children: VdomNode*): UnmountedWithRawType[MuiSvgIconProps, Null, RawMounted] = {
+    )(children: VdomNode*): UnmountedWithRawType[MuiSvgIconProps, Null, RawMounted[MuiSvgIconProps,Null]] = {
 
       val props = js.Dynamic.literal()
       key.foreach(v => props.updateDynamic("key")(v))

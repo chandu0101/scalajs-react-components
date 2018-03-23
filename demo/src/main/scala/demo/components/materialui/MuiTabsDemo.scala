@@ -28,7 +28,7 @@ object MuiTabsDemo {
 
   // EXAMPLE:START
   case class Backend($ : BackendScope[Unit, Int]) {
-    val onChange: (Int, ReactEventFromHtml, ReactElement) => Callback =
+    val onChange: (Int, ReactEventFromHtml, React.Element) => Callback =
       (chosen, _, _) ⇒ $.setState(chosen) >> Callback.info(s"chose $chosen")
 
     def render(current: Int) =

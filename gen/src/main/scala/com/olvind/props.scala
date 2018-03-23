@@ -1,10 +1,10 @@
 package com.olvind
 
 final case class ParsedComponent(
-    definition: ComponentDef,
-    fields: Seq[ParsedProp],
-    methodClassOpt: Option[ParsedMethodClass]
-) {
+                                  definition: ComponentDef,
+                                  fields: Seq[ParsedProp],
+                                  methodClassOpt: Option[ParsedMethodClass]
+                                ) {
 
   val name = definition.name
 
@@ -49,8 +49,8 @@ final case class ParsedComponent(
           .map { p ⇒
             val bounds: String =
               (p.jsObject, withBounds) match {
-                case (_, false)    ⇒ ""
-                case (true, true)  ⇒ "" //" <% js.Any" //todo: revisit
+                case (_, false) ⇒ ""
+                case (true, true) ⇒ "" //" <% js.Any" //todo: revisit
                 case (false, true) ⇒ "" // <% js.Any"
               }
             s"${p.name}$bounds"
@@ -62,28 +62,31 @@ final case class ParsedComponent(
 }
 
 final case class ParsedMethodClass(
-    className: String,
-    methods: Seq[ParsedMethod]
-)
+                                    className: String,
+                                    methods: Seq[ParsedMethod]
+                                  )
 
 final case class ParsedEnumClass(
-    name: String,
-    identifiers: Seq[(Identifier, String)]
-)
+                                  name: String,
+                                  identifiers: Seq[(Identifier, String)]
+                                )
 
 sealed trait Annotation
+
 case class Deprecated(reason: String) extends Annotation
-case class Param(value: String)       extends Annotation
-case object Ignore                    extends Annotation
+
+case class Param(value: String) extends Annotation
+
+case object Ignore extends Annotation
 
 final case class ParsedProp(
-    name: PropName,
-    isRequired: Boolean = false,
-    baseType: Type = Normal("js.Any"),
-    commentOpt: Option[PropComment] = None,
-    deprecatedMsg: Option[String] = None,
-    inheritedFrom: Option[CompName] = None
-) {
+                             name: PropName,
+                             isRequired: Boolean = false,
+                             baseType: Type = Normal("js.Any"),
+                             commentOpt: Option[PropComment] = None,
+                             deprecatedMsg: Option[String] = None,
+                             inheritedFrom: Option[CompName] = None
+                           ) {
 
   val typeName: String =
     if (isRequired) baseType.name
@@ -125,9 +128,9 @@ final case class ParsedMethod(definition: String, commentOpt: Option[PropComment
 }
 
 final case class PropUnparsed(
-    fromComp: CompName,
-    unparsed: PropTypeUnparsed,
-    commentOpt: Option[PropComment]
-)
+                               fromComp: CompName,
+                               unparsed: PropTypeUnparsed,
+                               commentOpt: Option[PropComment]
+                             )
 
 final case class PropTypeUnparsed(value: String) extends Wrapper[String]

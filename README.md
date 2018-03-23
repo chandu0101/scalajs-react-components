@@ -50,7 +50,7 @@ Add these dependencies to you sbt build file
 libraryDependencies ++= Seq(
   "com.github.japgolly.scalajs-react" %%% "core" % "1.1.0",
   "com.github.japgolly.scalajs-react" %%% "extra" % "1.1.0",
-  "com.olvind" %%% "scalajs-react-components" % "1.0.0-M2"
+  "com.olvind" %%% "scalajs-react-components" % "1.1.0"
 )
 ```
 
@@ -68,7 +68,7 @@ See [here](https://japgolly.github.io/scalacss/book/ext/react.html) for more det
 
 **Online :**
 
-http://chandu0101.github.io/scalajs-react-components
+http://scalajs-react-components.github.io/scalajs-react-components
 
 **Local :** This will start a web server on http://localhost:8080
 ```

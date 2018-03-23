@@ -1,11 +1,13 @@
 package chandu0101.macros.tojs
 
+import japgolly.scalajs.react.raw.React
+import japgolly.scalajs.react.vdom.VdomNode
 import japgolly.scalajs.react.{Callback, CallbackTo}
 import org.scalatest.FunSuite
 
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{literal => json}
-import scala.scalajs.js.JSON
+import scala.scalajs.js.{JSON, |}
 import scala.scalajs.js.JSConverters._
 
 case class Address(country: String) {
@@ -42,16 +44,16 @@ case class ArrayTest(s: Array[String] = Array("dude"),
 
 case class MapTest(m: Map[String, String] = Map("key" -> "0"),
                    ma: js.UndefOr[Map[String, Address]] =
-                     Map("address" -> Address("India"), "address2" -> null))
+                   Map("address" -> Address("India"), "address2" -> null))
 
 case class JSDictTest(m: js.Dictionary[String] = js.Dictionary("key" -> "0"),
                       ma: js.UndefOr[js.Dictionary[Address]] =
-                        js.Dictionary("address" -> Address("India"), "address2" -> null))
+                      js.Dictionary("address" -> Address("India"), "address2" -> null))
 
 case class FunctionTest(fn0: () => Int = () => 5,
                         fn1: js.UndefOr[Double => String] = (d: Double) => s"$d x")
 
-class SeedType2 private (val value: String) extends AnyVal
+class SeedType2 private(val value: String) extends AnyVal
 
 object SeedType2 {
   val RICE = new SeedType2("rice")
@@ -72,22 +74,22 @@ case class AnyValTest2(st: SeedType2 = SeedType2.RICE)
 import scala.scalajs.js.UndefOr.{any2undefOrA => u}
 
 case class CallbackTest( //<ocd>
-    f0: CallbackTo[Int] = CallbackTo(0),
-    fu: () => CallbackTo[Int] = () => CallbackTo(0),
-    f1: Int => CallbackTo[Int] = i1 => CallbackTo(i1),
-    f2: (Int, Int) => CallbackTo[Int] = (i1, i2) => CallbackTo(i1 + i2),
-    f3: (Int, Int, Int) => CallbackTo[Int] = (i1, i2, i3) => CallbackTo(i1 + i2 + i3),
-    f0c: Callback = Callback(()),
-    fuc: () => Callback = () => Callback(()),
-    f1c: Int => Callback = i1 => Callback(()),
-    f2c: (Int, Int) => Callback = (i1, i2) => Callback(()),
-    f3c: (Int, Int, Int) => Callback = (i1, i2, i3) => Callback(()),
-    f0u: js.UndefOr[CallbackTo[Int]] = u(CallbackTo(0)),
-    fuu: js.UndefOr[() => CallbackTo[Int]] = u(() => CallbackTo(0)),
-    f1u: js.UndefOr[Int => CallbackTo[Int]] = u(i1 => CallbackTo(i1)),
-    f2u: js.UndefOr[(Int, Int) => CallbackTo[Int]] = u((i1, i2) => CallbackTo(i1 + i2)),
-    f3u: js.UndefOr[(Int, Int, Int) => CallbackTo[Int]] = u(
-      (i1, i2, i3) => CallbackTo(i1 + i2 + i3)))
+                         f0: CallbackTo[Int] = CallbackTo(0),
+                         fu: () => CallbackTo[Int] = () => CallbackTo(0),
+                         f1: Int => CallbackTo[Int] = i1 => CallbackTo(i1),
+                         f2: (Int, Int) => CallbackTo[Int] = (i1, i2) => CallbackTo(i1 + i2),
+                         f3: (Int, Int, Int) => CallbackTo[Int] = (i1, i2, i3) => CallbackTo(i1 + i2 + i3),
+                         f0c: Callback = Callback(()),
+                         fuc: () => Callback = () => Callback(()),
+                         f1c: Int => Callback = i1 => Callback(()),
+                         f2c: (Int, Int) => Callback = (i1, i2) => Callback(()),
+                         f3c: (Int, Int, Int) => Callback = (i1, i2, i3) => Callback(()),
+                         f0u: js.UndefOr[CallbackTo[Int]] = u(CallbackTo(0)),
+                         fuu: js.UndefOr[() => CallbackTo[Int]] = u(() => CallbackTo(0)),
+                         f1u: js.UndefOr[Int => CallbackTo[Int]] = u(i1 => CallbackTo(i1)),
+                         f2u: js.UndefOr[(Int, Int) => CallbackTo[Int]] = u((i1, i2) => CallbackTo(i1 + i2)),
+                         f3u: js.UndefOr[(Int, Int, Int) => CallbackTo[Int]] = u(
+                           (i1, i2, i3) => CallbackTo(i1 + i2 + i3)))
 
 class JSMacroTest[T <: SelectOption] extends FunSuite {
 
@@ -103,7 +105,7 @@ class JSMacroTest[T <: SelectOption] extends FunSuite {
   }
 
   test("callbacks") {
-    val c   = CallbackTest()
+    val c = CallbackTest()
     val out = JSMacro[CallbackTest](c).asInstanceOf[js.Dynamic]
 
     assert(0 == out.f0.apply().asInstanceOf[Int])
@@ -198,4 +200,23 @@ class JSMacroTest[T <: SelectOption] extends FunSuite {
     val result = JSMacro[TPTest[SampleOption]](TPTest(js.Array(SampleOption())))
     printResult(result)
   }
+
+  val arg: js.UndefOr[React.Node] = js.undefined
+
+  test("should handle React.Node") {
+    val d = scala.scalajs.js.Dynamic.literal()
+    d.updateDynamic("arg")(arg.asInstanceOf[js.Any])
+    assert(true)
+
+//    case class Test(arg: js.UndefOr[React.Node] = js.undefined)
+//    val result = JSMacro[Test]
+  }
+
+  test("should handle VdomNode") {
+//    case class Test(arg1: js.UndefOr[japgolly.scalajs.react.vdom.VdomNode] = js.undefined,
+//                    arg2: js.UndefOr[japgolly.scalajs.react.vdom.VdomNode] = js.undefined)
+//    val result = JSMacro[Test]
+    succeed
+  }
+
 }

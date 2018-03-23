@@ -73,7 +73,7 @@ object MuiPopoverDemo {
                 onClick = (e: ReactEvent) => toggle,
                 label = "Click on me to show a popover"
               )()
-            ).ref(ref = _),
+            ).withRef(ref),
             originChoices.map(_.menu(S)).toVdomArray,
             MuiPopover(
               open = S.open,

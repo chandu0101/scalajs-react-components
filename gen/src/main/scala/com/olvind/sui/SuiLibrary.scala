@@ -61,7 +61,7 @@ case class SuiLibrary(base: Path) extends Library {
       //      ComponentDef(CompName("Dimmer")),
       //      ComponentDef(CompName("DimmerDimmable")),
       ComponentDef(CompName("Divider")),
-      //      ComponentDef(CompName("Dropdown")),
+      ComponentDef(CompName("Dropdown")),
       //      ComponentDef(CompName("DropdownDivider")),
       //      ComponentDef(CompName("DropdownHeader")),
       //      ComponentDef(CompName("DropdownItem")),

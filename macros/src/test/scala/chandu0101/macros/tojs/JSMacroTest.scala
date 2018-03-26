@@ -208,14 +208,15 @@ class JSMacroTest[T <: SelectOption] extends FunSuite {
     d.updateDynamic("arg")(arg.asInstanceOf[js.Any])
     assert(true)
 
-//    case class Test(arg: js.UndefOr[React.Node] = js.undefined)
-//    val result = JSMacro[Test]
+    case class Test(arg: js.UndefOr[React.Node] = js.undefined,
+                    arg2: React.Node | js.Object)
+    val result = JSMacro[Test](Test(1, "foo"))
   }
 
   test("should handle VdomNode") {
-//    case class Test(arg1: js.UndefOr[japgolly.scalajs.react.vdom.VdomNode] = js.undefined,
-//                    arg2: js.UndefOr[japgolly.scalajs.react.vdom.VdomNode] = js.undefined)
-//    val result = JSMacro[Test]
+    case class Test(arg1: js.UndefOr[VdomNode] = js.undefined,
+                    arg2: js.UndefOr[VdomNode] = js.undefined)
+    val result = JSMacro[Test]
     succeed
   }
 

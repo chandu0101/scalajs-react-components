@@ -27,6 +27,8 @@ object SuiTypeMapperFunction {
       case ("Rating", "clearable") => "Int | String | ReactEvent => Callback" //TODO more specific?
       case ("Form", "onSubmit") => Callback //TODO more specific?
       case ("TextArea", "onInput") => Callback //TODO more specific?
+      case ("Popup", "onMount") => Callback
+      case ("Popup", "onUnmount") => Callback
       case _ =>
         throw new Error(
           s"""case ("${compName.value}", "${name.value}") => Callback  //TODO: Add function type mapping in ${getClass().getName}""")

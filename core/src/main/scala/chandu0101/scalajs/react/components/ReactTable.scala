@@ -215,12 +215,12 @@ case class ReactTable[T](data: Seq[T],
         val existsRowSeq = configs.exists(_.rowSeq.isDefined)
         val rowSpan = configs.flatMap(_.rowSeq.map(_ (model).size).toList)
         val tds = props.configs.map { config =>
-          if (config.rowSeq.isEmpty) {
+          if (config.rowSeq.isEmpty || config.rowSeq.exists(f => f(model).isEmpty)) {
             Seq(
               <.td(^.whiteSpace.nowrap.when(config.nowrap),
                 ^.key := config.name,
                 ^.verticalAlign.middle,
-                (^.rowSpan := rowSpan.max).when(existsRowSeq),
+                (^.rowSpan := rowSpan.max).when(existsRowSeq && rowSpan.max > 0),
                 config.cellRenderer(model)
               )
             ).zipWithIndex
@@ -230,8 +230,8 @@ case class ReactTable[T](data: Seq[T],
                 ^.verticalAlign.middle,
                 ^.key := config.name,
                 node)
-            }
-          }.zipWithIndex
+            }.zipWithIndex
+          }
         }
 
         val maxIndex = tds.flatMap(_.map(_._2)).max

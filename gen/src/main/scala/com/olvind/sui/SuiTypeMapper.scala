@@ -138,9 +138,9 @@ object SuiTypeMapper extends TypeMapper {
       case ("Segment", "attached", "bottom") => Normal("js.Any") //TODO write this Missing in TypeMapper
       case ("Segment", "padded", "Mui.oneOf") => Normal("js.Any") //TODO write this Missing in TypeMapper
       case ("Segment", "padded", "very") => Normal("js.Any") //TODO write this Missing in TypeMapper
-      case ("Dropdown", "allowAdditions", "_lib.customevery([_lib.customdemand(['options', 'selection', 'search']), Mui.bool])") => Normal("js.Any") //TODO write this Missing in TypeMapper
+      case ("Dropdown", "allowAdditions", "_lib.customevery([_lib.customdemand(['options', 'selection', 'search']), Mui.bool])") => Normal("Boolean") //TODO write this Missing in TypeMapper
       case ("Dropdown", "children", "_lib.customevery([_lib.customdisallow(['options', 'selection']), _lib.customgivenProps({ children: Mui.any }, Mui.element)])") => Normal("VdomElement") //TODO write this Missing in TypeMapper
-      case ("Dropdown", "options", "_lib.customevery([_lib.customdisallow(['children']), Mui.arrayOf(Mui.shape(_DropdownItem2.default.propTypes))])") => Normal("js.Any") //TODO write this Missing in TypeMapper
+      case ("Dropdown", "options", "_lib.customevery([_lib.customdisallow(['children']), Mui.arrayOf(Mui.shape(_DropdownItem2.default.propTypes))])") => Normal("js.Array[SuiDropDownOption]") //TODO write this Missing in TypeMapper
       case ("Dropdown", "pointing", "Mui.oneOf") => Normal("js.Any") //TODO write this Missing in TypeMapper
       case ("Dropdown", "pointing", "left") => Normal("js.Any") //TODO write this Missing in TypeMapper
       case ("Dropdown", "pointing", "right") => Normal("js.Any") //TODO write this Missing in TypeMapper

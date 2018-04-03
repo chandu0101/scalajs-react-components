@@ -19,8 +19,8 @@ object SuiTypeMapperFunction {
       case (_, "onOpen") => "ReactEvent => Callback" //TODO more specific?
       case (_, "onSearchChange") => "ReactEvent => Callback" //TODO more specific?
       case (_, "onActionClick") => "ReactEvent => Callback" //TODO more specific?
-      case ("Dropdown", "renderLabel") => "(js.Object, Int, js.Object) => Callback" //TODO more specific?
-      case ("Dropdown", "search") => "String | ReactEvent => Callback" //TODO more specific?
+      case ("Dropdown", "renderLabel") => "(SuiDropDownOption, Int, js.Object) => Callback" //TODO more specific?
+      case ("Dropdown", "search") => "ReactEvent => Callback" //TODO more specific?
       case ("Modal", "onMount") => "ReactEvent => Callback" //TODO more specific?
       case ("Modal", "onUnmount") => "ReactEvent => Callback" //TODO more specific?
       case ("Rating", "onRate") => "(ReactEvent, SuiRateObject) => Callback" //TODO more specific?
@@ -29,6 +29,7 @@ object SuiTypeMapperFunction {
       case ("TextArea", "onInput") => Callback //TODO more specific?
       case ("Popup", "onMount") => Callback
       case ("Popup", "onUnmount") => Callback
+      case ("Pagination", "onPageChange") => "(ReactEvent, PaginationEventData) => Callback"
       case _ =>
         throw new Error(
           s"""case ("${compName.value}", "${name.value}") => Callback  //TODO: Add function type mapping in ${getClass().getName}""")

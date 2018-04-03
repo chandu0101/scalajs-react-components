@@ -23,7 +23,7 @@ lazy val settings = commonSettings ++ bundlerSettings
 
 lazy val commonSettings =
   Seq(
-    scalaVersion := "2.12.2",
+    scalaVersion := "2.12.5",
     organization := "net.leibman",
     mappings.in(Compile, packageBin) += baseDirectory.in(ThisBuild).value / "LICENSE" -> "LICENSE",
     scalacOptions ++= Seq(

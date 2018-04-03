@@ -20,4 +20,20 @@ trait SuiRateObject extends js.Object {
   def maxRating: Int = js.native
 }
 
+@js.native
+trait PaginationEventData extends js.Object {
+  def activePage: Int = js.native
+}
 
+@js.native
+trait SuiDropDownOption extends js.Object {
+  def key: String = js.native
+  def text: String = js.native
+  def value: String = js.native
+}
+
+object SuiDropDownOption {
+  def apply(key: String, text: String, value: String): SuiDropDownOption = {
+    js.Dynamic.literal(key = key, text = text, value = value).asInstanceOf[SuiDropDownOption]
+  }
+}

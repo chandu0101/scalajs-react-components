@@ -147,7 +147,7 @@ lazy val root =
 
 lazy val commonSettings =
   Seq(
-    scalaVersion := "2.12.4",
+    scalaVersion := "2.12.5",
     version := "1.1.0-SNAPSHOT",
     name := "scalajs-react-components",
     organization := "com.olvind",

@@ -1,9 +1,8 @@
 package com.olvind
 package sui
 
-import ammonite.ops._
-
 import scala.language.implicitConversions
+import ammonite.ops._
 
 case class SuiLibrary(base: Path) extends Library {
   /* todo: make requiresjs clever enough to figure this out by itself */
@@ -156,17 +155,18 @@ case class SuiLibrary(base: Path) extends Library {
       //      ComponentDef(CompName("StatisticLabel")),
       //      ComponentDef(CompName("StatisticValue")),
       ComponentDef(CompName("Step")),
+      ComponentDef(CompName("Pagination")),
       ComponentDef(CompName("StepContent")),
       ComponentDef(CompName("StepDescription")),
       ComponentDef(CompName("StepGroup")),
       ComponentDef(CompName("StepTitle")),
-      //      ComponentDef(CompName("Table")),
-      //      ComponentDef(CompName("TableBody")),
-      //      ComponentDef(CompName("TableCell")),
-      //      ComponentDef(CompName("TableFooter")),
-      //      ComponentDef(CompName("TableHeader")),
-      //      ComponentDef(CompName("TableHeaderCell")),
-      //      ComponentDef(CompName("TableRow")),
+      ComponentDef(CompName("Table"), domeTypeOpt = Some(DomElement)),
+      ComponentDef(CompName("TableBody"), domeTypeOpt = Some(DomElement)),
+      ComponentDef(CompName("TableCell"), domeTypeOpt = Some(DomElement)),
+      ComponentDef(CompName("TableFooter"), domeTypeOpt = Some(DomElement)),
+      ComponentDef(CompName("TableHeader"), domeTypeOpt = Some(DomElement)),
+      ComponentDef(CompName("TableHeaderCell"), domeTypeOpt = Some(DomElement), forceChildren = true), //We need to add a few items to cells, including rowspan, colspan, etc.
+      ComponentDef(CompName("TableRow"), domeTypeOpt = Some(DomElement)),
       ComponentDef(CompName("TextArea")) //      ComponentDef(CompName("Visibility"))
     )
 }

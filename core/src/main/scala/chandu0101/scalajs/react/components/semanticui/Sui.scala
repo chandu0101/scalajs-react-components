@@ -15,6 +15,8 @@ object Sui {
   object Select extends js.Any
   @js.native @JSImport("semantic-ui-react/dist/commonjs/addons/TextArea", JSImport.Default)
   object TextArea extends js.Any
+  @js.native @JSImport("semantic-ui-react/dist/commonjs/addons/Pagination", JSImport.Default)
+  object Pagination extends js.Any
 
   // Behaviors
   @js.native @JSImport("semantic-ui-react/dist/commonjs/behaviors/Visibility", JSImport.Default)

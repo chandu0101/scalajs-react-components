@@ -6,7 +6,7 @@ import ammonite.ops._
 import scala.language.implicitConversions
 
 case class MuiLibrary(base: Path) extends Library {
-  /* todo: make requiresjs clever enough to figure this out by itself */
+  /* todo: make requiresjs clever enough to figure out by itself */
   override val locations =
     Seq(
       base,

@@ -201,7 +201,7 @@ lazy val publicationSettings = Seq(
       </developers>
 )
 
-lazy val SuiVersion   = "0.78.3"
+lazy val SuiVersion   = "0.79.1"
 lazy val EuiVersion   = "0.6.1"
 lazy val MuiVersion   = "0.20.0"
 lazy val reactVersion = "16.0.0"

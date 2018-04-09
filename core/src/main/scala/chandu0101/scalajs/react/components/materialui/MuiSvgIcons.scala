@@ -12,8 +12,8 @@ import scala.scalajs.js.annotation.JSImport
 trait MuiSvgIconProps extends js.Object {
   def key: js.UndefOr[String]
   def ref: js.UndefOr[String]
-  def color: js.UndefOr[String]
-  def hoverColor: js.UndefOr[String]
+  def color: js.UndefOr[MuiColor]
+  def hoverColor: js.UndefOr[MuiColor]
   def onMouseEnter: js.UndefOr[ReactMouseEventFromHtml => Callback]
   def onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback]
   def style: js.UndefOr[CssProperties]
@@ -25,7 +25,7 @@ object MuiSvgIcon {
     def apply(
         key: js.UndefOr[String] = js.undefined,
         ref: js.UndefOr[String] = js.undefined,
-        color: js.UndefOr[String] = js.undefined,
+        color: js.UndefOr[MuiColor] = js.undefined,
         hoverColor: js.UndefOr[MuiColor] = js.undefined,
         onMouseEnter: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
         onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,

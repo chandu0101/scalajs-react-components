@@ -42,6 +42,7 @@ object SuiTypeMapperFunction {
       case (_, "onSearchChange") => "(ReactEvent, js.Object) => Callback" //TODO more specific?
       case (_, "onActionClick") => "ReactEvent => Callback" //TODO more specific?
       case (_, "renderer") => "js.Object => js.Any"
+      case (_, "onItemClick") => "(ReactEvent, js.Object) => Callback"
       case _ =>
         throw new Error(
           s"""case ("${compName.value}", "${name.value}") => Callback  //TODO: Add function type mapping in ${getClass().getName}""")

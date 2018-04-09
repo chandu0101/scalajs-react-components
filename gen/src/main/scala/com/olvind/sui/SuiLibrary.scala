@@ -163,10 +163,10 @@ case class SuiLibrary(base: Path) extends Library {
       ComponentDef(CompName("StepTitle")),
       ComponentDef(CompName("Table"), domeTypeOpt = Some(DomElement)),
       ComponentDef(CompName("TableBody"), domeTypeOpt = Some(DomElement)),
-      ComponentDef(CompName("TableCell"), domeTypeOpt = Some(DomElement)),
-      ComponentDef(CompName("TableFooter"), domeTypeOpt = Some(DomElement)),
+      ComponentDef(CompName("TableCell"), domeTypeOpt = Some(DomTableCell)),
+      ComponentDef(CompName("TableFooter"), domeTypeOpt = Some(DomElement), forceChildren = true),
       ComponentDef(CompName("TableHeader"), domeTypeOpt = Some(DomElement)),
-      ComponentDef(CompName("TableHeaderCell"), domeTypeOpt = Some(DomElement), forceChildren = true), //We need to add a few items to cells, including rowspan, colspan, etc.
+      ComponentDef(CompName("TableHeaderCell"), domeTypeOpt = Some(DomTableCell), forceChildren = true), //We need to add a few items to cells, including rowspan, colspan, etc.
       ComponentDef(CompName("TableRow"), domeTypeOpt = Some(DomElement)),
       ComponentDef(CompName("TextArea")) //      ComponentDef(CompName("Visibility"))
     )

@@ -3,6 +3,26 @@ package com.olvind
 case object DomNode    extends DomType("")
 case object DomElement extends DomType("FromHtml")
 
+case object DomTableCell extends DomType("FromHtml") {
+  override val props = super.props ++
+    Seq(
+      ParsedProp(
+        PropName("colspan"),
+        baseType = Normal("Int"),
+        commentOpt = Some(
+          PropComment(
+            "Specifies the number of columns a cell should span"))
+      ),
+      ParsedProp(
+        PropName("rowspan"),
+        baseType = Normal("Int"),
+        commentOpt = Some(
+          PropComment(
+            "Sets the number of rows a cell should span"))
+      )
+    )
+}
+
 case object DomInput extends DomType("FromInput") {
 
   private val formMethodType =

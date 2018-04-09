@@ -103,21 +103,20 @@ object ParseProp {
       propString: PropTypeUnparsed,
       commentOpt: Option[PropComment]
   ): ParsedProp = {
-    val _clean: String =
-      propString.value
-        .replace("PropTypes.", "")
-        .replace(".isRequired", "")
-        /* old style */
-        .replace("_react2['default'].", "")
-        //TODO: this is fairly mui specific, and actually breaks Sui
-        .replace("_utilsPropTypes2['default'].", "Mui.")
-        .replace("(0, _utilsDeprecatedPropType2['default'])", "Deprecated")
-        /* new style */
-        .replace("_react2.default.", "")
-        .replace("_propTypes2.default.", "Mui.")
-        .replace("(0, _deprecatedPropType2.default)", "Deprecated")
-        /* even another style*/
-        .replace("_react.", "")
+    val _clean: String = propString.value
+      .replace("PropTypes.", "")
+      .replace(".isRequired", "")
+      /* old style */
+      .replace("_react2['default'].", "")
+      //TODO: this is fairly mui specific, and actually breaks Sui
+      .replace("_utilsPropTypes2['default'].", "Mui.")
+      .replace("(0, _utilsDeprecatedPropType2['default'])", "Deprecated")
+      /* new style */
+      .replace("_react2.default.", "")
+      .replace("_propTypes2.default.", "Mui.")
+      .replace("(0, _deprecatedPropType2.default)", "Deprecated")
+      /* even another style*/
+      .replace("_react.", "")
 
     val (typeStr: String, deprecatedOpt: Option[String]) = _clean match {
       case Pattern(tpe, depMsg) => (tpe, Some(depMsg))

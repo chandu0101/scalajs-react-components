@@ -117,7 +117,6 @@ object SuiTypeMapper extends TypeMapper {
       case ("Menu", "floated", _) => Normal("js.Any") //TODO Enum, right
       case ("Menu", "icon", _) => Normal("js.Any") //TODO Enum, labeled
       case ("Menu", "tabular", _) => Normal("js.Any") //TODO Enum, right
-      case ("Menu","onItemClick","_lib.customevery([_lib.customdisallow(['children']), Mui.func])") => Normal("js.Any") //TODO write this Missing in TypeMapper
       case ("MenuItem", "fitted", _) => Enum(compName, Seq("horizontally", "vertically"), "SuiHorizontallyOrVertically")
       case ("Segment", "padded", _) => Normal("Boolean | String") //TODO |Enum "very"
       case ("Dropdown", "allowAdditions", "_lib.customevery([_lib.customdemand(['options', 'selection', 'search']), Mui.bool])") => Normal("Boolean")
@@ -171,7 +170,7 @@ object SuiTypeMapper extends TypeMapper {
       case ("Search","results", _) => Normal("js.Object | js.Array[js.Object]") //TODO One of:  - array of Search.Result props e.g. `{ title: '', description: '' }` or     - object of categories e.g. `{ name: '', results: [{ title: '', description: '' }]`
       case ("SearchCategory","results","Mui.array") => Normal("js.Array[js.Object]") //TODO write this Missing in TypeMapper
       case (_, "attached", _) => Enum(compName, Seq("left", "right", "top", "bottom"), "SuiFourDirections")
-      case ("List","onItemClick","_lib.customevery([_lib.customdisallow(['children']), Mui.func])") =>
+      case (_,"onItemClick","_lib.customevery([_lib.customdisallow(['children']), Mui.func])") =>
         Normal(SuiTypeMapperFunction(compName, fieldName))
       case (_, _, "Mui.func") =>
         Normal(SuiTypeMapperFunction(compName, fieldName))

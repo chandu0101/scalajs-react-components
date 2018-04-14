@@ -1,75 +1,107 @@
 package chandu0101.scalajs.react.components.materialui
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.annotation._
 
-@js.native @JSName("mui")
-object Mui extends js.Object {
-  val AppBar: js.Dynamic                   = js.native
-  val Avatar: js.Dynamic                   = js.native
-  val AutoComplete: js.Dynamic             = js.native
-  val Badge: js.Dynamic                    = js.native
-  val Card: js.Dynamic                     = js.native
-  val CardActions: js.Dynamic              = js.native
-  val CardExpandable: js.Dynamic           = js.native
-  val CardHeader: js.Dynamic               = js.native
-  val CardMedia: js.Dynamic                = js.native
-  val CardText: js.Dynamic                 = js.native
-  val CardTitle: js.Dynamic                = js.native
-  val Checkbox: js.Dynamic                 = js.native
-  val Chip: js.Dynamic                     = js.native
-  val CircularProgress: js.Dynamic         = js.native
-  val DatePicker: js.Dynamic               = js.native
-  val Dialog: js.Dynamic                   = js.native
-  val Divider: js.Dynamic                  = js.native
-  val Drawer: js.Dynamic                   = js.native
-  val DropDownMenu: js.Dynamic             = js.native
-  val FlatButton: js.Dynamic               = js.native
-  val FloatingActionButton: js.Dynamic     = js.native
-  val FontIcon: js.Dynamic                 = js.native
-  val GridList: js.Dynamic                 = js.native
-  val GridTile: js.Dynamic                 = js.native
-  val IconButton: js.Dynamic               = js.native
-  val IconMenu: js.Dynamic                 = js.native
-  val LinearProgress: js.Dynamic           = js.native
-  val List: js.Dynamic                     = js.native
-  val ListItem: js.Dynamic                 = js.native
-  val Menu: js.Dynamic                     = js.native
-  val MenuItem: js.Dynamic                 = js.native
-  val Paper: js.Dynamic                    = js.native
-  val Popover: js.Dynamic                  = js.native
-  val PopoverAnimationVertical: js.Dynamic = js.native
-  val RadioButton: js.Dynamic              = js.native
-  val RadioButtonGroup: js.Dynamic         = js.native
-  val RaisedButton: js.Dynamic             = js.native
-  val RefreshIndicator: js.Dynamic         = js.native
-  val SelectField: js.Dynamic              = js.native
-  val Slider: js.Dynamic                   = js.native
-  val SvgIcons: MuiSvgIcons                = js.native
-  val Step: js.Dynamic                     = js.native
-  val StepButton: js.Dynamic               = js.native
-  val StepContent: js.Dynamic              = js.native
-  val StepLabel: js.Dynamic                = js.native
-  val Stepper: js.Dynamic                  = js.native
-  val Styles: MuiStyles                    = js.native
-  val Snackbar: js.Dynamic                 = js.native
-  val Subheader: js.Dynamic                = js.native
-  val Tab: js.Dynamic                      = js.native
-  val Tabs: js.Dynamic                     = js.native
-  val Table: js.Dynamic                    = js.native
-  val TableBody: js.Dynamic                = js.native
-  val TableFooter: js.Dynamic              = js.native
-  val TableHeader: js.Dynamic              = js.native
-  val TableHeaderColumn: js.Dynamic        = js.native
-  val TableRow: js.Dynamic                 = js.native
-  val TableRowColumn: js.Dynamic           = js.native
-  val Toggle: js.Dynamic                   = js.native
-  val ThemeWrapper: js.Dynamic             = js.native
-  val TimePicker: js.Dynamic               = js.native
-  val TextField: js.Dynamic                = js.native
-  val Toolbar: js.Dynamic                  = js.native
-  val ToolbarGroup: js.Dynamic             = js.native
-  val ToolbarSeparator: js.Dynamic         = js.native
-  val ToolbarTitle: js.Dynamic             = js.native
-  val Utils: MuiUtil                       = js.native
+object Mui {
+  @js.native @JSImport("material-ui/AppBar", JSImport.Default) object AppBar extends js.Any
+  @js.native @JSImport("material-ui/AutoComplete", JSImport.Default) object AutoComplete
+      extends js.Any
+  @js.native @JSImport("material-ui/Avatar", JSImport.Default) object Avatar extends js.Any
+  @js.native @JSImport("material-ui/Badge", JSImport.Default) object Badge   extends js.Any
+  @js.native @JSImport("material-ui/BottomNavigation", JSImport.Default) object BottomNavigation
+      extends js.Any
+  @js.native @JSImport("material-ui/BottomNavigation/BottomNavigationItem", JSImport.Default) object BottomNavigationItem
+      extends js.Any
+  @js.native @JSImport("material-ui/Card", JSImport.Default) object Card extends js.Any
+  @js.native @JSImport("material-ui/Card/CardActions", JSImport.Default) object CardActions
+      extends js.Any
+  @js.native @JSImport("material-ui/Card/CardHeader", JSImport.Default) object CardHeader
+      extends js.Any
+  @js.native @JSImport("material-ui/Card/CardMedia", JSImport.Default) object CardMedia
+      extends js.Any
+  @js.native @JSImport("material-ui/Card/CardTitle", JSImport.Default) object CardTitle
+      extends js.Any
+  @js.native @JSImport("material-ui/Card/CardText", JSImport.Default) object CardText extends js.Any
+  @js.native @JSImport("material-ui/Checkbox", JSImport.Default) object Checkbox      extends js.Any
+  @js.native @JSImport("material-ui/Chip", JSImport.Default) object Chip              extends js.Any
+  @js.native @JSImport("material-ui/CircularProgress", JSImport.Default) object CircularProgress
+      extends js.Any
+  @js.native @JSImport("material-ui/DatePicker", JSImport.Default) object DatePicker extends js.Any
+  @js.native @JSImport("material-ui/Dialog", JSImport.Default) object Dialog         extends js.Any
+  @js.native @JSImport("material-ui/Divider", JSImport.Default) object Divider       extends js.Any
+  @js.native @JSImport("material-ui/Drawer", JSImport.Default) object Drawer         extends js.Any
+  @js.native @JSImport("material-ui/DropDownMenu", JSImport.Default) object DropDownMenu
+      extends js.Any
+  @js.native @JSImport("material-ui/FlatButton", JSImport.Default) object FlatButton extends js.Any
+  @js.native @JSImport("material-ui/FloatingActionButton", JSImport.Default) object FloatingActionButton
+      extends js.Any
+  @js.native @JSImport("material-ui/FontIcon", JSImport.Default) object FontIcon extends js.Any
+  @js.native @JSImport("material-ui/GridList", JSImport.Default) object GridList extends js.Any
+  @js.native @JSImport("material-ui/GridList/GridTile", JSImport.Default) object GridTile
+      extends js.Any
+  @js.native @JSImport("material-ui/IconButton", JSImport.Default) object IconButton extends js.Any
+  @js.native @JSImport("material-ui/IconMenu", JSImport.Default) object IconMenu     extends js.Any
+  @js.native @JSImport("material-ui/LinearProgress", JSImport.Default) object LinearProgress
+      extends js.Any
+  @js.native @JSImport("material-ui/List", JSImport.Default) object List              extends js.Any
+  @js.native @JSImport("material-ui/List/ListItem", JSImport.Default) object ListItem extends js.Any
+  @js.native @JSImport("material-ui/List/makeSelectable", JSImport.Default) object makeSelectable
+      extends js.Any
+  @js.native @JSImport("material-ui/Menu", JSImport.Default) object Menu         extends js.Any
+  @js.native @JSImport("material-ui/MenuItem", JSImport.Default) object MenuItem extends js.Any
+  @js.native @JSImport("material-ui/styles/MuiThemeProvider", JSImport.Default) object MuiThemeProvider
+      extends js.Any
+  @js.native @JSImport("material-ui/Paper", JSImport.Default) object Paper     extends js.Any
+  @js.native @JSImport("material-ui/Popover", JSImport.Default) object Popover extends js.Any
+  @js.native @JSImport("material-ui/RadioButton", JSImport.Default) object RadioButton
+      extends js.Any
+  @js.native @JSImport("material-ui/RadioButton/RadioButtonGroup", JSImport.Default) object RadioButtonGroup
+      extends js.Any
+  @js.native @JSImport("material-ui/RaisedButton", JSImport.Default) object RaisedButton
+      extends js.Any
+  @js.native @JSImport("material-ui/RefreshIndicator", JSImport.Default) object RefreshIndicator
+      extends js.Any
+  @js.native @JSImport("material-ui/SelectField", JSImport.Default) object SelectField
+      extends js.Any
+  @js.native @JSImport("material-ui/Slider", JSImport.Default) object Slider       extends js.Any
+  @js.native @JSImport("material-ui/Subheader", JSImport.Default) object Subheader extends js.Any
+  @js.native @JSImport("material-ui/SvgIcon", JSImport.Default) object SvgIcon     extends js.Any
+  @js.native @JSImport("material-ui/Stepper/Step", JSImport.Default) object Step   extends js.Any
+  @js.native @JSImport("material-ui/Stepper/StepButton", JSImport.Default) object StepButton
+      extends js.Any
+  @js.native @JSImport("material-ui/Stepper/StepContent", JSImport.Default) object StepContent
+      extends js.Any
+  @js.native @JSImport("material-ui/Stepper/StepLabel", JSImport.Default) object StepLabel
+      extends js.Any
+  @js.native @JSImport("material-ui/Stepper/Stepper", JSImport.Default) object Stepper
+      extends js.Any
+  @js.native @JSImport("material-ui/Snackbar", JSImport.Default) object Snackbar extends js.Any
+  @js.native @JSImport("material-ui/Tabs", JSImport.Default) object Tabs         extends js.Any
+  @js.native @JSImport("material-ui/Tabs/Tab", JSImport.Default) object Tab      extends js.Any
+  @js.native @JSImport("material-ui/Table", JSImport.Default) object Table       extends js.Any
+  @js.native @JSImport("material-ui/Table/TableBody", JSImport.Default) object TableBody
+      extends js.Any
+  @js.native @JSImport("material-ui/Table/TableFooter", JSImport.Default) object TableFooter
+      extends js.Any
+  @js.native @JSImport("material-ui/Table/TableHeader", JSImport.Default) object TableHeader
+      extends js.Any
+  @js.native @JSImport("material-ui/Table/TableHeaderColumn", JSImport.Default) object TableHeaderColumn
+      extends js.Any
+  @js.native @JSImport("material-ui/Table/TableRow", JSImport.Default) object TableRow
+      extends js.Any
+  @js.native @JSImport("material-ui/Table/TableRowColumn", JSImport.Default) object TableRowColumn
+      extends js.Any
+  @js.native @JSImport("material-ui/TextField", JSImport.Default) object TextField   extends js.Any
+  @js.native @JSImport("material-ui/TimePicker", JSImport.Default) object TimePicker extends js.Any
+  @js.native @JSImport("material-ui/Toggle", JSImport.Default) object Toggle         extends js.Any
+  @js.native @JSImport("material-ui/Toolbar", JSImport.Default) object Toolbar       extends js.Any
+  @js.native @JSImport("material-ui/Toolbar/ToolbarGroup", JSImport.Default) object ToolbarGroup
+      extends js.Any
+  @js.native @JSImport("material-ui/Toolbar/ToolbarSeparator", JSImport.Default) object ToolbarSeparator
+      extends js.Any
+  @js.native @JSImport("material-ui/Toolbar/ToolbarTitle", JSImport.Default) object ToolbarTitle
+      extends js.Any
+  @js.native @JSImport("material-ui/styles", JSImport.Default) object Styles extends MuiStyles
+  val SvgIcons = MuiSvgIcons
 }

@@ -1,68 +1,79 @@
 package demo.components.elementalui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.elementalui.{Glyph, Octicons, _}
+import chandu0101.scalajs.react.components.elementalui.{EuiGlyph, Octicons, _}
 import demo.components.CodeExample
-import demo.components.CodeExample.Props
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.TagOf
 import japgolly.scalajs.react.vdom.html_<^._
+import org.scalajs.dom.html.Div
 
 object EuiGlyphsDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
-  case class Backend($ : BackendScope[_, _]) {
-    val renderButtons =
+  case class Backend($ : BackendScope[Unit, Unit]) {
+    val renderButtons: TagOf[Div] =
       <.div(
-        Button(`type` = ButtonType.PRIMARY)(Glyph(icon = Octicons.beaker)()),
-        Button(`type` = ButtonType.DANGER)(Glyph(icon = Octicons.flame)()),
-        Button(`type` = ButtonType.SUCCESS)(Glyph(icon = Octicons.squirrel)()),
-        Button(`type` = ButtonType.WARNING)(Glyph(icon = Octicons.bug)())
+        EuiButton(`type` = ButtonType.primary)(EuiGlyph(icon = Octicons.beaker)()),
+        EuiButton(`type` = ButtonType.danger)(EuiGlyph(icon = Octicons.flame)()),
+        EuiButton(`type` = ButtonType.success)(EuiGlyph(icon = Octicons.squirrel)()),
+        EuiButton(`type` = ButtonType.warning)(EuiGlyph(icon = Octicons.bug)())
       )
 
-    val renderLinkButtons =
+    val renderLinkButtons: TagOf[Div] =
       <.div(
-        Button(`type` = ButtonType.LINK)(Glyph(icon = Octicons.beaker)()),
-        Button(`type` = ButtonType.LINK_CANCEL)(Glyph(icon = Octicons.flame)()),
-        Button(`type` = ButtonType.LINK_DELETE)(Glyph(icon = Octicons.squirrel)()),
-        Button(`type` = ButtonType.LINK_TEXT)(Glyph(icon = Octicons.bug)())
+        EuiButton(`type` = ButtonType.link)(EuiGlyph(icon = Octicons.beaker)()),
+        EuiButton(`type` = ButtonType.link_cancel)(EuiGlyph(icon = Octicons.flame)()),
+        EuiButton(`type` = ButtonType.link_delete)(EuiGlyph(icon = Octicons.squirrel)()),
+        EuiButton(`type` = ButtonType.link_text)(EuiGlyph(icon = Octicons.bug)())
       )
 
-    val renderGlyphGrid =
-      Octicons.values.grouped(10).zipWithIndex.map {
-        case (list, index) =>
-          Row(key = s"row_$index")(list.map { icon =>
-            Col(key = s"col_${icon.value}", sm = "1/10")(
-              Card(className = "code-example--glyph__icon")(
-                Glyph(key = icon.value, icon = icon)(),
-                <.div(
-                  ^.className := "code-example--glyph__icon-name",
-                  icon.value
+    val renderGlyphGrid: VdomNode =
+      Octicons.values
+        .grouped(10)
+        .zipWithIndex
+        .map {
+          case (list, index) =>
+            EuiRow(key = s"row_$index") {
+              list.map { icon =>
+                EuiCol(key = s"col_${icon.value}", sm = "1/10")(
+                  EuiCard(className = "code-example--glyph__icon")(
+                    EuiGlyph(key = icon.value, icon = icon)(),
+                    <.div(
+                      ^.className := "code-example--glyph__icon-name",
+                      icon.value
+                    )
+                  )
                 )
-              )
-            )
-          }.toVdomArray)
-      }
+              }.toVdomArray
+            }
+        }
+        .toVdomArray
 
-    def renderGlyphColors(icon: Octicons) =
-      GlyphType.values.map(
-        glyphType =>
-          <.div(^.key := s"${glyphType.value}-${icon.value}",
-                ^.className := "code-example__example-element--inline",
-                Glyph(icon = icon, `type` = glyphType)(),
-                glyphType.value))
+    def renderGlyphColors(icon: Octicons): VdomNode =
+      GlyphType.values
+        .map(
+          glyphType =>
+            <.div(
+              ^.key := s"${glyphType.value}-${icon.value}",
+              ^.className := "code-example__example-element--inline",
+              EuiGlyph(icon = icon, `type` = glyphType)(),
+              glyphType.value
+          ))
+        .toVdomArray
 
-    def render: ScalaComponent.Unmounted[Props, Unit, CodeExample.Backend] =
+    def render =
       CodeExample(code, "EuiGlyphs")(
         <.div(
           <.h1("Glyphs"),
           <.h2("Basic Example"),
-          Glyph(icon = Octicons.thumbsup)().vdomElement,
+          EuiGlyph(icon = Octicons.thumbsup)(),
           <.h2("Icons"),
-          renderGlyphGrid.toVdomArray,
+          renderGlyphGrid,
           <.h2("Colors"),
-          renderGlyphColors(Octicons.heart).toVdomArray,
+          renderGlyphColors(Octicons.heart),
           <.h2("Buttons"),
           renderButtons,
           <.h2("Link Buttons"),

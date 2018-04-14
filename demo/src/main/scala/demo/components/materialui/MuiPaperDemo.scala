@@ -7,12 +7,10 @@ import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
 
 object MuiPaperDemo {
-
-  val cssSettings = scalacss.devOrProdDefaults
-  import cssSettings._
 
   val code = GhPagesMacros.exampleSource
 
@@ -48,15 +46,17 @@ object MuiPaperDemo {
 
   object Style extends StyleSheet.Inline {
     import dsl._
-    val paperContainer = style(display.flex,
-                               flexWrap.wrap,
-                               paddingTop(20.px),
-                               unsafeChild("div")(
-                                 margin(15 px),
-                                 unsafeChild("p")(
-                                   padding(15 px)
-                                 )
-                               ))
+    val paperContainer = style(
+      display.flex,
+      flexWrap.wrap,
+      paddingTop(20.px),
+      unsafeChild("div")(
+        margin(15 px),
+        unsafeChild("p")(
+          padding(15 px)
+        )
+      )
+    )
   }
 
   // EXAMPLE:END

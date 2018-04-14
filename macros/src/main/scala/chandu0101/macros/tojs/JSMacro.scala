@@ -1,13 +1,13 @@
 package chandu0101.macros.tojs
 
-import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
-import japgolly.scalajs.react.{CallbackTo, GenericComponent}
+import japgolly.scalajs.react.vdom.{TagOf, VdomElement, VdomNode}
+import japgolly.scalajs.react.{CallbackTo, raw}
 
 import scala.collection.{GenMap, GenTraversableOnce}
+import scala.language.existentials
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
   * modified version of https://github.com/wav/scala-macros/blob/master/src/main/scala/wav/common/scalajs/macros/Macros.scala
@@ -18,7 +18,8 @@ object JSMacro {
     val toJS: js.Object
   }
 
-  implicit def apply[T]: T => js.Object = macro applyImpl[T]
+  def apply[T]: T => js.Object = macro applyImpl[T]
+
 
   def applyImpl[T: c.WeakTypeTag](c: blackbox.Context): c.Tree = {
     import c.universe._
@@ -26,12 +27,21 @@ object JSMacro {
     def isOptional(tpe: Type): Boolean =
       tpe <:< typeOf[Option[_]] || tpe <:< typeOf[js.UndefOr[_]]
 
-    def isUnion(tpe: Type): Boolean = tpe <:< typeOf[_ | _]
-
     def isNotPrimitiveAnyVal(tpe: Type) =
       !tpe.typeSymbol.fullName.startsWith("scala.")
 
-    def getJSValueTree(target: Tree, rt: Type) = {
+    def flattenUnion(tpe: Type, breaker: Set[Type]): List[Type] =
+      if (tpe <:< typeOf[js.|[_, _]] && !(tpe <:< typeOf[Null])) {
+        val first     = tpe.dealias.typeArgs(0)
+        val second    = tpe.dealias.typeArgs(1)
+
+        val one = if (breaker(first)) Nil else flattenUnion(first, breaker + first)
+        val two = if (breaker(second)) Nil else flattenUnion(second, breaker + second)
+        one ++ two
+
+      } else List(tpe)
+
+    def getJSValueTree(target: Tree, rt: Type): Tree = {
       if (rt <:< typeOf[TOJS])
         q"""if ($target != null) $target.toJS else null"""
 
@@ -59,37 +69,65 @@ object JSMacro {
       else if (rt <:< typeOf[Function0[CallbackTo[_]]])
         q"""$target().toJsFn"""
       else if (rt <:< typeOf[Function1[_, CallbackTo[_]]])
-        q"""((t0: ${rt.typeArgs(0)}) => $target(t0).runNow())"""
+        q"""js.Any.fromFunction1(((t0: ${rt.typeArgs(0)}) => $target(t0).runNow()))"""
       else if (rt <:< typeOf[Function2[_, _, CallbackTo[_]]])
-        q"""((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}) => $target(t0, t1).runNow())"""
+        q"""js.Any.fromFunction2(((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}) => $target(t0, t1).runNow()))"""
       else if (rt <:< typeOf[Function3[_, _, _, CallbackTo[_]]])
-        q"""((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}, t2: ${rt.typeArgs(2)}) => $target(t0, t1, t2).runNow())"""
-      else if (rt <:< typeOf[GenericComponent.Unmounted[_, _]])
-        q"""$target.raw"""
+        q"""js.Any.fromFunction3(((t0: ${rt.typeArgs(0)}, t1: ${rt.typeArgs(1)}, t2: ${rt.typeArgs(2)}) => $target(t0, t1, t2).runNow()))"""
+      else if (rt <:< typeOf[Function0[_]])
+        q"""js.Any.fromFunction0($target)"""
+      else if (rt <:< typeOf[Function1[_, _]])
+        q"""js.Any.fromFunction1($target)"""
+      else if (rt <:< typeOf[Function2[_, _, _]])
+        q"""js.Any.fromFunction2($target)"""
+      else if (rt <:< typeOf[Function3[_, _, _, _]])
+        q"""js.Any.fromFunction3($target)"""
+
+      /* other scalajs-react things we need to rewrite */
       else if (rt <:< typeOf[VdomElement])
-        q"""$target.rawElement """
+        q"""$target.rawElement.asInstanceOf[js.Any]"""
       else if (rt <:< typeOf[VdomNode])
-        q"""$target.rawNode """
-      else if (rt <:< typeOf[_ | VdomElement])
-        q"""(($target: scala.Any) match {
-            case e: VdomElement => e.rawElement
-            case other => other.asInstanceOf[js.Any]
-         })
-         """
-      else if (rt <:< typeOf[_ | VdomNode])
-        q"""(($target: scala.Any) match {
-            case n: VdomNode => n.rawNode
-            case other => other.asInstanceOf[js.Any]
-         })
-         """
+        q"""$target.rawNode.asInstanceOf[js.Any]"""
+      else if (rt <:< typeOf[TagOf[_]])
+        q"""$target.render.rawElement.asInstanceOf[js.Any]"""
+
+      //this is to make raw.React.Node work
+      else if (rt <:< typeOf[raw.recursiveTypeAliases.ChildrenArray[_]])
+        q"""$target.asInstanceOf[js.Any]"""
 
       /* Other values. Keep AnyVal below at least CallbackTo */
       else if (rt <:< typeOf[AnyVal] && isNotPrimitiveAnyVal(rt))
-        q"""$target.value"""
+        q"""$target.value.asInstanceOf[js.Any]"""
+      else if (rt <:< typeOf[AnyVal] || rt <:< typeOf[String] || rt <:< typeOf[js.Any])
+        q"""$target.asInstanceOf[js.Any]"""
       else if (rt <:< typeOf[Enumeration#Value])
-        q"""$target.toString()"""
-      else
-        q"""$target"""
+        q"""$target.toString.asInstanceOf[js.Any]"""
+      else if (rt <:< typeOf[js.|[_, _]]) {
+
+        val (jsTypes, scalaTypes) = flattenUnion(rt, Set(rt)).distinct.partition(_ <:< typeOf[js.Any])
+
+        val scalaCases = scalaTypes.map(
+          tpe => cq"""x: $tpe => ${getJSValueTree(q"x", tpe)}"""
+        )
+
+        if (jsTypes.size > 1) {
+          c.warning(target.pos, s"Cannot differentiate ${jsTypes.mkString(", ")}")
+        }
+
+        val jsCase = jsTypes.take(1).map(tpe => cq"""x => x.asInstanceOf[js.Any]""")
+
+        q"""($target: scala.Any) match {
+          case ..$scalaCases
+          case ..$jsCase
+        }"""
+      }
+      else {
+        val conversion = c.inferImplicitView(target, rt, typeOf[js.Any], silent = true)
+        if (conversion == EmptyTree) {
+          throw new RuntimeException(s"Don't know how to convert $rt to js.Any")
+        }
+        q"""$conversion($target)"""
+      }
     }
 
     val tpe    = c.weakTypeOf[T]
@@ -108,27 +146,17 @@ object JSMacro {
       val name    = f.asTerm.name
       val decoded = name.decodedName.toString
 
-      if (isOptional(f.typeSignature)) {
+      val res = if (isOptional(f.typeSignature)) {
         val valueTree = getJSValueTree(q"v", f.typeSignature.typeArgs.head)
         q"""$target.$name.foreach(v => $props.updateDynamic($decoded)($valueTree))"""
-      } else if (isUnion(f.typeSignature)) {
-        val leftValueTree  = getJSValueTree(q"l", f.typeSignature.typeArgs(0))
-        val rightValueTree = getJSValueTree(q"r", f.typeSignature.typeArgs(1))
-        q"""$target.$name match {
-              case l: ${f.typeSignature.typeArgs(0)} => $props.updateDynamic($decoded)($leftValueTree)
-              case r: ${f.typeSignature.typeArgs(1)} => $props.updateDynamic($decoded)($rightValueTree)
-          }
-           """
       } else {
         val valueTree = getJSValueTree(q"$target.$name", f.typeSignature)
         q"""$props.updateDynamic($decoded)($valueTree)"""
       }
+      res
     }
 
     q""" ($target: $tpe) => {
-      import scala.language.reflectiveCalls
-      import scalajs.js.JSConverters._
-      import scalajs.js.`|`._
       val $props = scala.scalajs.js.Dynamic.literal()
       ..$fieldUpdates
       $props

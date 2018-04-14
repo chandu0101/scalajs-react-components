@@ -3,10 +3,13 @@ package chandu0101.scalajs.react.components
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.ProdDefaults._
+import scala.scalajs.js
 import scalacss.ScalaCssReact._
 
 object ReactSearchBox {
+
+  val cssSettings = scalacss.devOrProdDefaults
+  import cssSettings._
 
   class Style extends StyleSheet.Inline {
 
@@ -21,11 +24,14 @@ object ReactSearchBox {
       width(100.%%),
       backgroundColor.transparent,
       borderBottom :=! "1px solid #B2ADAD",
-      &.focus.apply(outline.none, borderBottom :=! "1.5px solid #03a9f4")
+      &.focus(
+        outline.none,
+        borderBottom :=! "1.5px solid #03a9f4"
+      )
     )
   }
 
-  class Backend(t: BackendScope[Props, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
     def onTextChange(P: Props)(e: ReactEventFromInput) =
       e.preventDefaultCB >> P.onTextChange(e.target.value)
 

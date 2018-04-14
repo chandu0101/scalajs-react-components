@@ -6,6 +6,8 @@ import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scala.scalajs.js
+
 object MuiAvatarDemo {
   val code = GhPagesMacros.exampleSource
 
@@ -13,26 +15,26 @@ object MuiAvatarDemo {
 
   import Mui.Styles.colors
   import Mui.SvgIcons
-  import MuiSvgIcon.SvgIconApply
 
   val component = ScalaComponent
     .builder[Unit]("MuiAvatarDemo")
-    .render(P => {
-      val actionGradeIcon: VdomElement = SvgIcons.ActionGrade()()
-      val actionFaceIcon: VdomElement  = SvgIcons.ActionFace()()
+    .renderStatic(
       <.div(
         CodeExample(code, "MuiAvatar")(
-          MuiAvatar(key = "1",
-                    backgroundColor = colors.grey700,
-                    color = colors.deepPurple200,
-                    icon = actionGradeIcon)(),
-          MuiAvatar(key = "2", size = 120, backgroundColor = colors.lime600)("Ø": VdomNode),
-          MuiAvatar(key = "3")("one": VdomNode),
-          MuiAvatar(key = "4")("two": VdomNode),
-          MuiAvatar(key = "5", backgroundColor = colors.red400)(actionFaceIcon)
+          MuiAvatar(
+            key = "1",
+            backgroundColor = colors.grey700,
+            color = colors.deepPurple200,
+            icon = js.defined(SvgIcons.ActionGrade()())
+          )(),
+          MuiAvatar(key = "2", size = js.defined(120), backgroundColor = colors.lime600)(
+            js.defined("Ø")),
+          MuiAvatar(key = "3")(js.defined("one")),
+          MuiAvatar(key = "4")(js.defined("two")),
+          MuiAvatar(key = "5", backgroundColor = colors.red400)(js.defined(SvgIcons.ActionFace()()))
         )
       )
-    })
+    )
     .build
 
   // EXAMPLE:END

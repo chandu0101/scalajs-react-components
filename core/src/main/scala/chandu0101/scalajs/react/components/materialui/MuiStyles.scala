@@ -5,7 +5,14 @@ import japgolly.scalajs.react._
 import scala.scalajs.js
 
 @js.native
-trait MuiColor extends js.Object
+trait MuiColor extends js.Object {
+  val action: js.Dynamic                = js.native
+  val disabled: js.Dynamic              = js.native
+  val error: js.Dynamic                 = js.native
+  val inherit: js.Dynamic               = js.native
+  val primary: js.Dynamic               = js.native
+  val secondary: js.Dynamic             = js.native
+}
 
 @js.native
 trait MuiStyles extends js.Object {

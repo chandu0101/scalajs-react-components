@@ -1,28 +1,24 @@
 package demo
 package components
 
+import chandu0101.scalajs.react.components.hljs.Hljs
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.component.Generic.toComponentCtor
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 import org.scalajs.dom.ext.PimpedNodeList
 
 object CodeHighlight {
+  val applySyntaxHighlight = Callback(
+    dom.document.querySelectorAll("code").foreach(Hljs.highlightBlock)
+  )
 
-  val component = ScalaComponent
+  private val component = ScalaComponent
     .builder[String]("CodeHighLighter")
-    .render_P(P => <.code(^.`class` := "scala", ^.padding := "20px", P))
-    .configure(installSyntaxHighlighting)
+    .render_P(str => <.code(^.`class` := "scala", ^.padding := "20px", str))
+    .configure(
+      _.componentDidMountConst(applySyntaxHighlight).componentDidUpdateConst(applySyntaxHighlight))
     .build
-
-  def installSyntaxHighlighting[P, C <: Children, S, B]: ScalaComponent.Config[P, C, S, B] =
-    _.componentDidMount(_ => applySyntaxHighlight)
-      .componentDidUpdate(_ => applySyntaxHighlight)
-
-  def applySyntaxHighlight = Callback {
-    import scala.scalajs.js.Dynamic.{global => g}
-    val nodeList = dom.document.querySelectorAll("code").toArray
-    nodeList.foreach(n => g.hljs.highlightBlock(n))
-  }
 
   def apply(code: String) = component(code)
 }

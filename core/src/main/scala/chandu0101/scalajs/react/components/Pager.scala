@@ -36,7 +36,7 @@ object Pager {
       )
     )
   }
-  case class Backend(t: BackendScope[Props, _]) {
+  case class Backend(t: BackendScope[Props, Unit]) {
     def render(P: Props) = {
       <.div(P.style.pager)(
         <.a(

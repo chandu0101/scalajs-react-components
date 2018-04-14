@@ -15,11 +15,16 @@ object MuiThemeProviderDemo {
 
   // EXAMPLE:START
 
-  case class State(baseTheme: MuiRawTheme, backgroundColor: js.UndefOr[MuiColor]) {
+  case class State(
+      baseTheme: MuiRawTheme,
+      backgroundColor: js.UndefOr[MuiColor]
+  ) {
 
     val theme: MuiTheme =
-      Mui.Styles.getMuiTheme(backgroundColor.fold(baseTheme)(color ⇒
-        baseTheme.copy(palette = baseTheme.palette.copy(canvasColor = color))))
+      Mui.Styles.getMuiTheme(
+        backgroundColor.fold(baseTheme)(
+          color ⇒ baseTheme.copy(palette = baseTheme.palette.copy(canvasColor = color))
+        ))
   }
 
   case class Backend($ : BackendScope[Unit, State]) {
@@ -48,23 +53,27 @@ object MuiThemeProviderDemo {
                                            value = S.baseTheme,
                                            onChange = onThemeChanged)(
                 MuiMenuItem[MuiRawTheme](key = "LightRawTheme",
-                                         primaryText = "LightRawTheme",
+                                         primaryText = js.defined("LightRawTheme"),
                                          value = Mui.Styles.LightRawTheme)(),
                 MuiMenuItem[MuiRawTheme](key = "DarkRawTheme",
-                                         primaryText = "DarkRawTheme",
+                                         primaryText = js.defined("DarkRawTheme"),
                                          value = Mui.Styles.DarkRawTheme)()
               ),
               <.h3("Override theme canvas color"),
-              MuiDropDownMenu[MuiColor](key = "colorDropdown",
-                                        onChange = onColorChanged,
-                                        value = S.backgroundColor)(
+              MuiDropDownMenu[MuiColor](
+                key = "colorDropdown",
+                onChange = onColorChanged,
+                value = S.backgroundColor
+              )(
                 colors.map {
                   case (name, color) ⇒
-                    MuiMenuItem[MuiColor](key = name,
-                                          primaryText = name,
-                                          value = color,
-                                          style = js.Dynamic.literal(backgroundColor = color))()
-                }.toVdomArray
+                    MuiMenuItem[MuiColor](
+                      key = name,
+                      primaryText = js.defined(name),
+                      value = color,
+                      style = js.Dynamic.literal(backgroundColor = color)
+                    )(): VdomNode
+                }: _*
               )
             )
           )

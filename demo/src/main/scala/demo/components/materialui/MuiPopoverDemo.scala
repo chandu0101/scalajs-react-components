@@ -4,9 +4,9 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.Attr.Ref
-import japgolly.scalajs.react.vdom.TopNode
+import japgolly.scalajs.react.vdom._
 import japgolly.scalajs.react.vdom.html_<^._
+import org.scalajs.dom.html.Div
 
 import scala.scalajs.js
 
@@ -18,34 +18,25 @@ object MuiPopoverDemo {
   private case class OriginChoice[T](ts: Seq[T], label: String)(set: T => Callback,
                                                                 fromState: State => T,
                                                                 str: T => String) {
-    val action: (TouchTapEvent, Int, VdomNode) => Callback =
-      (e, idx, _) => set(ts(idx))
+    val action: (ReactEvent, Int, String) => Callback =
+      (e, idx, any) => set(ts(idx))
 
     val items: VdomNode =
-      ts.map(
-          t => MuiMenuItem(value = str(t), primaryText = str(t))()
-        )
+      ts.map(t => MuiMenuItem[String](value = str(t), primaryText = js.defined(str(t)))())
         .toVdomArray
 
     def menu(S: State): VdomElement =
       <.div(
         ^.key := label,
-        <.label(
-          label,
-          ^.width := "400px"
-        ),
-        MuiDropDownMenu(
-          onChange = action,
-          value = str(fromState(S))
-        )(items)
+        <.label(label, ^.width := "400px"),
+        MuiDropDownMenu[String](onChange = action, value = str(fromState(S)))(items)
       )
   }
 
   case class State(open: Boolean, target: Origin, anchor: Origin)
 
   private case class Backend($ : BackendScope[Unit, State]) {
-
-    private var ref: TopNode = _
+    var ref: js.UndefOr[Div] = js.undefined
 
     val toggle: Callback =
       $.modState(s => s.copy(open = !s.open))
@@ -77,13 +68,13 @@ object MuiPopoverDemo {
       <.div(
         CodeExample(code, "MuiPopoverDemo")(
           <.div(
-            <.div.ref(ref = _)(
+            <.div(
               MuiRaisedButton(
-                onTouchTap = (e: TouchTapEvent) => toggle,
+                onClick = (e: ReactEvent) => toggle,
                 label = "Click on me to show a popover"
               )()
-            ),
-            originChoices.map(_.menu(S)).toTagMod,
+            ).withRef(ref),
+            originChoices.map(_.menu(S)).toVdomArray,
             MuiPopover(
               open = S.open,
               anchorEl = ref,
@@ -98,7 +89,7 @@ object MuiPopoverDemo {
                 MuiRaisedButton(
                   primary = true,
                   label = "here is a button",
-                  onTouchTap = (e: TouchTapEvent) => toggle
+                  onClick = (e: ReactEvent) => toggle
                 )()
               )
             )

@@ -2,21 +2,26 @@ package chandu0101.scalajs.react.components
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.raw.React
 
 import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
 
-case class ReactGeomIcon(name: IconName,
-                         height: js.UndefOr[String] = js.undefined,
-                         ref: js.UndefOr[String] = js.undefined,
-                         key: js.UndefOr[String] = js.undefined,
-                         fill: js.UndefOr[String] = js.undefined,
-                         width: js.UndefOr[String] = js.undefined) {
+@JSImport("react-geomicons", JSImport.Default) @js.native
+object ReactGeomIconRequire extends js.Any
+
+case class ReactGeomIcon(
+    name: IconName,
+    height: js.UndefOr[String] = js.undefined,
+    ref: js.UndefOr[String] = js.undefined,
+    key: js.UndefOr[String] = js.undefined,
+    fill: js.UndefOr[String] = js.undefined,
+    width: js.UndefOr[String] = js.undefined
+) {
 
   def apply() = {
-    val props     = JSMacro[ReactGeomIcon](this)
-    val component = JsComponent[js.Object, Children.None, Null](js.Dynamic.global.ReactGeomIcon)
-    component(props)
+    val props = JSMacro[ReactGeomIcon](this)
+    val f     = JsComponent[js.Object, Children.None, Null](ReactGeomIconRequire)
+    f(props)
   }
 }
 

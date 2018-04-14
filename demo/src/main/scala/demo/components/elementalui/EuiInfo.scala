@@ -5,13 +5,17 @@ package elementalui
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.Defaults._
+import scalacss.ProdDefaults._
 
 object EuiInfo {
 
   object Style extends StyleSheet.Inline {
     import dsl._
-    val content = style(textAlign.center, fontSize(30.px), paddingTop(40.px))
+    val content = style(
+      textAlign.center,
+      fontSize(30.px),
+      paddingTop(40.px)
+    )
   }
 
   val component = ScalaComponent
@@ -20,8 +24,14 @@ object EuiInfo {
       InfoTemplate(componentFilePath = "elementalui/")(
         <.div(
           <.h3("elemental-ui "),
-          <.p("scalajs-react wrapper for ", RedLink("elemental-ui", "http://elemental-ui.com")),
-          <.div(<.h4("Supported Version :"), <.span("0.5.4")),
+          <.p(
+            "scalajs-react wrapper for ",
+            RedLink("elemental-ui", "http://elemental-ui.com")
+          ),
+          <.div(
+            <.h4("Supported Version :"),
+            <.span("0.5.4")
+          ),
           <.div(
             <.h4("How To Use :"),
             <.p(
@@ -35,7 +45,8 @@ object EuiInfo {
                 "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/demo/pages/EuiPage.scala")
             )
           )
-        ))
+        )
+      )
 
     })
     .build

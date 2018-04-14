@@ -3,13 +3,17 @@ package demo.components
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.Defaults._
+import scalacss.ProdDefaults._
 
 object ReactTagsInputInfo {
 
   object Style extends StyleSheet.Inline {
     import dsl._
-    val content = style(textAlign.center, fontSize(30.px), paddingTop(40.px))
+    val content = style(
+      textAlign.center,
+      fontSize(30.px),
+      paddingTop(40.px)
+    )
   }
 
   val component = ScalaComponent
@@ -18,8 +22,10 @@ object ReactTagsInputInfo {
       InfoTemplate(componentFilePath = "textfields/ReactTagsInput.scala")(
         <.div(
           <.h3("React Tags Input "),
-          <.p("scalajs-react wrapper for ",
-              RedLink("tags input", "https://github.com/olahol/react-tagsinput")),
+          <.p(
+            "scalajs-react wrapper for ",
+            RedLink("tags input", "https://github.com/olahol/react-tagsinput")
+          ),
           <.div(
             <.h4("Supported Version :"),
             <.span("3.0.3")

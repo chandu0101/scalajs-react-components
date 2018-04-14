@@ -9,19 +9,22 @@ object ReactSplitPaneRouteModule {
 
   case object Info extends LeftRoute("Info", "info", () => ReactSplitPaneInfo())
 
-  case object SimpleVertical extends LeftRoute("Simple Vertical", "simplevertical", () => ReactSplitPaneSimpleVertical())
+  case object SimpleVertical
+      extends LeftRoute("Simple Vertical", "simplevertical", () => ReactSplitPaneSimpleVertical())
 
-  case object SimpleHorizontal extends LeftRoute("Simple Horizontal", "simplehorizontal", () => ReactSplitPaneSimpleHorizontal())
+  case object SimpleHorizontal
+      extends LeftRoute("Simple Horizontal",
+                        "simplehorizontal",
+                        () => ReactSplitPaneSimpleHorizontal())
 
-  case object SimpleNested extends LeftRoute("Simple Nested", "simplenested", () => ReactSplitPaneSimpleNested())
+  case object SimpleNested
+      extends LeftRoute("Simple Nested", "simplenested", () => ReactSplitPaneSimpleNested())
 
   val menu: List[LeftRoute] = List(Info, SimpleVertical, SimpleHorizontal, SimpleNested)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
     import dsl._
-    menu.map(i =>
-      staticRoute(i.route, i) ~> renderR(r => ReactSplitPanePage(i, r))
-    ).reduce(_ | _)
+    menu.map(i => staticRoute(i.route, i) ~> renderR(r => ReactSplitPanePage(i, r))).reduce(_ | _)
 
   }
 }

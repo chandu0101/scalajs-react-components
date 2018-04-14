@@ -19,19 +19,19 @@ object SuiListDemo {
         CodeExample(code, "SuiList")(
           SuiList()(
             SuiListItem()(
-              SuiListIcon(name = "users")(),
+              SuiListIcon(name = SuiIconType("users"))(),
               SuiListContent()("Semantic UI")
             ),
             SuiListItem()(
-              SuiListIcon(name = "marker")(),
+              SuiListIcon(name = SuiIconType("marker"))(),
               SuiListContent()("New York, NY")
             ),
             SuiListItem()(
-              SuiListIcon(name = "mail")(),
+              SuiListIcon(name = SuiIconType("mail"))(),
               SuiListContent()(<.a(^.href := "mailto:jack@semantic-ui.com")("jack@semantic-ui.com"))
             ),
             SuiListItem()(
-              SuiListIcon(name = "linkify")(),
+              SuiListIcon(name = SuiIconType("linkify"))(),
               SuiListContent()(<.a(^.href := "http://www.semantic-ui.com")("semantic-ui.com"))
             )
           )

@@ -4,19 +4,22 @@ package pages
 import chandu0101.scalajs.react.components._
 import demo.components.{ComponentGridItem, LocalDemoButton}
 import demo.routes.AppRouter
-import demo.routes.AppRouter.Page
+import demo.routes.AppRouter._
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.component.Generic.toComponentCtor
 import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.html_<^._
+
+import scala.scalajs.js
 
 object HomePage {
   import RCustomStyles._
 
-  case class ComponentInfo(name: String, imagePath: String, route: Page, tags: Stream[String])
+  case class ComponentInfo(name: String, imagePath: js.Any, route: Page, tags: Stream[String])
 
   object Style {
 
-    val info = Seq(
+    val info = TagMod(
       MsFlexAlign := "center",
       MsFlexDirection := "column",
       WebkitAlignItems := "center",
@@ -35,21 +38,26 @@ object HomePage {
       ^.fontWeight := "500",
       ^.paddingBottom := "45px",
       ^.paddingTop := "85px"
-    ).toTagMod
+    )
 
-    val infoContent = Seq(^.fontWeight := "500", ^.fontSize := "18px").toTagMod
+    val infoContent = TagMod(^.fontWeight := "500", ^.fontSize := "18px")
 
-    val infoLink =
-      Seq(^.color := "#ff4081", ^.padding := "0 5px", ^.textDecoration := "none").toTagMod
+    val infoLink = TagMod(
+      ^.color := "#ff4081",
+      ^.padding := "0 5px",
+      ^.textDecoration := "none"
+    )
 
-    val searchSection = Seq(^.display := "-ms-flexbox",
-                            ^.display := "-webkit-box",
-                            ^.display := "-webkit-flex",
-                            ^.display := "flex",
-                            ^.margin := "50px",
-                            ^.marginBottom := "15px").toTagMod
+    val searchSection = TagMod(
+      ^.display := "-ms-flexbox",
+      ^.display := "-webkit-box",
+      ^.display := "-webkit-flex",
+      ^.display := "flex",
+      ^.margin := "50px",
+      ^.marginBottom := "15px"
+    )
 
-    val componentsGrid = Seq(
+    val componentsGrid = TagMod(
       MsFlexWrap := "wrap",
       WebkitFlexWrap := "wrap",
       ^.display := "-ms-flexbox",
@@ -58,7 +66,7 @@ object HomePage {
       ^.display := "flex",
       ^.flexWrap := "wrap",
       ^.margin := "30px"
-    ).toTagMod
+    )
 
   }
 
@@ -87,7 +95,7 @@ object HomePage {
               "https://github.com/chandu0101/scalajs-react-components/tree/master/doc/CONTRIBUTE.md")
         ),
         <.div(Style.searchSection)(
-          ReactSearchBox(onTextChange = onTextChange),
+          ReactSearchBox(onTextChange = onTextChange, style = ReactSearchBox.DefaultStyle),
           <.strong(^.alignSelf := "center", ^.paddingLeft := "30px")(
             s"Results: ${S.results.length}").unless(S.filterText.isEmpty)
         ),

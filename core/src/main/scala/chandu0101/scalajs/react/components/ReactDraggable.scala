@@ -2,21 +2,21 @@ package chandu0101.scalajs.react.components
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.Reusability
-import japgolly.scalajs.react.vdom.HtmlTopNode
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 import org.scalajs.dom._
 
 import scala.scalajs.js
 import scalacss.ScalaCssReact._
+import Implicits._
 
-case class RPoint(x: Double, y: Double)
-case class RGrid(width: Double, height: Double)
+case class RPoint(x: Int, y: Int)
+case class RGrid(width: Int, height: Int)
 case class RElementPosition(element: Element,
-                            top: Double = 0,
-                            left: Double = 0,
-                            right: Double = 0,
-                            bottom: Double = 0)
+                            top: Int = 0,
+                            left: Int = 0,
+                            right: Int = 0,
+                            bottom: Int = 0)
 case class ClientRect(top: Double, left: Double)
 
 object ReactDraggable {
@@ -35,32 +35,19 @@ object ReactDraggable {
 
   object DomUtil {
 
-    def offset(element: HtmlTopNode) = {
-      val rect       = element.getBoundingClientRect()
-      var scrollTop  = 0.0
-      var scrollLeft = 0.0
-      if (dom.document.body.scrollTop > 0) {
-        scrollTop = dom.document.body.scrollTop.toInt
-        scrollLeft = dom.document.body.scrollLeft.toInt
-      } else if (dom.document.documentElement.scrollTop > 0) { // for firefox
-        scrollTop = dom.document.documentElement.scrollTop
-        scrollLeft = dom.document.documentElement.scrollLeft
-      }
-      ClientRect(rect.top + scrollTop, rect.left + scrollLeft)
-    }
-
     /**
       *  https://developer.mozilla.org/en-US/docs/Web/API/Element.matches#Browser_compatibility
       * @param element dom element
       * @param selector css selector
       */
     def matchesSelector(element: js.Dynamic)(selector: String): Boolean = {
-      val funcName =
-        Stream("matches",
-               "webkitMatchesSelector",
-               "mozMatchesSelector",
-               "msMatchesSelector",
-               "oMatchesSelector").filter(name => !js.isUndefined(element.selectDynamic(name))).head
+      val funcName = Stream(
+        "matches",
+        "webkitMatchesSelector",
+        "mozMatchesSelector",
+        "msMatchesSelector",
+        "oMatchesSelector"
+      ).filter(name => !js.isUndefined(element.selectDynamic(name))).head
       element.selectDynamic(funcName).call(element, selector).asInstanceOf[Boolean]
     }
 
@@ -81,10 +68,10 @@ object ReactDraggable {
     def getControlPosition(e: Event): RPoint =
       if (e.`type`.contains("touch")) {
         val position = e.asInstanceOf[TouchEvent].touches(0)
-        RPoint(position.clientX, position.clientY)
+        RPoint(position.clientX.toInt, position.clientY.toInt)
       } else {
         val position = e.asInstanceOf[MouseEvent]
-        RPoint(position.clientX, position.clientY)
+        RPoint(position.clientX.toInt, position.clientY.toInt)
       }
 
     def isLeftClick(e: Event) =
@@ -92,21 +79,25 @@ object ReactDraggable {
 
   }
 
-  case class Props(cancel: js.UndefOr[String],
-                   onDrag: js.UndefOr[(Event, RElementPosition) => Callback],
-                   useCSSTransforms: Boolean,
-                   clsNames: CssClassType,
-                   moveOnStartChange: Boolean,
-                   grid: js.UndefOr[RGrid],
-                   zIndex: Int,
-                   axis: String,
-                   onStop: js.UndefOr[(Event, RElementPosition) => Callback],
-                   start: RPoint,
-                   onStart: js.UndefOr[(Event, RElementPosition) => Callback],
-                   onMouseDown: js.UndefOr[Event => Callback],
-                   handle: js.UndefOr[String],
-                   minConstraints: js.UndefOr[RGrid],
-                   maxConstraints: js.UndefOr[RGrid])
+  case class Props(
+      cancel: js.UndefOr[String],
+      onDrag: js.UndefOr[(Event, RElementPosition) => Callback],
+      useCSSTransforms: Boolean,
+      clsNames: CssClassType,
+      ref: js.UndefOr[String],
+      moveOnStartChange: Boolean,
+      grid: js.UndefOr[RGrid],
+      key: js.Any,
+      zIndex: Int,
+      axis: String,
+      onStop: js.UndefOr[(Event, RElementPosition) => Callback],
+      start: RPoint,
+      onStart: js.UndefOr[(Event, RElementPosition) => Callback],
+      onMouseDown: js.UndefOr[Event => Callback],
+      handle: js.UndefOr[String],
+      minConstraints: js.UndefOr[RGrid],
+      maxConstraints: js.UndefOr[RGrid]
+  )
 
   /**
     * @param dragging whether or not currently dragging
@@ -114,8 +105,8 @@ object ReactDraggable {
     * @param startY Start top of t.getDOmNode()
     * @param offsetX Offset between start left and mouse left
     * @param offsetY Offset between start top and mouse top
-    * @param clientX Current left of this.getDOMNode
-    * @param clientY Current top of this.getDOMNode
+    * @param clientX Current left of this.getDOMNode.map(_.asElement)
+    * @param clientY Current top of this.getDOMNode.map(_.asElement)
     */
   case class State(
       dragging: Boolean,
@@ -133,24 +124,25 @@ object ReactDraggable {
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def pos(S: State): CallbackTo[RElementPosition] =
-      t.getDOMNode.map(e =>
-        RElementPosition(t.getDOMNode.runNow(), top = S.clientY, left = S.clientX))
+    def pos(S: State) =
+      t.root.getDOMNode.map(node => RElementPosition(node.asElement, top = S.clientY, left = S.clientX))
 
-    def handleDragStart(P: Props)(e: Event): Callback = {
+    def handleDragStart(props: Props)(e: Event): Callback = {
       val moveEventType = DomUtil.dragEventFor(e, "move")
       val endEventType  = DomUtil.dragEventFor(e, "end")
       val dragPoint     = DomUtil.getControlPosition(e)
 
-      val mouseDown: Callback =
-        P.onMouseDown.asCbo(e)
+      val mouseDown: Callback = props.onMouseDown.fold(Callback.empty)(fn => fn(e))
 
-      val onStart: Callback =
-        t.state.flatMap(pos).flatMap(p => P.onStart.asCbo(e, p))
+      val onStart: Callback = {
+        t.state.flatMap(S => {
+          pos(S).flatMap(pos => props.onStart.asCbo(e, pos))
+        })
+      }
 
       val startDrag = t.modState { S =>
-        val u1 = Events.register(dom.window, moveEventType, handleDrag(P))
-        val u2 = Events.register(dom.window, endEventType, handleDragEnd(P))
+        val u1 = Events.register(dom.window, moveEventType, handleDrag(props))
+        val u2 = Events.register(dom.window, endEventType, handleDragEnd(props))
 
         S.copy(
           dragging = true,
@@ -162,22 +154,22 @@ object ReactDraggable {
 
       val matches: Boolean = {
         val matchesTarget = DomUtil.matchesSelector(e.target.asInstanceOf[js.Dynamic]) _
-        P.handle.fold(true)(matchesTarget) && P.cancel.fold(true)(matchesTarget)
+        props.handle.fold(true)(matchesTarget) && props.cancel.fold(true)(matchesTarget)
       }
 
       mouseDown << (onStart >> startDrag).when(DomUtil.isLeftClick(e) && matches).void
     }
 
-    def handleDrag(P: Props)(e: Event): Callback = {
+    def handleDrag(props: Props)(e: Event): Callback = {
       val dragPoint = DomUtil.getControlPosition(e)
 
       val c1 = t.modState { S =>
         // calculate top and left
-        var clientX = S.startX + (dragPoint.x - S.offsetX)
-        var clientY = S.startY + (dragPoint.y - S.offsetY)
+        var clientX: Int = S.startX + (dragPoint.x - S.offsetX)
+        var clientY: Int = S.startY + (dragPoint.y - S.offsetY)
 
         // Snap to grid if prop has been provided
-        P.grid.foreach { (grid: RGrid) =>
+        props.grid.foreach { (grid: RGrid) =>
           val directionX = if (clientX < S.clientX) -1 else 1
           val directionY = if (clientY < S.clientY) -1 else 1
 
@@ -192,12 +184,12 @@ object ReactDraggable {
         }
 
         //min/max contraints
-        P.minConstraints.foreach { (min: RGrid) =>
+        props.minConstraints.foreach { (min: RGrid) =>
           clientX = math.max(min.width, clientX)
           clientY = math.max(min.height, clientY)
         }
 
-        P.maxConstraints.foreach { (max: RGrid) =>
+        props.maxConstraints.foreach { (max: RGrid) =>
           clientX = math.min(max.width, clientX)
           clientY = math.min(max.height, clientY)
         }
@@ -207,64 +199,70 @@ object ReactDraggable {
       }
 
       //call event handler
-      val c2 = t.state.flatMap(pos).flatMap(p => P.onDrag.asCbo(e, p))
+      val c2 = t.state.flatMap(S => {
+        pos(S).flatMap(pos => props.onDrag.asCbo(e, pos))
+      })
 
       c1 >> c2
     }
 
-    def handleDragEnd(P: Props)(e: Event): Callback = {
+    def handleDragEnd(props: Props)(e: Event): Callback = {
       val unregister: Callback =
         t.state.flatMap(_.stopListening.asCbo)
       val onStop: Callback =
-        t.state.flatMap(pos).flatMap(p => P.onStop.asCbo(e, p))
+        t.state.flatMap(S => {
+          pos(S).flatMap(pos => props.onStop.asCbo(e, pos))
+        })
       val stopDragging: Callback =
         t.modState(_.copy(dragging = false, stopListening = js.undefined))
 
       unregister >> onStop >> stopDragging
     }
 
-    def canDragY(P: Props): Boolean =
-      P.axis == "both" || P.axis == "y"
+    def canDragY(props: Props): Boolean =
+      props.axis == "both" || props.axis == "y"
 
-    def canDragX(P: Props): Boolean =
-      P.axis == "both" || P.axis == "x"
+    def canDragX(props: Props): Boolean =
+      props.axis == "both" || props.axis == "x"
 
     private val transforms = Seq(^.transform, mozTransform, WebkitTransform, msTransform)
 
     def positionToCSSTransform(left: Int, top: Int): TagMod =
-      transforms.map(_ := s"translate(${left}px, ${top}px)").toTagMod
+      (transforms map (_ := s"translate(${left}px, ${top}px)")).toTagMod
 
-    def render(P: Props, S: State, C: PropsChildren) = {
+    def render(props: Props, S: State, C: PropsChildren) = {
       val topValue: Int =
-        if (canDragY(P)) S.clientY else S.startY
+        if (canDragY(props)) S.clientY else S.startY
       val leftValue: Int =
-        if (canDragX(P)) S.clientX else S.startX
+        if (canDragX(props)) S.clientX else S.startX
       val stl: TagMod =
-        if (P.useCSSTransforms) positionToCSSTransform(leftValue, topValue)
-        else Seq(^.top := topValue.toString, ^.left := leftValue.toString).toTagMod
+        if (props.useCSSTransforms) positionToCSSTransform(leftValue, topValue)
+        else TagMod(^.top := topValue.px, ^.left := leftValue.px)
 
-      def onDragStart(e: ReactUIEvent) = CallbackTo(e.nativeEvent).flatMap(handleDragStart(P))
-      def onDragEnd(e: ReactUIEvent)   = CallbackTo(e.nativeEvent).flatMap(handleDragEnd(P))
+      implicit def rawEventCallbackToReactEventCallback(
+          fn: Event => Callback): ReactEvent => Callback = { e =>
+        fn(e.nativeEvent)
+      }
 
       <.div(
         Style.draggable,
         Style.draggableActive.when(S.dragging),
         stl,
-        ^.onMouseDown ==> onDragStart,
-        ^.onTouchStart ==> onDragStart,
-        ^.onMouseUp ==> onDragEnd,
-        ^.onTouchEnd ==> onDragEnd
+        ^.onMouseDown ==> handleDragStart(props),
+        ^.onTouchStart ==> handleDragStart(props),
+        ^.onMouseUp ==> handleDragEnd(props),
+        ^.onTouchEnd ==> handleDragEnd(props)
       )(C)
     }
   }
 
-  def newStateFrom(P: Props): State =
+  def newStateFrom(props: Props): State =
     State(
       dragging = false,
       startX = 0,
       startY = 0,
-      clientX = P.start.x.toInt,
-      clientY = P.start.y.toInt,
+      clientX = props.start.x.toInt,
+      clientY = props.start.y.toInt,
       offsetX = 0,
       offsetY = 0,
       stopListening = js.undefined
@@ -274,8 +272,12 @@ object ReactDraggable {
     .builder[Props]("ReactDraggable")
     .initialStateFromProps(newStateFrom)
     .renderBackendWithChildren[Backend]
-    .componentWillReceiveProps { c =>
-      c.setState(newStateFrom(c.nextProps)).when(c.nextProps.moveOnStartChange).void
+    .componentWillReceiveProps {
+      case componentWillReceiveProps =>
+        componentWillReceiveProps
+          .setState(newStateFrom(componentWillReceiveProps.nextProps))
+          .when(componentWillReceiveProps.nextProps.moveOnStartChange)
+          .void
     }
     .configure(Reusability.shouldComponentUpdate)
     .componentWillUnmount($ => $.state.stopListening.getOrElse(Callback.empty))
@@ -290,11 +292,13 @@ object ReactDraggable {
     *                         This generally gives better performance, and is useful in combination with
     *                         other layout systems that use translate(), such as react-grid-layout.
     * @param clsNames css class names map
+    * @param ref ref for this component
     * @param moveOnStartChange tells the Draggable element to reset its position
     *                          if the `start` parameters are changed. By default, if the `start`
     *                          parameters change, the Draggable element still remains where it started
     *                          or was dragged to.
     * @param grid specifies the x and y that dragging should snap to.
+    * @param key key for this react component
     * @param zIndex specifies the zIndex to use while dragging.
     * @param axis determines which axis the draggable can move.(both,x,y)
     * @param onStop Called when dragging stops
@@ -306,38 +310,44 @@ object ReactDraggable {
     * @param children
     * @return
     */
-  def apply(cancel: js.UndefOr[String] = js.undefined,
-            onDrag: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
-            useCSSTransforms: Boolean = false,
-            clsNames: CssClassType = Map(),
-            moveOnStartChange: Boolean = false,
-            grid: js.UndefOr[RGrid] = js.undefined,
-            zIndex: Int = 0,
-            axis: String = "both",
-            onStop: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
-            start: RPoint = RPoint(0, 0),
-            onStart: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
-            onMouseDown: js.UndefOr[Event => Callback] = js.undefined,
-            handle: js.UndefOr[String] = js.undefined,
-            minConstraints: js.UndefOr[RGrid] = js.undefined,
-            maxConstraints: js.UndefOr[RGrid] = js.undefined)(children: VdomNode) =
-    component(
-      Props(
-        cancel = cancel,
-        onDrag = onDrag,
-        useCSSTransforms = useCSSTransforms,
-        clsNames = clsNames,
-        moveOnStartChange = moveOnStartChange,
-        grid = grid,
-        zIndex = zIndex,
-        axis = axis,
-        onStop = onStop,
-        start = start,
-        onStart = onStart,
-        onMouseDown = onMouseDown,
-        handle = handle,
-        minConstraints = minConstraints,
-        maxConstraints = maxConstraints
-      )
-    )(children)
+  def apply(
+      cancel: js.UndefOr[String] = js.undefined,
+      onDrag: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
+      useCSSTransforms: Boolean = false,
+      clsNames: CssClassType = Map(),
+      ref: js.UndefOr[String] = js.undefined,
+      moveOnStartChange: Boolean = false,
+      grid: js.UndefOr[RGrid] = js.undefined,
+      key: js.Any = {},
+      zIndex: Int = 0,
+      axis: String = "both",
+      onStop: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
+      start: RPoint = RPoint(0, 0),
+      onStart: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
+      onMouseDown: js.UndefOr[Event => Callback] = js.undefined,
+      handle: js.UndefOr[String] = js.undefined,
+      minConstraints: js.UndefOr[RGrid] = js.undefined,
+      maxConstraints: js.UndefOr[RGrid] = js.undefined
+  )(children: VdomNode) = {
+    val props = Props(
+      cancel = cancel,
+      onDrag = onDrag,
+      useCSSTransforms = useCSSTransforms,
+      clsNames = clsNames,
+      ref = ref,
+      moveOnStartChange = moveOnStartChange,
+      grid = grid,
+      key = key,
+      zIndex = zIndex,
+      axis = axis,
+      onStop = onStop,
+      start = start,
+      onStart = onStart,
+      onMouseDown = onMouseDown,
+      handle = handle,
+      minConstraints = minConstraints,
+      maxConstraints = maxConstraints
+    )
+    component(props)(children)
+  }
 }

@@ -33,7 +33,8 @@ object ReactSplitPaneSimpleHorizontal {
     }
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactSplitPaneDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactSplitPaneDemo")
     .renderBackend[Backend]
     .build
 

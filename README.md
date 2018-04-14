@@ -11,12 +11,12 @@ We are trying to make the experience of using javascript components in scala.js
 Adding types to javascript is a lot of guesswork, and we're certain to have gotten them wrong
  some places. Bug reports and/or pull requests are very much welcome! :)
 
-
 ### Wrappers for javascript components:
 These components require you to provide javascript yourself.
 
-- Material-ui 0.17.0
-- Elemental-ui 0.5.4
+- Material-ui 0.18.1
+- Elemental-ui 0.6.1
+- Semantic-ui 0.68.5
 - Google maps (downloads js directly from google)
 - React GeomIcon (react-geomicons: 2.0.4)
 - React Infinite (react-infinite, 0.7.1)
@@ -43,37 +43,6 @@ These components require you to provide javascript yourself.
 MuiRaisedButton(label = "label")()
 ```
 
-#### Bad implicit inference for js.UndefOr[T]
-
-Scala will only run one implicit to convert a type to another,
- which means that in order to convert a `String` to `js.UndefOr[VdomNode]`
- it needs to be done in two steps:
-
-(1) `String => VdomNode`
-
-(2) `VdomNode` => `js.UndefOr[VdomNode]`
-
-We provide special versions of a few such implicits in
-`chandu0101.scalajs.react.components.Implicits`.
-To use:
-```scala
-import chandu0101.scalajs.react.components.Implicits._
-```
-or to put them in scope for your whole application:
-```scala
-package object mypackage extends chandu0101.scalajs.react.components.Implicits
-```
-
-#### Uncaught TypeError: Cannot read property 'RaisedButton' of undefined
-If you try to use a javascript wrapper like material-ui and
- you get an error like this, make sure the corresponding javascript library
- is loaded in the global namespace where the wrapper expects to find it.
-
-Sbt does not by itself understand these module systems, so unless you're prepared
- to talk it into supporting it, please rather have a look at the
- [webpack configuration for the demo project](demo/webpack.config.js) to
- see an example of how this can be solved.
-
 ## Setup
 
 #### SBT
@@ -82,9 +51,12 @@ Add these dependencies to you sbt build file
 libraryDependencies ++= Seq(
   "com.github.japgolly.scalajs-react" %%% "core" % "1.1.0",
   "com.github.japgolly.scalajs-react" %%% "extra" % "1.1.0",
-  "com.olvind" %%% "scalajs-react-components" % "0.8.0"
+  "com.olvind" %%% "scalajs-react-components" % "1.1.0"
 )
 ```
+
+This repository includes an example project, by all means use it as a template for your own.
+
 
 #### ScalaCSS
 In order to use the scala.js components, you need to make sure you load their CSS:
@@ -93,28 +65,20 @@ GlobalRegistry.register(<component>.Style)
 ```
 See [here](https://japgolly.github.io/scalacss/book/ext/react.html) for more details
 
-#### Provide javascript
-In the case of material-ui at least you generally need to use javascript tools to
- generate a bundle of the javascript dependencies, because `sbt` and the scala.js
- plugin do not understand `require()`.
-
-See the [demo](demo) to see how it can be done.
-
-
-## Demo With Code Examples
+## Full Demo With Code Examples
 
 **Online :**
 
-http://chandu0101.github.io/sjrc/
+http://scalajs-react-components.github.io/scalajs-react-components
 
-**Local :**
+**Local :** This will start a web server on http://localhost:8080
 ```
-sbt demo/fastOptJS
-cd demo
-//open a new terminal tab/window
-yarn install
-npm start
-//open in browser
-http://localhost:8090/
+sbt 
+fastOptJS::webpack
+demo/compile:fastOptJS::startWebpackDevServer
 
 ```
+
+## Example project
+
+We've included an example project to give you an idea how to use the components

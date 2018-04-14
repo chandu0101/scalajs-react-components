@@ -1,16 +1,17 @@
 package demo
 package components
 
-import chandu0101.scalajs.react.components.RCustomStyles
-import chandu0101.scalajs.react.components.RCustomStyles._
+import chandu0101.scalajs.react.components._
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.component.Generic.toComponentCtor
 import japgolly.scalajs.react.vdom.html_<^._
 
 object AppHeader {
+  import RCustomStyles._
 
   object Style {
 
-    val headerStyle = Seq(
+    val headerStyle = TagMod(
       ^.background := "#F2706D",
       ^.fontSize := "1.5em",
       ^.padding := "0px",
@@ -18,9 +19,9 @@ object AppHeader {
       ^.position := "fixed",
       ^.width := "100%",
       ^.zIndex := "5"
-    ).toTagMod
+    )
 
-    val menuNav = Seq(
+    val menuNav = TagMod(
       MsFlexAlign := "center",
       WebkitAlignItems := "center",
       WebkitBoxAlign := "center",
@@ -32,18 +33,21 @@ object AppHeader {
       ^.height := "64px",
       ^.lineHeight := "64px",
       ^.margin := "0 3rem"
-    ).toTagMod
+    )
 
-    val logo = Seq(
+    val logo = TagMod(
       ^.color := "rgb(244, 233, 233)",
       ^.textDecoration := "none",
       ^.width := "150px"
-    ).toTagMod
+    )
 
-    val menuItem =
-      Seq(^.padding := "20px", ^.color := "rgb(244, 233, 233)", ^.textDecoration := "none").toTagMod
+    val menuItem = TagMod(
+      ^.padding := "20px",
+      ^.color := "rgb(244, 233, 233)",
+      ^.textDecoration := "none"
+    )
 
-    val menuItemHover = Seq(^.background := "#f1453e").toTagMod
+    val menuItemHover = TagMod(^.background := "#f1453e")
 
   }
 

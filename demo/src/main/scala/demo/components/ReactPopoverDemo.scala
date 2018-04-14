@@ -2,7 +2,7 @@ package demo.components
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.ReactPopOver
-import chandu0101.scalajs.react.components.ReactPopOver.{DomUtil, Props, State}
+import chandu0101.scalajs.react.components.ReactPopOver.{Props, State}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
@@ -10,17 +10,17 @@ object ReactPopoverDemo {
 
   object Style {
     val popoverExample =
-      Seq(^.display := "flex", ^.flexDirection := "column", ^.alignItems := "center").toTagMod
+      TagMod(^.display := "flex", ^.flexDirection := "column", ^.alignItems := "center")
   }
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
-  class Backend(t: BackendScope[_, _]) {
-    private val topRef    = ScalaComponent.mutableRefTo(ReactPopOver.component)
-    private val rightRef  = ScalaComponent.mutableRefTo(ReactPopOver.component)
-    private val leftRef   = ScalaComponent.mutableRefTo(ReactPopOver.component)
-    private val bottomRef = ScalaComponent.mutableRefTo(ReactPopOver.component)
+  class Backend(t: BackendScope[Unit, Unit]) {
+    private val topRef    = Ref.toScalaComponent(ReactPopOver.component)
+    private val rightRef  = Ref.toScalaComponent(ReactPopOver.component)
+    private val leftRef   = Ref.toScalaComponent(ReactPopOver.component)
+    private val bottomRef = Ref.toScalaComponent(ReactPopOver.component)
 
     def toggleCB(refComp: => ScalaComponent.MountedImpure[Props, State, ReactPopOver.Backend])
       : ReactMouseEvent => Callback = { e =>

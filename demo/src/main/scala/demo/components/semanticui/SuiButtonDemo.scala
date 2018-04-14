@@ -1,8 +1,6 @@
 package demo.components.semanticui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.ReactMouseEventB
-import chandu0101.scalajs.react.components.materialui._
 import chandu0101.scalajs.react.components.semanticui.SuiButton
 import demo.components.CodeExample
 import japgolly.scalajs.react._
@@ -16,7 +14,7 @@ object SuiButtonDemo {
 
   case class Backend($ : BackendScope[Unit, Unit]) {
 
-    val handleOnClick = (e: ReactMouseEventB) => Callback.info("You clicked me!")
+    val handleOnClick = (e: ReactMouseEventFromInput) => Callback.info("You clicked me!")
 
     def render() =
       <.div(

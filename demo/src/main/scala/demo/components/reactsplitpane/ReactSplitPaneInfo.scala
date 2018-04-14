@@ -5,8 +5,9 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactSplitPaneInfo {
 
-  val component = ScalaComponent.builder[Unit]("ReactSplitPaneInfo")
-    .render( P => {
+  val component = ScalaComponent
+    .builder[Unit]("ReactSplitPaneInfo")
+    .render(P => {
       <.div(^.cls := "full-width-section")(
         <.h3("React Split Pane :"),
         <.p("Wrapper for the react-split-pane component (0.1.66)"),

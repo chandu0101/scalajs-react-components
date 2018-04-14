@@ -1,7 +1,7 @@
 package demo
 package routes
 
-import demo.components.{ReactGeomIconInfo, ReactGeomIconDemo}
+import demo.components.{ReactGeomIconDemo, ReactGeomIconInfo}
 import demo.pages.ReactGeomIconPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 import japgolly.scalajs.react.vdom.html_<^._

@@ -92,6 +92,12 @@ lazy val core =
       sourceGenerators in Compile += generateMui,
       sourceGenerators in Compile += generateEui,
       sourceGenerators in Compile += generateSui,
+      mappings in (Compile, packageSrc) ++= {
+        val sourceDir = (sourceManaged.value / "main").toPath
+        def rel(f: File) = sourceDir.relativize(f.toPath).toString
+
+        (managedSources in Compile).value map (s ⇒ s → rel(s))
+      },
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalajs-react" %%% "core"        % "1.1.1" withSources (),
         "com.github.japgolly.scalajs-react" %%% "extra"       % "1.1.1" withSources (),

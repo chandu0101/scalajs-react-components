@@ -25,7 +25,7 @@ package object olvind {
     new File(path.toString).exists
 
   def printToFile(f: Path)(op: java.io.PrintWriter => Unit): Unit = {
-    val p = new java.io.PrintWriter(f.toIO)
+    val p = new java.io.PrintWriter(f.toIO, "UTF-8")
     try { op(p) } finally { p.close() }
   }
 }

@@ -76,7 +76,7 @@ object Runner {
       }
 
     val fullOutputPath = outputFolder / RelPath(
-      library.packageName.replaceAll("\\.", File.separator))
+      library.packageName.replaceAll("\\.", if (File.separator == "\\") "\\\\" else File.separator))
     fullOutputPath.toIO.mkdirs()
 
     val prelude: String =
